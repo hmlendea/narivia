@@ -11,6 +11,8 @@ using MonoMac.Foundation;
 using Foundation;
 using UIKit;
 #endif
+
+using Narivia.Views;
 #endregion
 
 namespace Narivia

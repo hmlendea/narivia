@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 
-namespace Narivia
+namespace Narivia.Views
 {
     /// <summary>
     /// This is the main type for your game.
