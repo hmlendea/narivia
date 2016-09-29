@@ -85,6 +85,7 @@
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
+    <Compile Include="Utils\ApplicationPaths.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -102,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
