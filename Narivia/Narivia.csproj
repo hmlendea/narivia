@@ -78,6 +78,13 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RepositoryException.cs" />
     <Compile Include="Repositories\RepositoryXml.cs" />
+    <Compile Include="Controllers\BiomeController.cs" />
+    <Compile Include="Controllers\HoldingController.cs" />
+    <Compile Include="Controllers\CultureController.cs" />
+    <Compile Include="Controllers\FactionController.cs" />
+    <Compile Include="Controllers\RegionController.cs" />
+    <Compile Include="Controllers\ResourceController.cs" />
+    <Compile Include="Controllers\UnitController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
