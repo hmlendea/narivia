@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Models\Biome.cs" />
     <Compile Include="Models\Culture.cs" />
     <Compile Include="Models\Faction.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Models\Resource.cs" />
     <Compile Include="Models\Unit.cs" />
     <Compile Include="Models\World.cs" />
+    <Compile Include="Utils\FastBitmap.cs" />
     <Compile Include="Views\Game1.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Program.cs" />
@@ -101,10 +103,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
