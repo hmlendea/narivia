@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Narivia.Utils
 {
-    public static class NarivianClass
+    public static class ApplicationPaths
     {
         static readonly string rootDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         static readonly string DataDirectory = Path.Combine(rootDirectory, "data");
