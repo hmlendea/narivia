@@ -13,7 +13,7 @@ namespace Narivia.Models
         /// <value>The identifier.</value>
         [Key]
         [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
-        public string Id { get; set; }
+        public virtual string Id { get; set; }
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object"/> is equal to the current <see cref="Narivia.Models.EntityBase"/>.

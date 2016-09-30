@@ -20,24 +20,23 @@ namespace Narivia.Controllers
         RepositoryXml<Region> regionRepository;
         RepositoryXml<Resource> resourceRepository;
         RepositoryXml<Unit> unitRepository;
+        BorderRepository borderRepository;
+        ArmyRepository armyRepository;
+
         World world;
 
         string[,] worldTiles;
-        Dictionary<string, List<string>> borders;
 
         string playerFactionId;
         int turn;
 
         public void NewGame(string worldId, string factionId)
         {
-            LoadWorld(worldId);
             LoadEntities(worldId);
-            LoadMap(worldId);
+            LoadWorld(worldId);
 
             InitializeGame(factionId);
             InitializeEntities();
-
-            DetermineBorders();
         }
 
         public void NextTurn()
@@ -58,13 +57,7 @@ namespace Narivia.Controllers
 
         public bool RegionHasBorder(string region1Id, string region2Id)
         {
-            if (!borders.ContainsKey(region1Id) || !borders.ContainsKey(region2Id))
-                return false;
-
-            if (borders[region1Id].Contains(region2Id))
-                return true;
-
-            if (borders[region2Id].Contains(region1Id))
+            if (borderRepository.Contains(region1Id, region2Id))
                 return true;
 
             return false;
@@ -83,7 +76,11 @@ namespace Narivia.Controllers
 
         void LoadWorld(string worldId)
         {
-            // TODO: Load world
+            borderRepository = new BorderRepository();
+            armyRepository = new ArmyRepository();
+
+            LoadMap(worldId);
+            LoadBorders();
         }
 
         void LoadMap(string worldId)
@@ -124,15 +121,34 @@ namespace Narivia.Controllers
 
                 foreach (Unit unit in units)
                 {
-                    // TODO: set starting troops
+                    Army army = new Army
+                    {
+                        FactionId = faction.Id,
+                        UnitId = unit.Id,
+                        Size = 0
+                    };
+
+                    armyRepository.Add(army);
                 }
             }
         }
 
-        void DetermineBorders()
+        void SetBorder(string region1Id, string region2Id)
         {
-            borders = new Dictionary<string, List<string>>();
+            if (RegionHasBorder(region1Id, region2Id))
+                return;
 
+            Border border = new Border
+            {
+                Region1Id = region1Id,
+                Region2Id = region2Id
+            };
+
+            borderRepository.Add(border);
+        }
+
+        void LoadBorders()
+        {
             for (int x = 0; x < world.Width; x += 5)
                 for (int y = 0; y < world.Height; y += 5)
                 {
@@ -151,14 +167,8 @@ namespace Narivia.Controllers
 
                                     region2IdVisited.Add(region2Id);
 
-                                    if (region1Id != region2Id &&
-                                        !RegionHasBorder(region1Id, region2Id))
-                                    {
-                                        if (!borders.ContainsKey(region1Id))
-                                            borders.Add(region1Id, new List<string>());
-
-                                        borders[region1Id].Add(region2Id);
-                                    }
+                                    if (region1Id != region2Id)
+                                        SetBorder(region1Id, region2Id);
                                 }
                 }
         }
