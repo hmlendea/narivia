@@ -120,6 +120,7 @@ namespace Narivia.Controllers
             foreach (Faction faction in factions)
             {
                 // TODO: set starting wealth
+                faction.Wealth = 0;
 
                 foreach (Unit unit in units)
                 {

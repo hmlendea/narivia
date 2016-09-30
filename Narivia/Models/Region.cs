@@ -76,6 +76,29 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The state.</value>
         [XmlIgnore]
-        public RegionState State { get; set; }
+        public RegionState State
+        {
+            get
+            {
+                if (FactionId == SovereignFactionId)
+                    return RegionState.Sovereign;
+
+                return RegionState.Occupied;
+            }
+        }
+
+        /// <summary>
+        /// Gets the faction identifier.
+        /// </summary>
+        /// <value>The faction identifier.</value>
+        [StringLength(40, MinimumLength = 3)]
+        public string FactionId { get; set; }
+
+        /// <summary>
+        /// Gets the sovereign faction identifier.
+        /// </summary>
+        /// <value>The sovereign faction identifier.</value>
+        [StringLength(40, MinimumLength = 3)]
+        public string SovereignFactionId { get; set; }
     }
 }

@@ -37,5 +37,12 @@ namespace Narivia.Models
             get { return ColorTranslator.ToHtml(Colour); }
             set { Colour = ColorTranslator.FromHtml(value); }
         }
+
+        /// <summary>
+        /// Gets or sets the wealth.
+        /// </summary>
+        /// <value>The wealth.</value>
+        [Range(0, int.MaxValue)]
+        public int Wealth { get; set; }
     }
 }
