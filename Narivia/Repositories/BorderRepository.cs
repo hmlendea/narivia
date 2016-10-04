@@ -34,7 +34,7 @@ namespace Narivia.Repositories
         /// <param name="regionId">Region identifier.</param>
         public List<Border> GetAllByRegion(string regionId)
         {
-            return Entities.FindAll(B => B.Region1Id == regionId || B.Region2Id == regionId);
+            return Entities.FindAll(B => B.Region1Id == regionId);
         }
 
         /// <summary>

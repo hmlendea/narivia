@@ -23,6 +23,8 @@ namespace Narivia.Controllers
         BorderRepository borderRepository;
         ArmyRepository armyRepository;
 
+        BattleController battleController;
+
         World world;
 
         string[,] worldTiles;
@@ -36,6 +38,7 @@ namespace Narivia.Controllers
             LoadWorld(worldId);
 
             InitializeGame(factionId);
+            InitializeControllers();
             InitializeEntities();
         }
 
@@ -49,10 +52,23 @@ namespace Narivia.Controllers
                 // Economy
                 // Build
                 // Recruit
-                // Attack
+
+                string targetRegionId = ChooseAttack(faction.Id);
+                AttackRegion(faction.Id, targetRegionId);
             }
 
             turn += 1;
+        }
+
+        /// <summary>
+        /// Transfers the region to another faction.
+        /// </summary>
+        /// <param name="regionId">Region identifier.</param>
+        /// <param name="factionId">Faction identifier.</param>
+        public void TransferRegion(string regionId, string factionId)
+        {
+            Region region = regionRepository.Get(regionId);
+            region.FactionId = factionId;
         }
 
         public bool RegionHasBorder(string region1Id, string region2Id)
@@ -101,6 +117,17 @@ namespace Narivia.Controllers
                     for (int x = 0; x < world.Height; y++)
                         worldTiles[x, y] = regionColourIds[bmp.GetPixel(x, y).ToArgb()];
             }
+        }
+
+        void InitializeControllers()
+        {
+            battleController = new BattleController()
+            {
+                ArmyRepository = armyRepository,
+                FactionRepository = factionRepository,
+                RegionRepository = regionRepository,
+                UnitRepository = unitRepository
+            };
         }
 
         void InitializeGame(string factionId)
@@ -171,6 +198,52 @@ namespace Narivia.Controllers
                                         SetBorder(region1Id, region2Id);
                                 }
                 }
+        }
+
+        /// <summary>
+        /// Chooses a region to attack.
+        /// </summary>
+        /// <returns>The region identifier.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        string ChooseAttack(string factionId)
+        {
+            Random random = new Random();
+            List<Region> regionsOwned = regionRepository.GetAllByFaction(factionId);
+            List<string> choices = new List<string>();
+            
+            foreach (Region region in regionsOwned)
+            {
+                List<Border> borders = borderRepository.GetAllByRegion(region.Id);
+
+                foreach (Border border in borders)
+                {
+                    Region region2 = regionRepository.Get(border.Region2Id);
+
+                    if (region2.Id != region.Id && region2.FactionId != "gaia")
+                        choices.Add(region2.Id);
+                }
+            }
+            
+            while(choices.Count > 0)
+            {
+                string regionId = choices[random.Next(choices.Count)];
+                Region region = regionRepository.Get(regionId);
+
+                if (region.FactionId != "gaia")
+                    return regionId;
+
+                choices.Remove(regionId);
+            }
+
+            // TODO: Better handling of no region to attack
+            return null;
+        }
+
+        void AttackRegion(string factionId, string regionId)
+        {
+            BattleResult battleResult = battleController.AttackRegion(factionId, regionId);
+
+            // TODO: Use the result and send notifications, change relations, etc...
         }
     }
 }

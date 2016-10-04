@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 using Narivia.Models;
 
@@ -16,6 +17,11 @@ namespace Narivia.Repositories
             : base(fileName)
         {
 
+        }
+        
+        public List<Region> GetAllByFaction(string factionId)
+        {
+            return Entities.FindAll(R => R.FactionId == factionId);
         }
 
         /// <summary>
