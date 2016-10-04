@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BattleController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Models\Army.cs" />
     <Compile Include="Models\Biome.cs" />

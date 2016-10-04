@@ -44,5 +44,16 @@ namespace Narivia.Repositories
         {
             return Entities.Any(A => A.FactionId == factionId && A.UnitId == unitId);
         }
+
+        public int GetFactionTroops(string factionId)
+        {
+            int troops = 0;
+
+            foreach (Army army in Entities)
+                if (army.FactionId == factionId)
+                    troops += army.Size;
+
+            return troops;
+        }
     }
 }
