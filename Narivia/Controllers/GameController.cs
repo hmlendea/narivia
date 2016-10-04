@@ -13,7 +13,7 @@ namespace Narivia.Controllers
 {
     public class GameController
     {
-        RepositoryXml<Biome> biomeRepository;
+        BiomeRepository biomeRepository;
         RepositoryXml<Culture> cultureRepository;
         FactionRepository factionRepository;
         HoldingRepository holdingRepository;
@@ -81,7 +81,7 @@ namespace Narivia.Controllers
 
         void LoadEntities(string worldId)
         {
-            biomeRepository = new RepositoryXml<Biome>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml"));
+            biomeRepository = new BiomeRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml"));
             cultureRepository = new RepositoryXml<Culture>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml"));
             factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
             holdingRepository = new HoldingRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));

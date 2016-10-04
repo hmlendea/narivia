@@ -76,6 +76,7 @@
     <Compile Include="Models\Unit.cs" />
     <Compile Include="Models\World.cs" />
     <Compile Include="Repositories\ArmyRepository.cs" />
+    <Compile Include="Repositories\BiomeRepository.cs" />
     <Compile Include="Repositories\BorderRepository.cs" />
     <Compile Include="Repositories\FactionRepository.cs" />
     <Compile Include="Repositories\HoldingRepository.cs" />
@@ -90,7 +91,6 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RepositoryException.cs" />
     <Compile Include="Repositories\RepositoryXml.cs" />
-    <Compile Include="Controllers\BiomeController.cs" />
     <Compile Include="Controllers\CultureController.cs" />
     <Compile Include="Utils\ApplicationPaths.cs" />
   </ItemGroup>
