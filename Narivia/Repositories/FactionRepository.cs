@@ -1,22 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
 using Narivia.Models;
-using Narivia.Repositories;
 
-namespace Narivia.Controllers
+namespace Narivia.Repositories
 {
-    public class FactionController
+    public class FactionRepository : RepositoryXml<Faction>
     {
-        readonly RepositoryXml<Faction> repository;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Controllers.FactionController"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Repositorys.FactionRepository"/> class.
         /// </summary>
-        /// <param name="repository">Faction repository.</param>
-        public FactionController(RepositoryXml<Faction> repository)
+        /// <param name="fileName">File name.</param>
+        public FactionRepository(string fileName)
+            : base(fileName)
         {
-            this.repository = repository;
+
         }
 
         /// <summary>
@@ -36,26 +33,7 @@ namespace Narivia.Controllers
             faction.Description = description;
             faction.Colour = colour;
 
-            repository.Add(faction);
-        }
-
-        /// <summary>
-        /// Gets the faction by identifier.
-        /// </summary>
-        /// <returns>The faction by identifier.</returns>
-        /// <param name="id">Identifier.</param>
-        public Faction Get(string id)
-        {
-            return repository.Get(id);
-        }
-
-        /// <summary>
-        /// Gets all factions.
-        /// </summary>
-        /// <returns>The factions.</returns>
-        public List<Faction> GetAll()
-        {
-            return repository.GetAll();
+            Add(faction);
         }
 
         /// <summary>
@@ -71,15 +49,6 @@ namespace Narivia.Controllers
             faction.Name = name;
             faction.Description = description;
             faction.Colour = colour;
-        }
-
-        /// <summary>
-        /// Removes the faction.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        public void Delete(string id)
-        {
-            repository.Remove(id);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Narivia.Controllers
     {
         RepositoryXml<Biome> biomeRepository;
         RepositoryXml<Culture> cultureRepository;
-        RepositoryXml<Faction> factionRepository;
+        FactionRepository factionRepository;
         RepositoryXml<Holding> holdingRepository;
         RepositoryXml<Region> regionRepository;
         RepositoryXml<Resource> resourceRepository;
@@ -67,7 +67,7 @@ namespace Narivia.Controllers
         {
             biomeRepository = new RepositoryXml<Biome>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml"));
             cultureRepository = new RepositoryXml<Culture>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml"));
-            factionRepository = new RepositoryXml<Faction>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
+            factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
             holdingRepository = new RepositoryXml<Holding>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
             regionRepository = new RepositoryXml<Region>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
             resourceRepository = new RepositoryXml<Resource>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
