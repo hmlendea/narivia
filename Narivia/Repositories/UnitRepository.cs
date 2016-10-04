@@ -1,23 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Narivia.Models;
 
-using Narivia.Models;
-using Narivia.Repositories;
-
-namespace Narivia.Controllers
+namespace Narivia.Repositories
 {
-    public class UnitController
+    public class UnitRepository : RepositoryXml<Unit>
     {
-        readonly RepositoryXml<Unit> repository;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Controllers.UnitController"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Repositorys.UnitRepository"/> class.
         /// </summary>
-        /// <param name="repository">Unit repository.</param>
-        public UnitController(RepositoryXml<Unit> repository)
+        /// <param name="fileName">File name.</param>
+        public UnitRepository(string fileName)
+            : base(fileName)
         {
-            this.repository = repository;
-        }
 
+        }
 
         /// <summary>
         /// Adds the unit.
@@ -45,30 +40,11 @@ namespace Narivia.Controllers
             unit.Power = power;
             unit.Health = health;
 
-            repository.Add(unit);
+            base.Add(unit);
         }
 
         /// <summary>
-        /// Gets the unit by identifier.
-        /// </summary>
-        /// <returns>The unit by identifier.</returns>
-        /// <param name="id">Identifier.</param>
-        public Unit Get(string id)
-        {
-            return repository.Get(id);
-        }
-
-        /// <summary>
-        /// Gets all units.
-        /// </summary>
-        /// <returns>The units.</returns>
-        public List<Unit> GetAll()
-        {
-            return repository.GetAll();
-        }
-
-        /// <summary>
-        /// Modifies the name, description, price, maintenance, power and health.
+        /// Modifies the unit.
         /// </summary>
         /// <param name="id">Identifier.</param>
         /// <param name="name">Name.</param>
@@ -88,15 +64,6 @@ namespace Narivia.Controllers
             unit.Maintenance = maintenance;
             unit.Power = power;
             unit.Health = health;
-        }
-
-        /// <summary>
-        /// Removes the unit.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        public void Delete(string id)
-        {
-            repository.Remove(id);
         }
     }
 }

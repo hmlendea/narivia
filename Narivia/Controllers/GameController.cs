@@ -19,7 +19,7 @@ namespace Narivia.Controllers
         RepositoryXml<Holding> holdingRepository;
         RepositoryXml<Region> regionRepository;
         RepositoryXml<Resource> resourceRepository;
-        RepositoryXml<Unit> unitRepository;
+        UnitRepository unitRepository;
         BorderRepository borderRepository;
         ArmyRepository armyRepository;
 
@@ -71,7 +71,7 @@ namespace Narivia.Controllers
             holdingRepository = new RepositoryXml<Holding>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
             regionRepository = new RepositoryXml<Region>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
             resourceRepository = new RepositoryXml<Resource>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
-            unitRepository = new RepositoryXml<Unit>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
+            unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
         }
 
         void LoadWorld(string worldId)

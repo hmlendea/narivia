@@ -77,6 +77,7 @@
     <Compile Include="Repositories\ArmyRepository.cs" />
     <Compile Include="Repositories\BorderRepository.cs" />
     <Compile Include="Repositories\FactionRepository.cs" />
+    <Compile Include="Repositories\UnitRepository.cs" />
     <Compile Include="Utils\FastBitmap.cs" />
     <Compile Include="Views\Game1.cs" />
     <Compile Include="Models\EntityBase.cs" />
@@ -90,7 +91,6 @@
     <Compile Include="Controllers\CultureController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
-    <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Utils\ApplicationPaths.cs" />
   </ItemGroup>
   <ItemGroup>
