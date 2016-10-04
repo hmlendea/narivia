@@ -18,7 +18,7 @@ namespace Narivia.Controllers
         FactionRepository factionRepository;
         RepositoryXml<Holding> holdingRepository;
         RegionRepository regionRepository;
-        RepositoryXml<Resource> resourceRepository;
+        ResourceRepository resourceRepository;
         UnitRepository unitRepository;
         BorderRepository borderRepository;
         ArmyRepository armyRepository;
@@ -70,7 +70,7 @@ namespace Narivia.Controllers
             factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
             holdingRepository = new RepositoryXml<Holding>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
             regionRepository = new RegionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
-            resourceRepository = new RepositoryXml<Resource>(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
+            resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
             unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
         }
 

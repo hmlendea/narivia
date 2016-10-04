@@ -1,27 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using Narivia.Models;
 
-using Narivia.Models;
-using Narivia.Repositories;
-
-namespace Narivia.Controllers
+namespace Narivia.Repositories
 {
-    public class ResourceController
+    public class ResourceRepository : RepositoryXml<Resource>
     {
-        readonly RepositoryXml<Resource> repository;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Controllers.ResourceController"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Repositories.ResourceRepository"/> class.
         /// </summary>
-        /// <param name="repository">Resource repository.</param>
-        public ResourceController(RepositoryXml<Resource> repository)
+        /// <param name="fileName">File name.</param>
+        public ResourceRepository(string fileName)
+            : base(fileName)
         {
-            this.repository = repository;
+
         }
 
         /// <summary>
         /// Adds the resource.
         /// </summary>
-        /// <returns>The resource.</returns>
         /// <param name="id">Identifier.</param>
         /// <param name="name">Name.</param>
         /// <param name="description">Description.</param>
@@ -37,30 +32,11 @@ namespace Narivia.Controllers
             resource.Type = type;
             resource.Output = output;
 
-            repository.Add(resource);
+            Add(resource);
         }
 
         /// <summary>
-        /// Gets the resource by identifier.
-        /// </summary>
-        /// <returns>The resource by identifier.</returns>
-        /// <param name="id">Identifier.</param>
-        public Resource Get(string id)
-        {
-            return repository.Get(id);
-        }
-
-        /// <summary>
-        /// Gets all resources.
-        /// </summary>
-        /// <returns>The resources.</returns>
-        public List<Resource> GetAll()
-        {
-            return repository.GetAll();
-        }
-
-        /// <summary>
-        /// Modifies the name and description.
+        /// Modifies the resource.
         /// </summary>
         /// <param name="id">Identifier.</param>
         /// <param name="name">Name.</param>
@@ -74,15 +50,6 @@ namespace Narivia.Controllers
             resource.Description = description;
             resource.Type = type;
             resource.Output = output;
-        }
-
-        /// <summary>
-        /// Removes the resource.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        public void Delete(string id)
-        {
-            repository.Remove(id);
         }
     }
 }
