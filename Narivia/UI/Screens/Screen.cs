@@ -10,26 +10,16 @@ namespace Narivia.UI.Screens
     public class Screen
     {
         protected ContentManager content;
-        string xmlPath;
-        Type type;
 
-        public string XmlPath
-        {
-            get { return xmlPath; }
-            set { xmlPath = value; }
-        }
+        public string XmlPath { get; set; }
 
         [XmlIgnore]
-        public Type Type
-        {
-            get { return type; }
-            set { type = value; }
-        }
+        public Type Type { get; set; }
 
         public Screen()
         {
-            type = this.GetType();
-            xmlPath = @"Screens/" + type.ToString().Replace("Craftico.Screens.", "") + ".xml";
+            Type = GetType();
+            XmlPath = @"Screens/" + Type.ToString().Replace("Narivia.Screens.", "") + ".xml";
         }
 
         public virtual void LoadContent()

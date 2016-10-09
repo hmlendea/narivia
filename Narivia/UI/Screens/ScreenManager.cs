@@ -10,12 +10,7 @@ namespace Narivia.UI.Screens
     {
         static ScreenManager instance;
 
-        ContentManager content;
-        Vector2 dimensions;
-        GraphicsDevice graphicsDevice;
-        SpriteBatch spriteBatch;
-
-        Screen currentScreen;
+        readonly Screen currentScreen;
 
         /// <summary>
         /// Gets the instance.
@@ -33,31 +28,24 @@ namespace Narivia.UI.Screens
         }
 
         [XmlIgnore]
-        public ContentManager Content { get { return content; } }
+        public ContentManager Content { get; private set; }
 
         [XmlIgnore]
-        public Vector2 Dimensions { get { return dimensions; } }
+        public Vector2 Dimensions { get; private set; }
 
         [XmlIgnore]
-        public GraphicsDevice GraphicsDevice
-        {
-            get { return graphicsDevice; }
-            set { graphicsDevice = value; }
-        }
+        public GraphicsDevice GraphicsDevice { get; set; }
 
         [XmlIgnore]
-        public SpriteBatch SpriteBatch
-        {
-            get { return spriteBatch; }
-            set { spriteBatch = value; }
-        }
+        public SpriteBatch SpriteBatch { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.UI.Screens.ScreenManager"/> class.
         /// </summary>
         public ScreenManager()
         {
-            dimensions = new Vector2(800, 480);
+            Dimensions = new Vector2(800, 480);
+
             currentScreen = new SplashScreen();
         }
 
@@ -67,7 +55,8 @@ namespace Narivia.UI.Screens
         /// <param name="content">Content.</param>
         public void LoadContent(ContentManager content)
         {
-            this.content = new ContentManager(content.ServiceProvider, "Content");
+            Content = new ContentManager(content.ServiceProvider, "Content");
+
             currentScreen.LoadContent();
         }
 
