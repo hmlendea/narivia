@@ -1,8 +1,5 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.UI.Screens;
@@ -14,9 +11,12 @@ namespace Narivia.UI
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
+        readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Narivia.UI.Game1"/> class.
+        /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

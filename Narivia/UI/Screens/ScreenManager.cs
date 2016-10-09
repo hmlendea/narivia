@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Narivia.UI.Screens
 {
+    /// <summary>
+    /// Screen manager.
+    /// </summary>
     public class ScreenManager
     {
         static ScreenManager instance;
@@ -28,15 +31,31 @@ namespace Narivia.UI.Screens
             }
         }
 
+        /// <summary>
+        /// Gets the content.
+        /// </summary>
+        /// <value>The content.</value>
         [XmlIgnore]
         public ContentManager Content { get; private set; }
 
+        /// <summary>
+        /// Gets the dimensions.
+        /// </summary>
+        /// <value>The dimensions.</value>
         [XmlIgnore]
         public Vector2 Dimensions { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the graphics device.
+        /// </summary>
+        /// <value>The graphics device.</value>
         [XmlIgnore]
         public GraphicsDevice GraphicsDevice { get; set; }
 
+        /// <summary>
+        /// Gets or sets the sprite batch.
+        /// </summary>
+        /// <value>The sprite batch.</value>
         [XmlIgnore]
         public SpriteBatch SpriteBatch { get; set; }
 

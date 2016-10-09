@@ -2,47 +2,72 @@
 
 namespace Narivia.UI.Graphics.ImageEffects
 {
+    /// <summary>
+    /// Fade effect.
+    /// </summary>
     public class FadeEffect : Effect
     {
+        /// <summary>
+        /// Gets or sets the speed.
+        /// </summary>
+        /// <value>The speed.</value>
         public float Speed { get; set; }
 
-        public bool Increase { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Narivia.UI.Graphics.ImageEffects.FadeEffect"/> is increasing.
+        /// </summary>
+        /// <value><c>true</c> if increasing; otherwise, <c>false</c>.</value>
+        public bool Increasing { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Narivia.UI.Graphics.ImageEffects.FadeEffect"/> class.
+        /// </summary>
         public FadeEffect()
         {
             Speed = 1;
-            Increase = false;
+            Increasing = false;
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="image">Image.</param>
         public override void LoadContent(ref Image image)
         {
             base.LoadContent(ref image);
         }
 
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
         public override void UnloadContent()
         {
             base.UnloadContent();
         }
 
+        /// <summary>
+        /// Updates the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
             if (Image.Active)
             {
-                if (Increase == false)
+                if (Increasing == false)
                     Image.Opacity -= Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
                 else
                     Image.Opacity += Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
 
                 if (Image.Opacity < 0.0f)
                 {
-                    Increase = true;
+                    Increasing = true;
                     Image.Opacity = 0.0f;
                 }
                 else if (Image.Opacity > 1.0f)
                 {
-                    Increase = false;
+                    Increasing = false;
                     Image.Opacity = 1.0f;
                 }
             }

@@ -13,45 +13,94 @@ using Effect = Narivia.UI.Graphics.ImageEffects.Effect;
 
 namespace Narivia.UI.Graphics
 {
+    /// <summary>
+    /// Image.
+    /// </summary>
     public class Image
     {
-        public bool Active { get; set; }
-
-        public float Opacity { get; set; }
-
-        public string Text { get; set; }
-
-        public string FontName{ get; set; }
-
-        public string Path { get; set; }
-
-        public Vector2 Position { get; set; }
-
-        public Vector2 Scale { get; set; }
-
-        [XmlIgnore]
-        public Rectangle SourceRectangle { get; set; }
-
-        [XmlIgnore]
-        public Texture2D Texture { get; set; }
-
         ContentManager content;
         Vector2 origin;
         RenderTarget2D renderTarget;
         SpriteFont font;
 
+        readonly Dictionary<string, Effect> effectList;
         FadeEffect fadeEffect;
 
-        Dictionary<string, Effect> effectList;
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Narivia.UI.Graphics.Image"/> is active.
+        /// </summary>
+        /// <value><c>true</c> if active; otherwise, <c>false</c>.</value>
+        public bool Active { get; set; }
 
+        /// <summary>
+        /// Gets or sets the opacity.
+        /// </summary>
+        /// <value>The opacity.</value>
+        public float Opacity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        /// <value>The text.</value>
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the font.
+        /// </summary>
+        /// <value>The name of the font.</value>
+        public string FontName{ get; set; }
+
+        /// <summary>
+        /// Gets or sets the image path.
+        /// </summary>
+        /// <value>The image path.</value>
+        public string ImagePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the position.
+        /// </summary>
+        /// <value>The position.</value>
+        public Vector2 Position { get; set; }
+
+        /// <summary>
+        /// Gets or sets the scale.
+        /// </summary>
+        /// <value>The scale.</value>
+        public Vector2 Scale { get; set; }
+
+        /// <summary>
+        /// Gets or sets the source rectangle.
+        /// </summary>
+        /// <value>The source rectangle.</value>
+        [XmlIgnore]
+        public Rectangle SourceRectangle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the texture.
+        /// </summary>
+        /// <value>The texture.</value>
+        [XmlIgnore]
+        public Texture2D Texture { get; set; }
+
+        /// <summary>
+        /// Gets or sets the effects.
+        /// </summary>
+        /// <value>The effects.</value>
         public string Effects { get; set; }
 
+        /// <summary>
+        /// Gets or sets the fade effect.
+        /// </summary>
+        /// <value>The fade effect.</value>
         public FadeEffect FadeEffect
         { 
             get { return fadeEffect; }
             set { fadeEffect = value; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Narivia.UI.Graphics.Image"/> class.
+        /// </summary>
         public Image()
         {
             Active = true;
@@ -59,7 +108,7 @@ namespace Narivia.UI.Graphics
             effectList = new Dictionary<string, Effect>();
             Effects = string.Empty;
 
-            Path = string.Empty;
+            ImagePath = string.Empty;
             Text = string.Empty;
             FontName = "Fonts/Palatino Linotype";
 
@@ -69,12 +118,15 @@ namespace Narivia.UI.Graphics
             Opacity = 1.0f;
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
         public void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
 
-            if (!string.IsNullOrEmpty(Path))
-                Texture = content.Load<Texture2D>(Path);
+            if (!string.IsNullOrEmpty(ImagePath))
+                Texture = content.Load<Texture2D>(ImagePath);
 
             font = content.Load<SpriteFont>(FontName);
 
@@ -103,6 +155,7 @@ namespace Narivia.UI.Graphics
 
             if (Texture != null)
                 ScreenManager.Instance.SpriteBatch.Draw(Texture, Vector2.Zero, Color.White);
+            
             if (!string.IsNullOrEmpty(Text))
                 ScreenManager.Instance.SpriteBatch.DrawString(font, Text, Vector2.Zero, Color.White);
 
@@ -123,6 +176,9 @@ namespace Narivia.UI.Graphics
             }
         }
 
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
         public void UnloadContent()
         {
             content.Unload();
@@ -131,6 +187,10 @@ namespace Narivia.UI.Graphics
                 DeactivateEffect(effectKey);
         }
 
+        /// <summary>
+        /// Updates the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
             foreach (Effect effect in effectList.Values)
@@ -138,6 +198,10 @@ namespace Narivia.UI.Graphics
                     effect.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draws the content.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
             origin = new Vector2(
@@ -150,6 +214,10 @@ namespace Narivia.UI.Graphics
                 SpriteEffects.None, 0.0f);
         }
 
+        /// <summary>
+        /// Activates the effect.
+        /// </summary>
+        /// <param name="effect">Effect.</param>
         public void ActivateEffect(string effect)
         {
             if (effectList.ContainsKey(effect))
@@ -161,6 +229,10 @@ namespace Narivia.UI.Graphics
             }
         }
 
+        /// <summary>
+        /// Deactivates the effect.
+        /// </summary>
+        /// <param name="effect">Effect.</param>
         public void DeactivateEffect(string effect)
         {
             if (effectList.ContainsKey(effect))
@@ -170,7 +242,12 @@ namespace Narivia.UI.Graphics
             }
         }
 
-        void SetEffect<T>(ref T effect)
+        /// <summary>
+        /// Sets the effect.
+        /// </summary>
+        /// <param name="effect">Effect.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        void SetEffect<T>(ref T effect) where T:Effect
         {
 
             if (effect == null)
@@ -179,13 +256,11 @@ namespace Narivia.UI.Graphics
             {
                 var obj = this;
 
-                (effect as Effect).Active = true;
-                (effect as Effect).LoadContent(ref obj);
+                effect.Active = true;
+                effect.LoadContent(ref obj);
             }
 
-            effectList.Add(
-                effect.GetType().ToString().Replace("Narivia.UI.Graphics.ImageEffects.", ""),
-                (effect as Effect));
+            effectList.Add(effect.Key, effect);
         }
     }
 }

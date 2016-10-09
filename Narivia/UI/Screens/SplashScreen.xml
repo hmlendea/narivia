@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SplashScreen>
     <Image>
-        <Path>SplashScreen/SplashImage</Path>
+        <ImagePath>SplashScreen/SplashImage</ImagePath>
         <Effects>FadeEffect</Effects>
         <Position>
             <X>0</X>
