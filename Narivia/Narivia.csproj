@@ -100,6 +100,7 @@
     <Compile Include="UI\Graphics\Image.cs" />
     <Compile Include="UI\Graphics\ImageEffects\Effect.cs" />
     <Compile Include="UI\Graphics\ImageEffects\FadeEffect.cs" />
+    <Compile Include="UI\Input\InputManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -144,5 +145,6 @@
     <Folder Include="UI\Graphics\" />
     <Folder Include="Content\Fonts\" />
     <Folder Include="UI\Graphics\ImageEffects\" />
+    <Folder Include="UI\Input\" />
   </ItemGroup>
 </Project>

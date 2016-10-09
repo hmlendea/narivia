@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.UI.Graphics;
+using Narivia.UI.Input;
 
 namespace Narivia.UI.Screens
 {
@@ -44,8 +45,7 @@ namespace Narivia.UI.Screens
             base.Update(gameTime);
             Image.Update(gameTime);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter) &&
-                !ScreenManager.Instance.Transitioning)
+            if (InputManager.Instance.KeyPressed(Keys.Enter))
                 ScreenManager.Instance.ChangeScreens("SplashScreen");
         }
 

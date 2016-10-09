@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.UI.Input;
+
 namespace Narivia.UI.Screens
 {
     /// <summary>
@@ -58,7 +60,7 @@ namespace Narivia.UI.Screens
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-            
+            InputManager.Instance.Update();
         }
 
         /// <summary>
