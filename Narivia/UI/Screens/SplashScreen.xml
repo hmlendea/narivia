@@ -2,6 +2,7 @@
 <SplashScreen>
     <Image>
         <Path>SplashScreen/SplashImage</Path>
+        <Effects>FadeEffect</Effects>
         <Position>
             <X>0</X>
             <Y>0</Y>

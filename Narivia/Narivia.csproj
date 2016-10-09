@@ -99,6 +99,7 @@
     <Compile Include="UI\Screens\XmlScreenManager.cs" />
     <Compile Include="UI\Graphics\Image.cs" />
     <Compile Include="UI\Graphics\ImageEffects\Effect.cs" />
+    <Compile Include="UI\Graphics\ImageEffects\FadeEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

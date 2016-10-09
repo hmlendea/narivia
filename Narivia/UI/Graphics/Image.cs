@@ -40,9 +40,17 @@ namespace Narivia.UI.Graphics
         RenderTarget2D renderTarget;
         SpriteFont font;
 
+        FadeEffect fadeEffect;
+
         Dictionary<string, Effect> effectList;
 
         public string Effects { get; set; }
+
+        public FadeEffect FadeEffect
+        { 
+            get { return fadeEffect; }
+            set { fadeEffect = value; }
+        }
 
         public Image()
         {
@@ -103,6 +111,8 @@ namespace Narivia.UI.Graphics
             Texture = renderTarget;
 
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
+
+            SetEffect<FadeEffect>(ref fadeEffect);
 
             if (!string.IsNullOrEmpty(Effects))
             {
