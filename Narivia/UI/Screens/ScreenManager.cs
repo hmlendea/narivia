@@ -11,6 +11,7 @@ namespace Narivia.UI.Screens
         static ScreenManager instance;
 
         readonly Screen currentScreen;
+        XmlScreenManager<Screen> xmlScreenManager;
 
         /// <summary>
         /// Gets the instance.
@@ -45,8 +46,12 @@ namespace Narivia.UI.Screens
         public ScreenManager()
         {
             Dimensions = new Vector2(800, 480);
-
             currentScreen = new SplashScreen();
+
+            xmlScreenManager = new XmlScreenManager<Screen>();
+            xmlScreenManager.Type = currentScreen.Type;
+
+            currentScreen = xmlScreenManager.Load("UI/Screens/SplashScreen.xml");
         }
 
         /// <summary>
