@@ -97,10 +97,14 @@
     <Compile Include="UI\Screens\Screen.cs" />
     <Compile Include="UI\Screens\SplashScreen.cs" />
     <Compile Include="UI\Screens\XmlScreenManager.cs" />
+    <Compile Include="UI\Graphics\Image.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
     <None Include="UI\Screens\SplashScreen.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\Palatino Linotype.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -132,5 +136,7 @@
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <ItemGroup>
     <Folder Include="UI\Screens\" />
+    <Folder Include="UI\Graphics\" />
+    <Folder Include="Content\Fonts\" />
   </ItemGroup>
 </Project>

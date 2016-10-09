@@ -2,36 +2,35 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Narivia.UI.Graphics;
+
 namespace Narivia.UI.Screens
 {
     public class SplashScreen : Screen
     {
-        Texture2D image;
-        string path;
+        public Image Image { get; set; }
 
         public override void LoadContent()
         {
             base.LoadContent();
-
-            path = "SplashScreen/SplashImage";
-            image = content.Load<Texture2D>(path);
+            Image.LoadContent();
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
+            Image.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            Image.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            ScreenManager.Instance.GraphicsDevice.Clear(Color.Black);
-
-            spriteBatch.Draw(image, Vector2.Zero, Color.White);
+            Image.Draw(spriteBatch);
         }
     }
 }

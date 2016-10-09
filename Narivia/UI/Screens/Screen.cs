@@ -19,7 +19,7 @@ namespace Narivia.UI.Screens
         public Screen()
         {
             Type = GetType();
-            XmlPath = @"Screens/" + Type.ToString().Replace("Narivia.Screens.", "") + ".xml";
+            XmlPath = @"UI/Screens/" + Type.ToString().Replace("Narivia.UI.Screens.", "") + ".xml";
         }
 
         public virtual void LoadContent()
