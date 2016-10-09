@@ -98,6 +98,7 @@
     <Compile Include="UI\Screens\SplashScreen.cs" />
     <Compile Include="UI\Screens\XmlScreenManager.cs" />
     <Compile Include="UI\Graphics\Image.cs" />
+    <Compile Include="UI\Graphics\ImageEffects\Effect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -138,5 +139,6 @@
     <Folder Include="UI\Screens\" />
     <Folder Include="UI\Graphics\" />
     <Folder Include="Content\Fonts\" />
+    <Folder Include="UI\Graphics\ImageEffects\" />
   </ItemGroup>
 </Project>

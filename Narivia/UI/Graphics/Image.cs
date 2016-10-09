@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
@@ -6,11 +7,16 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.UI.Screens;
+using Narivia.UI.Graphics.ImageEffects;
+
+using Effect = Narivia.UI.Graphics.ImageEffects.Effect;
 
 namespace Narivia.UI.Graphics
 {
     public class Image
     {
+        public bool Active { get; set; }
+
         public float Opacity { get; set; }
 
         public string Text { get; set; }
@@ -34,10 +40,18 @@ namespace Narivia.UI.Graphics
         RenderTarget2D renderTarget;
         SpriteFont font;
 
+        Dictionary<string, Effect> effectList;
+
+        public string Effects { get; set; }
+
         public Image()
         {
-            Path = string.Empty;
+            Active = true;
 
+            effectList = new Dictionary<string, Effect>();
+            Effects = string.Empty;
+
+            Path = string.Empty;
             Text = string.Empty;
             FontName = "Fonts/Palatino Linotype";
 
@@ -89,16 +103,29 @@ namespace Narivia.UI.Graphics
             Texture = renderTarget;
 
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
+
+            if (!string.IsNullOrEmpty(Effects))
+            {
+                string[] split = Effects.Split(':');
+
+                foreach (string item in split)
+                    ActivateEffect(item);
+            }
         }
 
         public void UnloadContent()
         {
             content.Unload();
+
+            foreach (string effectKey in effectList.Keys)
+                DeactivateEffect(effectKey);
         }
 
         public void Update(GameTime gameTime)
         {
-
+            foreach (Effect effect in effectList.Values)
+                if (effect.Active)
+                    effect.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -111,6 +138,44 @@ namespace Narivia.UI.Graphics
                 Color.White * Opacity, 0.0f,
                 origin, Scale,
                 SpriteEffects.None, 0.0f);
+        }
+
+        public void ActivateEffect(string effect)
+        {
+            if (effectList.ContainsKey(effect))
+            {
+                var obj = this;
+
+                effectList[effect].Active = true;
+                effectList[effect].LoadContent(ref obj);
+            }
+        }
+
+        public void DeactivateEffect(string effect)
+        {
+            if (effectList.ContainsKey(effect))
+            {
+                effectList[effect].Active = false;
+                effectList[effect].UnloadContent();
+            }
+        }
+
+        void SetEffect<T>(ref T effect)
+        {
+
+            if (effect == null)
+                effect = (T)Activator.CreateInstance(typeof(T));
+            else
+            {
+                var obj = this;
+
+                (effect as Effect).Active = true;
+                (effect as Effect).LoadContent(ref obj);
+            }
+
+            effectList.Add(
+                effect.GetType().ToString().Replace("Narivia.UI.Graphics.ImageEffects.", ""),
+                (effect as Effect));
         }
     }
 }
