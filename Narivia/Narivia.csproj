@@ -85,7 +85,6 @@
     <Compile Include="Repositories\ResourceRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
     <Compile Include="Utils\FastBitmap.cs" />
-    <Compile Include="Views\Game1.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +92,7 @@
     <Compile Include="Repositories\RepositoryException.cs" />
     <Compile Include="Repositories\RepositoryXml.cs" />
     <Compile Include="Utils\ApplicationPaths.cs" />
+    <Compile Include="UI\Game1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
