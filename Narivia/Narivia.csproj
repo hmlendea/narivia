@@ -93,6 +93,7 @@
     <Compile Include="Repositories\RepositoryXml.cs" />
     <Compile Include="Utils\ApplicationPaths.cs" />
     <Compile Include="UI\Game1.cs" />
+    <Compile Include="UI\Screens\ScreenManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -123,4 +124,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <ItemGroup>
+    <Folder Include="UI\Screens\" />
+  </ItemGroup>
 </Project>
