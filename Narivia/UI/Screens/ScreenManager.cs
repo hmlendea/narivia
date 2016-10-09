@@ -1,8 +1,12 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.IO;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
+using Narivia.UI.Graphics;
 
 namespace Narivia.UI.Screens
 {
@@ -13,7 +17,7 @@ namespace Narivia.UI.Screens
     {
         static ScreenManager instance;
 
-        readonly Screen currentScreen;
+        Screen currentScreen, newScreen;
         XmlScreenManager<Screen> xmlScreenManager;
 
         /// <summary>
@@ -25,7 +29,10 @@ namespace Narivia.UI.Screens
             get
             {
                 if (instance == null)
-                    instance = new ScreenManager();
+                {
+                    XmlScreenManager<ScreenManager> xml = new XmlScreenManager<ScreenManager>();
+                    instance = xml.Load("UI/Screens/ScreenManager.xml");
+                }
 
                 return instance;
             }
@@ -60,6 +67,19 @@ namespace Narivia.UI.Screens
         public SpriteBatch SpriteBatch { get; set; }
 
         /// <summary>
+        /// Gets a value indicating whether the current screen is transitioning.
+        /// </summary>
+        /// <value><c>true</c> if transitioning; otherwise, <c>false</c>.</value>
+        [XmlIgnore]
+        public bool Transitioning { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the image.
+        /// </summary>
+        /// <value>The image.</value>
+        public Image Image { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.UI.Screens.ScreenManager"/> class.
         /// </summary>
         public ScreenManager()
@@ -82,6 +102,7 @@ namespace Narivia.UI.Screens
             Content = new ContentManager(content.ServiceProvider, "Content");
 
             currentScreen.LoadContent();
+            Image.LoadContent();
         }
 
         /// <summary>
@@ -90,6 +111,7 @@ namespace Narivia.UI.Screens
         public void UnloadContent()
         {
             currentScreen.UnloadContent();
+            Image.UnloadContent();
         }
 
         /// <summary>
@@ -99,6 +121,7 @@ namespace Narivia.UI.Screens
         public void Update(GameTime gameTime)
         {
             currentScreen.Update(gameTime);
+            Transition(gameTime);
         }
 
         /// <summary>
@@ -108,6 +131,52 @@ namespace Narivia.UI.Screens
         public void Draw(SpriteBatch spriteBatch)
         {
             currentScreen.Draw(spriteBatch);
+
+            if (Transitioning)
+                Image.Draw(spriteBatch);
+        }
+
+        /// <summary>
+        /// Changes the screen.
+        /// </summary>
+        /// <param name="screenName">Screen name.</param>
+        public void ChangeScreens(string screenName)
+        {
+            newScreen = (Screen)Activator.CreateInstance(Type.GetType("Narivia.UI.Screens." + screenName));
+
+            Image.Active = true;
+            Image.FadeEffect.Increasing = true;
+            Image.Opacity = 0.0f;
+            Transitioning = true;
+        }
+
+        /// <summary>
+        /// Transitions to the new screen.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        void Transition(GameTime gameTime)
+        {
+            if (Transitioning)
+            {
+                Image.Update(gameTime);
+
+                if (Image.Opacity == 1.0f)
+                {
+                    currentScreen.UnloadContent();
+                    currentScreen = newScreen;
+                    xmlScreenManager.Type = currentScreen.Type;
+
+                    if (File.Exists(currentScreen.XmlPath))
+                        currentScreen = xmlScreenManager.Load(currentScreen.XmlPath);
+
+                    currentScreen.LoadContent();
+                }
+                else if (Image.Opacity == 0.0f)
+                {
+                    Image.Active = false;
+                    Transitioning = false;
+                }
+            }
         }
     }
 }

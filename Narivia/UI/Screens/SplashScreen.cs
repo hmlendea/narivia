@@ -43,6 +43,10 @@ namespace Narivia.UI.Screens
         {
             base.Update(gameTime);
             Image.Update(gameTime);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter) &&
+                !ScreenManager.Instance.Transitioning)
+                ScreenManager.Instance.ChangeScreens("SplashScreen");
         }
 
         /// <summary>

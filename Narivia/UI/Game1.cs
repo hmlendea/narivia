@@ -73,7 +73,7 @@ namespace Narivia.UI
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             #endif
-            
+
             ScreenManager.Instance.Update(gameTime);
             base.Update(gameTime);
         }
@@ -84,7 +84,7 @@ namespace Narivia.UI
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+            graphics.GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
             ScreenManager.Instance.Draw(spriteBatch);
