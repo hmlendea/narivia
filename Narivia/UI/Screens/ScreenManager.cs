@@ -15,6 +15,8 @@ namespace Narivia.UI.Screens
         GraphicsDevice graphicsDevice;
         SpriteBatch spriteBatch;
 
+        Screen currentScreen;
+
         /// <summary>
         /// Gets the instance.
         /// </summary>
@@ -56,6 +58,7 @@ namespace Narivia.UI.Screens
         public ScreenManager()
         {
             dimensions = new Vector2(800, 480);
+            currentScreen = new SplashScreen();
         }
 
         /// <summary>
@@ -65,6 +68,7 @@ namespace Narivia.UI.Screens
         public void LoadContent(ContentManager content)
         {
             this.content = new ContentManager(content.ServiceProvider, "Content");
+            currentScreen.LoadContent();
         }
 
         /// <summary>
@@ -72,7 +76,7 @@ namespace Narivia.UI.Screens
         /// </summary>
         public void UnloadContent()
         {
-            
+            currentScreen.UnloadContent();
         }
 
         /// <summary>
@@ -81,7 +85,7 @@ namespace Narivia.UI.Screens
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            
+            currentScreen.Update(gameTime);
         }
 
         /// <summary>
@@ -90,7 +94,7 @@ namespace Narivia.UI.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+            currentScreen.Draw(spriteBatch);
         }
     }
 }

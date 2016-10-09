@@ -94,6 +94,8 @@
     <Compile Include="Utils\ApplicationPaths.cs" />
     <Compile Include="UI\Game1.cs" />
     <Compile Include="UI\Screens\ScreenManager.cs" />
+    <Compile Include="UI\Screens\Screen.cs" />
+    <Compile Include="UI\Screens\SplashScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
