@@ -87,6 +87,7 @@
     <Compile Include="UI\Menus\Menu.cs" />
     <Compile Include="UI\Menus\MenuItem.cs" />
     <Compile Include="UI\Menus\MenuManager.cs" />
+    <Compile Include="UI\Screens\TitleScreen.cs" />
     <Compile Include="Utils\FastBitmap.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Program.cs" />
@@ -125,6 +126,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="OpenTK.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UI\Menus\TitleMenu.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UI\Screens\TitleScreen.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

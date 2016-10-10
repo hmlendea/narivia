@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<TitleScreen>
+  <Image>
+    <Active>true</Active>
+    <Text>Narivia</Text>
+    <FontName>Palatino Linotype</FontName>
+    <Position>
+      <X>0</X>
+      <Y>0</Y>
+    </Position>
+  </Image>
+</TitleScreen>
