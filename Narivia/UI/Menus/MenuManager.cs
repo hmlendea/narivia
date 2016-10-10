@@ -54,7 +54,10 @@ namespace Narivia.UI.Menus
                     menu.Transition(1.0f);
 
                     foreach (MenuItem item in menu.Items)
+                    {
+                        item.Image.StoreEffects();
                         item.Image.ActivateEffect("FadeEffect");
+                    }
                 }
             }
 
@@ -82,7 +85,12 @@ namespace Narivia.UI.Menus
                     if (first == 0.0f && last == 0.0f)
                         menu.ID = menu.Items[menu.ItemNumber].LinkId;
                     else if (first == 1.0f && last == 1.0f)
+                    {
                         transitioning = false;
+
+                        foreach (MenuItem item in menu.Items)
+                            item.Image.RestoreEffects();
+                    }
                 }
             }
         }
@@ -102,7 +110,10 @@ namespace Narivia.UI.Menus
             menu.Transition(0.0f);
 
             foreach (MenuItem item in menu.Items)
+            {
+                item.Image.StoreEffects();
                 item.Image.ActivateEffect("FadeEffect");
+            }
         }
     }
 }

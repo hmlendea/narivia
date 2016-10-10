@@ -262,5 +262,28 @@ namespace Narivia.UI.Graphics
 
             effectList.Add(effect.Key, effect);
         }
+        
+        public void StoreEffects()
+        {
+            Effects = string.Empty;
+
+            foreach (var effect in effectList)
+            {
+                if (effect.Value.Active)
+                    Effects += effect.Key + ":";
+            }
+
+            Effects.TrimEnd(':');
+        }
+
+        public void RestoreEffects()
+        {
+            foreach (var effect in effectList)
+                DeactivateEffect(effect.Key);
+
+            string[] split = Effects.Split(':');
+            foreach (string effectKey in split)
+                ActivateEffect(effectKey);
+        }
     }
 }
