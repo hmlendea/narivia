@@ -84,6 +84,9 @@
     <Compile Include="Repositories\RegionRepository.cs" />
     <Compile Include="Repositories\ResourceRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
+    <Compile Include="UI\World\Layer.cs" />
+    <Compile Include="UI\World\Map.cs" />
+    <Compile Include="UI\World\Tile.cs" />
     <Compile Include="UI\Menus\Menu.cs" />
     <Compile Include="UI\Menus\MenuItem.cs" />
     <Compile Include="UI\Menus\MenuManager.cs" />
