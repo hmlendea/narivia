@@ -9,8 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.UI.Screens;
 using Narivia.UI.Graphics.ImageEffects;
 
-using Effect = Narivia.UI.Graphics.ImageEffects.Effect;
-
 namespace Narivia.UI.Graphics
 {
     /// <summary>
@@ -23,7 +21,7 @@ namespace Narivia.UI.Graphics
         RenderTarget2D renderTarget;
         SpriteFont font;
 
-        readonly Dictionary<string, Effect> effectList;
+        readonly Dictionary<string, ImageEffect> effectList;
         FadeEffect fadeEffect;
 
         /// <summary>
@@ -105,7 +103,7 @@ namespace Narivia.UI.Graphics
         {
             Active = true;
 
-            effectList = new Dictionary<string, Effect>();
+            effectList = new Dictionary<string, ImageEffect>();
             Effects = string.Empty;
 
             ImagePath = string.Empty;
@@ -193,7 +191,7 @@ namespace Narivia.UI.Graphics
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            foreach (Effect effect in effectList.Values)
+            foreach (ImageEffect effect in effectList.Values)
                 if (effect.Active)
                     effect.Update(gameTime);
         }
@@ -247,7 +245,7 @@ namespace Narivia.UI.Graphics
         /// </summary>
         /// <param name="effect">Effect.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        void SetEffect<T>(ref T effect) where T:Effect
+        void SetEffect<T>(ref T effect) where T:ImageEffect
         {
 
             if (effect == null)

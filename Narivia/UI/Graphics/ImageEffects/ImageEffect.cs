@@ -11,7 +11,7 @@ namespace Narivia.UI.Graphics.ImageEffects
     /// <summary>
     /// Effect.
     /// </summary>
-    public class Effect
+    public class ImageEffect
     {
         protected Image Image;
 
@@ -38,7 +38,7 @@ namespace Narivia.UI.Graphics.ImageEffects
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.UI.Graphics.ImageEffects.Effect"/> class.
         /// </summary>
-        public Effect()
+        public ImageEffect()
         {
             Active = false;
             Type = GetType();

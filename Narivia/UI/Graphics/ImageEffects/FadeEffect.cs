@@ -5,7 +5,7 @@ namespace Narivia.UI.Graphics.ImageEffects
     /// <summary>
     /// Fade effect.
     /// </summary>
-    public class FadeEffect : Effect
+    public class FadeEffect : ImageEffect
     {
         /// <summary>
         /// Gets or sets the speed.

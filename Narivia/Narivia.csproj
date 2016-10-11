@@ -105,7 +105,7 @@
     <Compile Include="UI\Screens\SplashScreen.cs" />
     <Compile Include="UI\Screens\XmlScreenManager.cs" />
     <Compile Include="UI\Graphics\Image.cs" />
-    <Compile Include="UI\Graphics\ImageEffects\Effect.cs" />
+    <Compile Include="UI\Graphics\ImageEffects\ImageEffect.cs" />
     <Compile Include="UI\Graphics\ImageEffects\FadeEffect.cs" />
     <Compile Include="UI\Input\InputManager.cs" />
   </ItemGroup>
