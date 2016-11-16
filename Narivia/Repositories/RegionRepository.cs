@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-
-using Narivia.Models;
+using System.Linq;
 
 using Region = Narivia.Models.Region;
 
@@ -21,7 +20,7 @@ namespace Narivia.Repositories
         
         public List<Region> GetAllByFaction(string factionId)
         {
-            return Entities.FindAll(R => R.FactionId == factionId);
+            return DataStore.Values.ToList().FindAll(R => R.FactionId == factionId);
         }
 
         /// <summary>

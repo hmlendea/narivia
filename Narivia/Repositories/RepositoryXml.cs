@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 using Narivia.Models;
@@ -55,7 +56,7 @@ namespace Narivia.Repositories
             using (StreamWriter sw = new StreamWriter(FileName))
             {
                 XmlSerializer xs = new XmlSerializer(typeof(List<T>));
-                xs.Serialize(sw, Entities);
+                xs.Serialize(sw, DataStore);
             }
         }
 
@@ -65,14 +66,17 @@ namespace Narivia.Repositories
         public void Load()
         {
             XmlSerializer xs = new XmlSerializer(typeof(List<T>));
+            List<T> entities;
 
             if (!File.Exists(FileName))
                 return;
 
             using (StreamReader sr = new StreamReader(FileName))
             {
-                Entities = (List<T>)xs.Deserialize(sr);
+                entities = (List<T>)xs.Deserialize(sr);
             }
+
+            DataStore = entities.ToDictionary(E => E.Id, E => E);
         }
     }
 }

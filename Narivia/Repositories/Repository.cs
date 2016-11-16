@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Narivia.Exceptions;
 using Narivia.Models;
@@ -14,7 +15,7 @@ namespace Narivia.Repositories
         /// Gets or sets the entities.
         /// </summary>
         /// <value>The entities.</value>
-        protected List<T> Entities { get; set; }
+        protected Dictionary<string, T> DataStore { get; set; }
 
         /// <summary>
         /// Gets the size.
@@ -22,7 +23,7 @@ namespace Narivia.Repositories
         /// <value>The size.</value>
         public int Size
         {
-            get { return Entities.Count; }
+            get { return DataStore.Count; }
         }
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace Narivia.Repositories
         /// </summary>
         public Repository()
         {
-            Entities = new List<T>();
+            DataStore = new Dictionary<string, T>();
         }
 
         /// <summary>
@@ -39,10 +40,10 @@ namespace Narivia.Repositories
         /// <param name="entity">Entity.</param>
         public virtual void Add(T entity)
         {
-            if (Entities.Contains(entity))
+            if (Contains(entity))
                 throw new DuplicateEntityException(entity.Id);
 
-            Entities.Add(entity);
+            DataStore.Add(entity.Id, entity);
         }
 
         /// <summary>
@@ -51,12 +52,10 @@ namespace Narivia.Repositories
         /// <param name="id">Identifier.</param>
         public virtual T Get(string id)
         {
-            T entity = Entities.Find(E => E.Id == id);
-
-            if (entity == null)
+            if (!Contains(id))
                 throw new EntityNotFoundException(id);
 
-            return entity;
+            return DataStore[id];
         }
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace Narivia.Repositories
         /// <returns>The all.</returns>
         public List<T> GetAll()
         {
-            return Entities;
+            return DataStore.Values.ToList();
         }
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace Narivia.Repositories
             if (!Contains(entity))
                 throw new EntityNotFoundException(entity.Id);
 
-            Entities.Remove(entity);
+            DataStore.Remove(entity.Id);
         }
 
         /// <summary>
@@ -89,33 +88,33 @@ namespace Narivia.Repositories
             if (!Contains(id))
                 throw new EntityNotFoundException(id);
 
-            Entities.RemoveAll(T => T.Id == id);
+            DataStore.Remove(id);
         }
 
         /// <summary>
-        /// Clear this instance.
+        /// Empties the data store.
         /// </summary>
         public void Clear()
         {
-            Entities.Clear();
+            DataStore.Clear();
         }
 
         /// <summary>
-        /// Contains the specified entity.
+        /// Checks wether the specified entity exists.
         /// </summary>
         /// <param name="entity">Entity.</param>
         public bool Contains(T entity)
         {
-            return Entities.Find(E => E.Equals(entity)) != null;
+            return DataStore.ContainsValue(entity);
         }
 
         /// <summary>
-        /// Contains the specified entity.
+        /// Checks wether an entity with the specified identifier exists.
         /// </summary>
         /// <param name="id">Identifier.</param>
         public bool Contains(string id)
         {
-            return Entities.Find(E => E.Id == id) != null;
+            return DataStore.ContainsKey(id);
         }
     }
 }

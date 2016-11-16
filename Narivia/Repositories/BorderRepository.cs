@@ -22,9 +22,7 @@ namespace Narivia.Repositories
         /// <param name="region2Id">Second region identifier.</param>
         public Border Get(string region1Id, string region2Id)
         {
-            return Entities.Find(B =>
-                (B.Region1Id == region1Id && B.Region2Id == region2Id) ||
-                (B.Region1Id == region2Id && B.Region2Id == region1Id));
+            return DataStore[$"{region1Id}:{region2Id}"];
         }
  
         /// <summary>
@@ -34,7 +32,7 @@ namespace Narivia.Repositories
         /// <param name="regionId">Region identifier.</param>
         public List<Border> GetAllByRegion(string regionId)
         {
-            return Entities.FindAll(B => B.Region1Id == regionId);
+            return DataStore.Values.ToList().FindAll(B => B.Region1Id == regionId);
         }
 
         /// <summary>
@@ -44,9 +42,7 @@ namespace Narivia.Repositories
         /// <param name="region2Id">Second region identifier.</param>
         public bool Contains(string region1Id, string region2Id)
         {
-            return Entities.Any(B =>
-                (B.Region1Id == region1Id && B.Region2Id == region2Id) ||
-                (B.Region1Id == region2Id && B.Region2Id == region1Id));
+            return base.Contains($"{region1Id}:{region2Id}");
         }
     }
 }

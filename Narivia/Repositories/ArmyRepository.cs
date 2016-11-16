@@ -22,7 +22,7 @@ namespace Narivia.Repositories
         /// <param name="unitId">Unit identifier.</param>
         public Army Get(string factionId, string unitId)
         {
-            return Entities.Find(A => (A.FactionId == factionId && A.UnitId == unitId));
+            return DataStore[$"{factionId}:{unitId}"];
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Narivia.Repositories
         /// <param name="factionId">Faction identifier.</param>
         public List<Army> GetAllByFaction(string factionId)
         {
-            return Entities.FindAll(A => A.FactionId == factionId);
+            return DataStore.Values.ToList().FindAll(A => A.FactionId == factionId);
         }
 
         /// <summary>
@@ -42,14 +42,14 @@ namespace Narivia.Repositories
         /// <param name="unitId">Unit identifier.</param>
         public bool Contains(string factionId, string unitId)
         {
-            return Entities.Any(A => A.FactionId == factionId && A.UnitId == unitId);
+            return base.Contains($"{factionId}:{unitId}");
         }
 
         public int GetFactionTroops(string factionId)
         {
             int troops = 0;
 
-            foreach (Army army in Entities)
+            foreach (Army army in DataStore.Values)
                 if (army.FactionId == factionId)
                     troops += army.Size;
 
