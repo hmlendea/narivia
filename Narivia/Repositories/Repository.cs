@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+using Narivia.Exceptions;
 using Narivia.Models;
 
 namespace Narivia.Repositories
@@ -39,7 +40,7 @@ namespace Narivia.Repositories
         public virtual void Add(T entity)
         {
             if (Entities.Contains(entity))
-                throw new RepositoryException("The specified entity already exists");
+                throw new DuplicateEntityException(entity.Id);
 
             Entities.Add(entity);
         }
@@ -53,7 +54,7 @@ namespace Narivia.Repositories
             T entity = Entities.Find(E => E.Id == id);
 
             if (entity == null)
-                throw new RepositoryException("An entity with the specified identifier does not exist");
+                throw new EntityNotFoundException(id);
 
             return entity;
         }
@@ -74,7 +75,7 @@ namespace Narivia.Repositories
         public virtual void Remove(T entity)
         {
             if (!Contains(entity))
-                throw new RepositoryException("The specified entity does not exist");
+                throw new EntityNotFoundException(entity.Id);
 
             Entities.Remove(entity);
         }
@@ -86,7 +87,7 @@ namespace Narivia.Repositories
         public virtual void Remove(string id)
         {
             if (!Contains(id))
-                throw new RepositoryException("An entity with the specified identifier does not exist");
+                throw new EntityNotFoundException(id);
 
             Entities.RemoveAll(T => T.Id == id);
         }
