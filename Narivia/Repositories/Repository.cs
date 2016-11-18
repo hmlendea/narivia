@@ -3,6 +3,7 @@ using System.Linq;
 
 using Narivia.Exceptions;
 using Narivia.Models;
+using Narivia.Utils.Extensions;
 
 namespace Narivia.Repositories
 {
@@ -23,7 +24,22 @@ namespace Narivia.Repositories
         /// <value>The size.</value>
         public int Size
         {
-            get { return DataStore.Count; }
+            get
+            {
+                if (DataStore.IsNullOrEmpty())
+                    return 0;
+
+                return DataStore.Count;
+            }
+        }
+
+        /// <summary>
+        /// Indicates wether the repository is empty.
+        /// </summary>
+        /// <value>True if the repository is empty, false otherwise.</value>
+        public bool Empty
+        {
+            get { return DataStore.IsNullOrEmpty(); }
         }
 
         /// <summary>
