@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 using Narivia.Models;
-using Narivia.Repositories;
-using Narivia.Utils;
+using Narivia.DataAccess.Repositories;
+using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Controllers
 {

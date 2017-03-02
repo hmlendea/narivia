@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,8 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Narivia</RootNamespace>
     <AssemblyName>Narivia</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -22,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -51,7 +52,6 @@
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -65,60 +65,35 @@
   <ItemGroup>
     <Compile Include="Controllers\BattleController.cs" />
     <Compile Include="Controllers\GameController.cs" />
-    <Compile Include="Exceptions\DuplicateEntityException.cs" />
-    <Compile Include="Models\Army.cs" />
-    <Compile Include="Models\Biome.cs" />
-    <Compile Include="Models\Border.cs" />
-    <Compile Include="Models\Culture.cs" />
-    <Compile Include="Models\Faction.cs" />
-    <Compile Include="Models\Holding.cs" />
-    <Compile Include="Models\Region.cs" />
-    <Compile Include="Models\Resource.cs" />
-    <Compile Include="Models\Unit.cs" />
-    <Compile Include="Models\World.cs" />
-    <Compile Include="Repositories\ArmyRepository.cs" />
-    <Compile Include="Repositories\BiomeRepository.cs" />
-    <Compile Include="Repositories\BorderRepository.cs" />
-    <Compile Include="Repositories\CultureRepository.cs" />
-    <Compile Include="Repositories\FactionRepository.cs" />
-    <Compile Include="Repositories\HoldingRepository.cs" />
-    <Compile Include="Repositories\RegionRepository.cs" />
-    <Compile Include="Repositories\ResourceRepository.cs" />
-    <Compile Include="Repositories\UnitRepository.cs" />
-    <Compile Include="UI\World\Layer.cs" />
-    <Compile Include="UI\World\Map.cs" />
-    <Compile Include="UI\World\Tile.cs" />
-    <Compile Include="UI\Menus\Menu.cs" />
-    <Compile Include="UI\Menus\MenuItem.cs" />
-    <Compile Include="UI\Menus\MenuManager.cs" />
-    <Compile Include="UI\Screens\TitleScreen.cs" />
-    <Compile Include="Utils\FastBitmap.cs" />
-    <Compile Include="Models\EntityBase.cs" />
+    <Compile Include="World\Layer.cs" />
+    <Compile Include="World\Map.cs" />
+    <Compile Include="World\Tile.cs" />
+    <Compile Include="Menus\Menu.cs" />
+    <Compile Include="Menus\MenuItem.cs" />
+    <Compile Include="Menus\MenuManager.cs" />
+    <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Exceptions\EntityNotFoundException.cs" />
-    <Compile Include="Repositories\RepositoryXml.cs" />
-    <Compile Include="Utils\ApplicationPaths.cs" />
-    <Compile Include="UI\Game1.cs" />
-    <Compile Include="UI\Screens\ScreenManager.cs" />
-    <Compile Include="UI\Screens\Screen.cs" />
-    <Compile Include="UI\Screens\SplashScreen.cs" />
-    <Compile Include="UI\Screens\XmlScreenManager.cs" />
-    <Compile Include="UI\Graphics\Image.cs" />
-    <Compile Include="UI\Graphics\ImageEffects\ImageEffect.cs" />
-    <Compile Include="UI\Graphics\ImageEffects\FadeEffect.cs" />
-    <Compile Include="UI\Input\InputManager.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Screens\ScreenManager.cs" />
+    <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\SplashScreen.cs" />
+    <Compile Include="Screens\XmlScreenManager.cs" />
+    <Compile Include="Graphics\Image.cs" />
+    <Compile Include="Graphics\ImageEffects\ImageEffect.cs" />
+    <Compile Include="Graphics\ImageEffects\FadeEffect.cs" />
+    <Compile Include="Input\InputManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Icon.png" />
-    <None Include="UI\Screens\SplashScreen.xml">
+    <None Include="Screens\SplashScreen.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Fonts\Palatino Linotype.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="UI\Screens\ScreenManager.xml">
+    <None Include="Screens\ScreenManager.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -132,14 +107,27 @@
     <Content Include="OpenTK.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="UI\Menus\TitleMenu.xml">
+    <Content Include="Menus\TitleMenu.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="UI\Screens\TitleScreen.xml">
+    <Content Include="Screens\TitleScreen.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
+      <Project>{1933f8d8-3c88-4329-a209-949f921598ce}</Project>
+      <Name>Narivia.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
+      <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
+      <Name>Narivia.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Narivia.Models\Narivia.Models.csproj">
+      <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>
+      <Name>Narivia.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>

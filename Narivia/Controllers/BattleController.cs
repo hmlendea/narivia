@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Narivia.Models;
-using Narivia.Repositories;
+using Narivia.DataAccess.Repositories;
 
 namespace Narivia.Controllers
 {

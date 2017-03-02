@@ -12,7 +12,7 @@ using Foundation;
 using UIKit;
 #endif
 
-using Narivia.UI;
+using Narivia;
 #endregion
 
 namespace Narivia
