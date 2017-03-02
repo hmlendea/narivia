@@ -1,8 +1,9 @@
-﻿using Narivia.Models;
+﻿using Narivia.DataAccess.Repositories.Interfaces;
+using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class HoldingRepository : RepositoryXml<Holding>
+    public class HoldingRepository : RepositoryXml<Holding>, IHoldingRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Repositories.HoldingRepository"/> class.

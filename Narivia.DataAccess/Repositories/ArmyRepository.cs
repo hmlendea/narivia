@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class ArmyRepository : Repository<Army>
+    public class ArmyRepository : Repository<Army>, IArmyRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Repositories.ArmyRepository"/> class.

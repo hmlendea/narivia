@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
 
+using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class FactionRepository : RepositoryXml<Faction>
+    public class FactionRepository : RepositoryXml<Faction>, IFactionRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Repositorys.FactionRepository"/> class.

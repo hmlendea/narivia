@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="DomainServices\BattleDomainService.cs" />
     <Compile Include="DomainServices\GameDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IBattleDomainService.cs" />
+    <Compile Include="DomainServices\Interfaces\IGameDomainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

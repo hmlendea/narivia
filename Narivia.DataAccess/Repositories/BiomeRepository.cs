@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
 
+using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class BiomeRepository : RepositoryXml<Biome>
+    public class BiomeRepository : RepositoryXml<Biome>, IBiomeRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Repositories.BiomeRepository"/> class.

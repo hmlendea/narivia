@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using System.IO;
 
-using Narivia.Models;
+using Narivia.BusinessLogic.DomainServices.Interfaces;
+using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.DataAccess.Repositories;
 using Narivia.Infrastructure.Helpers;
+using Narivia.Models;
 
-namespace Narivia.DomainServices
+namespace Narivia.BusinessLogic.DomainServices
 {
-    public class GameDomainService
+    public class GameDomainService : IGameDomainService
     {
-        BiomeRepository biomeRepository;
-        CultureRepository cultureRepository;
-        FactionRepository factionRepository;
-        HoldingRepository holdingRepository;
-        RegionRepository regionRepository;
-        ResourceRepository resourceRepository;
-        UnitRepository unitRepository;
-        BorderRepository borderRepository;
-        ArmyRepository armyRepository;
+        IArmyRepository armyRepository;
+        IBiomeRepository biomeRepository;
+        IBorderRepository borderRepository;
+        ICultureRepository cultureRepository;
+        IFactionRepository factionRepository;
+        IHoldingRepository holdingRepository;
+        IRegionRepository regionRepository;
+        IResourceRepository resourceRepository;
+        IUnitRepository unitRepository;
 
         BattleDomainService battleDomainService;
 

@@ -1,8 +1,9 @@
-﻿using Narivia.Models;
+﻿using Narivia.DataAccess.Repositories.Interfaces;
+using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class ResourceRepository : RepositoryXml<Resource>
+    public class ResourceRepository : RepositoryXml<Resource>, IResourceRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Repositories.ResourceRepository"/> class.

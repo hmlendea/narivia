@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.BusinessLogic.DomainServices.Interfaces;
+using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
-using Narivia.DataAccess.Repositories;
 
-namespace Narivia.DomainServices
+namespace Narivia.BusinessLogic.DomainServices
 {
     public enum BattleResult
     {
@@ -13,15 +14,15 @@ namespace Narivia.DomainServices
         Defeat
     }
 
-    public class BattleDomainService
+    public class BattleDomainService : IBattleDomainService
     {
-        public FactionRepository FactionRepository { get; set; }
+        public IArmyRepository ArmyRepository { get; set; }
 
-        public RegionRepository RegionRepository { get; set; }
+        public IFactionRepository FactionRepository { get; set; }
 
-        public UnitRepository UnitRepository { get; set; }
+        public IRegionRepository RegionRepository { get; set; }
 
-        public ArmyRepository ArmyRepository { get; set; }
+        public IUnitRepository UnitRepository { get; set; }
 
         public BattleResult AttackRegion(string attackerFactionId, string defenderRegionId)
         {

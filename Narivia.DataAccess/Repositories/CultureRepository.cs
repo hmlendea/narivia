@@ -1,8 +1,9 @@
-﻿using Narivia.Models;
+﻿using Narivia.DataAccess.Repositories.Interfaces;
+using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class CultureRepository : RepositoryXml<Culture>
+    public class CultureRepository : RepositoryXml<Culture>, ICultureRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Repositories.CultureRepository"/> class.

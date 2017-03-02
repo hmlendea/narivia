@@ -48,6 +48,15 @@
     <Compile Include="Repositories\CultureRepository.cs" />
     <Compile Include="Repositories\FactionRepository.cs" />
     <Compile Include="Repositories\HoldingRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IArmyRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBiomeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBorderRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICultureRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IFactionRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IHoldingRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRegionRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IResourceRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUnitRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RepositoryXml.cs" />
