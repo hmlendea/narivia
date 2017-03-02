@@ -44,7 +44,6 @@
     <Compile Include="Biome.cs" />
     <Compile Include="Border.cs" />
     <Compile Include="Culture.cs" />
-    <Compile Include="EntityBase.cs" />
     <Compile Include="Faction.cs" />
     <Compile Include="Holding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

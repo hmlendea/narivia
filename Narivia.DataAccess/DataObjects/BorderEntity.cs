@@ -1,5 +1,8 @@
 ﻿namespace Narivia.DataAccess.DataObjects
 {
+    /// <summary>
+    /// Border data entity.
+    /// </summary>
     public class BorderEntity
     {
         /// <summary>

@@ -15,8 +15,19 @@ namespace Narivia.Models
         Military = 1,
     }
 
-    public class Resource : EntityBase
+    /// <summary>
+    /// Resource domain model.
+    /// </summary>
+    public class Resource
     {
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>The identifier.</value>
+        [Key]
+        [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
+        public string Id { get; set; }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>

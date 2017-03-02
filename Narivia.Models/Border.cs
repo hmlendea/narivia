@@ -2,13 +2,17 @@
 
 namespace Narivia.Models
 {
-    public class Border : EntityBase
+    /// <summary>
+    /// Border domain model.
+    /// </summary>
+    public class Border
     {
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public override string Id
+        [Key]
+        public string Id
         {
             get { return Region1Id + ":" + Region2Id; }
         }

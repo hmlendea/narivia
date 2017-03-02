@@ -2,13 +2,17 @@
 
 namespace Narivia.Models
 {
-    public class Army : EntityBase
+    /// <summary>
+    /// Army domain model.
+    /// </summary>
+    public class Army
     {
         /// <summary>
         /// Gets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public override string Id
+        [Key]
+        public string Id
         {
             get { return FactionId + ":" + UnitId; }
         }

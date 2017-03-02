@@ -1,7 +1,16 @@
 ﻿namespace Narivia.DataAccess.DataObjects
 {
+    /// <summary>
+    /// Unit data entity.
+    /// </summary>
     public class UnitEntity
     {
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>The identifier.</value>
+        public string Id { get; set; }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>

@@ -1,6 +1,9 @@
 ﻿namespace Narivia.DataAccess.DataObjects
 {
-    public class Army
+    /// <summary>
+    /// Army data entity.
+    /// </summary>
+    public class ArmyEntity
     {
         /// <summary>
         /// Gets or sets the faction identifier.
