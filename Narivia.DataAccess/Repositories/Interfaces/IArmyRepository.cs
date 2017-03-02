@@ -10,20 +10,8 @@ namespace Narivia.DataAccess.Repositories.Interfaces
 
         Army Get(string factionId, string unitId);
 
-        List<Army> GetAll();
+        IEnumerable<Army> GetAll();
 
-        List<Army> GetAllByFaction(string factionId);
-
-        int GetFactionTroops(string factionId);
-
-        bool Contains(string factionId, string unitId);
-
-        bool Contains(string id);
-
-        void Remove(Army army);
-
-        void Remove(string id);
-
-        void Clear();
+        void Remove(string factionId, string unitId);
     }
 }

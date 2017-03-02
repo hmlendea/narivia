@@ -10,16 +10,8 @@ namespace Narivia.DataAccess.Repositories.Interfaces
 
         Border Get(string region1Id, string region2Id);
 
-        bool Contains(string region1Id, string region2Id);
+        IEnumerable<Border> GetAll();
 
-        List<Border> GetAll();
-
-        List<Border> GetAllByRegion(string regionId);
-
-        void Remove(Border border);
-
-        void Remove(string id);
-
-        void Clear();
+        void Remove(string region1Id, string region2Id);
     }
 }

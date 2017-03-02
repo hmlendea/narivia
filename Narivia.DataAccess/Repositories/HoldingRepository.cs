@@ -1,48 +1,46 @@
-﻿using Narivia.DataAccess.Repositories.Interfaces;
+﻿using System.Collections.Generic;
+
+using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class HoldingRepository : RepositoryXml<Holding>, IHoldingRepository
+    public class HoldingRepository : IHoldingRepository
     {
+        readonly XmlDatabase<Holding> xmlDatabase;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Repositories.HoldingRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public HoldingRepository(string fileName)
-            : base(fileName)
         {
-
+            xmlDatabase = new XmlDatabase<Holding>(fileName);
         }
 
-        /// <summary>
-        /// Adds the holding.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        public void Create(string id, string name, string description)
+        public void Add(Holding holding)
         {
-            Holding holding = new Holding();
-
-            holding.Id = id;
-            holding.Name = name;
-            holding.Description = description;
-
-            Add(holding);
+            xmlDatabase.Add(holding);
         }
 
-        /// <summary>
-        /// Modifies the holding.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="descrption">Descrption.</param>
-        public void Modify(string id, string name, string descrption)
+        public Holding Get(string id)
         {
-            Holding holding = Get(id);
-            holding.Name = name;
-            holding.Description = descrption;
+            return xmlDatabase.Get(id);
+        }
+
+        public IEnumerable<Holding> GetAll()
+        {
+            return xmlDatabase.GetAll();
+        }
+
+        public void Update(Holding holding)
+        {
+            xmlDatabase.Update(holding);
+        }
+
+        public void Remove(string id)
+        {
+            xmlDatabase.Remove(id);
         }
     }
 }

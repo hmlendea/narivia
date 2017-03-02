@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using Narivia.BusinessLogic.DomainServices.Interfaces;
 using Narivia.DataAccess.Repositories.Interfaces;
@@ -43,7 +44,7 @@ namespace Narivia.BusinessLogic.DomainServices
 
         public void NextTurn()
         {
-            List<Faction> factions = factionRepository.GetAll();
+            List<Faction> factions = factionRepository.GetAll().ToList();
 
             foreach (Faction faction in factions)
             {
@@ -72,10 +73,8 @@ namespace Narivia.BusinessLogic.DomainServices
 
         public bool RegionHasBorder(string region1Id, string region2Id)
         {
-            if (borderRepository.Contains(region1Id, region2Id))
-                return true;
-
-            return false;
+            Border border = borderRepository.Get(region1Id, region2Id);
+            return border != null;
         }
 
         void LoadEntities(string worldId)
@@ -100,7 +99,7 @@ namespace Narivia.BusinessLogic.DomainServices
 
         void LoadMap(string worldId)
         {
-            List<Region> regions = regionRepository.GetAll();
+            List<Region> regions = regionRepository.GetAll().ToList();
             Dictionary<int, string> regionColourIds = new Dictionary<int, string>();
 
             worldTiles = new string[world.Width, world.Height];
@@ -137,8 +136,8 @@ namespace Narivia.BusinessLogic.DomainServices
 
         void InitializeEntities()
         {
-            List<Faction> factions = factionRepository.GetAll();
-            List<Unit> units = unitRepository.GetAll();
+            List<Faction> factions = factionRepository.GetAll().ToList();
+            List<Unit> units = unitRepository.GetAll().ToList();
 
             foreach (Faction faction in factions)
             {
@@ -207,12 +206,13 @@ namespace Narivia.BusinessLogic.DomainServices
         string ChooseAttack(string factionId)
         {
             Random random = new Random();
-            List<Region> regionsOwned = regionRepository.GetAllByFaction(factionId);
+            List<Region> regionsOwned = regionRepository.GetAll().Where(x => x.FactionId == factionId).ToList();
             List<string> choices = new List<string>();
 
             foreach (Region region in regionsOwned)
             {
-                List<Border> borders = borderRepository.GetAllByRegion(region.Id);
+                List<Border> borders = borderRepository.GetAll().Where(x => x.Region1Id == region.Id ||
+                                                                            x.Region2Id == region.Id).ToList();
 
                 foreach (Border border in borders)
                 {

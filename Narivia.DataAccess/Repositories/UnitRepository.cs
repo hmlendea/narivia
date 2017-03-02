@@ -1,70 +1,46 @@
-﻿using Narivia.DataAccess.Repositories.Interfaces;
+﻿using System.Collections.Generic;
+
+using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class UnitRepository : RepositoryXml<Unit>, IUnitRepository
+    public class UnitRepository : IUnitRepository
     {
+        readonly XmlDatabase<Unit> xmlDatabase;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Repositorys.UnitRepository"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Repositories.UnitRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public UnitRepository(string fileName)
-            : base(fileName)
         {
-
+            xmlDatabase = new XmlDatabase<Unit>(fileName);
         }
 
-        /// <summary>
-        /// Adds the unit.
-        /// </summary>
-        /// <returns>The unit.</returns>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        /// <param name="type">Type.</param>
-        /// <param name="price">Price.</param>
-        /// <param name="maintenance">Maintenance.</param>
-        /// <param name="power">Attack.</param>
-        /// <param name="health">Health.</param>
-        public void Create(string id, string name, string description, UnitType type,
-                           int price, int maintenance, int power, int health)
+        public void Add(Unit unit)
         {
-            Unit unit = new Unit();
-
-            unit.Id = id;
-            unit.Name = name;
-            unit.Description = description;
-            unit.Type = type;
-            unit.Price = price;
-            unit.Maintenance = maintenance;
-            unit.Power = power;
-            unit.Health = health;
-
-            base.Add(unit);
+            xmlDatabase.Add(unit);
         }
 
-        /// <summary>
-        /// Modifies the unit.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        /// <param name="type">Type.</param>
-        /// <param name="price">Price.</param>
-        /// <param name="maintenance">Maintenance.</param>
-        /// <param name="power">Power.</param>
-        /// <param name="health">Health.</param>
-        public void Modify(string id, string name, string description, UnitType type,
-                           int price, int maintenance, int power, int health)
+        public Unit Get(string id)
         {
-            Unit unit = Get(id);
-            unit.Name = name;
-            unit.Description = description;
-            unit.Price = price;
-            unit.Maintenance = maintenance;
-            unit.Power = power;
-            unit.Health = health;
+            return xmlDatabase.Get(id);
+        }
+
+        public IEnumerable<Unit> GetAll()
+        {
+            return xmlDatabase.GetAll();
+        }
+
+        public void Update(Unit unit)
+        {
+            xmlDatabase.Update(unit);
+        }
+
+        public void Remove(string id)
+        {
+            xmlDatabase.Remove(id);
         }
     }
 }

@@ -31,13 +31,18 @@ namespace Narivia.BusinessLogic.DomainServices
             Faction attackerFaction = FactionRepository.Get(attackerFactionId);
             Faction defenderFaction = FactionRepository.Get(defenderRegion.FactionId);
 
-            int attackerTroops = ArmyRepository.GetFactionTroops(attackerFaction.Id);
-            int defenderTroops = ArmyRepository.GetFactionTroops(defenderFaction.Id);
+            int attackerTroops = ArmyRepository.GetAll()
+                .Where(x => x.FactionId == attackerFaction.Id)
+                .Select(y => y.Size).Sum();
+
+            int defenderTroops = ArmyRepository.GetAll()
+                .Where(x => x.FactionId == defenderFaction.Id)
+                .Select(y => y.Size).Sum();
 
             while (attackerTroops > 0 && defenderTroops > 0)
             {
-                List<Army> attackerArmies = ArmyRepository.GetAllByFaction(attackerFaction.Id);
-                List<Army> defenderArmies = ArmyRepository.GetAllByFaction(defenderFaction.Id);
+                List<Army> attackerArmies = ArmyRepository.GetAll().Where(x => x.FactionId == attackerFaction.Id).ToList();
+                List<Army> defenderArmies = ArmyRepository.GetAll().Where(x => x.FactionId == defenderFaction.Id).ToList();
 
                 int attackerUnitNumber = random.Next(attackerArmies.Count);
                 int defenderUnitNumber = random.Next(defenderArmies.Count);

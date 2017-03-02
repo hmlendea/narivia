@@ -1,61 +1,46 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 
 using Narivia.DataAccess.Repositories.Interfaces;
-using Region = Narivia.Models.Region;
+using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class RegionRepository : RepositoryXml<Region>, IRegionRepository
+    public class RegionRepository : IRegionRepository
     {
+        readonly XmlDatabase<Region> xmlDatabase;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Repositorys.RegionRepository"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Repositories.RegionRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public RegionRepository(string fileName)
-            : base(fileName)
         {
-
-        }
-        
-        public List<Region> GetAllByFaction(string factionId)
-        {
-            return DataStore.Values.ToList().FindAll(R => R.FactionId == factionId);
+            xmlDatabase = new XmlDatabase<Region>(fileName);
         }
 
-        /// <summary>
-        /// Adds the region.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        /// <param name="colour">Colour.</param>
-        public void Create(string id, string name, string description, Color colour)
+        public void Add(Region region)
         {
-            Region region = new Region();
-
-            region.Id = id;
-            region.Name = name;
-            region.Description = description;
-            region.Colour = colour;
-
-            Add(region);
+            xmlDatabase.Add(region);
         }
 
-        /// <summary>
-        /// Modifies the name, description, color, abilityId, cultureId and religionId.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        /// <param name="colour">Colour.</param>
-        public void Modify(string id, string name, string description, Color colour)
+        public Region Get(string id)
         {
-            Region region = Get(id);
-            region.Name = name;
-            region.Description = description;
-            region.Colour = colour;
+            return xmlDatabase.Get(id);
+        }
+
+        public IEnumerable<Region> GetAll()
+        {
+            return xmlDatabase.GetAll();
+        }
+
+        public void Update(Region region)
+        {
+            xmlDatabase.Update(region);
+        }
+
+        public void Remove(string id)
+        {
+            xmlDatabase.Remove(id);
         }
     }
 }

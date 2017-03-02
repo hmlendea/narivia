@@ -58,10 +58,9 @@
     <Compile Include="Repositories\Interfaces\IResourceRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUnitRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
-    <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Repositories\RepositoryXml.cs" />
     <Compile Include="Repositories\ResourceRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
+    <Compile Include="XmlDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">

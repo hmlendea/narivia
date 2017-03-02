@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 
 using Narivia.Models;
 
@@ -9,20 +8,12 @@ namespace Narivia.DataAccess.Repositories.Interfaces
     {
         void Add(Faction faction);
 
-        void Create(string id, string name, string description, Color colour);
-
         Faction Get(string id);
 
-        List<Faction> GetAll();
+        IEnumerable<Faction> GetAll();
 
-        bool Contains(string id);
-
-        void Modify(string id, string name, string description, Color colour);
-
-        void Remove(Faction faction);
+        void Update(Faction faction);
 
         void Remove(string id);
-
-        void Clear();
     }
 }

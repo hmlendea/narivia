@@ -8,20 +8,12 @@ namespace Narivia.DataAccess.Repositories.Interfaces
     {
         void Add(Holding holding);
 
-        void Create(string id, string name, string description);
-
         Holding Get(string id);
 
-        List<Holding> GetAll();
+        IEnumerable<Holding> GetAll();
 
-        bool Contains(string id);
-
-        void Modify(string id, string name, string descrption);
-
-        void Remove(Holding holding);
+        void Update(Holding holding);
 
         void Remove(string id);
-
-        void Clear();
     }
 }

@@ -8,20 +8,12 @@ namespace Narivia.DataAccess.Repositories.Interfaces
     {
         void Add(Resource resource);
 
-        void Create(string id, string name, string description, ResourceType type, int output);
-
         Resource Get(string id);
 
-        List<Resource> GetAll();
+        IEnumerable<Resource> GetAll();
 
-        bool Contains(string id);
-
-        void Modify(string id, string name, string description, ResourceType type, int output);
-
-        void Remove(Resource resource);
+        void Update(Resource resource);
 
         void Remove(string id);
-
-        void Clear();
     }
 }

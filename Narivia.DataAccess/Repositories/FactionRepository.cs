@@ -1,55 +1,46 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
 
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class FactionRepository : RepositoryXml<Faction>, IFactionRepository
+    public class FactionRepository : IFactionRepository
     {
+        readonly XmlDatabase<Faction> xmlDatabase;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Repositorys.FactionRepository"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Repositories.FactionRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public FactionRepository(string fileName)
-            : base(fileName)
         {
-
+            xmlDatabase = new XmlDatabase<Faction>(fileName);
         }
 
-        /// <summary>
-        /// Adds the faction.
-        /// </summary>
-        /// <returns>The faction.</returns>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        /// <param name="colour">Colour.</param>
-        public void Create(string id, string name, string description, Color colour)
+        public void Add(Faction faction)
         {
-            Faction faction = new Faction();
-
-            faction.Id = id;
-            faction.Name = name;
-            faction.Description = description;
-            faction.Colour = colour;
-
-            Add(faction);
+            xmlDatabase.Add(faction);
         }
 
-        /// <summary>
-        /// Modifies the name, description, color, abilityId, cultureId and religionId.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        /// <param name="colour">Colour.</param>
-        public void Modify(string id, string name, string description, Color colour)
+        public Faction Get(string id)
         {
-            Faction faction = Get(id);
-            faction.Name = name;
-            faction.Description = description;
-            faction.Colour = colour;
+            return xmlDatabase.Get(id);
+        }
+
+        public IEnumerable<Faction> GetAll()
+        {
+            return xmlDatabase.GetAll();
+        }
+
+        public void Update(Faction faction)
+        {
+            xmlDatabase.Update(faction);
+        }
+
+        public void Remove(string id)
+        {
+            xmlDatabase.Remove(id);
         }
     }
 }

@@ -1,48 +1,46 @@
-﻿using Narivia.DataAccess.Repositories.Interfaces;
+﻿using System.Collections.Generic;
+
+using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class CultureRepository : RepositoryXml<Culture>, ICultureRepository
+    public class CultureRepository : ICultureRepository
     {
+        readonly XmlDatabase<Culture> xmlDatabase;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Repositories.CultureRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public CultureRepository(string fileName)
-            : base(fileName)
         {
-
+            xmlDatabase = new XmlDatabase<Culture>(fileName);
         }
 
-        /// <summary>
-        /// Adds the culture.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        public void Create(string id, string name, string description)
+        public void Add(Culture culture)
         {
-            Culture culture = new Culture();
-
-            culture.Id = id;
-            culture.Name = name;
-            culture.Description = description;
-
-            Add(culture);
+            xmlDatabase.Add(culture);
         }
 
-        /// <summary>
-        /// Modifies the culture.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        public void Modify(string id, string name, string description)
+        public Culture Get(string id)
         {
-            Culture culture = Get(id);
-            culture.Name = name;
-            culture.Description = description;
+            return xmlDatabase.Get(id);
+        }
+
+        public IEnumerable<Culture> GetAll()
+        {
+            return xmlDatabase.GetAll();
+        }
+
+        public void Update(Culture culture)
+        {
+            xmlDatabase.Update(culture);
+        }
+
+        public void Remove(string id)
+        {
+            xmlDatabase.Remove(id);
         }
     }
 }

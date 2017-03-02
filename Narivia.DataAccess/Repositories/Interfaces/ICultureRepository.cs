@@ -8,20 +8,12 @@ namespace Narivia.DataAccess.Repositories.Interfaces
     {
         void Add(Culture culture);
 
-        void Create(string id, string name, string description);
-
         Culture Get(string id);
 
-        List<Culture> GetAll();
+        IEnumerable<Culture> GetAll();
 
-        bool Contains(string id);
-
-        void Modify(string id, string name, string description);
-
-        void Remove(Culture culture);
+        void Update(Culture culture);
 
         void Remove(string id);
-
-        void Clear();
     }
 }

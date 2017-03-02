@@ -1,54 +1,46 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
 
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
-    public class BiomeRepository : RepositoryXml<Biome>, IBiomeRepository
+    public class BiomeRepository : IBiomeRepository
     {
+        readonly XmlDatabase<Biome> xmlDatabase;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Repositories.BiomeRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public BiomeRepository(string fileName)
-            : base(fileName)
         {
-
+            xmlDatabase = new XmlDatabase<Biome>(fileName);
+        }
+        
+        public void Add(Biome biome)
+        {
+            xmlDatabase.Add(biome);
         }
 
-        /// <summary>
-        /// Adds the biome.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        /// <param name = "colour">Colour.</param>
-        public void Create(string id, string name, string description, Color colour)
+        public Biome Get(string id)
         {
-            Biome biome = new Biome();
-
-            biome.Id = id;
-            biome.Name = name;
-            biome.Description = description;
-            biome.Colour = colour;
-
-            Add(biome);
+            return xmlDatabase.Get(id);
         }
 
-        /// <summary>
-        /// Modifies the biome.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="description">Description.</param>
-        /// <param name="colour">Colour.</param>
-        public void Modify(string id, string name, string description, Color colour)
+        public IEnumerable<Biome> GetAll()
         {
-            Biome biome = Get(id);
-            biome.Name = name;
-            biome.Description = description;
-            biome.Colour = colour;
+            return xmlDatabase.GetAll();
+        }
+
+        public void Update(Biome biome)
+        {
+            xmlDatabase.Update(biome);
+        }
+
+        public void Remove(string id)
+        {
+            xmlDatabase.Remove(id);
         }
     }
 }
