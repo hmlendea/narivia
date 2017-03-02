@@ -31,7 +31,7 @@ namespace Narivia.Screens
                 if (instance == null)
                 {
                     XmlScreenManager<ScreenManager> xml = new XmlScreenManager<ScreenManager>();
-                    instance = xml.Load("UI/Screens/ScreenManager.xml");
+                    instance = xml.Load("Screens/ScreenManager.xml");
                 }
 
                 return instance;
@@ -90,7 +90,7 @@ namespace Narivia.Screens
             xmlScreenManager = new XmlScreenManager<Screen>();
             xmlScreenManager.Type = currentScreen.Type;
 
-            currentScreen = xmlScreenManager.Load("UI/Screens/SplashScreen.xml");
+            currentScreen = xmlScreenManager.Load("Screens/SplashScreen.xml");
         }
 
         /// <summary>

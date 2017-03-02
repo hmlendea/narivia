@@ -8,7 +8,7 @@ namespace Narivia.Screens
     public class TitleScreen : Screen
     {
         readonly MenuManager menuManager;
-        
+
         public TitleScreen()
         {
             menuManager = new MenuManager();
@@ -17,7 +17,7 @@ namespace Narivia.Screens
         public override void LoadContent()
         {
             base.LoadContent();
-            menuManager.LoadContent("UI/Menus/TitleMenu.xml");
+            menuManager.LoadContent("Menus/TitleMenu.xml");
         }
 
         public override void UnloadContent()

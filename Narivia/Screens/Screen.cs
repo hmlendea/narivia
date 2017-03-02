@@ -35,7 +35,7 @@ namespace Narivia.Screens
         public Screen()
         {
             Type = GetType();
-            XmlPath = @"UI/Screens/" + Type.ToString().Replace("Narivia.Screens.", "") + ".xml";
+            XmlPath = @"Screens/" + Type.ToString().Replace("Narivia.Screens.", "") + ".xml";
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            
+
         }
     }
 }
