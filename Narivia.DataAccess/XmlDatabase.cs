@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Narivia.DataAccess
 {
@@ -12,29 +13,34 @@ namespace Narivia.DataAccess
             FileName = fileName;
         }
 
-        public void Add(T entity)
+        public IEnumerable<T> LoadEntities()
         {
-            throw new NotImplementedException();
+            if (!File.Exists(FileName))
+            {
+                return null;
+            }
+
+            XmlSerializer xs = new XmlSerializer(typeof(List<T>));
+            List<T> entities;
+
+            using (FileStream fs = new FileStream(FileName, FileMode.Open, FileAccess.Read))
+            using (StreamReader sr = new StreamReader(fs))
+            {
+                entities = (List<T>)xs.Deserialize(sr);
+            }
+
+            return entities;
         }
 
-        public T Get(string id)
+        public void SaveEntities(List<T> entities)
         {
-            throw new NotImplementedException();
-        }
+            FileStream fs = new FileStream(FileName, FileMode.Create, FileAccess.Write);
 
-        public IEnumerable<T> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove(string id)
-        {
-            throw new NotImplementedException();
+            using (StreamWriter sw = new StreamWriter(fs))
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(List<T>));
+                xs.Serialize(sw, entities);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
@@ -27,26 +28,34 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="unit">Unit.</param>
         public void Add(Unit unit)
         {
-            xmlDatabase.Add(unit);
+            List<Unit> units = xmlDatabase.LoadEntities().ToList();
+            units.Add(unit);
+
+            xmlDatabase.SaveEntities(units);
         }
 
         /// <summary>
-        /// Gets the unit with the specified identifier.
+        /// Get the unit with the specified identifier.
         /// </summary>
         /// <returns>The unit.</returns>
         /// <param name="id">Identifier.</param>
         public Unit Get(string id)
         {
-            return xmlDatabase.Get(id);
+            List<Unit> units = xmlDatabase.LoadEntities().ToList();
+            Unit unit = units.FirstOrDefault(x => x.Id == id);
+
+            return unit;
         }
 
         /// <summary>
         /// Gets all the units.
         /// </summary>
-        /// <returns>The units.</returns>
+        /// <returns>The units</returns>
         public IEnumerable<Unit> GetAll()
         {
-            return xmlDatabase.GetAll();
+            List<Unit> units = xmlDatabase.LoadEntities().ToList();
+
+            return units;
         }
 
         /// <summary>
@@ -55,16 +64,30 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="unit">Unit.</param>
         public void Update(Unit unit)
         {
-            xmlDatabase.Update(unit);
+            List<Unit> units = xmlDatabase.LoadEntities().ToList();
+            Unit unitToUpdate = units.FirstOrDefault(x => x.Id == unit.Id);
+
+            unitToUpdate.Name = unit.Name;
+            unitToUpdate.Description = unit.Description;
+            unitToUpdate.Type = unit.Type;
+            unitToUpdate.Power = unit.Power;
+            unitToUpdate.Health = unit.Health;
+            unitToUpdate.Price = unit.Price;
+            unitToUpdate.Maintenance = unit.Maintenance;
+
+            xmlDatabase.SaveEntities(units);
         }
 
         /// <summary>
-        /// Remove the unit with the specified identifier.
+        /// Removes the unit with the specified identifier.
         /// </summary>
         /// <param name="id">Identifier.</param>
         public void Remove(string id)
         {
-            xmlDatabase.Remove(id);
+            List<Unit> units = xmlDatabase.LoadEntities().ToList();
+            units.RemoveAll(x => x.Id == id);
+
+            xmlDatabase.SaveEntities(units);
         }
     }
 }
