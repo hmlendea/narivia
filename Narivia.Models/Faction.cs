@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
-using System.Drawing;
+
+using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Models
 {
@@ -25,18 +26,7 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The colour.</value>
         [XmlIgnore]
-        public Color Colour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the colour using the hexadecimal format.
-        /// </summary>
-        /// <value>The colour's hex value.</value>
-        [XmlElement("Colour")]
-        public string ColourHex
-        {
-            get { return ColorTranslator.ToHtml(Colour); }
-            set { Colour = ColorTranslator.FromHtml(value); }
-        }
+        public Colour Colour { get; set; }
 
         /// <summary>
         /// Gets or sets the wealth.
