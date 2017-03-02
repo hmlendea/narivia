@@ -5,7 +5,7 @@ using System.Linq;
 using Narivia.Models;
 using Narivia.DataAccess.Repositories;
 
-namespace Narivia.Controllers
+namespace Narivia.DomainServices
 {
     public enum BattleResult
     {
@@ -13,7 +13,7 @@ namespace Narivia.Controllers
         Defeat
     }
 
-    public class BattleController
+    public class BattleDomainService
     {
         public FactionRepository FactionRepository { get; set; }
 
@@ -59,7 +59,7 @@ namespace Narivia.Controllers
 
                 // TODO: Attack and Defence bonuses
 
-                attackerArmy.Size = 
+                attackerArmy.Size =
                     (attackerUnit.Health * attackerArmy.Size - defenderUnit.Power * defenderArmy.Size) /
                     attackerUnit.Health;
 
@@ -71,9 +71,10 @@ namespace Narivia.Controllers
                 defenderArmy.Size = Math.Max(0, defenderArmy.Size);
             }
 
-            // TODO: In the GameController I should change the realations based on wether the region was sovereign or not
+            // TODO: In the GameDomainService I should change the realations based on wether the
+            // region was sovereign or not
 
-            if (attackerTroops > defenderTroops)            
+            if (attackerTroops > defenderTroops)
                 return BattleResult.Victory;
             else
                 return BattleResult.Defeat;

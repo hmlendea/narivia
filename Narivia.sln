@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Models", "Narivia.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Infrastructure", "Narivia.Infrastructure\Narivia.Infrastructure.csproj", "{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.BusinessLogic", "Narivia.BusinessLogic\Narivia.BusinessLogic.csproj", "{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,14 @@ Global
 		{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}.Release|x86.ActiveCfg = Release|Any CPU
 		{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}.Release|x86.Build.0 = Release|Any CPU
+		{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}.Debug|x86.Build.0 = Debug|Any CPU
+		{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}.Release|x86.ActiveCfg = Release|Any CPU
+		{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

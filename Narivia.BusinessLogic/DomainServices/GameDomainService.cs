@@ -6,9 +6,9 @@ using Narivia.Models;
 using Narivia.DataAccess.Repositories;
 using Narivia.Infrastructure.Helpers;
 
-namespace Narivia.Controllers
+namespace Narivia.DomainServices
 {
-    public class GameController
+    public class GameDomainService
     {
         BiomeRepository biomeRepository;
         CultureRepository cultureRepository;
@@ -20,7 +20,7 @@ namespace Narivia.Controllers
         BorderRepository borderRepository;
         ArmyRepository armyRepository;
 
-        BattleController battleController;
+        BattleDomainService battleDomainService;
 
         World world;
 
@@ -35,7 +35,7 @@ namespace Narivia.Controllers
             LoadWorld(worldId);
 
             InitializeGame(factionId);
-            InitializeControllers();
+            InitialiseDomainServices();
             InitializeEntities();
         }
 
@@ -116,9 +116,9 @@ namespace Narivia.Controllers
             }
         }
 
-        void InitializeControllers()
+        void InitialiseDomainServices()
         {
-            battleController = new BattleController()
+            battleDomainService = new BattleDomainService()
             {
                 ArmyRepository = armyRepository,
                 FactionRepository = factionRepository,
@@ -207,7 +207,7 @@ namespace Narivia.Controllers
             Random random = new Random();
             List<Region> regionsOwned = regionRepository.GetAllByFaction(factionId);
             List<string> choices = new List<string>();
-            
+
             foreach (Region region in regionsOwned)
             {
                 List<Border> borders = borderRepository.GetAllByRegion(region.Id);
@@ -220,8 +220,8 @@ namespace Narivia.Controllers
                         choices.Add(region2.Id);
                 }
             }
-            
-            while(choices.Count > 0)
+
+            while (choices.Count > 0)
             {
                 string regionId = choices[random.Next(choices.Count)];
                 Region region = regionRepository.Get(regionId);
@@ -238,7 +238,7 @@ namespace Narivia.Controllers
 
         void AttackRegion(string factionId, string regionId)
         {
-            BattleResult battleResult = battleController.AttackRegion(factionId, regionId);
+            BattleResult battleResult = battleDomainService.AttackRegion(factionId, regionId);
 
             // TODO: Use the result and send notifications, change relations, etc...
         }
