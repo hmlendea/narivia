@@ -32,6 +32,11 @@ namespace Narivia.BusinessLogic.DomainServices
         string playerFactionId;
         int turn;
 
+        /// <summary>
+        /// Starts a new game.
+        /// </summary>
+        /// <param name="worldId">World identifier.</param>
+        /// <param name="factionId">Faction identifier.</param>
         public void NewGame(string worldId, string factionId)
         {
             LoadEntities(worldId);
@@ -42,6 +47,9 @@ namespace Narivia.BusinessLogic.DomainServices
             InitializeEntities();
         }
 
+        /// <summary>
+        /// Advances the game by one turn.
+        /// </summary>
         public void NextTurn()
         {
             List<Faction> factions = factionRepository.GetAll().ToList();
@@ -61,7 +69,7 @@ namespace Narivia.BusinessLogic.DomainServices
         }
 
         /// <summary>
-        /// Transfers the region to another faction.
+        /// Transfers the specified region to the specified faction.
         /// </summary>
         /// <param name="regionId">Region identifier.</param>
         /// <param name="factionId">Faction identifier.</param>
@@ -71,6 +79,12 @@ namespace Narivia.BusinessLogic.DomainServices
             region.FactionId = factionId;
         }
 
+        /// <summary>
+        /// Checks wether the specified regions share a border.
+        /// </summary>
+        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
+        /// <param name="region1Id">First region identifier.</param>
+        /// <param name="region2Id">Second region identifier.</param>
         public bool RegionHasBorder(string region1Id, string region2Id)
         {
             Border border = borderRepository.Get(region1Id, region2Id);

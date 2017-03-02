@@ -4,14 +4,36 @@ using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories.Interfaces
 {
+    /// <summary>
+    /// Army repository interface.
+    /// </summary>
     public interface IArmyRepository
     {
+        /// <summary>
+        /// Adds the specified army.
+        /// </summary>
+        /// <param name="army">Army.</param>
         void Add(Army army);
 
+        /// <summary>
+        /// Gets the army with the specified faction and unit identifiers.
+        /// </summary>
+        /// <returns>The army.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="unitId">Unit identifier.</param>
         Army Get(string factionId, string unitId);
 
+        /// <summary>
+        /// Gets all the armies.
+        /// </summary>
+        /// <returns>The armies.</returns>
         IEnumerable<Army> GetAll();
 
+        /// <summary>
+        /// Removes the army with the specified faction and unit identifiers.
+        /// </summary>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="unitId">Unit identifier.</param>
         void Remove(string factionId, string unitId);
     }
 }
