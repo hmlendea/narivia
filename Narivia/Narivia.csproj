@@ -8,7 +8,6 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Narivia</RootNamespace>
     <AssemblyName>Narivia</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />

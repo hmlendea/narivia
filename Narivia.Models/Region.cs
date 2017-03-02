@@ -37,14 +37,14 @@ namespace Narivia.Models
         /// Gets or sets the name.
         /// </summary>
         /// <value>The name.</value>
-        [MaxLength(20)]
+        [StringLength(20, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
         /// <value>The description.</value>
-        [MaxLength(255)]
+        [StringLength(300, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string Description { get; set; }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Narivia.Models
         /// <value>The type.</value>
         [XmlIgnore]
         public RegionType Type { get; set; }
-        
+
         /// <summary>
         /// Gets the state.
         /// </summary>
@@ -81,14 +81,14 @@ namespace Narivia.Models
         /// Gets the faction identifier.
         /// </summary>
         /// <value>The faction identifier.</value>
-        [StringLength(40, MinimumLength = 3)]
+        [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string FactionId { get; set; }
 
         /// <summary>
         /// Gets the sovereign faction identifier.
         /// </summary>
         /// <value>The sovereign faction identifier.</value>
-        [StringLength(40, MinimumLength = 3)]
+        [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string SovereignFactionId { get; set; }
     }
 }

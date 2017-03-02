@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
 using Narivia.Infrastructure.Helpers;
@@ -11,14 +12,14 @@ namespace Narivia.Models
         /// Gets or sets the name.
         /// </summary>
         /// <value>The name.</value>
-        [MaxLength(20)]
+        [StringLength(20, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
         /// <value>The description.</value>
-        [MaxLength(255)]
+        [StringLength(300, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string Description { get; set; }
 
         /// <summary>
