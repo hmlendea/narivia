@@ -5,29 +5,29 @@ namespace Narivia.Models
     public enum HoldingType
     {
         /// <summary>
-        /// City.
-        /// </summary>L
-        City = 0,
-
-        /// <summary>
-        /// Port.
-        /// </summary>
-        Port = 1,
-
-        /// <summary>
-        /// Village.
-        /// </summary>
-        Village = 1,
-
-        /// <summary>
         /// Fortress.
         /// </summary>
-        Fortress = 1,
+        Fortress = 0,
+
+        /// <summary>
+        /// City.
+        /// </summary>L
+        City = 1,
 
         /// <summary>
         /// Temple.
         /// </summary>
-        Temple = 1
+        Temple = 2,
+
+        /// <summary>
+        /// Village.
+        /// </summary>
+        Village = 3,
+
+        /// <summary>
+        /// Port.
+        /// </summary>
+        Port = 4
     }
 
     public class Holding : EntityBase

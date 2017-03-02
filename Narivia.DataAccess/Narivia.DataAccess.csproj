@@ -59,6 +59,16 @@
     <Compile Include="Repositories\ResourceRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
     <Compile Include="XmlDatabase.cs" />
+    <Compile Include="DataObjects\ArmyEntity.cs" />
+    <Compile Include="DataObjects\BiomeEntity.cs" />
+    <Compile Include="DataObjects\BorderEntity.cs" />
+    <Compile Include="DataObjects\CultureEntity.cs" />
+    <Compile Include="DataObjects\FactionEntity.cs" />
+    <Compile Include="DataObjects\HoldingEntity.cs" />
+    <Compile Include="DataObjects\RegionEntity.cs" />
+    <Compile Include="DataObjects\ResourceEntity.cs" />
+    <Compile Include="DataObjects\UnitEntity.cs" />
+    <Compile Include="DataObjects\WorldEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
@@ -69,6 +79,9 @@
       <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>
       <Name>Narivia.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataObjects\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
