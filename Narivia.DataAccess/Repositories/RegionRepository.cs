@@ -3,6 +3,7 @@ using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
+using Narivia.Infrastructure.Exceptions;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -31,7 +32,14 @@ namespace Narivia.DataAccess.Repositories
             List<RegionEntity> regionEntities = xmlDatabase.LoadEntities().ToList();
             regionEntities.Add(regionEntity);
 
-            xmlDatabase.SaveEntities(regionEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(regionEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(regionEntity.Id, nameof(RegionEntity).Replace("Entity", ""));
+            }
         }
 
         /// <summary>
@@ -43,6 +51,11 @@ namespace Narivia.DataAccess.Repositories
         {
             List<RegionEntity> regionEntities = xmlDatabase.LoadEntities().ToList();
             RegionEntity regionEntity = regionEntities.FirstOrDefault(x => x.Id == id);
+
+            if (regionEntity == null)
+            {
+                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+            }
 
             return regionEntity;
         }
@@ -67,6 +80,11 @@ namespace Narivia.DataAccess.Repositories
             List<RegionEntity> regionEntities = xmlDatabase.LoadEntities().ToList();
             RegionEntity regionEntityToUpdate = regionEntities.FirstOrDefault(x => x.Id == regionEntity.Id);
 
+            if (regionEntityToUpdate == null)
+            {
+                throw new EntityNotFoundException(regionEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+            }
+
             regionEntityToUpdate.Name = regionEntity.Name;
             regionEntityToUpdate.Description = regionEntity.Description;
             regionEntityToUpdate.Colour = regionEntity.Colour;
@@ -86,7 +104,14 @@ namespace Narivia.DataAccess.Repositories
             List<RegionEntity> regionEntities = xmlDatabase.LoadEntities().ToList();
             regionEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(regionEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(regionEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(id, nameof(ArmyEntity).Replace("Entity", ""));
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
+using Narivia.Infrastructure.Exceptions;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -31,7 +32,14 @@ namespace Narivia.DataAccess.Repositories
             List<HoldingEntity> holdingEntities = xmlDatabase.LoadEntities().ToList();
             holdingEntities.Add(holdingEntity);
 
-            xmlDatabase.SaveEntities(holdingEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(holdingEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(holdingEntity.Id, nameof(HoldingEntity).Replace("Entity", ""));
+            }
         }
 
         /// <summary>
@@ -43,6 +51,11 @@ namespace Narivia.DataAccess.Repositories
         {
             List<HoldingEntity> holdingEntities = xmlDatabase.LoadEntities().ToList();
             HoldingEntity holdingEntity = holdingEntities.FirstOrDefault(x => x.Id == id);
+
+            if (holdingEntity == null)
+            {
+                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+            }
 
             return holdingEntity;
         }
@@ -67,6 +80,11 @@ namespace Narivia.DataAccess.Repositories
             List<HoldingEntity> holdingEntities = xmlDatabase.LoadEntities().ToList();
             HoldingEntity holdingEntityToUpdate = holdingEntities.FirstOrDefault(x => x.Id == holdingEntity.Id);
 
+            if (holdingEntityToUpdate == null)
+            {
+                throw new EntityNotFoundException(holdingEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+            }
+
             holdingEntityToUpdate.Name = holdingEntity.Name;
             holdingEntityToUpdate.Description = holdingEntity.Description;
             holdingEntityToUpdate.Type = holdingEntity.Type;
@@ -83,7 +101,14 @@ namespace Narivia.DataAccess.Repositories
             List<HoldingEntity> holdingEntities = xmlDatabase.LoadEntities().ToList();
             holdingEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(holdingEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(holdingEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(id, nameof(ArmyEntity).Replace("Entity", ""));
+            }
         }
     }
 }

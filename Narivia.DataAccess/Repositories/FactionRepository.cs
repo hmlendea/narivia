@@ -3,6 +3,7 @@ using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
+using Narivia.Infrastructure.Exceptions;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -31,7 +32,14 @@ namespace Narivia.DataAccess.Repositories
             List<FactionEntity> factionEntities = xmlDatabase.LoadEntities().ToList();
             factionEntities.Add(factionEntity);
 
-            xmlDatabase.SaveEntities(factionEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(factionEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(factionEntity.Id, nameof(FactionEntity).Replace("Entity", ""));
+            }
         }
 
         /// <summary>
@@ -43,6 +51,11 @@ namespace Narivia.DataAccess.Repositories
         {
             List<FactionEntity> factionEntities = xmlDatabase.LoadEntities().ToList();
             FactionEntity factionEntity = factionEntities.FirstOrDefault(x => x.Id == id);
+
+            if (factionEntity == null)
+            {
+                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+            }
 
             return factionEntity;
         }
@@ -67,6 +80,11 @@ namespace Narivia.DataAccess.Repositories
             List<FactionEntity> factionEntities = xmlDatabase.LoadEntities().ToList();
             FactionEntity factionEntityToUpdate = factionEntities.FirstOrDefault(x => x.Id == factionEntity.Id);
 
+            if (factionEntityToUpdate == null)
+            {
+                throw new EntityNotFoundException(factionEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+            }
+
             factionEntityToUpdate.Name = factionEntity.Name;
             factionEntityToUpdate.Description = factionEntity.Description;
             factionEntityToUpdate.Colour = factionEntity.Colour;
@@ -83,7 +101,14 @@ namespace Narivia.DataAccess.Repositories
             List<FactionEntity> factionEntities = xmlDatabase.LoadEntities().ToList();
             factionEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(factionEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(factionEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(id, nameof(ArmyEntity).Replace("Entity", ""));
+            }
         }
     }
 }

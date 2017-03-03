@@ -3,6 +3,7 @@ using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
+using Narivia.Infrastructure.Exceptions;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -31,7 +32,14 @@ namespace Narivia.DataAccess.Repositories
             List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
             cultureEntities.Add(cultureEntity);
 
-            xmlDatabase.SaveEntities(cultureEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(cultureEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(cultureEntity.Id, nameof(CultureEntity).Replace("Entity", ""));
+            }
         }
 
         /// <summary>
@@ -43,6 +51,11 @@ namespace Narivia.DataAccess.Repositories
         {
             List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
             CultureEntity cultureEntity = cultureEntities.FirstOrDefault(x => x.Id == id);
+
+            if (cultureEntity == null)
+            {
+                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+            }
 
             return cultureEntity;
         }
@@ -67,6 +80,11 @@ namespace Narivia.DataAccess.Repositories
             List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
             CultureEntity cultureEntityToUpdate = cultureEntities.FirstOrDefault(x => x.Id == cultureEntity.Id);
 
+            if (cultureEntityToUpdate == null)
+            {
+                throw new EntityNotFoundException(cultureEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+            }
+
             cultureEntityToUpdate.Name = cultureEntity.Name;
             cultureEntityToUpdate.Description = cultureEntity.Description;
             cultureEntityToUpdate.TextureSet = cultureEntity.TextureSet;
@@ -83,7 +101,14 @@ namespace Narivia.DataAccess.Repositories
             List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
             cultureEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(cultureEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(cultureEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(id, nameof(ArmyEntity).Replace("Entity", ""));
+            }
         }
     }
 }

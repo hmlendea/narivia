@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
+using Narivia.Infrastructure.Exceptions;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -32,7 +33,17 @@ namespace Narivia.DataAccess.Repositories
         public void Add(ArmyEntity army)
         {
             Tuple<string, string> key = new Tuple<string, string>(army.FactionId, army.UnitId);
-            armyEntitiesStore.Add(key, army);
+
+            try
+            {
+                armyEntitiesStore.Add(key, army);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(
+                    $"{army.FactionId}-{army.UnitId}",
+                    nameof(ArmyEntity).Replace("Entity", ""));
+            }
         }
 
         /// <summary>
@@ -44,7 +55,16 @@ namespace Narivia.DataAccess.Repositories
         public ArmyEntity Get(string factionId, string unitId)
         {
             Tuple<string, string> key = new Tuple<string, string>(factionId, unitId);
-            return armyEntitiesStore[key];
+            ArmyEntity armyEntity = armyEntitiesStore[key];
+
+            if (armyEntity == null)
+            {
+                throw new EntityNotFoundException(
+                    $"{factionId}-{unitId}",
+                    nameof(ArmyEntity).Replace("Entity", ""));
+            }
+
+            return armyEntity;
         }
 
         /// <summary>
@@ -64,7 +84,17 @@ namespace Narivia.DataAccess.Repositories
         public void Remove(string factionId, string unitId)
         {
             Tuple<string, string> key = new Tuple<string, string>(factionId, unitId);
-            armyEntitiesStore.Remove(key);
+
+            try
+            {
+                armyEntitiesStore.Remove(key);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(
+                    $"{factionId}-{unitId}",
+                    nameof(ArmyEntity).Replace("Entity", ""));
+            }
         }
     }
 }

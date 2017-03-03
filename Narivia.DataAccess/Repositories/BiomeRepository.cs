@@ -3,6 +3,7 @@ using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
+using Narivia.Infrastructure.Exceptions;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -31,7 +32,14 @@ namespace Narivia.DataAccess.Repositories
             List<BiomeEntity> biomeEntities = xmlDatabase.LoadEntities().ToList();
             biomeEntities.Add(biomeEntity);
 
-            xmlDatabase.SaveEntities(biomeEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(biomeEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(biomeEntity.Id, nameof(BiomeEntity).Replace("Entity", ""));
+            }
         }
 
         /// <summary>
@@ -43,6 +51,11 @@ namespace Narivia.DataAccess.Repositories
         {
             List<BiomeEntity> biomeEntities = xmlDatabase.LoadEntities().ToList();
             BiomeEntity biomeEntity = biomeEntities.FirstOrDefault(x => x.Id == id);
+
+            if (biomeEntity == null)
+            {
+                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+            }
 
             return biomeEntity;
         }
@@ -67,6 +80,11 @@ namespace Narivia.DataAccess.Repositories
             List<BiomeEntity> biomeEntities = xmlDatabase.LoadEntities().ToList();
             BiomeEntity biomeEntityToUpdate = biomeEntities.FirstOrDefault(x => x.Id == biomeEntity.Id);
 
+            if (biomeEntityToUpdate == null)
+            {
+                throw new EntityNotFoundException(biomeEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+            }
+
             biomeEntityToUpdate.Name = biomeEntity.Name;
             biomeEntityToUpdate.Description = biomeEntity.Description;
             biomeEntityToUpdate.Colour = biomeEntity.Colour;
@@ -83,7 +101,14 @@ namespace Narivia.DataAccess.Repositories
             List<BiomeEntity> biomeEntities = xmlDatabase.LoadEntities().ToList();
             biomeEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(biomeEntities);
+            try
+            {
+                xmlDatabase.SaveEntities(biomeEntities);
+            }
+            catch
+            {
+                throw new DuplicateEntityException(id, nameof(ArmyEntity).Replace("Entity", ""));
+            }
         }
     }
 }
