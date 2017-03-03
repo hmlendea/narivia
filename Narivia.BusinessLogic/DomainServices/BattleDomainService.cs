@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Narivia.BusinessLogic.DomainServices.Interfaces;
+using Narivia.BusinessLogic.Mapping;
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 
@@ -33,9 +34,9 @@ namespace Narivia.BusinessLogic.DomainServices
         public BattleResult AttackRegion(string attackerFactionId, string defenderRegionId)
         {
             Random random = new Random();
-            Region defenderRegion = RegionRepository.Get(defenderRegionId);
-            Faction attackerFaction = FactionRepository.Get(attackerFactionId);
-            Faction defenderFaction = FactionRepository.Get(defenderRegion.FactionId);
+            Region defenderRegion = RegionRepository.Get(defenderRegionId).ToDomainModel();
+            Faction attackerFaction = FactionRepository.Get(attackerFactionId).ToDomainModel();
+            Faction defenderFaction = FactionRepository.Get(defenderRegion.FactionId).ToDomainModel();
 
             int attackerTroops = ArmyRepository.GetAll()
                 .Where(x => x.FactionId == attackerFaction.Id)
@@ -47,8 +48,12 @@ namespace Narivia.BusinessLogic.DomainServices
 
             while (attackerTroops > 0 && defenderTroops > 0)
             {
-                List<Army> attackerArmies = ArmyRepository.GetAll().Where(x => x.FactionId == attackerFaction.Id).ToList();
-                List<Army> defenderArmies = ArmyRepository.GetAll().Where(x => x.FactionId == defenderFaction.Id).ToList();
+                List<Army> attackerArmies = ArmyRepository.GetAll()
+                    .Where(x => x.FactionId == attackerFaction.Id)
+                    .ToDomainModels().ToList();
+                List<Army> defenderArmies = ArmyRepository.GetAll()
+                    .Where(x => x.FactionId == defenderFaction.Id)
+                    .ToDomainModels().ToList();
 
                 int attackerUnitNumber = random.Next(attackerArmies.Count);
                 int defenderUnitNumber = random.Next(defenderArmies.Count);
@@ -62,11 +67,11 @@ namespace Narivia.BusinessLogic.DomainServices
                 string attackerUnitId = attackerArmies.ElementAt(attackerUnitNumber).UnitId;
                 string defenderUnitId = defenderArmies.ElementAt(defenderUnitNumber).UnitId;
 
-                Unit attackerUnit = UnitRepository.Get(attackerUnitId);
-                Army attackerArmy = ArmyRepository.Get(attackerFactionId, attackerUnitId);
+                Unit attackerUnit = UnitRepository.Get(attackerUnitId).ToDomainModel();
+                Army attackerArmy = ArmyRepository.Get(attackerFactionId, attackerUnitId).ToDomainModel();
 
-                Unit defenderUnit = UnitRepository.Get(defenderUnitId);
-                Army defenderArmy = ArmyRepository.Get(defenderFaction.Id, defenderUnitId);
+                Unit defenderUnit = UnitRepository.Get(defenderUnitId).ToDomainModel();
+                Army defenderArmy = ArmyRepository.Get(defenderFaction.Id, defenderUnitId).ToDomainModel();
 
 
                 // TODO: Attack and Defence bonuses

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -11,7 +11,7 @@ namespace Narivia.DataAccess.Repositories
     /// </summary>
     public class CultureRepository : ICultureRepository
     {
-        readonly XmlDatabase<Culture> xmlDatabase;
+        readonly XmlDatabase<CultureEntity> xmlDatabase;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.CultureRepository"/> class.
@@ -19,19 +19,19 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="fileName">File name.</param>
         public CultureRepository(string fileName)
         {
-            xmlDatabase = new XmlDatabase<Culture>(fileName);
+            xmlDatabase = new XmlDatabase<CultureEntity>(fileName);
         }
 
         /// <summary>
         /// Adds the specified culture.
         /// </summary>
-        /// <param name="culture">Culture.</param>
-        public void Add(Culture culture)
+        /// <param name="cultureEntity">Culture.</param>
+        public void Add(CultureEntity cultureEntity)
         {
-            List<Culture> cultures = xmlDatabase.LoadEntities().ToList();
-            cultures.Add(culture);
+            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
+            cultureEntities.Add(cultureEntity);
 
-            xmlDatabase.SaveEntities(cultures);
+            xmlDatabase.SaveEntities(cultureEntities);
         }
 
         /// <summary>
@@ -39,39 +39,39 @@ namespace Narivia.DataAccess.Repositories
         /// </summary>
         /// <returns>The culture.</returns>
         /// <param name="id">Identifier.</param>
-        public Culture Get(string id)
+        public CultureEntity Get(string id)
         {
-            List<Culture> cultures = xmlDatabase.LoadEntities().ToList();
-            Culture culture = cultures.FirstOrDefault(x => x.Id == id);
+            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
+            CultureEntity cultureEntity = cultureEntities.FirstOrDefault(x => x.Id == id);
 
-            return culture;
+            return cultureEntity;
         }
 
         /// <summary>
         /// Gets all the cultures.
         /// </summary>
         /// <returns>The cultures</returns>
-        public IEnumerable<Culture> GetAll()
+        public IEnumerable<CultureEntity> GetAll()
         {
-            List<Culture> cultures = xmlDatabase.LoadEntities().ToList();
+            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
 
-            return cultures;
+            return cultureEntities;
         }
 
         /// <summary>
         /// Updates the specified culture.
         /// </summary>
-        /// <param name="culture">Culture.</param>
-        public void Update(Culture culture)
+        /// <param name="cultureEntity">Culture.</param>
+        public void Update(CultureEntity cultureEntity)
         {
-            List<Culture> cultures = xmlDatabase.LoadEntities().ToList();
-            Culture cultureToUpdate = cultures.FirstOrDefault(x => x.Id == culture.Id);
+            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
+            CultureEntity cultureEntityToUpdate = cultureEntities.FirstOrDefault(x => x.Id == cultureEntity.Id);
 
-            cultureToUpdate.Name = culture.Name;
-            cultureToUpdate.Description = culture.Description;
-            cultureToUpdate.TextureSet = culture.TextureSet;
+            cultureEntityToUpdate.Name = cultureEntity.Name;
+            cultureEntityToUpdate.Description = cultureEntity.Description;
+            cultureEntityToUpdate.TextureSet = cultureEntity.TextureSet;
 
-            xmlDatabase.SaveEntities(cultures);
+            xmlDatabase.SaveEntities(cultureEntities);
         }
 
         /// <summary>
@@ -80,10 +80,10 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="id">Identifier.</param>
         public void Remove(string id)
         {
-            List<Culture> cultures = xmlDatabase.LoadEntities().ToList();
-            cultures.RemoveAll(x => x.Id == id);
+            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
+            cultureEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(cultures);
+            xmlDatabase.SaveEntities(cultureEntities);
         }
     }
 }

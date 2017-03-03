@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -11,7 +11,7 @@ namespace Narivia.DataAccess.Repositories
     /// </summary>
     public class BiomeRepository : IBiomeRepository
     {
-        readonly XmlDatabase<Biome> xmlDatabase;
+        readonly XmlDatabase<BiomeEntity> xmlDatabase;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.BiomeRepository"/> class.
@@ -19,19 +19,19 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="fileName">File name.</param>
         public BiomeRepository(string fileName)
         {
-            xmlDatabase = new XmlDatabase<Biome>(fileName);
+            xmlDatabase = new XmlDatabase<BiomeEntity>(fileName);
         }
 
         /// <summary>
         /// Adds the specified biome.
         /// </summary>
-        /// <param name="biome">Biome.</param>
-        public void Add(Biome biome)
+        /// <param name="biomeEntity">Biome.</param>
+        public void Add(BiomeEntity biomeEntity)
         {
-            List<Biome> biomes = xmlDatabase.LoadEntities().ToList();
-            biomes.Add(biome);
+            List<BiomeEntity> biomeEntities = xmlDatabase.LoadEntities().ToList();
+            biomeEntities.Add(biomeEntity);
 
-            xmlDatabase.SaveEntities(biomes);
+            xmlDatabase.SaveEntities(biomeEntities);
         }
 
         /// <summary>
@@ -39,39 +39,39 @@ namespace Narivia.DataAccess.Repositories
         /// </summary>
         /// <returns>The biome.</returns>
         /// <param name="id">Identifier.</param>
-        public Biome Get(string id)
+        public BiomeEntity Get(string id)
         {
-            List<Biome> biomes = xmlDatabase.LoadEntities().ToList();
-            Biome biome = biomes.FirstOrDefault(x => x.Id == id);
+            List<BiomeEntity> biomeEntities = xmlDatabase.LoadEntities().ToList();
+            BiomeEntity biomeEntity = biomeEntities.FirstOrDefault(x => x.Id == id);
 
-            return biome;
+            return biomeEntity;
         }
 
         /// <summary>
         /// Gets all the biomes.
         /// </summary>
         /// <returns>The biomes</returns>
-        public IEnumerable<Biome> GetAll()
+        public IEnumerable<BiomeEntity> GetAll()
         {
-            List<Biome> biomes = xmlDatabase.LoadEntities().ToList();
+            List<BiomeEntity> biomeEntities = xmlDatabase.LoadEntities().ToList();
 
-            return biomes;
+            return biomeEntities;
         }
 
         /// <summary>
         /// Updates the specified biome.
         /// </summary>
-        /// <param name="biome">Biome.</param>
-        public void Update(Biome biome)
+        /// <param name="biomeEntity">Biome.</param>
+        public void Update(BiomeEntity biomeEntity)
         {
-            List<Biome> biomes = xmlDatabase.LoadEntities().ToList();
-            Biome biomeToUpdate = biomes.FirstOrDefault(x => x.Id == biome.Id);
+            List<BiomeEntity> biomeEntities = xmlDatabase.LoadEntities().ToList();
+            BiomeEntity biomeEntityToUpdate = biomeEntities.FirstOrDefault(x => x.Id == biomeEntity.Id);
 
-            biomeToUpdate.Name = biome.Name;
-            biomeToUpdate.Description = biome.Description;
-            biomeToUpdate.Colour = biome.Colour;
+            biomeEntityToUpdate.Name = biomeEntity.Name;
+            biomeEntityToUpdate.Description = biomeEntity.Description;
+            biomeEntityToUpdate.Colour = biomeEntity.Colour;
 
-            xmlDatabase.SaveEntities(biomes);
+            xmlDatabase.SaveEntities(biomeEntities);
         }
 
         /// <summary>
@@ -80,10 +80,10 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="id">Identifier.</param>
         public void Remove(string id)
         {
-            List<Biome> biomes = xmlDatabase.LoadEntities().ToList();
-            biomes.RemoveAll(x => x.Id == id);
+            List<BiomeEntity> biomeEntities = xmlDatabase.LoadEntities().ToList();
+            biomeEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(biomes);
+            xmlDatabase.SaveEntities(biomeEntities);
         }
     }
 }

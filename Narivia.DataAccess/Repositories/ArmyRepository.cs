@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -14,23 +15,24 @@ namespace Narivia.DataAccess.Repositories
         /// Gets or sets the armies.
         /// </summary>
         /// <value>The armies.</value>
-        readonly Dictionary<string, Army> armies;
+        readonly Dictionary<Tuple<string, string>, ArmyEntity> armyEntitiesStore;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.ArmyRepository"/> class.
         /// </summary>
         public ArmyRepository()
         {
-            armies = new Dictionary<string, Army>();
+            armyEntitiesStore = new Dictionary<Tuple<string, string>, ArmyEntity>();
         }
 
         /// <summary>
         /// Adds the specified army.
         /// </summary>
         /// <param name="army">Army.</param>
-        public void Add(Army army)
+        public void Add(ArmyEntity army)
         {
-            armies.Add(army.Id, army);
+            Tuple<string, string> key = new Tuple<string, string>(army.FactionId, army.UnitId);
+            armyEntitiesStore.Add(key, army);
         }
 
         /// <summary>
@@ -39,18 +41,19 @@ namespace Narivia.DataAccess.Repositories
         /// <returns>The army.</returns>
         /// <param name="factionId">Faction identifier.</param>
         /// <param name="unitId">Unit identifier.</param>
-        public Army Get(string factionId, string unitId)
+        public ArmyEntity Get(string factionId, string unitId)
         {
-            return armies[$"{factionId}:{unitId}"];
+            Tuple<string, string> key = new Tuple<string, string>(factionId, unitId);
+            return armyEntitiesStore[key];
         }
 
         /// <summary>
         /// Gets all the armies.
         /// </summary>
         /// <returns>The armies.</returns>
-        public IEnumerable<Army> GetAll()
+        public IEnumerable<ArmyEntity> GetAll()
         {
-            return armies.Values;
+            return armyEntitiesStore.Values;
         }
 
         /// <summary>
@@ -60,7 +63,8 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="unitId">Unit identifier.</param>
         public void Remove(string factionId, string unitId)
         {
-            armies.Remove($"{factionId}:{unitId}");
+            Tuple<string, string> key = new Tuple<string, string>(factionId, unitId);
+            armyEntitiesStore.Remove(key);
         }
     }
 }

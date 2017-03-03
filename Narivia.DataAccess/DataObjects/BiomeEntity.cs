@@ -5,7 +5,7 @@ namespace Narivia.DataAccess.DataObjects
     /// <summary>
     /// Biome data emtity.
     /// </summary>
-    public class BiomeEmtity
+    public class BiomeEntity
     {
         /// <summary>
         /// Gets or sets the identifier.

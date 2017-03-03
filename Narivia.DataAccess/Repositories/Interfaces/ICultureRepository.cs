@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using Narivia.Models;
+using Narivia.DataAccess.DataObjects;
 
 namespace Narivia.DataAccess.Repositories.Interfaces
 {
@@ -12,27 +12,27 @@ namespace Narivia.DataAccess.Repositories.Interfaces
         /// <summary>
         /// Adds the specified culture.
         /// </summary>
-        /// <param name="culture">Culture.</param>
-        void Add(Culture culture);
+        /// <param name="cultureEntity">Culture.</param>
+        void Add(CultureEntity cultureEntity);
 
         /// <summary>
         /// Gets the culture with the specified identifier.
         /// </summary>
         /// <returns>The culture.</returns>
         /// <param name="id">Identifier.</param>
-        Culture Get(string id);
+        CultureEntity Get(string id);
 
         /// <summary>
         /// Gets all the cultures.
         /// </summary>
         /// <returns>The cultures.</returns>
-        IEnumerable<Culture> GetAll();
+        IEnumerable<CultureEntity> GetAll();
 
         /// <summary>
         /// Updates the specified culture.
         /// </summary>
-        /// <param name="culture">Culture.</param>
-        void Update(Culture culture);
+        /// <param name="cultureEntity">Culture.</param>
+        void Update(CultureEntity cultureEntity);
 
         /// <summary>
         /// Remove the culture with the specified identifier.

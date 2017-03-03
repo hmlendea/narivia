@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -11,7 +11,7 @@ namespace Narivia.DataAccess.Repositories
     /// </summary>
     public class ResourceRepository : IResourceRepository
     {
-        readonly XmlDatabase<Resource> xmlDatabase;
+        readonly XmlDatabase<ResourceEntity> xmlDatabase;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.ResourceRepository"/> class.
@@ -19,19 +19,19 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="fileName">File name.</param>
         public ResourceRepository(string fileName)
         {
-            xmlDatabase = new XmlDatabase<Resource>(fileName);
+            xmlDatabase = new XmlDatabase<ResourceEntity>(fileName);
         }
 
         /// <summary>
         /// Adds the specified resource.
         /// </summary>
-        /// <param name="resource">Resource.</param>
-        public void Add(Resource resource)
+        /// <param name="resourceEntity">Resource.</param>
+        public void Add(ResourceEntity resourceEntity)
         {
-            List<Resource> resources = xmlDatabase.LoadEntities().ToList();
-            resources.Add(resource);
+            List<ResourceEntity> resourceEntities = xmlDatabase.LoadEntities().ToList();
+            resourceEntities.Add(resourceEntity);
 
-            xmlDatabase.SaveEntities(resources);
+            xmlDatabase.SaveEntities(resourceEntities);
         }
 
         /// <summary>
@@ -39,40 +39,40 @@ namespace Narivia.DataAccess.Repositories
         /// </summary>
         /// <returns>The resource.</returns>
         /// <param name="id">Identifier.</param>
-        public Resource Get(string id)
+        public ResourceEntity Get(string id)
         {
-            List<Resource> resources = xmlDatabase.LoadEntities().ToList();
-            Resource resource = resources.FirstOrDefault(x => x.Id == id);
+            List<ResourceEntity> resourceEntities = xmlDatabase.LoadEntities().ToList();
+            ResourceEntity resourceEntity = resourceEntities.FirstOrDefault(x => x.Id == id);
 
-            return resource;
+            return resourceEntity;
         }
 
         /// <summary>
         /// Gets all the resources.
         /// </summary>
         /// <returns>The resources</returns>
-        public IEnumerable<Resource> GetAll()
+        public IEnumerable<ResourceEntity> GetAll()
         {
-            List<Resource> resources = xmlDatabase.LoadEntities().ToList();
+            List<ResourceEntity> resourceEntities = xmlDatabase.LoadEntities().ToList();
 
-            return resources;
+            return resourceEntities;
         }
 
         /// <summary>
         /// Updates the specified resource.
         /// </summary>
-        /// <param name="resource">Resource.</param>
-        public void Update(Resource resource)
+        /// <param name="resourceEntity">Resource.</param>
+        public void Update(ResourceEntity resourceEntity)
         {
-            List<Resource> resources = xmlDatabase.LoadEntities().ToList();
-            Resource resourceToUpdate = resources.FirstOrDefault(x => x.Id == resource.Id);
+            List<ResourceEntity> resourceEntities = xmlDatabase.LoadEntities().ToList();
+            ResourceEntity resourceEntityToUpdate = resourceEntities.FirstOrDefault(x => x.Id == resourceEntity.Id);
 
-            resourceToUpdate.Name = resource.Name;
-            resourceToUpdate.Description = resource.Description;
-            resourceToUpdate.Type = resource.Type;
-            resourceToUpdate.Output = resource.Output;
+            resourceEntityToUpdate.Name = resourceEntity.Name;
+            resourceEntityToUpdate.Description = resourceEntity.Description;
+            resourceEntityToUpdate.Type = resourceEntity.Type;
+            resourceEntityToUpdate.Output = resourceEntity.Output;
 
-            xmlDatabase.SaveEntities(resources);
+            xmlDatabase.SaveEntities(resourceEntities);
         }
 
         /// <summary>
@@ -81,10 +81,10 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="id">Identifier.</param>
         public void Remove(string id)
         {
-            List<Resource> resources = xmlDatabase.LoadEntities().ToList();
-            resources.RemoveAll(x => x.Id == id);
+            List<ResourceEntity> resourceEntities = xmlDatabase.LoadEntities().ToList();
+            resourceEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(resources);
+            xmlDatabase.SaveEntities(resourceEntities);
         }
     }
 }

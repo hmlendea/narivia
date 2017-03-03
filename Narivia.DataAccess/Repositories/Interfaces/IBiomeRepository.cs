@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using Narivia.Models;
+using Narivia.DataAccess.DataObjects;
 
 namespace Narivia.DataAccess.Repositories.Interfaces
 {
@@ -12,27 +12,27 @@ namespace Narivia.DataAccess.Repositories.Interfaces
         /// <summary>
         /// Adds the specified biome.
         /// </summary>
-        /// <param name="biome">Biome.</param>
-        void Add(Biome biome);
+        /// <param name="biomeEntity">Biome.</param>
+        void Add(BiomeEntity biomeEntity);
 
         /// <summary>
         /// Get the biome with the specified identifier.
         /// </summary>
         /// <returns>The biome.</returns>
         /// <param name="id">Identifier.</param>
-        Biome Get(string id);
+        BiomeEntity Get(string id);
 
         /// <summary>
         /// Gets all the biomes.
         /// </summary>
         /// <returns>The biomes</returns>
-        IEnumerable<Biome> GetAll();
+        IEnumerable<BiomeEntity> GetAll();
 
         /// <summary>
         /// Updates the specified biome.
         /// </summary>
-        /// <param name="biome">Biome.</param>
-        void Update(Biome biome);
+        /// <param name="biomeEntity">Biome.</param>
+        void Update(BiomeEntity biomeEntity);
 
         /// <summary>
         /// Removes the biome with the specified identifier.

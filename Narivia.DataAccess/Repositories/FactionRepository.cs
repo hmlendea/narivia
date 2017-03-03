@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -11,7 +11,7 @@ namespace Narivia.DataAccess.Repositories
     /// </summary>
     public class FactionRepository : IFactionRepository
     {
-        readonly XmlDatabase<Faction> xmlDatabase;
+        readonly XmlDatabase<FactionEntity> xmlDatabase;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.FactionRepository"/> class.
@@ -19,19 +19,19 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="fileName">File name.</param>
         public FactionRepository(string fileName)
         {
-            xmlDatabase = new XmlDatabase<Faction>(fileName);
+            xmlDatabase = new XmlDatabase<FactionEntity>(fileName);
         }
 
         /// <summary>
         /// Adds the specified faction.
         /// </summary>
-        /// <param name="faction">Faction.</param>
-        public void Add(Faction faction)
+        /// <param name="factionEntity">Faction.</param>
+        public void Add(FactionEntity factionEntity)
         {
-            List<Faction> factions = xmlDatabase.LoadEntities().ToList();
-            factions.Add(faction);
+            List<FactionEntity> factionEntities = xmlDatabase.LoadEntities().ToList();
+            factionEntities.Add(factionEntity);
 
-            xmlDatabase.SaveEntities(factions);
+            xmlDatabase.SaveEntities(factionEntities);
         }
 
         /// <summary>
@@ -39,40 +39,39 @@ namespace Narivia.DataAccess.Repositories
         /// </summary>
         /// <returns>The faction.</returns>
         /// <param name="id">Identifier.</param>
-        public Faction Get(string id)
+        public FactionEntity Get(string id)
         {
-            List<Faction> factions = xmlDatabase.LoadEntities().ToList();
-            Faction faction = factions.FirstOrDefault(x => x.Id == id);
+            List<FactionEntity> factionEntities = xmlDatabase.LoadEntities().ToList();
+            FactionEntity factionEntity = factionEntities.FirstOrDefault(x => x.Id == id);
 
-            return faction;
+            return factionEntity;
         }
 
         /// <summary>
         /// Gets all the factions.
         /// </summary>
         /// <returns>The factions</returns>
-        public IEnumerable<Faction> GetAll()
+        public IEnumerable<FactionEntity> GetAll()
         {
-            List<Faction> factions = xmlDatabase.LoadEntities().ToList();
+            List<FactionEntity> factionEntities = xmlDatabase.LoadEntities().ToList();
 
-            return factions;
+            return factionEntities;
         }
 
         /// <summary>
         /// Updates the specified faction.
         /// </summary>
-        /// <param name="faction">Faction.</param>
-        public void Update(Faction faction)
+        /// <param name="factionEntity">Faction.</param>
+        public void Update(FactionEntity factionEntity)
         {
-            List<Faction> factions = xmlDatabase.LoadEntities().ToList();
-            Faction factionToUpdate = factions.FirstOrDefault(x => x.Id == faction.Id);
+            List<FactionEntity> factionEntities = xmlDatabase.LoadEntities().ToList();
+            FactionEntity factionEntityToUpdate = factionEntities.FirstOrDefault(x => x.Id == factionEntity.Id);
 
-            factionToUpdate.Name = faction.Name;
-            factionToUpdate.Description = faction.Description;
-            factionToUpdate.Colour = faction.Colour;
-            factionToUpdate.Wealth = faction.Wealth;
+            factionEntityToUpdate.Name = factionEntity.Name;
+            factionEntityToUpdate.Description = factionEntity.Description;
+            factionEntityToUpdate.Colour = factionEntity.Colour;
 
-            xmlDatabase.SaveEntities(factions);
+            xmlDatabase.SaveEntities(factionEntities);
         }
 
         /// <summary>
@@ -81,10 +80,10 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="id">Identifier.</param>
         public void Remove(string id)
         {
-            List<Faction> factions = xmlDatabase.LoadEntities().ToList();
-            factions.RemoveAll(x => x.Id == id);
+            List<FactionEntity> factionEntities = xmlDatabase.LoadEntities().ToList();
+            factionEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(factions);
+            xmlDatabase.SaveEntities(factionEntities);
         }
     }
 }

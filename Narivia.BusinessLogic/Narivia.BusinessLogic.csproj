@@ -44,6 +44,16 @@
     <Compile Include="DomainServices\GameDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IBattleDomainService.cs" />
     <Compile Include="DomainServices\Interfaces\IGameDomainService.cs" />
+    <Compile Include="Mapping\ArmyMappingExtensions.cs" />
+    <Compile Include="Mapping\BiomeMappingExtensions.cs" />
+    <Compile Include="Mapping\BorderMappingExtensions.cs" />
+    <Compile Include="Mapping\CultureMappingExtensions.cs" />
+    <Compile Include="Mapping\FactionMappingExtensions.cs" />
+    <Compile Include="Mapping\HoldingMappingExtensions.cs" />
+    <Compile Include="Mapping\RegionMappingExtensions.cs" />
+    <Compile Include="Mapping\ResourceMappingExtensions.cs" />
+    <Compile Include="Mapping\UnitMappingExtensions.cs" />
+    <Compile Include="Mapping\WorldMappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

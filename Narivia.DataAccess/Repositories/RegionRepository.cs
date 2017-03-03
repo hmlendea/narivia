@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -11,7 +11,7 @@ namespace Narivia.DataAccess.Repositories
     /// </summary>
     public class RegionRepository : IRegionRepository
     {
-        readonly XmlDatabase<Region> xmlDatabase;
+        readonly XmlDatabase<RegionEntity> xmlDatabase;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.RegionRepository"/> class.
@@ -19,19 +19,19 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="fileName">File name.</param>
         public RegionRepository(string fileName)
         {
-            xmlDatabase = new XmlDatabase<Region>(fileName);
+            xmlDatabase = new XmlDatabase<RegionEntity>(fileName);
         }
 
         /// <summary>
         /// Adds the specified region.
         /// </summary>
-        /// <param name="region">Region.</param>
-        public void Add(Region region)
+        /// <param name="regionEntity">Region.</param>
+        public void Add(RegionEntity regionEntity)
         {
-            List<Region> regions = xmlDatabase.LoadEntities().ToList();
-            regions.Add(region);
+            List<RegionEntity> regionEntities = xmlDatabase.LoadEntities().ToList();
+            regionEntities.Add(regionEntity);
 
-            xmlDatabase.SaveEntities(regions);
+            xmlDatabase.SaveEntities(regionEntities);
         }
 
         /// <summary>
@@ -39,42 +39,42 @@ namespace Narivia.DataAccess.Repositories
         /// </summary>
         /// <returns>The region.</returns>
         /// <param name="id">Identifier.</param>
-        public Region Get(string id)
+        public RegionEntity Get(string id)
         {
-            List<Region> regions = xmlDatabase.LoadEntities().ToList();
-            Region region = regions.FirstOrDefault(x => x.Id == id);
+            List<RegionEntity> regionEntities = xmlDatabase.LoadEntities().ToList();
+            RegionEntity regionEntity = regionEntities.FirstOrDefault(x => x.Id == id);
 
-            return region;
+            return regionEntity;
         }
 
         /// <summary>
         /// Gets all the regions.
         /// </summary>
         /// <returns>The regions</returns>
-        public IEnumerable<Region> GetAll()
+        public IEnumerable<RegionEntity> GetAll()
         {
-            List<Region> regions = xmlDatabase.LoadEntities().ToList();
+            List<RegionEntity> regionEntities = xmlDatabase.LoadEntities().ToList();
 
-            return regions;
+            return regionEntities;
         }
 
         /// <summary>
         /// Updates the specified region.
         /// </summary>
-        /// <param name="region">Region.</param>
-        public void Update(Region region)
+        /// <param name="regionEntity">Region.</param>
+        public void Update(RegionEntity regionEntity)
         {
-            List<Region> regions = xmlDatabase.LoadEntities().ToList();
-            Region regionToUpdate = regions.FirstOrDefault(x => x.Id == region.Id);
+            List<RegionEntity> regionEntities = xmlDatabase.LoadEntities().ToList();
+            RegionEntity regionEntityToUpdate = regionEntities.FirstOrDefault(x => x.Id == regionEntity.Id);
 
-            regionToUpdate.Name = region.Name;
-            regionToUpdate.Description = region.Description;
-            regionToUpdate.Colour = region.Colour;
-            regionToUpdate.Type = region.Type;
-            regionToUpdate.FactionId = region.FactionId;
-            regionToUpdate.SovereignFactionId = region.SovereignFactionId;
+            regionEntityToUpdate.Name = regionEntity.Name;
+            regionEntityToUpdate.Description = regionEntity.Description;
+            regionEntityToUpdate.Colour = regionEntity.Colour;
+            regionEntityToUpdate.Type = regionEntity.Type;
+            regionEntityToUpdate.FactionId = regionEntity.FactionId;
+            regionEntityToUpdate.SovereignFactionId = regionEntity.SovereignFactionId;
 
-            xmlDatabase.SaveEntities(regions);
+            xmlDatabase.SaveEntities(regionEntities);
         }
 
         /// <summary>
@@ -83,10 +83,10 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="id">Identifier.</param>
         public void Remove(string id)
         {
-            List<Region> regions = xmlDatabase.LoadEntities().ToList();
-            regions.RemoveAll(x => x.Id == id);
+            List<RegionEntity> regionEntities = xmlDatabase.LoadEntities().ToList();
+            regionEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(regions);
+            xmlDatabase.SaveEntities(regionEntities);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using Narivia.Models;
+using Narivia.DataAccess.DataObjects;
 
 namespace Narivia.DataAccess.Repositories.Interfaces
 {
@@ -12,8 +12,8 @@ namespace Narivia.DataAccess.Repositories.Interfaces
         /// <summary>
         /// Adds the specified border.
         /// </summary>
-        /// <param name="border">Border.</param>
-        void Add(Border border);
+        /// <param name="borderEntity">Border.</param>
+        void Add(BorderEntity borderEntity);
 
         /// <summary>
         /// Get the border with the specified region identifiers.
@@ -21,13 +21,13 @@ namespace Narivia.DataAccess.Repositories.Interfaces
         /// <returns>The border.</returns>
         /// <param name="region1Id">First region identifier.</param>
         /// <param name="region2Id">Second region identifier.</param>
-        Border Get(string region1Id, string region2Id);
+        BorderEntity Get(string region1Id, string region2Id);
 
         /// <summary>
         /// Gets all the borders.
         /// </summary>
         /// <returns>The borders.</returns>
-        IEnumerable<Border> GetAll();
+        IEnumerable<BorderEntity> GetAll();
 
         /// <summary>
         /// Removes the border with the specified region identifiers.

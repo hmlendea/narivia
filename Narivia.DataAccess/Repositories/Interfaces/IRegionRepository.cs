@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using Narivia.Models;
+using Narivia.DataAccess.DataObjects;
 
 namespace Narivia.DataAccess.Repositories.Interfaces
 {
@@ -12,27 +12,27 @@ namespace Narivia.DataAccess.Repositories.Interfaces
         /// <summary>
         /// Adds the specified region.
         /// </summary>
-        /// <param name="region">Region.</param>
-        void Add(Region region);
+        /// <param name="regionEntity">Region.</param>
+        void Add(RegionEntity regionEntity);
 
         /// <summary>
         /// Gets the region with the specified identifier.
         /// </summary>
         /// <returns>The region.</returns>
         /// <param name="id">Identifier.</param>
-        Region Get(string id);
+        RegionEntity Get(string id);
 
         /// <summary>
         /// Gets all the regions.
         /// </summary>
         /// <returns>The regions.</returns>
-        IEnumerable<Region> GetAll();
+        IEnumerable<RegionEntity> GetAll();
 
         /// <summary>
         /// Updates the specified region.
         /// </summary>
-        /// <param name="region">Region.</param>
-        void Update(Region region);
+        /// <param name="regionEntity">Region.</param>
+        void Update(RegionEntity regionEntity);
 
         /// <summary>
         /// Remove the region with the specified identifier.

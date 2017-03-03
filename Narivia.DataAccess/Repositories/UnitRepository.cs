@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -11,7 +11,7 @@ namespace Narivia.DataAccess.Repositories
     /// </summary>
     public class UnitRepository : IUnitRepository
     {
-        readonly XmlDatabase<Unit> xmlDatabase;
+        readonly XmlDatabase<UnitEntity> xmlDatabase;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.UnitRepository"/> class.
@@ -19,19 +19,19 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="fileName">File name.</param>
         public UnitRepository(string fileName)
         {
-            xmlDatabase = new XmlDatabase<Unit>(fileName);
+            xmlDatabase = new XmlDatabase<UnitEntity>(fileName);
         }
 
         /// <summary>
         /// Adds the specified unit.
         /// </summary>
-        /// <param name="unit">Unit.</param>
-        public void Add(Unit unit)
+        /// <param name="unitEntity">Unit.</param>
+        public void Add(UnitEntity unitEntity)
         {
-            List<Unit> units = xmlDatabase.LoadEntities().ToList();
-            units.Add(unit);
+            List<UnitEntity> unitEntities = xmlDatabase.LoadEntities().ToList();
+            unitEntities.Add(unitEntity);
 
-            xmlDatabase.SaveEntities(units);
+            xmlDatabase.SaveEntities(unitEntities);
         }
 
         /// <summary>
@@ -39,43 +39,43 @@ namespace Narivia.DataAccess.Repositories
         /// </summary>
         /// <returns>The unit.</returns>
         /// <param name="id">Identifier.</param>
-        public Unit Get(string id)
+        public UnitEntity Get(string id)
         {
-            List<Unit> units = xmlDatabase.LoadEntities().ToList();
-            Unit unit = units.FirstOrDefault(x => x.Id == id);
+            List<UnitEntity> unitEntities = xmlDatabase.LoadEntities().ToList();
+            UnitEntity unitEntity = unitEntities.FirstOrDefault(x => x.Id == id);
 
-            return unit;
+            return unitEntity;
         }
 
         /// <summary>
         /// Gets all the units.
         /// </summary>
         /// <returns>The units</returns>
-        public IEnumerable<Unit> GetAll()
+        public IEnumerable<UnitEntity> GetAll()
         {
-            List<Unit> units = xmlDatabase.LoadEntities().ToList();
+            List<UnitEntity> unitEntities = xmlDatabase.LoadEntities().ToList();
 
-            return units;
+            return unitEntities;
         }
 
         /// <summary>
         /// Updates the specified unit.
         /// </summary>
-        /// <param name="unit">Unit.</param>
-        public void Update(Unit unit)
+        /// <param name="unitEntity">Unit.</param>
+        public void Update(UnitEntity unitEntity)
         {
-            List<Unit> units = xmlDatabase.LoadEntities().ToList();
-            Unit unitToUpdate = units.FirstOrDefault(x => x.Id == unit.Id);
+            List<UnitEntity> unitEntities = xmlDatabase.LoadEntities().ToList();
+            UnitEntity unitEntityToUpdate = unitEntities.FirstOrDefault(x => x.Id == unitEntity.Id);
 
-            unitToUpdate.Name = unit.Name;
-            unitToUpdate.Description = unit.Description;
-            unitToUpdate.Type = unit.Type;
-            unitToUpdate.Power = unit.Power;
-            unitToUpdate.Health = unit.Health;
-            unitToUpdate.Price = unit.Price;
-            unitToUpdate.Maintenance = unit.Maintenance;
+            unitEntityToUpdate.Name = unitEntity.Name;
+            unitEntityToUpdate.Description = unitEntity.Description;
+            unitEntityToUpdate.Type = unitEntity.Type;
+            unitEntityToUpdate.Power = unitEntity.Power;
+            unitEntityToUpdate.Health = unitEntity.Health;
+            unitEntityToUpdate.Price = unitEntity.Price;
+            unitEntityToUpdate.Maintenance = unitEntity.Maintenance;
 
-            xmlDatabase.SaveEntities(units);
+            xmlDatabase.SaveEntities(unitEntities);
         }
 
         /// <summary>
@@ -84,10 +84,10 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="id">Identifier.</param>
         public void Remove(string id)
         {
-            List<Unit> units = xmlDatabase.LoadEntities().ToList();
-            units.RemoveAll(x => x.Id == id);
+            List<UnitEntity> unitEntities = xmlDatabase.LoadEntities().ToList();
+            unitEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(units);
+            xmlDatabase.SaveEntities(unitEntities);
         }
     }
 }

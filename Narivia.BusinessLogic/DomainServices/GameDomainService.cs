@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 
 using Narivia.BusinessLogic.DomainServices.Interfaces;
+using Narivia.BusinessLogic.Mapping;
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.DataAccess.Repositories;
 using Narivia.Infrastructure.Helpers;
@@ -52,7 +53,7 @@ namespace Narivia.BusinessLogic.DomainServices
         /// </summary>
         public void NextTurn()
         {
-            List<Faction> factions = factionRepository.GetAll().ToList();
+            List<Faction> factions = factionRepository.GetAll().ToDomainModels().ToList();
 
             foreach (Faction faction in factions)
             {
@@ -75,7 +76,7 @@ namespace Narivia.BusinessLogic.DomainServices
         /// <param name="factionId">Faction identifier.</param>
         public void TransferRegion(string regionId, string factionId)
         {
-            Region region = regionRepository.Get(regionId);
+            Region region = regionRepository.Get(regionId).ToDomainModel();
             region.FactionId = factionId;
         }
 
@@ -87,7 +88,7 @@ namespace Narivia.BusinessLogic.DomainServices
         /// <param name="region2Id">Second region identifier.</param>
         public bool RegionHasBorder(string region1Id, string region2Id)
         {
-            Border border = borderRepository.Get(region1Id, region2Id);
+            Border border = borderRepository.Get(region1Id, region2Id).ToDomainModel();
             return border != null;
         }
 
@@ -113,7 +114,7 @@ namespace Narivia.BusinessLogic.DomainServices
 
         void LoadMap(string worldId)
         {
-            List<Region> regions = regionRepository.GetAll().ToList();
+            List<Region> regions = regionRepository.GetAll().ToDomainModels().ToList();
             Dictionary<int, string> regionColourIds = new Dictionary<int, string>();
 
             worldTiles = new string[world.Width, world.Height];
@@ -150,8 +151,8 @@ namespace Narivia.BusinessLogic.DomainServices
 
         void InitializeEntities()
         {
-            List<Faction> factions = factionRepository.GetAll().ToList();
-            List<Unit> units = unitRepository.GetAll().ToList();
+            List<Faction> factions = factionRepository.GetAll().ToDomainModels().ToList();
+            List<Unit> units = unitRepository.GetAll().ToDomainModels().ToList();
 
             foreach (Faction faction in factions)
             {
@@ -167,7 +168,7 @@ namespace Narivia.BusinessLogic.DomainServices
                         Size = 0
                     };
 
-                    armyRepository.Add(army);
+                    armyRepository.Add(army.ToEntity());
                 }
             }
         }
@@ -183,7 +184,7 @@ namespace Narivia.BusinessLogic.DomainServices
                 Region2Id = region2Id
             };
 
-            borderRepository.Add(border);
+            borderRepository.Add(border.ToEntity());
         }
 
         void LoadBorders()
@@ -220,17 +221,20 @@ namespace Narivia.BusinessLogic.DomainServices
         string ChooseAttack(string factionId)
         {
             Random random = new Random();
-            List<Region> regionsOwned = regionRepository.GetAll().Where(x => x.FactionId == factionId).ToList();
+            List<Region> regionsOwned = regionRepository.GetAll()
+                .Where(x => x.FactionId == factionId)
+                .ToDomainModels().ToList();
             List<string> choices = new List<string>();
 
             foreach (Region region in regionsOwned)
             {
                 List<Border> borders = borderRepository.GetAll().Where(x => x.Region1Id == region.Id ||
-                                                                            x.Region2Id == region.Id).ToList();
+                                                                            x.Region2Id == region.Id)
+                                                       .ToDomainModels().ToList();
 
                 foreach (Border border in borders)
                 {
-                    Region region2 = regionRepository.Get(border.Region2Id);
+                    Region region2 = regionRepository.Get(border.Region2Id).ToDomainModel();
 
                     if (region2.Id != region.Id && region2.FactionId != "gaia")
                         choices.Add(region2.Id);
@@ -240,7 +244,7 @@ namespace Narivia.BusinessLogic.DomainServices
             while (choices.Count > 0)
             {
                 string regionId = choices[random.Next(choices.Count)];
-                Region region = regionRepository.Get(regionId);
+                Region region = regionRepository.Get(regionId).ToDomainModel();
 
                 if (region.FactionId != "gaia")
                     return regionId;

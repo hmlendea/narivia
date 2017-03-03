@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Models;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -11,7 +11,7 @@ namespace Narivia.DataAccess.Repositories
     /// </summary>
     public class HoldingRepository : IHoldingRepository
     {
-        readonly XmlDatabase<Holding> xmlDatabase;
+        readonly XmlDatabase<HoldingEntity> xmlDatabase;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.HoldingRepository"/> class.
@@ -19,19 +19,19 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="fileName">File name.</param>
         public HoldingRepository(string fileName)
         {
-            xmlDatabase = new XmlDatabase<Holding>(fileName);
+            xmlDatabase = new XmlDatabase<HoldingEntity>(fileName);
         }
 
         /// <summary>
         /// Adds the specified holding.
         /// </summary>
-        /// <param name="holding">Holding.</param>
-        public void Add(Holding holding)
+        /// <param name="holdingEntity">Holding.</param>
+        public void Add(HoldingEntity holdingEntity)
         {
-            List<Holding> holdings = xmlDatabase.LoadEntities().ToList();
-            holdings.Add(holding);
+            List<HoldingEntity> holdingEntities = xmlDatabase.LoadEntities().ToList();
+            holdingEntities.Add(holdingEntity);
 
-            xmlDatabase.SaveEntities(holdings);
+            xmlDatabase.SaveEntities(holdingEntities);
         }
 
         /// <summary>
@@ -39,39 +39,39 @@ namespace Narivia.DataAccess.Repositories
         /// </summary>
         /// <returns>The holding.</returns>
         /// <param name="id">Identifier.</param>
-        public Holding Get(string id)
+        public HoldingEntity Get(string id)
         {
-            List<Holding> holdings = xmlDatabase.LoadEntities().ToList();
-            Holding holding = holdings.FirstOrDefault(x => x.Id == id);
+            List<HoldingEntity> holdingEntities = xmlDatabase.LoadEntities().ToList();
+            HoldingEntity holdingEntity = holdingEntities.FirstOrDefault(x => x.Id == id);
 
-            return holding;
+            return holdingEntity;
         }
 
         /// <summary>
         /// Gets all the holdings.
         /// </summary>
         /// <returns>The holdings</returns>
-        public IEnumerable<Holding> GetAll()
+        public IEnumerable<HoldingEntity> GetAll()
         {
-            List<Holding> holdings = xmlDatabase.LoadEntities().ToList();
+            List<HoldingEntity> holdingEntities = xmlDatabase.LoadEntities().ToList();
 
-            return holdings;
+            return holdingEntities;
         }
 
         /// <summary>
         /// Updates the specified holding.
         /// </summary>
-        /// <param name="holding">Holding.</param>
-        public void Update(Holding holding)
+        /// <param name="holdingEntity">Holding.</param>
+        public void Update(HoldingEntity holdingEntity)
         {
-            List<Holding> holdings = xmlDatabase.LoadEntities().ToList();
-            Holding holdingToUpdate = holdings.FirstOrDefault(x => x.Id == holding.Id);
+            List<HoldingEntity> holdingEntities = xmlDatabase.LoadEntities().ToList();
+            HoldingEntity holdingEntityToUpdate = holdingEntities.FirstOrDefault(x => x.Id == holdingEntity.Id);
 
-            holdingToUpdate.Name = holding.Name;
-            holdingToUpdate.Description = holding.Description;
-            holdingToUpdate.Type = holding.Type;
+            holdingEntityToUpdate.Name = holdingEntity.Name;
+            holdingEntityToUpdate.Description = holdingEntity.Description;
+            holdingEntityToUpdate.Type = holdingEntity.Type;
 
-            xmlDatabase.SaveEntities(holdings);
+            xmlDatabase.SaveEntities(holdingEntities);
         }
 
         /// <summary>
@@ -80,10 +80,10 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="id">Identifier.</param>
         public void Remove(string id)
         {
-            List<Holding> holdings = xmlDatabase.LoadEntities().ToList();
-            holdings.RemoveAll(x => x.Id == id);
+            List<HoldingEntity> holdingEntities = xmlDatabase.LoadEntities().ToList();
+            holdingEntities.RemoveAll(x => x.Id == id);
 
-            xmlDatabase.SaveEntities(holdings);
+            xmlDatabase.SaveEntities(holdingEntities);
         }
     }
 }

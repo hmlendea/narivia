@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using Narivia.Models;
+using Narivia.DataAccess.DataObjects;
 
 namespace Narivia.DataAccess.Repositories.Interfaces
 {
@@ -12,27 +12,27 @@ namespace Narivia.DataAccess.Repositories.Interfaces
         /// <summary>
         /// Adds the specified unit.
         /// </summary>
-        /// <param name="unit">Unit.</param>
-        void Add(Unit unit);
+        /// <param name="unitEntity">Unit.</param>
+        void Add(UnitEntity unitEntity);
 
         /// <summary>
         /// Gets the unit with the specified identifier.
         /// </summary>
         /// <returns>The unit.</returns>
         /// <param name="id">Identifier.</param>
-        Unit Get(string id);
+        UnitEntity Get(string id);
 
         /// <summary>
         /// Gets all the units.
         /// </summary>
         /// <returns>The units.</returns>
-        IEnumerable<Unit> GetAll();
+        IEnumerable<UnitEntity> GetAll();
 
         /// <summary>
         /// Updates the specified unit.
         /// </summary>
-        /// <param name="unit">Unit.</param>
-        void Update(Unit unit);
+        /// <param name="unitEntity">Unit.</param>
+        void Update(UnitEntity unitEntity);
 
         /// <summary>
         /// Remove the unit with the specified identifier.
