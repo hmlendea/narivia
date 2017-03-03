@@ -87,7 +87,7 @@ namespace Narivia.DataAccess.Repositories
 
             regionEntityToUpdate.Name = regionEntity.Name;
             regionEntityToUpdate.Description = regionEntity.Description;
-            regionEntityToUpdate.Colour = regionEntity.Colour;
+            regionEntityToUpdate.ColourHexadecimal = regionEntity.ColourHexadecimal;
             regionEntityToUpdate.Type = regionEntity.Type;
             regionEntityToUpdate.FactionId = regionEntity.FactionId;
             regionEntityToUpdate.SovereignFactionId = regionEntity.SovereignFactionId;

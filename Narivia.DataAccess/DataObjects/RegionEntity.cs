@@ -1,6 +1,4 @@
-﻿using Narivia.Infrastructure.Helpers;
-
-namespace Narivia.DataAccess.DataObjects
+﻿namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// Region data entity.
@@ -26,10 +24,10 @@ namespace Narivia.DataAccess.DataObjects
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the colour.
+        /// Gets or sets the colour in hexadecimal.
         /// </summary>
-        /// <value>The colour.</value>
-        public Colour Colour { get; set; }
+        /// <value>The colour's hexadecimal value.</value>
+        public string ColourHexadecimal { get; set; }
 
         /// <summary>
         /// Gets or sets the type.

@@ -87,7 +87,7 @@ namespace Narivia.DataAccess.Repositories
 
             biomeEntityToUpdate.Name = biomeEntity.Name;
             biomeEntityToUpdate.Description = biomeEntity.Description;
-            biomeEntityToUpdate.Colour = biomeEntity.Colour;
+            biomeEntityToUpdate.ColourHexadecimal = biomeEntity.ColourHexadecimal;
 
             xmlDatabase.SaveEntities(biomeEntities);
         }

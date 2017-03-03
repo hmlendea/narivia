@@ -2,6 +2,7 @@
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
 namespace Narivia.BusinessLogic.Mapping
@@ -15,7 +16,7 @@ namespace Narivia.BusinessLogic.Mapping
                 Id = factionEntity.Id,
                 Name = factionEntity.Name,
                 Description = factionEntity.Description,
-                Colour = factionEntity.Colour
+                Colour = ColourTranslator.FromHexadecimal(factionEntity.ColourHexadecimal)
             };
 
             return faction;
@@ -28,7 +29,7 @@ namespace Narivia.BusinessLogic.Mapping
                 Id = faction.Id,
                 Name = faction.Name,
                 Description = faction.Description,
-                Colour = faction.Colour
+                ColourHexadecimal = ColourTranslator.ToHexadecimal(faction.Colour)
             };
 
             return factionEntity;

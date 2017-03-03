@@ -87,7 +87,7 @@ namespace Narivia.DataAccess.Repositories
 
             factionEntityToUpdate.Name = factionEntity.Name;
             factionEntityToUpdate.Description = factionEntity.Description;
-            factionEntityToUpdate.Colour = factionEntity.Colour;
+            factionEntityToUpdate.ColourHexadecimal = factionEntity.ColourHexadecimal;
 
             xmlDatabase.SaveEntities(factionEntities);
         }

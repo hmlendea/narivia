@@ -46,9 +46,15 @@
     <Compile Include="Exceptions\DuplicateEntityException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Helpers\Colour.cs" />
+    <Compile Include="Helpers\ColourTranslator.cs" />
     <Compile Include="Helpers\FastBitmap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Narivia.Models\Narivia.Models.csproj">
+      <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>
+      <Name>Narivia.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

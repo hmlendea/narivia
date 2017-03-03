@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
 namespace Narivia.BusinessLogic.Mapping
@@ -16,7 +17,7 @@ namespace Narivia.BusinessLogic.Mapping
                 Id = regionEntity.Id,
                 Name = regionEntity.Name,
                 Description = regionEntity.Description,
-                Colour = regionEntity.Colour,
+                Colour = ColourTranslator.FromHexadecimal(regionEntity.ColourHexadecimal),
                 Type = (RegionType)Enum.Parse(typeof(RegionType), regionEntity.Type)
             };
 
@@ -30,7 +31,7 @@ namespace Narivia.BusinessLogic.Mapping
                 Id = region.Id,
                 Name = region.Name,
                 Description = region.Description,
-                Colour = region.Colour,
+                ColourHexadecimal = ColourTranslator.ToHexadecimal(region.Colour),
                 Type = region.Type.ToString()
             };
 

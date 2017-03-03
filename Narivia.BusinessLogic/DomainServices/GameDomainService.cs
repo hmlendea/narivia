@@ -121,7 +121,7 @@ namespace Narivia.BusinessLogic.DomainServices
 
             // Mapping the region colours
             foreach (Region region in regions)
-                regionColourIds.Add(region.Colour.ToArgb(), region.Id);
+                regionColourIds.Add(ColourTranslator.ToArgb(region.Colour), region.Id);
 
             // Reading the map pixel by pixel
             using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "map.png")))

@@ -2,6 +2,7 @@
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
 namespace Narivia.BusinessLogic.Mapping
@@ -15,7 +16,7 @@ namespace Narivia.BusinessLogic.Mapping
                 Id = biomeEntity.Id,
                 Name = biomeEntity.Name,
                 Description = biomeEntity.Description,
-                Colour = biomeEntity.Colour
+                Colour = ColourTranslator.FromHexadecimal(biomeEntity.ColourHexadecimal)
             };
 
             return biome;
@@ -28,7 +29,7 @@ namespace Narivia.BusinessLogic.Mapping
                 Id = biome.Id,
                 Name = biome.Name,
                 Description = biome.Description,
-                Colour = biome.Colour
+                ColourHexadecimal = ColourTranslator.ToHexadecimal(biome.Colour)
             };
 
             return biomeEntity;

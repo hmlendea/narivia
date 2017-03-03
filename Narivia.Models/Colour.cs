@@ -1,4 +1,4 @@
-﻿namespace Narivia.Infrastructure.Helpers
+﻿namespace Narivia.Models
 {
     public class Colour
     {
@@ -25,27 +25,5 @@
         /// </summary>
         /// <value>The blue value.</value>
         public byte Blue { get; set; }
-
-        /// <summary>
-        /// Converts the colour to hexadecimal.
-        /// </summary>
-        /// <returns>The hexadecimal code.</returns>
-        public string ToHexadecimal()
-        {
-            string hexa = string.Format("#{0:X2}{1:X2}{2:X2}", Red, Green, Blue);
-
-            return hexa;
-        }
-
-        /// <summary>
-        /// Converts the colour to a 32 bit integer.
-        /// </summary>
-        /// <returns>The ARGB integer value.</returns>
-        public int ToArgb()
-        {
-            int argb = (Alpha << 24) | (Red << 16) | (Green << 8) | Blue;
-
-            return argb;
-        }
     }
 }

@@ -43,6 +43,7 @@
     <Compile Include="Army.cs" />
     <Compile Include="Biome.cs" />
     <Compile Include="Border.cs" />
+    <Compile Include="Colour.cs" />
     <Compile Include="Culture.cs" />
     <Compile Include="Faction.cs" />
     <Compile Include="Holding.cs" />
@@ -56,12 +57,6 @@
     <Compile Include="Unit.cs" />
     <Compile Include="UnitType.cs" />
     <Compile Include="World.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
-      <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
-      <Name>Narivia.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
