@@ -2,29 +2,6 @@
 
 namespace Narivia.Models
 {
-    public enum UnitType
-    {
-        /// <summary>
-        /// Light.
-        /// </summary>L
-        Light = 0,
-
-        /// <summary>
-        /// Heavy.
-        /// </summary>
-        Heavy = 1,
-
-        /// <summary>
-        /// Cavalry.
-        /// </summary>
-        Cavalry = 1,
-
-        /// <summary>
-        /// Ranged.
-        /// </summary>
-        Ranged = 1
-    }
-
     /// <summary>
     /// Unit domain model.
     /// </summary>
