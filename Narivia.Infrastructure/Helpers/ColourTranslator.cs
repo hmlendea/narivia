@@ -1,4 +1,6 @@
-﻿using Narivia.Models;
+﻿using System;
+
+using Narivia.Models;
 
 namespace Narivia.Infrastructure.Helpers
 {
@@ -17,7 +19,31 @@ namespace Narivia.Infrastructure.Helpers
 
         public static Colour FromHexadecimal(string hexa)
         {
-            throw new System.NotImplementedException();
+            Colour colour = new Colour();
+
+            if (hexa[0] == '#')
+            {
+                hexa = hexa.Remove(0, 1);
+            }
+
+            if (hexa.Length == 3)
+            {
+                colour.Red = Convert.ToByte(hexa[0] + "" + hexa[0], 16);
+                colour.Green = Convert.ToByte(hexa[1] + "" + hexa[1], 16);
+                colour.Blue = Convert.ToByte(hexa[2] + "" + hexa[2], 16);
+            }
+            else if (hexa.Length == 6)
+            {
+                colour.Red = Convert.ToByte(hexa[0] + "" + hexa[1], 16);
+                colour.Green = Convert.ToByte(hexa[2] + "" + hexa[3], 16);
+                colour.Blue = Convert.ToByte(hexa[4] + "" + hexa[5], 16);
+            }
+            else
+            {
+                throw new ArgumentException("Hex colour '" + hexa + "' is invalid.");
+            }
+
+            return colour;
         }
 
         /// <summary>
