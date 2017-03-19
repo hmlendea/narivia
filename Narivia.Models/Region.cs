@@ -61,6 +61,20 @@ namespace Narivia.Models
         }
 
         /// <summary>
+        /// Gets or sets the biome identifier.
+        /// </summary>
+        /// <value>The biome identifier.</value>
+        [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
+        public string BiomeId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the resource identifier.
+        /// </summary>
+        /// <value>The resource identifier.</value>
+        [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
+        public string ResourceId { get; set; }
+
+        /// <summary>
         /// Gets the faction identifier.
         /// </summary>
         /// <value>The faction identifier.</value>
