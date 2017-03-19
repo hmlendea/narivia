@@ -77,11 +77,11 @@
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
-    <Compile Include="Screens\XmlScreenManager.cs" />
     <Compile Include="Graphics\Image.cs" />
     <Compile Include="Graphics\ImageEffects\ImageEffect.cs" />
     <Compile Include="Graphics\ImageEffects\FadeEffect.cs" />
     <Compile Include="Input\InputManager.cs" />
+    <Compile Include="Helpers\XmlManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -142,4 +142,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
 </Project>

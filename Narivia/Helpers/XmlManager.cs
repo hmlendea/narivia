@@ -2,12 +2,12 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace Narivia.Screens
+namespace Narivia.Helpers
 {
     /// <summary>
-    /// XML screen manager.
+    /// XML Manager.
     /// </summary>
-    public class XmlScreenManager<T>
+    public class XmlManager<T>
     {
         /// <summary>
         /// Gets or sets the type.
@@ -16,16 +16,17 @@ namespace Narivia.Screens
         public Type Type { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Screens.XmlScreenManager`1"/> class.
+        /// Initializes a new instance of the <see cref="T:Narivia.Helpers.XmlManager`1"/> class.
         /// </summary>
-        public XmlScreenManager()
+        public XmlManager()
         {
             Type = typeof(T);
         }
 
         /// <summary>
-        /// Load the specified screen.
+        /// Load the specified path.
         /// </summary>
+        /// <returns>The load.</returns>
         /// <param name="path">Path.</param>
         public T Load(string path)
         {
@@ -41,8 +42,9 @@ namespace Narivia.Screens
         }
 
         /// <summary>
-        /// Save the specified screen.
+        /// Save the specified path and obj.
         /// </summary>
+        /// <returns>The save.</returns>
         /// <param name="path">Path.</param>
         /// <param name="obj">Object.</param>
         public void Save(string path, object obj)

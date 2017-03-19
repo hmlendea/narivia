@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Helpers;
 
 namespace Narivia.Screens
 {
@@ -18,7 +19,7 @@ namespace Narivia.Screens
         static ScreenManager instance;
 
         Screen currentScreen, newScreen;
-        XmlScreenManager<Screen> xmlScreenManager;
+        XmlManager<Screen> xmlScreenManager;
 
         /// <summary>
         /// Gets the instance.
@@ -30,8 +31,8 @@ namespace Narivia.Screens
             {
                 if (instance == null)
                 {
-                    XmlScreenManager<ScreenManager> xml = new XmlScreenManager<ScreenManager>();
-                    instance = xml.Load("Screens/ScreenManager.xml");
+                    XmlManager<ScreenManager> xmlManager = new XmlManager<ScreenManager>();
+                    instance = xmlManager.Load("Screens/ScreenManager.xml");
                 }
 
                 return instance;
@@ -87,7 +88,7 @@ namespace Narivia.Screens
             Dimensions = new Vector2(800, 480);
             currentScreen = new SplashScreen();
 
-            xmlScreenManager = new XmlScreenManager<Screen>();
+            xmlScreenManager = new XmlManager<Screen>();
             xmlScreenManager.Type = currentScreen.Type;
 
             currentScreen = xmlScreenManager.Load("Screens/SplashScreen.xml");
@@ -133,7 +134,9 @@ namespace Narivia.Screens
             currentScreen.Draw(spriteBatch);
 
             if (Transitioning)
+            {
                 Image.Draw(spriteBatch);
+            }
         }
 
         /// <summary>
@@ -147,6 +150,7 @@ namespace Narivia.Screens
             Image.Active = true;
             Image.FadeEffect.Increasing = true;
             Image.Opacity = 0.0f;
+
             Transitioning = true;
         }
 
@@ -156,26 +160,30 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         void Transition(GameTime gameTime)
         {
-            if (Transitioning)
+            if (!Transitioning)
             {
-                Image.Update(gameTime);
+                return;
+            }
 
-                if (Image.Opacity == 1.0f)
+            Image.Update(gameTime);
+
+            if (Image.Opacity == 1.0f)
+            {
+                currentScreen.UnloadContent();
+                currentScreen = newScreen;
+                xmlScreenManager.Type = currentScreen.Type;
+
+                if (File.Exists(currentScreen.XmlPath))
                 {
-                    currentScreen.UnloadContent();
-                    currentScreen = newScreen;
-                    xmlScreenManager.Type = currentScreen.Type;
-
-                    if (File.Exists(currentScreen.XmlPath))
-                        currentScreen = xmlScreenManager.Load(currentScreen.XmlPath);
-
-                    currentScreen.LoadContent();
+                    currentScreen = xmlScreenManager.Load(currentScreen.XmlPath);
                 }
-                else if (Image.Opacity == 0.0f)
-                {
-                    Image.Active = false;
-                    Transitioning = false;
-                }
+
+                currentScreen.LoadContent();
+            }
+            else if (Image.Opacity == 0.0f)
+            {
+                Image.Active = false;
+                Transitioning = false;
             }
         }
     }
