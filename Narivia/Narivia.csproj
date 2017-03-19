@@ -83,7 +83,6 @@
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Helpers\XmlManager.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
-    <Compile Include="World\TileMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

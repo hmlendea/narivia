@@ -9,7 +9,7 @@ namespace Narivia.WorldMap
 {
     public class Layer
     {
-        public TileMap TileMap { get; set; }
+        public string[,] TileMap { get; set; }
 
         public Image Image { get; set; }
 
@@ -27,37 +27,36 @@ namespace Narivia.WorldMap
             Vector2 position = -tileDimensions;
             Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
 
+            int mapSize = TileMap.GetLength(0);
+
             Image.LoadContent();
 
-            foreach (string row in TileMap.Rows)
+            for (int y = 0; y < mapSize; y++)
             {
-                string[] split = row.Split(']');
-
                 position.X = -tileDimensions.X;
                 position.Y += tileDimensions.Y;
 
-                foreach (string item in split)
+                for (int x = 0; x < mapSize; x++)
                 {
-                    if (item != string.Empty)
+                    position.X += tileDimensions.X;
+
+                    if (TileMap[x, y] != null)
                     {
-                        position.X += tileDimensions.X;
+                        string[] values = TileMap[x, y].Split(':');
 
-                        if (!item.Contains("x"))
-                        {
-                            string[] values = item.Replace("[", string.Empty).Split(':');
+                        int value1 = int.Parse(values[0]);
+                        int value2 = int.Parse(values[1]);
 
-                            int val1 = int.Parse(values[0]);
-                            int val2 = int.Parse(values[1]);
+                        sourceRectangle = new Rectangle(
+                            value1 * (int)tileDimensions.X,
+                            value2 * (int)tileDimensions.Y,
+                            (int)tileDimensions.X,
+                            (int)tileDimensions.Y);
 
-                            sourceRectangle = new Rectangle(
-                                val1 * (int)tileDimensions.X, val2 * (int)tileDimensions.Y,
-                                (int)tileDimensions.X, (int)tileDimensions.Y);
+                        Tile tile = new Tile();
+                        tile.LoadContent(position, sourceRectangle);
 
-                            Tile tile = new Tile();
-                            tile.LoadContent(position, sourceRectangle);
-
-                            tiles.Add(tile);
-                        }
+                        tiles.Add(tile);
                     }
                 }
             }

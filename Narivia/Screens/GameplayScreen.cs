@@ -56,40 +56,28 @@ namespace Narivia.Screens
 
             List<Biome> biomes = gameDomainService.GetAllBiomes();
 
+            Dictionary<string, Layer> biomeLayers = new Dictionary<string, Layer>();
+
             foreach (Biome biome in biomes)
             {
                 Layer layer = new Layer
                 {
                     Image = new Image { ImagePath = "World/Terrain/" + biome.Id },
-                    TileMap = new TileMap()
+                    TileMap = new string[640, 640]
                 };
 
+                biomeLayers.Add(biome.Id, layer);
+                map.Layers.Add(layer);
+            }
 
+            for (int y = 0; y < 640; y++)
+            {
                 for (int x = 0; x < 640; x++)
                 {
-                    string row = string.Empty;
+                    string biomeId = gameDomainService.BiomeMap[x, y];
 
-                    for (int y = 0; y < 640; y++)
-                    {
-                        string biomeId = gameDomainService.BiomeMap[x, y];
-                        string tile = string.Empty;
-
-                        if (biome.Id == biomeId)
-                        {
-                            tile = "[1:3]";
-                        }
-                        else
-                        {
-                            tile = "[x:x]";
-                        }
-
-                        row += tile;
-                    }
-
-                    layer.TileMap.Rows.Add(row);
+                    biomeLayers[biomeId].TileMap[x, y] = "1:3";
                 }
-
-                map.Layers.Add(layer);
             }
 
             map.LoadContent();
