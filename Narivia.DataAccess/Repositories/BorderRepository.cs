@@ -55,6 +55,12 @@ namespace Narivia.DataAccess.Repositories
         public BorderEntity Get(string region1Id, string region2Id)
         {
             Tuple<string, string> key = new Tuple<string, string>(region1Id, region2Id);
+
+            if (!borderEntitiesStore.ContainsKey(key))
+            {
+                return null;
+            }
+
             BorderEntity borderEntity = borderEntitiesStore[key];
 
             if (borderEntity == null)

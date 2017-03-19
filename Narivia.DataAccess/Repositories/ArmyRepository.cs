@@ -55,6 +55,12 @@ namespace Narivia.DataAccess.Repositories
         public ArmyEntity Get(string factionId, string unitId)
         {
             Tuple<string, string> key = new Tuple<string, string>(factionId, unitId);
+
+            if (!armyEntitiesStore.ContainsKey(key))
+            {
+                return null;
+            }
+
             ArmyEntity armyEntity = armyEntitiesStore[key];
 
             if (armyEntity == null)
