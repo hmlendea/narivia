@@ -36,12 +36,6 @@
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or sets the biome identifier.
-        /// </summary>
-        /// <value>The biome identifier.</value>
-        public string BiomeId { get; set; }
-
-        /// <summary>
         /// Gets or sets the resource identifier.
         /// </summary>
         /// <value>The resource identifier.</value>

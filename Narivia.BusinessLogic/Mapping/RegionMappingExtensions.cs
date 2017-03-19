@@ -19,7 +19,6 @@ namespace Narivia.BusinessLogic.Mapping
                 Description = regionEntity.Description,
                 Colour = ColourTranslator.FromHexadecimal(regionEntity.ColourHexadecimal),
                 Type = (RegionType)Enum.Parse(typeof(RegionType), regionEntity.Type),
-                BiomeId = regionEntity.BiomeId,
                 ResourceId = regionEntity.ResourceId,
                 FactionId = regionEntity.FactionId,
                 SovereignFactionId = regionEntity.SovereignFactionId
@@ -37,7 +36,6 @@ namespace Narivia.BusinessLogic.Mapping
                 Description = region.Description,
                 ColourHexadecimal = ColourTranslator.ToHexadecimal(region.Colour),
                 Type = region.Type.ToString(),
-                BiomeId = region.BiomeId,
                 ResourceId = region.ResourceId,
                 FactionId = region.FactionId,
                 SovereignFactionId = region.SovereignFactionId

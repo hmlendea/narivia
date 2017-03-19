@@ -30,6 +30,7 @@ namespace Narivia.BusinessLogic.DomainServices
         World world;
 
         string[,] worldTiles;
+        string[,] biomeMap;
 
         string playerFactionId;
         int turn;
@@ -38,6 +39,12 @@ namespace Narivia.BusinessLogic.DomainServices
         {
             get { return worldTiles; }
             set { worldTiles = value; }
+        }
+
+        public string[,] BiomeMap
+        {
+            get { return biomeMap; }
+            set { biomeMap = value; }
         }
 
         /// <summary>
@@ -99,14 +106,6 @@ namespace Narivia.BusinessLogic.DomainServices
             return border != null;
         }
 
-        public Biome GetBiome(int x, int y)
-        {
-            Region region = regionRepository.Get(worldTiles[x, y]).ToDomainModel();
-            Biome biome = biomeRepository.Get(region.BiomeId).ToDomainModel();
-
-            return biome;
-        }
-
         public List<Biome> GetAllBiomes()
         {
             return biomeRepository.GetAll().ToDomainModels().ToList();
@@ -135,7 +134,10 @@ namespace Narivia.BusinessLogic.DomainServices
         void LoadMap(string worldId)
         {
             List<Region> regions = regionRepository.GetAll().ToDomainModels().ToList();
+            List<Biome> biomes = biomeRepository.GetAll().ToDomainModels().ToList();
+
             Dictionary<int, string> regionColourIds = new Dictionary<int, string>();
+            Dictionary<int, string> biomeColourIds = new Dictionary<int, string>();
 
             XmlSerializer xs = new XmlSerializer(typeof(World));
 
@@ -146,10 +148,19 @@ namespace Narivia.BusinessLogic.DomainServices
             }
 
             worldTiles = new string[world.Width, world.Height];
+            biomeMap = new string[world.Width, world.Height];
 
             // Mapping the region colours
             foreach (Region region in regions)
+            {
                 regionColourIds.Add(ColourTranslator.ToArgb(region.Colour), region.Id);
+            }
+
+            // Mapping the biome colours
+            foreach (Biome biome in biomes)
+            {
+                biomeColourIds.Add(ColourTranslator.ToArgb(biome.Colour), biome.Id);
+            }
 
             // Reading the map pixel by pixel
             using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "map.png")))
@@ -158,7 +169,23 @@ namespace Narivia.BusinessLogic.DomainServices
                 {
                     for (int x = 0; x < world.Height; x++)
                     {
-                        worldTiles[x, y] = regionColourIds[bmp.GetPixel(x, y).ToArgb()];
+                        int colour = bmp.GetPixel(x, y).ToArgb();
+
+                        worldTiles[x, y] = regionColourIds[colour];
+                    }
+                }
+            }
+
+            // Reading the biome map pixel by pixel
+            using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes_map.png")))
+            {
+                for (int y = 0; y < world.Width; y++)
+                {
+                    for (int x = 0; x < world.Height; x++)
+                    {
+                        int colour = bmp.GetPixel(x, y).ToArgb();
+
+                        biomeMap[x, y] = biomeColourIds[colour];
                     }
                 }
             }

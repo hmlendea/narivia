@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.BusinessLogic.DomainServices;
 using Narivia.Graphics;
+using Narivia.Models;
 using Narivia.WorldMap;
 
 namespace Narivia.Screens
@@ -53,25 +54,43 @@ namespace Narivia.Screens
                 Layers = new List<Layer>()
             };
 
-            Layer layer = new Layer
-            {
-                Image = new Image { ImagePath = "World/Terrain/plains" },
-                TileMap = new TileMap()
-            };
+            List<Biome> biomes = gameDomainService.GetAllBiomes();
 
-            for (int x = 0; x < 640; x++)
+            foreach (Biome biome in biomes)
             {
-                string row = string.Empty;
-
-                for (int y = 0; y < 640; y++)
+                Layer layer = new Layer
                 {
-                    row += "[1:3]";
+                    Image = new Image { ImagePath = "World/Terrain/" + biome.Id },
+                    TileMap = new TileMap()
+                };
+
+
+                for (int x = 0; x < 640; x++)
+                {
+                    string row = string.Empty;
+
+                    for (int y = 0; y < 640; y++)
+                    {
+                        string biomeId = gameDomainService.BiomeMap[x, y];
+                        string tile = string.Empty;
+
+                        if (biome.Id == biomeId)
+                        {
+                            tile = "[1:3]";
+                        }
+                        else
+                        {
+                            tile = "[x:x]";
+                        }
+
+                        row += tile;
+                    }
+
+                    layer.TileMap.Rows.Add(row);
                 }
 
-                layer.TileMap.Rows.Add(row);
+                map.Layers.Add(layer);
             }
-
-            map.Layers.Add(layer);
 
             map.LoadContent();
         }
