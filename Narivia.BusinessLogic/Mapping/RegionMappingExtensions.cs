@@ -18,7 +18,11 @@ namespace Narivia.BusinessLogic.Mapping
                 Name = regionEntity.Name,
                 Description = regionEntity.Description,
                 Colour = ColourTranslator.FromHexadecimal(regionEntity.ColourHexadecimal),
-                Type = (RegionType)Enum.Parse(typeof(RegionType), regionEntity.Type)
+                Type = (RegionType)Enum.Parse(typeof(RegionType), regionEntity.Type),
+                BiomeId = regionEntity.BiomeId,
+                ResourceId = regionEntity.ResourceId,
+                FactionId = regionEntity.FactionId,
+                SovereignFactionId = regionEntity.SovereignFactionId
             };
 
             return region;
@@ -32,7 +36,11 @@ namespace Narivia.BusinessLogic.Mapping
                 Name = region.Name,
                 Description = region.Description,
                 ColourHexadecimal = ColourTranslator.ToHexadecimal(region.Colour),
-                Type = region.Type.ToString()
+                Type = region.Type.ToString(),
+                BiomeId = region.BiomeId,
+                ResourceId = region.ResourceId,
+                FactionId = region.FactionId,
+                SovereignFactionId = region.SovereignFactionId
             };
 
             return regionEntity;

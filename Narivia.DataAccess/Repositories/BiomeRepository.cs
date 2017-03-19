@@ -54,7 +54,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (biomeEntity == null)
             {
-                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(BiomeEntity).Replace("Entity", ""));
             }
 
             return biomeEntity;

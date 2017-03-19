@@ -36,19 +36,14 @@ namespace Narivia.Infrastructure.Helpers
         /// <value>The height.</value>
         public int Height { get; private set; }
 
-        FastBitmap()
-        {
-            LockBits();
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Utils.FastBitmap"/> class.
         /// </summary>
         /// <param name="sourceBitmap">Source bitmap.</param>
         public FastBitmap(Bitmap sourceBitmap)
-            : this()
         {
             source = sourceBitmap;
+            LockBits();
         }
 
         /// <summary>
@@ -56,9 +51,9 @@ namespace Narivia.Infrastructure.Helpers
         /// </summary>
         /// <param name="sourceImage">Source image.</param>
         public FastBitmap(Image sourceImage)
-            : this()
         {
             source = (Bitmap)sourceImage;
+            LockBits();
         }
 
         /// <summary>
@@ -66,9 +61,9 @@ namespace Narivia.Infrastructure.Helpers
         /// </summary>
         /// <param name="fileName">File name.</param>
         public FastBitmap(string fileName)
-            : this()
         {
             source = new Bitmap(fileName);
+            LockBits();
         }
 
         /// <summary>
@@ -77,9 +72,9 @@ namespace Narivia.Infrastructure.Helpers
         /// <param name="type">Type.</param>
         /// <param name="resource">Resource.</param>
         public FastBitmap(Type type, string resource)
-            : this()
         {
             source = new Bitmap(type, resource);
+            LockBits();
         }
 
         /// <summary>
@@ -88,9 +83,9 @@ namespace Narivia.Infrastructure.Helpers
         /// <param name="width">Width.</param>
         /// <param name="height">Height.</param>
         public FastBitmap(int width, int height)
-            : this()
         {
             source = new Bitmap(width, height);
+            LockBits();
         }
 
         /// <summary>
@@ -100,9 +95,9 @@ namespace Narivia.Infrastructure.Helpers
         /// <param name="height">Height.</param>
         /// <param name="format">Format.</param>
         public FastBitmap(int width, int height, PixelFormat format)
-            : this()
         {
             source = new Bitmap(width, height, format);
+            LockBits();
         }
 
         /// <summary>
@@ -114,9 +109,9 @@ namespace Narivia.Infrastructure.Helpers
         /// <param name="format">Format.</param>
         /// <param name="scan0">Scan0.</param>
         public FastBitmap(int width, int height, int stride, PixelFormat format, IntPtr scan0)
-            : this()
         {
             source = new Bitmap(width, height, stride, format, scan0);
+            LockBits();
         }
 
         /// <summary>
@@ -125,7 +120,11 @@ namespace Narivia.Infrastructure.Helpers
         public virtual void LockBits()
         {
             if (bitsLocked)
+            {
                 return;
+            }
+
+            bitsLocked = true;
 
             Width = source.Width;
             Height = source.Height;
@@ -154,7 +153,9 @@ namespace Narivia.Infrastructure.Helpers
         public virtual void UnlockBits()
         {
             if (!bitsLocked)
+            {
                 return;
+            }
 
             Marshal.Copy(Pixels, 0, Iptr, Pixels.Length);
             source.UnlockBits(bitmapData);
@@ -174,7 +175,9 @@ namespace Narivia.Infrastructure.Helpers
             int index = ((y * Width) + x) * colorComponentsCount;
 
             if (index > Pixels.Length - colorComponentsCount)
+            {
                 throw new IndexOutOfRangeException();
+            }
 
             switch (Depth)
             {

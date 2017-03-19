@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Menu>
-  <Axis>Y</Axis>
-  <Effects>FadeEffect</Effects>
-  <Item>
-    <LinkType>Screen</LinkType>
-    <LinkId>SplashScreen</LinkId>
-    <Image>
-      <Text>Go back to SplashScreen</Text>
-    </Image>
-  </Item>
-  <Item>
-    <LinkType>Screen</LinkType>
-    <LinkId>SplashScreen</LinkId>
-    <Image>
-      <Text>Go back to SplashScreen</Text>
-    </Image>
-  </Item>
+	<Axis>Y</Axis>
+	<Effects>FadeEffect</Effects>
+	<Item>
+		<LinkType>Screen</LinkType>
+		<LinkId>GameplayScreen</LinkId>
+		<Image>
+			<Text>Load map 'Narivia'</Text>
+		</Image>
+	</Item>
+	<Item>
+		<LinkType>Screen</LinkType>
+		<LinkId>SplashScreen</LinkId>
+		<Image>
+			<Text>Go back to SplashScreen</Text>
+		</Image>
+	</Item>
 </Menu>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 
 using Narivia.BusinessLogic.DomainServices.Interfaces;
 using Narivia.BusinessLogic.Mapping;
@@ -32,6 +33,12 @@ namespace Narivia.BusinessLogic.DomainServices
 
         string playerFactionId;
         int turn;
+
+        public string[,] WorldTiles
+        {
+            get { return worldTiles; }
+            set { worldTiles = value; }
+        }
 
         /// <summary>
         /// Starts a new game.
@@ -88,8 +95,21 @@ namespace Narivia.BusinessLogic.DomainServices
         /// <param name="region2Id">Second region identifier.</param>
         public bool RegionHasBorder(string region1Id, string region2Id)
         {
-            Border border = borderRepository.Get(region1Id, region2Id).ToDomainModel();
+            Border border = borderRepository.Get(region1Id, region2Id)?.ToDomainModel();
             return border != null;
+        }
+
+        public Biome GetBiome(int x, int y)
+        {
+            Region region = regionRepository.Get(worldTiles[x, y]).ToDomainModel();
+            Biome biome = biomeRepository.Get(region.BiomeId).ToDomainModel();
+
+            return biome;
+        }
+
+        public List<Biome> GetAllBiomes()
+        {
+            return biomeRepository.GetAll().ToDomainModels().ToList();
         }
 
         void LoadEntities(string worldId)
@@ -117,6 +137,14 @@ namespace Narivia.BusinessLogic.DomainServices
             List<Region> regions = regionRepository.GetAll().ToDomainModels().ToList();
             Dictionary<int, string> regionColourIds = new Dictionary<int, string>();
 
+            XmlSerializer xs = new XmlSerializer(typeof(World));
+
+            using (FileStream fs = new FileStream(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "world.xml"), FileMode.Open, FileAccess.Read))
+            using (StreamReader sr = new StreamReader(fs))
+            {
+                world = (World)xs.Deserialize(sr);
+            }
+
             worldTiles = new string[world.Width, world.Height];
 
             // Mapping the region colours
@@ -127,8 +155,12 @@ namespace Narivia.BusinessLogic.DomainServices
             using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "map.png")))
             {
                 for (int y = 0; y < world.Width; y++)
-                    for (int x = 0; x < world.Height; y++)
+                {
+                    for (int x = 0; x < world.Height; x++)
+                    {
                         worldTiles[x, y] = regionColourIds[bmp.GetPixel(x, y).ToArgb()];
+                    }
+                }
             }
         }
 
@@ -176,7 +208,9 @@ namespace Narivia.BusinessLogic.DomainServices
         void SetBorder(string region1Id, string region2Id)
         {
             if (RegionHasBorder(region1Id, region2Id))
+            {
                 return;
+            }
 
             Border border = new Border
             {
@@ -190,27 +224,38 @@ namespace Narivia.BusinessLogic.DomainServices
         void LoadBorders()
         {
             for (int x = 0; x < world.Width; x += 5)
+            {
                 for (int y = 0; y < world.Height; y += 5)
                 {
                     List<string> region2IdVisited = new List<string>();
                     string region1Id = worldTiles[x, y];
 
                     for (int dx = -2; dx <= 2; dx++)
-                        if (x + dx >= 0 && x + dx < world.Width)
-                            for (int dy = -2; dy <= 2; dy++)
-                                if (y + dy >= 0 && y + dy < world.Height)
-                                {
-                                    string region2Id = worldTiles[x + dx, y + dy];
+                    {
+                        if (x + dx < 0 || x + dx >= world.Width)
+                        {
+                            continue;
+                        }
 
-                                    if (region2IdVisited.Contains(region2Id))
-                                        continue;
+                        for (int dy = -2; dy <= 2; dy++)
+                        {
+                            if (y + dy < 0 || y + dy >= world.Height)
+                            {
+                                continue;
+                            }
 
-                                    region2IdVisited.Add(region2Id);
+                            string region2Id = worldTiles[x + dx, y + dy];
 
-                                    if (region1Id != region2Id)
-                                        SetBorder(region1Id, region2Id);
-                                }
+                            if (!region2IdVisited.Contains(region2Id) &&
+                                region1Id != region2Id)
+                            {
+                                SetBorder(region1Id, region2Id);
+                                region2IdVisited.Add(region2Id);
+                            }
+                        }
+                    }
                 }
+            }
         }
 
         /// <summary>

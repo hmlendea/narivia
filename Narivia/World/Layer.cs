@@ -9,44 +9,86 @@ namespace Narivia.WorldMap
 {
     public class Layer
     {
-        public List<Tile> Tiles { get; private set; }
-        
+        public TileMap TileMap { get; set; }
+
+        public Image Image { get; set; }
+
+        List<Tile> tiles;
+
         public Layer()
         {
-            Tiles = new List<Tile>();
+            Image = new Image();
+
+            tiles = new List<Tile>();
         }
 
-        public void LoadContent(Vector2 tileDimensions, Dictionary<string, Vector2> tileEntities)
+        public void LoadContent(Vector2 tileDimensions)
         {
-            foreach (KeyValuePair<string, Vector2> tileEntity in tileEntities)
+            Vector2 position = -tileDimensions;
+            Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
+
+            Image.LoadContent();
+
+            foreach (string row in TileMap.Rows)
             {
-                Image image = new Image();
-                Vector2 position = tileEntity.Value;
-                string entityId = tileEntity.Key;
+                string[] split = row.Split(']');
 
-                Tile tile = new Tile();
-                tile.LoadContent(image, position, entityId);
+                position.X = -tileDimensions.X;
+                position.Y += tileDimensions.Y;
 
-                Tiles.Add(tile);
+                foreach (string item in split)
+                {
+                    if (item != string.Empty)
+                    {
+                        position.X += tileDimensions.X;
+
+                        if (!item.Contains("x"))
+                        {
+                            string[] values = item.Replace("[", string.Empty).Split(':');
+
+                            int val1 = int.Parse(values[0]);
+                            int val2 = int.Parse(values[1]);
+
+                            sourceRectangle = new Rectangle(
+                                val1 * (int)tileDimensions.X, val2 * (int)tileDimensions.Y,
+                                (int)tileDimensions.X, (int)tileDimensions.Y);
+
+                            Tile tile = new Tile();
+                            tile.LoadContent(position, sourceRectangle);
+
+                            tiles.Add(tile);
+                        }
+                    }
+                }
             }
         }
 
         public void UnloadContent()
         {
-            foreach(Tile tile in Tiles)
+            foreach (Tile tile in tiles)
+            {
                 tile.UnloadContent();
+            }
         }
 
         public void Update(GameTime gameTime)
         {
-            foreach (Tile tile in Tiles)
+            Image.Update(gameTime);
+
+            foreach (Tile tile in tiles)
+            {
                 tile.Update(gameTime);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Tile tile in Tiles)
-                tile.Draw(spriteBatch);
+            foreach (Tile tile in tiles)
+            {
+                Image.Position = tile.Position;
+                Image.SourceRectangle = tile.SourceRectangle;
+                Image.Draw(spriteBatch);
+            }
         }
     }
 }

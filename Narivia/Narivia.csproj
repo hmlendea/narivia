@@ -82,6 +82,8 @@
     <Compile Include="Graphics\ImageEffects\FadeEffect.cs" />
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Helpers\XmlManager.cs" />
+    <Compile Include="Screens\GameplayScreen.cs" />
+    <Compile Include="World\TileMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -125,6 +127,10 @@
     <ProjectReference Include="..\Narivia.Models\Narivia.Models.csproj">
       <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>
       <Name>Narivia.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Narivia.BusinessLogic\Narivia.BusinessLogic.csproj">
+      <Project>{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}</Project>
+      <Name>Narivia.BusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
