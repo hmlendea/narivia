@@ -3,7 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.BusinessLogic.DomainServices;
+using Narivia.BusinessLogic.GameManagers;
 using Narivia.Graphics;
 using Narivia.Models;
 using Narivia.WorldMap;

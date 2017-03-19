@@ -4,28 +4,26 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-using Narivia.BusinessLogic.DomainServices.Interfaces;
+using Narivia.BusinessLogic.GameManagers.Interfaces;
 using Narivia.BusinessLogic.Mapping;
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.DataAccess.Repositories;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
-namespace Narivia.BusinessLogic.DomainServices
+namespace Narivia.BusinessLogic.GameManagers
 {
     public class GameDomainService : IGameDomainService
     {
-        IArmyRepository armyRepository;
-        IBiomeRepository biomeRepository;
-        IBorderRepository borderRepository;
-        ICultureRepository cultureRepository;
-        IFactionRepository factionRepository;
-        IHoldingRepository holdingRepository;
-        IRegionRepository regionRepository;
-        IResourceRepository resourceRepository;
-        IUnitRepository unitRepository;
-
-        BattleDomainService battleDomainService;
+        Dictionary<string, Biome> biomes;
+        Dictionary<string, Culture> cultures;
+        Dictionary<string, Faction> factions;
+        Dictionary<string, Holding> holdings;
+        Dictionary<string, Region> regions;
+        Dictionary<string, Resource> resources;
+        Dictionary<string, Unit> units;
+        Dictionary<Tuple<string, string>, Army> armies;
+        Dictionary<Tuple<string, string>, Border> borders;
 
         World world;
 
@@ -58,7 +56,6 @@ namespace Narivia.BusinessLogic.DomainServices
             LoadWorld(worldId);
 
             InitializeGame(factionId);
-            InitialiseDomainServices();
             InitializeEntities();
         }
 
@@ -67,9 +64,9 @@ namespace Narivia.BusinessLogic.DomainServices
         /// </summary>
         public void NextTurn()
         {
-            List<Faction> factions = factionRepository.GetAll().ToDomainModels().ToList();
+            List<Faction> factionList = factions.Values.ToList();
 
-            foreach (Faction faction in factions)
+            foreach (Faction faction in factionList)
             {
                 // TODO: Process AI
                 // Economy
@@ -90,7 +87,7 @@ namespace Narivia.BusinessLogic.DomainServices
         /// <param name="factionId">Faction identifier.</param>
         public void TransferRegion(string regionId, string factionId)
         {
-            Region region = regionRepository.Get(regionId).ToDomainModel();
+            Region region = regions[regionId];
             region.FactionId = factionId;
         }
 
@@ -102,30 +99,57 @@ namespace Narivia.BusinessLogic.DomainServices
         /// <param name="region2Id">Second region identifier.</param>
         public bool RegionHasBorder(string region1Id, string region2Id)
         {
-            Border border = borderRepository.Get(region1Id, region2Id)?.ToDomainModel();
-            return border != null;
+            Tuple<string, string> borderKey = new Tuple<string, string>(region1Id, region2Id);
+
+            return borders.ContainsKey(borderKey);
         }
 
         public List<Biome> GetAllBiomes()
         {
-            return biomeRepository.GetAll().ToDomainModels().ToList();
+            List<Biome> biomeList = biomes.Values.ToList();
+
+            return biomeList;
         }
 
         void LoadEntities(string worldId)
         {
-            biomeRepository = new BiomeRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml"));
-            cultureRepository = new CultureRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml"));
-            factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
-            holdingRepository = new HoldingRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
-            regionRepository = new RegionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
-            resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
-            unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
+            IBiomeRepository biomeRepository = new BiomeRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml"));
+            ICultureRepository cultureRepository = new CultureRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml"));
+            IFactionRepository factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
+            IHoldingRepository holdingRepository = new HoldingRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
+            IRegionRepository regionRepository = new RegionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
+            IResourceRepository resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
+            IUnitRepository unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
+
+            List<Biome> biomeList = biomeRepository.GetAll().ToDomainModels().ToList();
+            List<Culture> cultureList = cultureRepository.GetAll().ToDomainModels().ToList();
+            List<Faction> factionList = factionRepository.GetAll().ToDomainModels().ToList();
+            List<Holding> holdingList = holdingRepository.GetAll().ToDomainModels().ToList();
+            List<Region> regionList = regionRepository.GetAll().ToDomainModels().ToList();
+            List<Resource> resourceList = resourceRepository.GetAll().ToDomainModels().ToList();
+            List<Unit> unitList = unitRepository.GetAll().ToDomainModels().ToList();
+
+            biomes = new Dictionary<string, Biome>();
+            cultures = new Dictionary<string, Culture>();
+            factions = new Dictionary<string, Faction>();
+            holdings = new Dictionary<string, Holding>();
+            regions = new Dictionary<string, Region>();
+            resources = new Dictionary<string, Resource>();
+            units = new Dictionary<string, Unit>();
+
+            biomeList.ForEach(biome => biomes.Add(biome.Id, biome));
+            cultureList.ForEach(culture => cultures.Add(culture.Id, culture));
+            factionList.ForEach(faction => factions.Add(faction.Id, faction));
+            holdingList.ForEach(holding => holdings.Add(holding.Id, holding));
+            regionList.ForEach(region => regions.Add(region.Id, region));
+            resourceList.ForEach(resource => resources.Add(resource.Id, resource));
+            unitList.ForEach(unit => units.Add(unit.Id, unit));
         }
 
         void LoadWorld(string worldId)
         {
-            borderRepository = new BorderRepository();
-            armyRepository = new ArmyRepository();
+            armies = new Dictionary<Tuple<string, string>, Army>();
+            borders = new Dictionary<Tuple<string, string>, Border>();
 
             LoadMap(worldId);
             LoadBorders();
@@ -133,9 +157,6 @@ namespace Narivia.BusinessLogic.DomainServices
 
         void LoadMap(string worldId)
         {
-            List<Region> regions = regionRepository.GetAll().ToDomainModels().ToList();
-            List<Biome> biomes = biomeRepository.GetAll().ToDomainModels().ToList();
-
             Dictionary<int, string> regionColourIds = new Dictionary<int, string>();
             Dictionary<int, string> biomeColourIds = new Dictionary<int, string>();
 
@@ -151,13 +172,13 @@ namespace Narivia.BusinessLogic.DomainServices
             biomeMap = new string[world.Width, world.Height];
 
             // Mapping the region colours
-            foreach (Region region in regions)
+            foreach (Region region in regions.Values.ToList())
             {
                 regionColourIds.Add(ColourTranslator.ToArgb(region.Colour), region.Id);
             }
 
             // Mapping the biome colours
-            foreach (Biome biome in biomes)
+            foreach (Biome biome in biomes.Values.ToList())
             {
                 biomeColourIds.Add(ColourTranslator.ToArgb(biome.Colour), biome.Id);
             }
@@ -191,17 +212,6 @@ namespace Narivia.BusinessLogic.DomainServices
             }
         }
 
-        void InitialiseDomainServices()
-        {
-            battleDomainService = new BattleDomainService()
-            {
-                ArmyRepository = armyRepository,
-                FactionRepository = factionRepository,
-                RegionRepository = regionRepository,
-                UnitRepository = unitRepository
-            };
-        }
-
         void InitializeGame(string factionId)
         {
             playerFactionId = factionId;
@@ -210,16 +220,14 @@ namespace Narivia.BusinessLogic.DomainServices
 
         void InitializeEntities()
         {
-            List<Faction> factions = factionRepository.GetAll().ToDomainModels().ToList();
-            List<Unit> units = unitRepository.GetAll().ToDomainModels().ToList();
-
-            foreach (Faction faction in factions)
+            foreach (Faction faction in factions.Values.ToList())
             {
                 // TODO: set starting wealth
                 faction.Wealth = 0;
 
-                foreach (Unit unit in units)
+                foreach (Unit unit in units.Values.ToList())
                 {
+                    Tuple<string, string> armyKey = new Tuple<string, string>(faction.Id, unit.Id);
                     Army army = new Army
                     {
                         FactionId = faction.Id,
@@ -227,7 +235,7 @@ namespace Narivia.BusinessLogic.DomainServices
                         Size = 0
                     };
 
-                    armyRepository.Add(army.ToEntity());
+                    armies.Add(armyKey, army);
                 }
             }
         }
@@ -239,13 +247,14 @@ namespace Narivia.BusinessLogic.DomainServices
                 return;
             }
 
+            Tuple<string, string> borderKey = new Tuple<string, string>(region1Id, region2Id);
             Border border = new Border
             {
                 Region1Id = region1Id,
                 Region2Id = region2Id
             };
 
-            borderRepository.Add(border.ToEntity());
+            borders.Add(borderKey, border);
         }
 
         void LoadBorders()
@@ -293,33 +302,36 @@ namespace Narivia.BusinessLogic.DomainServices
         string ChooseAttack(string factionId)
         {
             Random random = new Random();
-            List<Region> regionsOwned = regionRepository.GetAll()
-                .Where(x => x.FactionId == factionId)
-                .ToDomainModels().ToList();
+            List<Region> regionsOwned = regions.Values.Where(x => x.FactionId == factionId).ToList();
             List<string> choices = new List<string>();
 
             foreach (Region region in regionsOwned)
             {
-                List<Border> borders = borderRepository.GetAll().Where(x => x.Region1Id == region.Id ||
-                                                                            x.Region2Id == region.Id)
-                                                       .ToDomainModels().ToList();
+                List<Border> regionBorders = borders.Values
+                                                    .Where(x => x.Region1Id == region.Id ||
+                                                                       x.Region2Id == region.Id)
+                                                    .ToList();
 
-                foreach (Border border in borders)
+                foreach (Border border in regionBorders)
                 {
-                    Region region2 = regionRepository.Get(border.Region2Id).ToDomainModel();
+                    Region region2 = regions[border.Region2Id];
 
                     if (region2.Id != region.Id && region2.FactionId != "gaia")
+                    {
                         choices.Add(region2.Id);
+                    }
                 }
             }
 
             while (choices.Count > 0)
             {
                 string regionId = choices[random.Next(choices.Count)];
-                Region region = regionRepository.Get(regionId).ToDomainModel();
+                Region region = regions[regionId];
 
                 if (region.FactionId != "gaia")
+                {
                     return regionId;
+                }
 
                 choices.Remove(regionId);
             }
@@ -330,9 +342,66 @@ namespace Narivia.BusinessLogic.DomainServices
 
         void AttackRegion(string factionId, string regionId)
         {
-            BattleResult battleResult = battleDomainService.AttackRegion(factionId, regionId);
+            Random random = new Random();
 
-            // TODO: Use the result and send notifications, change relations, etc...
+            Region targetRegion = regions[regionId];
+            Faction attackerFaction = factions[factionId];
+            Faction defenderFaction = factions[targetRegion.FactionId];
+
+            List<Army> attackerArmies = armies.Values.Where(army => army.FactionId == attackerFaction.Id).ToList();
+            List<Army> defenderArmies = armies.Values.Where(army => army.FactionId == defenderFaction.Id).ToList();
+
+            int attackerTroops = attackerArmies.Select(y => y.Size).Sum();
+            int defenderTroops = defenderArmies.Select(y => y.Size).Sum();
+
+            while (attackerTroops > 0 && defenderTroops > 0)
+            {
+                int attackerUnitNumber = random.Next(attackerArmies.Count);
+                int defenderUnitNumber = random.Next(defenderArmies.Count);
+
+                while (attackerArmies.ElementAt(attackerUnitNumber).Size == 0)
+                {
+                    attackerUnitNumber = random.Next(attackerArmies.Count);
+                }
+
+                while (defenderArmies.ElementAt(defenderUnitNumber).Size == 0)
+                {
+                    defenderUnitNumber = random.Next(defenderArmies.Count);
+                }
+
+                string attackerUnitId = attackerArmies.ElementAt(attackerUnitNumber).UnitId;
+                string defenderUnitId = defenderArmies.ElementAt(defenderUnitNumber).UnitId;
+
+                Unit attackerUnit = units.Values.FirstOrDefault(unit => unit.Id == attackerUnitId);
+                Army attackerArmy = attackerArmies.FirstOrDefault(army => army.FactionId == attackerFaction.Id);
+
+                Unit defenderUnit = units.Values.FirstOrDefault(unit => unit.Id == defenderUnitId);
+                Army defenderArmy = defenderArmies.FirstOrDefault(army => army.FactionId == defenderFaction.Id);
+
+
+                // TODO: Attack and Defence bonuses
+
+                attackerArmy.Size =
+                    (attackerUnit.Health * attackerArmy.Size - defenderUnit.Power * defenderArmy.Size) /
+                    attackerUnit.Health;
+
+                defenderArmy.Size =
+                    (defenderUnit.Health * defenderArmy.Size - attackerUnit.Power * attackerArmy.Size) /
+                    defenderUnit.Health;
+
+                attackerArmy.Size = Math.Max(0, attackerArmy.Size);
+                defenderArmy.Size = Math.Max(0, defenderArmy.Size);
+            }
+
+            // TODO: In the GameDomainService I should change the realations based on wether the
+            // region was sovereign or not
+
+            if (attackerTroops > defenderTroops)
+            {
+                // TODO: Do something
+            }
+
+            // TODO: Do something
         }
     }
 }

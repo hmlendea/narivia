@@ -1,4 +1,4 @@
-﻿namespace Narivia.BusinessLogic.DomainServices.Interfaces
+﻿namespace Narivia.BusinessLogic.GameManagers.Interfaces
 {
     interface IGameDomainService
     {

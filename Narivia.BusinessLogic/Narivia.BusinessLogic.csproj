@@ -40,10 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainServices\BattleDomainService.cs" />
-    <Compile Include="DomainServices\GameDomainService.cs" />
-    <Compile Include="DomainServices\Interfaces\IBattleDomainService.cs" />
-    <Compile Include="DomainServices\Interfaces\IGameDomainService.cs" />
     <Compile Include="Mapping\ArmyMappingExtensions.cs" />
     <Compile Include="Mapping\BiomeMappingExtensions.cs" />
     <Compile Include="Mapping\BorderMappingExtensions.cs" />
@@ -55,6 +51,8 @@
     <Compile Include="Mapping\UnitMappingExtensions.cs" />
     <Compile Include="Mapping\WorldMappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GameManagers\Interfaces\IGameManager.cs" />
+    <Compile Include="GameManagers\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
@@ -69,6 +67,10 @@
       <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>
       <Name>Narivia.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameManagers\" />
+    <Folder Include="GameManagers\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
