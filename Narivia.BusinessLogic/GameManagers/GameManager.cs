@@ -8,6 +8,7 @@ using Narivia.BusinessLogic.GameManagers.Interfaces;
 using Narivia.BusinessLogic.Mapping;
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.DataAccess.Repositories;
+using Narivia.Infrastructure.Extensions;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
@@ -172,8 +173,8 @@ namespace Narivia.BusinessLogic.GameManagers
             biomeMap = new string[world.Width, world.Height];
 
             // Mapping the colours
-            regions.Values.ToList().ForEach(region => regionColourIds.Add(ColourTranslator.ToArgb(region.Colour), region.Id));
-            biomes.Values.ToList().ForEach(biome => regionColourIds.Add(ColourTranslator.ToArgb(biome.Colour), biome.Id));
+            regions.Values.ToList().ForEach(region => regionColourIds.Register(ColourTranslator.ToArgb(region.Colour), region.Id));
+            biomes.Values.ToList().ForEach(biome => biomeColourIds.Register(ColourTranslator.ToArgb(biome.Colour), biome.Id));
 
             // Reading the map pixel by pixel
             using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "map.png")))

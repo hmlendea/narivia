@@ -49,6 +49,7 @@
     <Compile Include="Helpers\ColourTranslator.cs" />
     <Compile Include="Helpers\FastBitmap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Models\Narivia.Models.csproj">
