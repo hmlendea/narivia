@@ -56,9 +56,13 @@ namespace Narivia.Graphics.ImageEffects
             if (Image.Active)
             {
                 if (Increasing == false)
+                {
                     Image.Opacity -= Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
+                }
                 else
+                {
                     Image.Opacity += Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
+                }
 
                 if (Image.Opacity < 0.0f)
                 {
@@ -72,7 +76,9 @@ namespace Narivia.Graphics.ImageEffects
                 }
             }
             else
+            {
                 Image.Opacity = 1.0f;
+            }
         }
     }
 }

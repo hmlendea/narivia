@@ -46,7 +46,9 @@ namespace Narivia.Screens
             Image.Update(gameTime);
 
             if (InputManager.Instance.KeyPressed(Keys.Enter))
+            {
                 ScreenManager.Instance.ChangeScreens("TitleScreen");
+            }
         }
 
         /// <summary>

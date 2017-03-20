@@ -20,9 +20,9 @@ namespace Narivia.Graphics
         Vector2 origin;
         RenderTarget2D renderTarget;
         SpriteFont font;
+        FadeEffect fadeEffect;
 
         readonly Dictionary<string, ImageEffect> effectList;
-        FadeEffect fadeEffect;
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Narivia.Graphics.Image"/> is active.
@@ -91,7 +91,7 @@ namespace Narivia.Graphics
         /// </summary>
         /// <value>The fade effect.</value>
         public FadeEffect FadeEffect
-        { 
+        {
             get { return fadeEffect; }
             set { fadeEffect = value; }
         }
@@ -124,23 +124,34 @@ namespace Narivia.Graphics
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
 
             if (!string.IsNullOrEmpty(ImagePath))
+            {
                 Texture = content.Load<Texture2D>(ImagePath);
+            }
 
             font = content.Load<SpriteFont>(FontName);
 
             Vector2 dimensions = Vector2.Zero;
 
             if (Texture != null)
+            {
                 dimensions.X += Texture.Width;
+            }
+
             dimensions.X += font.MeasureString(Text).X;
 
             if (Texture != null)
+            {
                 dimensions.Y = Math.Max(Texture.Height, font.MeasureString(Text).Y);
+            }
             else
+            {
                 dimensions.Y = font.MeasureString(Text).Y;
+            }
 
             if (SourceRectangle == Rectangle.Empty)
+            {
                 SourceRectangle = new Rectangle(0, 0, (int)dimensions.X, (int)dimensions.Y);
+            }
 
             renderTarget = new RenderTarget2D(
                 ScreenManager.Instance.GraphicsDevice, 
@@ -152,10 +163,14 @@ namespace Narivia.Graphics
             ScreenManager.Instance.SpriteBatch.Begin();
 
             if (Texture != null)
+            {
                 ScreenManager.Instance.SpriteBatch.Draw(Texture, Vector2.Zero, Color.White);
-            
+            }
+
             if (!string.IsNullOrEmpty(Text))
+            {
                 ScreenManager.Instance.SpriteBatch.DrawString(font, Text, Vector2.Zero, Color.White);
+            }
 
             ScreenManager.Instance.SpriteBatch.End();
 
@@ -170,7 +185,9 @@ namespace Narivia.Graphics
                 string[] split = Effects.Split(':');
 
                 foreach (string item in split)
+                {
                     ActivateEffect(item);
+                }
             }
         }
 
@@ -182,7 +199,9 @@ namespace Narivia.Graphics
             content.Unload();
 
             foreach (string effectKey in effectList.Keys)
+            {
                 DeactivateEffect(effectKey);
+            }
         }
 
         /// <summary>
@@ -192,8 +211,12 @@ namespace Narivia.Graphics
         public void Update(GameTime gameTime)
         {
             foreach (ImageEffect effect in effectList.Values)
+            {
                 if (effect.Active)
+                {
                     effect.Update(gameTime);
+                }
+            }
         }
 
         /// <summary>
@@ -249,7 +272,9 @@ namespace Narivia.Graphics
         {
 
             if (effect == null)
+            {
                 effect = (T)Activator.CreateInstance(typeof(T));
+            }
             else
             {
                 var obj = this;
@@ -268,7 +293,9 @@ namespace Narivia.Graphics
             foreach (var effect in effectList)
             {
                 if (effect.Value.Active)
+                {
                     Effects += effect.Key + ":";
+                }
             }
 
             Effects.TrimEnd(':');
@@ -277,11 +304,16 @@ namespace Narivia.Graphics
         public void RestoreEffects()
         {
             foreach (var effect in effectList)
+            {
                 DeactivateEffect(effect.Key);
+            }
 
             string[] split = Effects.Split(':');
+
             foreach (string effectKey in split)
+            {
                 ActivateEffect(effectKey);
+            }
         }
     }
 }
