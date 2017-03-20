@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
@@ -48,16 +49,13 @@ namespace Narivia.Menus
         
         public void LoadContent()
         {
-            string[] split = Effects.Split(':');
-
+            List<string> split = Effects.Split(':').ToList();
+            
             foreach (MenuItem item in Items)
             {
                 item.Image.LoadContent();
-
-                foreach (string s in split)
-                {
-                    item.Image.ActivateEffect(s);
-                }
+                
+                split.ForEach(item.Image.ActivateEffect);
             }
 
             AlignMenuItems();
@@ -65,10 +63,7 @@ namespace Narivia.Menus
 
         public void UnloadContent()
         {
-            foreach (MenuItem item in Items)
-            {
-                item.Image.UnloadContent();
-            }
+            Items.ForEach(item => item.Image.UnloadContent());
         }
 
         public void Update(GameTime gameTime)
@@ -107,25 +102,14 @@ namespace Narivia.Menus
 
             for (int i = 0; i < Items.Count; i++)
             {
-                if (i == ItemNumber)
-                {
-                    Items[i].Image.Active = true;
-                }
-                else
-                {
-                    Items[i].Image.Active = false;
-                }
-
+                Items[i].Image.Active = (i == ItemNumber);
                 Items[i].Image.Update(gameTime);
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (MenuItem item in Items)
-            {
-                item.Image.Draw(spriteBatch);
-            }
+            Items.ForEach(item => item.Image.Draw(spriteBatch));
         }
 
         public void Transition(float alpha)
@@ -134,15 +118,7 @@ namespace Narivia.Menus
             {
                 item.Image.Active = true;
                 item.Image.Opacity = alpha;
-
-                if (alpha == 0.0f)
-                {
-                    item.Image.FadeEffect.Increasing = true;
-                }
-                else
-                {
-                    item.Image.FadeEffect.Increasing = false;
-                }
+                item.Image.FadeEffect.Increasing = (alpha == 0.0f);
             }
         }
 
@@ -150,24 +126,22 @@ namespace Narivia.Menus
         {
             Vector2 dimensions = Vector2.Zero;
 
-            foreach (MenuItem item in Items)
-            {
-                dimensions += new Vector2(item.Image.SourceRectangle.Width, item.Image.SourceRectangle.Height);
-            }
-
+            Items.ForEach(item => dimensions += new Vector2(item.Image.SourceRectangle.Width,
+                                                            item.Image.SourceRectangle.Height));
+            
             dimensions = new Vector2(
                 (ScreenManager.Instance.Dimensions.X - dimensions.X) / 2,
                 (ScreenManager.Instance.Dimensions.Y - dimensions.Y) / 2);
 
             foreach (MenuItem item in Items)
             {
-                if (Axis == "X" || Axis == "x")
+                if ("Xx".Contains(Axis))
                 {
                     item.Image.Position = new Vector2(
                         dimensions.X,
                         (ScreenManager.Instance.Dimensions.Y - item.Image.SourceRectangle.Height) / 2);
                 }
-                else if (Axis == "Y" || Axis == "y")
+                else if ("Yy".Contains(Axis))
                 {
                     item.Image.Position = new Vector2(
                         (ScreenManager.Instance.Dimensions.X - item.Image.SourceRectangle.Width) / 2,

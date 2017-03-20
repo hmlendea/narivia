@@ -64,20 +64,14 @@ namespace Narivia.WorldMap
 
         public void UnloadContent()
         {
-            foreach (Tile tile in tiles)
-            {
-                tile.UnloadContent();
-            }
+            tiles.ForEach(tile => tile.UnloadContent());
         }
 
         public void Update(GameTime gameTime)
         {
             Image.Update(gameTime);
 
-            foreach (Tile tile in tiles)
-            {
-                tile.Update(gameTime);
-            }
+            tiles.ForEach(tile => tile.Update(gameTime));
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -171,17 +171,9 @@ namespace Narivia.BusinessLogic.GameManagers
             worldTiles = new string[world.Width, world.Height];
             biomeMap = new string[world.Width, world.Height];
 
-            // Mapping the region colours
-            foreach (Region region in regions.Values.ToList())
-            {
-                regionColourIds.Add(ColourTranslator.ToArgb(region.Colour), region.Id);
-            }
-
-            // Mapping the biome colours
-            foreach (Biome biome in biomes.Values.ToList())
-            {
-                biomeColourIds.Add(ColourTranslator.ToArgb(biome.Colour), biome.Id);
-            }
+            // Mapping the colours
+            regions.Values.ToList().ForEach(region => regionColourIds.Add(ColourTranslator.ToArgb(region.Colour), region.Id));
+            biomes.Values.ToList().ForEach(biome => regionColourIds.Add(ColourTranslator.ToArgb(biome.Colour), biome.Id));
 
             // Reading the map pixel by pixel
             using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "map.png")))

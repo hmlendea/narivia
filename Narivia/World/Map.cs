@@ -19,34 +19,22 @@ namespace Narivia.WorldMap
 
         public void LoadContent()
         {
-            foreach (Layer layer in Layers)
-            {
-                layer.LoadContent(TileDimensions);
-            }
+            Layers.ForEach(layer => layer.LoadContent(TileDimensions));
         }
 
         public void UnloadContent()
         {
-            foreach (Layer layer in Layers)
-            {
-                layer.UnloadContent();
-            }
+            Layers.ForEach(layer => layer.UnloadContent());
         }
 
         public void Update(GameTime gameTime)
         {
-            foreach (Layer layer in Layers)
-            {
-                layer.Update(gameTime);
-            }
+            Layers.ForEach(layer => layer.Update(gameTime));
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Layer layer in Layers)
-            {
-                layer.Draw(spriteBatch);
-            }
+            Layers.ForEach(layer => layer.Draw(spriteBatch));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
@@ -182,12 +183,9 @@ namespace Narivia.Graphics
 
             if (!string.IsNullOrEmpty(Effects))
             {
-                string[] split = Effects.Split(':');
+                List<string> split = Effects.Split(':').ToList();
 
-                foreach (string item in split)
-                {
-                    ActivateEffect(item);
-                }
+                split.ForEach(ActivateEffect);
             }
         }
 
@@ -198,10 +196,9 @@ namespace Narivia.Graphics
         {
             content.Unload();
 
-            foreach (string effectKey in effectList.Keys)
-            {
-                DeactivateEffect(effectKey);
-            }
+            List<string> effectKeys = effectList.Keys.ToList();
+
+            effectKeys.ForEach(DeactivateEffect);
         }
 
         /// <summary>
@@ -210,13 +207,9 @@ namespace Narivia.Graphics
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            foreach (ImageEffect effect in effectList.Values)
-            {
-                if (effect.Active)
-                {
-                    effect.Update(gameTime);
-                }
-            }
+            List<ImageEffect> activeEffects = effectList.Values.Where(effect => effect.Active).ToList();
+
+            activeEffects.ForEach(effect => effect.Update(gameTime));
         }
 
         /// <summary>
@@ -288,32 +281,21 @@ namespace Narivia.Graphics
         
         public void StoreEffects()
         {
+            List<ImageEffect> activeEffects = effectList.Values.Where(effect => effect.Active).ToList();
             Effects = string.Empty;
 
-            foreach (var effect in effectList)
-            {
-                if (effect.Value.Active)
-                {
-                    Effects += effect.Key + ":";
-                }
-            }
+            activeEffects.ForEach(effect => Effects += effect.Key + ":");
 
             Effects.TrimEnd(':');
         }
 
         public void RestoreEffects()
         {
-            foreach (var effect in effectList)
-            {
-                DeactivateEffect(effect.Key);
-            }
+            List<string> effectKeys = effectList.Keys.ToList();
+            List<string> split = Effects.Split(':').ToList();
 
-            string[] split = Effects.Split(':');
-
-            foreach (string effectKey in split)
-            {
-                ActivateEffect(effectKey);
-            }
+            effectKeys.ForEach(DeactivateEffect);
+            split.ForEach(ActivateEffect);
         }
     }
 }

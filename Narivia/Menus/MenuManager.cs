@@ -96,10 +96,7 @@ namespace Narivia.Menus
                 {
                     transitioning = false;
 
-                    foreach (MenuItem item in menu.Items)
-                    {
-                        item.Image.RestoreEffects();
-                    }
+                    menu.Items.ForEach(item => item.Image.RestoreEffects());
                 }
             }
 

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using System.Linq;
+
+using Microsoft.Xna.Framework.Input;
 
 using Narivia.Screens;
 
@@ -35,41 +37,19 @@ namespace Narivia.Input
 
         public bool KeyPressed(params Keys[] keys)
         {
-            foreach (Keys key in keys)
-            {
-                if (currentKeyState.IsKeyDown(key) && previousKeyState.IsKeyUp(key))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return keys.Any(key => currentKeyState.IsKeyDown(key) &&
+                                   previousKeyState.IsKeyUp(key));
         }
 
         public bool KeyReleased(params Keys[] keys)
         {
-            foreach (Keys key in keys)
-            {
-                if (currentKeyState.IsKeyUp(key) && previousKeyState.IsKeyDown(key))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return keys.Any(key => currentKeyState.IsKeyUp(key) &&
+                                   previousKeyState.IsKeyDown(key));
         }
 
         public bool KeyDown(params Keys[] keys)
         {
-            foreach (Keys key in keys)
-            {
-                if (currentKeyState.IsKeyDown(key))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return keys.Any(currentKeyState.IsKeyDown);
         }
     }
 }
