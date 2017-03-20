@@ -83,6 +83,7 @@
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Helpers\XmlManager.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
+    <Compile Include="World\Entities\Camera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -149,5 +150,6 @@
   <ItemGroup />
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="World\Entities\" />
   </ItemGroup>
 </Project>

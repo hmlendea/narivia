@@ -7,28 +7,34 @@ using Narivia.BusinessLogic.GameManagers;
 using Narivia.Graphics;
 using Narivia.Models;
 using Narivia.WorldMap;
+using Narivia.WorldMap.Entities;
 
 namespace Narivia.Screens
 {
     public class GameplayScreen : Screen
     {
         GameDomainService gameDomainService;
+        Camera camera;
         Map map;
 
         public override void LoadContent()
         {
             base.LoadContent();
 
+            camera = new Camera();
+
             gameDomainService = new GameDomainService();
             gameDomainService.NewGame("narivia", "alpalet");
 
             LoadMap();
+            camera.LoadContent();
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
 
+            camera.UnloadContent();
             map.UnloadContent();
         }
 
@@ -36,6 +42,7 @@ namespace Narivia.Screens
         {
             base.Update(gameTime);
 
+            camera.Update(gameTime);
             map.Update(gameTime);
         }
 
@@ -43,7 +50,8 @@ namespace Narivia.Screens
         {
             base.Draw(spriteBatch);
 
-            map.Draw(spriteBatch);
+            camera.Draw(spriteBatch);
+            map.Draw(spriteBatch, camera.Position);
         }
 
         void LoadMap()

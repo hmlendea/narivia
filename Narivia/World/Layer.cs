@@ -74,11 +74,11 @@ namespace Narivia.WorldMap
             tiles.ForEach(tile => tile.Update(gameTime));
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
             foreach (Tile tile in tiles)
             {
-                Image.Position = tile.Position;
+                Image.Position = tile.Position - cameraPosition;
                 Image.SourceRectangle = tile.SourceRectangle;
                 Image.Draw(spriteBatch);
             }

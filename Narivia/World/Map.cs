@@ -32,9 +32,9 @@ namespace Narivia.WorldMap
             Layers.ForEach(layer => layer.Update(gameTime));
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
-            Layers.ForEach(layer => layer.Draw(spriteBatch));
+            Layers.ForEach(layer => layer.Draw(spriteBatch, cameraPosition));
         }
     }
 }
