@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.WorldMap.Entities;
 
 namespace Narivia.WorldMap
 {
@@ -74,11 +76,19 @@ namespace Narivia.WorldMap
             tiles.ForEach(tile => tile.Update(gameTime));
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
+        public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-            foreach (Tile tile in tiles)
+            Vector2 cameraStart = camera.Position - Vector2.One * 32;
+            Vector2 cameraEnd = camera.Position + camera.Size;
+
+            List<Tile> tileList = tiles.Where(tile => tile.Position.X >= cameraStart.X &&
+                                                      tile.Position.Y >= cameraStart.Y &&
+                                                      tile.Position.X <= cameraEnd.X &&
+                                                      tile.Position.Y <= cameraEnd.Y).ToList();
+
+            foreach (Tile tile in tileList)
             {
-                Image.Position = tile.Position - cameraPosition;
+                Image.Position = tile.Position - camera.Position;
                 Image.SourceRectangle = tile.SourceRectangle;
                 Image.Draw(spriteBatch);
             }

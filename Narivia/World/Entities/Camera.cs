@@ -10,14 +10,18 @@ namespace Narivia.WorldMap.Entities
     {
         public Vector2 Position { get; set; }
 
+        public Vector2 Size { get; set; }
+
         public Vector2 Velocity { get; set; }
 
         public float MovementSpeed { get; set; }
 
         public Camera()
         {
+            Position = Vector2.Zero;
             Velocity = Vector2.Zero;
-            MovementSpeed = 100;
+            MovementSpeed = 800;
+            Size = new Vector2(800, 600);
         }
 
         public void LoadContent()

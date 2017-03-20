@@ -3,6 +3,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.WorldMap.Entities;
+
 namespace Narivia.WorldMap
 {
     public class Map
@@ -32,9 +34,9 @@ namespace Narivia.WorldMap
             Layers.ForEach(layer => layer.Update(gameTime));
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
+        public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-            Layers.ForEach(layer => layer.Draw(spriteBatch, cameraPosition));
+            Layers.ForEach(layer => layer.Draw(spriteBatch, camera));
         }
     }
 }

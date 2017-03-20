@@ -51,7 +51,7 @@ namespace Narivia.Screens
             base.Draw(spriteBatch);
 
             camera.Draw(spriteBatch);
-            map.Draw(spriteBatch, camera.Position);
+            map.Draw(spriteBatch, camera);
         }
 
         void LoadMap()
