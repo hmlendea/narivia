@@ -58,7 +58,7 @@ namespace Narivia.Screens
         {
             map = new Map
             {
-                TileDimensions = new Vector2(32, 32),
+                TileDimensions = new Vector2(16, 16),
                 Layers = new List<Layer>()
             };
 

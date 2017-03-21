@@ -85,7 +85,7 @@ namespace Narivia.Screens
         /// </summary>
         public ScreenManager()
         {
-            Dimensions = new Vector2(800, 480);
+            Dimensions = new Vector2(1280, 720);
             currentScreen = new SplashScreen();
 
             xmlScreenManager = new XmlManager<Screen>();

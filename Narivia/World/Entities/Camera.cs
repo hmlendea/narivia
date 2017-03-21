@@ -21,7 +21,7 @@ namespace Narivia.WorldMap.Entities
             Position = Vector2.Zero;
             Velocity = Vector2.Zero;
             MovementSpeed = 800;
-            Size = new Vector2(800, 600);
+            Size = new Vector2(1280, 720);
         }
 
         public void LoadContent()
