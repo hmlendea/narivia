@@ -73,7 +73,7 @@
     <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="NariviaGame.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
- 
+
 using Narivia.Screens;
 
 namespace Narivia
@@ -9,15 +9,17 @@ namespace Narivia
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class NariviaGame : Game
     {
         readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        public const int TILE_DIMENSIONS = 16;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Game1"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.NariviaGame"/> class.
         /// </summary>
-        public Game1()
+        public NariviaGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -34,7 +36,7 @@ namespace Narivia
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             graphics.ApplyChanges();
-            
+
             base.Initialize();
         }
 
@@ -69,13 +71,13 @@ namespace Narivia
         {
             // For Mobile devices, this logic will close the Game when the Back button is pressed
             // Exit() is obsolete on iOS
-            #if !__IOS__ && !__TVOS__
+#if !__IOS__ && !__TVOS__
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
-            #endif
+#endif
 
             ScreenManager.Instance.Update(gameTime);
             base.Update(gameTime);
@@ -92,7 +94,7 @@ namespace Narivia
             spriteBatch.Begin();
             ScreenManager.Instance.Draw(spriteBatch);
             spriteBatch.End();
-            
+
             base.Draw(gameTime);
         }
     }

@@ -6,7 +6,7 @@
 		<LinkType>Screen</LinkType>
 		<LinkId>GameplayScreen</LinkId>
 		<Image>
-			<Text>Load map 'Narivia'</Text>
+			<Text>Load test map 'Narivia'</Text>
 		</Image>
 	</Item>
 	<Item>

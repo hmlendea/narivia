@@ -13,7 +13,7 @@ namespace Narivia.Screens
 {
     public class GameplayScreen : Screen
     {
-        GameDomainService gameDomainService;
+        GameDomainService game;
         Camera camera;
         Map map;
 
@@ -23,8 +23,8 @@ namespace Narivia.Screens
 
             camera = new Camera();
 
-            gameDomainService = new GameDomainService();
-            gameDomainService.NewGame("narivia", "alpalet");
+            game = new GameDomainService();
+            game.NewGame("narivia", "alpalet");
 
             LoadMap();
             camera.LoadContent();
@@ -56,33 +56,35 @@ namespace Narivia.Screens
 
         void LoadMap()
         {
+            int mapWidth = game.WorldTiles.GetLength(0);
+            int mapHeight = game.WorldTiles.GetLength(1);
+
             map = new Map
             {
-                TileDimensions = new Vector2(16, 16),
+                TileDimensions = new Vector2(NariviaGame.TILE_DIMENSIONS, NariviaGame.TILE_DIMENSIONS),
                 Layers = new List<Layer>()
             };
 
-            List<Biome> biomes = gameDomainService.GetAllBiomes();
-
             Dictionary<string, Layer> biomeLayers = new Dictionary<string, Layer>();
+            List<Biome> biomes = game.GetAllBiomes();
 
             foreach (Biome biome in biomes)
             {
                 Layer layer = new Layer
                 {
                     Image = new Image { ImagePath = "World/Terrain/" + biome.Id },
-                    TileMap = new string[640, 640]
+                    TileMap = new string[mapWidth, mapHeight]
                 };
 
                 biomeLayers.Add(biome.Id, layer);
                 map.Layers.Add(layer);
             }
 
-            for (int y = 0; y < 640; y++)
+            for (int y = 0; y < mapHeight; y++)
             {
-                for (int x = 0; x < 640; x++)
+                for (int x = 0; x < mapWidth; x++)
                 {
-                    string biomeId = gameDomainService.BiomeMap[x, y];
+                    string biomeId = game.BiomeMap[x, y];
 
                     biomeLayers[biomeId].TileMap[x, y] = "1:3";
                 }
