@@ -6,22 +6,8 @@ namespace Narivia.Infrastructure.Helpers
     public static class ApplicationPaths
     {
         static readonly string rootDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        static readonly string DataDirectory = Path.Combine(rootDirectory, "data");
 
         #region Directories
-
-
-        /// <summary>
-        /// Gets the resource packs directory.
-        /// </summary>
-        /// <value>The resource packs directory.</value>
-        public static string ResourcePacksDirectory
-        {
-            get
-            {
-                return Path.Combine(DataDirectory, "resourcepacks");
-            }
-        }
 
         /// <summary>
         /// Gets the worlds directory.
@@ -31,19 +17,7 @@ namespace Narivia.Infrastructure.Helpers
         {
             get
             {
-                return Path.Combine(DataDirectory, "worlds");
-            }
-        }
-
-        /// <summary>
-        /// Gets the sounds directory.
-        /// </summary>
-        /// <value>The sounds directory.</value>
-        public static string SoundsDirectory
-        {
-            get
-            {
-                return Path.Combine(DataDirectory, "sound");
+                return Path.Combine(rootDirectory, "Worlds");
             }
         }
 
