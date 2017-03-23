@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCultureEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CultureEntity>
+    <Id>nordic</Id>
+    <TextureSet>nordic</TextureSet>
+    <Name>Nordic</Name>
+    <Description>The culture of the Nords</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>sudic</Id>
+    <TextureSet>sudic</TextureSet>
+    <Name>Sudic</Name>
+    <Description>The culture of the Sudics</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>ayakan</Id>
+    <TextureSet>ayakan</TextureSet>
+    <Name>Ayakan</Name>
+    <Description>The culture of the Ayakans</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>blumiac</Id>
+    <TextureSet>blumiac</TextureSet>
+    <Name>Blumiac</Name>
+    <Description>The culture of the Blumians</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>amionic</Id>
+    <TextureSet>amionic</TextureSet>
+    <Name>Amionic</Name>
+    <Description>The culture of the people of Amion</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>barbarian</Id>
+    <TextureSet>barbarian</TextureSet>
+    <Name>Barbarian</Name>
+    <Description>The culture of the Barbarians</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>istian</Id>
+    <TextureSet>istian</TextureSet>
+    <Name>Istian</Name>
+    <Description>The culture of the Istians</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>shesan</Id>
+    <TextureSet>shesan</TextureSet>
+    <Name>Shesan</Name>
+    <Description>The culture of the Shesans</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>chowo</Id>
+    <TextureSet>chowo</TextureSet>
+    <Name>Chowo</Name>
+    <Description>The culture of the Chowos</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>letian</Id>
+    <TextureSet>letian</TextureSet>
+    <Name>Letian</Name>
+    <Description>The culture of the Letians</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>rennjan</Id>
+    <TextureSet>rennjan</TextureSet>
+    <Name>Rennjan</Name>
+    <Description>The culture of the Rannans and Sporadjans</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>befterian</Id>
+    <TextureSet>befterian</TextureSet>
+    <Name>Befterian</Name>
+    <Description>The culture of the Befterians</Description>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>rural</Id>
+    <TextureSet>rural</TextureSet>
+    <Name>Rural</Name>
+    <Description>The culture of the rural factions</Description>
+  </CultureEntity>
+</ArrayOfCultureEntity>
