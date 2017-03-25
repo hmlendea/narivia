@@ -44,14 +44,13 @@ namespace Narivia.WorldMap
 
                     if (TileMap[x, y] != null)
                     {
-                        string[] values = TileMap[x, y].Split(':');
-
-                        int value1 = int.Parse(values[0]);
-                        int value2 = int.Parse(values[1]);
+                        int gid = int.Parse(TileMap[x, y]);
+                        int srX = gid % (Image.Texture.Width / (int)tileDimensions.X);
+                        int srY = gid / (Image.Texture.Width / (int)tileDimensions.X);
 
                         sourceRectangle = new Rectangle(
-                            value1 * (int)tileDimensions.X,
-                            value2 * (int)tileDimensions.Y,
+                            srX * (int)tileDimensions.X,
+                            srY * (int)tileDimensions.Y,
                             (int)tileDimensions.X,
                             (int)tileDimensions.Y);
 
