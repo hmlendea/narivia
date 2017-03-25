@@ -14,13 +14,13 @@ namespace Narivia.WorldMap.Entities
 
         public Vector2 Velocity { get; set; }
 
-        public float MovementSpeed { get; set; }
+        public float Speed { get; set; }
 
         public Camera()
         {
             Position = Vector2.Zero;
             Velocity = Vector2.Zero;
-            MovementSpeed = 800;
+            Speed = 800;
             Size = new Vector2(1280, 720);
         }
 
@@ -36,40 +36,35 @@ namespace Narivia.WorldMap.Entities
 
         public void Update(GameTime gameTime)
         {
-            //if ((int)Velocity.X == 0)
+            if (InputManager.Instance.KeyDown(Keys.Up, Keys.W))
             {
-                if (InputManager.Instance.KeyDown(Keys.Up, Keys.W))
-                {
-                    Velocity = new Vector2(Velocity.X, -MovementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds);
-                }
-                else if (InputManager.Instance.KeyDown(Keys.Down, Keys.S))
-                {
-                    Velocity = new Vector2(Velocity.X, MovementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds);
-                }
-                else
-                {
-                    Velocity = new Vector2(Velocity.X, 0);
-                }
+                Velocity = new Vector2(Velocity.X, -Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+            else if (InputManager.Instance.KeyDown(Keys.Down, Keys.S))
+            {
+                Velocity = new Vector2(Velocity.X, Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+            else
+            {
+                Velocity = new Vector2(Velocity.X, 0);
             }
 
-            //if ((int)Velocity.Y == 0)
+            if (InputManager.Instance.KeyDown(Keys.Left, Keys.A))
             {
-                if (InputManager.Instance.KeyDown(Keys.Left, Keys.A))
-                {
-                    Velocity = new Vector2(-MovementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds, Velocity.Y);
-                }
-                else if (InputManager.Instance.KeyDown(Keys.Right, Keys.D))
-                {
-                    Velocity = new Vector2(MovementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds, Velocity.Y);
-                }
-                else
-                {
-                    Velocity = new Vector2(0, Velocity.Y);
-                }
+                Velocity = new Vector2(-Speed * (float)gameTime.ElapsedGameTime.TotalSeconds, Velocity.Y);
+            }
+            else if (InputManager.Instance.KeyDown(Keys.Right, Keys.D))
+            {
+                Velocity = new Vector2(Speed * (float)gameTime.ElapsedGameTime.TotalSeconds, Velocity.Y);
+            }
+            else
+            {
+                Velocity = new Vector2(0, Velocity.Y);
             }
 
-            Position += Velocity;
-
+            Position = new Vector2(
+                (int)(Position.X + Velocity.X),
+                (int)(Position.Y + Velocity.Y));
         }
 
         public void Draw(SpriteBatch spriteBatch)

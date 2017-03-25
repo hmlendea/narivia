@@ -15,6 +15,8 @@ namespace Narivia.WorldMap
 
         public Image Image { get; set; }
 
+        Vector2 tileDimensions;
+
         List<Tile> tiles;
 
         public Layer()
@@ -28,6 +30,7 @@ namespace Narivia.WorldMap
         {
             Vector2 position = -tileDimensions;
             Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
+            this.tileDimensions = tileDimensions;
 
             int mapSize = TileMap.GetLength(0);
 
@@ -77,7 +80,7 @@ namespace Narivia.WorldMap
 
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-            Vector2 cameraStart = camera.Position - Vector2.One * 32;
+            Vector2 cameraStart = camera.Position - Vector2.One * tileDimensions.X;
             Vector2 cameraEnd = camera.Position + camera.Size;
 
             List<Tile> tileList = tiles.Where(tile => tile.Position.X >= cameraStart.X &&
