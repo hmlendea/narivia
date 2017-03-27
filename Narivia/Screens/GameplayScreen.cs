@@ -60,7 +60,7 @@ namespace Narivia.Screens
             camera.Draw(spriteBatch);
             map.Draw(spriteBatch, camera);
 
-            var fpsString = string.Format("FPS: {0}", Math.Round(FrameCounter.AverageFramesPerSecond));
+            var fpsString = string.Format("FPS: {0}", Math.Round(FramerateCounter.AverageFramesPerSecond));
             spriteBatch.DrawString(content.Load<SpriteFont>("Fonts/FrameCounterFont"), fpsString, new Vector2(1, 1), Color.Lime);
         }
     }
