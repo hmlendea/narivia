@@ -14,8 +14,12 @@ namespace Narivia.Menus
 {
     public class Menu
     {
-        private string id;
-        
+        string id;
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>The identifier.</value>
         public string ID
         {
             get { return id; }
@@ -26,18 +30,40 @@ namespace Narivia.Menus
             }
         }
 
+        /// <summary>
+        /// Gets or sets the axis.
+        /// </summary>
+        /// <value>The axis.</value>
         public string Axis { get; set; }
 
+        /// <summary>
+        /// Gets or sets the effects.
+        /// </summary>
+        /// <value>The effects.</value>
         public string Effects { get; set; }
 
+        /// <summary>
+        /// Gets or sets the items.
+        /// </summary>
+        /// <value>The items.</value>
         [XmlElement("Item")]
         public List<MenuItem> Items { get; set; }
 
+        /// <summary>
+        /// Gets the item number.
+        /// </summary>
+        /// <value>The item number.</value>
         [XmlIgnore]
         public int ItemNumber { get; private set; }
-        
+
+        /// <summary>
+        /// Occurs when the Id changes.
+        /// </summary>
         public event EventHandler OnMenuChange;
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Narivia.Menus.Menu"/> class.
+        /// </summary>
         public Menu()
         {
             id = string.Empty;
@@ -46,26 +72,36 @@ namespace Narivia.Menus
             Effects = string.Empty;
             Items = new List<MenuItem>();
         }
-        
+
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
         public void LoadContent()
         {
             List<string> split = Effects.Split(':').ToList();
-            
+
             foreach (MenuItem item in Items)
             {
                 item.Image.LoadContent();
-                
+
                 split.ForEach(item.Image.ActivateEffect);
             }
 
             AlignMenuItems();
         }
 
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
         public void UnloadContent()
         {
             Items.ForEach(item => item.Image.UnloadContent());
         }
 
+        /// <summary>
+        /// Updates the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
             if ("Xx".Contains(Axis))
@@ -107,11 +143,19 @@ namespace Narivia.Menus
             }
         }
 
+        /// <summary>
+        /// Draws the content on the specified spriteBatch.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
             Items.ForEach(item => item.Image.Draw(spriteBatch));
         }
 
+        /// <summary>
+        /// Transitions the menu to another one.
+        /// </summary>
+        /// <param name="alpha">Alpha.</param>
         public void Transition(float alpha)
         {
             foreach (MenuItem item in Items)
@@ -128,7 +172,7 @@ namespace Narivia.Menus
 
             Items.ForEach(item => dimensions += new Vector2(item.Image.SourceRectangle.Width,
                                                             item.Image.SourceRectangle.Height));
-            
+
             dimensions = new Vector2(
                 (ScreenManager.Instance.Dimensions.X - dimensions.X) / 2,
                 (ScreenManager.Instance.Dimensions.Y - dimensions.Y) / 2);

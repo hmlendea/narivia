@@ -13,20 +13,38 @@ using Narivia.WorldMap.Entities;
 
 namespace Narivia.WorldMap
 {
+    /// <summary>
+    /// Map.
+    /// </summary>
     public class Map
     {
         TmxMap tmxMap;
 
+        /// <summary>
+        /// Gets or sets the layers.
+        /// </summary>
+        /// <value>The layers.</value>
         public List<Layer> Layers { get; set; }
 
+        /// <summary>
+        /// Gets or sets the tile dimensions.
+        /// </summary>
+        /// <value>The tile dimensions.</value>
         public Vector2 TileDimensions { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Narivia.WorldMap.Map"/> class.
+        /// </summary>
         public Map()
         {
             Layers = new List<Layer>();
             TileDimensions = Vector2.Zero;
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="worldName">World name.</param>
         public void LoadContent(string worldName)
         {
             tmxMap = new TmxMap(Path.Combine(ApplicationPaths.WorldsDirectory, worldName, "world.tmx"));
@@ -59,16 +77,28 @@ namespace Narivia.WorldMap
             }
         }
 
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
         public void UnloadContent()
         {
             Layers.ForEach(layer => layer.UnloadContent());
         }
 
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
             Layers.ForEach(layer => layer.Update(gameTime));
         }
 
+        /// <summary>
+        /// Draw the content on the specified spriteBatch.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        /// <param name="camera">Camera.</param>
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
             Layers.ForEach(layer => layer.Draw(spriteBatch, camera));

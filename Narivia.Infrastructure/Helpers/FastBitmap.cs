@@ -5,6 +5,9 @@ using System.Runtime.InteropServices;
 
 namespace Narivia.Infrastructure.Helpers
 {
+    /// <summary>
+    /// Fast Bitmap.
+    /// </summary>
     public class FastBitmap : IDisposable
     {
         readonly Bitmap source;

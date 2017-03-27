@@ -52,7 +52,7 @@ namespace Narivia.Screens
         }
 
         /// <summary>
-        /// Draws the content.
+        /// Draws the content on the specified spriteBatch.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)

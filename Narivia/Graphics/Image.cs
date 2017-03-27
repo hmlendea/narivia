@@ -47,7 +47,7 @@ namespace Narivia.Graphics
         /// Gets or sets the name of the font.
         /// </summary>
         /// <value>The name of the font.</value>
-        public string FontName{ get; set; }
+        public string FontName { get; set; }
 
         /// <summary>
         /// Gets or sets the image path.
@@ -155,7 +155,7 @@ namespace Narivia.Graphics
             }
 
             renderTarget = new RenderTarget2D(
-                ScreenManager.Instance.GraphicsDevice, 
+                ScreenManager.Instance.GraphicsDevice,
                 (int)dimensions.X, (int)dimensions.Y);
 
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(renderTarget);
@@ -261,7 +261,7 @@ namespace Narivia.Graphics
         /// </summary>
         /// <param name="effect">Effect.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        void SetEffect<T>(ref T effect) where T:ImageEffect
+        void SetEffect<T>(ref T effect) where T : ImageEffect
         {
 
             if (effect == null)
@@ -278,7 +278,10 @@ namespace Narivia.Graphics
 
             effectList.Add(effect.Key, effect);
         }
-        
+
+        /// <summary>
+        /// Stores the effects.
+        /// </summary>
         public void StoreEffects()
         {
             List<ImageEffect> activeEffects = effectList.Values.Where(effect => effect.Active).ToList();
@@ -289,6 +292,9 @@ namespace Narivia.Graphics
             Effects.TrimEnd(':');
         }
 
+        /// <summary>
+        /// Restores the effects.
+        /// </summary>
         public void RestoreEffects()
         {
             List<string> effectKeys = effectList.Keys.ToList();

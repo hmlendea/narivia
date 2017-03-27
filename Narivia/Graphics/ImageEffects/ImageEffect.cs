@@ -4,8 +4,6 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 
-using Narivia.Graphics;
-
 namespace Narivia.Graphics.ImageEffects
 {
     /// <summary>
@@ -58,7 +56,7 @@ namespace Narivia.Graphics.ImageEffects
         /// </summary>
         public virtual void UnloadContent()
         {
-            
+
         }
 
         /// <summary>
@@ -67,7 +65,7 @@ namespace Narivia.Graphics.ImageEffects
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-            
+
         }
     }
 }

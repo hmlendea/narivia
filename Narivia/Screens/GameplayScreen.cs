@@ -11,6 +11,9 @@ using Narivia.WorldMap.Entities;
 
 namespace Narivia.Screens
 {
+    /// <summary>
+    /// Gameplay screen.
+    /// </summary>
     public class GameplayScreen : Screen
     {
         GameDomainService game;
@@ -18,6 +21,9 @@ namespace Narivia.Screens
         Map map;
         Image fpsCounter;
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
         public override void LoadContent()
         {
             base.LoadContent();
@@ -37,6 +43,9 @@ namespace Narivia.Screens
             map.LoadContent("narivia");
         }
 
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
         public override void UnloadContent()
         {
             base.UnloadContent();
@@ -45,6 +54,11 @@ namespace Narivia.Screens
             map.UnloadContent();
         }
 
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -53,6 +67,11 @@ namespace Narivia.Screens
             map.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draw the content on the specified spriteBatch.
+        /// </summary>
+        /// <returns>The draw.</returns>
+        /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);

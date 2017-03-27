@@ -11,11 +11,17 @@ using Narivia.Screens;
 
 namespace Narivia.Menus
 {
+    /// <summary>
+    /// Menu manager.
+    /// </summary>
     public class MenuManager
     {
         Menu menu;
         bool transitioning;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Narivia.Menus.MenuManager"/> class.
+        /// </summary>
         public MenuManager()
         {
             menu = new Menu();
@@ -23,6 +29,10 @@ namespace Narivia.Menus
             transitioning = false;
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="menuPath">Menu path.</param>
         public void LoadContent(string menuPath)
         {
             if (menuPath != string.Empty)
@@ -31,11 +41,18 @@ namespace Narivia.Menus
             }
         }
 
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
         public void UnloadContent()
         {
             menu.UnloadContent();
         }
 
+        /// <summary>
+        /// Updates the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
             if (!transitioning)
@@ -67,6 +84,10 @@ namespace Narivia.Menus
             Transition(gameTime);
         }
 
+        /// <summary>
+        /// Draws the content on the specified spriteBatch.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
             menu.Draw(spriteBatch);

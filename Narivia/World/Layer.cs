@@ -11,14 +11,25 @@ namespace Narivia.WorldMap
 {
     public class Layer
     {
+        /// <summary>
+        /// Gets or sets the tile map.
+        /// </summary>
+        /// <value>The tile map.</value>
         public string[,] TileMap { get; set; }
 
+        /// <summary>
+        /// Gets or sets the image.
+        /// </summary>
+        /// <value>The image.</value>
         public Image Image { get; set; }
 
         Vector2 tileDimensions;
 
         List<Tile> tiles;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Narivia.WorldMap.Layer"/> class.
+        /// </summary>
         public Layer()
         {
             Image = new Image();
@@ -26,6 +37,10 @@ namespace Narivia.WorldMap
             tiles = new List<Tile>();
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="tileDimensions">Tile dimensions.</param>
         public void LoadContent(Vector2 tileDimensions)
         {
             Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
@@ -63,11 +78,18 @@ namespace Narivia.WorldMap
             }
         }
 
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
         public void UnloadContent()
         {
             tiles.ForEach(tile => tile.UnloadContent());
         }
 
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
             Image.Update(gameTime);
@@ -75,6 +97,11 @@ namespace Narivia.WorldMap
             tiles.ForEach(tile => tile.Update(gameTime));
         }
 
+        /// <summary>
+        /// Draw the content on the specified spriteBatch.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        /// <param name="camera">Camera.</param>
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
             Vector2 camCoordsBegin = camera.Position / tileDimensions;

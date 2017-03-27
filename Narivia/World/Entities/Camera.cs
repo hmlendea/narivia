@@ -8,14 +8,33 @@ namespace Narivia.WorldMap.Entities
 {
     public class Camera
     {
+        /// <summary>
+        /// Gets or sets the position.
+        /// </summary>
+        /// <value>The position.</value>
         public Vector2 Position { get; set; }
 
+        /// <summary>
+        /// Gets or sets the size.
+        /// </summary>
+        /// <value>The size.</value>
         public Vector2 Size { get; set; }
 
+        /// <summary>
+        /// Gets or sets the velocity.
+        /// </summary>
+        /// <value>The velocity.</value>
         public Vector2 Velocity { get; set; }
 
+        /// <summary>
+        /// Gets or sets the speed.
+        /// </summary>
+        /// <value>The speed.</value>
         public float Speed { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Narivia.WorldMap.Entities.Camera"/> class.
+        /// </summary>
         public Camera()
         {
             Position = Vector2.Zero;
@@ -24,16 +43,26 @@ namespace Narivia.WorldMap.Entities
             Size = new Vector2(1280, 720);
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
         public void LoadContent()
         {
 
         }
 
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
         public void UnloadContent()
         {
 
         }
 
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
             if (InputManager.Instance.KeyDown(Keys.Up, Keys.W))
@@ -67,6 +96,10 @@ namespace Narivia.WorldMap.Entities
                 (int)(Position.Y + Velocity.Y));
         }
 
+        /// <summary>
+        /// Draw the content on the specified spriteBatch.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
 

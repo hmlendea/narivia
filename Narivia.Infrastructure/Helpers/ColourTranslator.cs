@@ -17,6 +17,11 @@ namespace Narivia.Infrastructure.Helpers
             return hexa;
         }
 
+        /// <summary>
+        /// Creates a colour from the hexadecimal code.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="hexa">Hexadecimal code.</param>
         public static Colour FromHexadecimal(string hexa)
         {
             Colour colour = new Colour();
@@ -60,9 +65,14 @@ namespace Narivia.Infrastructure.Helpers
             return argb;
         }
 
+        /// <summary>
+        /// Creates a colour from the ARGB integer.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="argb">ARGB integer.</param>
         public static Colour FromArgb(int argb)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
