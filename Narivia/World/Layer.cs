@@ -28,7 +28,6 @@ namespace Narivia.WorldMap
 
         public void LoadContent(Vector2 tileDimensions)
         {
-            Vector2 position = -tileDimensions;
             Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
             this.tileDimensions = tileDimensions;
 
@@ -38,30 +37,28 @@ namespace Narivia.WorldMap
 
             for (int y = 0; y < mapSize; y++)
             {
-                position.X = -tileDimensions.X;
-                position.Y += tileDimensions.Y;
-
                 for (int x = 0; x < mapSize; x++)
                 {
-                    position.X += tileDimensions.X;
-
-                    if (TileMap[x, y] != null)
+                    if (string.IsNullOrEmpty(TileMap[x, y]))
                     {
-                        int gid = int.Parse(TileMap[x, y]);
-                        int srX = gid % (Image.Texture.Width / (int)tileDimensions.X);
-                        int srY = gid / (Image.Texture.Width / (int)tileDimensions.X);
-
-                        sourceRectangle = new Rectangle(
-                            srX * (int)tileDimensions.X,
-                            srY * (int)tileDimensions.Y,
-                            (int)tileDimensions.X,
-                            (int)tileDimensions.Y);
-
-                        Tile tile = new Tile();
-                        tile.LoadContent(position, sourceRectangle);
-
-                        tiles.Add(tile);
+                        continue;
                     }
+
+                    int gid = int.Parse(TileMap[x, y]);
+                    int cols = Image.Texture.Width / (int)tileDimensions.X;
+                    int srX = gid % cols;
+                    int srY = gid / cols;
+
+                    sourceRectangle = new Rectangle(
+                        srX * (int)tileDimensions.X,
+                        srY * (int)tileDimensions.Y,
+                        (int)tileDimensions.X,
+                        (int)tileDimensions.Y);
+
+                    Tile tile = new Tile();
+                    tile.LoadContent(x, y, sourceRectangle);
+
+                    tiles.Add(tile);
                 }
             }
         }
@@ -80,17 +77,17 @@ namespace Narivia.WorldMap
 
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-            Vector2 cameraStart = camera.Position - Vector2.One * tileDimensions.X;
-            Vector2 cameraEnd = camera.Position + camera.Size;
+            Vector2 camCoordsBegin = camera.Position / tileDimensions;
+            Vector2 camCoordsEnd = camCoordsBegin + camera.Size / tileDimensions;
 
-            List<Tile> tileList = tiles.Where(tile => tile.Position.X >= cameraStart.X &&
-                                                      tile.Position.Y >= cameraStart.Y &&
-                                                      tile.Position.X <= cameraEnd.X &&
-                                                      tile.Position.Y <= cameraEnd.Y).ToList();
+            List<Tile> tileList = tiles.Where(tile => tile.X >= camCoordsBegin.X - 1 &&
+                                                      tile.Y >= camCoordsBegin.Y - 1 &&
+                                                      tile.X <= camCoordsEnd.X + 1 &&
+                                                      tile.Y <= camCoordsEnd.Y + 1).ToList();
 
             foreach (Tile tile in tileList)
             {
-                Image.Position = tile.Position - camera.Position;
+                Image.Position = new Vector2(tile.X - camCoordsBegin.X, tile.Y - camCoordsBegin.Y) * tileDimensions;
                 Image.SourceRectangle = tile.SourceRectangle;
                 Image.Draw(spriteBatch);
             }

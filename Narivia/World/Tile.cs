@@ -5,13 +5,16 @@ namespace Narivia.WorldMap
 {
     public class Tile
     {
-        public Vector2 Position { get; private set; }
+        public int X { get; set; }
+
+        public int Y { get; set; }
 
         public Rectangle SourceRectangle { get; set; }
 
-        public void LoadContent(Vector2 position, Rectangle sourceRectangle)
+        public void LoadContent(int x, int y, Rectangle sourceRectangle)
         {
-            Position = position;
+            X = x;
+            Y = y;
             SourceRectangle = sourceRectangle;
         }
 
