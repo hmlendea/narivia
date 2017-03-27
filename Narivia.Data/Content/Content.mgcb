@@ -3,7 +3,7 @@
 
 /outputDir:bin/$(Platform)
 /intermediateDir:obj/$(Platform)
-/platform:Windows
+/platform:DesktopGL
 /config:
 /profile:Reach
 /compress:False
@@ -276,4 +276,11 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:World/Terrain/water_river.png
+
+#begin Fonts/FrameCounterFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/FrameCounterFont.spritefont
 

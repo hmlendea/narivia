@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Narivia.Helpers;
 using Narivia.Screens;
 
 namespace Narivia
@@ -89,6 +90,9 @@ namespace Narivia
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            FrameCounter.Update(deltaTime);
+            
             graphics.GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();

@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\FrameCounter.cs" />
     <Compile Include="World\Layer.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\Tile.cs" />
@@ -137,8 +138,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-    <Folder Include="World\Entities\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
