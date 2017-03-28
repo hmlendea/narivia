@@ -45,11 +45,6 @@ namespace Narivia
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Size.Y;
             graphics.ApplyChanges();
 
-            if (SettingsManager.Instance.Fullscreen)
-            {
-                graphics.ToggleFullScreen();
-            }
-
             base.Initialize();
         }
 
