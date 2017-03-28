@@ -51,7 +51,22 @@ namespace Narivia.WorldMap
 
             foreach (TmxLayer tmxLayer in tmxMap.Layers)
             {
+                // Check if the tileset layer property exists
+                if (!tmxLayer.Properties.ContainsKey("tileset"))
+                {
+                    // TODO: Log warning
+                    continue;
+                }
+
                 string tilesetName = tmxLayer.Properties["tileset"];
+
+                // Check if the tileset with the specified name exists among the map tilesets
+                if (tmxMap.Tilesets.All(x => x.Name != tilesetName))
+                {
+                    // TODO: Log warning
+                    continue;
+                }
+
                 Image layerImage = new Image
                 {
                     ImagePath = "World/Terrain/" + tilesetName
