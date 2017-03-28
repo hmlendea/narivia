@@ -62,6 +62,12 @@ namespace Narivia.Graphics
         public Vector2 Position { get; set; }
 
         /// <summary>
+        /// Gets or sets the position.
+        /// </summary>
+        /// <value>The position.</value>
+        public Vector2 Size { get; set; }
+
+        /// <summary>
         /// Gets or sets the scale.
         /// </summary>
         /// <value>The scale.</value>
@@ -131,32 +137,34 @@ namespace Narivia.Graphics
 
             font = content.Load<SpriteFont>(FontName);
 
-            Vector2 dimensions = Vector2.Zero;
+            Vector2 size = Vector2.Zero;
 
             if (Texture != null)
             {
-                dimensions.X += Texture.Width;
+                size.X += Texture.Width;
             }
 
-            dimensions.X += font.MeasureString(Text).X;
+            size.X += font.MeasureString(Text).X;
 
             if (Texture != null)
             {
-                dimensions.Y = Math.Max(Texture.Height, font.MeasureString(Text).Y);
+                size.Y = Math.Max(Texture.Height, font.MeasureString(Text).Y);
             }
             else
             {
-                dimensions.Y = font.MeasureString(Text).Y;
+                size.Y = font.MeasureString(Text).Y;
             }
+
+            Size = size;
 
             if (SourceRectangle == Rectangle.Empty)
             {
-                SourceRectangle = new Rectangle(0, 0, (int)dimensions.X, (int)dimensions.Y);
+                SourceRectangle = new Rectangle(0, 0, (int)Size.X, (int)Size.Y);
             }
 
             renderTarget = new RenderTarget2D(
                 ScreenManager.Instance.GraphicsDevice,
-                (int)dimensions.X, (int)dimensions.Y);
+                (int)Size.X, (int)Size.Y);
 
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(renderTarget);
             ScreenManager.Instance.GraphicsDevice.Clear(Color.Transparent);

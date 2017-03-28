@@ -47,11 +47,11 @@ namespace Narivia.Screens
         public ContentManager Content { get; private set; }
 
         /// <summary>
-        /// Gets the dimensions.
+        /// Gets the size.
         /// </summary>
-        /// <value>The dimensions.</value>
+        /// <value>The size.</value>
         [XmlIgnore]
-        public Vector2 Dimensions { get; private set; }
+        public Vector2 Size { get; private set; }
 
         /// <summary>
         /// Gets or sets the graphics device.
@@ -85,7 +85,7 @@ namespace Narivia.Screens
         /// </summary>
         public ScreenManager()
         {
-            Dimensions = new Vector2(1280, 720);
+            Size = new Vector2(1280, 720);
             currentScreen = new SplashScreen();
 
             xmlScreenManager = new XmlManager<Screen>();

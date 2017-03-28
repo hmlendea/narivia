@@ -174,8 +174,8 @@ namespace Narivia.Menus
                                                             item.Image.SourceRectangle.Height));
 
             dimensions = new Vector2(
-                (ScreenManager.Instance.Dimensions.X - dimensions.X) / 2,
-                (ScreenManager.Instance.Dimensions.Y - dimensions.Y) / 2);
+                (ScreenManager.Instance.Size.X - dimensions.X) / 2,
+                (ScreenManager.Instance.Size.Y - dimensions.Y) / 2);
 
             foreach (MenuItem item in Items)
             {
@@ -183,12 +183,12 @@ namespace Narivia.Menus
                 {
                     item.Image.Position = new Vector2(
                         dimensions.X,
-                        (ScreenManager.Instance.Dimensions.Y - item.Image.SourceRectangle.Height) / 2);
+                        (ScreenManager.Instance.Size.Y - item.Image.SourceRectangle.Height) / 2);
                 }
                 else if ("Yy".Contains(Axis))
                 {
                     item.Image.Position = new Vector2(
-                        (ScreenManager.Instance.Dimensions.X - item.Image.SourceRectangle.Width) / 2,
+                        (ScreenManager.Instance.Size.X - item.Image.SourceRectangle.Width) / 2,
                         dimensions.Y);
                 }
 

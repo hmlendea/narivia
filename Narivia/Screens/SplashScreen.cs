@@ -45,6 +45,11 @@ namespace Narivia.Screens
             base.Update(gameTime);
             Image.Update(gameTime);
 
+            // Aligns the splash image
+            Image.Position = new Vector2(
+                (ScreenManager.Instance.Size.X - Image.Size.X) / 2,
+                (ScreenManager.Instance.Size.Y - Image.Size.Y) / 2);
+            
             if (InputManager.Instance.KeyPressed(Keys.Enter))
             {
                 ScreenManager.Instance.ChangeScreens("TitleScreen");
