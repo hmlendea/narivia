@@ -64,17 +64,17 @@ namespace Narivia.Menus
 
             menu.Update(gameTime);
 
-            if (InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E) ||
-                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
-            {
-                MenuItem selectedMenuItem = menu.Items[menu.ItemNumber];
+            MenuItem selectedItem = menu.Items[menu.ItemNumber];
 
+            if ((InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) && InputManager.Instance.IsCursorInArea(selectedItem.Image.ScreenArea)) ||
+                 InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E))
+            {
                 AudioManager.Instance.PlaySound("Interface/click");
 
-                switch (selectedMenuItem.LinkType)
+                switch (selectedItem.LinkType)
                 {
                     case "Screen":
-                        ScreenManager.Instance.ChangeScreens(selectedMenuItem.LinkId);
+                        ScreenManager.Instance.ChangeScreens(selectedItem.LinkId);
                         break;
 
                     case "Menu":
@@ -89,7 +89,7 @@ namespace Narivia.Menus
                         break;
 
                     case "Action":
-                        PerformAction(selectedMenuItem.LinkId);
+                        PerformAction(selectedItem.LinkId);
                         break;
                 }
             }

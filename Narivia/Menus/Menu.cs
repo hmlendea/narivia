@@ -142,13 +142,7 @@ namespace Narivia.Menus
 
             for (int i = 0; i < Items.Count; i++)
             {
-                Rectangle itemArea = new Rectangle(
-                    (int)Items[i].Image.Position.X,
-                    (int)Items[i].Image.Position.Y,
-                    (int)Items[i].Image.Size.X,
-                    (int)Items[i].Image.Size.Y);
-
-                if (InputManager.Instance.IsCursorInArea(itemArea))
+                if (InputManager.Instance.IsCursorInArea(Items[i].Image.ScreenArea))
                 {
                     newSelectedItemIndex = i;
                 }

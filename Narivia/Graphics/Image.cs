@@ -76,6 +76,22 @@ namespace Narivia.Graphics
         public Vector2 Scale { get; set; }
 
         /// <summary>
+        /// Gets the covered screen area.
+        /// </summary>
+        /// <value>The covered screen area.</value>
+        public Rectangle ScreenArea
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)Position.X,
+                    (int)Position.Y,
+                    (int)Size.X,
+                    (int)Size.Y);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the source rectangle.
         /// </summary>
         /// <value>The source rectangle.</value>

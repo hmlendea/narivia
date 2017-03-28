@@ -42,8 +42,8 @@ namespace Narivia.Menus
                 return;
             }
 
-            if (InputManager.Instance.IsKeyPressed(Keys.Enter) ||
-                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
+            if ((InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) && InputManager.Instance.IsCursorInArea(selectedItem.Image.ScreenArea)) ||
+                 InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E))
             {
                 Console.WriteLine("caca");
                 switch (selectedItem.LinkId)
