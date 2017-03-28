@@ -67,20 +67,26 @@ namespace Narivia.Menus
             {
                 MenuItem selectedMenuItem = menu.Items[menu.ItemNumber];
 
-                if (selectedMenuItem.LinkType == "Screen")
+                switch (selectedMenuItem.LinkType)
                 {
-                    ScreenManager.Instance.ChangeScreens(selectedMenuItem.LinkId);
-                }
-                else if (selectedMenuItem.LinkType == "Menu")
-                {
-                    transitioning = true;
-                    menu.Transition(1.0f);
+                    case "Screen":
+                        ScreenManager.Instance.ChangeScreens(selectedMenuItem.LinkId);
+                        break;
 
-                    foreach (MenuItem item in menu.Items)
-                    {
-                        item.Image.StoreEffects();
-                        item.Image.ActivateEffect("FadeEffect");
-                    }
+                    case "Menu":
+                        transitioning = true;
+                        menu.Transition(1.0f);
+
+                        foreach (MenuItem item in menu.Items)
+                        {
+                            item.Image.StoreEffects();
+                            item.Image.ActivateEffect("FadeEffect");
+                        }
+                        break;
+
+                    case "Action":
+                        PerformAction(selectedMenuItem.LinkId);
+                        break;
                 }
             }
         }
@@ -161,6 +167,16 @@ namespace Narivia.Menus
             }
 
             menu.LoadContent();
+        }
+
+        void PerformAction(string action)
+        {
+            switch (action)
+            {
+                case "Exit":
+                    Program.Game.Exit();
+                    break;
+            }
         }
     }
 }

@@ -16,11 +16,18 @@
       <Text>Settings</Text>
     </Image>
   </Item>
-	<Item>
-		<LinkType>Screen</LinkType>
-		<LinkId>SplashScreen</LinkId>
-		<Image>
-			<Text>Go back to SplashScreen</Text>
-		</Image>
-	</Item>
+  <Item>
+    <LinkType>Screen</LinkType>
+    <LinkId>SplashScreen</LinkId>
+    <Image>
+      <Text>Go back to SplashScreen</Text>
+    </Image>
+  </Item>
+  <Item>
+    <LinkType>Action</LinkType>
+    <LinkId>Exit</LinkId>
+    <Image>
+      <Text>Exit</Text>
+    </Image>
+  </Item>
 </Menu>
