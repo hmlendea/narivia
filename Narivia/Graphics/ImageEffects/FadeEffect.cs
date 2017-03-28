@@ -24,7 +24,7 @@ namespace Narivia.Graphics.ImageEffects
         /// </summary>
         public FadeEffect()
         {
-            Speed = 1;
+            Speed = 2;
             Increasing = false;
         }
 

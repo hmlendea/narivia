@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,14 +11,6 @@ namespace Narivia.Menus
 {
     public class SettingsMenu : Menu
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Menus.SettingsMenu"/> class.
-        /// </summary>
-        public SettingsMenu() : base()
-        {
-
-        }
-
         /// <summary>
         /// Loads the content.
         /// </summary>

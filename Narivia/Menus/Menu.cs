@@ -12,6 +12,9 @@ using Narivia.Input;
 
 namespace Narivia.Menus
 {
+    /// <summary>
+    /// Menu.
+    /// </summary>
     public class Menu
     {
         string id;
