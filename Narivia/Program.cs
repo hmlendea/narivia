@@ -25,11 +25,11 @@ namespace Narivia
     static class Program
     #endif
     {
-        private static NariviaGame game;
+        private static GameWindow game;
 
         internal static void RunGame()
         {
-            game = new NariviaGame();
+            game = new GameWindow();
             game.Run();
             #if !__IOS__  && !__TVOS__
             game.Dispose();

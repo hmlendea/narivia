@@ -21,7 +21,9 @@ namespace Narivia.Graphics
         Vector2 origin;
         RenderTarget2D renderTarget;
         SpriteFont font;
+
         FadeEffect fadeEffect;
+        AnimationEffect animationEffect;
 
         readonly Dictionary<string, ImageEffect> effectList;
 
@@ -101,6 +103,16 @@ namespace Narivia.Graphics
         {
             get { return fadeEffect; }
             set { fadeEffect = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the animation effect.
+        /// </summary>
+        /// <value>The animation effect.</value>
+        public AnimationEffect AnimationEffect
+        {
+            get { return animationEffect; }
+            set { animationEffect = value; }
         }
 
         /// <summary>
@@ -187,7 +199,8 @@ namespace Narivia.Graphics
 
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
 
-            SetEffect<FadeEffect>(ref fadeEffect);
+            SetEffect(ref fadeEffect);
+            SetEffect(ref animationEffect);
 
             if (!string.IsNullOrEmpty(Effects))
             {

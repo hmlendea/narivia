@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Narivia.Entities;
 using Narivia.Helpers;
 using Narivia.Screens;
 
@@ -10,20 +11,23 @@ namespace Narivia
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class NariviaGame : Game
+    public class GameWindow : Game
     {
         readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Cursor cursor;
 
         public const int TILE_DIMENSIONS = 16;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.NariviaGame"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.GameWindow"/> class.
         /// </summary>
-        public NariviaGame()
+        public GameWindow()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            cursor = new Cursor();
         }
 
         /// <summary>
@@ -53,6 +57,8 @@ namespace Narivia
             ScreenManager.Instance.GraphicsDevice = GraphicsDevice;
             ScreenManager.Instance.SpriteBatch = spriteBatch;
             ScreenManager.Instance.LoadContent(Content);
+
+            cursor.LoadContent();
         }
 
         /// <summary>
@@ -61,6 +67,7 @@ namespace Narivia
         protected override void UnloadContent()
         {
             ScreenManager.Instance.UnloadContent();
+            cursor.UnloadContent();
         }
 
         /// <summary>
@@ -81,6 +88,7 @@ namespace Narivia
 #endif
 
             ScreenManager.Instance.Update(gameTime);
+            cursor.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -96,7 +104,10 @@ namespace Narivia
             graphics.GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
+
             ScreenManager.Instance.Draw(spriteBatch);
+            cursor.Draw(spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

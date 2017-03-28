@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.BusinessLogic.GameManagers;
+using Narivia.Entities;
 using Narivia.Graphics;
 using Narivia.Helpers;
 using Narivia.WorldMap;
-using Narivia.WorldMap.Entities;
 
 namespace Narivia.Screens
 {
@@ -74,13 +74,13 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
-
             camera.Draw(spriteBatch);
             map.Draw(spriteBatch, camera);
 
             var fpsString = string.Format("FPS: {0}", Math.Round(FramerateCounter.AverageFramesPerSecond));
             spriteBatch.DrawString(content.Load<SpriteFont>("Fonts/FrameCounterFont"), fpsString, new Vector2(1, 1), Color.Lime);
+
+            base.Draw(spriteBatch);
         }
     }
 }

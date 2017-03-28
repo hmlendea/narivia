@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Screens;
@@ -8,7 +9,10 @@ namespace Narivia.Input
 {
     public class InputManager
     {
+        public Vector2 MousePosition => new Vector2(currentMouseState.Position.X, currentMouseState.Position.Y);
+
         KeyboardState currentKeyState, previousKeyState;
+        MouseState currentMouseState, previousMouseState;
 
         static InputManager instance;
 
@@ -35,10 +39,12 @@ namespace Narivia.Input
         public void Update()
         {
             previousKeyState = currentKeyState;
+            previousMouseState = currentMouseState;
 
             if (!ScreenManager.Instance.Transitioning)
             {
                 currentKeyState = Keyboard.GetState();
+                currentMouseState = Mouse.GetState();
             }
         }
 

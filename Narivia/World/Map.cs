@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 using TiledSharp;
 
+using Narivia.Entities;
 using Narivia.Graphics;
 using Narivia.Infrastructure.Helpers;
-using Narivia.WorldMap.Entities;
 
 namespace Narivia.WorldMap
 {

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
 
-namespace Narivia.WorldMap.Entities
+namespace Narivia.Entities
 {
     public class Camera
     {
@@ -33,7 +33,7 @@ namespace Narivia.WorldMap.Entities
         public float Speed { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.WorldMap.Entities.Camera"/> class.
+        /// Initializes a new instance of the <see cref="T:Narivia.Entities.Camera"/> class.
         /// </summary>
         public Camera()
         {
@@ -60,7 +60,7 @@ namespace Narivia.WorldMap.Entities
         }
 
         /// <summary>
-        /// Update the content.
+        /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
@@ -97,7 +97,7 @@ namespace Narivia.WorldMap.Entities
         }
 
         /// <summary>
-        /// Draw the content on the specified spriteBatch.
+        /// Draws the content on the specified spriteBatch.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
