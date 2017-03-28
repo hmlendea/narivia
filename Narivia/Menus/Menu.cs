@@ -106,24 +106,38 @@ namespace Narivia.Menus
         {
             if ("Xx".Contains(Axis))
             {
-                if (InputManager.Instance.KeyPressed(Keys.Right))
+                if (InputManager.Instance.IsKeyPressed(Keys.Right, Keys.D))
                 {
                     ItemNumber++;
                 }
-                else if (InputManager.Instance.KeyPressed(Keys.Left))
+                else if (InputManager.Instance.IsKeyPressed(Keys.Left, Keys.A))
                 {
                     ItemNumber--;
                 }
             }
             else if ("Yy".Contains(Axis))
             {
-                if (InputManager.Instance.KeyPressed(Keys.Down))
+                if (InputManager.Instance.IsKeyPressed(Keys.Down, Keys.S))
                 {
                     ItemNumber++;
                 }
-                else if (InputManager.Instance.KeyPressed(Keys.Up))
+                else if (InputManager.Instance.IsKeyPressed(Keys.Up, Keys.W))
                 {
                     ItemNumber--;
+                }
+            }
+
+            for (int i = 0; i < Items.Count; i++)
+            {
+                Rectangle itemArea = new Rectangle(
+                    (int)Items[i].Image.Position.X,
+                    (int)Items[i].Image.Position.Y,
+                    (int)Items[i].Image.Size.X,
+                    (int)Items[i].Image.Size.Y);
+
+                if (InputManager.Instance.IsCursorInArea(itemArea))
+                {
+                    ItemNumber = i;
                 }
             }
 

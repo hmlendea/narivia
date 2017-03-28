@@ -60,7 +60,7 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-            InputManager.Instance.Update();
+
         }
 
         /// <summary>

@@ -49,8 +49,9 @@ namespace Narivia.Screens
             Image.Position = new Vector2(
                 (ScreenManager.Instance.Size.X - Image.Size.X) / 2,
                 (ScreenManager.Instance.Size.Y - Image.Size.Y) / 2);
-            
-            if (InputManager.Instance.KeyPressed(Keys.Enter))
+
+            if (InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E) ||
+                InputManager.Instance.IsMouseButtonDown(MouseButton.LeftButton))
             {
                 ScreenManager.Instance.ChangeScreens("TitleScreen");
             }

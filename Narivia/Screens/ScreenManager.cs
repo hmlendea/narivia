@@ -122,8 +122,13 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
+            if (Transitioning)
+            {
+                Transition(gameTime);
+                return;
+            }
+
             currentScreen.Update(gameTime);
-            Transition(gameTime);
         }
 
         /// <summary>
@@ -161,11 +166,6 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         void Transition(GameTime gameTime)
         {
-            if (!Transitioning)
-            {
-                return;
-            }
-
             Image.Update(gameTime);
 
             if (Image.Opacity == 1.0f)

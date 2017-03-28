@@ -44,23 +44,26 @@ namespace Narivia.Menus
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             MenuItem selectedItem = Items[ItemNumber];
 
-            if (InputManager.Instance.KeyPressed(Keys.Enter) &&
-                selectedItem.LinkType == "Setting")
+            if (selectedItem.LinkType != "Setting")
             {
-                System.Console.WriteLine("IS SETTING");
+                return;
+            }
+
+            if (InputManager.Instance.IsKeyPressed(Keys.Enter) ||
+                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
+            {
+                Console.WriteLine("caca");
                 switch (selectedItem.LinkId)
                 {
                     case "Fullscreen":
                         SettingsManager.Instance.Fullscreen = !SettingsManager.Instance.Fullscreen;
-
-                        System.Console.WriteLine("TOGGLE FS");
                         break;
                 }
             }
-
-            base.Update(gameTime);
         }
 
         /// <summary>

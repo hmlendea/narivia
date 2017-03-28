@@ -66,11 +66,11 @@ namespace Narivia.Entities
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            if (InputManager.Instance.KeyDown(Keys.Up, Keys.W))
+            if (InputManager.Instance.IsKeyDown(Keys.Up, Keys.W))
             {
                 Velocity = new Vector2(Velocity.X, -Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
-            else if (InputManager.Instance.KeyDown(Keys.Down, Keys.S))
+            else if (InputManager.Instance.IsKeyDown(Keys.Down, Keys.S))
             {
                 Velocity = new Vector2(Velocity.X, Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
@@ -79,11 +79,11 @@ namespace Narivia.Entities
                 Velocity = new Vector2(Velocity.X, 0);
             }
 
-            if (InputManager.Instance.KeyDown(Keys.Left, Keys.A))
+            if (InputManager.Instance.IsKeyDown(Keys.Left, Keys.A))
             {
                 Velocity = new Vector2(-Speed * (float)gameTime.ElapsedGameTime.TotalSeconds, Velocity.Y);
             }
-            else if (InputManager.Instance.KeyDown(Keys.Right, Keys.D))
+            else if (InputManager.Instance.IsKeyDown(Keys.Right, Keys.D))
             {
                 Velocity = new Vector2(Speed * (float)gameTime.ElapsedGameTime.TotalSeconds, Velocity.Y);
             }

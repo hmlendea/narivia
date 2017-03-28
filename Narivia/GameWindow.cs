@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 using Narivia.Entities;
 using Narivia.Helpers;
+using Narivia.Input;
 using Narivia.Screens;
 using Narivia.Settings;
 
@@ -94,8 +95,8 @@ namespace Narivia
 #endif
 
             SettingsManager.Instance.Update(ref graphics);
-
             ScreenManager.Instance.Update(gameTime);
+            InputManager.Instance.Update();
             cursor.Update(gameTime);
             base.Update(gameTime);
         }
@@ -108,7 +109,7 @@ namespace Narivia
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             FramerateCounter.Update(deltaTime);
-            
+
             graphics.GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();

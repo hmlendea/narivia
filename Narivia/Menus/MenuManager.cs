@@ -63,7 +63,8 @@ namespace Narivia.Menus
 
             menu.Update(gameTime);
 
-            if (InputManager.Instance.KeyPressed(Keys.Enter))
+            if (InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E) ||
+                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
             {
                 MenuItem selectedMenuItem = menu.Items[menu.ItemNumber];
 
@@ -102,11 +103,6 @@ namespace Narivia.Menus
 
         void Transition(GameTime gameTime)
         {
-            if (!transitioning)
-            {
-                return;
-            }
-
             int oldMenuCount = menu.Items.Count;
 
             for (int i = 0; i < oldMenuCount; i++)
