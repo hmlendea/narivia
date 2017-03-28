@@ -127,7 +127,7 @@ namespace Narivia.Graphics
 
             ImagePath = string.Empty;
             Text = string.Empty;
-            FontName = "Fonts/Palatino Linotype";
+            FontName = "MenuFont";
 
             Position = Vector2.Zero;
             Scale = Vector2.One;
@@ -147,7 +147,7 @@ namespace Narivia.Graphics
                 Texture = content.Load<Texture2D>(ImagePath);
             }
 
-            font = content.Load<SpriteFont>(FontName);
+            font = content.Load<SpriteFont>("Fonts/" + FontName);
 
             Vector2 size = Vector2.Zero;
 
