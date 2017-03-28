@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Narivia.Audio;
 using Narivia.Helpers;
 using Narivia.Input;
 using Narivia.Screens;
@@ -67,6 +68,8 @@ namespace Narivia.Menus
                 InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
             {
                 MenuItem selectedMenuItem = menu.Items[menu.ItemNumber];
+
+                AudioManager.Instance.PlaySound("Interface/click");
 
                 switch (selectedMenuItem.LinkType)
                 {
