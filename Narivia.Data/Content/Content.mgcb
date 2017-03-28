@@ -37,7 +37,7 @@
 /processorParam:TextureFormat=Color
 /build:ScreenManager/FadeImage.png
 
-#begin World/Terrain/highland.png
+#begin World/Terrain/grass_cold.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,9 +47,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/highland.png
+/build:World/Terrain/grass_cold.png
 
-#begin World/Terrain/plains.png
+#begin World/Terrain/grass.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,9 +59,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/plains.png
+/build:World/Terrain/grass.png
 
-#begin World/Terrain/semiarid.png
+#begin World/Terrain/grass_warm.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,7 +71,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/semiarid.png
+/build:World/Terrain/grass_warm.png
 
 #begin World/Terrain/swamp.png
 /importer:TextureImporter
@@ -97,7 +97,7 @@
 /processorParam:TextureFormat=Color
 /build:World/Terrain/water.png
 
-#begin World/Terrain/desert_plains.png
+#begin World/Terrain/sand.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -107,9 +107,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/desert_plains.png
+/build:World/Terrain/sand.png
 
-#begin World/Terrain/desert_highland.png
+#begin World/Terrain/sand_highland.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -119,9 +119,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/desert_highland.png
+/build:World/Terrain/sand_highland.png
 
-#begin World/Terrain/snowy_highland.png
+#begin World/Terrain/snow_highland.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -131,9 +131,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/snowy_highland.png
+/build:World/Terrain/snow_highland.png
 
-#begin World/Terrain/snowy_plains.png
+#begin World/Terrain/snow.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -143,9 +143,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/snowy_plains.png
+/build:World/Terrain/snow.png
 
-#begin World/Terrain/desert_mountains.png
+#begin World/Terrain/sandstone.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -155,9 +155,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/desert_mountains.png
+/build:World/Terrain/sandstone.png
 
-#begin World/Terrain/forest.png
+#begin World/Terrain/darkstone.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -167,9 +167,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/forest.png
+/build:World/Terrain/darkstone.png
 
-#begin World/Terrain/jungle.png
+#begin World/Terrain/snowstone.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -179,9 +179,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/jungle.png
+/build:World/Terrain/snowstone.png
 
-#begin World/Terrain/mountains.png
+#begin World/Terrain/darkland.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -191,31 +191,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Terrain/mountains.png
-
-#begin World/Terrain/snowy_mountains.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Terrain/snowy_mountains.png
-
-#begin World/Terrain/ashland.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Terrain/ashland.png
+/build:World/Terrain/darkland.png
 
 #begin World/Terrain/lava.png
 /importer:TextureImporter
@@ -283,4 +259,16 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/FrameCounterFont.spritefont
+
+#begin World/Terrain/dirt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Terrain/dirt.png
 
