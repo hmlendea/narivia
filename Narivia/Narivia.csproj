@@ -70,6 +70,7 @@
     <Compile Include="Entities\Cursor.cs" />
     <Compile Include="Graphics\ImageEffects\AnimationEffect.cs" />
     <Compile Include="Helpers\FramerateCounter.cs" />
+    <Compile Include="Settings\SettingsManager.cs" />
     <Compile Include="World\Layer.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\Tile.cs" />

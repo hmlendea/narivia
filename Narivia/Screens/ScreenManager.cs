@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Helpers;
+using Narivia.Settings;
 
 namespace Narivia.Screens
 {
@@ -85,7 +86,7 @@ namespace Narivia.Screens
         /// </summary>
         public ScreenManager()
         {
-            Size = new Vector2(1280, 720);
+            Size = SettingsManager.Instance.Resolution;
             currentScreen = new SplashScreen();
 
             xmlScreenManager = new XmlManager<Screen>();

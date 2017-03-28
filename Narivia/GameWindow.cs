@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Narivia.Entities;
 using Narivia.Helpers;
 using Narivia.Screens;
+using Narivia.Settings;
 
 namespace Narivia
 {
@@ -41,6 +42,11 @@ namespace Narivia
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Size.X;
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Size.Y;
             graphics.ApplyChanges();
+
+            if (SettingsManager.Instance.Fullscreen)
+            {
+                graphics.ToggleFullScreen();
+            }
 
             base.Initialize();
         }

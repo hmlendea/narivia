@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
+using Narivia.Settings;
 
 namespace Narivia.Entities
 {
@@ -40,7 +41,7 @@ namespace Narivia.Entities
             Position = Vector2.Zero;
             Velocity = Vector2.Zero;
             Speed = 800;
-            Size = new Vector2(1280, 720);
+            Size = SettingsManager.Instance.Resolution; // TODO: Give it it's proper size once the game HUD is implemented
         }
 
         /// <summary>
