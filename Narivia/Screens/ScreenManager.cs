@@ -17,7 +17,8 @@ namespace Narivia.Screens
     /// </summary>
     public class ScreenManager
     {
-        static ScreenManager instance;
+        static volatile ScreenManager instance;
+        static object syncRoot = new object();
 
         Screen currentScreen, newScreen;
         XmlManager<Screen> xmlScreenManager;
@@ -32,8 +33,14 @@ namespace Narivia.Screens
             {
                 if (instance == null)
                 {
-                    XmlManager<ScreenManager> xmlManager = new XmlManager<ScreenManager>();
-                    instance = xmlManager.Load("Screens/ScreenManager.xml");
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            XmlManager<ScreenManager> xmlManager = new XmlManager<ScreenManager>();
+                            instance = xmlManager.Load("Screens/ScreenManager.xml");
+                        }
+                    }
                 }
 
                 return instance;

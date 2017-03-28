@@ -1,6 +1,4 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 using Narivia.Helpers;
 
@@ -8,7 +6,8 @@ namespace Narivia.Settings
 {
     public class SettingsManager
     {
-        static SettingsManager instance;
+        static volatile SettingsManager instance;
+        static object syncRoot = new object();
 
         /// <summary>
         /// Gets the instance.
@@ -20,8 +19,14 @@ namespace Narivia.Settings
             {
                 if (instance == null)
                 {
-                    XmlManager<SettingsManager> xmlManager = new XmlManager<SettingsManager>();
-                    instance = xmlManager.Load("Settings.xml");
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            XmlManager<SettingsManager> xmlManager = new XmlManager<SettingsManager>();
+                            instance = xmlManager.Load("Settings.xml");
+                        }
+                    }
                 }
 
                 return instance;
@@ -50,7 +55,7 @@ namespace Narivia.Settings
                 graphics.ToggleFullScreen();
             }
         }
-        
+
         /// <summary>
         /// Saves the settings.
         /// </summary>

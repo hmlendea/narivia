@@ -14,7 +14,8 @@ namespace Narivia.Input
         KeyboardState currentKeyState, previousKeyState;
         MouseState currentMouseState, previousMouseState;
 
-        static InputManager instance;
+        static volatile InputManager instance;
+        static object syncRoot = new object();
 
         /// <summary>
         /// Gets the instance.
@@ -26,7 +27,13 @@ namespace Narivia.Input
             {
                 if (instance == null)
                 {
-                    instance = new InputManager();
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new InputManager();
+                        }
+                    }
                 }
 
                 return instance;
