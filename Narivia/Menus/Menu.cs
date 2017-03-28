@@ -41,6 +41,12 @@ namespace Narivia.Menus
         public string Axis { get; set; }
 
         /// <summary>
+        /// Gets or sets the spacing.
+        /// </summary>
+        /// <value>The spacing.</value>
+        public int Spacing { get; set; }
+
+        /// <summary>
         /// Gets or sets the effects.
         /// </summary>
         /// <value>The effects.</value>
@@ -73,6 +79,7 @@ namespace Narivia.Menus
             id = string.Empty;
             ItemNumber = 0;
             Axis = "Y";
+            Spacing = 30;
             Effects = string.Empty;
             Items = new List<MenuItem>();
         }
@@ -197,8 +204,8 @@ namespace Narivia.Menus
         {
             Vector2 dimensions = Vector2.Zero;
 
-            Items.ForEach(item => dimensions += new Vector2(item.Image.SourceRectangle.Width,
-                                                            item.Image.SourceRectangle.Height));
+            Items.ForEach(item => dimensions += new Vector2(item.Image.SourceRectangle.Width + Spacing / 2,
+                                                            item.Image.SourceRectangle.Height + Spacing / 2));
 
             dimensions = new Vector2(
                 (ScreenManager.Instance.Size.X - dimensions.X) / 2,
@@ -219,7 +226,7 @@ namespace Narivia.Menus
                         dimensions.Y);
                 }
 
-                dimensions += new Vector2(item.Image.SourceRectangle.Width, item.Image.SourceRectangle.Height);
+                dimensions += new Vector2(item.Image.SourceRectangle.Width + Spacing / 2, item.Image.SourceRectangle.Height + Spacing / 2);
             }
         }
     }
