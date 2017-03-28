@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Narivia.Audio;
 using Narivia.Screens;
 using Narivia.Input;
 
@@ -107,26 +108,28 @@ namespace Narivia.Menus
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
+            int newSelectedItemIndex = ItemNumber;
+
             if ("Xx".Contains(Axis))
             {
                 if (InputManager.Instance.IsKeyPressed(Keys.Right, Keys.D))
                 {
-                    ItemNumber++;
+                    newSelectedItemIndex = ItemNumber + 1;
                 }
                 else if (InputManager.Instance.IsKeyPressed(Keys.Left, Keys.A))
                 {
-                    ItemNumber--;
+                    newSelectedItemIndex = ItemNumber - 1;
                 }
             }
             else if ("Yy".Contains(Axis))
             {
                 if (InputManager.Instance.IsKeyPressed(Keys.Down, Keys.S))
                 {
-                    ItemNumber++;
+                    newSelectedItemIndex = ItemNumber + 1;
                 }
                 else if (InputManager.Instance.IsKeyPressed(Keys.Up, Keys.W))
                 {
-                    ItemNumber--;
+                    newSelectedItemIndex = ItemNumber - 1;
                 }
             }
 
@@ -140,17 +143,24 @@ namespace Narivia.Menus
 
                 if (InputManager.Instance.IsCursorInArea(itemArea))
                 {
-                    ItemNumber = i;
+                    newSelectedItemIndex = i;
                 }
             }
 
-            if (ItemNumber < 0)
+            if (newSelectedItemIndex < 0)
             {
-                ItemNumber = 0;
+                newSelectedItemIndex = 0;
             }
-            else if (ItemNumber > Items.Count - 1)
+            else if (newSelectedItemIndex > Items.Count - 1)
             {
-                ItemNumber = Items.Count - 1;
+                newSelectedItemIndex = Items.Count - 1;
+            }
+
+            if (newSelectedItemIndex != ItemNumber)
+            {
+                ItemNumber = newSelectedItemIndex;
+
+                AudioManager.Instance.PlaySound("Interface/select");
             }
 
             for (int i = 0; i < Items.Count; i++)

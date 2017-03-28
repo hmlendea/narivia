@@ -320,3 +320,9 @@
 /processorParam:TextureFormat=Color
 /build:Cursors/idle.png
 
+#begin Audio/Interface/select.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Interface/select.wav
+

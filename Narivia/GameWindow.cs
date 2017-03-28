@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Narivia.Audio;
 using Narivia.Entities;
 using Narivia.Helpers;
 using Narivia.Input;
@@ -64,6 +65,8 @@ namespace Narivia
             ScreenManager.Instance.GraphicsDevice = GraphicsDevice;
             ScreenManager.Instance.SpriteBatch = spriteBatch;
             ScreenManager.Instance.LoadContent(Content);
+
+            AudioManager.Instance.LoadContent(Content);
 
             cursor.LoadContent();
         }

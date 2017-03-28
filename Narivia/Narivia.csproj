@@ -93,6 +93,9 @@
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Entities\Camera.cs" />
     <Compile Include="Input\MouseButton.cs" />
+    <Compile Include="Audio\AudioManager.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -103,7 +106,7 @@
     <EmbeddedResource Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="OpenTK.dll.config">
+    <Content Include="MonoGame.Framework.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -144,4 +147,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Audio\" />
+  </ItemGroup>
 </Project>
