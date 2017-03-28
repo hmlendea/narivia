@@ -39,11 +39,22 @@ namespace Narivia.Settings
         /// </summary>
         /// <value>The fullscreen mode.</value>
         public bool Fullscreen { get; set; }
+
+        /// <summary>
+        /// Updates the settings.
+        /// </summary>
+        public void Update(ref GraphicsDeviceManager graphics)
+        {
+            if (graphics.IsFullScreen != Fullscreen)
+            {
+                graphics.ToggleFullScreen();
+            }
+        }
         
         /// <summary>
         /// Saves the settings.
         /// </summary>
-        public void SaveSettings()
+        public void SaveContent()
         {
             XmlManager<SettingsManager> xmlManager = new XmlManager<SettingsManager>();
             xmlManager.Save("Settings.xml", this);

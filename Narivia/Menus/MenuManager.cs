@@ -32,12 +32,12 @@ namespace Narivia.Menus
         /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <param name="menuPath">Menu path.</param>
-        public void LoadContent(string menuPath)
+        /// <param name="menuName">Menu name.</param>
+        public void LoadContent(string menuName)
         {
-            if (menuPath != string.Empty)
+            if (menuName != string.Empty)
             {
-                menu.ID = menuPath;
+                menu.Id = menuName;
             }
         }
 
@@ -55,12 +55,15 @@ namespace Narivia.Menus
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            if (!transitioning)
+            if (transitioning)
             {
-                menu.Update(gameTime);
+                Transition(gameTime);
+                return;
             }
 
-            if (InputManager.Instance.KeyPressed(Keys.Enter) && !transitioning)
+            menu.Update(gameTime);
+
+            if (InputManager.Instance.KeyPressed(Keys.Enter))
             {
                 MenuItem selectedMenuItem = menu.Items[menu.ItemNumber];
 
@@ -80,8 +83,6 @@ namespace Narivia.Menus
                     }
                 }
             }
-
-            Transition(gameTime);
         }
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace Narivia.Menus
 
                 if (first == 0.0f && last == 0.0f)
                 {
-                    menu.ID = menu.Items[menu.ItemNumber].LinkId;
+                    menu.Id = menu.Items[menu.ItemNumber].LinkId;
                 }
                 else if (first == 1.0f && last == 1.0f)
                 {
@@ -125,16 +126,12 @@ namespace Narivia.Menus
 
         void menu_OnMenuChange(object sender, EventArgs e)
         {
-            if (menu.ID == null)
+            if (menu.Id == null)
             {
                 return;
             }
 
-            XmlManager<Menu> xmlManager = new XmlManager<Menu>();
-
-            menu.UnloadContent();
-            menu = xmlManager.Load(menu.ID);
-            menu.LoadContent();
+            LoadNewMenu();
 
             menu.OnMenuChange += menu_OnMenuChange;
             menu.Transition(0.0f);
@@ -144,6 +141,26 @@ namespace Narivia.Menus
                 item.Image.StoreEffects();
                 item.Image.ActivateEffect("FadeEffect");
             }
+        }
+
+        void LoadNewMenu()
+        {
+            menu.UnloadContent();
+
+            switch (menu.Id)
+            {
+                case "SettingsMenu":
+                    XmlManager<SettingsMenu> xmlManagerSettingsMenu = new XmlManager<SettingsMenu>();
+                    menu = xmlManagerSettingsMenu.Load("Menus/" + menu.Id + ".xml");
+                    break;
+
+                default:
+                    XmlManager<Menu> xmlManager = new XmlManager<Menu>();
+                    menu = xmlManager.Load("Menus/" + menu.Id + ".xml");
+                    break;
+            }
+
+            menu.LoadContent();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Narivia.Menus
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public string ID
+        public string Id
         {
             get { return id; }
             set
@@ -76,7 +76,7 @@ namespace Narivia.Menus
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public void LoadContent()
+        public virtual void LoadContent()
         {
             List<string> split = Effects.Split(':').ToList();
 
@@ -93,7 +93,7 @@ namespace Narivia.Menus
         /// <summary>
         /// Unloads the content.
         /// </summary>
-        public void UnloadContent()
+        public virtual void UnloadContent()
         {
             Items.ForEach(item => item.Image.UnloadContent());
         }
@@ -102,7 +102,7 @@ namespace Narivia.Menus
         /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if ("Xx".Contains(Axis))
             {
@@ -147,7 +147,7 @@ namespace Narivia.Menus
         /// Draws the content on the specified spriteBatch.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             Items.ForEach(item => item.Image.Draw(spriteBatch));
         }

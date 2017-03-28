@@ -14,7 +14,7 @@ namespace Narivia
     /// </summary>
     public class GameWindow : Game
     {
-        readonly GraphicsDeviceManager graphics;
+        GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Cursor cursor;
 
@@ -92,6 +92,8 @@ namespace Narivia
                 Exit();
             }
 #endif
+
+            SettingsManager.Instance.Update(ref graphics);
 
             ScreenManager.Instance.Update(gameTime);
             cursor.Update(gameTime);

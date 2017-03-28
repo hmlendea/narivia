@@ -29,7 +29,7 @@ namespace Narivia.Screens
         public override void LoadContent()
         {
             base.LoadContent();
-            menuManager.LoadContent("Menus/TitleMenu.xml");
+            menuManager.LoadContent("TitleMenu");
         }
 
         /// <summary>
