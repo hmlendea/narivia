@@ -250,3 +250,7 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# MonoGame redistributed libraries exceptions
+!/*/x64/
+!/*/x86/
