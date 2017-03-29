@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 using Narivia.Graphics;
 using Narivia.Input;
@@ -12,6 +11,8 @@ namespace Narivia.Screens
     /// </summary>
     public class SplashScreen : Screen
     {
+        float delay = 3;
+
         /// <summary>
         /// Gets or sets the image.
         /// </summary>
@@ -45,13 +46,15 @@ namespace Narivia.Screens
             base.Update(gameTime);
             Image.Update(gameTime);
 
+            delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             // Aligns the splash image
             Image.Position = new Vector2(
                 (ScreenManager.Instance.Size.X - Image.Size.X) / 2,
                 (ScreenManager.Instance.Size.Y - Image.Size.Y) / 2);
 
             if (InputManager.Instance.IsMouseButtonDown(MouseButton.LeftButton) ||
-                InputManager.Instance.IsAnyKeyDown())
+                InputManager.Instance.IsAnyKeyDown() || delay <= 0)
             {
                 ScreenManager.Instance.ChangeScreens("TitleScreen");
             }
