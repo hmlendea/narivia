@@ -89,6 +89,16 @@ namespace Narivia.Input
         }
 
         /// <summary>
+        /// Gets the state of the specified mouse button.
+        /// </summary>
+        /// <param name="button">Mouse button.</param>
+        /// <returns>The state of the specified mouse button.</returns>
+        public ButtonState GetMouseButtonState(MouseButton button)
+        {
+            return currentMouseState.LeftButton;
+        }
+
+        /// <summary>
         /// Checks if any of the mouse buttons is pressed.
         /// </summary>
         /// <returns><c>true</c>, if any of the mouse buttons is pressed, <c>false</c> otherwise.</returns>

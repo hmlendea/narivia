@@ -25,18 +25,6 @@ namespace Narivia.Entities
         /// </summary>
         public Cursor()
         {
-            image = new Image
-            {
-                ImagePath = "Cursors/idle",
-                Effects = "AnimationEffect",
-                Active = true
-            };
-
-            image.AnimationEffect = new AnimationEffect
-            {
-                FrameAmount = new Vector2(8, 1),
-                SwitchFrame = 150
-            };
         }
 
         /// <summary>
@@ -44,6 +32,31 @@ namespace Narivia.Entities
         /// </summary>
         public void LoadContent()
         {
+            image = new Image
+            {
+                Effects = "AnimationEffect",
+                Active = true
+            };
+
+            ButtonState leftButtonState = InputManager.Instance.GetMouseButtonState(MouseButton.LeftButton);
+
+            switch (leftButtonState)
+            {
+                case ButtonState.Pressed:
+                    image.ImagePath = "Cursors/click";
+                    break;
+
+                default:
+                    image.ImagePath = "Cursors/idle";
+                    break;
+            }
+
+            image.AnimationEffect = new AnimationEffect
+            {
+                FrameAmount = new Vector2(8, 1),
+                SwitchFrame = 150
+            };
+
             image.LoadContent();
         }
 
@@ -61,6 +74,13 @@ namespace Narivia.Entities
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
+            // Reload the content when the left mouse button state changes
+            if (InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) ||
+                InputManager.Instance.IsMouseButtonReleased(MouseButton.LeftButton))
+            {
+                LoadContent();
+            }
+
             image.Position = InputManager.Instance.MousePosition;
             image.Update(gameTime);
         }
