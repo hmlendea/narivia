@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -85,6 +87,17 @@ namespace Narivia.Input
         /// <param name="keys">Keys.</param>
         public bool IsKeyDown(params Keys[] keys)
         {
+            return keys.Any(currentKeyState.IsKeyDown);
+        }
+
+        /// <summary>
+        /// Checks if any key is down.
+        /// </summary>
+        /// <returns><c>true</c>, if any key is down, <c>false</c> otherwise.</returns>
+        public bool IsAnyKeyDown()
+        {
+            List<Keys> keys = Enum.GetValues(typeof(Keys)).Cast<Keys>().ToList();
+
             return keys.Any(currentKeyState.IsKeyDown);
         }
 

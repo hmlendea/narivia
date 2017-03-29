@@ -50,8 +50,8 @@ namespace Narivia.Screens
                 (ScreenManager.Instance.Size.X - Image.Size.X) / 2,
                 (ScreenManager.Instance.Size.Y - Image.Size.Y) / 2);
 
-            if (InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E) ||
-                InputManager.Instance.IsMouseButtonDown(MouseButton.LeftButton))
+            if (InputManager.Instance.IsMouseButtonDown(MouseButton.LeftButton) ||
+                InputManager.Instance.IsAnyKeyDown())
             {
                 ScreenManager.Instance.ChangeScreens("TitleScreen");
             }
