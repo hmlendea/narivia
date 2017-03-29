@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 
 namespace Narivia.Infrastructure.Helpers
@@ -7,36 +8,18 @@ namespace Narivia.Infrastructure.Helpers
     {
         static readonly string rootDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        #region Directories
+        public static string UserDataDirectory => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Narivia");
 
         /// <summary>
         /// Gets the worlds directory.
         /// </summary>
         /// <value>The worlds directory.</value>
-        public static string WorldsDirectory
-        {
-            get
-            {
-                return Path.Combine(rootDirectory, "Worlds");
-            }
-        }
-
-        #endregion
-
-        #region Files
+        public static string WorldsDirectory => Path.Combine(rootDirectory, "Worlds");
 
         /// <summary>
         /// Gets the options file.
         /// </summary>
         /// <value>The options file.</value>
-        public static string SettingsFile
-        {
-            get
-            {
-                return Path.Combine(rootDirectory, "Settings.xml");
-            }
-        }
-
-        #endregion
+        public static string SettingsFile => Path.Combine(UserDataDirectory, "Settings.xml");
     }
 }

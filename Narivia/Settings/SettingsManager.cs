@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.IO;
+
+using Microsoft.Xna.Framework;
 
 using Narivia.Helpers;
 using Narivia.Infrastructure.Helpers;
@@ -36,6 +38,7 @@ namespace Narivia.Settings
         public SettingsManager()
         {
             Resolution = new Vector2(1280, 720);
+            Fullscreen = false;
         }
 
         /// <summary>
@@ -55,6 +58,12 @@ namespace Narivia.Settings
         /// </summary>
         public void LoadContent()
         {
+            if (!File.Exists(ApplicationPaths.SettingsFile))
+            {
+                SaveContent();
+                return;
+            }
+
             XmlManager<SettingsManager> xmlManager = new XmlManager<SettingsManager>();
             SettingsManager storedSettings = xmlManager.Load(ApplicationPaths.SettingsFile);
 

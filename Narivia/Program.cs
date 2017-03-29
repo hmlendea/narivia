@@ -1,7 +1,6 @@
 ﻿#region Using Statements
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 
 #if MONOMAC
 using MonoMac.AppKit;
@@ -12,7 +11,7 @@ using Foundation;
 using UIKit;
 #endif
 
-using Narivia;
+using Narivia.Infrastructure.Helpers;
 #endregion
 
 namespace Narivia
@@ -36,6 +35,14 @@ namespace Narivia
             #endif
         }
 
+        internal static void PrepareFiles()
+        {
+            if(!Directory.Exists(ApplicationPaths.UserDataDirectory))
+            {
+                Directory.CreateDirectory(ApplicationPaths.UserDataDirectory);
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -44,6 +51,8 @@ namespace Narivia
         #endif
         static void Main(string[] args)
         {
+            PrepareFiles();
+
             #if MONOMAC
             NSApplication.Init ();
 
