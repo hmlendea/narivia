@@ -50,17 +50,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenTK">
-      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\OpenTK.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="NVorbis">
-      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\NVorbis.dll</HintPath>
     </Reference>
     <Reference Include="TiledSharp">
       <HintPath>..\packages\TiledSharp.0.15\lib\TiledSharp.dll</HintPath>
