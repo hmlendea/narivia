@@ -193,6 +193,32 @@ namespace Narivia.Input
         }
 
         /// <summary>
+        /// Checks if the cursor is entering a specified area.
+        /// </summary>
+        /// <returns><c>true</c>, if the cursor entering the specified area, <c>false</c> otherwise.</returns>
+        /// <param name="area">Area.</param>
+        public bool IsCursorEnteringArea(Rectangle area)
+        {
+            Vector2 currentMousePosition = new Vector2(currentMouseState.X, currentMouseState.Y);
+            Vector2 previousMousePosition = new Vector2(previousMouseState.X, previousMouseState.Y);
+
+            return area.Contains(currentMousePosition) && !area.Contains(previousMousePosition);
+        }
+
+        /// <summary>
+        /// Checks if the cursor is leaving a specified area.
+        /// </summary>
+        /// <returns><c>true</c>, if the cursor leaving the specified area, <c>false</c> otherwise.</returns>
+        /// <param name="area">Area.</param>
+        public bool IsCursorLeavingArea(Rectangle area)
+        {
+            Vector2 currentMousePosition = new Vector2(currentMouseState.X, currentMouseState.Y);
+            Vector2 previousMousePosition = new Vector2(previousMouseState.X, previousMouseState.Y);
+
+            return !area.Contains(currentMousePosition) && area.Contains(previousMousePosition);
+        }
+
+        /// <summary>
         /// Checks if the cursor is inside a specified area.
         /// </summary>
         /// <returns><c>true</c>, if the cursor is inside the specified area, <c>false</c> otherwise.</returns>

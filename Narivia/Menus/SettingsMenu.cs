@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
 using Narivia.Settings;
+using Narivia.Widgets;
 
 namespace Narivia.Menus
 {
@@ -35,14 +36,14 @@ namespace Narivia.Menus
         {
             base.Update(gameTime);
 
-            MenuItem selectedItem = Items[ItemNumber];
+            MenuLink selectedItem = Items[ItemNumber];
 
             if (selectedItem.LinkType != "Setting")
             {
                 return;
             }
 
-            if ((InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) && InputManager.Instance.IsCursorInArea(selectedItem.Image.ScreenArea)) ||
+            if ((InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) && InputManager.Instance.IsCursorInArea(selectedItem.ScreenArea)) ||
                  InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E))
             {
                 Console.WriteLine("caca");
@@ -61,7 +62,7 @@ namespace Narivia.Menus
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Items.ForEach(item => item.Image.Draw(spriteBatch));
+            base.Draw(spriteBatch);
         }
     }
 }

@@ -14,6 +14,18 @@ namespace Narivia.Graphics.ImageEffects
         public float Speed { get; set; }
 
         /// <summary>
+        /// Gets or sets the minimum opacity.
+        /// </summary>
+        /// <value>The minimum opacity.</value>
+        public float MinimumOpacity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum opacity.
+        /// </summary>
+        /// <value>The maximum opacity.</value>
+        public float MaximumOpacity { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Narivia.Graphics.ImageEffects.FadeEffect"/> is increasing.
         /// </summary>
         /// <value><c>true</c> if increasing; otherwise, <c>false</c>.</value>
@@ -24,7 +36,9 @@ namespace Narivia.Graphics.ImageEffects
         /// </summary>
         public FadeEffect()
         {
-            Speed = 2;
+            Speed = 1;
+            MinimumOpacity = 0.0f;
+            MaximumOpacity = 1.0f;
             Increasing = false;
         }
 
@@ -64,20 +78,20 @@ namespace Narivia.Graphics.ImageEffects
                     Image.Opacity += Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
-                if (Image.Opacity < 0.0f)
+                if (Image.Opacity < MinimumOpacity)
                 {
                     Increasing = true;
-                    Image.Opacity = 0.0f;
+                    Image.Opacity = MinimumOpacity;
                 }
-                else if (Image.Opacity > 1.0f)
+                else if (Image.Opacity > MaximumOpacity)
                 {
                     Increasing = false;
-                    Image.Opacity = 1.0f;
+                    Image.Opacity = MaximumOpacity;
                 }
             }
             else
             {
-                Image.Opacity = 1.0f;
+                Image.Opacity = MaximumOpacity;
             }
         }
     }

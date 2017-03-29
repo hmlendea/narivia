@@ -1,19 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SettingsMenu>
-  <Axis>Y</Axis>
-  <Effects>FadeEffect</Effects>
-  <Item>
-    <LinkType>Setting</LinkType>
-    <LinkId>Fullscreen</LinkId>
-    <Image>
-      <Text>Toggle fullscreen mode</Text>
-    </Image>
-  </Item>
-  <Item>
-    <LinkType>Screen</LinkType>
-    <LinkId>TitleScreen</LinkId>
-    <Image>
-      <Text>Back</Text>
-    </Image>
-  </Item>
+	<Axis>Y</Axis>
+	<Item>
+		<Text>Toggle fullscreen mode</Text>
+		<LinkType>Setting</LinkType>
+		<LinkId>Fullscreen</LinkId>
+	</Item>
+	<Item>
+		<Text>Back</Text>
+		<LinkType>Menu</LinkType>
+		<LinkId>TitleMenu</LinkId>
+	</Item>
 </SettingsMenu>

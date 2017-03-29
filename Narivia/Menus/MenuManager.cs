@@ -8,7 +8,7 @@ using Narivia.Audio;
 using Narivia.Helpers;
 using Narivia.Input;
 using Narivia.Screens;
-
+using Narivia.Widgets;
 
 namespace Narivia.Menus
 {
@@ -18,7 +18,6 @@ namespace Narivia.Menus
     public class MenuManager
     {
         Menu menu;
-        bool transitioning;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.Menus.MenuManager"/> class.
@@ -26,8 +25,6 @@ namespace Narivia.Menus
         public MenuManager()
         {
             menu = new Menu();
-            menu.OnMenuChange += menu_OnMenuChange;
-            transitioning = false;
         }
 
         /// <summary>
@@ -36,10 +33,13 @@ namespace Narivia.Menus
         /// <param name="menuName">Menu name.</param>
         public void LoadContent(string menuName)
         {
-            if (menuName != string.Empty)
+            if (string.IsNullOrEmpty(menuName))
             {
-                menu.Id = menuName;
+                return;
             }
+
+            LoadNewMenu(menuName);
+            menu.Id = menuName;
         }
 
         /// <summary>
@@ -56,17 +56,11 @@ namespace Narivia.Menus
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            if (transitioning)
-            {
-                Transition(gameTime);
-                return;
-            }
-
             menu.Update(gameTime);
 
-            MenuItem selectedItem = menu.Items[menu.ItemNumber];
+            MenuLink selectedItem = menu.Items[menu.ItemNumber];
 
-            if ((InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) && InputManager.Instance.IsCursorInArea(selectedItem.Image.ScreenArea)) ||
+            if ((InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) && InputManager.Instance.IsCursorInArea(selectedItem.ScreenArea)) ||
                  InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E))
             {
                 AudioManager.Instance.PlaySound("Interface/click");
@@ -78,14 +72,7 @@ namespace Narivia.Menus
                         break;
 
                     case "Menu":
-                        transitioning = true;
-                        menu.Transition(1.0f);
-
-                        foreach (MenuItem item in menu.Items)
-                        {
-                            item.Image.StoreEffects();
-                            item.Image.ActivateEffect("FadeEffect");
-                        }
+                        LoadNewMenu(selectedItem.LinkId);
                         break;
 
                     case "Action":
@@ -104,64 +91,20 @@ namespace Narivia.Menus
             menu.Draw(spriteBatch);
         }
 
-        void Transition(GameTime gameTime)
-        {
-            int oldMenuCount = menu.Items.Count;
-
-            for (int i = 0; i < oldMenuCount; i++)
-            {
-                menu.Items[i].Image.Update(gameTime);
-
-                float first = menu.Items[0].Image.Opacity;
-                float last = menu.Items[menu.Items.Count - 1].Image.Opacity;
-
-                if (first == 0.0f && last == 0.0f)
-                {
-                    menu.Id = menu.Items[menu.ItemNumber].LinkId;
-                }
-                else if (first == 1.0f && last == 1.0f)
-                {
-                    transitioning = false;
-
-                    menu.Items.ForEach(item => item.Image.RestoreEffects());
-                }
-            }
-
-        }
-
-        void menu_OnMenuChange(object sender, EventArgs e)
-        {
-            if (menu.Id == null)
-            {
-                return;
-            }
-
-            LoadNewMenu();
-
-            menu.OnMenuChange += menu_OnMenuChange;
-            menu.Transition(0.0f);
-
-            foreach (MenuItem item in menu.Items)
-            {
-                item.Image.StoreEffects();
-                item.Image.ActivateEffect("FadeEffect");
-            }
-        }
-
-        void LoadNewMenu()
+        void LoadNewMenu(string menuname)
         {
             menu.UnloadContent();
 
-            switch (menu.Id)
+            switch (menuname)
             {
                 case "SettingsMenu":
                     XmlManager<SettingsMenu> xmlManagerSettingsMenu = new XmlManager<SettingsMenu>();
-                    menu = xmlManagerSettingsMenu.Load("Menus/" + menu.Id + ".xml");
+                    menu = xmlManagerSettingsMenu.Load("Menus/" + menuname + ".xml");
                     break;
 
                 default:
                     XmlManager<Menu> xmlManager = new XmlManager<Menu>();
-                    menu = xmlManager.Load("Menus/" + menu.Id + ".xml");
+                    menu = xmlManager.Load("Menus/" + menuname + ".xml");
                     break;
             }
 

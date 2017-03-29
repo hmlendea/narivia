@@ -135,6 +135,8 @@ namespace Narivia.Screens
                 return;
             }
 
+            Image.Scale = Size;
+
             currentScreen.Update(gameTime);
         }
 

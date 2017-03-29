@@ -49,9 +49,7 @@ namespace Narivia.Screens
             delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // Aligns the splash image
-            Image.Position = new Vector2(
-                (ScreenManager.Instance.Size.X - Image.Size.X) / 2,
-                (ScreenManager.Instance.Size.Y - Image.Size.Y) / 2);
+            Image.Position = (ScreenManager.Instance.Size - Image.Size) / 2;
 
             if (InputManager.Instance.IsMouseButtonDown(MouseButton.LeftButton) ||
                 InputManager.Instance.IsAnyKeyDown() || delay <= 0)

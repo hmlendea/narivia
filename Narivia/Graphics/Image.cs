@@ -34,6 +34,12 @@ namespace Narivia.Graphics
         public bool Active { get; set; }
 
         /// <summary>
+        /// Gets or sets the tint.
+        /// </summary>
+        /// <value>The tint.</value>
+        public Color Tint { get; set; }
+
+        /// <summary>
         /// Gets or sets the opacity.
         /// </summary>
         /// <value>The opacity.</value>
@@ -148,6 +154,8 @@ namespace Narivia.Graphics
             Position = Vector2.Zero;
             Scale = Vector2.One;
             SourceRectangle = Rectangle.Empty;
+
+            Tint = Color.White;
             Opacity = 1.0f;
         }
 
@@ -260,7 +268,7 @@ namespace Narivia.Graphics
                 SourceRectangle.Height / 2);
 
             spriteBatch.Draw(Texture, Position + origin, SourceRectangle,
-                Color.White * Opacity, 0.0f,
+                Tint * Opacity, 0.0f,
                 origin, Scale,
                 SpriteEffects.None, 0.0f);
         }
