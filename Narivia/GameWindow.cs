@@ -96,7 +96,7 @@ namespace Narivia
         protected override void Draw(GameTime gameTime)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            FramerateCounter.Update(deltaTime);
+            FramerateCounter.Instance.Update(deltaTime);
 
             graphics.GraphicsDevice.Clear(Color.Black);
 
