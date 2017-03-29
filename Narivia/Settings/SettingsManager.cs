@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 
 using Narivia.Helpers;
+using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Settings
 {
@@ -23,14 +24,18 @@ namespace Narivia.Settings
                     {
                         if (instance == null)
                         {
-                            XmlManager<SettingsManager> xmlManager = new XmlManager<SettingsManager>();
-                            instance = xmlManager.Load("Settings.xml");
+                            instance = new SettingsManager();
                         }
                     }
                 }
 
                 return instance;
             }
+        }
+
+        public SettingsManager()
+        {
+            Resolution = new Vector2(1280, 720);
         }
 
         /// <summary>
@@ -46,14 +51,14 @@ namespace Narivia.Settings
         public bool Fullscreen { get; set; }
 
         /// <summary>
-        /// Updates the settings.
+        /// Loads the settings.
         /// </summary>
-        public void Update(ref GraphicsDeviceManager graphics)
+        public void LoadContent()
         {
-            if (graphics.IsFullScreen != Fullscreen)
-            {
-                graphics.ToggleFullScreen();
-            }
+            XmlManager<SettingsManager> xmlManager = new XmlManager<SettingsManager>();
+            SettingsManager storedSettings = xmlManager.Load(ApplicationPaths.SettingsFile);
+
+            instance = storedSettings;
         }
 
         /// <summary>
@@ -62,7 +67,18 @@ namespace Narivia.Settings
         public void SaveContent()
         {
             XmlManager<SettingsManager> xmlManager = new XmlManager<SettingsManager>();
-            xmlManager.Save("Settings.xml", this);
+            xmlManager.Save(ApplicationPaths.SettingsFile, this);
+        }
+
+        /// <summary>
+        /// Updates the settings.
+        /// </summary>
+        public void Update(ref GraphicsDeviceManager graphics)
+        {
+            if (graphics.IsFullScreen != Fullscreen)
+            {
+                graphics.ToggleFullScreen();
+            }
         }
     }
 }

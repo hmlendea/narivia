@@ -29,11 +29,11 @@ namespace Narivia.Infrastructure.Helpers
         /// Gets the options file.
         /// </summary>
         /// <value>The options file.</value>
-        public static string OptionsFile
+        public static string SettingsFile
         {
             get
             {
-                return Path.Combine(rootDirectory, "options.xml");
+                return Path.Combine(rootDirectory, "Settings.xml");
             }
         }
 
