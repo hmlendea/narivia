@@ -1,10 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SplashScreen>
-    <Image>
-        <ImagePath>SplashScreen/SplashImage</ImagePath>
-        <Position>
-            <X>0</X>
-            <Y>0</Y>
-        </Position>
-    </Image>
+	<Background>
+		<ImagePath>SplashScreen/Background</ImagePath>
+		<Position>
+			<X>0</X>
+			<Y>0</Y>
+		</Position>
+	</Background>
+	<Logo>
+		<ImagePath>SplashScreen/Logo</ImagePath>
+		<Position>
+			<X>0</X>
+			<Y>0</Y>
+		</Position>
+	</Logo>
 </SplashScreen>

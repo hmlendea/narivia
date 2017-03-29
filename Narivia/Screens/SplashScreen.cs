@@ -14,10 +14,16 @@ namespace Narivia.Screens
         float delay = 3;
 
         /// <summary>
-        /// Gets or sets the image.
+        /// Gets or sets the background.
         /// </summary>
-        /// <value>The image.</value>
-        public Image Image { get; set; }
+        /// <value>The background.</value>
+        public Image Background { get; set; }
+
+        /// <summary>
+        /// Gets or sets the logo.
+        /// </summary>
+        /// <value>The logo.</value>
+        public Image Logo { get; set; }
 
         /// <summary>
         /// Loads the content.
@@ -25,7 +31,10 @@ namespace Narivia.Screens
         public override void LoadContent()
         {
             base.LoadContent();
-            Image.LoadContent();
+            Background.LoadContent();
+            Logo.LoadContent();
+
+            AlignItems();
         }
 
         /// <summary>
@@ -34,7 +43,8 @@ namespace Narivia.Screens
         public override void UnloadContent()
         {
             base.UnloadContent();
-            Image.UnloadContent();
+            Background.UnloadContent();
+            Logo.UnloadContent();
         }
 
         /// <summary>
@@ -44,12 +54,12 @@ namespace Narivia.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            Image.Update(gameTime);
+            Background.Update(gameTime);
+            Logo.Update(gameTime);
 
             delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            // Aligns the splash image
-            Image.Position = (ScreenManager.Instance.Size - Image.Size) / 2;
+            AlignItems();
 
             if (InputManager.Instance.IsMouseButtonDown(MouseButton.LeftButton) ||
                 InputManager.Instance.IsAnyKeyDown() || delay <= 0)
@@ -64,7 +74,15 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Image.Draw(spriteBatch);
+            Background.Draw(spriteBatch);
+            Logo.Draw(spriteBatch);
+        }
+
+        void AlignItems()
+        {
+            Background.Position = (ScreenManager.Instance.Size - Background.Size) / 2;
+            Background.Scale = ScreenManager.Instance.Size / Background.Size;
+            Logo.Position = (ScreenManager.Instance.Size - Logo.Size) / 2;
         }
     }
 }
