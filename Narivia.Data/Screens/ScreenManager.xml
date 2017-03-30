@@ -1,14 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ScreenManager>
-    <Image>
-        <ImagePath>ScreenManager/FadeImage</ImagePath>
+    <TransitionImage>
+        <ImagePath>ScreenManager/FillImage</ImagePath>
+        <Tint>Black</Tint>
         <Effects>FadeEffect</Effects>
-        <Scale>
-            <X>800</X>
-            <Y>480</Y>
-        </Scale>
         <FadeEffect>
             <Speed>3.5</Speed>
         </FadeEffect>
-    </Image>
+    </TransitionImage>
 </ScreenManager>

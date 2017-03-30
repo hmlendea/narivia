@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.Graphics;
 using Narivia.Input;
 
 namespace Narivia.Screens
@@ -35,7 +36,7 @@ namespace Narivia.Screens
         /// <value>The background colour.</value>
         public Color BackgroundColour { get; set; }
 
-        Texture2D background;
+        Image background;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Screens.Screen"/> class.
@@ -52,20 +53,13 @@ namespace Narivia.Screens
         public virtual void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
-
-
-            background = new Texture2D(ScreenManager.Instance.GraphicsDevice,
-                                             (int)ScreenManager.Instance.Size.X,
-                                             (int)ScreenManager.Instance.Size.Y);
-
-            Color[] data = new Color[background.Width * background.Height];
-
-            for (int i = 0; i < data.Length; i++)
+            
+            background = new Image
             {
-                data[i] = BackgroundColour;
-            }
-
-            background.SetData(data);
+                ImagePath = "ScreenManager/FillImage",
+                Tint = BackgroundColour
+            };
+            background.LoadContent();
         }
 
         /// <summary>
@@ -74,6 +68,7 @@ namespace Narivia.Screens
         public virtual void UnloadContent()
         {
             content.Unload();
+            background.UnloadContent();
         }
 
         /// <summary>
@@ -82,7 +77,8 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-
+            background.Scale = ScreenManager.Instance.Size;
+            background.Update(gameTime);
         }
 
         /// <summary>
@@ -91,7 +87,7 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, Vector2.Zero, Color.White);
+            background.Draw(spriteBatch);
         }
     }
 }
