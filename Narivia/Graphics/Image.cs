@@ -104,10 +104,10 @@ namespace Narivia.Graphics
             get
             {
                 return new Rectangle(
-                    (int)Position.X,
-                    (int)Position.Y,
-                    (int)Size.X,
-                    (int)Size.Y);
+                    (int)(Position.X - Position.X * (Scale.X - 1.0f) / 2),
+                    (int)(Position.Y - Position.Y * (Scale.Y - 1.0f) / 2),
+                    (int)(Size.X * Scale.X),
+                    (int)(Size.Y * Scale.Y));
             }
         }
 
