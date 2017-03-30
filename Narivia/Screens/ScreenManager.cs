@@ -86,7 +86,7 @@ namespace Narivia.Screens
         /// Gets or sets the image.
         /// </summary>
         /// <value>The image.</value>
-        public Image Image { get; set; }
+        public Image TransitionImage { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Screens.ScreenManager"/> class.
@@ -111,7 +111,8 @@ namespace Narivia.Screens
             Content = new ContentManager(content.ServiceProvider, "Content");
 
             currentScreen.LoadContent();
-            Image.LoadContent();
+
+            TransitionImage.LoadContent();
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace Narivia.Screens
         public void UnloadContent()
         {
             currentScreen.UnloadContent();
-            Image.UnloadContent();
+            TransitionImage.UnloadContent();
         }
 
         /// <summary>
@@ -135,8 +136,11 @@ namespace Narivia.Screens
                 return;
             }
 
-            Image.Scale = Size;
+            Size = SettingsManager.Instance.Resolution;
 
+            TransitionImage.Position = Size / 2;
+            TransitionImage.Scale = Size;
+            
             currentScreen.Update(gameTime);
         }
 
@@ -150,7 +154,7 @@ namespace Narivia.Screens
 
             if (Transitioning)
             {
-                Image.Draw(spriteBatch);
+                TransitionImage.Draw(spriteBatch);
             }
         }
 
@@ -162,9 +166,9 @@ namespace Narivia.Screens
         {
             newScreen = (Screen)Activator.CreateInstance(Type.GetType("Narivia.Screens." + screenName));
 
-            Image.Active = true;
-            Image.FadeEffect.Increasing = true;
-            Image.Opacity = 0.0f;
+            TransitionImage.Active = true;
+            TransitionImage.FadeEffect.Increasing = true;
+            TransitionImage.Opacity = 0.0f;
 
             Transitioning = true;
         }
@@ -175,9 +179,9 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         void Transition(GameTime gameTime)
         {
-            Image.Update(gameTime);
+            TransitionImage.Update(gameTime);
 
-            if (Image.Opacity == 1.0f)
+            if (TransitionImage.Opacity == 1.0f)
             {
                 currentScreen.UnloadContent();
                 currentScreen = newScreen;
@@ -190,9 +194,9 @@ namespace Narivia.Screens
 
                 currentScreen.LoadContent();
             }
-            else if (Image.Opacity == 0.0f)
+            else if (TransitionImage.Opacity == 0.0f)
             {
-                Image.Active = false;
+                TransitionImage.Active = false;
                 Transitioning = false;
             }
         }

@@ -84,9 +84,25 @@ namespace Narivia.Settings
         /// </summary>
         public void Update(ref GraphicsDeviceManager graphics)
         {
+            bool graphicsChanged = false;
+
             if (graphics.IsFullScreen != Fullscreen)
             {
-                graphics.ToggleFullScreen();
+                graphics.IsFullScreen = Fullscreen;
+                graphicsChanged = true;
+            }
+
+            if(graphics.PreferredBackBufferWidth != Resolution.X ||
+               graphics.PreferredBackBufferHeight != Resolution.Y)
+            {
+                graphics.PreferredBackBufferWidth = (int)Resolution.X;
+                graphics.PreferredBackBufferHeight = (int)Resolution.Y;
+                graphicsChanged = true;
+            }
+
+            if (graphicsChanged)
+            {
+                graphics.ApplyChanges();
             }
         }
     }
