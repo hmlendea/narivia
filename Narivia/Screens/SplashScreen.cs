@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
@@ -25,6 +27,11 @@ namespace Narivia.Screens
         /// <value>The logo.</value>
         public Image Logo { get; set; }
 
+        public SplashScreen()
+        {
+            BackgroundColour = Color.DodgerBlue;
+        }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -35,6 +42,8 @@ namespace Narivia.Screens
             Logo.LoadContent();
 
             AlignItems();
+            Background.ActivateEffect("RotationEffect");
+            Background.ActivateEffect("ZoomEffect");
         }
 
         /// <summary>
@@ -74,14 +83,20 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
+            base.Draw(spriteBatch);
+
             Background.Draw(spriteBatch);
             Logo.Draw(spriteBatch);
         }
 
         void AlignItems()
         {
+            float scale = Math.Max(ScreenManager.Instance.Size.X, ScreenManager.Instance.Size.Y) /
+                          Math.Max(Background.Size.X, Background.Size.Y);
+            
             Background.Position = (ScreenManager.Instance.Size - Background.Size) / 2;
-            Background.Scale = ScreenManager.Instance.Size / Background.Size;
+            Background.Scale = new Vector2(scale, scale);
+
             Logo.Position = (ScreenManager.Instance.Size - Logo.Size) / 2;
         }
     }

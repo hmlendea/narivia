@@ -30,6 +30,14 @@ namespace Narivia.Screens
         public Type Type { get; set; }
 
         /// <summary>
+        /// Gets or sets the background colour.
+        /// </summary>
+        /// <value>The background colour.</value>
+        public Color BackgroundColour { get; set; }
+
+        Texture2D background;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Screens.Screen"/> class.
         /// </summary>
         public Screen()
@@ -44,6 +52,20 @@ namespace Narivia.Screens
         public virtual void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
+
+
+            background = new Texture2D(ScreenManager.Instance.GraphicsDevice,
+                                             (int)ScreenManager.Instance.Size.X,
+                                             (int)ScreenManager.Instance.Size.Y);
+
+            Color[] data = new Color[background.Width * background.Height];
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                data[i] = BackgroundColour;
+            }
+
+            background.SetData(data);
         }
 
         /// <summary>
@@ -69,7 +91,7 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Draw(background, Vector2.Zero, Color.White);
         }
     }
 }
