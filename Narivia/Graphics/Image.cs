@@ -23,6 +23,8 @@ namespace Narivia.Graphics
         SpriteFont font;
 
         FadeEffect fadeEffect;
+        RotationEffect rotationEffect;
+        ZoomEffect zoomEffect;
         AnimationEffect animationEffect;
 
         readonly Dictionary<string, ImageEffect> effectList;
@@ -44,6 +46,18 @@ namespace Narivia.Graphics
         /// </summary>
         /// <value>The opacity.</value>
         public float Opacity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the rotation.
+        /// </summary>
+        /// <value>The rotation.</value>
+        public float Rotation { get; set; }
+
+        /// <summary>
+        /// Gets or sets the zoom.
+        /// </summary>
+        /// <value>The zoom.</value>
+        public float Zoom { get; set; }
 
         /// <summary>
         /// Gets or sets the text.
@@ -128,6 +142,26 @@ namespace Narivia.Graphics
         }
 
         /// <summary>
+        /// Gets or sets the rotation effect.
+        /// </summary>
+        /// <value>The rotation effect.</value>
+        public RotationEffect RotationEffect
+        {
+            get { return rotationEffect; }
+            set { rotationEffect = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the zoom effect.
+        /// </summary>
+        /// <value>The zoom effect.</value>
+        public ZoomEffect ZoomEffect
+        {
+            get { return zoomEffect; }
+            set { zoomEffect = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the animation effect.
         /// </summary>
         /// <value>The animation effect.</value>
@@ -152,11 +186,13 @@ namespace Narivia.Graphics
             FontName = "MenuFont";
 
             Position = Vector2.Zero;
-            Scale = Vector2.One;
             SourceRectangle = Rectangle.Empty;
 
-            Tint = Color.White;
             Opacity = 1.0f;
+            Zoom = 1.0f;
+            Scale = Vector2.One;
+
+            Tint = Color.White;
         }
 
         /// <summary>
@@ -224,6 +260,8 @@ namespace Narivia.Graphics
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
 
             SetEffect(ref fadeEffect);
+            SetEffect(ref rotationEffect);
+            SetEffect(ref zoomEffect);
             SetEffect(ref animationEffect);
 
             if (!string.IsNullOrEmpty(Effects))
@@ -263,13 +301,12 @@ namespace Narivia.Graphics
         /// <param name="spriteBatch">Sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            origin = new Vector2(
-                SourceRectangle.Width / 2,
-                SourceRectangle.Height / 2);
+            origin = new Vector2(SourceRectangle.Width / 2,
+                                 SourceRectangle.Height / 2);
 
             spriteBatch.Draw(Texture, Position + origin, SourceRectangle,
-                Tint * Opacity, 0.0f,
-                origin, Scale,
+                Tint * Opacity, Rotation,
+                origin, Scale * Zoom,
                 SpriteEffects.None, 0.0f);
         }
 

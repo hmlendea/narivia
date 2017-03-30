@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="Entities\Cursor.cs" />
     <Compile Include="Graphics\ImageEffects\AnimationEffect.cs" />
+    <Compile Include="Graphics\ImageEffects\RotationEffect.cs" />
+    <Compile Include="Graphics\ImageEffects\ZoomEffect.cs" />
     <Compile Include="Helpers\FramerateCounter.cs" />
     <Compile Include="Menus\SettingsMenu.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
@@ -141,8 +143,5 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Audio\" />
-    <Folder Include="Widgets\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
