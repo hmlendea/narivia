@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Input;
 
 namespace Narivia.Screens
 {

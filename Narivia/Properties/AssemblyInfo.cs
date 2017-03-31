@@ -1,6 +1,5 @@
 ﻿using System.Resources;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 #if __ANDROID__
 using Android.App;
