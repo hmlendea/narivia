@@ -22,6 +22,12 @@ namespace Narivia.Screens
         public Image Background { get; set; }
 
         /// <summary>
+        /// Gets or sets the overlay.
+        /// </summary>
+        /// <value>The overlay.</value>
+        public Image Overlay { get; set; }
+
+        /// <summary>
         /// Gets or sets the logo.
         /// </summary>
         /// <value>The logo.</value>
@@ -39,6 +45,7 @@ namespace Narivia.Screens
         {
             base.LoadContent();
             Background.LoadContent();
+            Overlay.LoadContent();
             Logo.LoadContent();
 
             AlignItems();
@@ -53,6 +60,7 @@ namespace Narivia.Screens
         {
             base.UnloadContent();
             Background.UnloadContent();
+            Overlay.UnloadContent();
             Logo.UnloadContent();
         }
 
@@ -64,6 +72,7 @@ namespace Narivia.Screens
         {
             base.Update(gameTime);
             Background.Update(gameTime);
+            Overlay.Update(gameTime);
             Logo.Update(gameTime);
 
             delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -86,16 +95,24 @@ namespace Narivia.Screens
             base.Draw(spriteBatch);
 
             Background.Draw(spriteBatch);
+            Overlay.Draw(spriteBatch);
             Logo.Draw(spriteBatch);
         }
 
         void AlignItems()
         {
-            float scale = Math.Max(ScreenManager.Instance.Size.X, ScreenManager.Instance.Size.Y) /
-                          Math.Max(Background.Size.X, Background.Size.Y);
-            
+            Vector2 overlayScale = new Vector2(ScreenManager.Instance.Size.X / Overlay.Size.X,
+                                               ScreenManager.Instance.Size.Y / Overlay.Size.Y);
+
+            Vector2 backgroundScale = Vector2.One * 
+                Math.Max(ScreenManager.Instance.Size.X, ScreenManager.Instance.Size.Y) /
+                Math.Max(Background.Size.X, Background.Size.Y);
+
+            Overlay.Position = (ScreenManager.Instance.Size - Overlay.Size) / 2;
+            Overlay.Scale = overlayScale;
+
             Background.Position = (ScreenManager.Instance.Size - Background.Size) / 2;
-            Background.Scale = new Vector2(scale, scale);
+            Background.Scale = backgroundScale;
 
             Logo.Position = (ScreenManager.Instance.Size - Logo.Size) / 2;
         }

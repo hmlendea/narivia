@@ -65,12 +65,15 @@
     <Compile Include="Graphics\ImageEffects\RotationEffect.cs" />
     <Compile Include="Graphics\ImageEffects\ZoomEffect.cs" />
     <Compile Include="Helpers\FramerateCounter.cs" />
-    <Compile Include="Menus\SettingsMenu.cs" />
+    <Compile Include="Screens\MenuScreen.cs" />
+    <Compile Include="Screens\SettingsScreen.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
+    <Compile Include="Widgets\MenuAction.cs" />
+    <Compile Include="Widgets\MenuItem.cs" />
+    <Compile Include="Widgets\MenuToggle.cs" />
     <Compile Include="World\Layer.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\Tile.cs" />
-    <Compile Include="Menus\Menu.cs" />
     <Compile Include="Menus\MenuManager.cs" />
     <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="Program.cs" />

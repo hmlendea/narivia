@@ -3,18 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Narivia.Screens
 {
-    /// <summary>
-    /// Title screen.
-    /// </summary>
-    public class TitleScreen : MenuScreen
+    public class SettingsScreen : MenuScreen
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Screens.TitleScreen"/> class.
-        /// </summary>
-        public TitleScreen()
-        {
-        }
-
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -32,7 +22,7 @@ namespace Narivia.Screens
         }
 
         /// <summary>
-        /// Update the content.
+        /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
@@ -41,7 +31,7 @@ namespace Narivia.Screens
         }
 
         /// <summary>
-        /// Draw the content on the specified spriteBatch.
+        /// Draws the content on the specified spriteBatch.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)

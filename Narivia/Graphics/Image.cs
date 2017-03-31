@@ -345,7 +345,6 @@ namespace Narivia.Graphics
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         void SetEffect<T>(ref T effect) where T : ImageEffect
         {
-
             if (effect == null)
             {
                 effect = (T)Activator.CreateInstance(typeof(T));

@@ -6,12 +6,11 @@
     <G>96</G>
     <B>192</B>
   </BackgroundColour>
-	<Background>
-		<ImagePath>SplashScreen/Background</ImagePath>
-		<Position>
-			<X>0</X>
-			<Y>0</Y>
-		</Position>
+  <Overlay>
+    <ImagePath>SplashScreen/Overlay</ImagePath>
+  </Overlay>
+  <Background>
+    <ImagePath>SplashScreen/Background</ImagePath>
     <RotationEffect>
       <Speed>0.1</Speed>
       <MaximumRotation>0.2</MaximumRotation>
@@ -20,12 +19,8 @@
       <Speed>0.1</Speed>
       <MaximumZoom>1.3</MaximumZoom>
     </ZoomEffect>
-	</Background>
+  </Background>
 	<Logo>
 		<ImagePath>SplashScreen/Logo</ImagePath>
-		<Position>
-			<X>0</X>
-			<Y>0</Y>
-		</Position>
 	</Logo>
 </SplashScreen>

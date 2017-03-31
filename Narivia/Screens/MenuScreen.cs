@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Narivia.Screens;
+
 using Narivia.Input;
 using Narivia.Widgets;
 
-namespace Narivia.Menus
+namespace Narivia.Screens
 {
     /// <summary>
-    /// Menu.
+    /// Menu screen.
     /// </summary>
-    public class Menu
+    public class MenuScreen : Screen
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -34,11 +35,34 @@ namespace Narivia.Menus
         public int Spacing { get; set; }
 
         /// <summary>
-        /// Gets or sets the items.
+        /// Gets or sets the links.
+        /// </summary>
+        /// <value>The links.</value>
+        [XmlElement("Link")]
+        public List<MenuLink> Links { get; set; }
+
+        /// <summary>
+        /// Gets or sets the toggles.
+        /// </summary>
+        /// <value>The toggles.</value>
+        [XmlElement("Toggle")]
+        public List<MenuToggle> Toggles { get; set; }
+
+        /// <summary>
+        /// Gets or sets the actions.
+        /// </summary>
+        /// <value>The actions.</value>
+        [XmlElement("Action")]
+        public List<MenuAction> Actions { get; set; }
+
+        /// <summary>
+        /// Gets all the items.
         /// </summary>
         /// <value>The items.</value>
-        [XmlElement("Item")]
-        public List<MenuLink> Items { get; set; }
+        [XmlIgnore]
+        public List<MenuItem> Items => Toggles.Select(x => (MenuItem)x).Concat(
+                                       Links.Select(x => (MenuItem)x)).Concat(
+                                       Actions.Select(x => (MenuItem)x)).ToList();
 
         /// <summary>
         /// Gets the item number.
@@ -48,22 +72,27 @@ namespace Narivia.Menus
         public int ItemNumber { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Menus.Menu"/> class.
+        /// Initializes a new instance of the <see cref="T:Narivia.Screens.Screen"/> class.
         /// </summary>
-        public Menu()
+        public MenuScreen()
         {
             Id = string.Empty;
             ItemNumber = 0;
             Axis = "Y";
             Spacing = 30;
-            Items = new List<MenuLink>();
+
+            Links = new List<MenuLink>();
+            Toggles = new List<MenuToggle>();
+            Actions = new List<MenuAction>();
         }
 
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public virtual void LoadContent()
+        public override void LoadContent()
         {
+            base.LoadContent();
+
             Items.ForEach(item => item.LoadContent());
 
             AlignMenuItems();
@@ -72,8 +101,10 @@ namespace Narivia.Menus
         /// <summary>
         /// Unloads the content.
         /// </summary>
-        public virtual void UnloadContent()
+        public override void UnloadContent()
         {
+            base.UnloadContent();
+
             Items.ForEach(item => item.UnloadContent());
         }
 
@@ -81,8 +112,10 @@ namespace Narivia.Menus
         /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        public virtual void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             int newSelectedItemIndex = ItemNumber;
 
             if ("Xx".Contains(Axis))
@@ -139,7 +172,7 @@ namespace Narivia.Menus
         /// Draws the content on the specified spriteBatch.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             Items.ForEach(item => item.Draw(spriteBatch));
         }
@@ -154,8 +187,8 @@ namespace Narivia.Menus
             dimensions = new Vector2(
                 (ScreenManager.Instance.Size.X - dimensions.X) / 2,
                 (ScreenManager.Instance.Size.Y - dimensions.Y) / 2);
-
-            foreach (MenuLink item in Items)
+            
+            foreach (MenuItem item in Items)
             {
                 if ("Xx".Contains(Axis))
                 {
@@ -176,4 +209,3 @@ namespace Narivia.Menus
         }
     }
 }
-

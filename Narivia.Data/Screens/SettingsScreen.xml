@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SettingsScreen>
+  <Axis>Y</Axis>
+  <Toggle>
+    <Text>Toggle fullscreen mode</Text>
+    <Property>Fullscreen</Property>
+  </Toggle>
+  <Link>
+    <Text>Back</Text>
+    <LinkId>TitleScreen</LinkId>
+  </Link>
+</SettingsScreen>

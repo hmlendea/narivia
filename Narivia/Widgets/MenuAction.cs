@@ -1,19 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Narivia.Screens
+namespace Narivia.Widgets
 {
-    /// <summary>
-    /// Title screen.
-    /// </summary>
-    public class TitleScreen : MenuScreen
+    public class MenuAction : MenuItem
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Screens.TitleScreen"/> class.
+        /// Gets or sets the action.
         /// </summary>
-        public TitleScreen()
-        {
-        }
+        /// <value>The type of the action.</value>
+        public string ActionId { get; set; }
 
         /// <summary>
         /// Loads the content.
@@ -32,21 +28,46 @@ namespace Narivia.Screens
         }
 
         /// <summary>
-        /// Update the content.
+        /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
+            if (!Enabled)
+            {
+                return;
+            }
+
             base.Update(gameTime);
         }
 
         /// <summary>
-        /// Draw the content on the specified spriteBatch.
+        /// Draws the content on the specified spriteBatch.
         /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
+        /// <returns>The draw.</returns>
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (!Enabled)
+            {
+                return;
+            }
+
             base.Draw(spriteBatch);
+        }
+
+        /// <summary>
+        /// Activates this item.
+        /// </summary>
+        public override void Activate()
+        {
+            base.Activate();
+
+            switch (ActionId)
+            {
+                case "Exit":
+                    Program.Game.Exit();
+                    break;
+            }
         }
     }
 }

@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TitleScreen>
-	<Image>
-		<Active>true</Active>
-		<Text>Narivia</Text>
-		<FontName>MenuFont</FontName>
-		<Position>
-			<X>0</X>
-			<Y>0</Y>
-		</Position>
-	</Image>
+  <Axis>Y</Axis>
+  <Link>
+    <Text>Load test map 'Narivia'</Text>
+    <LinkId>GameplayScreen</LinkId>
+  </Link>
+  <Link>
+    <Text>Settings</Text>
+    <LinkId>SettingsScreen</LinkId>
+  </Link>
+  <Link>
+    <Text>Go back to SplashScreen</Text>
+    <LinkId>SplashScreen</LinkId>
+  </Link>
+  <Action>
+    <Text>Exit</Text>
+    <ActionId>Exit</ActionId>
+  </Action>
 </TitleScreen>

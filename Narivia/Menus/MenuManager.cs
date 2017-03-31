@@ -1,9 +1,8 @@
-﻿
+﻿/*
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Narivia.Audio;
 using Narivia.Helpers;
 using Narivia.Input;
 using Narivia.Screens;
@@ -57,27 +56,28 @@ namespace Narivia.Menus
         {
             menu.Update(gameTime);
 
-            MenuLink selectedItem = menu.Items[menu.ItemNumber];
+            MenuItem selectedItem = menu.Items[menu.ItemNumber];
 
             if ((InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) && InputManager.Instance.IsCursorInArea(selectedItem.ScreenArea)) ||
                  InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E))
             {
-                AudioManager.Instance.PlaySound("Interface/click");
 
-                switch (selectedItem.LinkType)
+                if(selectedItem.GetType() == typeof(MenuLink))
                 {
-                    case "Screen":
-                        ScreenManager.Instance.ChangeScreens(selectedItem.LinkId);
-                        break;
+                    MenuLink menuLink = (MenuLink)selectedItem;
 
-                    case "Menu":
-                        LoadNewMenu(selectedItem.LinkId);
-                        break;
+                    switch (menuLink.LinkType)
+                    {
+                        case "Screen":
+                            ScreenManager.Instance.ChangeScreens(menuLink.LinkId);
+                            break;
 
-                    case "Action":
-                        PerformAction(selectedItem.LinkId);
-                        break;
+                        case "Menu":
+                            LoadNewMenu(menuLink.LinkId);
+                            break;
+                    }
                 }
+
             }
         }
 
@@ -90,7 +90,7 @@ namespace Narivia.Menus
             menu.Draw(spriteBatch);
         }
 
-        void LoadNewMenu(string menuname)
+        public void LoadNewMenu(string menuname)
         {
             menu.UnloadContent();
 
@@ -122,3 +122,4 @@ namespace Narivia.Menus
     }
 }
 
+*/
