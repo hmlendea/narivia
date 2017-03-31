@@ -35,8 +35,6 @@ namespace Narivia.Screens
         /// <value>The background colour.</value>
         public Color BackgroundColour { get; set; }
 
-        Image background;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Screens.Screen"/> class.
         /// </summary>
@@ -52,13 +50,7 @@ namespace Narivia.Screens
         public virtual void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
-            
-            background = new Image
-            {
-                ImagePath = "ScreenManager/FillImage",
-                Tint = BackgroundColour
-            };
-            background.LoadContent();
+            ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
         }
 
         /// <summary>
@@ -67,7 +59,6 @@ namespace Narivia.Screens
         public virtual void UnloadContent()
         {
             content.Unload();
-            background.UnloadContent();
         }
 
         /// <summary>
@@ -76,8 +67,6 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-            background.Scale = ScreenManager.Instance.Size;
-            background.Update(gameTime);
         }
 
         /// <summary>
@@ -86,7 +75,7 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            background.Draw(spriteBatch);
+            ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
         }
     }
 }

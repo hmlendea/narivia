@@ -2,8 +2,12 @@
 <ScreenManager>
     <TransitionImage>
         <ImagePath>ScreenManager/FillImage</ImagePath>
-        <Tint>Black</Tint>
-        <Effects>FadeEffect</Effects>
+        <Tint>
+          <A>255</A>
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </Tint>
         <FadeEffect>
             <Speed>3.5</Speed>
         </FadeEffect>

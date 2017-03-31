@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SplashScreen>
+  <BackgroundColour>
+    <A>255</A>
+    <R>24</R>
+    <G>96</G>
+    <B>192</B>
+  </BackgroundColour>
 	<Background>
 		<ImagePath>SplashScreen/Background</ImagePath>
 		<Position>

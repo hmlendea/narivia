@@ -111,7 +111,6 @@ namespace Narivia.Screens
             Content = new ContentManager(content.ServiceProvider, "Content");
 
             currentScreen.LoadContent();
-
             TransitionImage.LoadContent();
         }
 
@@ -137,8 +136,6 @@ namespace Narivia.Screens
             }
 
             Size = SettingsManager.Instance.Resolution;
-
-            TransitionImage.Position = Size / 2;
             TransitionImage.Scale = Size;
             
             currentScreen.Update(gameTime);
@@ -166,6 +163,7 @@ namespace Narivia.Screens
         {
             newScreen = (Screen)Activator.CreateInstance(Type.GetType("Narivia.Screens." + screenName));
 
+            TransitionImage.ActivateEffect("FadeEffect");
             TransitionImage.Active = true;
             TransitionImage.FadeEffect.Increasing = true;
             TransitionImage.Opacity = 0.0f;
