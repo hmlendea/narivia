@@ -1,15 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SplashScreen>
+  <Delay>3</Delay>
   <BackgroundColour>
     <A>255</A>
     <R>24</R>
     <G>96</G>
     <B>192</B>
   </BackgroundColour>
-  <Overlay>
-    <ImagePath>SplashScreen/Overlay</ImagePath>
-  </Overlay>
-  <Background>
+  <BackgroundImage>
     <ImagePath>SplashScreen/Background</ImagePath>
     <RotationEffect>
       <Speed>0.1</Speed>
@@ -19,8 +17,11 @@
       <Speed>0.1</Speed>
       <MaximumZoom>1.3</MaximumZoom>
     </ZoomEffect>
-  </Background>
-	<Logo>
+  </BackgroundImage>
+  <OverlayImage>
+    <ImagePath>SplashScreen/Overlay</ImagePath>
+  </OverlayImage>
+  <LogoImage>
 		<ImagePath>SplashScreen/Logo</ImagePath>
-	</Logo>
+	</LogoImage>
 </SplashScreen>

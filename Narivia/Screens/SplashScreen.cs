@@ -13,25 +13,25 @@ namespace Narivia.Screens
     /// </summary>
     public class SplashScreen : Screen
     {
-        float delay = 3;
+        public float Delay { get; set; }
 
         /// <summary>
         /// Gets or sets the background.
         /// </summary>
         /// <value>The background.</value>
-        public Image Background { get; set; }
+        public Image BackgroundImage { get; set; }
 
         /// <summary>
         /// Gets or sets the overlay.
         /// </summary>
         /// <value>The overlay.</value>
-        public Image Overlay { get; set; }
+        public Image OverlayImage { get; set; }
 
         /// <summary>
         /// Gets or sets the logo.
         /// </summary>
         /// <value>The logo.</value>
-        public Image Logo { get; set; }
+        public Image LogoImage { get; set; }
 
         public SplashScreen()
         {
@@ -44,13 +44,13 @@ namespace Narivia.Screens
         public override void LoadContent()
         {
             base.LoadContent();
-            Background.LoadContent();
-            Overlay.LoadContent();
-            Logo.LoadContent();
+            BackgroundImage.LoadContent();
+            OverlayImage.LoadContent();
+            LogoImage.LoadContent();
 
             AlignItems();
-            Background.ActivateEffect("RotationEffect");
-            Background.ActivateEffect("ZoomEffect");
+            BackgroundImage.ActivateEffect("RotationEffect");
+            BackgroundImage.ActivateEffect("ZoomEffect");
         }
 
         /// <summary>
@@ -59,9 +59,9 @@ namespace Narivia.Screens
         public override void UnloadContent()
         {
             base.UnloadContent();
-            Background.UnloadContent();
-            Overlay.UnloadContent();
-            Logo.UnloadContent();
+            BackgroundImage.UnloadContent();
+            OverlayImage.UnloadContent();
+            LogoImage.UnloadContent();
         }
 
         /// <summary>
@@ -71,16 +71,16 @@ namespace Narivia.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            Background.Update(gameTime);
-            Overlay.Update(gameTime);
-            Logo.Update(gameTime);
+            BackgroundImage.Update(gameTime);
+            OverlayImage.Update(gameTime);
+            LogoImage.Update(gameTime);
 
-            delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             AlignItems();
 
             if (InputManager.Instance.IsMouseButtonDown(MouseButton.LeftButton) ||
-                InputManager.Instance.IsAnyKeyDown() || delay <= 0)
+                InputManager.Instance.IsAnyKeyDown() || Delay <= 0)
             {
                 ScreenManager.Instance.ChangeScreens("TitleScreen");
             }
@@ -94,27 +94,27 @@ namespace Narivia.Screens
         {
             base.Draw(spriteBatch);
 
-            Background.Draw(spriteBatch);
-            Overlay.Draw(spriteBatch);
-            Logo.Draw(spriteBatch);
+            BackgroundImage.Draw(spriteBatch);
+            OverlayImage.Draw(spriteBatch);
+            LogoImage.Draw(spriteBatch);
         }
 
         void AlignItems()
         {
-            Vector2 overlayScale = new Vector2(ScreenManager.Instance.Size.X / Overlay.Size.X,
-                                               ScreenManager.Instance.Size.Y / Overlay.Size.Y);
-
             Vector2 backgroundScale = Vector2.One * 
                 Math.Max(ScreenManager.Instance.Size.X, ScreenManager.Instance.Size.Y) /
-                Math.Max(Background.Size.X, Background.Size.Y);
+                Math.Max(BackgroundImage.Size.X, BackgroundImage.Size.Y);
 
-            Overlay.Position = (ScreenManager.Instance.Size - Overlay.Size) / 2;
-            Overlay.Scale = overlayScale;
+            Vector2 overlayScale = new Vector2(ScreenManager.Instance.Size.X / OverlayImage.Size.X,
+                                               ScreenManager.Instance.Size.Y / OverlayImage.Size.Y);
+            
+            BackgroundImage.Position = (ScreenManager.Instance.Size - BackgroundImage.Size) / 2;
+            BackgroundImage.Scale = backgroundScale;
 
-            Background.Position = (ScreenManager.Instance.Size - Background.Size) / 2;
-            Background.Scale = backgroundScale;
+            OverlayImage.Position = (ScreenManager.Instance.Size - OverlayImage.Size) / 2;
+            OverlayImage.Scale = overlayScale;
 
-            Logo.Position = (ScreenManager.Instance.Size - Logo.Size) / 2;
+            LogoImage.Position = (ScreenManager.Instance.Size - LogoImage.Size) / 2;
         }
     }
 }

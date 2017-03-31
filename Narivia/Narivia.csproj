@@ -74,7 +74,6 @@
     <Compile Include="World\Layer.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\Tile.cs" />
-    <Compile Include="Menus\MenuManager.cs" />
     <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
