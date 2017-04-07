@@ -29,6 +29,9 @@ namespace Narivia.Widgets
                 {
                     case "Fullscreen":
                         return SettingsManager.Instance.Fullscreen;
+
+                    case "DebugMode":
+                        return SettingsManager.Instance.DebugMode;
                 }
 
                 return false;
@@ -39,6 +42,10 @@ namespace Narivia.Widgets
                 {
                     case "Fullscreen":
                         SettingsManager.Instance.Fullscreen = value;
+                        break;
+
+                    case "DebugMode":
+                        SettingsManager.Instance.DebugMode = value;
                         break;
                 }
             }

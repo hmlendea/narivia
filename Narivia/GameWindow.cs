@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Audio;
@@ -17,7 +19,10 @@ namespace Narivia
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteFont fpsFont;
         Cursor cursor;
+        Vector2 fpsCounterSize;
+        string fpsString;
 
         public const int TILE_DIMENSIONS = 16;
 
@@ -64,6 +69,8 @@ namespace Narivia
             AudioManager.Instance.LoadContent(Content);
 
             cursor.LoadContent();
+
+            fpsFont = Content.Load<SpriteFont>("Fonts/FrameCounterFont");
         }
 
         /// <summary>
@@ -85,7 +92,12 @@ namespace Narivia
             SettingsManager.Instance.Update(ref graphics);
             ScreenManager.Instance.Update(gameTime);
             InputManager.Instance.Update();
+
             cursor.Update(gameTime);
+
+            fpsString = $"FPS: {Math.Round(FramerateCounter.Instance.AverageFramesPerSecond)}";
+            fpsCounterSize = fpsFont.MeasureString(fpsString);
+
             base.Update(gameTime);
         }
 
@@ -104,6 +116,11 @@ namespace Narivia
 
             ScreenManager.Instance.Draw(spriteBatch);
             cursor.Draw(spriteBatch);
+            
+            if (SettingsManager.Instance.DebugMode)
+            {
+                spriteBatch.DrawString(fpsFont, fpsString, new Vector2(1, 1), Color.Lime);
+            }
 
             spriteBatch.End();
 

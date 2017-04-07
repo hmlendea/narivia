@@ -52,7 +52,7 @@ namespace Narivia.Helpers
         public float CurrentFramesPerSecond { get; private set; }
 
         /// <summary>
-        /// The maximum samples.
+        /// The maximum number of samples.
         /// </summary>
         public const int MAXIMUM_SAMPLES = 100;
 

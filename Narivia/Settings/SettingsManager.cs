@@ -54,6 +54,12 @@ namespace Narivia.Settings
         public bool Fullscreen { get; set; }
 
         /// <summary>
+        /// Gets or sets the debug mode.
+        /// </summary>
+        /// <value>The debug mode.</value>
+        public bool DebugMode { get; set; }
+
+        /// <summary>
         /// Loads the settings.
         /// </summary>
         public void LoadContent()

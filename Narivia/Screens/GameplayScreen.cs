@@ -1,12 +1,9 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.BusinessLogic.GameManagers;
 using Narivia.Entities;
 using Narivia.Graphics;
-using Narivia.Helpers;
 using Narivia.WorldMap;
 
 namespace Narivia.Screens
@@ -19,7 +16,6 @@ namespace Narivia.Screens
         GameDomainService game;
         Camera camera;
         Map map;
-        Image fpsCounter;
 
         /// <summary>
         /// Loads the content.
@@ -33,8 +29,6 @@ namespace Narivia.Screens
             {
                 TileDimensions = Vector2.One * 16
             };
-            fpsCounter = new Image() { Text = "FPS" };
-            fpsCounter.LoadContent();
 
             game = new GameDomainService();
             game.NewGame("narivia", "alpalet");
@@ -76,10 +70,7 @@ namespace Narivia.Screens
         {
             camera.Draw(spriteBatch);
             map.Draw(spriteBatch, camera);
-
-            var fpsString = string.Format("FPS: {0}", Math.Round(FramerateCounter.Instance.AverageFramesPerSecond));
-            spriteBatch.DrawString(content.Load<SpriteFont>("Fonts/FrameCounterFont"), fpsString, new Vector2(1, 1), Color.Lime);
-
+            
             base.Draw(spriteBatch);
         }
     }
