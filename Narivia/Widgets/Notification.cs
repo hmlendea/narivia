@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
@@ -9,21 +11,26 @@ namespace Narivia.Widgets
     {
         public NotificationType NotificationType { get; set; }
 
-        public Vector2 Size { get; set; }
-
-        Image[,] images;
-
-        public Notification()
+        public Vector2 NotificationSize
         {
+            get { return size; }
+            set
+            {
+                size = new Vector2(Math.Max(1, (float)Math.Round(value.X)),
+                                   Math.Max(1, (float)Math.Round(value.Y)));
+            }
         }
 
+        Vector2 size;
+        Image[,] images;
+        
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
             string imagePath;
-            images = new Image[(int)Size.X, (int)Size.Y];
+            images = new Image[(int)NotificationSize.X, (int)NotificationSize.Y];
 
             switch (NotificationType)
             {
@@ -37,48 +44,18 @@ namespace Narivia.Widgets
                     break;
             }
 
-            for (int y = 0; y < Size.Y; y++)
+            for (int y = 0; y < NotificationSize.Y; y++)
             {
-                for (int x = 0; x < Size.X; x++)
+                for (int x = 0; x < NotificationSize.X; x++)
                 {
-                    Image image = new Image();
-                    image.ImagePath = imagePath;
-                    image.Position = new Vector2(Position.X + x * 32, Position.Y + y * 32);
-
-                    int sx = 1;
-                    int sy = 1;
-
-                    if (Size.X == 1)
+                    images[x, y] = new Image
                     {
-                        sx = 3;
-                    }
-                    else if (x == 0)
-                    {
-                        sx = 0;
-                    }
-                    else if (x == Size.X - 1)
-                    {
-                        sx = 2;
-                    }
+                        ImagePath = imagePath,
+                        Position = new Vector2(Position.X + x * 32, Position.Y + y * 32),
+                        SourceRectangle = CalculateSourceRectangle(x, y)
+                    };
 
-                    if (Size.Y == 1)
-                    {
-                        sy = 3;
-                    }
-                    else if (y == 0)
-                    {
-                        sy = 0;
-                    }
-                    else if (y == Size.Y - 1)
-                    {
-                        sy = 2;
-                    }
-
-
-                    image.SourceRectangle = new Rectangle(sx * 32, sy * 32, 32, 32); // TODO: Select the right one
-
-                    images[x, y] = image;
-                    image.LoadContent();
+                    images[x, y].LoadContent();
                 }
             }
         }
@@ -116,6 +93,40 @@ namespace Narivia.Widgets
             {
                 image.Draw(spriteBatch);
             }
+        }
+
+        Rectangle CalculateSourceRectangle(int x, int y)
+        {
+            int sx = 1;
+            int sy = 1;
+
+            if (NotificationSize.X == 1)
+            {
+                sx = 3;
+            }
+            else if (x == 0)
+            {
+                sx = 0;
+            }
+            else if (x == NotificationSize.X - 1)
+            {
+                sx = 2;
+            }
+
+            if (NotificationSize.Y == 1)
+            {
+                sy = 3;
+            }
+            else if (y == 0)
+            {
+                sy = 0;
+            }
+            else if (y == NotificationSize.Y - 1)
+            {
+                sy = 2;
+            }
+
+            return new Rectangle(sx * 32, sy * 32, 32, 32);
         }
     }
 }
