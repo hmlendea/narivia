@@ -2,8 +2,10 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 using Narivia.Graphics;
+using Narivia.Input;
 
 namespace Narivia.Widgets
 {
@@ -11,6 +13,10 @@ namespace Narivia.Widgets
     {
         public NotificationType NotificationType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the size of the notification.
+        /// </summary>
+        /// <value>The size of the notification.</value>
         public Vector2 NotificationSize
         {
             get { return size; }
@@ -21,26 +27,50 @@ namespace Narivia.Widgets
             }
         }
 
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        /// <value>The text.</value>
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Gets or sets the text colour.
+        /// </summary>
+        /// <value>The text colour.</value>
+        public Color TextColour { get; set; }
+
         Vector2 size;
         Image[,] images;
+        Image textImage;
+
+        const int tileSize = 32;
+
+        public Notification()
+        {
+            TextColour = Color.Black;
+        }
         
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
-            string imagePath;
+            string imagePath, fontName;
+
             images = new Image[(int)NotificationSize.X, (int)NotificationSize.Y];
+            textImage = new Image();
 
             switch (NotificationType)
             {
                 default:
                 case NotificationType.Big:
                     imagePath = "Interface/notification_big";
+                    fontName = "NotificationFontBig";
                     break;
 
                 case NotificationType.Small:
                     imagePath = "Interface/notification_small";
+                    fontName = "NotificationFontSmall";
                     break;
             }
 
@@ -51,13 +81,22 @@ namespace Narivia.Widgets
                     images[x, y] = new Image
                     {
                         ImagePath = imagePath,
-                        Position = new Vector2(Position.X + x * 32, Position.Y + y * 32),
+                        FontName = fontName,
+                        Position = new Vector2(Position.X + x * tileSize, Position.Y + y * tileSize),
                         SourceRectangle = CalculateSourceRectangle(x, y)
                     };
 
                     images[x, y].LoadContent();
                 }
             }
+
+            textImage.Text = Text;
+            textImage.Tint = TextColour;
+            textImage.FontName = fontName;
+            textImage.Position = new Vector2(Position.X + tileSize * 0.5f,
+                                             Position.Y + tileSize * 1.0f);
+
+            textImage.LoadContent();
         }
 
         /// <summary>
@@ -69,6 +108,8 @@ namespace Narivia.Widgets
             {
                 image.UnloadContent();
             }
+
+            textImage.UnloadContent();
         }
 
         /// <summary>
@@ -81,6 +122,8 @@ namespace Narivia.Widgets
             {
                 image.Update(gameTime);
             }
+
+            textImage.Update(gameTime);
         }
 
         /// <summary>
@@ -93,6 +136,8 @@ namespace Narivia.Widgets
             {
                 image.Draw(spriteBatch);
             }
+
+            textImage.Draw(spriteBatch);
         }
 
         Rectangle CalculateSourceRectangle(int x, int y)
@@ -126,7 +171,7 @@ namespace Narivia.Widgets
                 sy = 2;
             }
 
-            return new Rectangle(sx * 32, sy * 32, 32, 32);
+            return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
         }
     }
 }

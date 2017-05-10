@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.BusinessLogic.GameManagers;
 using Narivia.Entities;
-using Narivia.Graphics;
+using Narivia.Widgets;
 using Narivia.WorldMap;
 
 namespace Narivia.Screens
@@ -16,13 +18,15 @@ namespace Narivia.Screens
         GameDomainService game;
         Camera camera;
         Map map;
-
+        
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
             base.LoadContent();
+
+            string worldName = "narivia";
 
             camera = new Camera();
             map = new Map()
@@ -31,10 +35,20 @@ namespace Narivia.Screens
             };
 
             game = new GameDomainService();
-            game.NewGame("narivia", "alpalet");
+            game.NewGame(worldName, "alpalet");
+
+            Notification welcomeNotif = new Notification
+            {
+                NotificationType = NotificationType.Big,
+                NotificationSize = new Vector2(11, 4),
+                Text = $"Welcome to the world of {worldName}" + Environment.NewLine +
+                        "This is still a very WIP project !!!"
+            };
+            Notifications.Add(welcomeNotif);
 
             camera.LoadContent();
             map.LoadContent("narivia");
+            welcomeNotif.LoadContent();
         }
 
         /// <summary>
@@ -70,7 +84,7 @@ namespace Narivia.Screens
         {
             camera.Draw(spriteBatch);
             map.Draw(spriteBatch, camera);
-            
+
             base.Draw(spriteBatch);
         }
     }

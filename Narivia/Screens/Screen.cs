@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
+using Narivia.Widgets;
 
 namespace Narivia.Screens
 {
@@ -34,12 +37,21 @@ namespace Narivia.Screens
         public Color BackgroundColour { get; set; }
 
         /// <summary>
+        /// Gets or sets the notifications.
+        /// </summary>
+        /// <value>The notifications.</value>
+        [XmlElement("Notification")]
+        public List<Notification> Notifications { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Screens.Screen"/> class.
         /// </summary>
         public Screen()
         {
             Type = GetType();
             XmlPath = @"Screens/" + Type.ToString().Replace("Narivia.Screens.", "") + ".xml";
+
+            Notifications = new List<Notification>();
         }
 
         /// <summary>
@@ -49,6 +61,8 @@ namespace Narivia.Screens
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
             ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
+
+            Notifications.ForEach(x => x.LoadContent());
         }
 
         /// <summary>
@@ -57,6 +71,8 @@ namespace Narivia.Screens
         public virtual void UnloadContent()
         {
             content.Unload();
+
+            Notifications.ForEach(x => x.UnloadContent());
         }
 
         /// <summary>
@@ -65,6 +81,7 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
+            Notifications.ForEach(x => x.Update(gameTime));
         }
 
         /// <summary>
@@ -74,6 +91,8 @@ namespace Narivia.Screens
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
+
+            Notifications.ForEach(x => x.Draw(spriteBatch));
         }
     }
 }

@@ -399,3 +399,10 @@
 /processorParam:TextureFormat=Color
 /build:Interface/notification_small.png
 
+#begin Fonts/NotificationFontBig.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/NotificationFontBig.spritefont
+

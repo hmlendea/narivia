@@ -54,7 +54,7 @@ namespace Narivia.Screens
         /// <value>The actions.</value>
         [XmlElement("Action")]
         public List<MenuAction> Actions { get; set; }
-
+        
         /// <summary>
         /// Gets all the items.
         /// </summary>
@@ -174,6 +174,8 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
+            base.Draw(spriteBatch);
+
             Items.ForEach(item => item.Draw(spriteBatch));
         }
 
