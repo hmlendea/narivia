@@ -84,9 +84,9 @@ namespace Narivia.Graphics
         public Vector2 Position { get; set; }
 
         /// <summary>
-        /// Gets or sets the position.
+        /// Gets or sets the size.
         /// </summary>
-        /// <value>The position.</value>
+        /// <value>The size.</value>
         public Vector2 Size { get; set; }
 
         /// <summary>

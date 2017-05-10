@@ -71,6 +71,8 @@
     <Compile Include="Widgets\MenuAction.cs" />
     <Compile Include="Widgets\MenuItem.cs" />
     <Compile Include="Widgets\MenuToggle.cs" />
+    <Compile Include="Widgets\Notification.cs" />
+    <Compile Include="Widgets\NotificationType.cs" />
     <Compile Include="World\Layer.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\Tile.cs" />
