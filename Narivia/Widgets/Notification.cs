@@ -2,16 +2,16 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 using Narivia.Graphics;
-using Narivia.Input;
 
 namespace Narivia.Widgets
 {
     public class Notification : Widget
     {
-        public NotificationType NotificationType { get; set; }
+        public NotificationType Type { get; set; }
+
+        public NotificationStyle Style { get; set; }
 
         /// <summary>
         /// Gets or sets the size of the notification.
@@ -42,11 +42,14 @@ namespace Narivia.Widgets
         Vector2 size;
         Image[,] images;
         Image textImage;
+        Image bannerImage;
 
         const int tileSize = 32;
 
         public Notification()
         {
+            Type = NotificationType.Informational;
+            Style = NotificationStyle.Big;
             TextColour = Color.Black;
         }
         
@@ -56,19 +59,19 @@ namespace Narivia.Widgets
         public override void LoadContent()
         {
             string imagePath, fontName;
-
+            
             images = new Image[(int)NotificationSize.X, (int)NotificationSize.Y];
             textImage = new Image();
-
-            switch (NotificationType)
+            
+            switch (Style)
             {
                 default:
-                case NotificationType.Big:
+                case NotificationStyle.Big:
                     imagePath = "Interface/notification_big";
                     fontName = "NotificationFontBig";
                     break;
 
-                case NotificationType.Small:
+                case NotificationStyle.Small:
                     imagePath = "Interface/notification_small";
                     fontName = "NotificationFontSmall";
                     break;
@@ -96,7 +99,15 @@ namespace Narivia.Widgets
             textImage.Position = new Vector2(Position.X + tileSize * 0.5f,
                                              Position.Y + tileSize * 1.0f);
 
+            bannerImage = new Image
+            {
+                ImagePath = "Interface/notification_icons",
+                SourceRectangle = CalculateBannerRectangle(Type),
+                Position = new Vector2(this.Position.X + (NotificationSize.X - 1) * tileSize, 0)
+            };
+
             textImage.LoadContent();
+            bannerImage.LoadContent();
         }
 
         /// <summary>
@@ -110,6 +121,7 @@ namespace Narivia.Widgets
             }
 
             textImage.UnloadContent();
+            bannerImage.UnloadContent();
         }
 
         /// <summary>
@@ -124,6 +136,7 @@ namespace Narivia.Widgets
             }
 
             textImage.Update(gameTime);
+            bannerImage.Update(gameTime);
         }
 
         /// <summary>
@@ -138,6 +151,7 @@ namespace Narivia.Widgets
             }
 
             textImage.Draw(spriteBatch);
+            bannerImage.Draw(spriteBatch);
         }
 
         Rectangle CalculateSourceRectangle(int x, int y)
@@ -172,6 +186,25 @@ namespace Narivia.Widgets
             }
 
             return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
+        }
+
+        Rectangle CalculateBannerRectangle(NotificationType type)
+        {
+            switch (type)
+            {
+                default:
+                case NotificationType.Informational:
+                    return new Rectangle(tileSize * 0, 0, tileSize, tileSize);
+
+                case NotificationType.Warning:
+                    return new Rectangle(tileSize * 1, 0, tileSize, tileSize);
+
+                case NotificationType.Danger:
+                    return new Rectangle(tileSize * 2, 0, tileSize, tileSize);
+
+                case NotificationType.Success:
+                    return new Rectangle(tileSize * 3, 0, tileSize, tileSize);
+            }
         }
     }
 }

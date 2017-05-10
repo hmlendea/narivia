@@ -39,7 +39,7 @@ namespace Narivia.Screens
 
             Notification welcomeNotif = new Notification
             {
-                NotificationType = NotificationType.Big,
+                Style = NotificationStyle.Big,
                 NotificationSize = new Vector2(11, 4),
                 Text = $"Welcome to the world of {worldName}" + Environment.NewLine +
                         "This is still a very WIP project !!!"

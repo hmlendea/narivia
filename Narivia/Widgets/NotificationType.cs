@@ -2,7 +2,9 @@
 {
     public enum NotificationType
     {
-        Big,
-        Small
+        Informational,
+        Warning,
+        Danger,
+        Success
     }
 }
