@@ -23,7 +23,11 @@ namespace Narivia.Widgets
         /// Gets the size of this widget.
         /// </summary>
         /// <value>The size.</value>
-        public Vector2 Size => Image.Size;
+        public Vector2 Size
+        {
+            get { return Image.Size; }
+            set { Image.Size = value; }
+        }
 
         /// <summary>
         /// Gets the screen area covered by this widget.

@@ -19,11 +19,10 @@ namespace Narivia.Widgets
         /// <value>The size of the notification.</value>
         public Vector2 NotificationSize
         {
-            get { return size; }
-            set
+            get
             {
-                size = new Vector2(Math.Max(1, (float)Math.Round(value.X)),
-                                   Math.Max(1, (float)Math.Round(value.Y)));
+                return new Vector2((int)Math.Round(Size.X / tileSize),
+                                   (int)Math.Round(Size.Y / tileSize));
             }
         }
 
@@ -38,8 +37,7 @@ namespace Narivia.Widgets
         /// </summary>
         /// <value>The text colour.</value>
         public Color TextColour { get; set; }
-
-        Vector2 size;
+        
         Image[,] images;
         Image textImage;
         Image bannerImage;
@@ -98,6 +96,7 @@ namespace Narivia.Widgets
             textImage.FontName = fontName;
             textImage.Position = new Vector2(Position.X + tileSize * 0.5f,
                                              Position.Y + tileSize * 1.0f);
+            textImage.Size = Size - textImage.Position * 2;
 
             bannerImage = new Image
             {

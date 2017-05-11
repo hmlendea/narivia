@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Screens;
 using Narivia.Graphics.ImageEffects;
+using Narivia.Helpers;
 
 namespace Narivia.Graphics
 {
@@ -209,25 +210,27 @@ namespace Narivia.Graphics
 
             font = content.Load<SpriteFont>("Fonts/" + FontName);
 
-            Vector2 size = Vector2.Zero;
+            string wrappedText = Text;
 
-            if (Texture != null)
+            if (Size == Vector2.Zero)
             {
-                size.X += Texture.Width;
+                Vector2 size = Vector2.Zero;
+
+                if (Texture != null)
+                {
+                    size.X = Texture.Width;
+                    size.Y = Texture.Height;
+                }
+                else
+                {
+                    size.X = font.MeasureString(Text + "  ").X;
+                    size.Y = font.MeasureString(Text + "  ").Y;
+                }
+
+                Size = size;
             }
 
-            size.X += font.MeasureString(Text).X;
-
-            if (Texture != null)
-            {
-                size.Y = Math.Max(Texture.Height, font.MeasureString(Text).Y);
-            }
-            else
-            {
-                size.Y = font.MeasureString(Text).Y;
-            }
-
-            Size = size;
+            wrappedText = StringUtils.WrapText(font, Text, Size.X);
 
             if (SourceRectangle == Rectangle.Empty)
             {
@@ -250,7 +253,7 @@ namespace Narivia.Graphics
 
             if (!string.IsNullOrEmpty(Text))
             {
-                ScreenManager.Instance.SpriteBatch.DrawString(font, Text, Vector2.Zero, Color.White);
+                ScreenManager.Instance.SpriteBatch.DrawString(font, wrappedText, Vector2.Zero, Color.White);
             }
 
             ScreenManager.Instance.SpriteBatch.End();

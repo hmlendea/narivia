@@ -65,6 +65,7 @@
     <Compile Include="Graphics\ImageEffects\RotationEffect.cs" />
     <Compile Include="Graphics\ImageEffects\ZoomEffect.cs" />
     <Compile Include="Helpers\FramerateCounter.cs" />
+    <Compile Include="Helpers\StringUtils.cs" />
     <Compile Include="Screens\MenuScreen.cs" />
     <Compile Include="Screens\SettingsScreen.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
