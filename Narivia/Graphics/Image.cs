@@ -67,6 +67,18 @@ namespace Narivia.Graphics
         public string Text { get; set; }
 
         /// <summary>
+        /// Gets or sets the text horizontal alignment.
+        /// </summary>
+        /// <value>The text horizontal alignment.</value>
+        public HorizontalAlignment TextHorizontalAlignment { get; set; }
+
+        /// <summary>
+        /// Gets or sets the text vertical alignment.
+        /// </summary>
+        /// <value>The text vertical alignment.</value>
+        public VerticalAlignment TextVerticalAlignment { get; set; }
+
+        /// <summary>
         /// Gets or sets the name of the font.
         /// </summary>
         /// <value>The name of the font.</value>
@@ -258,7 +270,7 @@ namespace Narivia.Graphics
 
             if (!string.IsNullOrEmpty(Text))
             {
-                ScreenManager.Instance.SpriteBatch.DrawString(font, wrappedText, Vector2.Zero, Color.White);
+                DrawString(font, wrappedText, ScreenArea, TextHorizontalAlignment, TextVerticalAlignment, Color.White);
             }
 
             ScreenManager.Instance.SpriteBatch.End();
@@ -391,6 +403,35 @@ namespace Narivia.Graphics
 
             effectKeys.ForEach(DeactivateEffect);
             split.ForEach(ActivateEffect);
+        }
+
+        void DrawString(SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color color)
+        {
+            Vector2 size = font.MeasureString(text);
+            Vector2 textOrigin = Vector2.Zero;
+
+            if (vAlign == VerticalAlignment.Center)
+            {
+                textOrigin.X = bounds.Width / 2 - size.X / 2;
+            }
+            else if (vAlign == VerticalAlignment.Right)
+            {
+                textOrigin.X = bounds.Width - size.X;
+            }
+
+            if (hAlign == HorizontalAlignment.Center)
+            {
+                textOrigin.Y = bounds.Height / 2 - size.Y / 2;
+            }
+            else if (hAlign == HorizontalAlignment.Bottom)
+            {
+                textOrigin.Y = bounds.Height - size.Y;
+            }
+
+            textOrigin = new Vector2((int)Math.Round(textOrigin.X),
+                                     (int)Math.Round(textOrigin.Y));
+
+            ScreenManager.Instance.SpriteBatch.DrawString(spriteFont, text, textOrigin, color);
         }
     }
 }

@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.Audio;
 using Narivia.Graphics;
 using Narivia.Input;
 
@@ -38,7 +39,7 @@ namespace Narivia.Widgets
         /// </summary>
         /// <value>The text colour.</value>
         public Color TextColour { get; set; }
-        
+
         Image[,] images;
         Image textImage;
         Image yesButtonImage;
@@ -52,17 +53,17 @@ namespace Narivia.Widgets
             Style = NotificationStyle.Big;
             TextColour = Color.Black;
         }
-        
+
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
             string imagePath, fontName;
-            
+
             images = new Image[(int)NotificationSize.X, (int)NotificationSize.Y];
             textImage = new Image();
-            
+
             switch (Style)
             {
                 default:
@@ -93,7 +94,8 @@ namespace Narivia.Widgets
                 }
             }
 
-            Vector2 textSpacing = new Vector2(tileSize * 0.5f, tileSize * 1.0f);
+            Vector2 textSpacing = new Vector2((int)Math.Round(tileSize * 0.5f),
+                                              (int)Math.Round(tileSize * 1.0f));
 
             textImage.Text = Text;
             textImage.Tint = TextColour;
@@ -131,7 +133,7 @@ namespace Narivia.Widgets
         /// </summary>
         public override void UnloadContent()
         {
-            foreach(Image image in images)
+            foreach (Image image in images)
             {
                 image.UnloadContent();
             }
@@ -229,16 +231,33 @@ namespace Narivia.Widgets
 
         void CheckForInput()
         {
-            if (yesButtonImage.ScreenArea.Contains(InputManager.Instance.MousePosition) &&
+            // TODO: Improve this method's code quality
+
+            if (InputManager.Instance.IsCursorEnteringArea(yesButtonImage.ScreenArea))
+            {
+                AudioManager.Instance.PlaySound("Interface/select");
+            }
+
+            if (Type == NotificationType.Interogative &&
+                InputManager.Instance.IsCursorEnteringArea(yesButtonImage.ScreenArea))
+            {
+                AudioManager.Instance.PlaySound("Interface/select");
+            }
+
+            if (InputManager.Instance.IsCursorInArea(yesButtonImage.ScreenArea) &&
                 InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
             {
+                AudioManager.Instance.PlaySound("Interface/click");
+
                 Destroy();
             }
 
             if (Type == NotificationType.Interogative &&
-                noButtonImage.ScreenArea.Contains(InputManager.Instance.MousePosition) &&
+                InputManager.Instance.IsCursorInArea(noButtonImage.ScreenArea) &&
                 InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
             {
+                AudioManager.Instance.PlaySound("Interface/click");
+
                 Destroy();
             }
         }

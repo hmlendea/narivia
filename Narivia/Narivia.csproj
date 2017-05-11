@@ -100,6 +100,8 @@
     </Compile>
     <Compile Include="Widgets\MenuLink.cs" />
     <Compile Include="Widgets\Widget.cs" />
+    <Compile Include="Graphics\HorizontalAlignment.cs" />
+    <Compile Include="Graphics\VerticalAlignment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

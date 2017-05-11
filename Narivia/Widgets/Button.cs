@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.Audio;
 using Narivia.Graphics;
 using Narivia.Input;
 
@@ -69,8 +70,10 @@ namespace Narivia.Widgets
             }
 
             textImage.Text = Text;
+            textImage.TextVerticalAlignment = VerticalAlignment.Center;
+            textImage.TextHorizontalAlignment = HorizontalAlignment.Center;
             textImage.Tint = TextColour;
-            textImage.FontName = "NotificationFontBig";
+            textImage.FontName = "ButtonFont";
             textImage.Position = Position;
             textImage.SpriteSize = Size;
 
@@ -104,7 +107,7 @@ namespace Narivia.Widgets
             {
                 return;
             }
-            
+
             if (Image.ScreenArea.Contains(InputManager.Instance.MousePosition))
             {
                 Hovered = true;
@@ -117,16 +120,18 @@ namespace Narivia.Widgets
             for (int x = 0; x < ButtonSize; x++)
             {
                 Image image = images[x];
-                
+
                 image.Update(gameTime);
                 image.SourceRectangle = CalculateSourceRectangle(x, Style);
             }
 
             textImage.Update(gameTime);
 
+            CheckForInput();
+
             base.Update(gameTime);
         }
-        
+
         /// <summary>
         /// Draws the content on the specified spriteBatch.
         /// </summary>
@@ -175,6 +180,20 @@ namespace Narivia.Widgets
             }
 
             return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
+        }
+
+        void CheckForInput()
+        {
+            if (InputManager.Instance.IsCursorEnteringArea(ScreenArea))
+            {
+                AudioManager.Instance.PlaySound("Interface/select");
+            }
+
+            if (InputManager.Instance.IsCursorInArea(ScreenArea) &&
+                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
+            {
+                AudioManager.Instance.PlaySound("Interface/click");
+            }
         }
     }
 }
