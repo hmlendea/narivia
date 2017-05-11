@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Xml.Serialization;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
@@ -25,8 +27,8 @@ namespace Narivia.Widgets
         /// <value>The size.</value>
         public Vector2 Size
         {
-            get { return Image.Size; }
-            set { Image.Size = value; }
+            get { return Image.SpriteSize; }
+            set { Image.SpriteSize = value; }
         }
 
         /// <summary>
@@ -56,6 +58,13 @@ namespace Narivia.Widgets
         /// </summary>
         /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
         public bool Visible { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="T:Narivia.Widgets.Widget"/> is destroyed.
+        /// </summary>
+        /// <value><c>true</c> if destroyed; otherwise, <c>false</c>.</value>
+        [XmlIgnore]
+        public bool Destroyed { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.Widgets.Widget"/> class.
@@ -105,6 +114,16 @@ namespace Narivia.Widgets
             {
                 Image.Draw(spriteBatch);
             }
+        }
+
+        /// <summary>
+        /// Destroys this widget.
+        /// </summary>
+        public virtual void Destroy()
+        {
+            UnloadContent();
+
+            Destroyed = true;
         }
     }
 }

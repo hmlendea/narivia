@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Input;
 
 namespace Narivia.Widgets
 {
@@ -98,7 +99,7 @@ namespace Narivia.Widgets
             textImage.Tint = TextColour;
             textImage.FontName = fontName;
             textImage.Position = Position + textSpacing;
-            textImage.Size = Size - textSpacing * 2;
+            textImage.SpriteSize = Size - textSpacing * 2;
 
             yesButtonImage = new Image
             {
@@ -160,6 +161,8 @@ namespace Narivia.Widgets
             {
                 noButtonImage.Update(gameTime);
             }
+
+            CheckForInput();
         }
 
         /// <summary>
@@ -214,6 +217,22 @@ namespace Narivia.Widgets
             }
 
             return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
+        }
+
+        void CheckForInput()
+        {
+            if (yesButtonImage.ScreenArea.Contains(InputManager.Instance.MousePosition) &&
+                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
+            {
+                Destroy();
+            }
+
+            if (Type == NotificationType.Interogative &&
+                noButtonImage.ScreenArea.Contains(InputManager.Instance.MousePosition) &&
+                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
+            {
+                Destroy();
+            }
         }
     }
 }

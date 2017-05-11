@@ -88,7 +88,7 @@ namespace Narivia.Graphics
         /// Gets or sets the size.
         /// </summary>
         /// <value>The size.</value>
-        public Vector2 Size { get; set; }
+        public Vector2 SpriteSize { get; set; }
 
         /// <summary>
         /// Gets or sets the scale.
@@ -105,10 +105,10 @@ namespace Narivia.Graphics
             get
             {
                 return new Rectangle(
-                    (int)(Position.X - (Scale.X * Zoom * Size.X - Size.X) / 2),
-                    (int)(Position.Y - (Scale.Y * Zoom * Size.Y - Size.Y) / 2),
-                    (int)(Size.X * Scale.X),
-                    (int)(Size.Y * Scale.Y));
+                    (int)(Position.X - (Scale.X * Zoom * SpriteSize.X - SpriteSize.X) / 2),
+                    (int)(Position.Y - (Scale.Y * Zoom * SpriteSize.Y - SpriteSize.Y) / 2),
+                    (int)(SourceRectangle.Width * Scale.X),
+                    (int)(SourceRectangle.Height * Scale.Y));
             }
         }
 
@@ -212,7 +212,7 @@ namespace Narivia.Graphics
 
             string wrappedText = Text;
 
-            if (Size == Vector2.Zero)
+            if (SpriteSize == Vector2.Zero)
             {
                 Vector2 size = Vector2.Zero;
 
@@ -227,19 +227,19 @@ namespace Narivia.Graphics
                     size.Y = font.MeasureString(Text + "  ").Y;
                 }
 
-                Size = size;
+                SpriteSize = size;
             }
 
-            wrappedText = StringUtils.WrapText(font, Text, Size.X);
+            wrappedText = StringUtils.WrapText(font, Text, SpriteSize.X);
 
             if (SourceRectangle == Rectangle.Empty)
             {
-                SourceRectangle = new Rectangle(0, 0, (int)Size.X, (int)Size.Y);
+                SourceRectangle = new Rectangle(0, 0, (int)SpriteSize.X, (int)SpriteSize.Y);
             }
 
             renderTarget = new RenderTarget2D(
                 ScreenManager.Instance.GraphicsDevice,
-                (int)Size.X, (int)Size.Y);
+                (int)SpriteSize.X, (int)SpriteSize.Y);
 
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(renderTarget);
             ScreenManager.Instance.GraphicsDevice.Clear(Color.Transparent);

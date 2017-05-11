@@ -91,6 +91,9 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
+            Notifications.RemoveAll(x => x.Destroyed);
+            Buttons.RemoveAll(x => x.Destroyed);
+
             Notifications.ForEach(x => x.Update(gameTime));
             Buttons.ForEach(x => x.Update(gameTime));
         }
