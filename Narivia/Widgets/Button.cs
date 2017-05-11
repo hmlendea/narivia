@@ -24,11 +24,29 @@ namespace Narivia.Widgets
             }
         }
 
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        /// <value>The text.</value>
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Gets or sets the text colour.
+        /// </summary>
+        /// <value>The text colour.</value>
+        public Color TextColour { get; set; }
+
         public bool Hovered { get; set; }
 
         const int tileSize = 32;
 
         Image[] images;
+        Image textImage;
+
+        public Button()
+        {
+            TextColour = Color.Gold;
+        }
 
         /// <summary>
         /// Loads the content.
@@ -36,19 +54,27 @@ namespace Narivia.Widgets
         public override void LoadContent()
         {
             images = new Image[ButtonSize];
+            textImage = new Image();
 
             for (int x = 0; x < ButtonSize; x++)
             {
                 images[x] = new Image
                 {
                     ImagePath = "Interface/button",
-                    FontName = "MenuFont",
                     Position = new Vector2(Position.X + x * tileSize, Position.Y),
                     SourceRectangle = CalculateSourceRectangle(x, Style)
                 };
 
                 images[x].LoadContent();
             }
+
+            textImage.Text = Text;
+            textImage.Tint = TextColour;
+            textImage.FontName = "NotificationFontBig";
+            textImage.Position = Position;
+            textImage.SpriteSize = Size;
+
+            textImage.LoadContent();
 
             base.LoadContent();
         }
@@ -62,6 +88,8 @@ namespace Narivia.Widgets
             {
                 image.UnloadContent();
             }
+
+            textImage.UnloadContent();
 
             base.UnloadContent();
         }
@@ -94,6 +122,8 @@ namespace Narivia.Widgets
                 image.SourceRectangle = CalculateSourceRectangle(x, Style);
             }
 
+            textImage.Update(gameTime);
+
             base.Update(gameTime);
         }
         
@@ -107,6 +137,8 @@ namespace Narivia.Widgets
             {
                 image.Draw(spriteBatch);
             }
+
+            textImage.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
         }

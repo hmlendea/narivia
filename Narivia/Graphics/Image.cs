@@ -203,6 +203,11 @@ namespace Narivia.Graphics
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
 
+            if (string.IsNullOrWhiteSpace(Text))
+            {
+                Text = string.Empty;
+            }
+
             if (!string.IsNullOrEmpty(ImagePath))
             {
                 Texture = content.Load<Texture2D>(ImagePath);
