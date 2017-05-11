@@ -40,7 +40,8 @@ namespace Narivia.Widgets
         
         Image[,] images;
         Image textImage;
-        Image bannerImage;
+        Image yesButtonImage;
+        Image noButtonImage;
 
         const int tileSize = 32;
 
@@ -98,15 +99,27 @@ namespace Narivia.Widgets
                                              Position.Y + tileSize * 1.0f);
             textImage.Size = Size - textImage.Position * 2;
 
-            bannerImage = new Image
+            yesButtonImage = new Image
             {
                 ImagePath = "Interface/notification_icons",
-                SourceRectangle = CalculateBannerRectangle(Type),
-                Position = new Vector2(this.Position.X + (NotificationSize.X - 1) * tileSize, 0)
+                SourceRectangle = new Rectangle(0, 0, tileSize, tileSize),
+                Position = new Vector2(this.Position.X + (NotificationSize.X - 1) * tileSize, Position.Y)
             };
 
+            if (Type == NotificationType.Interogative)
+            {
+                noButtonImage = new Image
+                {
+                    ImagePath = "Interface/notification_icons",
+                    SourceRectangle = new Rectangle(tileSize, 0, tileSize, tileSize),
+                    Position = new Vector2(this.Position.X, Position.Y)
+                };
+
+                noButtonImage.LoadContent();
+            }
+
             textImage.LoadContent();
-            bannerImage.LoadContent();
+            yesButtonImage.LoadContent();
         }
 
         /// <summary>
@@ -120,7 +133,12 @@ namespace Narivia.Widgets
             }
 
             textImage.UnloadContent();
-            bannerImage.UnloadContent();
+            yesButtonImage.UnloadContent();
+
+            if (Type == NotificationType.Interogative)
+            {
+                noButtonImage.UnloadContent();
+            }
         }
 
         /// <summary>
@@ -135,7 +153,12 @@ namespace Narivia.Widgets
             }
 
             textImage.Update(gameTime);
-            bannerImage.Update(gameTime);
+            yesButtonImage.Update(gameTime);
+
+            if (Type == NotificationType.Interogative)
+            {
+                noButtonImage.Update(gameTime);
+            }
         }
 
         /// <summary>
@@ -150,7 +173,12 @@ namespace Narivia.Widgets
             }
 
             textImage.Draw(spriteBatch);
-            bannerImage.Draw(spriteBatch);
+            yesButtonImage.Draw(spriteBatch);
+
+            if (Type == NotificationType.Interogative)
+            {
+                noButtonImage.Draw(spriteBatch);
+            }
         }
 
         Rectangle CalculateSourceRectangle(int x, int y)
@@ -185,25 +213,6 @@ namespace Narivia.Widgets
             }
 
             return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
-        }
-
-        Rectangle CalculateBannerRectangle(NotificationType type)
-        {
-            switch (type)
-            {
-                default:
-                case NotificationType.Informational:
-                    return new Rectangle(tileSize * 0, 0, tileSize, tileSize);
-
-                case NotificationType.Warning:
-                    return new Rectangle(tileSize * 1, 0, tileSize, tileSize);
-
-                case NotificationType.Danger:
-                    return new Rectangle(tileSize * 2, 0, tileSize, tileSize);
-
-                case NotificationType.Success:
-                    return new Rectangle(tileSize * 3, 0, tileSize, tileSize);
-            }
         }
     }
 }

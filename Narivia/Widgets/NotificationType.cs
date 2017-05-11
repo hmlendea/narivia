@@ -3,8 +3,6 @@
     public enum NotificationType
     {
         Informational,
-        Warning,
-        Danger,
-        Success
+        Interogative
     }
 }
