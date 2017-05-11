@@ -10,6 +10,11 @@ namespace Narivia.Helpers
     {
         public static string WrapText(SpriteFont font, string text, float maxLineWidth)
         {
+            if (font.MeasureString(text).X <= maxLineWidth)
+            {
+                return text;
+            }
+
             string[] words = text.Split(' ');
             StringBuilder sb = new StringBuilder();
             float lineWidth = 0f;

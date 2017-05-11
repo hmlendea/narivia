@@ -228,8 +228,8 @@ namespace Narivia.Graphics
                 }
                 else
                 {
-                    size.X = font.MeasureString(Text + "  ").X;
-                    size.Y = font.MeasureString(Text + "  ").Y;
+                    size.X = font.MeasureString(Text).X;
+                    size.Y = font.MeasureString(Text).Y;
                 }
 
                 SpriteSize = size;
