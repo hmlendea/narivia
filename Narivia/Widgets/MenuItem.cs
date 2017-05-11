@@ -94,8 +94,9 @@ namespace Narivia.Widgets
                 Image.Active = true;
                 Image.Tint = SelectedTextColour;
 
-                if (InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) ||
-                    InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E))
+                if (InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E) ||
+                    (Image.ScreenArea.Contains(InputManager.Instance.MousePosition) &&
+                    InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton)))
                 {
                     Activate();
                 }
