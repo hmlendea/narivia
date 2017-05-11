@@ -122,6 +122,8 @@ namespace Narivia.Widgets
 
             textImage.LoadContent();
             yesButtonImage.LoadContent();
+
+            base.LoadContent();
         }
 
         /// <summary>
@@ -141,6 +143,8 @@ namespace Narivia.Widgets
             {
                 noButtonImage.UnloadContent();
             }
+
+            base.UnloadContent();
         }
 
         /// <summary>
@@ -163,6 +167,8 @@ namespace Narivia.Widgets
             }
 
             CheckForInput();
+
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -183,6 +189,8 @@ namespace Narivia.Widgets
             {
                 noButtonImage.Draw(spriteBatch);
             }
+
+            base.Draw(spriteBatch);
         }
 
         Rectangle CalculateSourceRectangle(int x, int y)
