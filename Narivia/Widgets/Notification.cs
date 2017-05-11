@@ -92,12 +92,13 @@ namespace Narivia.Widgets
                 }
             }
 
+            Vector2 textSpacing = new Vector2(tileSize * 0.5f, tileSize * 1.0f);
+
             textImage.Text = Text;
             textImage.Tint = TextColour;
             textImage.FontName = fontName;
-            textImage.Position = new Vector2(Position.X + tileSize * 0.5f,
-                                             Position.Y + tileSize * 1.0f);
-            textImage.Size = Size - textImage.Position * 2;
+            textImage.Position = Position + textSpacing;
+            textImage.Size = Size - textSpacing * 2;
 
             yesButtonImage = new Image
             {

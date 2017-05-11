@@ -37,11 +37,18 @@ namespace Narivia.Screens
         public Color BackgroundColour { get; set; }
 
         /// <summary>
-        /// Gets or sets the notifications.
+        /// Gets or sets the notification widgets.
         /// </summary>
         /// <value>The notifications.</value>
         [XmlElement("Notification")]
         public List<Notification> Notifications { get; set; }
+
+        /// <summary>
+        /// Gets or sets the button widgets.
+        /// </summary>
+        /// <value>The buttons.</value>
+        [XmlElement("Button")]
+        public List<Button> Buttons { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Narivia.Screens.Screen"/> class.
@@ -52,6 +59,7 @@ namespace Narivia.Screens
             XmlPath = @"Screens/" + Type.ToString().Replace("Narivia.Screens.", "") + ".xml";
 
             Notifications = new List<Notification>();
+            Buttons = new List<Button>();
         }
 
         /// <summary>
@@ -63,6 +71,7 @@ namespace Narivia.Screens
             ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
 
             Notifications.ForEach(x => x.LoadContent());
+            Buttons.ForEach(x => x.LoadContent());
         }
 
         /// <summary>
@@ -73,6 +82,7 @@ namespace Narivia.Screens
             content.Unload();
 
             Notifications.ForEach(x => x.UnloadContent());
+            Buttons.ForEach(x => x.UnloadContent());
         }
 
         /// <summary>
@@ -82,6 +92,7 @@ namespace Narivia.Screens
         public virtual void Update(GameTime gameTime)
         {
             Notifications.ForEach(x => x.Update(gameTime));
+            Buttons.ForEach(x => x.Update(gameTime));
         }
 
         /// <summary>
@@ -93,6 +104,7 @@ namespace Narivia.Screens
             ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
 
             Notifications.ForEach(x => x.Draw(spriteBatch));
+            Buttons.ForEach(x => x.Draw(spriteBatch));
         }
     }
 }
