@@ -407,31 +407,41 @@ namespace Narivia.Graphics
 
         void DrawString(SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color color)
         {
-            Vector2 size = font.MeasureString(text);
             Vector2 textOrigin = Vector2.Zero;
+            Vector2 totalSize = font.MeasureString(text);
 
-            if (vAlign == VerticalAlignment.Center)
-            {
-                textOrigin.X = bounds.Width / 2 - size.X / 2;
-            }
-            else if (vAlign == VerticalAlignment.Right)
-            {
-                textOrigin.X = bounds.Width - size.X;
-            }
-
+            string[] lines = text.Split('\n');
+            int lineOffsetY = 0;
+            
             if (hAlign == HorizontalAlignment.Center)
             {
-                textOrigin.Y = bounds.Height / 2 - size.Y / 2;
+                textOrigin.Y = bounds.Height / 2 - totalSize.Y / 2;
             }
             else if (hAlign == HorizontalAlignment.Bottom)
             {
-                textOrigin.Y = bounds.Height - size.Y;
+                textOrigin.Y = bounds.Height - totalSize.Y;
             }
 
-            textOrigin = new Vector2((int)Math.Round(textOrigin.X),
-                                     (int)Math.Round(textOrigin.Y));
+            foreach (string line in lines)
+            {
+                Vector2 lineSize = font.MeasureString(line);
 
-            ScreenManager.Instance.SpriteBatch.DrawString(spriteFont, text, textOrigin, color);
+                if (vAlign == VerticalAlignment.Center)
+                {
+                    textOrigin.X = bounds.Width / 2 - lineSize.X / 2;
+                }
+                else if (vAlign == VerticalAlignment.Right)
+                {
+                    textOrigin.X = bounds.Width - lineSize.X;
+                }
+                
+                textOrigin = new Vector2((int)Math.Round(textOrigin.X),
+                                         (int)Math.Round(textOrigin.Y));
+
+                ScreenManager.Instance.SpriteBatch.DrawString(spriteFont, line, textOrigin, color);
+
+                textOrigin.Y += lineSize.Y;
+            }
         }
     }
 }

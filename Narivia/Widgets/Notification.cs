@@ -98,6 +98,7 @@ namespace Narivia.Widgets
                                               (int)Math.Round(tileSize * 1.0f));
 
             textImage.Text = Text;
+            textImage.TextVerticalAlignment = VerticalAlignment.Center;
             textImage.Tint = TextColour;
             textImage.FontName = fontName;
             textImage.Position = Position + textSpacing;
