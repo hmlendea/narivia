@@ -85,6 +85,17 @@ namespace Narivia.Screens
 
             base.Draw(spriteBatch);
         }
+
+        /// <summary>
+        /// Gets the map cpprdomates based on the specified screen coordinates.
+        /// </summary>
+        /// <returns>The map coordinates.</returns>
+        /// <param name="screenCoords">Screen coordinates.</param>
+        Vector2 ScreenToMapCoordinates(Vector2 screenCoords)
+        {
+            return new Vector2((int)((camera.Position.X + screenCoords.X) / map.TileDimensions.X),
+                               (int)((camera.Position.Y + screenCoords.Y) / map.TileDimensions.Y));
+        }
     }
 }
 
