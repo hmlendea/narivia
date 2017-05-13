@@ -109,6 +109,21 @@ namespace Narivia.Screens
             Notifications.ForEach(x => x.Draw(spriteBatch));
             Buttons.ForEach(x => x.Draw(spriteBatch));
         }
+
+        public void ShowNotification(string text, NotificationType type, NotificationStyle style, Vector2 size)
+        {
+            Notification notification = new Notification
+            {
+                Text = text,
+                Type = type,
+                Style = style,
+                Size = size
+            };
+
+            notification.LoadContent();
+
+            Notifications.Add(notification);
+        }
     }
 }
 

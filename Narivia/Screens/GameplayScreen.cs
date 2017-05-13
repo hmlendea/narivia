@@ -18,7 +18,7 @@ namespace Narivia.Screens
         GameDomainService game;
         Camera camera;
         Map map;
-        
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -37,20 +37,16 @@ namespace Narivia.Screens
             game = new GameDomainService();
             game.NewGame(worldName, "alpalet");
 
-            Notification welcomeNotif = new Notification
-            {
-                Style = NotificationStyle.Big,
-                Size = new Vector2(256, 128),
-                Text = $"Welcome to the world of {worldName} " +
-                        Environment.NewLine +
-                        Environment.NewLine +
-                        "This is still a very WIP project !!!"
-            };
-            Notifications.Add(welcomeNotif);
+            ShowNotification($"Welcome to the world of {worldName} " +
+                             Environment.NewLine +
+                             Environment.NewLine +
+                             "This is still a very WIP project !!!",
+                             NotificationType.Informational,
+                             NotificationStyle.Big,
+                             new Vector2(256, 128));
 
             camera.LoadContent();
             map.LoadContent("narivia");
-            welcomeNotif.LoadContent();
         }
 
         /// <summary>
