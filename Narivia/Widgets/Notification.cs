@@ -29,6 +29,12 @@ namespace Narivia.Widgets
         }
 
         /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <value>The title.</value>
+        public string Title { get; set; }
+
+        /// <summary>
         /// Gets or sets the text.
         /// </summary>
         /// <value>The text.</value>
@@ -41,6 +47,7 @@ namespace Narivia.Widgets
         public Color TextColour { get; set; }
 
         Image[,] images;
+        Image titleImage;
         Image textImage;
         Image yesButtonImage;
         Image noButtonImage;
@@ -62,6 +69,7 @@ namespace Narivia.Widgets
             string imagePath, fontName;
 
             images = new Image[(int)NotificationSize.X, (int)NotificationSize.Y];
+            titleImage = new Image();
             textImage = new Image();
 
             switch (Style)
@@ -94,15 +102,19 @@ namespace Narivia.Widgets
                 }
             }
 
-            Vector2 textSpacing = new Vector2((int)Math.Round(tileSize * 0.5f),
-                                              (int)Math.Round(tileSize * 1.0f));
+            titleImage.Text = Title;
+            titleImage.TextVerticalAlignment = VerticalAlignment.Center;
+            titleImage.Tint = TextColour;
+            titleImage.FontName = "NotificationTitleFontBig";
+            titleImage.Position = new Vector2(Position.X, Position.Y + tileSize);
+            titleImage.SpriteSize = new Vector2(NotificationSize.X * tileSize, tileSize);
 
             textImage.Text = Text;
             textImage.TextVerticalAlignment = VerticalAlignment.Center;
             textImage.Tint = TextColour;
             textImage.FontName = fontName;
-            textImage.Position = Position + textSpacing;
-            textImage.SpriteSize = Size - textSpacing * 2;
+            textImage.Position = new Vector2(Position.X, Position.Y + tileSize * 2);
+            textImage.SpriteSize = new Vector2(Size.X, Size.Y - titleImage.SpriteSize.Y);
 
             yesButtonImage = new Image
             {
@@ -123,6 +135,7 @@ namespace Narivia.Widgets
                 noButtonImage.LoadContent();
             }
 
+            titleImage.LoadContent();
             textImage.LoadContent();
             yesButtonImage.LoadContent();
 
@@ -139,6 +152,7 @@ namespace Narivia.Widgets
                 image.UnloadContent();
             }
 
+            titleImage.UnloadContent();
             textImage.UnloadContent();
             yesButtonImage.UnloadContent();
 
@@ -161,6 +175,7 @@ namespace Narivia.Widgets
                 image.Update(gameTime);
             }
 
+            titleImage.Update(gameTime);
             textImage.Update(gameTime);
             yesButtonImage.Update(gameTime);
 
@@ -185,6 +200,7 @@ namespace Narivia.Widgets
                 image.Draw(spriteBatch);
             }
 
+            titleImage.Draw(spriteBatch);
             textImage.Draw(spriteBatch);
             yesButtonImage.Draw(spriteBatch);
 

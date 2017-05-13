@@ -37,7 +37,8 @@ namespace Narivia.Screens
             game = new GameDomainService();
             game.NewGame(worldName, "alpalet");
 
-            ShowNotification($"Welcome to the world of {worldName} " +
+            ShowNotification("Welcome",
+                             $"Welcome to the world of {worldName} " +
                              Environment.NewLine +
                              Environment.NewLine +
                              "This is still a very WIP project !!!",

@@ -444,3 +444,17 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/NotificationFontSmall.spritefont
 
+#begin Fonts/NotificationTitleFontBig.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/NotificationTitleFontBig.spritefont
+
+#begin Fonts/NotificationTitleFontSmall.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/NotificationTitleFontSmall.spritefont
+

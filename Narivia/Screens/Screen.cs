@@ -110,10 +110,19 @@ namespace Narivia.Screens
             Buttons.ForEach(x => x.Draw(spriteBatch));
         }
 
-        public void ShowNotification(string text, NotificationType type, NotificationStyle style, Vector2 size)
+        /// <summary>
+        /// Shows a notification.
+        /// </summary>
+        /// <param name="title">Title.</param>
+        /// <param name="text">Text.</param>
+        /// <param name="type">Type.</param>
+        /// <param name="style">Style.</param>
+        /// <param name="size">Size.</param>
+        public void ShowNotification(string title, string text, NotificationType type, NotificationStyle style, Vector2 size)
         {
             Notification notification = new Notification
             {
+                Title = title,
                 Text = text,
                 Type = type,
                 Style = style,
