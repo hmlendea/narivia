@@ -5,7 +5,7 @@
         /// <summary>
         /// Resource that improves economy.
         /// </summary>L
-        Economic = 0,
+        Economy = 0,
 
         /// <summary>
         /// Resource that improves the military capabilities.

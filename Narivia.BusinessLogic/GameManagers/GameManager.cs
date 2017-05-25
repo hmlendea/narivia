@@ -352,7 +352,7 @@ namespace Narivia.BusinessLogic.GameManagers
                             targets[region.Id] += pointsForResourceMilitary;
                             break;
 
-                        case ResourceType.Wealth:
+                        case ResourceType.Economic:
                             targets[region.Id] += pointsForResourceEconomic;
                             break;
                     }
@@ -439,7 +439,7 @@ namespace Narivia.BusinessLogic.GameManagers
                             targets[region.Id] += pointsForResourceMilitary;
                             break;
 
-                        case ResourceType.Wealth:
+                        case ResourceType.Economic:
                             targets[region.Id] += pointsForResourceEconomic;
                             break;
                     }

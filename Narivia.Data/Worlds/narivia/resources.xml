@@ -4,14 +4,14 @@
     <Id>gold</Id>
     <Name>Gold</Name>
     <Description>A highly desired and precious metal.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
     <Id>whales</Id>
     <Name>Whales</Name>
     <Description>Huge sea creatures with a lot of meat and fat.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
@@ -25,21 +25,21 @@
     <Id>wheat</Id>
     <Name>Wheat</Name>
     <Description>A common and reliable source of food</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
     <Id>grapes</Id>
     <Name>Grapes</Name>
     <Description>A valuable resource used to produce wine.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
     <Id>slaves</Id>
     <Name>Slaves</Name>
     <Description>A valuable living resource used to provide labor.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
@@ -53,42 +53,42 @@
     <Id>wild_animals</Id>
     <Name>Wild Animals</Name>
     <Description>A living resource that provides furs and valuable meat.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
     <Id>camels</Id>
     <Name>Camels</Name>
     <Description>A valuable living resource used in many fields.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
     <Id>fish</Id>
     <Name>Fish</Name>
     <Description>A common food source for coastal settlements.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
     <Id>silver</Id>
     <Name>Silver</Name>
     <Description>A valuable metal.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
     <Id>pearls</Id>
     <Name>Pearls</Name>
     <Description>A valuable resource desired by the nobility.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
   <ResourceEntity>
     <Id>timber</Id>
     <Name>Timber</Name>
     <Description>Strong and high quality wood providing a very good and reliable building material.</Description>
-		<Type>Wealth</Type>
+		<Type>Economy</Type>
 		<Output>1</Output>
   </ResourceEntity>
 </ArrayOfResourceEntity>
