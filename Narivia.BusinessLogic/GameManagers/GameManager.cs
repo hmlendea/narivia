@@ -298,8 +298,16 @@ namespace Narivia.BusinessLogic.GameManagers
         public string Blitzkrieg_Seq(string factionId, string targetFactionId)
         {
             Random random = new Random();
-            List<string> regionsOwnedIds = regions.Values.Where(x => x.FactionId == factionId).Select(x => x.Id).ToList();
-            var bords = borders.Values;
+            List<string> regionsOwnedIds = new List<string>();
+            Dictionary<string, int> targets = new Dictionary<string, int>();
+
+            foreach (Region region in regions.Values)
+            {
+                if (region.FactionId == factionId)
+                {
+                    regionsOwnedIds.Add(region.Id);
+                }
+            }
 
             int pointsForSovereignty = 30;
             int pointsForHoldingCastle = 30;
@@ -309,23 +317,67 @@ namespace Narivia.BusinessLogic.GameManagers
             int pointsForResourceEconomic = 5;
             int pointsForResourceMilitary = 10;
 
-
-            Dictionary<string, int> targets = regions.Values.Where(x => x.FactionId == targetFactionId)
-                                                     .Select(x => x.Id)
-                                                     .Except(regionsOwnedIds)
-                                                     .Where(x => regionsOwnedIds.Any(y => RegionHasBorder(x, y)))
-                                                     .ToDictionary(x => x, y => 0);
-
-            foreach (Region region in regions.Values.Where(x => targets.ContainsKey(x.Id)).ToList())
+            foreach (Region region in regions.Values)
             {
+                bool ok = true;
+
+                if (region.FactionId != targetFactionId)
+                {
+                    ok = false;
+                    continue;
+                }
+
+                foreach (string regionOwnedId in regionsOwnedIds)
+                {
+                    if (regionOwnedId == region.Id)
+                    {
+                        ok = false;
+                    }
+                }
+
+                if (!ok)
+                {
+                    continue;
+                }
+
+                foreach (string regionOwnedId in regionsOwnedIds)
+                {
+                    if (RegionHasBorder(regionOwnedId, region.Id) && targets.ContainsKey(region.Id) == false)
+                    {
+                        targets.Add(region.Id, 0);
+                    }
+                }
+            }
+
+            foreach (Region region in regions.Values.ToList())
+            {
+                bool ok = false;
+
+                foreach (string targetRegionId in targets.Keys)
+                {
+                    if (targetRegionId == region.Id)
+                    {
+                        ok = true;
+                    }
+                }
+
+                if (!ok)
+                {
+                    continue;
+                }
+
                 if (region.SovereignFactionId == factionId)
                 {
                     targets[region.Id] += pointsForSovereignty;
                 }
 
-
-                foreach (Holding holding in holdings.Values.Where(x => x.RegionId == region.Id).ToList())
+                foreach (Holding holding in holdings.Values.ToList())
                 {
+                    if (holding.RegionId != region.Id)
+                    {
+                        continue;
+                    }
+
                     switch (holding.Type)
                     {
                         case HoldingType.Castle:
@@ -342,7 +394,15 @@ namespace Narivia.BusinessLogic.GameManagers
                     }
                 }
 
-                Resource regionResource = resources.Values.FirstOrDefault(x => x.Id == region.ResourceId);
+                Resource regionResource = null;
+
+                foreach (Resource resource in resources.Values.ToList())
+                {
+                    if (resource.Id == region.ResourceId)
+                    {
+                        regionResource = resource;
+                    }
+                }
 
                 if (regionResource != null)
                 {
@@ -352,13 +412,19 @@ namespace Narivia.BusinessLogic.GameManagers
                             targets[region.Id] += pointsForResourceMilitary;
                             break;
 
-                        case ResourceType.Economic:
+                        case ResourceType.Economy:
                             targets[region.Id] += pointsForResourceEconomic;
                             break;
                     }
                 }
 
-                targets[region.Id] += regionsOwnedIds.Count(x => RegionHasBorder(x, region.Id)) * pointsForBorder;
+                foreach (string regionOwnedId in regionsOwnedIds)
+                {
+                    if (RegionHasBorder(regionOwnedId, region.Id))
+                    {
+                        targets[region.Id] += pointsForBorder;
+                    }
+                }
             }
 
             if (targets.Count == 0)
@@ -366,9 +432,34 @@ namespace Narivia.BusinessLogic.GameManagers
                 return null;
             }
 
-            int maxScore = targets.Max(x => x.Value);
-            List<string> topTargets = targets.Keys.Where(x => targets[x] == maxScore).ToList();
-            string regionId = topTargets[random.Next(0, topTargets.Count())];
+            int maxScore = 0;
+
+            foreach (int score in targets.Values)
+            {
+                if (score > maxScore)
+                {
+                    maxScore = score;
+                }
+            }
+
+            List<string> topTargets = new List<string>();
+
+            foreach (string regionTargetId in targets.Keys)
+            {
+                if (targets[regionTargetId] == maxScore)
+                {
+                    topTargets.Add(regionTargetId);
+                }
+            }
+
+            int topTargetsCount = 0;
+
+            foreach (string regionTargetId in topTargets)
+            {
+                topTargetsCount += 1;
+            }
+
+            string regionId = topTargets[random.Next(0, topTargetsCount)];
 
             TransferRegion(regionId, factionId);
 
@@ -386,7 +477,6 @@ namespace Narivia.BusinessLogic.GameManagers
         {
             Random random = new Random();
             List<string> regionsOwnedIds = regions.Values.Where(x => x.FactionId == factionId).Select(x => x.Id).ToList();
-            var bords = borders.Values;
 
             int pointsForSovereignty = 30;
             int pointsForHoldingCastle = 30;
@@ -439,7 +529,7 @@ namespace Narivia.BusinessLogic.GameManagers
                             targets[region.Id] += pointsForResourceMilitary;
                             break;
 
-                        case ResourceType.Economic:
+                        case ResourceType.Economy:
                             targets[region.Id] += pointsForResourceEconomic;
                             break;
                     }

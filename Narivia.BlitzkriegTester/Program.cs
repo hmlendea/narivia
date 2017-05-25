@@ -11,14 +11,10 @@ namespace Narivia.BlitzkriegTester
         const string WORLD_ID = "narivia";
         const string FACTION_ID = "alpalet";
         const string FACTION_TARGET_ID = "caravenna";
-        const int TEST_COUNT = 10;
+        const int TEST_COUNT = 15;
 
         public static void Main(string[] args)
         {
-            // Preload that area on the storage device
-            GameDomainService game = new GameDomainService();
-            game.NewGame(WORLD_ID, FACTION_ID);
-
             TestSequencialBlitzkrieg();
             TestParallelizedBlitzkrieg();
         }
@@ -30,6 +26,7 @@ namespace Narivia.BlitzkriegTester
 
             for (int i = 0; i < TEST_COUNT; i++)
             {
+                Console.Write($"  {i + 1} : ");
                 DateTime startDate = DateTime.Now;
                 CallSequencialBlitzkrieg();
                 DateTime endDate = DateTime.Now;
@@ -47,6 +44,7 @@ namespace Narivia.BlitzkriegTester
 
             for (int i = 0; i < TEST_COUNT; i++)
             {
+                Console.Write($"  {i + 1} : ");
                 DateTime startDate = DateTime.Now;
                 CallParallelizedBlitzkrieg();
                 DateTime endDate = DateTime.Now;
@@ -67,7 +65,9 @@ namespace Narivia.BlitzkriegTester
             while (regionId != null)
             {
                 regionId = game.Blitzkrieg_Seq(FACTION_ID, FACTION_TARGET_ID);
+                Console.Write($"{regionId}->");
             }
+            Console.WriteLine();
 
             game = null;
         }
@@ -82,18 +82,20 @@ namespace Narivia.BlitzkriegTester
             while (regionId != null)
             {
                 regionId = game.Blitzkrieg_Parallel(FACTION_ID, FACTION_TARGET_ID);
+                Console.Write($"{regionId}->");
             }
+            Console.WriteLine();
         }
 
         static void DisplayResults(List<Tuple<DateTime, DateTime>> results)
         {
-            Console.WriteLine($"Results: ({results.Count})");
+            Console.WriteLine($"==> Results: ({results.Count})");
 
             List<TimeSpan> durations = results.Select(x => x.Item2 - x.Item1).ToList();
 
-            for (int i = 0; i < TEST_COUNT; i++)
+            for (int i = 1; i < TEST_COUNT; i++)
             {
-                Console.WriteLine($"  {i + 1} : {durations[i].Milliseconds} ms");
+                Console.WriteLine($"  {i} : {durations[i].Milliseconds} ms");
             }
 
             Console.WriteLine($"Average timespan: {Math.Round(durations.Average(x => x.Milliseconds))} ms");
