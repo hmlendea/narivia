@@ -28,5 +28,11 @@
         /// </summary>
         /// <value>The type.</value>
         public string Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the identifier of the region to which this holding belongs to.
+        /// </summary>
+        /// <value>The region identifier.</value>
+        public string RegionId { get; set; }
     }
 }

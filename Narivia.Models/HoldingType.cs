@@ -3,9 +3,9 @@
     public enum HoldingType
     {
         /// <summary>
-        /// Fortress.
+        /// Castle.
         /// </summary>
-        Fortress = 0,
+        Castle = 0,
 
         /// <summary>
         /// City.
@@ -15,16 +15,6 @@
         /// <summary>
         /// Temple.
         /// </summary>
-        Temple = 2,
-
-        /// <summary>
-        /// Village.
-        /// </summary>
-        Village = 3,
-
-        /// <summary>
-        /// Port.
-        /// </summary>
-        Port = 4
+        Temple = 2
     }
 }

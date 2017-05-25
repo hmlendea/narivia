@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 using Narivia.BusinessLogic.GameManagers.Interfaces;
@@ -100,9 +102,8 @@ namespace Narivia.BusinessLogic.GameManagers
         /// <param name="region2Id">Second region identifier.</param>
         public bool RegionHasBorder(string region1Id, string region2Id)
         {
-            Tuple<string, string> borderKey = new Tuple<string, string>(region1Id, region2Id);
-
-            return borders.ContainsKey(borderKey);
+            return borders.Values.Any(x => (x.Region1Id == region1Id && x.Region2Id == region2Id) ||
+                                           (x.Region1Id == region2Id && x.Region2Id == region1Id));
         }
 
         public List<Biome> GetAllBiomes()
@@ -285,6 +286,180 @@ namespace Narivia.BusinessLogic.GameManagers
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// WIP blitzkrieg sequencial algorithm for invading a faction.
+        /// </summary>
+        /// <returns>The region identifier.</returns>
+        /// <param name="factionId">Attacking faction identifier.</param>
+        /// <param name="targetFactionId">Targeted faction identifier.</param>
+        /// <summary>
+        public string Blitzkrieg_Seq(string factionId, string targetFactionId)
+        {
+            Random random = new Random();
+            List<string> regionsOwnedIds = regions.Values.Where(x => x.FactionId == factionId).Select(x => x.Id).ToList();
+            var bords = borders.Values;
+
+            int pointsForSovereignty = 30;
+            int pointsForHoldingCastle = 30;
+            int pointsForHoldingCity = 20;
+            int pointsForHoldingTemple = 10;
+            int pointsForBorder = 15;
+            int pointsForResourceEconomic = 5;
+            int pointsForResourceMilitary = 10;
+
+
+            Dictionary<string, int> targets = regions.Values.Where(x => x.FactionId == targetFactionId)
+                                                     .Select(x => x.Id)
+                                                     .Except(regionsOwnedIds)
+                                                     .Where(x => regionsOwnedIds.Any(y => RegionHasBorder(x, y)))
+                                                     .ToDictionary(x => x, y => 0);
+
+            foreach (Region region in regions.Values.Where(x => targets.ContainsKey(x.Id)).ToList())
+            {
+                if (region.SovereignFactionId == factionId)
+                {
+                    targets[region.Id] += pointsForSovereignty;
+                }
+
+
+                foreach (Holding holding in holdings.Values.Where(x => x.RegionId == region.Id).ToList())
+                {
+                    switch (holding.Type)
+                    {
+                        case HoldingType.Castle:
+                            targets[region.Id] += pointsForHoldingCastle;
+                            break;
+
+                        case HoldingType.City:
+                            targets[region.Id] += pointsForHoldingCity;
+                            break;
+
+                        case HoldingType.Temple:
+                            targets[region.Id] += pointsForHoldingTemple;
+                            break;
+                    }
+                }
+
+                Resource regionResource = resources.Values.FirstOrDefault(x => x.Id == region.ResourceId);
+
+                if (regionResource != null)
+                {
+                    switch (regionResource.Type)
+                    {
+                        case ResourceType.Military:
+                            targets[region.Id] += pointsForResourceMilitary;
+                            break;
+
+                        case ResourceType.Wealth:
+                            targets[region.Id] += pointsForResourceEconomic;
+                            break;
+                    }
+                }
+
+                targets[region.Id] += regionsOwnedIds.Count(x => RegionHasBorder(x, region.Id)) * pointsForBorder;
+            }
+
+            if (targets.Count == 0)
+            {
+                return null;
+            }
+
+            int maxScore = targets.Max(x => x.Value);
+            List<string> topTargets = targets.Keys.Where(x => targets[x] == maxScore).ToList();
+            string regionId = topTargets[random.Next(0, topTargets.Count())];
+
+            TransferRegion(regionId, factionId);
+
+            return regionId;
+        }
+
+        /// <summary>
+        /// WIP blitzkrieg parallelized algorithm for invading a faction.
+        /// </summary>
+        /// <returns>The region identifier.</returns>
+        /// <param name="factionId">Attacking faction identifier.</param>
+        /// <param name="targetFactionId">Targeted faction identifier.</param>
+        /// <summary>
+        public string Blitzkrieg_Parallel(string factionId, string targetFactionId)
+        {
+            Random random = new Random();
+            List<string> regionsOwnedIds = regions.Values.Where(x => x.FactionId == factionId).Select(x => x.Id).ToList();
+            var bords = borders.Values;
+
+            int pointsForSovereignty = 30;
+            int pointsForHoldingCastle = 30;
+            int pointsForHoldingCity = 20;
+            int pointsForHoldingTemple = 10;
+            int pointsForBorder = 15;
+            int pointsForResourceEconomic = 5;
+            int pointsForResourceMilitary = 10;
+
+
+            Dictionary<string, int> targets = regions.Values.Where(x => x.FactionId == targetFactionId)
+                                                     .Select(x => x.Id)
+                                                     .Except(regionsOwnedIds)
+                                                     .Where(x => regionsOwnedIds.Any(y => RegionHasBorder(x, y)))
+                                                     .ToDictionary(x => x, y => 0);
+
+            Parallel.ForEach(regions.Values.Where(x => targets.ContainsKey(x.Id)).ToList(), (region) =>
+            {
+                if (region.SovereignFactionId == factionId)
+                {
+                    targets[region.Id] += pointsForSovereignty;
+                }
+
+
+                Parallel.ForEach(holdings.Values.Where(x => x.RegionId == region.Id).ToList(), (holding) =>
+                {
+                    switch (holding.Type)
+                    {
+                        case HoldingType.Castle:
+                            targets[region.Id] += pointsForHoldingCastle;
+                            break;
+
+                        case HoldingType.City:
+                            targets[region.Id] += pointsForHoldingCity;
+                            break;
+
+                        case HoldingType.Temple:
+                            targets[region.Id] += pointsForHoldingTemple;
+                            break;
+                    }
+                });
+
+                Resource regionResource = resources.Values.FirstOrDefault(x => x.Id == region.ResourceId);
+
+                if (regionResource != null)
+                {
+                    switch (regionResource.Type)
+                    {
+                        case ResourceType.Military:
+                            targets[region.Id] += pointsForResourceMilitary;
+                            break;
+
+                        case ResourceType.Wealth:
+                            targets[region.Id] += pointsForResourceEconomic;
+                            break;
+                    }
+                }
+
+                targets[region.Id] += regionsOwnedIds.Count(x => RegionHasBorder(x, region.Id)) * pointsForBorder;
+            });
+
+            if (targets.Count == 0)
+            {
+                return null;
+            }
+
+            int maxScore = targets.Max(x => x.Value);
+            List<string> topTargets = targets.Keys.Where(x => targets[x] == maxScore).ToList();
+            string regionId = topTargets[random.Next(0, topTargets.Count())];
+
+            TransferRegion(regionId, factionId);
+
+            return regionId;
         }
 
         /// <summary>

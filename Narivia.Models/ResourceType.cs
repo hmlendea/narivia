@@ -3,12 +3,12 @@
     public enum ResourceType
     {
         /// <summary>
-        /// Wealth.
+        /// Resource that improves economy.
         /// </summary>L
-        Wealth = 0,
+        Economic = 0,
 
         /// <summary>
-        /// Military.
+        /// Resource that improves the military capabilities.
         /// </summary>
         Military = 1,
     }
