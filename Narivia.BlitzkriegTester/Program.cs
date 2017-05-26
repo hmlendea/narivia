@@ -11,10 +11,14 @@ namespace Narivia.BlitzkriegTester
         const string WORLD_ID = "narivia";
         const string FACTION_ID = "alpalet";
         const string FACTION_TARGET_ID = "caravenna";
-        const int TEST_COUNT = 15;
+        const int TEST_COUNT = 5;
 
         public static void Main(string[] args)
         {
+            // Preload data sector
+            GameDomainService game = new GameDomainService();
+            game.NewGame(WORLD_ID, FACTION_ID);
+
             TestSequencialBlitzkrieg();
             TestParallelizedBlitzkrieg();
         }
@@ -93,9 +97,9 @@ namespace Narivia.BlitzkriegTester
 
             List<TimeSpan> durations = results.Select(x => x.Item2 - x.Item1).ToList();
 
-            for (int i = 1; i < TEST_COUNT; i++)
+            for (int i = 0; i < TEST_COUNT; i++)
             {
-                Console.WriteLine($"  {i} : {durations[i].Milliseconds} ms");
+                Console.WriteLine($"  {i + 1} : {durations[i].Milliseconds} ms");
             }
 
             Console.WriteLine($"Average timespan: {Math.Round(durations.Average(x => x.Milliseconds))} ms");

@@ -297,173 +297,12 @@ namespace Narivia.BusinessLogic.GameManagers
         /// <summary>
         public string Blitzkrieg_Seq(string factionId, string targetFactionId)
         {
-            Random random = new Random();
-            List<string> regionsOwnedIds = new List<string>();
-            Dictionary<string, int> targets = new Dictionary<string, int>();
+            AttackManager attackManager = new AttackManager(borders.Values,
+                                                            holdings.Values,
+                                                            regions.Values,
+                                                            resources.Values);
 
-            foreach (Region region in regions.Values)
-            {
-                if (region.FactionId == factionId)
-                {
-                    regionsOwnedIds.Add(region.Id);
-                }
-            }
-
-            int pointsForSovereignty = 30;
-            int pointsForHoldingCastle = 30;
-            int pointsForHoldingCity = 20;
-            int pointsForHoldingTemple = 10;
-            int pointsForBorder = 15;
-            int pointsForResourceEconomic = 5;
-            int pointsForResourceMilitary = 10;
-
-            foreach (Region region in regions.Values)
-            {
-                bool ok = true;
-
-                if (region.FactionId != targetFactionId)
-                {
-                    ok = false;
-                    continue;
-                }
-
-                foreach (string regionOwnedId in regionsOwnedIds)
-                {
-                    if (regionOwnedId == region.Id)
-                    {
-                        ok = false;
-                    }
-                }
-
-                if (!ok)
-                {
-                    continue;
-                }
-
-                foreach (string regionOwnedId in regionsOwnedIds)
-                {
-                    if (RegionHasBorder(regionOwnedId, region.Id) && targets.ContainsKey(region.Id) == false)
-                    {
-                        targets.Add(region.Id, 0);
-                    }
-                }
-            }
-
-            foreach (Region region in regions.Values.ToList())
-            {
-                bool ok = false;
-
-                foreach (string targetRegionId in targets.Keys)
-                {
-                    if (targetRegionId == region.Id)
-                    {
-                        ok = true;
-                    }
-                }
-
-                if (!ok)
-                {
-                    continue;
-                }
-
-                if (region.SovereignFactionId == factionId)
-                {
-                    targets[region.Id] += pointsForSovereignty;
-                }
-
-                foreach (Holding holding in holdings.Values.ToList())
-                {
-                    if (holding.RegionId != region.Id)
-                    {
-                        continue;
-                    }
-
-                    switch (holding.Type)
-                    {
-                        case HoldingType.Castle:
-                            targets[region.Id] += pointsForHoldingCastle;
-                            break;
-
-                        case HoldingType.City:
-                            targets[region.Id] += pointsForHoldingCity;
-                            break;
-
-                        case HoldingType.Temple:
-                            targets[region.Id] += pointsForHoldingTemple;
-                            break;
-                    }
-                }
-
-                Resource regionResource = null;
-
-                foreach (Resource resource in resources.Values.ToList())
-                {
-                    if (resource.Id == region.ResourceId)
-                    {
-                        regionResource = resource;
-                    }
-                }
-
-                if (regionResource != null)
-                {
-                    switch (regionResource.Type)
-                    {
-                        case ResourceType.Military:
-                            targets[region.Id] += pointsForResourceMilitary;
-                            break;
-
-                        case ResourceType.Economy:
-                            targets[region.Id] += pointsForResourceEconomic;
-                            break;
-                    }
-                }
-
-                foreach (string regionOwnedId in regionsOwnedIds)
-                {
-                    if (RegionHasBorder(regionOwnedId, region.Id))
-                    {
-                        targets[region.Id] += pointsForBorder;
-                    }
-                }
-            }
-
-            if (targets.Count == 0)
-            {
-                return null;
-            }
-
-            int maxScore = 0;
-
-            foreach (int score in targets.Values)
-            {
-                if (score > maxScore)
-                {
-                    maxScore = score;
-                }
-            }
-
-            List<string> topTargets = new List<string>();
-
-            foreach (string regionTargetId in targets.Keys)
-            {
-                if (targets[regionTargetId] == maxScore)
-                {
-                    topTargets.Add(regionTargetId);
-                }
-            }
-
-            int topTargetsCount = 0;
-
-            foreach (string regionTargetId in topTargets)
-            {
-                topTargetsCount += 1;
-            }
-
-            string regionId = topTargets[random.Next(0, topTargetsCount)];
-
-            TransferRegion(regionId, factionId);
-
-            return regionId;
+            return attackManager.GetNextRegion_Seq(factionId, targetFactionId);
         }
 
         /// <summary>
@@ -475,81 +314,12 @@ namespace Narivia.BusinessLogic.GameManagers
         /// <summary>
         public string Blitzkrieg_Parallel(string factionId, string targetFactionId)
         {
-            Random random = new Random();
-            List<string> regionsOwnedIds = regions.Values.Where(x => x.FactionId == factionId).Select(x => x.Id).ToList();
+            AttackManager attackManager = new AttackManager(borders.Values,
+                                                            holdings.Values,
+                                                            regions.Values,
+                                                            resources.Values);
 
-            int pointsForSovereignty = 30;
-            int pointsForHoldingCastle = 30;
-            int pointsForHoldingCity = 20;
-            int pointsForHoldingTemple = 10;
-            int pointsForBorder = 15;
-            int pointsForResourceEconomic = 5;
-            int pointsForResourceMilitary = 10;
-
-
-            Dictionary<string, int> targets = regions.Values.Where(x => x.FactionId == targetFactionId)
-                                                     .Select(x => x.Id)
-                                                     .Except(regionsOwnedIds)
-                                                     .Where(x => regionsOwnedIds.Any(y => RegionHasBorder(x, y)))
-                                                     .ToDictionary(x => x, y => 0);
-
-            Parallel.ForEach(regions.Values.Where(x => targets.ContainsKey(x.Id)).ToList(), (region) =>
-            {
-                if (region.SovereignFactionId == factionId)
-                {
-                    targets[region.Id] += pointsForSovereignty;
-                }
-
-
-                Parallel.ForEach(holdings.Values.Where(x => x.RegionId == region.Id).ToList(), (holding) =>
-                {
-                    switch (holding.Type)
-                    {
-                        case HoldingType.Castle:
-                            targets[region.Id] += pointsForHoldingCastle;
-                            break;
-
-                        case HoldingType.City:
-                            targets[region.Id] += pointsForHoldingCity;
-                            break;
-
-                        case HoldingType.Temple:
-                            targets[region.Id] += pointsForHoldingTemple;
-                            break;
-                    }
-                });
-
-                Resource regionResource = resources.Values.FirstOrDefault(x => x.Id == region.ResourceId);
-
-                if (regionResource != null)
-                {
-                    switch (regionResource.Type)
-                    {
-                        case ResourceType.Military:
-                            targets[region.Id] += pointsForResourceMilitary;
-                            break;
-
-                        case ResourceType.Economy:
-                            targets[region.Id] += pointsForResourceEconomic;
-                            break;
-                    }
-                }
-
-                targets[region.Id] += regionsOwnedIds.Count(x => RegionHasBorder(x, region.Id)) * pointsForBorder;
-            });
-
-            if (targets.Count == 0)
-            {
-                return null;
-            }
-
-            int maxScore = targets.Max(x => x.Value);
-            List<string> topTargets = targets.Keys.Where(x => targets[x] == maxScore).ToList();
-            string regionId = topTargets[random.Next(0, topTargets.Count())];
-
-            TransferRegion(regionId, factionId);
-
-            return regionId;
+            return attackManager.GetNextRegion_Parallel(factionId, targetFactionId);
         }
 
         /// <summary>
@@ -567,7 +337,7 @@ namespace Narivia.BusinessLogic.GameManagers
             {
                 List<Border> regionBorders = borders.Values
                                                     .Where(x => x.Region1Id == region.Id ||
-                                                                       x.Region2Id == region.Id)
+                                                                x.Region2Id == region.Id)
                                                     .ToList();
 
                 foreach (Border border in regionBorders)
