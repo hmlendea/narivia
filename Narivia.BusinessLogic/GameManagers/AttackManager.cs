@@ -177,6 +177,8 @@ namespace Narivia.BusinessLogic.GameManagers
                                                      .Where(x => regionsOwnedIds.Any(y => RegionHasBorder(x, y)))
                                                      .ToDictionary(x => x, y => 0);
 
+
+
             Parallel.ForEach(regions.Where(x => targets.ContainsKey(x.Id)).ToList(), (region) =>
             {
                 if (region.SovereignFactionId == factionId)
@@ -343,6 +345,7 @@ namespace Narivia.BusinessLogic.GameManagers
                 }
             }
 
+            UtilResourceTest();
             if (regionResource != null)
             {
                 switch (regionResource.Type)
@@ -395,6 +398,12 @@ namespace Narivia.BusinessLogic.GameManagers
         {
             Region region = regions.FirstOrDefault(x => x.Id == regionId);
             region.FactionId = factionId;
+        }
+
+        void UtilResourceTest()
+        {
+            // This is used for testing purposes
+            Thread.Sleep(10);
         }
     }
 }

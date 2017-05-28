@@ -106,6 +106,32 @@ namespace Narivia.BusinessLogic.GameManagers
                                            (x.Region1Id == region2Id && x.Region2Id == region1Id));
         }
 
+        /// <summary>
+        /// Checks wether the specified regions share a border.
+        /// </summary>
+        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
+        /// <param name="faction1Id">First faction identifier.</param>
+        /// <param name="faction2Id">Second faction identifier.</param>
+        public bool FactionHasBorder(string faction1Id, string faction2Id)
+        {
+            List<Region> faction1Regions = regions.Values.Where(x => x.FactionId == faction1Id).ToList();
+            List<Region> faction2Regions = regions.Values.Where(x => x.FactionId == faction2Id).ToList();
+
+            // TODO: Optimise this!!!
+            foreach (Region region1 in faction1Regions)
+            {
+                foreach (Region region2 in faction2Regions)
+                {
+                    if (RegionHasBorder(region1.Id, region2.Id))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public List<Biome> GetAllBiomes()
         {
             List<Biome> biomeList = biomes.Values.ToList();
@@ -320,6 +346,78 @@ namespace Narivia.BusinessLogic.GameManagers
                                                             resources.Values);
 
             return attackManager.GetNextRegion_Parallel(factionId, targetFactionId);
+        }
+
+
+
+        /// <summary>
+        /// WIP blitzkrieg sequencial algorithm for invading a faction.
+        /// </summary>
+        public void Blitzkrieg_AllFactions_Seq()
+        {
+            while (regions.Values.Count(x => x.FactionId != "gaia" &&
+                                             regions.Values.Any(y => y.FactionId == x.Id)) > 1)
+            {
+                Faction attackerFaction = factions.Values.FirstOrDefault(x => x.Id != "gaia" &&
+                                                                              regions.Values.Any(y => y.FactionId == x.Id));
+                Faction targetedFaction = factions.Values.FirstOrDefault(x => x.Id != "gaia" &&
+                                                                              x.Id != attackerFaction.Id &&
+                                                                              regions.Values.Any(y => y.FactionId == x.Id) &&
+                                                                              FactionHasBorder(attackerFaction.Id, x.Id));
+
+                if (targetedFaction == null)
+                {
+                    break;
+                }
+
+                //Console.WriteLine(attackerFaction.Id + " attacks " + targetedFaction.Id);
+
+                AttackManager attackManager = new AttackManager(borders.Values,
+                                                                holdings.Values,
+                                                                regions.Values,
+                                                                resources.Values);
+                string regionId = string.Empty;
+
+                while (regionId != null)
+                {
+                    regionId = attackManager.GetNextRegion_Seq(attackerFaction.Id, targetedFaction.Id);
+                }
+            }
+        }
+
+        /// <summary>
+        /// WIP blitzkrieg parallelized algorithm for invading a faction.
+        /// </summary>
+        public void Blitzkrieg_AllFactions_Parallel()
+        {
+            while (regions.Values.Any(x => x.FactionId != "gaia" &&
+                                           regions.Values.Any(y => y.FactionId == x.Id)))
+            {
+                Faction attackerFaction = factions.Values.FirstOrDefault(x => x.Id != "gaia" &&
+                                                                              regions.Values.Any(y => y.FactionId == x.Id));
+                Faction targetedFaction = factions.Values.FirstOrDefault(x => x.Id != "gaia" &&
+                                                                              x.Id != attackerFaction.Id &&
+                                                                              regions.Values.Any(y => y.FactionId == x.Id) &&
+                                                                              FactionHasBorder(attackerFaction.Id, x.Id));
+
+                if (targetedFaction == null)
+                {
+                    break;
+                }
+
+                //Console.WriteLine(attackerFaction.Id + " attacks " + targetedFaction.Id);
+
+                AttackManager attackManager = new AttackManager(borders.Values,
+                                                                holdings.Values,
+                                                                regions.Values,
+                                                                resources.Values);
+                string regionId = string.Empty;
+
+                while (regionId != null)
+                {
+                    regionId = attackManager.GetNextRegion_Parallel(attackerFaction.Id, targetedFaction.Id);
+                }
+            }
         }
 
         /// <summary>

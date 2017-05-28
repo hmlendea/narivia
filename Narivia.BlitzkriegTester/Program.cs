@@ -21,6 +21,9 @@ namespace Narivia.BlitzkriegTester
 
             TestSequencialBlitzkrieg();
             TestParallelizedBlitzkrieg();
+
+            TestSequencialBlitzkriegAllFactions();
+            TestParallelizedBlitzkriegAllFactions();
         }
 
         static void TestSequencialBlitzkrieg()
@@ -59,6 +62,36 @@ namespace Narivia.BlitzkriegTester
             DisplayResults(results);
         }
 
+        static void TestSequencialBlitzkriegAllFactions()
+        {
+            Console.WriteLine("==== RUNNING THE SEQUENCIAL TEST FOR WHOLE WORLD");
+            List<Tuple<DateTime, DateTime>> results = new List<Tuple<DateTime, DateTime>>();
+
+            Console.Write("  1 : ");
+            DateTime startDate = DateTime.Now;
+            CallSequencialBlitzkriegAllFactions();
+            DateTime endDate = DateTime.Now;
+
+            results.Add(new Tuple<DateTime, DateTime>(startDate, endDate));
+
+            DisplayResults(results);
+        }
+
+        static void TestParallelizedBlitzkriegAllFactions()
+        {
+            Console.WriteLine("==== RUNNING THE PARALLEL TEST FOR WHOLE WORLD");
+            List<Tuple<DateTime, DateTime>> results = new List<Tuple<DateTime, DateTime>>();
+
+            Console.Write("  1: ");
+            DateTime startDate = DateTime.Now;
+            CallParallelizedBlitzkriegAllFactions();
+            DateTime endDate = DateTime.Now;
+
+            results.Add(new Tuple<DateTime, DateTime>(startDate, endDate));
+
+            DisplayResults(results);
+        }
+
         static void CallSequencialBlitzkrieg()
         {
             GameDomainService game = new GameDomainService();
@@ -91,18 +124,35 @@ namespace Narivia.BlitzkriegTester
             Console.WriteLine();
         }
 
+
+        static void CallSequencialBlitzkriegAllFactions()
+        {
+            GameDomainService game = new GameDomainService();
+            game.NewGame(WORLD_ID, FACTION_ID);
+
+            game.Blitzkrieg_AllFactions_Seq();
+        }
+
+        static void CallParallelizedBlitzkriegAllFactions()
+        {
+            GameDomainService game = new GameDomainService();
+            game.NewGame(WORLD_ID, FACTION_ID);
+
+            game.Blitzkrieg_AllFactions_Parallel();
+        }
+
         static void DisplayResults(List<Tuple<DateTime, DateTime>> results)
         {
             Console.WriteLine($"==> Results: ({results.Count})");
 
             List<TimeSpan> durations = results.Select(x => x.Item2 - x.Item1).ToList();
 
-            for (int i = 0; i < TEST_COUNT; i++)
+            for (int i = 0; i < durations.Count; i++)
             {
-                Console.WriteLine($"  {i + 1} : {durations[i].Milliseconds} ms");
+                Console.WriteLine($"  {i + 1} : {durations[i].TotalMilliseconds} ms");
             }
 
-            Console.WriteLine($"Average timespan: {Math.Round(durations.Average(x => x.Milliseconds))} ms");
+            Console.WriteLine($"Average timespan: {Math.Round(durations.Average(x => x.TotalMilliseconds))} ms");
         }
     }
 }
