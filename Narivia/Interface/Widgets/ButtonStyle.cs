@@ -1,4 +1,4 @@
-﻿namespace Narivia.Widgets
+﻿namespace Narivia.Interface.Widgets
 {
     public enum ButtonStyle
     {

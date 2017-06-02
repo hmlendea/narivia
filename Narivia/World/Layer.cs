@@ -4,8 +4,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Entities;
 using Narivia.Graphics;
+using Narivia.Interface;
 
 namespace Narivia.WorldMap
 {

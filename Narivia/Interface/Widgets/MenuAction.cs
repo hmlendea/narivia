@@ -1,21 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Screens;
-
-namespace Narivia.Widgets
+namespace Narivia.Interface.Widgets
 {
-    /// <summary>
-    /// Menu link widget
-    /// </summary>
-    public class MenuLink : MenuItem
+    public class MenuAction : MenuItem
     {
         /// <summary>
-        /// Gets or sets the link identifier.
+        /// Gets or sets the action.
         /// </summary>
-        /// <value>The link identifier.</value>
-        public string LinkId { get; set; }
-        
+        /// <value>The type of the action.</value>
+        public string ActionId { get; set; }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -49,10 +44,10 @@ namespace Narivia.Widgets
         /// <summary>
         /// Draws the content on the specified spriteBatch.
         /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
+        /// <returns>The draw.</returns>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Visible)
+            if (!Enabled)
             {
                 return;
             }
@@ -61,13 +56,18 @@ namespace Narivia.Widgets
         }
 
         /// <summary>
-        /// Activates this link.
+        /// Activates this item.
         /// </summary>
         public override void Activate()
         {
             base.Activate();
 
-            ScreenManager.Instance.ChangeScreens(LinkId);
+            switch (ActionId)
+            {
+                case "Exit":
+                    Program.Game.Exit();
+                    break;
+            }
         }
     }
 }

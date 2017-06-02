@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 
-namespace Narivia.Widgets
+namespace Narivia.Interface.Widgets
 {
     public class Widget
     {

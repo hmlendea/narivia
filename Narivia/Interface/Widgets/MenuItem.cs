@@ -9,7 +9,7 @@ using Narivia.Graphics;
 using Narivia.Graphics.ImageEffects;
 using Narivia.Input;
 
-namespace Narivia.Widgets
+namespace Narivia.Interface.Widgets
 {
     public class MenuItem : Widget
     {

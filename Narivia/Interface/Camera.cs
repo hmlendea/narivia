@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Narivia.Input;
 using Narivia.Settings;
 
-namespace Narivia.Entities
+namespace Narivia.Interface
 {
     public class Camera
     {

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
-using Narivia.Widgets;
+using Narivia.Interface.Widgets;
 
 namespace Narivia.Screens
 {

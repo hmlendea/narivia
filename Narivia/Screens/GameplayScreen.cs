@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.BusinessLogic.GameManagers;
-using Narivia.Entities;
 using Narivia.Graphics;
 using Narivia.Input;
-using Narivia.Widgets;
+using Narivia.Interface;
+using Narivia.Interface.Widgets;
 using Narivia.WorldMap;
 
 namespace Narivia.Screens

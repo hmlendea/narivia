@@ -60,7 +60,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Cursor.cs" />
     <Compile Include="Graphics\ImageEffects\AnimationEffect.cs" />
     <Compile Include="Graphics\ImageEffects\RotationEffect.cs" />
     <Compile Include="Graphics\ImageEffects\ZoomEffect.cs" />
@@ -69,14 +68,6 @@
     <Compile Include="Screens\MenuScreen.cs" />
     <Compile Include="Screens\SettingsScreen.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
-    <Compile Include="Widgets\ButtonStyle.cs" />
-    <Compile Include="Widgets\MenuAction.cs" />
-    <Compile Include="Widgets\MenuItem.cs" />
-    <Compile Include="Widgets\MenuToggle.cs" />
-    <Compile Include="Widgets\Notification.cs" />
-    <Compile Include="Widgets\Button.cs" />
-    <Compile Include="Widgets\NotificationStyle.cs" />
-    <Compile Include="Widgets\NotificationType.cs" />
     <Compile Include="World\Layer.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\Tile.cs" />
@@ -93,15 +84,24 @@
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Helpers\XmlManager.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
-    <Compile Include="Entities\Camera.cs" />
     <Compile Include="Input\MouseButton.cs" />
     <Compile Include="Audio\AudioManager.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Widgets\MenuLink.cs" />
-    <Compile Include="Widgets\Widget.cs" />
     <Compile Include="Graphics\HorizontalAlignment.cs" />
     <Compile Include="Graphics\VerticalAlignment.cs" />
+    <Compile Include="Interface\Camera.cs" />
+    <Compile Include="Interface\Cursor.cs" />
+    <Compile Include="Interface\Widgets\Button.cs" />
+    <Compile Include="Interface\Widgets\ButtonStyle.cs" />
+    <Compile Include="Interface\Widgets\MenuAction.cs" />
+    <Compile Include="Interface\Widgets\MenuItem.cs" />
+    <Compile Include="Interface\Widgets\MenuLink.cs" />
+    <Compile Include="Interface\Widgets\MenuToggle.cs" />
+    <Compile Include="Interface\Widgets\Notification.cs" />
+    <Compile Include="Interface\Widgets\NotificationStyle.cs" />
+    <Compile Include="Interface\Widgets\NotificationType.cs" />
+    <Compile Include="Interface\Widgets\Widget.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -157,4 +157,8 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interface\" />
+    <Folder Include="Interface\Widgets\" />
+  </ItemGroup>
 </Project>

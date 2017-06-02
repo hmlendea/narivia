@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -7,7 +6,7 @@ using Narivia.Graphics;
 using Narivia.Graphics.ImageEffects;
 using Narivia.Input;
 
-namespace Narivia.Entities
+namespace Narivia.Interface
 {
     public class Cursor
     {

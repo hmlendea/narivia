@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Graphics;
 using Narivia.Settings;
 
-namespace Narivia.Widgets
+namespace Narivia.Interface.Widgets
 {
     public class MenuToggle : MenuItem
     {

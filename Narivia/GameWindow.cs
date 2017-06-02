@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Audio;
-using Narivia.Entities;
 using Narivia.Helpers;
 using Narivia.Input;
+using Narivia.Interface;
 using Narivia.Screens;
 using Narivia.Settings;
 
@@ -116,7 +116,7 @@ namespace Narivia
 
             ScreenManager.Instance.Draw(spriteBatch);
             cursor.Draw(spriteBatch);
-            
+
             if (SettingsManager.Instance.DebugMode)
             {
                 spriteBatch.DrawString(fpsFont, fpsString, new Vector2(1, 1), Color.Lime);

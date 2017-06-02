@@ -7,7 +7,7 @@ using Narivia.Audio;
 using Narivia.Graphics;
 using Narivia.Input;
 
-namespace Narivia.Widgets
+namespace Narivia.Interface.Widgets
 {
     public class Button : Widget
     {
