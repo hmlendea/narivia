@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 using Narivia.BusinessLogic.GameManagers.Interfaces;
@@ -47,6 +45,9 @@ namespace Narivia.BusinessLogic.GameManagers
             get { return biomeMap; }
             set { biomeMap = value; }
         }
+
+        public int WorldWidth => world.Width;
+        public int WorldHeight => world.Height;
 
         /// <summary>
         /// Starts a new game.
@@ -130,6 +131,19 @@ namespace Narivia.BusinessLogic.GameManagers
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Returns the faction identifier at the given position.
+        /// </summary>
+        /// <returns>The faction identifier.</returns>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordinate.</param>
+        public string FactionIdAtPosition(int x, int y)
+        {
+            Region region = regions.Values.FirstOrDefault(r => r.Id == worldTiles[x, y]);
+
+            return region?.FactionId;
         }
 
         public List<Biome> GetAllBiomes()
