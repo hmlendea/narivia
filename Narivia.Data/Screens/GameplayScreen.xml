@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GameplayScreen>
+	<GameMap>
+		<Position>
+			<X>0</X>
+			<Y>0</Y>
+		</Position>
+		<Size>
+			<X>1000</X>
+			<Y>720</Y>
+		</Size>
+	</GameMap>
+</GameplayScreen>

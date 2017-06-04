@@ -31,23 +31,20 @@ namespace Narivia.BusinessLogic.GameManagers
         string[,] worldTiles;
         string[,] biomeMap;
 
-        string playerFactionId;
-        int turn;
-
         public string[,] WorldTiles
         {
             get { return worldTiles; }
             set { worldTiles = value; }
         }
 
-        public string[,] BiomeMap
-        {
-            get { return biomeMap; }
-            set { biomeMap = value; }
-        }
-
         public int WorldWidth => world.Width;
         public int WorldHeight => world.Height;
+        public string WorldName => world.Name;
+        public string WorldId => world.Id;
+
+        public string PlayerFactionId { get; private set; }
+
+        public int Turn { get; private set; }
 
         /// <summary>
         /// Starts a new game.
@@ -81,7 +78,7 @@ namespace Narivia.BusinessLogic.GameManagers
                 AttackRegion(faction.Id, targetRegionId);
             }
 
-            turn += 1;
+            Turn += 1;
         }
 
         /// <summary>
@@ -248,8 +245,8 @@ namespace Narivia.BusinessLogic.GameManagers
 
         void InitializeGame(string factionId)
         {
-            playerFactionId = factionId;
-            turn = 0;
+            PlayerFactionId = factionId;
+            Turn = 0;
         }
 
         void InitializeEntities()
