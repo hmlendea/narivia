@@ -25,6 +25,7 @@ namespace Narivia.BusinessLogic.GameManagers
         Dictionary<string, Unit> units;
         Dictionary<Tuple<string, string>, Army> armies;
         Dictionary<Tuple<string, string>, Border> borders;
+        Dictionary<Tuple<string, string>, Relation> relations;
 
         World world;
 
@@ -189,6 +190,7 @@ namespace Narivia.BusinessLogic.GameManagers
         {
             armies = new Dictionary<Tuple<string, string>, Army>();
             borders = new Dictionary<Tuple<string, string>, Border>();
+            relations = new Dictionary<Tuple<string, string>, Relation>();
 
             LoadMap(worldId);
             LoadBorders();

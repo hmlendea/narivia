@@ -63,6 +63,9 @@
     <Compile Include="DataObjects\ResourceEntity.cs" />
     <Compile Include="DataObjects\UnitEntity.cs" />
     <Compile Include="DataObjects\WorldEntity.cs" />
+    <Compile Include="DataObjects\RelationEntity.cs" />
+    <Compile Include="Repositories\Interfaces\IRelationRepository.cs" />
+    <Compile Include="Repositories\RelationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
