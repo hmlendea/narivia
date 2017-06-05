@@ -15,6 +15,10 @@ namespace Narivia.Interface.Widgets
         Image factionName;
         Image turnCounter;
 
+        Button turnButton;
+        Button statsButton;
+        Button relationsButton;
+
         [XmlIgnore]
         public string FactionId { get; set; }
 
@@ -67,10 +71,34 @@ namespace Narivia.Interface.Widgets
                 Tint = TextColour
             };
 
+            turnButton = new Button
+            {
+                Text = "End Turn",
+                TextColour = TextColour,
+                Size = new Vector2(224, 32)
+            };
+            statsButton = new Button
+            {
+                Text = "Stats",
+                TextColour = TextColour,
+                Size = new Vector2(96, 32)
+            };
+            relationsButton = new Button
+            {
+                Text = "Relations",
+                TextColour = TextColour,
+                Size = new Vector2(96, 32)
+            };
+
             background.LoadContent();
             factionSymbol.LoadContent();
+
             factionName.LoadContent();
             turnCounter.LoadContent();
+
+            turnButton.LoadContent();
+            statsButton.LoadContent();
+            relationsButton.LoadContent();
 
             base.LoadContent();
         }
@@ -82,8 +110,13 @@ namespace Narivia.Interface.Widgets
         {
             background.UnloadContent();
             factionSymbol.UnloadContent();
+
             factionName.UnloadContent();
             turnCounter.UnloadContent();
+
+            turnButton.UnloadContent();
+            statsButton.UnloadContent();
+            relationsButton.UnloadContent();
 
             base.UnloadContent();
         }
@@ -103,12 +136,25 @@ namespace Narivia.Interface.Widgets
 
             factionName.Position = Position + new Vector2(margins, margins);
             turnCounter.Position = Position + new Vector2(Size.X - turnCounter.ScreenArea.Width - margins, margins);
+
             factionSymbol.Position = Position + new Vector2((Size.X - factionSymbol.ScreenArea.Width) / 2, factionName.ScreenArea.Bottom + margins);
+
+            turnButton.Position = Position + new Vector2((Size.X - turnButton.Size.X) / 2,
+                                                          Size.Y - turnButton.Size.Y - margins * 5);
+            statsButton.Position = Position + new Vector2((int)(Size.X - statsButton.Size.X - relationsButton.Size.X - margins * 5) / 2,
+                                                          (int)(Size.Y - statsButton.Size.Y) / 2);
+            relationsButton.Position = Position + new Vector2((int)(Size.X + statsButton.Size.X + margins * 5 - relationsButton.Size.X) / 2,
+                                                              (int)(Size.Y - relationsButton.Size.Y) / 2);
 
             background.Update(gameTime);
             factionSymbol.Update(gameTime);
+
             factionName.Update(gameTime);
             turnCounter.Update(gameTime);
+
+            turnButton.Update(gameTime);
+            statsButton.Update(gameTime);
+            relationsButton.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -126,8 +172,13 @@ namespace Narivia.Interface.Widgets
 
             background.Draw(spriteBatch);
             factionSymbol.Draw(spriteBatch);
+
             factionName.Draw(spriteBatch);
             turnCounter.Draw(spriteBatch);
+
+            turnButton.Draw(spriteBatch);
+            statsButton.Draw(spriteBatch);
+            relationsButton.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
         }
