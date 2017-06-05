@@ -238,9 +238,7 @@ namespace Narivia.BusinessLogic.GameManagers
         /// <param name="y">The y coordinate.</param>
         public string FactionIdAtPosition(int x, int y)
         {
-            Region region = Regions.Values.FirstOrDefault(r => r.Id == worldTiles[x, y]);
-
-            return region?.FactionId;
+            return Regions[worldTiles[x, y]].FactionId;
         }
 
         /// <summary>
@@ -250,8 +248,7 @@ namespace Narivia.BusinessLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public void TransferRegion(string regionId, string factionId)
         {
-            Region region = Regions[regionId];
-            region.FactionId = factionId;
+            Regions[regionId].FactionId = factionId;
         }
     }
 }
