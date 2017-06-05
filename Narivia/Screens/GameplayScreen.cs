@@ -16,6 +16,8 @@ namespace Narivia.Screens
     {
         public GameMap GameMap { get; set; }
 
+        public InfoBar InfoBar { get; set; }
+
         GameDomainService game;
 
         /// <summary>
@@ -29,6 +31,7 @@ namespace Narivia.Screens
             GameMap.AssociateGameDomainService(ref game);
 
             GameMap.LoadContent();
+            InfoBar.LoadContent();
             base.LoadContent();
 
             ShowNotification("Welcome",
@@ -47,6 +50,7 @@ namespace Narivia.Screens
         public override void UnloadContent()
         {
             GameMap.UnloadContent();
+            InfoBar.UnloadContent();
             base.UnloadContent();
         }
 
@@ -57,7 +61,16 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
+            int playerSize = game.GetFactionSize(game.PlayerFactionId);
+            int playerWealth = game.GetFactionWealth(game.PlayerFactionId);
+            int playerTroops = game.GetFactionTroops(game.PlayerFactionId);
+
+            InfoBar.RealmSize = playerSize;
+            InfoBar.Wealth = playerWealth;
+            InfoBar.Troops = playerTroops;
+
             GameMap.Update(gameTime);
+            InfoBar.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -69,6 +82,7 @@ namespace Narivia.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             GameMap.Draw(spriteBatch);
+            InfoBar.Draw(spriteBatch);
             base.Draw(spriteBatch);
         }
     }

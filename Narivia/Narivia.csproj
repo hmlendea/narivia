@@ -103,6 +103,7 @@
     <Compile Include="Interface\Widgets\NotificationType.cs" />
     <Compile Include="Interface\Widgets\Widget.cs" />
     <Compile Include="Interface\Widgets\GameMap.cs" />
+    <Compile Include="Interface\Widgets\InfoBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

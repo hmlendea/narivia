@@ -325,6 +325,23 @@ namespace Narivia.BusinessLogic.GameManagers
             }
         }
 
+        public int GetFactionSize(string factionId)
+        {
+            return regions.Values.Count(r => r.FactionId == factionId);
+        }
+
+        public int GetFactionWealth(string factionId)
+        {
+            return factions.Values.FirstOrDefault(f => f.Id == factionId).Wealth;
+        }
+
+        public int GetFactionTroops(string factionId)
+        {
+            return armies.Values
+                         .Where(x => x.FactionId == factionId)
+                         .Sum(x => x.Size);
+        }
+
         /// <summary>
         /// WIP blitzkrieg sequencial algorithm for invading a faction.
         /// </summary>

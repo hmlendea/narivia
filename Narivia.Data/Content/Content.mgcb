@@ -482,3 +482,10 @@
 /processorParam:TextureFormat=Color
 /build:Interface/game_icons.png
 
+#begin Fonts/InfoBarFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/InfoBarFont.spritefont
+

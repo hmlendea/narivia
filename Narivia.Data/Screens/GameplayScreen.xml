@@ -1,9 +1,31 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <GameplayScreen>
-	<GameMap>
+	<InfoBar>
 		<Position>
 			<X>0</X>
 			<Y>0</Y>
+		</Position>
+		<Size>
+			<X>1000</X>
+			<Y>20</Y>
+		</Size>
+		<BackgroundColour>
+			<A>255</A>
+			<R>0</R>
+			<G>0</G>
+			<B>0</B>
+		</BackgroundColour>
+		<TextColour>
+			<A>255</A>
+			<R>255</R>
+			<G>215</G>
+			<B>0</B>
+		</TextColour>
+	</InfoBar>
+	<GameMap>
+		<Position>
+			<X>0</X>
+			<Y>20</Y>
 		</Position>
 		<Size>
 			<X>1000</X>
