@@ -909,3 +909,10 @@
 /processorParam:TextureFormat=Color
 /build:World/Terrain/water_river.png
 
+#begin Fonts/SideBarFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/SideBarFont.spritefont
+

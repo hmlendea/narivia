@@ -104,6 +104,7 @@
     <Compile Include="Interface\Widgets\Widget.cs" />
     <Compile Include="Interface\Widgets\GameMap.cs" />
     <Compile Include="Interface\Widgets\InfoBar.cs" />
+    <Compile Include="Interface\Widgets\SideBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

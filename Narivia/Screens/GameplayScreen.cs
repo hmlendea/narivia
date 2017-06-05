@@ -18,6 +18,8 @@ namespace Narivia.Screens
 
         public InfoBar InfoBar { get; set; }
 
+        public SideBar SideBar { get; set; }
+
         GameDomainService game;
 
         /// <summary>
@@ -30,8 +32,14 @@ namespace Narivia.Screens
 
             GameMap.AssociateGameDomainService(ref game);
 
+            SideBar.WorldId = game.WorldId;
+            SideBar.FactionId = game.PlayerFactionId;
+            SideBar.FactionName = game.GetFactionName(game.PlayerFactionId);
+
             GameMap.LoadContent();
             InfoBar.LoadContent();
+            SideBar.LoadContent();
+
             base.LoadContent();
 
             ShowNotification("Welcome",
@@ -51,6 +59,8 @@ namespace Narivia.Screens
         {
             GameMap.UnloadContent();
             InfoBar.UnloadContent();
+            SideBar.UnloadContent();
+
             base.UnloadContent();
         }
 
@@ -71,6 +81,8 @@ namespace Narivia.Screens
 
             GameMap.Update(gameTime);
             InfoBar.Update(gameTime);
+            SideBar.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -83,6 +95,8 @@ namespace Narivia.Screens
         {
             GameMap.Draw(spriteBatch);
             InfoBar.Draw(spriteBatch);
+            SideBar.Draw(spriteBatch);
+
             base.Draw(spriteBatch);
         }
     }

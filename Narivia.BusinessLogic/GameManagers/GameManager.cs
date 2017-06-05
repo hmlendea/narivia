@@ -325,6 +325,11 @@ namespace Narivia.BusinessLogic.GameManagers
             }
         }
 
+        public string GetFactionName(string factionId)
+        {
+            return factions.Values.FirstOrDefault(f => f.Id == factionId).Name;
+        }
+
         public int GetFactionSize(string factionId)
         {
             return regions.Values.Count(r => r.FactionId == factionId);
