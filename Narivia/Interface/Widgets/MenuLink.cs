@@ -15,7 +15,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         /// <value>The link identifier.</value>
         public string LinkId { get; set; }
-        
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -38,11 +38,6 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
             base.Update(gameTime);
         }
 
@@ -52,11 +47,6 @@ namespace Narivia.Interface.Widgets
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Visible)
-            {
-                return;
-            }
-
             base.Draw(spriteBatch);
         }
 

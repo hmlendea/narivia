@@ -108,7 +108,7 @@ namespace Narivia.Interface.Widgets
                 return;
             }
 
-            if (Image.ScreenArea.Contains(InputManager.Instance.MousePosition))
+            if (ScreenArea.Contains(InputManager.Instance.MousePosition))
             {
                 Hovered = true;
             }

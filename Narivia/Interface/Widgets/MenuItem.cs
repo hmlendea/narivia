@@ -31,6 +31,22 @@ namespace Narivia.Interface.Widgets
         /// <value>The selected text colour.</value>
         public Color SelectedTextColour { get; set; }
 
+        public new Vector2 Position
+        {
+            get { return image.Position; }
+            set { image.Position = value; }
+        }
+
+        public new Vector2 Size
+        {
+            get { return image.SpriteSize; }
+            set { image.SpriteSize = value; }
+        }
+
+        public new Rectangle ScreenArea => image.ScreenArea;
+
+        Image image;
+
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="T:Narivia.Widgets.MenuItem"/> is selected.
         /// </summary>
@@ -45,6 +61,8 @@ namespace Narivia.Interface.Widgets
         {
             TextColour = Color.White;
             SelectedTextColour = Color.Gold;
+
+            image = new Image();
         }
 
         /// <summary>
@@ -52,16 +70,17 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void LoadContent()
         {
-            Image.Text = Text;
-            Image.FadeEffect = new FadeEffect
+            image.Text = Text;
+            image.FadeEffect = new FadeEffect
             {
                 Speed = 2,
                 MinimumOpacity = 0.25f
             };
 
             base.LoadContent();
+            image.LoadContent();
 
-            Image.ActivateEffect("FadeEffect");
+            image.ActivateEffect("FadeEffect");
         }
 
         /// <summary>
@@ -70,6 +89,7 @@ namespace Narivia.Interface.Widgets
         public override void UnloadContent()
         {
             base.UnloadContent();
+            image.UnloadContent();
         }
 
         /// <summary>
@@ -83,7 +103,7 @@ namespace Narivia.Interface.Widgets
                 return;
             }
 
-            if (InputManager.Instance.IsCursorEnteringArea(Image.ScreenArea))
+            if (InputManager.Instance.IsCursorEnteringArea(ScreenArea))
             {
                 AudioManager.Instance.PlaySound("Interface/select");
                 Selected = true;
@@ -91,11 +111,11 @@ namespace Narivia.Interface.Widgets
 
             if (Selected)
             {
-                Image.Active = true;
-                Image.Tint = SelectedTextColour;
+                image.Active = true;
+                image.Tint = SelectedTextColour;
 
                 if (InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E) ||
-                    (Image.ScreenArea.Contains(InputManager.Instance.MousePosition) &&
+                    (ScreenArea.Contains(InputManager.Instance.MousePosition) &&
                     InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton)))
                 {
                     Activate();
@@ -103,11 +123,12 @@ namespace Narivia.Interface.Widgets
             }
             else
             {
-                Image.Active = false;
-                Image.Tint = TextColour;
+                image.Active = false;
+                image.Tint = TextColour;
             }
 
             base.Update(gameTime);
+            image.Update(gameTime);
         }
 
         /// <summary>
@@ -117,6 +138,7 @@ namespace Narivia.Interface.Widgets
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            image.Draw(spriteBatch);
         }
 
         /// <summary>

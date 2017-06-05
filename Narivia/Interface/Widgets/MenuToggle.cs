@@ -3,7 +3,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Graphics;
 using Narivia.Settings;
 
 namespace Narivia.Interface.Widgets
@@ -78,12 +77,8 @@ namespace Narivia.Interface.Widgets
                 return;
             }
 
+            // TODO: Update the text in the image
             string displayText = Text + ": " + ToggleState;
-
-            if (Image.Text != displayText)
-            {
-                // TODO: Update the text
-            }
 
             base.Update(gameTime);
         }
@@ -94,11 +89,6 @@ namespace Narivia.Interface.Widgets
         /// <returns>The draw.</returns>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
             base.Draw(spriteBatch);
         }
 

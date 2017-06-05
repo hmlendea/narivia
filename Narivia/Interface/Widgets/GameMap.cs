@@ -60,6 +60,8 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
+            camera.Size = Size;
+
             base.Update(gameTime);
             camera.Update(gameTime);
             map.Update(gameTime);

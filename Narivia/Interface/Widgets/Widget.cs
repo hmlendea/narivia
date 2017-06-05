@@ -3,49 +3,33 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Graphics;
-
 namespace Narivia.Interface.Widgets
 {
     public class Widget
     {
-        protected Image Image { get; set; }
-
         /// <summary>
         /// Gets the position of this widget.
         /// </summary>
         /// <value>The position.</value>
-        public Vector2 Position
-        {
-            get { return Image.Position; }
-            set { Image.Position = value; }
-        }
+        public Vector2 Position { get; set; }
 
         /// <summary>
         /// Gets the size of this widget.
         /// </summary>
         /// <value>The size.</value>
-        public Vector2 Size
-        {
-            get { return Image.SpriteSize; }
-            set { Image.SpriteSize = value; }
-        }
+        public Vector2 Size { get; set; }
 
         /// <summary>
         /// Gets the screen area covered by this widget.
         /// </summary>
         /// <value>The screen area.</value>
-        public Rectangle ScreenArea => Image.ScreenArea;
+        public Rectangle ScreenArea => new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y);
 
         /// <summary>
         /// Gets or sets the opacity.
         /// </summary>
         /// <value>The opacity.</value>
-        public float Opacity
-        {
-            get { return Image.Opacity; }
-            set { Image.Opacity = value; }
-        }
+        public float Opacity { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="T:Narivia.Widgets.Widget"/> is enabled.
@@ -71,9 +55,9 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public Widget()
         {
-            Image = new Image();
             Enabled = true;
             Visible = true;
+            Opacity = 1.0f;
         }
 
         /// <summary>
@@ -81,7 +65,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public virtual void LoadContent()
         {
-            Image.LoadContent();
+
         }
 
         /// <summary>
@@ -89,7 +73,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public virtual void UnloadContent()
         {
-            Image.UnloadContent();
+
         }
 
         /// <summary>
@@ -98,9 +82,9 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-            if (Enabled)
+            if (!Enabled)
             {
-                Image.Update(gameTime);
+                return;
             }
         }
 
@@ -110,9 +94,9 @@ namespace Narivia.Interface.Widgets
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            if (Visible)
+            if (!Visible)
             {
-                Image.Draw(spriteBatch);
+                return;
             }
         }
 
