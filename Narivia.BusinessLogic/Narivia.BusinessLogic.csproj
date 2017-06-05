@@ -53,6 +53,7 @@
     <Compile Include="GameManagers\Interfaces\IGameManager.cs" />
     <Compile Include="GameManagers\GameManager.cs" />
     <Compile Include="GameManagers\AttackManager.cs" />
+    <Compile Include="GameManagers\WorldManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
