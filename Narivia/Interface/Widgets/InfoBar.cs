@@ -28,6 +28,16 @@ namespace Narivia.Interface.Widgets
 
         public Color TextColour { get; set; }
 
+        public float Spacing { get; set; }
+
+        public InfoBar()
+        {
+            BackgroundColour = Color.Black;
+            TextColour = Color.Gold;
+
+            Spacing = 6.0f;
+        }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -121,12 +131,12 @@ namespace Narivia.Interface.Widgets
             wealthText.Text = Wealth.ToString();
             troopsText.Text = Troops.ToString();
 
-            realmSizeIcon.Position = new Vector2(Position.X + 2, Position.Y + 2);
-            realmSizeText.Position = new Vector2(realmSizeIcon.ScreenArea.Right + 2, Position.Y + 2);
-            wealthIcon.Position = new Vector2(realmSizeText.ScreenArea.Right + 2, Position.Y + 2);
-            wealthText.Position = new Vector2(wealthIcon.ScreenArea.Right + 2, Position.Y + 2);
-            troopsIcon.Position = new Vector2(wealthText.ScreenArea.Right + 2, Position.Y + 2);
-            troopsText.Position = new Vector2(troopsIcon.ScreenArea.Right + 2, Position.Y + 2);
+            realmSizeIcon.Position = new Vector2(Position.X + Spacing, Position.Y + (Size.Y - realmSizeIcon.ScreenArea.Height) / 2);
+            realmSizeText.Position = new Vector2(realmSizeIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - realmSizeText.ScreenArea.Height) / 2);
+            wealthIcon.Position = new Vector2(realmSizeText.ScreenArea.Right + Spacing, realmSizeIcon.Position.Y);
+            wealthText.Position = new Vector2(wealthIcon.ScreenArea.Right + Spacing, realmSizeText.Position.Y);
+            troopsIcon.Position = new Vector2(wealthText.ScreenArea.Right + Spacing, wealthIcon.Position.Y);
+            troopsText.Position = new Vector2(troopsIcon.ScreenArea.Right + Spacing, wealthText.Position.Y);
 
             background.Update(gameTime);
 
