@@ -41,6 +41,9 @@ namespace Narivia.Interface.Widgets
 
         public bool Hovered { get; set; }
 
+        // TODO: Maybe implement my own handler and args
+        public event EventHandler Clicked;
+
         const int tileSize = 32;
 
         Image[] images;
@@ -201,6 +204,15 @@ namespace Narivia.Interface.Widgets
                 InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
             {
                 AudioManager.Instance.PlaySound("Interface/click");
+                OnClicked(this, null);
+            }
+        }
+
+        protected void OnClicked(object sender, EventArgs e)
+        {
+            if (Clicked != null)
+            {
+                Clicked(this, null);
             }
         }
     }

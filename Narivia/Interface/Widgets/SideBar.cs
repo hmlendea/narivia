@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,6 +35,10 @@ namespace Narivia.Interface.Widgets
         public Color BackgroundColour { get; set; }
 
         public Color TextColour { get; set; }
+
+        public event EventHandler TurnButtonClicked;
+        public event EventHandler StatsButtonClicked;
+        public event EventHandler RelationsButtonClicked;
 
         int margins = 5;
 
@@ -99,6 +104,10 @@ namespace Narivia.Interface.Widgets
             turnButton.LoadContent();
             statsButton.LoadContent();
             relationsButton.LoadContent();
+
+            turnButton.Clicked += OnTurnButtonClicked;
+            statsButton.Clicked += OnStatsButtonClicked;
+            relationsButton.Clicked += OnRelationsButtonClicked;
 
             base.LoadContent();
         }
@@ -181,6 +190,30 @@ namespace Narivia.Interface.Widgets
             relationsButton.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
+        }
+
+        protected void OnTurnButtonClicked(object sender, EventArgs e)
+        {
+            if (TurnButtonClicked != null)
+            {
+                TurnButtonClicked(this, null);
+            }
+        }
+
+        protected void OnStatsButtonClicked(object sender, EventArgs e)
+        {
+            if (StatsButtonClicked != null)
+            {
+                StatsButtonClicked(this, null);
+            }
+        }
+
+        protected void OnRelationsButtonClicked(object sender, EventArgs e)
+        {
+            if (RelationsButtonClicked != null)
+            {
+                RelationsButtonClicked(this, null);
+            }
         }
     }
 }

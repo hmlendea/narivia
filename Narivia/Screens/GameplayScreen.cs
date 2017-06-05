@@ -42,6 +42,10 @@ namespace Narivia.Screens
 
             base.LoadContent();
 
+            SideBar.TurnButtonClicked += SideBar_TurnButtonClicked;
+            SideBar.StatsButtonClicked += SideBar_StatsButtonClicked;
+            SideBar.RelationsButtonClicked += SideBar_RelationsButtonClicked;
+
             ShowNotification("Welcome",
                              $"Welcome to the world of {game.WorldName} " +
                              Environment.NewLine +
@@ -98,6 +102,29 @@ namespace Narivia.Screens
             SideBar.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
+        }
+
+        void SideBar_TurnButtonClicked(object sender, EventArgs e)
+        {
+            // TODO: Pass the turn
+        }
+
+        void SideBar_StatsButtonClicked(object sender, EventArgs e)
+        {
+            ShowNotification("Statistics",
+                             "Comming soon :)",
+                             NotificationType.Informational,
+                             NotificationStyle.Big,
+                             new Vector2(256, 128));
+        }
+
+        void SideBar_RelationsButtonClicked(object sender, EventArgs e)
+        {
+            ShowNotification("Diplomatic Relations",
+                             "Comming soon :)",
+                             NotificationType.Informational,
+                             NotificationStyle.Big,
+                             new Vector2(256, 128));
         }
     }
 }
