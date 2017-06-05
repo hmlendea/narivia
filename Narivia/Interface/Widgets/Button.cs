@@ -37,6 +37,8 @@ namespace Narivia.Interface.Widgets
         /// <value>The text colour.</value>
         public Color TextColour { get; set; }
 
+        public string FontName { get; set; }
+
         public bool Hovered { get; set; }
 
         const int tileSize = 32;
@@ -46,6 +48,7 @@ namespace Narivia.Interface.Widgets
 
         public Button()
         {
+            FontName = "ButtonFont";
             TextColour = Color.Gold;
         }
 
@@ -62,7 +65,6 @@ namespace Narivia.Interface.Widgets
                 images[x] = new Image
                 {
                     ImagePath = "Interface/button",
-                    Position = new Vector2(Position.X + x * tileSize, Position.Y),
                     SourceRectangle = CalculateSourceRectangle(x, Style)
                 };
 
@@ -73,8 +75,7 @@ namespace Narivia.Interface.Widgets
             textImage.TextVerticalAlignment = VerticalAlignment.Center;
             textImage.TextHorizontalAlignment = HorizontalAlignment.Center;
             textImage.Tint = TextColour;
-            textImage.FontName = "ButtonFont";
-            textImage.Position = Position;
+            textImage.FontName = FontName;
             textImage.SpriteSize = Size;
 
             textImage.LoadContent();
@@ -107,6 +108,13 @@ namespace Narivia.Interface.Widgets
             {
                 return;
             }
+
+            for (int x = 0; x < ButtonSize; x++)
+            {
+                images[x].Position = new Vector2(Position.X + x * tileSize, Position.Y);
+            }
+
+            textImage.Position = Position;
 
             if (ScreenArea.Contains(InputManager.Instance.MousePosition))
             {
