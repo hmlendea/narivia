@@ -11,12 +11,16 @@ namespace Narivia.Interface.Widgets
     {
         Image background;
 
-        Image realmSizeIcon, realmSizeText;
+        Image regionsIcon, regionsText;
+        Image holdingsIcon, holdingsText;
         Image wealthIcon, wealthText;
         Image troopsIcon, troopsText;
 
         [XmlIgnore]
-        public int RealmSize { get; set; }
+        public int Regions { get; set; }
+
+        [XmlIgnore]
+        public int Holdings { get; set; }
 
         [XmlIgnore]
         public int Wealth { get; set; }
@@ -52,10 +56,15 @@ namespace Narivia.Interface.Widgets
                 Tint = BackgroundColour
             };
 
-            realmSizeIcon = new Image
+            regionsIcon = new Image
             {
                 ImagePath = "Interface/game_icons",
                 SourceRectangle = new Rectangle(0, 0, 16, 16)
+            };
+            holdingsIcon = new Image
+            {
+                ImagePath = "Interface/game_icons",
+                SourceRectangle = new Rectangle(48, 0, 16, 16)
             };
             wealthIcon = new Image
             {
@@ -68,9 +77,15 @@ namespace Narivia.Interface.Widgets
                 SourceRectangle = new Rectangle(32, 0, 16, 16)
             };
 
-            realmSizeText = new Image
+            regionsText = new Image
             {
-                Text = RealmSize.ToString(),
+                Text = Regions.ToString(),
+                FontName = "InfoBarFont",
+                Tint = TextColour
+            };
+            holdingsText = new Image
+            {
+                Text = Holdings.ToString(),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
@@ -89,11 +104,14 @@ namespace Narivia.Interface.Widgets
 
             background.LoadContent();
 
-            realmSizeIcon.LoadContent();
-            realmSizeText.LoadContent();
+            regionsIcon.LoadContent();
+            holdingsIcon.LoadContent();
             wealthIcon.LoadContent();
-            wealthText.LoadContent();
             troopsIcon.LoadContent();
+
+            regionsText.LoadContent();
+            holdingsText.LoadContent();
+            wealthText.LoadContent();
             troopsText.LoadContent();
 
             base.LoadContent();
@@ -106,11 +124,14 @@ namespace Narivia.Interface.Widgets
         {
             background.UnloadContent();
 
-            realmSizeIcon.UnloadContent();
-            realmSizeText.UnloadContent();
+            regionsIcon.UnloadContent();
+            holdingsIcon.UnloadContent();
             wealthIcon.UnloadContent();
-            wealthText.UnloadContent();
             troopsIcon.UnloadContent();
+
+            regionsText.UnloadContent();
+            holdingsText.UnloadContent();
+            wealthText.UnloadContent();
             troopsText.UnloadContent();
 
             base.UnloadContent();
@@ -127,24 +148,30 @@ namespace Narivia.Interface.Widgets
                 return;
             }
 
-            realmSizeText.Text = RealmSize.ToString();
+            regionsText.Text = Regions.ToString();
+            holdingsText.Text = Holdings.ToString();
             wealthText.Text = Wealth.ToString();
             troopsText.Text = Troops.ToString();
 
-            realmSizeIcon.Position = new Vector2(Position.X + Spacing, Position.Y + (Size.Y - realmSizeIcon.ScreenArea.Height) / 2);
-            realmSizeText.Position = new Vector2(realmSizeIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - realmSizeText.ScreenArea.Height) / 2);
-            wealthIcon.Position = new Vector2(realmSizeText.ScreenArea.Right + Spacing, realmSizeIcon.Position.Y);
-            wealthText.Position = new Vector2(wealthIcon.ScreenArea.Right + Spacing, realmSizeText.Position.Y);
+            regionsIcon.Position = new Vector2(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ScreenArea.Height) / 2);
+            regionsText.Position = new Vector2(regionsIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - regionsText.ScreenArea.Height) / 2);
+            holdingsIcon.Position = new Vector2(regionsText.ScreenArea.Right + Spacing, regionsIcon.Position.Y);
+            holdingsText.Position = new Vector2(holdingsIcon.ScreenArea.Right + Spacing, regionsText.Position.Y);
+            wealthIcon.Position = new Vector2(holdingsText.ScreenArea.Right + Spacing, holdingsIcon.Position.Y);
+            wealthText.Position = new Vector2(wealthIcon.ScreenArea.Right + Spacing, holdingsText.Position.Y);
             troopsIcon.Position = new Vector2(wealthText.ScreenArea.Right + Spacing, wealthIcon.Position.Y);
             troopsText.Position = new Vector2(troopsIcon.ScreenArea.Right + Spacing, wealthText.Position.Y);
 
             background.Update(gameTime);
 
-            realmSizeIcon.Update(gameTime);
-            realmSizeText.Update(gameTime);
+            regionsIcon.Update(gameTime);
+            holdingsIcon.Update(gameTime);
             wealthIcon.Update(gameTime);
-            wealthText.Update(gameTime);
             troopsIcon.Update(gameTime);
+
+            regionsText.Update(gameTime);
+            holdingsText.Update(gameTime);
+            wealthText.Update(gameTime);
             troopsText.Update(gameTime);
 
             base.Update(gameTime);
@@ -163,11 +190,14 @@ namespace Narivia.Interface.Widgets
 
             background.Draw(spriteBatch);
 
-            realmSizeIcon.Draw(spriteBatch);
-            realmSizeText.Draw(spriteBatch);
+            regionsIcon.Draw(spriteBatch);
+            holdingsIcon.Draw(spriteBatch);
             wealthIcon.Draw(spriteBatch);
-            wealthText.Draw(spriteBatch);
             troopsIcon.Draw(spriteBatch);
+
+            regionsText.Draw(spriteBatch);
+            holdingsText.Draw(spriteBatch);
+            wealthText.Draw(spriteBatch);
             troopsText.Draw(spriteBatch);
 
             base.Draw(spriteBatch);

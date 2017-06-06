@@ -75,13 +75,10 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            int playerSize = game.GetFactionSize(game.PlayerFactionId);
-            int playerWealth = game.GetFactionWealth(game.PlayerFactionId);
-            int playerTroops = game.GetFactionTroops(game.PlayerFactionId);
-
-            InfoBar.RealmSize = playerSize;
-            InfoBar.Wealth = playerWealth;
-            InfoBar.Troops = playerTroops;
+            InfoBar.Regions = game.GetRegionsCount(game.PlayerFactionId);
+            InfoBar.Holdings = game.GetHoldingsCount(game.PlayerFactionId);
+            InfoBar.Wealth = game.GetWealth(game.PlayerFactionId);
+            InfoBar.Troops = game.GetTroopsCount(game.PlayerFactionId);
 
             GameMap.Update(gameTime);
             InfoBar.Update(gameTime);

@@ -120,17 +120,23 @@ namespace Narivia.BusinessLogic.GameManagers
             return world.Factions.Values.FirstOrDefault(f => f.Id == factionId).Name;
         }
 
-        public int GetFactionSize(string factionId)
+        public int GetRegionsCount(string factionId)
         {
             return world.Regions.Values.Count(r => r.FactionId == factionId);
         }
 
-        public int GetFactionWealth(string factionId)
+        public int GetHoldingsCount(string factionId)
+        {
+            return world.Holdings.Values.Count(h => h.Type != HoldingType.Empty &&
+                                                    world.Regions[h.RegionId].FactionId == factionId);
+        }
+
+        public int GetWealth(string factionId)
         {
             return world.Factions.Values.FirstOrDefault(f => f.Id == factionId).Wealth;
         }
 
-        public int GetFactionTroops(string factionId)
+        public int GetTroopsCount(string factionId)
         {
             return world.Armies.Values
                          .Where(x => x.FactionId == factionId)

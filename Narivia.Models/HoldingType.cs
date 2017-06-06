@@ -3,18 +3,23 @@
     public enum HoldingType
     {
         /// <summary>
+        /// Empty land.
+        /// </summary>
+        Empty = 0,
+
+        /// <summary>
         /// Castle.
         /// </summary>
-        Castle = 0,
+        Castle = 1,
 
         /// <summary>
         /// City.
         /// </summary>L
-        City = 1,
+        City = 2,
 
         /// <summary>
         /// Temple.
         /// </summary>
-        Temple = 2
+        Temple = 3
     }
 }
