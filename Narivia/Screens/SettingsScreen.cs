@@ -1,16 +1,30 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Linq;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using Narivia.Interface.Widgets;
+using Narivia.Settings;
 
 namespace Narivia.Screens
 {
     public class SettingsScreen : MenuScreen
     {
+        MenuToggle fullScreenToggle;
+        MenuToggle debugModeToggle;
+
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
             base.LoadContent();
+
+            fullScreenToggle = Toggles.FirstOrDefault(t => t.Property == "Fullscreen");
+            debugModeToggle = Toggles.FirstOrDefault(t => t.Property == "DebugMode");
+
+            LinkEventsToToggles();
         }
 
         /// <summary>
@@ -18,6 +32,7 @@ namespace Narivia.Screens
         /// </summary>
         public override void UnloadContent()
         {
+            SettingsManager.Instance.SaveContent();
             base.UnloadContent();
         }
 
@@ -37,6 +52,29 @@ namespace Narivia.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+        }
+
+        protected void fullScreenToggle_OnActivated(object sender, EventArgs e)
+        {
+            SettingsManager.Instance.Fullscreen = !SettingsManager.Instance.Fullscreen;
+        }
+
+        protected void debugModeToggle_OnActivated(object sender, EventArgs e)
+        {
+            SettingsManager.Instance.DebugMode = !SettingsManager.Instance.DebugMode;
+        }
+
+        void LinkEventsToToggles()
+        {
+            if (fullScreenToggle != null)
+            {
+                fullScreenToggle.Activated += fullScreenToggle_OnActivated;
+            }
+
+            if (debugModeToggle != null)
+            {
+                debugModeToggle.Activated += debugModeToggle_OnActivated;
+            }
         }
     }
 }
