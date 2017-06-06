@@ -24,6 +24,9 @@ namespace Narivia.Screens
             fullScreenToggle = Toggles.FirstOrDefault(t => t.Property == "Fullscreen");
             debugModeToggle = Toggles.FirstOrDefault(t => t.Property == "DebugMode");
 
+            fullScreenToggle.ToggleState = SettingsManager.Instance.Fullscreen;
+            debugModeToggle.ToggleState = SettingsManager.Instance.DebugMode;
+
             LinkEventsToToggles();
         }
 
@@ -56,12 +59,12 @@ namespace Narivia.Screens
 
         protected void fullScreenToggle_OnActivated(object sender, EventArgs e)
         {
-            SettingsManager.Instance.Fullscreen = !SettingsManager.Instance.Fullscreen;
+            SettingsManager.Instance.Fullscreen = fullScreenToggle.ToggleState;
         }
 
         protected void debugModeToggle_OnActivated(object sender, EventArgs e)
         {
-            SettingsManager.Instance.DebugMode = !SettingsManager.Instance.DebugMode;
+            SettingsManager.Instance.DebugMode = debugModeToggle.ToggleState;
         }
 
         void LinkEventsToToggles()

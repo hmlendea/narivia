@@ -34,22 +34,22 @@ namespace Narivia.Interface.Widgets
 
         public new Vector2 Position
         {
-            get { return image.Position; }
-            set { image.Position = value; }
+            get { return TextImage.Position; }
+            set { TextImage.Position = value; }
         }
 
-        public new Vector2 Size
-        {
-            get { return image.SpriteSize; }
-            set { image.SpriteSize = value; }
-        }
+        /// <summary>
+        /// Gets or sets the size.
+        /// </summary>
+        /// <value>The size.</value>
+        public new Vector2 Size { get; set; }
 
-        public new Rectangle ScreenArea => image.ScreenArea;
+        public new Rectangle ScreenArea => TextImage.ScreenArea;
 
         // TODO: Maybe implement my own handler and args
         public event EventHandler Activated;
 
-        Image image;
+        protected Image TextImage;
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="T:Narivia.Widgets.MenuItem"/> is selected.
@@ -66,7 +66,7 @@ namespace Narivia.Interface.Widgets
             TextColour = Color.White;
             SelectedTextColour = Color.Gold;
 
-            image = new Image();
+            Size = new Vector2(512, 48);
         }
 
         /// <summary>
@@ -74,17 +74,23 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void LoadContent()
         {
-            image.Text = Text;
-            image.FadeEffect = new FadeEffect
+            TextImage = new Image
+            {
+                Text = Text,
+                SpriteSize = Size,
+                TextVerticalAlignment = VerticalAlignment.Center,
+                TextHorizontalAlignment = HorizontalAlignment.Center
+            };
+            TextImage.FadeEffect = new FadeEffect
             {
                 Speed = 2,
                 MinimumOpacity = 0.25f
             };
 
             base.LoadContent();
-            image.LoadContent();
+            TextImage.LoadContent();
 
-            image.ActivateEffect("FadeEffect");
+            TextImage.ActivateEffect("FadeEffect");
         }
 
         /// <summary>
@@ -93,7 +99,7 @@ namespace Narivia.Interface.Widgets
         public override void UnloadContent()
         {
             base.UnloadContent();
-            image.UnloadContent();
+            TextImage.UnloadContent();
         }
 
         /// <summary>
@@ -107,6 +113,8 @@ namespace Narivia.Interface.Widgets
                 return;
             }
 
+            TextImage.SpriteSize = Size;
+
             if (InputManager.Instance.IsCursorEnteringArea(ScreenArea))
             {
                 AudioManager.Instance.PlaySound("Interface/select");
@@ -115,8 +123,8 @@ namespace Narivia.Interface.Widgets
 
             if (Selected)
             {
-                image.Active = true;
-                image.Tint = SelectedTextColour;
+                TextImage.Active = true;
+                TextImage.Tint = SelectedTextColour;
 
                 if (InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E) ||
                     (ScreenArea.Contains(InputManager.Instance.MousePosition) &&
@@ -127,12 +135,12 @@ namespace Narivia.Interface.Widgets
             }
             else
             {
-                image.Active = false;
-                image.Tint = TextColour;
+                TextImage.Active = false;
+                TextImage.Tint = TextColour;
             }
 
             base.Update(gameTime);
-            image.Update(gameTime);
+            TextImage.Update(gameTime);
         }
 
         /// <summary>
@@ -142,7 +150,7 @@ namespace Narivia.Interface.Widgets
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            image.Draw(spriteBatch);
+            TextImage.Draw(spriteBatch);
         }
 
         protected virtual void OnActivated(object sender, EventArgs e)

@@ -4,8 +4,6 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Settings;
-
 namespace Narivia.Interface.Widgets
 {
     public class MenuToggle : MenuItem
@@ -16,18 +14,22 @@ namespace Narivia.Interface.Widgets
         /// <value>The type of the property.</value>
         public string Property { get; set; }
 
+        public string DisplayText => Text + ": " + ToggleState;
+
         /// <summary>
         /// Gets or sets the toggle state.
         /// </summary>
         /// <value>The type of the toggle state.</value>
         [XmlIgnore]
         public bool ToggleState { get; set; }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
             base.LoadContent();
+            TextImage.Text = DisplayText;
         }
 
         /// <summary>
@@ -49,8 +51,7 @@ namespace Narivia.Interface.Widgets
                 return;
             }
 
-            // TODO: Update the text in the image
-            string displayText = Text + ": " + ToggleState;
+            TextImage.Text = DisplayText;
 
             base.Update(gameTime);
         }
