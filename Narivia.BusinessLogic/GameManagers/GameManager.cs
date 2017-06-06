@@ -22,6 +22,11 @@ namespace Narivia.BusinessLogic.GameManagers
         public string WorldName => world.WorldName;
         public string WorldId => world.WorldId;
 
+        public int BaseRegionIncome => world.BaseRegionIncome;
+        public int BaseRegionRecruitment => world.BaseRegionRecruitment;
+        public int StartingWealth => world.StartingWealth;
+        public int StartingTroopsPerUnit => world.StartingTroops;
+
         public string PlayerFactionId { get; private set; }
 
         public int Turn { get; private set; }
@@ -35,6 +40,8 @@ namespace Narivia.BusinessLogic.GameManagers
         {
             world = new WorldManager();
             world.LoadWorld(worldId);
+
+
 
             InitializeGame(factionId);
             InitializeEntities();
@@ -54,8 +61,8 @@ namespace Narivia.BusinessLogic.GameManagers
                 // Build
                 // Recruit
 
-                string targetRegionId = ChooseAttack(faction.Id);
-                AttackRegion(faction.Id, targetRegionId);
+                //string targetRegionId = ChooseAttack(faction.Id);
+                //AttackRegion(faction.Id, targetRegionId);
             }
 
             Turn += 1;
@@ -120,23 +127,54 @@ namespace Narivia.BusinessLogic.GameManagers
             return world.Factions.Values.FirstOrDefault(f => f.Id == factionId).Name;
         }
 
-        public int GetRegionsCount(string factionId)
+        public int GetFactionIncome(string factionId)
+        {
+            int income = 0;
+
+            income += world.Regions.Values.Count(r => r.FactionId == factionId) * BaseRegionIncome;
+            // TODO: Also calculate the holdings income
+
+            return income;
+        }
+
+        public int GetFactionOutcome(string factionId)
+        {
+            int outcome = 0;
+
+            outcome += world.Armies.Values.Where(x => x.FactionId == factionId)
+                                         .Sum(x => x.Size * world.Units[x.UnitId].Maintenance);
+            // TODO: Also calculate the holdings outcome
+
+            return outcome;
+        }
+
+        public int GetFactionRecruitment(string factionId)
+        {
+            int recruitment = 0;
+
+            recruitment += world.Regions.Values.Count(r => r.FactionId == factionId) * BaseRegionRecruitment;
+            // TODO: Also calculate the holdings recruitment
+
+            return recruitment;
+        }
+
+        public int GetFactionRegionsCount(string factionId)
         {
             return world.Regions.Values.Count(r => r.FactionId == factionId);
         }
 
-        public int GetHoldingsCount(string factionId)
+        public int GetFactionHoldingsCount(string factionId)
         {
             return world.Holdings.Values.Count(h => h.Type != HoldingType.Empty &&
                                                     world.Regions[h.RegionId].FactionId == factionId);
         }
 
-        public int GetWealth(string factionId)
+        public int GetFactionWealth(string factionId)
         {
             return world.Factions.Values.FirstOrDefault(f => f.Id == factionId).Wealth;
         }
 
-        public int GetTroopsCount(string factionId)
+        public int GetFactionTroopsCount(string factionId)
         {
             return world.Armies.Values
                          .Where(x => x.FactionId == factionId)
@@ -158,8 +196,7 @@ namespace Narivia.BusinessLogic.GameManagers
         {
             foreach (Faction faction in world.Factions.Values.ToList())
             {
-                // TODO: set starting wealth
-                faction.Wealth = 0;
+                faction.Wealth = StartingWealth;
 
                 foreach (Unit unit in world.Units.Values.ToList())
                 {
@@ -168,7 +205,7 @@ namespace Narivia.BusinessLogic.GameManagers
                     {
                         FactionId = faction.Id,
                         UnitId = unit.Id,
-                        Size = 0
+                        Size = StartingTroopsPerUnit
                     };
 
                     world.Armies.Add(armyKey, army);

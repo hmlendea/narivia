@@ -75,10 +75,14 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            InfoBar.Regions = game.GetRegionsCount(game.PlayerFactionId);
-            InfoBar.Holdings = game.GetHoldingsCount(game.PlayerFactionId);
-            InfoBar.Wealth = game.GetWealth(game.PlayerFactionId);
-            InfoBar.Troops = game.GetTroopsCount(game.PlayerFactionId);
+            InfoBar.Regions = game.GetFactionRegionsCount(game.PlayerFactionId);
+            InfoBar.Holdings = game.GetFactionHoldingsCount(game.PlayerFactionId);
+            InfoBar.Wealth = game.GetFactionWealth(game.PlayerFactionId);
+            InfoBar.Troops = game.GetFactionTroopsCount(game.PlayerFactionId);
+
+            SideBar.Turn = game.Turn;
+            SideBar.FactionId = game.PlayerFactionId;
+            SideBar.FactionName = game.GetFactionName(game.PlayerFactionId);
 
             GameMap.Update(gameTime);
             InfoBar.Update(gameTime);
@@ -104,15 +108,18 @@ namespace Narivia.Screens
         void SideBar_TurnButtonClicked(object sender, EventArgs e)
         {
             // TODO: Pass the turn
+            game.NextTurn();
         }
 
         void SideBar_StatsButtonClicked(object sender, EventArgs e)
         {
             ShowNotification("Statistics",
-                             "Comming soon :)",
+                             $"Income: {game.GetFactionIncome(game.PlayerFactionId)}" + Environment.NewLine +
+                             $"Outcome: {game.GetFactionOutcome(game.PlayerFactionId)}" + Environment.NewLine +
+                             $"Militia Recruitment: {game.GetFactionRecruitment(game.PlayerFactionId)}",
                              NotificationType.Informational,
                              NotificationStyle.Big,
-                             new Vector2(256, 128));
+                             new Vector2(256, 160));
         }
 
         void SideBar_RelationsButtonClicked(object sender, EventArgs e)

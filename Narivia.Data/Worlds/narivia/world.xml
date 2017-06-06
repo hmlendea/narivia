@@ -9,7 +9,7 @@
   <Width>640</Width>
   <Height>640</Height>
   <BaseRegionIncome>10</BaseRegionIncome>
-  <BaseRecruitment>2</BaseRecruitment>
+  <BaseRegionRecruitment>2</BaseRegionRecruitment>
   <MinTroopsAttack>200</MinTroopsAttack>
   <StartingTroops>50</StartingTroops>
   <StartingWealth>150</StartingWealth>

@@ -52,5 +52,29 @@
         /// </summary>
         /// <value>The height.</value>
         public int Height { get; set; }
+
+        /// <summary>
+        /// Gets or sets the base region income.
+        /// </summary>
+        /// <value>The base region income.</value>
+        public int BaseRegionIncome { get; set; }
+
+        /// <summary>
+        /// Gets or sets the base region recruitment.
+        /// </summary>
+        /// <value>The base region recruitment.</value>
+        public int BaseRegionRecruitment { get; set; }
+
+        /// <summary>
+        /// Gets or sets the starting wealth.
+        /// </summary>
+        /// <value>The starting wealth.</value>
+        public int StartingWealth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the starting troops.
+        /// </summary>
+        /// <value>The starting troops.</value>
+        public int StartingTroops { get; set; }
     }
 }

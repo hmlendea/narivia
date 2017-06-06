@@ -38,6 +38,30 @@ namespace Narivia.BusinessLogic.GameManagers
         public string WorldName => world.Name;
         public string WorldId => world.Id;
 
+        public int BaseRegionIncome
+        {
+            get { return world.BaseRegionIncome; }
+            set { world.BaseRegionIncome = value; }
+        }
+
+        public int BaseRegionRecruitment
+        {
+            get { return world.BaseRegionRecruitment; }
+            set { world.BaseRegionRecruitment = value; }
+        }
+
+        public int StartingWealth
+        {
+            get { return world.StartingWealth; }
+            set { world.StartingWealth = value; }
+        }
+
+        public int StartingTroops
+        {
+            get { return world.StartingTroops; }
+            set { world.StartingTroops = value; }
+        }
+
         World world;
 
         string[,] worldTiles;

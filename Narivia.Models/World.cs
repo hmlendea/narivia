@@ -61,5 +61,33 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The height.</value>
         public int Height { get; set; }
+
+        /// <summary>
+        /// Gets or sets the base region income.
+        /// </summary>
+        /// <value>The base region income.</value>
+        [Range(0, int.MaxValue)]
+        public int BaseRegionIncome { get; set; }
+
+        /// <summary>
+        /// Gets or sets the base region recruitment.
+        /// </summary>
+        /// <value>The base region recruitment.</value>
+        [Range(0, int.MaxValue)]
+        public int BaseRegionRecruitment { get; set; }
+
+        /// <summary>
+        /// Gets or sets the starting wealth.
+        /// </summary>
+        /// <value>The starting wealth.</value>
+        [Range(0, int.MaxValue)]
+        public int StartingWealth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the starting troops.
+        /// </summary>
+        /// <value>The starting troops.</value>
+        [Range(0, int.MaxValue)]
+        public int StartingTroops { get; set; }
     }
 }

@@ -19,7 +19,11 @@ namespace Narivia.BusinessLogic.Mapping
                 ResourcePack = worldEntity.ResourcePack,
                 Version = worldEntity.Version,
                 Width = worldEntity.Width,
-                Height = worldEntity.Height
+                Height = worldEntity.Height,
+                BaseRegionIncome = worldEntity.BaseRegionIncome,
+                BaseRegionRecruitment = worldEntity.BaseRegionRecruitment,
+                StartingWealth = worldEntity.StartingWealth,
+                StartingTroops = worldEntity.StartingTroops
             };
 
             return world;
@@ -36,7 +40,11 @@ namespace Narivia.BusinessLogic.Mapping
                 ResourcePack = world.ResourcePack,
                 Version = world.Version,
                 Width = world.Width,
-                Height = world.Height
+                Height = world.Height,
+                BaseRegionIncome = world.BaseRegionIncome,
+                BaseRegionRecruitment = world.BaseRegionRecruitment,
+                StartingWealth = world.StartingWealth,
+                StartingTroops = world.StartingTroops
             };
 
             return worldEntity;
