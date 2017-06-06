@@ -77,6 +77,13 @@ namespace Narivia.Models
         public int BaseRegionRecruitment { get; set; }
 
         /// <summary>
+        /// Gets or sets the base faction recruitment.
+        /// </summary>
+        /// <value>The base faction recruitment.</value>
+        [Range(0, int.MaxValue)]
+        public int BaseFactionRecruitment { get; set; }
+
+        /// <summary>
         /// Gets or sets the starting wealth.
         /// </summary>
         /// <value>The starting wealth.</value>

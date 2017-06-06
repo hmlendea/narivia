@@ -22,6 +22,7 @@ namespace Narivia.BusinessLogic.Mapping
                 Height = worldEntity.Height,
                 BaseRegionIncome = worldEntity.BaseRegionIncome,
                 BaseRegionRecruitment = worldEntity.BaseRegionRecruitment,
+                BaseFactionRecruitment = worldEntity.BaseFactionRecruitment,
                 StartingWealth = worldEntity.StartingWealth,
                 StartingTroops = worldEntity.StartingTroops
             };
@@ -43,6 +44,7 @@ namespace Narivia.BusinessLogic.Mapping
                 Height = world.Height,
                 BaseRegionIncome = world.BaseRegionIncome,
                 BaseRegionRecruitment = world.BaseRegionRecruitment,
+                BaseFactionRecruitment = world.BaseFactionRecruitment,
                 StartingWealth = world.StartingWealth,
                 StartingTroops = world.StartingTroops
             };

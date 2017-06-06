@@ -50,6 +50,12 @@ namespace Narivia.BusinessLogic.GameManagers
             set { world.BaseRegionRecruitment = value; }
         }
 
+        public int BaseFactionRecruitment
+        {
+            get { return world.BaseFactionRecruitment; }
+            set { world.BaseFactionRecruitment = value; }
+        }
+
         public int StartingWealth
         {
             get { return world.StartingWealth; }

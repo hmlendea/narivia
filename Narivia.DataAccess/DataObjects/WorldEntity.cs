@@ -66,6 +66,12 @@
         public int BaseRegionRecruitment { get; set; }
 
         /// <summary>
+        /// Gets or sets the base faction recruitment.
+        /// </summary>
+        /// <value>The base faction recruitment.</value>
+        public int BaseFactionRecruitment { get; set; }
+
+        /// <summary>
         /// Gets or sets the starting wealth.
         /// </summary>
         /// <value>The starting wealth.</value>

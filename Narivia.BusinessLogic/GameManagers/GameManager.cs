@@ -24,6 +24,7 @@ namespace Narivia.BusinessLogic.GameManagers
 
         public int BaseRegionIncome => world.BaseRegionIncome;
         public int BaseRegionRecruitment => world.BaseRegionRecruitment;
+        public int BaseFactionRecruitment => world.BaseFactionRecruitment;
         public int StartingWealth => world.StartingWealth;
         public int StartingTroopsPerUnit => world.StartingTroops;
 
@@ -41,8 +42,6 @@ namespace Narivia.BusinessLogic.GameManagers
             world = new WorldManager();
             world.LoadWorld(worldId);
 
-
-
             InitializeGame(factionId);
             InitializeEntities();
         }
@@ -52,14 +51,30 @@ namespace Narivia.BusinessLogic.GameManagers
         /// </summary>
         public void NextTurn()
         {
-            List<Faction> factionList = world.Factions.Values.ToList();
+            AttackManager attackManager = new AttackManager(world.Borders.Values,
+                                                            world.Holdings.Values,
+                                                            world.Regions.Values,
+                                                            world.Resources.Values);
 
-            foreach (Faction faction in factionList)
+            foreach (Faction faction in world.Factions.Values.Where(f => f.Alive))
             {
-                // TODO: Process AI
+                if (GetFactionRegionsCount(faction.Id) == 0)
+                {
+                    faction.Alive = false;
+                    continue;
+                }
+
                 // Economy
+                faction.Wealth += GetFactionIncome(faction.Id);
+                faction.Wealth -= GetFactionOutcome(faction.Id);
+
                 // Build
+
                 // Recruit
+                // TODO: Find a way around the hardcoded "militia" unit identifier
+                world.Armies.Values.FirstOrDefault(u => u.FactionId == faction.Id &&
+                                                        u.UnitId == "militia")
+                                   .Size += GetFactionRecruitment(faction.Id);
 
                 //string targetRegionId = ChooseAttack(faction.Id);
                 //AttackRegion(faction.Id, targetRegionId);
@@ -153,6 +168,7 @@ namespace Narivia.BusinessLogic.GameManagers
             int recruitment = 0;
 
             recruitment += world.Regions.Values.Count(r => r.FactionId == factionId) * BaseRegionRecruitment;
+            recruitment += BaseFactionRecruitment;
             // TODO: Also calculate the holdings recruitment
 
             return recruitment;
@@ -194,9 +210,10 @@ namespace Narivia.BusinessLogic.GameManagers
 
         void InitializeEntities()
         {
-            foreach (Faction faction in world.Factions.Values.ToList())
+            foreach (Faction faction in world.Factions.Values)
             {
                 faction.Wealth = StartingWealth;
+                faction.Alive = true;
 
                 foreach (Unit unit in world.Units.Values.ToList())
                 {
@@ -211,6 +228,8 @@ namespace Narivia.BusinessLogic.GameManagers
                     world.Armies.Add(armyKey, army);
                 }
             }
+
+            world.Factions["gaia"].Alive = false;
         }
 
         /// <summary>
@@ -423,10 +442,12 @@ namespace Narivia.BusinessLogic.GameManagers
 
             if (attackerTroops > defenderTroops)
             {
-                // TODO: Do something
+                Console.WriteLine($"{factionId} won in {regionId}");
+                world.TransferRegion(regionId, factionId);
             }
 
-            // TODO: Do something
+            // TODO: Do something when the attack failed
+            Console.WriteLine($"{factionId} lost in {regionId}");
         }
     }
 }

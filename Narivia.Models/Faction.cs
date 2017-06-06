@@ -43,5 +43,11 @@ namespace Narivia.Models
         /// <value>The wealth.</value>
         [Range(0, int.MaxValue)]
         public int Wealth { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="T:Narivia.Models.Faction"/> is alive.
+        /// </summary>
+        /// <value><c>true</c> if alive; otherwise, <c>false</c>.</value>
+        public bool Alive { get; set; }
     }
 }
