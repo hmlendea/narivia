@@ -66,6 +66,8 @@ namespace Narivia.Interface.Widgets
             {
                 Text = FactionName,
                 FontName = "SideBarFont",
+                SpriteSize = new Vector2(Size.X * 2 / 3, 48),
+                TextVerticalAlignment = VerticalAlignment.Left,
                 Tint = TextColour
             };
 
@@ -73,6 +75,8 @@ namespace Narivia.Interface.Widgets
             {
                 Text = $"Turn: {Turn}",
                 FontName = "SideBarFont",
+                SpriteSize = new Vector2(Size.X / 3, 48),
+                TextVerticalAlignment = VerticalAlignment.Right,
                 Tint = TextColour
             };
 
