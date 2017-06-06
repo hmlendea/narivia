@@ -227,8 +227,6 @@ namespace Narivia.Graphics
 
             font = content.Load<SpriteFont>("Fonts/" + FontName);
 
-            string wrappedText = Text;
-
             if (SpriteSize == Vector2.Zero)
             {
                 Vector2 size = Vector2.Zero;
@@ -247,8 +245,6 @@ namespace Narivia.Graphics
                 SpriteSize = size;
             }
 
-            wrappedText = StringUtils.WrapText(font, Text, SpriteSize.X);
-
             if (SourceRectangle == Rectangle.Empty)
             {
                 SourceRectangle = new Rectangle(0, 0, (int)SpriteSize.X, (int)SpriteSize.Y);
@@ -266,11 +262,6 @@ namespace Narivia.Graphics
             if (Texture != null)
             {
                 ScreenManager.Instance.SpriteBatch.Draw(Texture, Vector2.Zero, Color.White);
-            }
-
-            if (!string.IsNullOrEmpty(Text))
-            {
-                DrawString(font, wrappedText, ScreenArea, TextHorizontalAlignment, TextVerticalAlignment, Color.White);
             }
 
             ScreenManager.Instance.SpriteBatch.End();
@@ -323,6 +314,12 @@ namespace Narivia.Graphics
         {
             origin = new Vector2(SourceRectangle.Width / 2,
                                  SourceRectangle.Height / 2);
+
+            if (!string.IsNullOrEmpty(Text))
+            {
+                DrawString(font, StringUtils.WrapText(font, Text, SpriteSize.X), ScreenArea,
+                           TextHorizontalAlignment, TextVerticalAlignment, Tint * Opacity);
+            }
 
             spriteBatch.Draw(Texture, Position + origin, SourceRectangle,
                 Tint * Opacity, Rotation,
@@ -411,8 +408,7 @@ namespace Narivia.Graphics
             Vector2 totalSize = font.MeasureString(text);
 
             string[] lines = text.Split('\n');
-            int lineOffsetY = 0;
-            
+
             if (hAlign == HorizontalAlignment.Center)
             {
                 textOrigin.Y = bounds.Height / 2 - totalSize.Y / 2;
@@ -434,11 +430,11 @@ namespace Narivia.Graphics
                 {
                     textOrigin.X = bounds.Width - lineSize.X;
                 }
-                
+
                 textOrigin = new Vector2((int)Math.Round(textOrigin.X),
                                          (int)Math.Round(textOrigin.Y));
 
-                ScreenManager.Instance.SpriteBatch.DrawString(spriteFont, line, textOrigin, color);
+                ScreenManager.Instance.SpriteBatch.DrawString(spriteFont, line, Position + textOrigin, color);
 
                 textOrigin.Y += lineSize.Y;
             }
