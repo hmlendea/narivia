@@ -19,8 +19,6 @@ namespace Narivia.Screens
         /// </summary>
         public override void LoadContent()
         {
-            base.LoadContent();
-
             fullScreenToggle = Toggles.FirstOrDefault(t => t.Property == "Fullscreen");
             debugModeToggle = Toggles.FirstOrDefault(t => t.Property == "DebugMode");
 
@@ -28,6 +26,8 @@ namespace Narivia.Screens
             debugModeToggle.ToggleState = SettingsManager.Instance.DebugMode;
 
             LinkEventsToToggles();
+
+            base.LoadContent();
         }
 
         /// <summary>
@@ -57,16 +57,6 @@ namespace Narivia.Screens
             base.Draw(spriteBatch);
         }
 
-        protected void fullScreenToggle_OnActivated(object sender, EventArgs e)
-        {
-            SettingsManager.Instance.Fullscreen = fullScreenToggle.ToggleState;
-        }
-
-        protected void debugModeToggle_OnActivated(object sender, EventArgs e)
-        {
-            SettingsManager.Instance.DebugMode = debugModeToggle.ToggleState;
-        }
-
         void LinkEventsToToggles()
         {
             if (fullScreenToggle != null)
@@ -78,6 +68,20 @@ namespace Narivia.Screens
             {
                 debugModeToggle.Activated += debugModeToggle_OnActivated;
             }
+        }
+
+        void fullScreenToggle_OnActivated(object sender, EventArgs e)
+        {
+            // TODO: Investigate: Is there a better way to do this?
+            // I use not/! because this method gets called before the base event method
+            SettingsManager.Instance.Fullscreen = !fullScreenToggle.ToggleState;
+        }
+
+        void debugModeToggle_OnActivated(object sender, EventArgs e)
+        {
+            // TODO: Investigate: Is there a better way to do this?
+            // I use not/! because this method gets called before the base event method
+            SettingsManager.Instance.DebugMode = !debugModeToggle.ToggleState;
         }
     }
 }
