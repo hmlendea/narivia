@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.BusinessLogic.GameManagers;
 using Narivia.Graphics;
 using Narivia.Input;
+using Narivia.Models;
 using Narivia.WorldMap;
 
 namespace Narivia.Interface.Widgets
@@ -21,7 +22,9 @@ namespace Narivia.Interface.Widgets
         Camera camera;
         Map map;
 
-        Image regionHighlightImage;
+        Image regionHighlight;
+        Image selectedRegionHighlight;
+        Image factionBorder;
 
         /// <summary>
         /// Loads the content.
@@ -29,18 +32,40 @@ namespace Narivia.Interface.Widgets
         public override void LoadContent()
         {
             camera = new Camera { Size = Size };
-            map = new Map { TileDimensions = Vector2.One * 16 };
-            regionHighlightImage = new Image
+            map = new Map { TileDimensions = Vector2.One * GameWindow.TILE_DIMENSIONS };
+
+            regionHighlight = new Image
             {
                 ImagePath = "World/Effects/border",
-                SourceRectangle = new Rectangle(0, 0, (int)map.TileDimensions.X, (int)map.TileDimensions.Y),
+                SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS * 3, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
                 Tint = Color.White,
-                Opacity = 0.5f
+                Opacity = 1.0f
+            };
+
+            selectedRegionHighlight = new Image
+            {
+                ImagePath = "World/Effects/border",
+                SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS * 3, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
+                Tint = Color.White,
+                Opacity = 1.0f
+            };
+
+            factionBorder = new Image
+            {
+                ImagePath = "World/Effects/border",
+                SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
+                Tint = Color.Blue,
+                Opacity = 1.0f
             };
 
             camera.LoadContent();
             map.LoadContent(game.WorldId);
-            regionHighlightImage.LoadContent();
+
+            regionHighlight.LoadContent();
+            selectedRegionHighlight.LoadContent();
+            factionBorder.LoadContent();
+
+            base.LoadContent();
         }
 
         /// <summary>
@@ -50,7 +75,12 @@ namespace Narivia.Interface.Widgets
         {
             camera.UnloadContent();
             map.UnloadContent();
-            regionHighlightImage.UnloadContent();
+
+            regionHighlight.UnloadContent();
+            selectedRegionHighlight.UnloadContent();
+            factionBorder.UnloadContent();
+
+            base.UnloadContent();
         }
 
         /// <summary>
@@ -62,10 +92,14 @@ namespace Narivia.Interface.Widgets
         {
             camera.Size = Size;
 
-            base.Update(gameTime);
             camera.Update(gameTime);
             map.Update(gameTime);
-            regionHighlightImage.Update(gameTime);
+
+            regionHighlight.Update(gameTime);
+            selectedRegionHighlight.Update(gameTime);
+            factionBorder.Update(gameTime);
+
+            base.Update(gameTime);
 
             Vector2 gameCoordsCursor = ScreenToMapCoordinates(InputManager.Instance.MousePosition);
 
@@ -101,6 +135,9 @@ namespace Narivia.Interface.Widgets
             map.Draw(spriteBatch, camera);
 
             DrawRegionHighlight(spriteBatch);
+            DrawFactionBorders(spriteBatch);
+
+            base.Draw(spriteBatch);
         }
 
         // TODO: Handle this better
@@ -137,11 +174,95 @@ namespace Narivia.Interface.Widgets
                     }
 
                     string regionId = game.WorldTiles[x, y];
+                    string factionId = game.FactionIdAtPosition(x, y);
+                    Colour factionColour = game.FactionColourAtPosition(x, y);
+
+                    if (factionId == "gaia")
+                    {
+                        continue;
+                    }
 
                     if (SelectedRegionId == regionId)
                     {
-                        regionHighlightImage.Position = screenCoords;
-                        regionHighlightImage.Draw(spriteBatch);
+                        selectedRegionHighlight.Position = screenCoords;
+                        selectedRegionHighlight.Tint = new Color(factionColour.Red, factionColour.Green, factionColour.Blue);
+                        selectedRegionHighlight.Draw(spriteBatch);
+                    }
+                    else
+                    {
+                        regionHighlight.Position = screenCoords;
+                        regionHighlight.Tint = new Color(factionColour.Red, factionColour.Green, factionColour.Blue);
+                        regionHighlight.Draw(spriteBatch);
+                    }
+                }
+            }
+        }
+
+        void DrawFactionBorders(SpriteBatch spriteBatch)
+        {
+            int cameraSizeX = (int)(camera.Size.X / map.TileDimensions.X + 2);
+            int cameraSizeY = (int)(camera.Size.Y / map.TileDimensions.Y + 2);
+
+            for (int j = 0; j < cameraSizeY; j++)
+            {
+                for (int i = 0; i < cameraSizeX; i++)
+                {
+                    Vector2 screenCoords = new Vector2((int)(i * map.TileDimensions.X) - (int)(camera.Position.X % map.TileDimensions.X),
+                                                       (int)(j * map.TileDimensions.Y) - (int)(camera.Position.Y % map.TileDimensions.Y));
+                    Vector2 gameCoords = ScreenToMapCoordinates(screenCoords);
+
+                    int x = (int)gameCoords.X;
+                    int y = (int)gameCoords.Y;
+
+                    if (x < 0 || x > game.WorldWidth ||
+                        y < 0 || y > game.WorldHeight)
+                    {
+                        continue;
+                    }
+
+                    string factionId = game.FactionIdAtPosition(x, y);
+                    Colour factionColour = game.FactionColourAtPosition(x, y);
+
+                    if (factionId == "gaia")
+                    {
+                        continue;
+                    }
+
+                    string factionIdN = game.FactionIdAtPosition(x, y - 1);
+                    string factionIdW = game.FactionIdAtPosition(x - 1, y);
+                    string factionIdS = game.FactionIdAtPosition(x, y + 1);
+                    string factionIdE = game.FactionIdAtPosition(x + 1, y);
+
+                    factionBorder.Position = screenCoords;
+                    factionBorder.Tint = new Color(factionColour.Red, factionColour.Green, factionColour.Blue);
+
+                    if (factionIdN != factionId &&
+                        factionIdN != "gaia")
+                    {
+                        factionBorder.SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS, 0,
+                                                                           GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS);
+                        factionBorder.Draw(spriteBatch);
+                    }
+                    if (factionIdW != factionId &&
+                        factionIdW != "gaia")
+                    {
+                        factionBorder.SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS,
+                                                                           GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS);
+                        factionBorder.Draw(spriteBatch);
+                    }
+                    if (factionIdS != factionId &&
+                        factionIdS != "gaia")
+                    {
+                        factionBorder.SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS * 2,
+                                                                           GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS);
+                        factionBorder.Draw(spriteBatch);
+                    }
+                    if (factionIdE != factionId &&
+                        factionIdE != "gaia")
+                    {
+                        factionBorder.SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS * 2, GameWindow.TILE_DIMENSIONS,
+                                                                           GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS);
+                        factionBorder.Draw(spriteBatch);
                     }
                 }
             }

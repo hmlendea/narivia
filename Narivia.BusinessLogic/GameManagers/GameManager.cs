@@ -95,6 +95,17 @@ namespace Narivia.BusinessLogic.GameManagers
         }
 
         /// <summary>
+        /// Returns the faction colour at the given position.
+        /// </summary>
+        /// <returns>The faction colour.</returns>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordinate.</param>
+        public Colour FactionColourAtPosition(int x, int y)
+        {
+            return world.Factions[world.FactionIdAtPosition(x, y)].Colour;
+        }
+
+        /// <summary>
         /// Transfers the specified region to the specified faction.
         /// </summary>
         /// <param name="regionId">Region identifier.</param>
