@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -92,12 +93,9 @@ namespace Narivia.Interface.Widgets
             base.Draw(spriteBatch);
         }
 
-        /// <summary>
-        /// Activates this item.
-        /// </summary>
-        public override void Activate()
+        protected override void OnActivated(object sender, EventArgs e)
         {
-            base.Activate();
+            base.OnActivated(sender, e);
 
             ToggleState = !ToggleState;
         }

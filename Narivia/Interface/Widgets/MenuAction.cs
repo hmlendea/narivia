@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Narivia.Interface.Widgets
@@ -55,12 +57,9 @@ namespace Narivia.Interface.Widgets
             base.Draw(spriteBatch);
         }
 
-        /// <summary>
-        /// Activates this item.
-        /// </summary>
-        public override void Activate()
+        protected override void OnActivated(object sender, EventArgs e)
         {
-            base.Activate();
+            base.OnActivated(sender, e);
 
             switch (ActionId)
             {

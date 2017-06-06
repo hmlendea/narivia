@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -44,6 +45,9 @@ namespace Narivia.Interface.Widgets
         }
 
         public new Rectangle ScreenArea => image.ScreenArea;
+
+        // TODO: Maybe implement my own handler and args
+        public event EventHandler Activated;
 
         Image image;
 
@@ -118,7 +122,7 @@ namespace Narivia.Interface.Widgets
                     (ScreenArea.Contains(InputManager.Instance.MousePosition) &&
                     InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton)))
                 {
-                    Activate();
+                    OnActivated(this, null);
                 }
             }
             else
@@ -141,11 +145,13 @@ namespace Narivia.Interface.Widgets
             image.Draw(spriteBatch);
         }
 
-        /// <summary>
-        /// Activates this item.
-        /// </summary>
-        public virtual void Activate()
+        protected virtual void OnActivated(object sender, EventArgs e)
         {
+            if (Activated != null)
+            {
+                Activated(this, null);
+            }
+
             AudioManager.Instance.PlaySound("Interface/click");
         }
     }

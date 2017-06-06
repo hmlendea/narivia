@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Screens;
@@ -50,12 +52,9 @@ namespace Narivia.Interface.Widgets
             base.Draw(spriteBatch);
         }
 
-        /// <summary>
-        /// Activates this link.
-        /// </summary>
-        public override void Activate()
+        protected override void OnActivated(object sender, EventArgs e)
         {
-            base.Activate();
+            base.OnActivated(sender, e);
 
             ScreenManager.Instance.ChangeScreens(LinkId);
         }
