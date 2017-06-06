@@ -80,24 +80,28 @@ namespace Narivia.Interface.Widgets
             regionsText = new Image
             {
                 Text = Regions.ToString(),
+                SpriteSize = new Vector2(32, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
             holdingsText = new Image
             {
                 Text = Holdings.ToString(),
+                SpriteSize = new Vector2(32, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
             wealthText = new Image
             {
                 Text = Wealth.ToString(),
+                SpriteSize = new Vector2(48, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
             troopsText = new Image
             {
                 Text = Troops.ToString(),
+                SpriteSize = new Vector2(48, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
