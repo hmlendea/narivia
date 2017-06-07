@@ -32,8 +32,6 @@ namespace Narivia.Interface.Widgets
         [XmlIgnore]
         public int Turn { get; set; }
 
-        public Color BackgroundColour { get; set; }
-
         public Color TextColour { get; set; }
 
         public event EventHandler TurnButtonClicked;

@@ -337,7 +337,6 @@ namespace Narivia.Graphics
             }
             else if (TextureFillMode == TextureFillMode.Tile)
             {
-                float caca = (float)ScreenArea.Height / SourceRectangle.Height;
                 int tilesX = (int)Math.Ceiling((float)ScreenArea.Width / SourceRectangle.Width);
                 int tilesY = (int)Math.Ceiling((float)ScreenArea.Height / SourceRectangle.Height);
 
