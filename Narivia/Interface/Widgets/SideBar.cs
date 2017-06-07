@@ -49,11 +49,11 @@ namespace Narivia.Interface.Widgets
         {
             background = new Image
             {
-                ImagePath = "ScreenManager/FillImage",
-                SourceRectangle = new Rectangle(0, 0, 1, 1),
+                ImagePath = "Interface/backgrounds",
+                SourceRectangle = new Rectangle(0, 0, 32, 32),
                 Position = Position,
-                Scale = Size,
-                Tint = BackgroundColour
+                TextureFillMode = TextureFillMode.Tile,
+                Scale = Size / 32
             };
 
             factionSymbol = new Image

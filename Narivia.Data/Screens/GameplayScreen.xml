@@ -41,12 +41,6 @@
 			<X>280</X>
 			<Y>720</Y>
 		</Size>
-		<BackgroundColour>
-			<A>255</A>
-			<R>0</R>
-			<G>0</G>
-			<B>0</B>
-		</BackgroundColour>
 		<TextColour>
 			<A>255</A>
 			<R>255</R>
