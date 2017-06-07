@@ -139,6 +139,12 @@ namespace Narivia.Graphics
         public Texture2D Texture { get; set; }
 
         /// <summary>
+        /// Gets or sets the fill mode.
+        /// </summary>
+        /// <value>The fill mode.</value>
+        public TextureFillMode TextureFillMode { get; set; }
+
+        /// <summary>
         /// Gets or sets the effects.
         /// </summary>
         /// <value>The effects.</value>
@@ -204,6 +210,7 @@ namespace Narivia.Graphics
             Opacity = 1.0f;
             Zoom = 1.0f;
             Scale = Vector2.One;
+            TextureFillMode = TextureFillMode.Stretch;
 
             Tint = Color.White;
         }
@@ -321,10 +328,33 @@ namespace Narivia.Graphics
                            TextHorizontalAlignment, TextVerticalAlignment, Tint * Opacity);
             }
 
-            spriteBatch.Draw(Texture, Position + origin, SourceRectangle,
-                Tint * Opacity, Rotation,
-                origin, Scale * Zoom,
-                SpriteEffects.None, 0.0f);
+            if (TextureFillMode == TextureFillMode.Stretch)
+            {
+                spriteBatch.Draw(Texture, Position + origin, SourceRectangle,
+                    Tint * Opacity, Rotation,
+                    origin, Scale * Zoom,
+                    SpriteEffects.None, 0.0f);
+            }
+            else if (TextureFillMode == TextureFillMode.Tile)
+            {
+                float caca = (float)ScreenArea.Height / SourceRectangle.Height;
+                int tilesX = (int)Math.Ceiling((float)ScreenArea.Width / SourceRectangle.Width);
+                int tilesY = (int)Math.Ceiling((float)ScreenArea.Height / SourceRectangle.Height);
+
+                for (int y = 0; y < tilesY; y++)
+                {
+                    for (int x = 0; x < tilesY; x++)
+                    {
+                        Vector2 pos = new Vector2(Position.X + origin.X + x * SourceRectangle.Width,
+                                                  Position.Y + origin.Y + y * SourceRectangle.Height);
+
+                        spriteBatch.Draw(Texture, pos, SourceRectangle,
+                            Tint * Opacity, Rotation,
+                            origin, 1.0f,
+                            SpriteEffects.None, 0.0f);
+                    }
+                }
+            }
         }
 
         /// <summary>
