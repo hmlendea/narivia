@@ -16,7 +16,8 @@ namespace Narivia.BusinessLogic.Mapping
                 Id = holdingEntity.Id,
                 Name = holdingEntity.Name,
                 Description = holdingEntity.Description,
-                Type = (HoldingType)Enum.Parse(typeof(HoldingType), holdingEntity.Type)
+                Type = (HoldingType)Enum.Parse(typeof(HoldingType), holdingEntity.Type),
+                RegionId = holdingEntity.RegionId
             };
 
             return holding;
@@ -29,7 +30,8 @@ namespace Narivia.BusinessLogic.Mapping
                 Id = holding.Id,
                 Name = holding.Name,
                 Description = holding.Description,
-                Type = holding.Type.ToString()
+                Type = holding.Type.ToString(),
+                RegionId = holding.RegionId
             };
 
             return holdingEntity;
