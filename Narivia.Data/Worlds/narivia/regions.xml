@@ -3,2161 +3,2161 @@
   <RegionEntity>
     <Id>water</Id>
     <Name>Water</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#00A1FF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>gaia</FactionId>
+    <Type>Capital</Type>
     <ResourceId>0</ResourceId>
+    <FactionId>gaia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>alpalet</Id>
     <Name>Alpalet</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#300065</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>alpalet</FactionId>
+    <Type>Capital</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>larvenna</Id>
     <Name>Larvenna</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6124A1</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>alpalet</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>vanilet</Id>
     <Name>Vanilet</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8F24A1</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>alpalet</FactionId>
+    <Type>Province</Type>
     <ResourceId>13</ResourceId>
+    <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>hal_morthi</Id>
     <Name>Hal Morthi</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7B7B7B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>mah_rodah</FactionId>
+    <Type>Capital</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>lev_vesti</Id>
     <Name>Lev Vesti</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4A4A4A</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>mah_rodah</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gal_fortah</Id>
     <Name>Gal Fortah</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#E4E4E4</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>mah_rodah</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>caravenna</Id>
     <Name>Caravenna</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF0000</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>caravenna</FactionId>
+    <Type>Capital</Type>
     <ResourceId>2</ResourceId>
+    <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>galenna</Id>
     <Name>Galenna</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AF2D1D</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>caravenna</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>dorenna</Id>
     <Name>Dorenna</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFB9B9</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>caravenna</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>viris</Id>
     <Name>Viris</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFD400</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>viristia</FactionId>
+    <Type>Capital</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>veuristia</Id>
     <Name>Veuristia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#002BFF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>viristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gelistia</Id>
     <Name>Gelistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AA8D00</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>viristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>meuristia</Id>
     <Name>Meuristia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#006353</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>meuristia</FactionId>
+    <Type>Capital</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>lakistia</Id>
     <Name>Lakistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4A5753</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>meuristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>hudistia</Id>
     <Name>Hudistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#88A098</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>meuristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>bafter</Id>
     <Name>Bafter</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#2D7B00</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>befteria</FactionId>
+    <Type>Capital</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>carenna</Id>
     <Name>Carenna</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#2DE600</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>befteria</FactionId>
+    <Type>Province</Type>
     <ResourceId>6</ResourceId>
+    <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>loapter</Id>
     <Name>Loapter</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D284FF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>befteria</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>al_kharid</Id>
     <Name>Al Kharid</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D3BA8E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ne_quin_arid</FactionId>
+    <Type>Capital</Type>
     <ResourceId>9</ResourceId>
+    <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>al_nord</Id>
     <Name>Al Nord</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D3BA19</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ne_quin_arid</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>rwadda</Id>
     <Name>Rwadda</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFEAAC</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ne_quin_arid</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>cronofat</Id>
     <Name>Cronofat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#005322</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>fatima</FactionId>
+    <Type>Capital</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>oronat</Id>
     <Name>Oronat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFACD5</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>fatima</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>belefat</Id>
     <Name>Belefat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D5007B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>fatima</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>optimin</Id>
     <Name>Optimin</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#00AB98</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>optimia</FactionId>
+    <Type>Capital</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>karmin</Id>
     <Name>Karmin</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#437753</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>optimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>fortalet</Id>
     <Name>Fortalet</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF5467</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>optimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>imperial_city</Id>
     <Name>Imperial City</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#0072FF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impera</FactionId>
+    <Type>Capital</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>bluma</Id>
     <Name>Bluma</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF8D00</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impera</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>zama</Id>
     <Name>Zama</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9E72FF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impera</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>falnia</Id>
     <Name>Falnia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#58B4FF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impimia</FactionId>
+    <Type>Capital</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>tefimin</Id>
     <Name>Tefimin</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D66000</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>cugismia</Id>
     <Name>Cugismia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A74B00</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>foldai</Id>
     <Name>Foldai</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#82004B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>faladai</FactionId>
+    <Type>Capital</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>tambar</Id>
     <Name>Tambar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7DFFB4</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>faladai</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>yolkai</Id>
     <Name>Yolkai</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF694D</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>faladai</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>xodar</Id>
     <Name>Xodar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6556FF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>daria</FactionId>
+    <Type>Capital</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>crambar</Id>
     <Name>Crambar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9AA900</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>daria</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>quedar</Id>
     <Name>Quedar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3EA71</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>daria</FactionId>
+    <Type>Province</Type>
     <ResourceId>2</ResourceId>
+    <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>borgilet</Id>
     <Name>Borgilet</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D2C3BA</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>alpalet</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>lev_esti</Id>
     <Name>Lev Esti</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#442529</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>mah_rodah</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>lublija</Id>
     <Name>Lublija</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#445400</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>caravenna</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>pablistia</Id>
     <Name>Pablistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#92CB7E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>viristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>12</ResourceId>
+    <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>garlistia</Id>
     <Name>Garlistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#927871</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>meuristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>mangter</Id>
     <Name>Mangter</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#583946</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>befteria</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>al_kahhka</Id>
     <Name>Al Kahhka</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#89BDC1</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ne_quin_arid</FactionId>
+    <Type>Province</Type>
     <ResourceId>2</ResourceId>
+    <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>yanafat</Id>
     <Name>Yanafat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#436336</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>fatima</FactionId>
+    <Type>Province</Type>
     <ResourceId>13</ResourceId>
+    <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>blumin</Id>
     <Name>Blumin</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8BC366</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>optimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>trefla</Id>
     <Name>Trefla</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CB4A87</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impera</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>crama</Id>
     <Name>Crama</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4C6527</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>monkai</Id>
     <Name>Monkai</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#835662</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>faladai</FactionId>
+    <Type>Province</Type>
     <ResourceId>12</ResourceId>
+    <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gidar</Id>
     <Name>Gidar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#E38B3C</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>daria</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>mindalet</Id>
     <Name>Mindalet</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C345B0</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>alpalet</FactionId>
+    <Type>Province</Type>
     <ResourceId>12</ResourceId>
+    <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>mel_rof</Id>
     <Name>Mel Rof</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CECECE</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>mah_rodah</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>marinnia</Id>
     <Name>Marinnia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CE3131</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>caravenna</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>cafter</Id>
     <Name>Cafter</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AEA274</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>viristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>tomistia</Id>
     <Name>Tomistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A576A5</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>meuristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>spalter</Id>
     <Name>Spalter</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#43BD64</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>befteria</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>dabba</Id>
     <Name>Dabba</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#F1D87B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ne_quin_arid</FactionId>
+    <Type>Province</Type>
     <ResourceId>12</ResourceId>
+    <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>jalafat</Id>
     <Name>Jalafat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B68EAE</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>fatima</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gem_ruf</Id>
     <Name>Gem Ruf</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#78CE66</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>optimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>13</ResourceId>
+    <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>zambar</Id>
     <Name>Zambar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#488C1D</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impera</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>halmia</Id>
     <Name>Halmia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DD644C</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>roldai</Id>
     <Name>Roldai</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#64B519</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>faladai</FactionId>
+    <Type>Province</Type>
     <ResourceId>13</ResourceId>
+    <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>hirmia</Id>
     <Name>Hirmia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B531CF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>daria</FactionId>
+    <Type>Province</Type>
     <ResourceId>6</ResourceId>
+    <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>daruz</Id>
     <Name>Daruz</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7EACF8</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>lamiz</FactionId>
+    <Type>Capital</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>cariz</Id>
     <Name>Cariz</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#74C1DD</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>lamiz</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>jamaz</Id>
     <Name>Jamaz</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9E96F8</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>lamiz</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ramiz</Id>
     <Name>Ramiz</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9EEBF8</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>lamiz</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>splediz</Id>
     <Name>Splediz</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9EC8C4</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>lamiz</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>al-hareeq</Id>
     <Name>Al-Hareeq</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFD377</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sudair</FactionId>
+    <Type>Capital</Type>
     <ResourceId>2</ResourceId>
+    <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>as_khayek</Id>
     <Name>As Khayek</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#514831</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sudair</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>as_sulayyil</Id>
     <Name>As Sulayyil</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#EBE085</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sudair</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ryadh_al-khabra</Id>
     <Name>Ryadh Al-Khabra</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#EBBC92</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sudair</FactionId>
+    <Type>Province</Type>
     <ResourceId>6</ResourceId>
+    <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>muzahmyyia</Id>
     <Name>Muzahmyyia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#74F532</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sudair</FactionId>
+    <Type>Province</Type>
     <ResourceId>9</ResourceId>
+    <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>al_majma</Id>
     <Name>Al Majma</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A8CFA4</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sudair</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>targat</Id>
     <Name>Targat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#536978</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>targat</FactionId>
+    <Type>Capital</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>piridesh</Id>
     <Name>Piridesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#646978</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>targat</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>esgat</Id>
     <Name>Esgat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#545878</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>targat</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ruviz</Id>
     <Name>Ruviz</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#665878</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>targat</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>olgat</Id>
     <Name>Olgat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#495778</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>targat</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>antis</Id>
     <Name>Antis</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF6565</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>estaton</FactionId>
+    <Type>Capital</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>uretea</Id>
     <Name>Uretea</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#E96B5F</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>estaton</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>peronton</Id>
     <Name>Peronton</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D8886B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>estaton</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>urur</Id>
     <Name>Urur</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D85476</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>estaton</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>majundon</Id>
     <Name>Majundon</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CB545E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>estaton</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>muridesh</Id>
     <Name>Muridesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#00F86A</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>deshesda</FactionId>
+    <Type>Capital</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ortodesh</Id>
     <Name>Ortodesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BC45B6</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>deshesda</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>pablidesh</Id>
     <Name>Pablidesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7BABA5</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>deshesda</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gargadesh</Id>
     <Name>Gargadesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#2EDC3F</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>deshesda</FactionId>
+    <Type>Province</Type>
     <ResourceId>9</ResourceId>
+    <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>minidesh</Id>
     <Name>Minidesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A84DFF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>deshesda</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>caltop</Id>
     <Name>Caltop</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B25B98</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>altop</FactionId>
+    <Type>Capital</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>anchorion</Id>
     <Name>Anchorion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4D84B9</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>altop</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>nortop</Id>
     <Name>Nortop</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9ED45E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>altop</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>faltop</Id>
     <Name>Faltop</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B64D3E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>altop</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>fenedesh</Id>
     <Name>Fenedesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5C9A6D</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>altop</FactionId>
+    <Type>Province</Type>
     <ResourceId>6</ResourceId>
+    <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>praari</Id>
     <Name>Praari</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A56258</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>aaria</FactionId>
+    <Type>Capital</Type>
     <ResourceId>13</ResourceId>
+    <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ulgat</Id>
     <Name>Ulgat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#48AEAB</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>aaria</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>eletaari</Id>
     <Name>Eletaari</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D9AFBA</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>aaria</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>haari</Id>
     <Name>Haari</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D98231</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>aaria</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>panyrica</Id>
     <Name>Panyrica</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7B4989</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>aaria</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>taladar</Id>
     <Name>Taladar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#694B7B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>nordodar</FactionId>
+    <Type>Capital</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>aradesh</Id>
     <Name>Aradesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9D9C35</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>nordodar</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>tinadar</Id>
     <Name>Tinadar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D445B7</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>nordodar</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>polgat</Id>
     <Name>Polgat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7B9A57</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>nordodar</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>saladar</Id>
     <Name>Saladar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AC2795</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>nordodar</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>naryrica</Id>
     <Name>Naryrica</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFA577</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>naryrica</FactionId>
+    <Type>Capital</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>shayrica</Id>
     <Name>Shayrica</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#45623E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>naryrica</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>nordyrica</Id>
     <Name>Nordyrica</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B562D4</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>naryrica</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>cenyrica</Id>
     <Name>Cenyrica</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#77625E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>naryrica</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>portyrica</Id>
     <Name>Portyrica</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4ACBD4</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>naryrica</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>calamus</Id>
     <Name>Calamus</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#70A55F</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ardamus</FactionId>
+    <Type>Capital</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>graan</Id>
     <Name>Graan</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A78B9A</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ardamus</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>tulyrica</Id>
     <Name>Tulyrica</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5E2DCF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ardamus</FactionId>
+    <Type>Province</Type>
     <ResourceId>13</ResourceId>
+    <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>campodar</Id>
     <Name>Campodar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#929A4C</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ardamus</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>rendar</Id>
     <Name>Rendar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D24D9E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ardamus</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ridh</Id>
     <Name>Ridh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8277CE</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>alpalet</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gah_medhi</Id>
     <Name>Gah Medhi</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8BC640</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>mah_rodah</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>forenna</Id>
     <Name>Forenna</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DC8F76</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>caravenna</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>unistia</Id>
     <Name>Unistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#964899</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>viristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ortistia</Id>
     <Name>Ortistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#45CA5C</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>meuristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gebdther</Id>
     <Name>Gebdther</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BA318F</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>befteria</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>en_allid</Id>
     <Name>En Allid</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#69AF71</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ne_quin_arid</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>urzifat</Id>
     <Name>Urzifat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C431AB</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>fatima</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>optistia</Id>
     <Name>Optistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6CB643</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>optimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>turimin</Id>
     <Name>Turimin</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CE5096</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impera</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>farzimia</Id>
     <Name>Farzimia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#77AE2A</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>felifat</Id>
     <Name>Felifat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CF5887</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>faladai</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gorbar</Id>
     <Name>Gorbar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#96B549</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>daria</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>tamaz</Id>
     <Name>Tamaz</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#45C743</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>lamiz</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>hafr_al-batin</Id>
     <Name>Hafr Al-Batin</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#549E53</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sudair</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>lagat</Id>
     <Name>Lagat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AFAF4A</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>targat</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>arion</Id>
     <Name>Arion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5EC64D</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>estaton</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>sopadesh</Id>
     <Name>Sopadesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CD8FA5</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>deshesda</FactionId>
+    <Type>Province</Type>
     <ResourceId>12</ResourceId>
+    <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>namtop</Id>
     <Name>Namtop</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#58B327</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>altop</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>taltea</Id>
     <Name>Taltea</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D44976</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>aaria</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>maldar</Id>
     <Name>Maldar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A49632</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>nordodar</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>onyrica</Id>
     <Name>Onyrica</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D623AE</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>naryrica</FactionId>
+    <Type>Province</Type>
     <ResourceId>2</ResourceId>
+    <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>altamus</Id>
     <Name>Altamus</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AE459A</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ardamus</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>yuzuki</Id>
     <Name>Yuzuki</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF00FF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ayako</FactionId>
+    <Type>Capital</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>kaito</Id>
     <Name>Kaito</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8E8049</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ayako</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>daiki</Id>
     <Name>Daiki</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CFD887</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ayako</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>atsunko</Id>
     <Name>Atsunko</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#877B34</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ayako</FactionId>
+    <Type>Province</Type>
     <ResourceId>6</ResourceId>
+    <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>takeshi</Id>
     <Name>Takeshi</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CF4665</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ayako</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>hiraku</Id>
     <Name>Hiraku</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#58A1B6</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ayako</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>sinopa</Id>
     <Name>Sinopa</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AE8E00</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>abeque</FactionId>
+    <Type>Capital</Type>
     <ResourceId>13</ResourceId>
+    <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>chowozukayyil</Id>
     <Name>Chowozukayyil</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DF3464</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>abeque</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ayawamat</Id>
     <Name>Ayawamat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6FB096</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>abeque</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>urika</Id>
     <Name>Urika</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A4B0F1</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>abeque</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>chowowilawu</Id>
     <Name>Chowowilawu</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#14CFAE</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>abeque</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>soyala</Id>
     <Name>Soyala</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6D711F</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>abeque</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gastivion</Id>
     <Name>Gastivion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#948F00</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>amion</FactionId>
+    <Type>Capital</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>lebzion</Id>
     <Name>Lebzion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DC3180</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>amion</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>jhkaarion</Id>
     <Name>Jhkaarion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6CBF4D</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>amion</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>fambion</Id>
     <Name>Fambion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CD1D8F</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>amion</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>lubion</Id>
     <Name>Lubion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8BBC45</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>amion</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>keplion</Id>
     <Name>Keplion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#F1AC88</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>amion</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>sovija</Id>
     <Name>Sovija</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B2CC6B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sporadja</FactionId>
+    <Type>Capital</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>manija</Id>
     <Name>Manija</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#482EAB</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sporadja</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>tulpa</Id>
     <Name>Tulpa</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#454532</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>bardos</FactionId>
+    <Type>Capital</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>cropat</Id>
     <Name>Cropat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BD45A8</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>bardos</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>nampion</Id>
     <Name>Nampion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#482E40</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sporadja</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>spogdija</Id>
     <Name>Spogdija</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#488B95</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sporadja</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>remnija</Id>
     <Name>Remnija</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C68B45</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sporadja</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>vulendel</Id>
     <Name>Vulendel</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3DF00</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>endel</FactionId>
+    <Type>Capital</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>novion</Id>
     <Name>Novion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3CD87</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>endel</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>rondias</Id>
     <Name>Rondias</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#29CD87</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>endel</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>mogodel</Id>
     <Name>Mogodel</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#293787</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>endel</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>virdel</Id>
     <Name>Virdel</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9B6536</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>endel</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>pentop</Id>
     <Name>Pentop</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#62279D</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>endel</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>viz</Id>
     <Name>Viz</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFA400</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>consus</FactionId>
+    <Type>Capital</Type>
     <ResourceId>2</ResourceId>
+    <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>melifor</Id>
     <Name>Melifor</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF3197</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>consus</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>rennen</Id>
     <Name>Rennen</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6D9A49</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>consus</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>utisia</Id>
     <Name>Utisia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C4497E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>consus</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>prodha</Id>
     <Name>Prodha</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7E8F2B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>consus</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ur</Id>
     <Name>Ur</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#3C3489</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>consus</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>urskaal</Id>
     <Name>Urskaal</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3EBFF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>jhgrothaar</FactionId>
+    <Type>Capital</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>grothar</Id>
     <Name>Grothar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#845542</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>jhgrothaar</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>jhkaar</Id>
     <Name>Jhkaar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#84927B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>jhgrothaar</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gramdaar</Id>
     <Name>Gramdaar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#54489A</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>jhgrothaar</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>yngaar</Id>
     <Name>Yngaar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AB823E</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>jhgrothaar</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>skaal</Id>
     <Name>Skaal</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4D4262</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>jhgrothaar</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>actene</Id>
     <Name>Actene</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3BA00</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>antene</FactionId>
+    <Type>Capital</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>agopias</Id>
     <Name>Agopias</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5C5FB9</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>antene</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>thanus</Id>
     <Name>Thanus</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B06958</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>antene</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>miretova</Id>
     <Name>Miretova</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#496976</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>antene</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>zenasya</Id>
     <Name>Zenasya</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#822749</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>antene</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>coralas</Id>
     <Name>Coralas</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#82B5AF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>antene</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>bovac</Id>
     <Name>Bovac</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#653E1C</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>bardos</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gram</Id>
     <Name>Gram</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#228280</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>bardos</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>bolder</Id>
     <Name>Bolder</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D48223</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>bardos</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>biram</Id>
     <Name>Biram</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D4D5AE</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>bardos</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>sponilet</Id>
     <Name>Sponilet</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BD6455</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>alpalet</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>rabistia</Id>
     <Name>Rabistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5FC88B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>mah_rodah</FactionId>
+    <Type>Province</Type>
     <ResourceId>6</ResourceId>
+    <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>malpija</Id>
     <Name>Malpija</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CE37A7</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>caravenna</FactionId>
+    <Type>Province</Type>
     <ResourceId>6</ResourceId>
+    <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>falistia</Id>
     <Name>Falistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CECD49</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>viristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>tulistia</Id>
     <Name>Tulistia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#277442</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>meuristia</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ulpter</Id>
     <Name>Ulpter</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#27BA9D</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>befteria</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>kadda</Id>
     <Name>Kadda</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A57662</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ne_quin_arid</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>arcifat</Id>
     <Name>Arcifat</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#ACEA4A</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>fatima</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>barmin</Id>
     <Name>Barmin</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#663180</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>optimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>urza</Id>
     <Name>Urza</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#31B614</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impera</FactionId>
+    <Type>Province</Type>
     <ResourceId>5</ResourceId>
+    <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>garmia</Id>
     <Name>Garmia</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BA3455</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>impimia</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ankai</Id>
     <Name>Ankai</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BA9618</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>faladai</FactionId>
+    <Type>Province</Type>
     <ResourceId>12</ResourceId>
+    <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>caldar</Id>
     <Name>Caldar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#644CBF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>daria</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>vabuz</Id>
     <Name>Vabuz</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C4B95C</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>lamiz</FactionId>
+    <Type>Province</Type>
     <ResourceId>4</ResourceId>
+    <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gatea</Id>
     <Name>Gatea</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6DA549</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>targat</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>albas</Id>
     <Name>Albas</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CECEC7</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>estaton</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ongladesh</Id>
     <Name>Ongladesh</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CF5757</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>deshesda</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>jiftop</Id>
     <Name>Jiftop</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#85CDAE</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>altop</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ranaari</Id>
     <Name>Ranaari</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#3E3969</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>aaria</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>galdar</Id>
     <Name>Galdar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#E29E20</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>nordodar</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>tonyrica</Id>
     <Name>Tonyrica</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5A2D69</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>naryrica</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>eleamus</Id>
     <Name>Eleamus</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DC4D24</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ardamus</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>hotaka</Id>
     <Name>Hotaka</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5CAC00</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ayako</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>hinto</Id>
     <Name>Hinto</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C41992</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>abeque</FactionId>
+    <Type>Province</Type>
     <ResourceId>12</ResourceId>
+    <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>bertimion</Id>
     <Name>Bertimion</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#49A092</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>amion</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>novodaja</Id>
     <Name>Novodaja</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BFE71B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sporadja</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>voldel</Id>
     <Name>Voldel</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#842780</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>endel</FactionId>
+    <Type>Province</Type>
     <ResourceId>6</ResourceId>
+    <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>salen</Id>
     <Name>Salen</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#1BCE1B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>consus</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>grahitaar</Id>
     <Name>Grahitaar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#318764</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>jhgrothaar</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>ordum</Id>
     <Name>Ordum</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#158E85</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>antene</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>grugen</Id>
     <Name>Grugen</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#154626</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>bardos</FactionId>
+    <Type>Province</Type>
     <ResourceId>13</ResourceId>
+    <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>brynjolfr</Id>
     <Name>Brynjolfr</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFFFFF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>gammeland</FactionId>
+    <Type>Capital</Type>
     <ResourceId>2</ResourceId>
+    <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>hylfjoord</Id>
     <Name>Hylfjoord</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5CC676</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>gammeland</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>jonheim</Id>
     <Name>Jonheim</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AE2ED6</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>gammeland</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>haakon</Id>
     <Name>Haakon</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7BE0BF</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>gammeland</FactionId>
+    <Type>Province</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>yngling</Id>
     <Name>Yngling</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BF7769</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>gammeland</FactionId>
+    <Type>Province</Type>
     <ResourceId>2</ResourceId>
+    <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>forstaag</Id>
     <Name>Forstaag</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6442CD</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>gammeland</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>hrisskar</Id>
     <Name>Hrisskar</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C73151</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>gammeland</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>danija</Id>
     <Name>Danija</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9248A7</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>sporadja</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>manarfell</Id>
     <Name>Manarfell</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9AFF9A</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ingolfsfell</FactionId>
+    <Type>Capital</Type>
     <ResourceId>8</ResourceId>
+    <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>mjorfell</Id>
     <Name>Mjorfell</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#387884</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ingolfsfell</FactionId>
+    <Type>Province</Type>
     <ResourceId>3</ResourceId>
+    <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>bjorfell</Id>
     <Name>Bjorfell</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9AD64D</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ingolfsfell</FactionId>
+    <Type>Province</Type>
     <ResourceId>2</ResourceId>
+    <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>meoalfell</Id>
     <Name>Meoalfell</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D430B5</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ingolfsfell</FactionId>
+    <Type>Province</Type>
     <ResourceId>10</ResourceId>
+    <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>gunnolfsfell</Id>
     <Name>Gunnolfsfell</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#71D440</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ingolfsfell</FactionId>
+    <Type>Province</Type>
     <ResourceId>1</ResourceId>
+    <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>jorundarfell</Id>
     <Name>Jorundarfell</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B6782B</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ingolfsfell</FactionId>
+    <Type>Province</Type>
     <ResourceId>11</ResourceId>
+    <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>veritas</Id>
     <Name>Veritas</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#801FD9</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>ingolfsfell</FactionId>
+    <Type>Province</Type>
     <ResourceId>7</ResourceId>
+    <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>wilderness</Id>
     <Name>Wilderness</Name>
-		<Description>Lorem ipsum dolor sit amet.</Description>
+    <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#000000</ColourHexadecimal>
-		<Type>Province</Type>
-    <FactionId>gaia</FactionId>
+    <Type>Province</Type>
     <ResourceId>0</ResourceId>
+    <FactionId>gaia</FactionId>
   </RegionEntity>
 </ArrayOfRegionEntity>
