@@ -29,7 +29,7 @@
 		</Position>
 		<Size>
 			<X>1000</X>
-			<Y>720</Y>
+			<Y>640</Y>
 		</Size>
 	</GameMap>
 	<SideBar>
@@ -48,4 +48,14 @@
 			<B>0</B>
 		</TextColour>
 	</SideBar>
+	<RegionBar>
+		<Position>
+			<X>0</X>
+			<Y>640</Y>
+		</Position>
+		<Size>
+			<X>1000</X>
+			<Y>80</Y>
+		</Size>
+	</RegionBar>
 </GameplayScreen>

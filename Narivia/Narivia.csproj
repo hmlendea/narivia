@@ -106,6 +106,7 @@
     <Compile Include="Interface\Widgets\InfoBar.cs" />
     <Compile Include="Interface\Widgets\SideBar.cs" />
     <Compile Include="Graphics\TextureFillMode.cs" />
+    <Compile Include="Interface\Widgets\RegionBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

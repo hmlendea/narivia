@@ -197,6 +197,12 @@ namespace Narivia.BusinessLogic.GameManagers
                          .Sum(x => x.Size);
         }
 
+        public IEnumerable<Holding> GetRegionHoldings(string regionId)
+        {
+            return world.Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
+                                                    h.RegionId == regionId);
+        }
+
         public List<Biome> GetAllBiomes()
         {
             return world.Biomes.Values.ToList();

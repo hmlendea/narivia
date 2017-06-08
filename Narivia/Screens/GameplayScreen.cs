@@ -18,6 +18,8 @@ namespace Narivia.Screens
 
         public InfoBar InfoBar { get; set; }
 
+        public RegionBar RegionBar { get; set; }
+
         public SideBar SideBar { get; set; }
 
         GameDomainService game;
@@ -36,8 +38,11 @@ namespace Narivia.Screens
             SideBar.FactionId = game.PlayerFactionId;
             SideBar.FactionName = game.GetFactionName(game.PlayerFactionId);
 
+            RegionBar.GameManager = game;
+
             GameMap.LoadContent();
             InfoBar.LoadContent();
+            RegionBar.LoadContent();
             SideBar.LoadContent();
 
             base.LoadContent();
@@ -63,6 +68,7 @@ namespace Narivia.Screens
         {
             GameMap.UnloadContent();
             InfoBar.UnloadContent();
+            RegionBar.UnloadContent();
             SideBar.UnloadContent();
 
             base.UnloadContent();
@@ -80,15 +86,20 @@ namespace Narivia.Screens
             InfoBar.Wealth = game.GetFactionWealth(game.PlayerFactionId);
             InfoBar.Troops = game.GetFactionTroopsCount(game.PlayerFactionId);
 
+            RegionBar.SetRegion(GameMap.SelectedRegionId);
+
             SideBar.Turn = game.Turn;
             SideBar.FactionId = game.PlayerFactionId;
             SideBar.FactionName = game.GetFactionName(game.PlayerFactionId);
 
             GameMap.Update(gameTime);
             InfoBar.Update(gameTime);
+            RegionBar.Update(gameTime);
             SideBar.Update(gameTime);
 
             base.Update(gameTime);
+
+            Console.WriteLine(GameMap.SelectedRegionId);
         }
 
         /// <summary>
@@ -100,6 +111,7 @@ namespace Narivia.Screens
         {
             GameMap.Draw(spriteBatch);
             InfoBar.Draw(spriteBatch);
+            RegionBar.Draw(spriteBatch);
             SideBar.Draw(spriteBatch);
 
             base.Draw(spriteBatch);

@@ -342,7 +342,7 @@ namespace Narivia.Graphics
 
                 for (int y = 0; y < tilesY; y++)
                 {
-                    for (int x = 0; x < tilesY; x++)
+                    for (int x = 0; x < tilesX; x++)
                     {
                         Vector2 pos = new Vector2(Position.X + origin.X + x * SourceRectangle.Width,
                                                   Position.Y + origin.Y + y * SourceRectangle.Height);
