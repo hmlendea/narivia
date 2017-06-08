@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
+using Narivia.BusinessLogic.GameManagers.Interfaces;
 using Narivia.BusinessLogic.Mapping;
 using Narivia.DataAccess.Repositories;
 using Narivia.DataAccess.Repositories.Interfaces;
@@ -13,71 +14,240 @@ using Narivia.Models;
 
 namespace Narivia.BusinessLogic.GameManagers
 {
-    public class WorldManager
+    /// <summary>
+    /// World manager.
+    /// </summary>
+    public class WorldManager : IWorldManager
     {
+        World world;
+
+        string[,] worldTiles;
+        string[,] biomeMap;
+
+        /// <summary>
+        /// Gets or sets the biomes.
+        /// </summary>
+        /// <value>The biomes.</value>
         public Dictionary<string, Biome> Biomes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cultures.
+        /// </summary>
+        /// <value>The cultures.</value>
         public Dictionary<string, Culture> Cultures { get; set; }
+
+        /// <summary>
+        /// Gets or sets the factions.
+        /// </summary>
+        /// <value>The factions.</value>
         public Dictionary<string, Faction> Factions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the holdings.
+        /// </summary>
+        /// <value>The holdings.</value>
         public Dictionary<string, Holding> Holdings { get; set; }
+
+        /// <summary>
+        /// Gets or sets the regions.
+        /// </summary>
+        /// <value>The regions.</value>
         public Dictionary<string, Region> Regions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the resources.
+        /// </summary>
+        /// <value>The resources.</value>
         public Dictionary<string, Resource> Resources { get; set; }
+
+        /// <summary>
+        /// Gets or sets the units.
+        /// </summary>
+        /// <value>The units.</value>
         public Dictionary<string, Unit> Units { get; set; }
 
+        /// <summary>
+        /// Gets or sets the armies.
+        /// </summary>
+        /// <value>The armies.</value>
         public Dictionary<Tuple<string, string>, Army> Armies { get; set; }
+
+        /// <summary>
+        /// Gets or sets the borders.
+        /// </summary>
+        /// <value>The borders.</value>
         public Dictionary<Tuple<string, string>, Border> Borders { get; set; }
+
+        /// <summary>
+        /// Gets or sets the relations.
+        /// </summary>
+        /// <value>The relations.</value>
         public Dictionary<Tuple<string, string>, Relation> Relations { get; set; }
 
+        /// <summary>
+        /// Gets or sets the world tiles.
+        /// </summary>
+        /// <value>The world tiles.</value>
         public string[,] WorldTiles
         {
             get { return worldTiles; }
             set { worldTiles = value; }
         }
 
+        /// <summary>
+        /// Gets the width of the world.
+        /// </summary>
+        /// <value>The width of the world.</value>
         public int WorldWidth => world.Width;
+
+        /// <summary>
+        /// Gets the height of the world.
+        /// </summary>
+        /// <value>The height of the world.</value>
         public int WorldHeight => world.Height;
+
+        /// <summary>
+        /// Gets the name of the world.
+        /// </summary>
+        /// <value>The name of the world.</value>
         public string WorldName => world.Name;
+
+        /// <summary>
+        /// Gets the world identifier.
+        /// </summary>
+        /// <value>The world identifier.</value>
         public string WorldId => world.Id;
 
+        /// <summary>
+        /// Gets or sets the base region income.
+        /// </summary>
+        /// <value>The base region income.</value>
         public int BaseRegionIncome
         {
             get { return world.BaseRegionIncome; }
             set { world.BaseRegionIncome = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the base region recruitment.
+        /// </summary>
+        /// <value>The base region recruitment.</value>
         public int BaseRegionRecruitment
         {
             get { return world.BaseRegionRecruitment; }
             set { world.BaseRegionRecruitment = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the base faction recruitment.
+        /// </summary>
+        /// <value>The base faction recruitment.</value>
         public int BaseFactionRecruitment
         {
             get { return world.BaseFactionRecruitment; }
             set { world.BaseFactionRecruitment = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the starting wealth.
+        /// </summary>
+        /// <value>The starting wealth.</value>
         public int StartingWealth
         {
             get { return world.StartingWealth; }
             set { world.StartingWealth = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the starting troops.
+        /// </summary>
+        /// <value>The starting troops.</value>
         public int StartingTroops
         {
             get { return world.StartingTroops; }
             set { world.StartingTroops = value; }
         }
 
-        World world;
-
-        string[,] worldTiles;
-        string[,] biomeMap;
-
+        /// <summary>
+        /// Loads the world.
+        /// </summary>
+        /// <param name="worldId">World identifier.</param>
         public void LoadWorld(string worldId)
         {
             LoadEntities(worldId);
             LoadMap(worldId);
             LoadBorders();
+        }
+
+        /// <summary>
+        /// Checks wether the specified regions share a border.
+        /// </summary>
+        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
+        /// <param name="region1Id">First region identifier.</param>
+        /// <param name="region2Id">Second region identifier.</param>
+        public bool RegionHasBorder(string region1Id, string region2Id)
+        {
+            return Borders.Values.Any(x => (x.Region1Id == region1Id && x.Region2Id == region2Id) ||
+                                           (x.Region1Id == region2Id && x.Region2Id == region1Id));
+        }
+
+        /// <summary>
+        /// Checks wether the specified regions share a border.
+        /// </summary>
+        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
+        /// <param name="faction1Id">First faction identifier.</param>
+        /// <param name="faction2Id">Second faction identifier.</param>
+        public bool FactionHasBorder(string faction1Id, string faction2Id)
+        {
+            List<Region> faction1Regions = Regions.Values.Where(x => x.FactionId == faction1Id).ToList();
+            List<Region> faction2Regions = Regions.Values.Where(x => x.FactionId == faction2Id).ToList();
+
+            // TODO: Optimise this!!!
+            foreach (Region region1 in faction1Regions)
+            {
+                foreach (Region region2 in faction2Regions)
+                {
+                    if (RegionHasBorder(region1.Id, region2.Id))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Returns the faction identifier at the given position.
+        /// </summary>
+        /// <returns>The faction identifier.</returns>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordinate.</param>
+        public string FactionIdAtPosition(int x, int y)
+        {
+            return Regions[worldTiles[x, y]].FactionId;
+        }
+
+        /// <summary>
+        /// Transfers the specified region to the specified faction.
+        /// </summary>
+        /// <param name="regionId">Region identifier.</param>
+        /// <param name="factionId">Faction identifier.</param>
+        public void TransferRegion(string regionId, string factionId)
+        {
+            Regions[regionId].FactionId = factionId;
+        }
+
+        /// <summary>
+        /// Gets the faction capital.
+        /// </summary>
+        /// <returns>Region identifier.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public string GetFactionCapital(string factionId)
+        {
+            return Regions.Values.FirstOrDefault(r => r.FactionId == factionId &&
+                                                      r.SovereignFactionId == factionId &&
+                                                      r.Type == RegionType.Capital).Id;
         }
 
         void LoadEntities(string worldId)
@@ -220,77 +390,6 @@ namespace Narivia.BusinessLogic.GameManagers
             };
 
             Borders.Add(borderKey, border);
-        }
-
-        /// <summary>
-        /// Checks wether the specified regions share a border.
-        /// </summary>
-        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
-        /// <param name="region1Id">First region identifier.</param>
-        /// <param name="region2Id">Second region identifier.</param>
-        public bool RegionHasBorder(string region1Id, string region2Id)
-        {
-            return Borders.Values.Any(x => (x.Region1Id == region1Id && x.Region2Id == region2Id) ||
-                                           (x.Region1Id == region2Id && x.Region2Id == region1Id));
-        }
-
-        /// <summary>
-        /// Checks wether the specified regions share a border.
-        /// </summary>
-        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
-        /// <param name="faction1Id">First faction identifier.</param>
-        /// <param name="faction2Id">Second faction identifier.</param>
-        public bool FactionHasBorder(string faction1Id, string faction2Id)
-        {
-            List<Region> faction1Regions = Regions.Values.Where(x => x.FactionId == faction1Id).ToList();
-            List<Region> faction2Regions = Regions.Values.Where(x => x.FactionId == faction2Id).ToList();
-
-            // TODO: Optimise this!!!
-            foreach (Region region1 in faction1Regions)
-            {
-                foreach (Region region2 in faction2Regions)
-                {
-                    if (RegionHasBorder(region1.Id, region2.Id))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Returns the faction identifier at the given position.
-        /// </summary>
-        /// <returns>The faction identifier.</returns>
-        /// <param name="x">The x coordinate.</param>
-        /// <param name="y">The y coordinate.</param>
-        public string FactionIdAtPosition(int x, int y)
-        {
-            return Regions[worldTiles[x, y]].FactionId;
-        }
-
-        /// <summary>
-        /// Transfers the specified region to the specified faction.
-        /// </summary>
-        /// <param name="regionId">Region identifier.</param>
-        /// <param name="factionId">Faction identifier.</param>
-        public void TransferRegion(string regionId, string factionId)
-        {
-            Regions[regionId].FactionId = factionId;
-        }
-
-        /// <summary>
-        /// Gets the faction capital.
-        /// </summary>
-        /// <returns>Region identifier.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public string GetFactionCapital(string factionId)
-        {
-            return Regions.Values.FirstOrDefault(r => r.FactionId == factionId &&
-                                                      r.SovereignFactionId == factionId &&
-                                                      r.Type == RegionType.Capital).Id;
         }
     }
 }

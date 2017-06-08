@@ -3,7 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.BusinessLogic.GameManagers;
+using Narivia.BusinessLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
 using Narivia.Input;
 using Narivia.Models;
@@ -18,7 +18,7 @@ namespace Narivia.Interface.Widgets
         [XmlIgnore]
         public string SelectedRegionId { get; private set; }
 
-        GameDomainService game;
+        IGameManager game;
         Camera camera;
         Map map;
 
@@ -141,7 +141,11 @@ namespace Narivia.Interface.Widgets
         }
 
         // TODO: Handle this better
-        public void AssociateGameDomainService(ref GameDomainService game)
+        /// <summary>
+        /// Associates the game manager.
+        /// </summary>
+        /// <param name="game">Game.</param>
+        public void AssociateGameManager(ref IGameManager game)
         {
             this.game = game;
         }

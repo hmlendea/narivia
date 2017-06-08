@@ -16,7 +16,7 @@ namespace Narivia.BlitzkriegTester
         public static void Main(string[] args)
         {
             // Preload data sector
-            GameDomainService game = new GameDomainService();
+            GameManager game = new GameManager();
             game.NewGame(WORLD_ID, FACTION_ID);
 
             TestSequencialBlitzkrieg();
@@ -94,7 +94,7 @@ namespace Narivia.BlitzkriegTester
 
         static void CallSequencialBlitzkrieg()
         {
-            GameDomainService game = new GameDomainService();
+            GameManager game = new GameManager();
             game.NewGame(WORLD_ID, FACTION_ID);
 
             string regionId = string.Empty;
@@ -111,7 +111,7 @@ namespace Narivia.BlitzkriegTester
 
         static void CallParallelizedBlitzkrieg()
         {
-            GameDomainService game = new GameDomainService();
+            GameManager game = new GameManager();
             game.NewGame(WORLD_ID, FACTION_ID);
 
             string regionId = string.Empty;
@@ -127,7 +127,7 @@ namespace Narivia.BlitzkriegTester
 
         static void CallSequencialBlitzkriegAllFactions()
         {
-            GameDomainService game = new GameDomainService();
+            GameManager game = new GameManager();
             game.NewGame(WORLD_ID, FACTION_ID);
 
             game.Blitzkrieg_AllFactions_Seq();
@@ -135,7 +135,7 @@ namespace Narivia.BlitzkriegTester
 
         static void CallParallelizedBlitzkriegAllFactions()
         {
-            GameDomainService game = new GameDomainService();
+            GameManager game = new GameManager();
             game.NewGame(WORLD_ID, FACTION_ID);
 
             game.Blitzkrieg_AllFactions_Parallel();

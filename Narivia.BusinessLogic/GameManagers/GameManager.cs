@@ -7,29 +7,87 @@ using Narivia.Models;
 
 namespace Narivia.BusinessLogic.GameManagers
 {
-    public class GameDomainService : IGameDomainService
+    /// <summary>
+    /// Game manager.
+    /// </summary>
+    public class GameManager : IGameManager
     {
-        WorldManager world;
+        IWorldManager world;
 
+        /// <summary>
+        /// Gets or sets the world tiles.
+        /// </summary>
+        /// <value>The world tiles.</value>
         public string[,] WorldTiles
         {
             get { return world.WorldTiles; }
             set { world.WorldTiles = value; }
         }
 
+        /// <summary>
+        /// Gets the width of the world.
+        /// </summary>
+        /// <value>The width of the world.</value>
         public int WorldWidth => world.WorldWidth;
+
+        /// <summary>
+        /// Gets the height of the world.
+        /// </summary>
+        /// <value>The height of the world.</value>
         public int WorldHeight => world.WorldHeight;
+
+        /// <summary>
+        /// Gets the name of the world.
+        /// </summary>
+        /// <value>The name of the world.</value>
         public string WorldName => world.WorldName;
+
+        /// <summary>
+        /// Gets the world identifier.
+        /// </summary>
+        /// <value>The world identifier.</value>
         public string WorldId => world.WorldId;
 
+        /// <summary>
+        /// Gets the base region income.
+        /// </summary>
+        /// <value>The base region income.</value>
         public int BaseRegionIncome => world.BaseRegionIncome;
+
+        /// <summary>
+        /// Gets the base region recruitment.
+        /// </summary>
+        /// <value>The base region recruitment.</value>
         public int BaseRegionRecruitment => world.BaseRegionRecruitment;
+
+        /// <summary>
+        /// Gets the base faction recruitment.
+        /// </summary>
+        /// <value>The base faction recruitment.</value>
         public int BaseFactionRecruitment => world.BaseFactionRecruitment;
+
+        /// <summary>
+        /// Gets the starting wealth.
+        /// </summary>
+        /// <value>The starting wealth.</value>
         public int StartingWealth => world.StartingWealth;
+
+        /// <summary>
+        /// Gets the starting troops per unit.
+        /// </summary>
+        /// <value>The starting troops per unit.</value>
         public int StartingTroopsPerUnit => world.StartingTroops;
 
+        /// <summary>
+        /// Gets the player faction identifier.
+        /// </summary>
+        /// <value>The player faction identifier.</value>
         public string PlayerFactionId { get; private set; }
 
+        /// <summary>
+        /// Gets the turn.
+        /// </summary>
+        /// <value>The turn.</value>
         public int Turn { get; private set; }
 
         /// <summary>
@@ -137,11 +195,21 @@ namespace Narivia.BusinessLogic.GameManagers
             world.TransferRegion(regionId, factionId);
         }
 
+        /// <summary>
+        /// Gets the name of the faction.
+        /// </summary>
+        /// <returns>The faction name.</returns>
+        /// <param name="factionId">Faction identifier.</param>
         public string GetFactionName(string factionId)
         {
             return world.Factions.Values.FirstOrDefault(f => f.Id == factionId).Name;
         }
 
+        /// <summary>
+        /// Gets the faction income.
+        /// </summary>
+        /// <returns>The faction income.</returns>
+        /// <param name="factionId">Faction identifier.</param>
         public int GetFactionIncome(string factionId)
         {
             int income = 0;
@@ -152,6 +220,11 @@ namespace Narivia.BusinessLogic.GameManagers
             return income;
         }
 
+        /// <summary>
+        /// Gets the faction outcome.
+        /// </summary>
+        /// <returns>The faction outcome.</returns>
+        /// <param name="factionId">Faction identifier.</param>
         public int GetFactionOutcome(string factionId)
         {
             int outcome = 0;
@@ -163,6 +236,11 @@ namespace Narivia.BusinessLogic.GameManagers
             return outcome;
         }
 
+        /// <summary>
+        /// Gets the faction recruitment.
+        /// </summary>
+        /// <returns>The faction recruitment.</returns>
+        /// <param name="factionId">Faction identifier.</param>
         public int GetFactionRecruitment(string factionId)
         {
             int recruitment = 0;
@@ -174,22 +252,42 @@ namespace Narivia.BusinessLogic.GameManagers
             return recruitment;
         }
 
+        /// <summary>
+        /// Gets the faction regions count.
+        /// </summary>
+        /// <returns>The faction regions count.</returns>
+        /// <param name="factionId">Faction identifier.</param>
         public int GetFactionRegionsCount(string factionId)
         {
             return world.Regions.Values.Count(r => r.FactionId == factionId);
         }
 
+        /// <summary>
+        /// Gets the faction holdings count.
+        /// </summary>
+        /// <returns>The faction holdings count.</returns>
+        /// <param name="factionId">Faction identifier.</param>
         public int GetFactionHoldingsCount(string factionId)
         {
             return world.Holdings.Values.Count(h => h.Type != HoldingType.Empty &&
                                                     world.Regions[h.RegionId].FactionId == factionId);
         }
 
+        /// <summary>
+        /// Gets the faction wealth.
+        /// </summary>
+        /// <returns>The faction wealth.</returns>
+        /// <param name="factionId">Faction identifier.</param>
         public int GetFactionWealth(string factionId)
         {
             return world.Factions.Values.FirstOrDefault(f => f.Id == factionId).Wealth;
         }
 
+        /// <summary>
+        /// Gets the faction troops count.
+        /// </summary>
+        /// <returns>The faction troops count.</returns>
+        /// <param name="factionId">Faction identifier.</param>
         public int GetFactionTroopsCount(string factionId)
         {
             return world.Armies.Values
@@ -197,20 +295,25 @@ namespace Narivia.BusinessLogic.GameManagers
                          .Sum(x => x.Size);
         }
 
+        /// <summary>
+        /// Gets the faction capital.
+        /// </summary>
+        /// <returns>The faction capital.</returns>
+        /// <param name="factionId">Faction identifier.</param>
         public string GetFactionCapital(string factionId)
         {
             return world.GetFactionCapital(factionId);
         }
 
+        /// <summary>
+        /// Gets the region holdings.
+        /// </summary>
+        /// <returns>The region holdings.</returns>
+        /// <param name="regionId">Region identifier.</param>
         public IEnumerable<Holding> GetRegionHoldings(string regionId)
         {
             return world.Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
                                                     h.RegionId == regionId);
-        }
-
-        public List<Biome> GetAllBiomes()
-        {
-            return world.Biomes.Values.ToList();
         }
 
         void InitializeGame(string factionId)

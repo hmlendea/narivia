@@ -3,9 +3,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.BusinessLogic.GameManagers.Interfaces;
 using Narivia.BusinessLogic.GameManagers;
 using Narivia.Interface.Widgets;
-using Narivia.WorldMap;
 
 namespace Narivia.Screens
 {
@@ -22,23 +22,22 @@ namespace Narivia.Screens
 
         public SideBar SideBar { get; set; }
 
-        GameDomainService game;
+        IGameManager game;
 
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
-            game = new GameDomainService();
+            game = new GameManager();
             game.NewGame("narivia", "alpalet");
 
-            GameMap.AssociateGameDomainService(ref game);
+            GameMap.AssociateGameManager(ref game);
+            RegionBar.AssociateGameManager(ref game);
 
             SideBar.WorldId = game.WorldId;
             SideBar.FactionId = game.PlayerFactionId;
             SideBar.FactionName = game.GetFactionName(game.PlayerFactionId);
-
-            RegionBar.GameManager = game;
 
             GameMap.LoadContent();
             InfoBar.LoadContent();
@@ -103,8 +102,6 @@ namespace Narivia.Screens
             SideBar.Update(gameTime);
 
             base.Update(gameTime);
-
-            Console.WriteLine(GameMap.SelectedRegionId);
         }
 
         /// <summary>
@@ -124,7 +121,6 @@ namespace Narivia.Screens
 
         void SideBar_TurnButtonClicked(object sender, EventArgs e)
         {
-            // TODO: Pass the turn
             game.NextTurn();
         }
 

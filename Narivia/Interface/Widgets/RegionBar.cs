@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.BusinessLogic.GameManagers;
+using Narivia.BusinessLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
 using Narivia.Models;
 
@@ -15,10 +14,9 @@ namespace Narivia.Interface.Widgets
     public class RegionBar : Widget
     {
         [XmlIgnore]
-        public GameDomainService GameManager { get; set; }
-
-        [XmlIgnore]
         public string RegionId { get; private set; }
+
+        IGameManager game;
 
         Image background;
         List<Image> holdingIcons;
@@ -37,7 +35,7 @@ namespace Narivia.Interface.Widgets
                 Scale = Size / 32
             };
 
-            List<Holding> holdings = GameManager.GetRegionHoldings(RegionId).ToList();
+            List<Holding> holdings = game.GetRegionHoldings(RegionId).ToList();
 
             holdingIcons = new List<Image>();
 
@@ -45,7 +43,7 @@ namespace Narivia.Interface.Widgets
             {
                 Image holdingIcon = new Image
                 {
-                    ImagePath = $"World/Assets/{GameManager.WorldId}/holdings/generic",
+                    ImagePath = $"World/Assets/{game.WorldId}/holdings/generic",
                     SourceRectangle = new Rectangle(64 * ((int)holding.Type - 1), 0, 64, 64),
                     Position = new Vector2(Position.X + 64 * (holdingIcons.Count), Position.Y + (Size.Y - 64) / 2)
                 };
@@ -106,6 +104,10 @@ namespace Narivia.Interface.Widgets
             base.Draw(spriteBatch);
         }
 
+        /// <summary>
+        /// Sets the region.
+        /// </summary>
+        /// <param name="regionId">Region identifier.</param>
         public void SetRegion(string regionId)
         {
             if (RegionId == regionId)
@@ -121,6 +123,16 @@ namespace Narivia.Interface.Widgets
             }
 
             LoadContent();
+        }
+
+        // TODO: Handle this better
+        /// <summary>
+        /// Associates the game manager.
+        /// </summary>
+        /// <param name="game">Game.</param>
+        public void AssociateGameManager(ref IGameManager game)
+        {
+            this.game = game;
         }
     }
 }
