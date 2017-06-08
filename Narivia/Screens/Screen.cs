@@ -126,6 +126,7 @@ namespace Narivia.Screens
                 Text = text,
                 Type = type,
                 Style = style,
+                Position = (ScreenManager.Instance.Size - size) / 2,
                 Size = size
             };
 
