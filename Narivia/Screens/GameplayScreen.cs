@@ -59,6 +59,8 @@ namespace Narivia.Screens
                              NotificationType.Informational,
                              NotificationStyle.Big,
                              new Vector2(256, 128));
+
+            RegionBar.SetRegion(game.GetFactionCapital(game.PlayerFactionId));
         }
 
         /// <summary>
@@ -86,7 +88,10 @@ namespace Narivia.Screens
             InfoBar.Wealth = game.GetFactionWealth(game.PlayerFactionId);
             InfoBar.Troops = game.GetFactionTroopsCount(game.PlayerFactionId);
 
-            RegionBar.SetRegion(GameMap.SelectedRegionId);
+            if (!string.IsNullOrEmpty(GameMap.SelectedRegionId))
+            {
+                RegionBar.SetRegion(GameMap.SelectedRegionId);
+            }
 
             SideBar.Turn = game.Turn;
             SideBar.FactionId = game.PlayerFactionId;

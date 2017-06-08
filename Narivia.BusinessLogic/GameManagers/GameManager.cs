@@ -197,6 +197,11 @@ namespace Narivia.BusinessLogic.GameManagers
                          .Sum(x => x.Size);
         }
 
+        public string GetFactionCapital(string factionId)
+        {
+            return world.GetFactionCapital(factionId);
+        }
+
         public IEnumerable<Holding> GetRegionHoldings(string regionId)
         {
             return world.Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
@@ -234,6 +239,8 @@ namespace Narivia.BusinessLogic.GameManagers
                     world.Armies.Add(armyKey, army);
                 }
             }
+
+            world.Regions.Values.Where(r => string.IsNullOrEmpty(r.SovereignFactionId)).ToList().ForEach(r => r.SovereignFactionId = r.FactionId);
 
             world.Factions["gaia"].Alive = false;
         }

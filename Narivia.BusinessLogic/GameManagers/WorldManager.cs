@@ -280,5 +280,17 @@ namespace Narivia.BusinessLogic.GameManagers
         {
             Regions[regionId].FactionId = factionId;
         }
+
+        /// <summary>
+        /// Gets the faction capital.
+        /// </summary>
+        /// <returns>Region identifier.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public string GetFactionCapital(string factionId)
+        {
+            return Regions.Values.FirstOrDefault(r => r.FactionId == factionId &&
+                                                      r.SovereignFactionId == factionId &&
+                                                      r.Type == RegionType.Capital).Id;
+        }
     }
 }
