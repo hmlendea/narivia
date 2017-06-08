@@ -35,6 +35,9 @@ namespace Narivia.Settings
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Narivia.Settings.SettingsManager"/> class.
+        /// </summary>
         public SettingsManager()
         {
             Resolution = new Vector2(1280, 720);
@@ -98,7 +101,7 @@ namespace Narivia.Settings
                 graphicsChanged = true;
             }
 
-            if(graphics.PreferredBackBufferWidth != Resolution.X ||
+            if (graphics.PreferredBackBufferWidth != Resolution.X ||
                graphics.PreferredBackBufferHeight != Resolution.Y)
             {
                 graphics.PreferredBackBufferWidth = (int)Resolution.X;

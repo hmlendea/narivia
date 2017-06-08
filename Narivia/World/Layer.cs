@@ -9,6 +9,9 @@ using Narivia.Interface;
 
 namespace Narivia.WorldMap
 {
+    /// <summary>
+    /// Map layer.
+    /// </summary>
     public class Layer
     {
         /// <summary>

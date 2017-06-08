@@ -13,6 +13,10 @@ namespace Narivia.Screens
     /// </summary>
     public class SplashScreen : Screen
     {
+        /// <summary>
+        /// Gets or sets the delay.
+        /// </summary>
+        /// <value>The delay.</value>
         public float Delay { get; set; }
 
         /// <summary>
@@ -101,13 +105,13 @@ namespace Narivia.Screens
 
         void AlignItems()
         {
-            Vector2 backgroundScale = Vector2.One * 
+            Vector2 backgroundScale = Vector2.One *
                 Math.Max(ScreenManager.Instance.Size.X, ScreenManager.Instance.Size.Y) /
                 Math.Max(BackgroundImage.SpriteSize.X, BackgroundImage.SpriteSize.Y);
 
             Vector2 overlayScale = new Vector2(ScreenManager.Instance.Size.X / OverlayImage.SpriteSize.X,
                                                ScreenManager.Instance.Size.Y / OverlayImage.SpriteSize.Y);
-            
+
             BackgroundImage.Position = (ScreenManager.Instance.Size - BackgroundImage.SpriteSize) / 2;
             BackgroundImage.Scale = backgroundScale;
 

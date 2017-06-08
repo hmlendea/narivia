@@ -24,6 +24,9 @@ namespace Narivia
         Vector2 fpsCounterSize;
         string fpsString;
 
+        /// <summary>
+        /// The tile dimensions.
+        /// </summary>
         public const int TILE_DIMENSIONS = 16;
 
         /// <summary>

@@ -14,12 +14,28 @@ namespace Narivia.Screens
     /// </summary>
     public class GameplayScreen : Screen
     {
+        /// <summary>
+        /// Gets or sets the game map.
+        /// </summary>
+        /// <value>The game map.</value>
         public GameMap GameMap { get; set; }
 
+        /// <summary>
+        /// Gets or sets the info bar.
+        /// </summary>
+        /// <value>The info bar.</value>
         public InfoBar InfoBar { get; set; }
 
+        /// <summary>
+        /// Gets or sets the region bar.
+        /// </summary>
+        /// <value>The region bar.</value>
         public RegionBar RegionBar { get; set; }
 
+        /// <summary>
+        /// Gets or sets the side bar.
+        /// </summary>
+        /// <value>The side bar.</value>
         public SideBar SideBar { get; set; }
 
         IGameManager game;

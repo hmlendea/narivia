@@ -15,6 +15,9 @@ namespace Narivia.Screens
     /// </summary>
     public class Screen
     {
+        /// <summary>
+        /// The content.
+        /// </summary>
         protected ContentManager content;
 
         /// <summary>
