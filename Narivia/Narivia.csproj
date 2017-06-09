@@ -107,6 +107,8 @@
     <Compile Include="Interface\Widgets\SideBar.cs" />
     <Compile Include="Graphics\TextureFillMode.cs" />
     <Compile Include="Interface\Widgets\RegionBar.cs" />
+    <Compile Include="Interface\Widgets\NotificationButton.cs" />
+    <Compile Include="Interface\Widgets\NotificationIcon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
