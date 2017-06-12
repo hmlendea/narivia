@@ -6,7 +6,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class CultureMappingExtensions
+    static class CultureMappingExtensions
     {
         internal static Culture ToDomainModel(this CultureEntity cultureEntity)
         {

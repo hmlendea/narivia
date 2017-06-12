@@ -6,7 +6,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class WorldMappingExtensions
+    static class WorldMappingExtensions
     {
         internal static World ToDomainModel(this WorldEntity worldEntity)
         {

@@ -7,7 +7,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class BiomeMappingExtensions
+    static class BiomeMappingExtensions
     {
         internal static Biome ToDomainModel(this BiomeEntity biomeEntity)
         {

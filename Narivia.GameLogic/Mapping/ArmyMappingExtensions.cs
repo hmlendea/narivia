@@ -6,7 +6,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class ArmyMappingExtensions
+    static class ArmyMappingExtensions
     {
         internal static Army ToDomainModel(this ArmyEntity armyEntity)
         {

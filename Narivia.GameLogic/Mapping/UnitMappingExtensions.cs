@@ -7,7 +7,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class UnitMappingExtensions
+    static class UnitMappingExtensions
     {
         internal static Unit ToDomainModel(this UnitEntity unitEntity)
         {

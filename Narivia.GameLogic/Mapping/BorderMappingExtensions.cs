@@ -6,7 +6,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class BorderMappingExtensions
+    static class BorderMappingExtensions
     {
         internal static Border ToDomainModel(this BorderEntity borderEntity)
         {

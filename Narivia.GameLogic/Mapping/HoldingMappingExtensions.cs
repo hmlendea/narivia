@@ -7,7 +7,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class HoldingMappingExtensions
+    static class HoldingMappingExtensions
     {
         internal static Holding ToDomainModel(this HoldingEntity holdingEntity)
         {

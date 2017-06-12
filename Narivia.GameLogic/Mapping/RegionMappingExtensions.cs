@@ -8,7 +8,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class RegionMappingExtensions
+    static class RegionMappingExtensions
     {
         internal static Region ToDomainModel(this RegionEntity regionEntity)
         {

@@ -7,7 +7,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class FactionMappingExtensions
+    static class FactionMappingExtensions
     {
         internal static Faction ToDomainModel(this FactionEntity factionEntity)
         {

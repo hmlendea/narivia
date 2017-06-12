@@ -7,7 +7,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
-    internal static class ResourceMappingExtensions
+    static class ResourceMappingExtensions
     {
         internal static Resource ToDomainModel(this ResourceEntity resourceEntity)
         {
