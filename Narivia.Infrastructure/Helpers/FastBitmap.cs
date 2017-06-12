@@ -40,7 +40,7 @@ namespace Narivia.Infrastructure.Helpers
         public int Height { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Utils.FastBitmap"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/> class.
         /// </summary>
         /// <param name="sourceBitmap">Source bitmap.</param>
         public FastBitmap(Bitmap sourceBitmap)
@@ -50,7 +50,7 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Utils.FastBitmap"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Infrastructure.FastBitmap"/> class.
         /// </summary>
         /// <param name="sourceImage">Source image.</param>
         public FastBitmap(Image sourceImage)
@@ -60,7 +60,7 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Utils.FastBitmap"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public FastBitmap(string fileName)
@@ -70,7 +70,7 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Utils.FastBitmap"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/> class.
         /// </summary>
         /// <param name="type">Type.</param>
         /// <param name="resource">Resource.</param>
@@ -81,7 +81,7 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Utils.FastBitmap"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/> class.
         /// </summary>
         /// <param name="width">Width.</param>
         /// <param name="height">Height.</param>
@@ -92,7 +92,7 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Utils.FastBitmap"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/> class.
         /// </summary>
         /// <param name="width">Width.</param>
         /// <param name="height">Height.</param>
@@ -104,7 +104,7 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Utils.FastBitmap"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/> class.
         /// </summary>
         /// <param name="width">Width.</param>
         /// <param name="height">Height.</param>
@@ -241,12 +241,12 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Releases all resource used by the <see cref="Narivia.Utils.FastBitmap"/> object.
+        /// Releases all resource used by the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/> object.
         /// </summary>
-        /// <remarks>Call <see cref="Dispose"/> when you are finished using the <see cref="Narivia.Utils.FastBitmap"/>. The
-        /// <see cref="Dispose"/> method leaves the <see cref="Narivia.Utils.FastBitmap"/> in an unusable state. After
-        /// calling <see cref="Dispose"/>, you must release all references to the <see cref="Narivia.Utils.FastBitmap"/>
-        /// so the garbage collector can reclaim the memory that the <see cref="Narivia.Utils.FastBitmap"/> was occupying.</remarks>
+        /// <remarks>Call <see cref="Dispose"/> when you are finished using the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/>. The
+        /// <see cref="Dispose"/> method leaves the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/> in an unusable state. After
+        /// calling <see cref="Dispose"/>, you must release all references to the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/>
+        /// so the garbage collector can reclaim the memory that the <see cref="Narivia.Infrastructure.Helpers.FastBitmap"/> was occupying.</remarks>
         public virtual void Dispose()
         {
             UnlockBits();

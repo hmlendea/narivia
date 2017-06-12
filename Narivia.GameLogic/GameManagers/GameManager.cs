@@ -386,7 +386,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The region identifier.</returns>
         /// <param name="factionId">Attacking faction identifier.</param>
         /// <param name="targetFactionId">Targeted faction identifier.</param>
-        /// <summary>
         public string Blitzkrieg_Seq(string factionId, string targetFactionId)
         {
             AttackManager attackManager = new AttackManager(world.Borders.Values,
@@ -403,7 +402,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The region identifier.</returns>
         /// <param name="factionId">Attacking faction identifier.</param>
         /// <param name="targetFactionId">Targeted faction identifier.</param>
-        /// <summary>
         public string Blitzkrieg_Parallel(string factionId, string targetFactionId)
         {
             AttackManager attackManager = new AttackManager(world.Borders.Values,

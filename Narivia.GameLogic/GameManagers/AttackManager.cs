@@ -32,7 +32,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The region identifier.</returns>
         /// <param name="factionId">Attacking faction identifier.</param>
         /// <param name="targetFactionId">Targeted faction identifier.</param>
-        /// <summary>
         public string GetNextRegion_Seq(string factionId, string targetFactionId)
         {
             Random random = new Random();
@@ -149,7 +148,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The region identifier.</returns>
         /// <param name="factionId">Attacking faction identifier.</param>
         /// <param name="targetFactionId">Targeted faction identifier.</param>
-        /// <summary>
         public string GetNextRegion_Parallel(string factionId, string targetFactionId)
         {
             Random random = new Random();

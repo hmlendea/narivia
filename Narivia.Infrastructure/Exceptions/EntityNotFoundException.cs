@@ -8,7 +8,7 @@ namespace Narivia.Infrastructure.Exceptions
     public class EntityNotFoundException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Repositories.DuplicateEntityException"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Infrastructure.Exceptions.DuplicateEntityException"/> class.
         /// </summary>
         /// <param name="entityId">Entity identifier.</param>
         /// <param name="entityType">Entity type.</param>
@@ -18,7 +18,7 @@ namespace Narivia.Infrastructure.Exceptions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Repositories.EntityNotFoundException"/> class.
+        /// Initializes a new instance of the <see cref="Narivia.Infrastructure.Exceptions.EntityNotFoundException"/> class.
         /// </summary>
         /// <param name="entityId">Entity identifier.</param>
         /// <param name="entityType">Entity type.</param>
