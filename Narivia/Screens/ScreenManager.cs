@@ -180,7 +180,7 @@ namespace Narivia.Screens
         {
             TransitionImage.Update(gameTime);
 
-            if (TransitionImage.Opacity == 1.0f)
+            if (TransitionImage.Opacity >= 1.0f)
             {
                 currentScreen.UnloadContent();
                 currentScreen = newScreen;
@@ -193,7 +193,7 @@ namespace Narivia.Screens
 
                 currentScreen.LoadContent();
             }
-            else if (TransitionImage.Opacity == 0.0f)
+            else if (TransitionImage.Opacity <= 0.0f)
             {
                 TransitionImage.Active = false;
                 Transitioning = false;

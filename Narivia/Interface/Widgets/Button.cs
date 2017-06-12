@@ -180,7 +180,6 @@ namespace Narivia.Interface.Widgets
             switch (Style)
             {
                 default:
-                case ButtonStyle.Wooden:
                     sy = 0;
                     break;
             }

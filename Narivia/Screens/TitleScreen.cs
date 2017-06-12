@@ -9,13 +9,6 @@ namespace Narivia.Screens
     public class TitleScreen : MenuScreen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Screens.TitleScreen"/> class.
-        /// </summary>
-        public TitleScreen()
-        {
-        }
-
-        /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()

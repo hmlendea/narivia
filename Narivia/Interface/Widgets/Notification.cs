@@ -120,7 +120,7 @@ namespace Narivia.Interface.Widgets
             {
                 ImagePath = "Interface/notification_controls",
                 SourceRectangle = new Rectangle(0, 0, tileSize, tileSize),
-                Position = new Vector2(this.Position.X + (NotificationSize.X - 1) * tileSize, Position.Y)
+                Position = new Vector2(Position.X + (NotificationSize.X - 1) * tileSize, Position.Y)
             };
 
             if (Type == NotificationType.Interogative)
@@ -129,7 +129,7 @@ namespace Narivia.Interface.Widgets
                 {
                     ImagePath = "Interface/notification_controls",
                     SourceRectangle = new Rectangle(tileSize, 0, tileSize, tileSize),
-                    Position = new Vector2(this.Position.X, Position.Y)
+                    Position = new Vector2(Position.X, Position.Y)
                 };
 
                 noButtonImage.LoadContent();
@@ -217,7 +217,7 @@ namespace Narivia.Interface.Widgets
             int sx = 1;
             int sy = 1;
 
-            if (NotificationSize.X == 1)
+            if ((int)NotificationSize.X == 1)
             {
                 sx = 3;
             }
@@ -225,12 +225,12 @@ namespace Narivia.Interface.Widgets
             {
                 sx = 0;
             }
-            else if (x == NotificationSize.X - 1)
+            else if (x == (int)NotificationSize.X - 1)
             {
                 sx = 2;
             }
 
-            if (NotificationSize.Y == 1)
+            if ((int)NotificationSize.Y == 1)
             {
                 sy = 3;
             }
@@ -238,7 +238,7 @@ namespace Narivia.Interface.Widgets
             {
                 sy = 0;
             }
-            else if (y == NotificationSize.Y - 1)
+            else if (y == (int)NotificationSize.Y - 1)
             {
                 sy = 2;
             }

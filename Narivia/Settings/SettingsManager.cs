@@ -101,8 +101,8 @@ namespace Narivia.Settings
                 graphicsChanged = true;
             }
 
-            if (graphics.PreferredBackBufferWidth != Resolution.X ||
-               graphics.PreferredBackBufferHeight != Resolution.Y)
+            if (graphics.PreferredBackBufferWidth != (int)Resolution.X ||
+                graphics.PreferredBackBufferHeight != (int)Resolution.Y)
             {
                 graphics.PreferredBackBufferWidth = (int)Resolution.X;
                 graphics.PreferredBackBufferHeight = (int)Resolution.Y;

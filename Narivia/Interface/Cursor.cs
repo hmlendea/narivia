@@ -19,13 +19,6 @@ namespace Narivia.Interface
         Image image;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Entities.Cursor"/> class.
-        /// </summary>
-        public Cursor()
-        {
-        }
-
-        /// <summary>
         /// Loads the content.
         /// </summary>
         public void LoadContent()
