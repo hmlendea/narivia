@@ -102,10 +102,13 @@ namespace Narivia.Interface.Widgets
             base.Draw(spriteBatch);
         }
 
-        Rectangle CalculateIconSourceRectangle(NotificationIcon icon)
+        Rectangle CalculateIconSourceRectangle(NotificationIcon notificationIcon)
         {
             // TODO: Actually do something useful
-            return new Rectangle((int)icon * 20, 0, 20, 20);
+            return new Rectangle((int)notificationIcon % 8 * 20,
+                                 (int)notificationIcon / 8 * 20,
+                                 20,
+                                 20);
         }
 
         void CheckForInput()

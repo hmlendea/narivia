@@ -102,6 +102,11 @@ namespace Narivia.Interface.Widgets
             return notificationButton;
         }
 
+        public void Clear()
+        {
+            notificationButtons.ForEach(x => x.Destroy());
+        }
+
         // TODO: Handle this better
         /// <summary>
         /// Associates the game manager.

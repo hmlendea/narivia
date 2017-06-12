@@ -145,9 +145,44 @@ namespace Narivia.Screens
             base.Draw(spriteBatch);
         }
 
+        void AddTurnNotification()
+        {
+        }
+
         void SideBar_TurnButtonClicked(object sender, EventArgs e)
         {
+            NotificationBar.Clear();
+
+            int regionsOld = game.GetFactionRegionsCount(game.PlayerFactionId);
+            int holdingsOld = game.GetFactionHoldingsCount(game.PlayerFactionId);
+            int wealthOld = game.GetFactionWealth(game.PlayerFactionId);
+            int incomeOld = game.GetFactionIncome(game.PlayerFactionId);
+            int outcomeOld = game.GetFactionOutcome(game.PlayerFactionId);
+            int recruitmentOld = game.GetFactionRecruitment(game.PlayerFactionId);
+
             game.NextTurn();
+
+            int regionsNew = game.GetFactionRegionsCount(game.PlayerFactionId);
+            int holdingsNew = game.GetFactionHoldingsCount(game.PlayerFactionId);
+            int wealthNew = game.GetFactionWealth(game.PlayerFactionId);
+            int incomeNew = game.GetFactionIncome(game.PlayerFactionId);
+            int outcomeNew = game.GetFactionOutcome(game.PlayerFactionId);
+            int recruitmentNew = game.GetFactionRecruitment(game.PlayerFactionId);
+
+
+            NotificationBar.AddNotification(NotificationIcon.TurnReport).Clicked += delegate
+            {
+                ShowNotification($"Turn {game.Turn} Report",
+                                 $"Regions: {regionsNew} ({(regionsNew - regionsOld).ToString("+0;-#")})" + Environment.NewLine +
+                                 $"Holdings: {holdingsNew} ({(holdingsNew - holdingsOld).ToString("+0;-#")})" + Environment.NewLine +
+                                 $"Wealth: {wealthNew} ({(wealthNew - wealthOld).ToString("+0;-#")})" + Environment.NewLine +
+                                 $"Income: {incomeNew} ({(incomeNew - incomeOld).ToString("+0;-#")})" + Environment.NewLine +
+                                 $"Income: {outcomeNew} ({(outcomeNew - outcomeOld).ToString("+0;-#")})" + Environment.NewLine +
+                                 $"Militia Recruitment: {recruitmentNew} ({(recruitmentNew - recruitmentOld).ToString("+0;-#")})",
+                                 NotificationType.Informational,
+                                 NotificationStyle.Big,
+                                 new Vector2(256, 224));
+            };
         }
 
         void SideBar_StatsButtonClicked(object sender, EventArgs e)
