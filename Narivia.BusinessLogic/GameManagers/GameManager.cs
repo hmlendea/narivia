@@ -316,6 +316,38 @@ namespace Narivia.BusinessLogic.GameManagers
                                                     h.RegionId == regionId);
         }
 
+        /// <summary>
+        /// Adds the specified amount of troops of a unit for a faction.
+        /// </summary>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="unitId">Unit identifier.</param>
+        /// <param name="amount">Amount.</param>
+        public void AddUnits(string factionId, string unitId, int amount)
+        {
+            world.Armies.Values.FirstOrDefault(a => a.FactionId == factionId &&
+                                                    a.UnitId == unitId).Size += amount;
+        }
+
+        /// <summary>
+        /// Recruits the specified amount of troops of a unit for a faction.
+        /// </summary>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="unitId">Unit identifier.</param>
+        /// <param name="amount">Amount.</param>
+        public void RecruitUnits(string factionId, string unitId, int amount)
+        {
+            int costPerTroop = world.Units[unitId].Price;
+            int factionWealth = world.Factions[factionId].Wealth;
+
+            if (factionWealth < costPerTroop * amount)
+            {
+                // TODO: Log warning or something
+                amount = factionWealth / costPerTroop;
+            }
+
+            AddUnits(factionId, unitId, amount);
+        }
+
         void InitializeGame(string factionId)
         {
             PlayerFactionId = factionId;
@@ -564,6 +596,24 @@ namespace Narivia.BusinessLogic.GameManagers
 
             // TODO: Do something when the attack failed
             Console.WriteLine($"{factionId} lost in {regionId}");
+        }
+
+        /// <summary>
+        /// Changes the relations between two factions.
+        /// </summary>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        /// <param name="delta">Relations value delta.</param>
+        void ChangeRelations(string sourceFactionId, string targetFactionId, int delta)
+        {
+            Relation sourceRelation = world.Relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
+                                                                                 r.TargetFactionId == targetFactionId);
+            Relation targetRelation = world.Relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
+                                                                                 r.TargetFactionId == sourceFactionId);
+
+            int oldRelations = sourceRelation.Value;
+            sourceRelation.Value = Math.Max(-100, Math.Min(sourceRelation.Value + delta, 100));
+            targetRelation.Value = sourceRelation.Value;
         }
     }
 }
