@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
-using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.GameLogic.Mapping;
-using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.DataAccess.Repositories;
-using Narivia.Infrastructure.Extensions;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
 namespace Narivia.GameLogic.GameManagers
