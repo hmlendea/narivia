@@ -28,7 +28,7 @@ namespace Narivia.WorldMap
 
         Vector2 tileDimensions;
 
-        List<Tile> tiles;
+        readonly List<Tile> tiles;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.WorldMap.Layer"/> class.

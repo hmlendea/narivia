@@ -21,7 +21,8 @@ namespace Narivia.Screens
         static object syncRoot = new object();
 
         Screen currentScreen, newScreen;
-        XmlManager<Screen> xmlScreenManager;
+
+        readonly XmlManager<Screen> xmlScreenManager;
 
         /// <summary>
         /// Gets the instance.

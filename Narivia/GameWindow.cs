@@ -20,9 +20,10 @@ namespace Narivia
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont fpsFont;
-        Cursor cursor;
         Vector2 fpsCounterSize;
         string fpsString;
+
+        readonly Cursor cursor;
 
         /// <summary>
         /// The tile dimensions.

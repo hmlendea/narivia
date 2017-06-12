@@ -56,7 +56,7 @@ namespace Narivia.Helpers
         /// </summary>
         public const int MAXIMUM_SAMPLES = 100;
 
-        Queue<float> sampleBuffer = new Queue<float>();
+        readonly Queue<float> sampleBuffer = new Queue<float>();
 
         /// <summary>
         /// Updates the framerate.
