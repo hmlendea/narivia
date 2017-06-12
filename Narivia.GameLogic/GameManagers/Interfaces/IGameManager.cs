@@ -2,7 +2,7 @@
 
 using Narivia.Models;
 
-namespace Narivia.BusinessLogic.GameManagers.Interfaces
+namespace Narivia.GameLogic.GameManagers.Interfaces
 {
     public interface IGameManager
     {

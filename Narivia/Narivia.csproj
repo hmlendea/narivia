@@ -140,9 +140,9 @@
       <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>
       <Name>Narivia.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Narivia.BusinessLogic\Narivia.BusinessLogic.csproj">
+    <ProjectReference Include="..\Narivia.GameLogic\Narivia.GameLogic.csproj">
       <Project>{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}</Project>
-      <Name>Narivia.BusinessLogic</Name>
+      <Name>Narivia.GameLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\Narivia.Data\Narivia.Data.csproj">
       <Project>{2C8EACD9-7F02-4176-A2BE-DBE94B824A8C}</Project>

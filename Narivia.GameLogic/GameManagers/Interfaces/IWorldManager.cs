@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Narivia.Models;
 
-namespace Narivia.BusinessLogic.GameManagers.Interfaces
+namespace Narivia.GameLogic.GameManagers.Interfaces
 {
     interface IWorldManager
     {

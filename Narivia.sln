@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Models", "Narivia.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Infrastructure", "Narivia.Infrastructure\Narivia.Infrastructure.csproj", "{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.BusinessLogic", "Narivia.BusinessLogic\Narivia.BusinessLogic.csproj", "{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.GameLogic", "Narivia.GameLogic\Narivia.GameLogic.csproj", "{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Data", "Narivia.Data\Narivia.Data.csproj", "{2C8EACD9-7F02-4176-A2BE-DBE94B824A8C}"
 EndProject

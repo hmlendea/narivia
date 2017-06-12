@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Narivia.BusinessLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Models;
 
-namespace Narivia.BusinessLogic.GameManagers
+namespace Narivia.GameLogic.GameManagers
 {
     /// <summary>
     /// Game manager.

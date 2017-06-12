@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.BusinessLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
 using Narivia.Models;
 

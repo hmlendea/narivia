@@ -5,7 +5,7 @@ using System.Linq;
 using Narivia.DataAccess.DataObjects;
 using Narivia.Models;
 
-namespace Narivia.BusinessLogic.Mapping
+namespace Narivia.GameLogic.Mapping
 {
     internal static class HoldingMappingExtensions
     {

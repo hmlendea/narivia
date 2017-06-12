@@ -7,8 +7,8 @@
     <ProjectGuid>{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Narivia.BusinessLogic</RootNamespace>
-    <AssemblyName>Narivia.BusinessLogic</AssemblyName>
+    <RootNamespace>Narivia.GameLogic</RootNamespace>
+    <AssemblyName>Narivia.GameLogic</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

@@ -3,8 +3,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.BusinessLogic.GameManagers.Interfaces;
-using Narivia.BusinessLogic.GameManagers;
+using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers;
 using Narivia.Interface.Widgets;
 
 namespace Narivia.Screens

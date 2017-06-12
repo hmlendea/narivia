@@ -5,7 +5,7 @@ using Narivia.DataAccess.DataObjects;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
-namespace Narivia.BusinessLogic.Mapping
+namespace Narivia.GameLogic.Mapping
 {
     internal static class FactionMappingExtensions
     {

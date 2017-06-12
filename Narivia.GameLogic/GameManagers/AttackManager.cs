@@ -6,15 +6,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-using Narivia.BusinessLogic.GameManagers.Interfaces;
-using Narivia.BusinessLogic.Mapping;
+using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.Mapping;
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.DataAccess.Repositories;
 using Narivia.Infrastructure.Extensions;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
-namespace Narivia.BusinessLogic.GameManagers
+namespace Narivia.GameLogic.GameManagers
 {
     public class AttackManager
     {

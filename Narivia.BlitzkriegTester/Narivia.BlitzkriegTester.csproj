@@ -34,9 +34,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Narivia.BusinessLogic\Narivia.BusinessLogic.csproj">
+    <ProjectReference Include="..\Narivia.GameLogic\Narivia.GameLogic.csproj">
       <Project>{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}</Project>
-      <Name>Narivia.BusinessLogic</Name>
+      <Name>Narivia.GameLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\Narivia.Models\Narivia.Models.csproj">
       <Project>{78502827-88B2-4989-85CF-7ED78AC7CF10}</Project>
