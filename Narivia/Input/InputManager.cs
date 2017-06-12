@@ -108,7 +108,19 @@ namespace Narivia.Input
         /// <returns>The state of the specified mouse button.</returns>
         public ButtonState GetMouseButtonState(MouseButton button)
         {
-            return currentMouseState.LeftButton;
+            switch (button)
+            {
+                case MouseButton.LeftButton:
+                    return currentMouseState.LeftButton;
+
+                case MouseButton.RightButton:
+                    return currentMouseState.RightButton;
+
+                case MouseButton.MiddleButton:
+                    return currentMouseState.MiddleButton;
+            }
+
+            return ButtonState.Released;
         }
 
         /// <summary>
