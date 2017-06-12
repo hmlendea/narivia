@@ -89,7 +89,7 @@ namespace Narivia.Screens
         public Image TransitionImage { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Screens.ScreenManager"/> class.
+        /// Initializes a new instance of the <see cref="ScreenManager"/> class.
         /// </summary>
         public ScreenManager()
         {
@@ -137,7 +137,7 @@ namespace Narivia.Screens
 
             Size = SettingsManager.Instance.Resolution;
             TransitionImage.Scale = Size;
-            
+
             currentScreen.Update(gameTime);
         }
 

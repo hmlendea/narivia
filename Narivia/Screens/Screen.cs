@@ -54,7 +54,7 @@ namespace Narivia.Screens
         public List<Button> Buttons { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Screens.Screen"/> class.
+        /// Initializes a new instance of the <see cref="Screen"/> class.
         /// </summary>
         public Screen()
         {

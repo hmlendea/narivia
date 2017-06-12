@@ -26,13 +26,13 @@ namespace Narivia.Graphics.ImageEffects
         public float MaximumOpacity { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Narivia.Graphics.ImageEffects.FadeEffect"/> is increasing.
+        /// Gets or sets a value indicating whether this <see cref="FadeEffect"/> is increasing.
         /// </summary>
         /// <value><c>true</c> if increasing; otherwise, <c>false</c>.</value>
         public bool Increasing { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Graphics.ImageEffects.FadeEffect"/> class.
+        /// Initializes a new instance of the <see cref="FadeEffect"/> class.
         /// </summary>
         public FadeEffect()
         {

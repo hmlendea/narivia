@@ -30,7 +30,7 @@ namespace Narivia
         public const int TILE_DIMENSIONS = 16;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.GameWindow"/> class.
+        /// Initializes a new instance of the <see cref="GameWindow"/> class.
         /// </summary>
         public GameWindow()
         {

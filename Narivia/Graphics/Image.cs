@@ -31,7 +31,7 @@ namespace Narivia.Graphics
         readonly Dictionary<string, ImageEffect> effectList;
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Narivia.Graphics.Image"/> is active.
+        /// Gets or sets a value indicating whether this <see cref="Image"/> is active.
         /// </summary>
         /// <value><c>true</c> if active; otherwise, <c>false</c>.</value>
         public bool Active { get; set; }
@@ -191,7 +191,7 @@ namespace Narivia.Graphics
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Graphics.Image"/> class.
+        /// Initializes a new instance of the <see cref="Image"/> class.
         /// </summary>
         public Image()
         {

@@ -14,7 +14,7 @@ namespace Narivia.Graphics.ImageEffects
         protected Image Image;
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Narivia.Graphics.ImageEffects.ImageEffect"/> is active.
+        /// Gets or sets a value indicating whether this <see cref="ImageEffect"/> is active.
         /// </summary>
         /// <value><c>true</c> if active; otherwise, <c>false</c>.</value>
         public bool Active { get; set; }
@@ -34,7 +34,7 @@ namespace Narivia.Graphics.ImageEffects
         public string Key { get { return Type.ToString().Split('.').Last(); } }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Narivia.Graphics.ImageEffects.ImageEffect"/> class.
+        /// Initializes a new instance of the <see cref="ImageEffect"/> class.
         /// </summary>
         public ImageEffect()
         {
