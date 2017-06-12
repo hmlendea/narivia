@@ -72,6 +72,7 @@ namespace Narivia.Infrastructure.Helpers
         /// <param name="argb">ARGB integer.</param>
         public static Colour FromArgb(int argb)
         {
+            // TODO: Implement this (Colour.FromArgb)
             throw new NotImplementedException();
         }
     }

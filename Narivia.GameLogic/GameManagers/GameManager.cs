@@ -396,6 +396,7 @@ namespace Narivia.GameLogic.GameManagers
             return attackManager.GetNextRegion_Seq(factionId, targetFactionId);
         }
 
+        // TODO: Move this from here
         /// <summary>
         /// WIP blitzkrieg parallelized algorithm for invading a faction.
         /// </summary>
@@ -412,8 +413,7 @@ namespace Narivia.GameLogic.GameManagers
             return attackManager.GetNextRegion_Parallel(factionId, targetFactionId);
         }
 
-
-
+        // TODO: Move this from here
         /// <summary>
         /// WIP blitzkrieg sequencial algorithm for invading a faction.
         /// </summary>
@@ -449,6 +449,7 @@ namespace Narivia.GameLogic.GameManagers
             }
         }
 
+        // TODO: Move this from here
         /// <summary>
         /// WIP blitzkrieg parallelized algorithm for invading a faction.
         /// </summary>
@@ -484,6 +485,7 @@ namespace Narivia.GameLogic.GameManagers
             }
         }
 
+        // TODO: Replace this with Blitzkrieg
         /// <summary>
         /// Chooses a region to attack.
         /// </summary>
