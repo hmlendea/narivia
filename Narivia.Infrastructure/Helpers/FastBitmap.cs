@@ -8,7 +8,7 @@ namespace Narivia.Infrastructure.Helpers
     /// <summary>
     /// Fast Bitmap.
     /// </summary>
-    public class FastBitmap : IDisposable
+    public sealed class FastBitmap : IDisposable
     {
         readonly Bitmap source;
         IntPtr Iptr = IntPtr.Zero;
