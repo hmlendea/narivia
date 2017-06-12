@@ -15,7 +15,7 @@ namespace Narivia.Interface.Widgets
         /// Gets the size.
         /// </summary>
         /// <value>The size.</value>
-        public new Vector2 Size { get { return new Vector2(tileSize, tileSize); } }
+        public override Vector2 Size { get { return new Vector2(32, 32); } }
 
         /// <summary>
         /// Gets or sets the icon.
@@ -25,8 +25,6 @@ namespace Narivia.Interface.Widgets
 
         // TODO: Maybe implement my own handler and args
         public event EventHandler Clicked;
-
-        const int tileSize = 32;
 
         Image background;
         Image icon;
@@ -39,15 +37,13 @@ namespace Narivia.Interface.Widgets
             background = new Image
             {
                 ImagePath = "Interface/notification_small",
-                SourceRectangle = new Rectangle(tileSize * 3, tileSize * 3, tileSize, tileSize),
-                Position = Position
+                SourceRectangle = new Rectangle(96, 96, 32, 32)
             };
 
             icon = new Image
             {
                 ImagePath = "Interface/notification_icons",
-                SourceRectangle = CalculateIconSourceRectangle(Icon),
-                Position = Position
+                SourceRectangle = CalculateIconSourceRectangle(Icon)
             };
 
             background.LoadContent();
@@ -62,7 +58,7 @@ namespace Narivia.Interface.Widgets
         public override void UnloadContent()
         {
             background.UnloadContent();
-            icon.LoadContent();
+            icon.UnloadContent();
 
             base.UnloadContent();
         }
@@ -77,6 +73,9 @@ namespace Narivia.Interface.Widgets
             {
                 return;
             }
+
+            background.Position = Position;
+            icon.Position = new Vector2(Position.X + 6, Position.Y + 6);
 
             background.Update(gameTime);
             icon.Update(gameTime);
@@ -106,7 +105,7 @@ namespace Narivia.Interface.Widgets
         Rectangle CalculateIconSourceRectangle(NotificationIcon icon)
         {
             // TODO: Actually do something useful
-            return new Rectangle(0 * tileSize, 0 * tileSize, tileSize, tileSize);
+            return new Rectangle((int)icon * 20, 0, 20, 20);
         }
 
         void CheckForInput()
@@ -130,6 +129,8 @@ namespace Narivia.Interface.Widgets
             {
                 Clicked(this, null);
             }
+
+            Destroy();
         }
     }
 }

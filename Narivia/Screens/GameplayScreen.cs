@@ -38,6 +38,12 @@ namespace Narivia.Screens
         /// <value>The side bar.</value>
         public SideBar SideBar { get; set; }
 
+        /// <summary>
+        /// Gets or sets the notification bar.
+        /// </summary>
+        /// <value>The notification bar.</value>
+        public NotificationBar NotificationBar { get; set; }
+
         IGameManager game;
 
         /// <summary>
@@ -59,6 +65,7 @@ namespace Narivia.Screens
             InfoBar.LoadContent();
             RegionBar.LoadContent();
             SideBar.LoadContent();
+            NotificationBar.LoadContent();
 
             base.LoadContent();
 
@@ -87,6 +94,7 @@ namespace Narivia.Screens
             InfoBar.UnloadContent();
             RegionBar.UnloadContent();
             SideBar.UnloadContent();
+            NotificationBar.UnloadContent();
 
             base.UnloadContent();
         }
@@ -116,6 +124,7 @@ namespace Narivia.Screens
             InfoBar.Update(gameTime);
             RegionBar.Update(gameTime);
             SideBar.Update(gameTime);
+            NotificationBar.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -131,6 +140,7 @@ namespace Narivia.Screens
             InfoBar.Draw(spriteBatch);
             RegionBar.Draw(spriteBatch);
             SideBar.Draw(spriteBatch);
+            NotificationBar.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
         }

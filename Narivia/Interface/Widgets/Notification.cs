@@ -118,7 +118,7 @@ namespace Narivia.Interface.Widgets
 
             yesButtonImage = new Image
             {
-                ImagePath = "Interface/notification_icons",
+                ImagePath = "Interface/notification_controls",
                 SourceRectangle = new Rectangle(0, 0, tileSize, tileSize),
                 Position = new Vector2(this.Position.X + (NotificationSize.X - 1) * tileSize, Position.Y)
             };
@@ -127,7 +127,7 @@ namespace Narivia.Interface.Widgets
             {
                 noButtonImage = new Image
                 {
-                    ImagePath = "Interface/notification_icons",
+                    ImagePath = "Interface/notification_controls",
                     SourceRectangle = new Rectangle(tileSize, 0, tileSize, tileSize),
                     Position = new Vector2(this.Position.X, Position.Y)
                 };

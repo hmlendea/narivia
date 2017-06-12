@@ -109,6 +109,7 @@
     <Compile Include="Interface\Widgets\RegionBar.cs" />
     <Compile Include="Interface\Widgets\NotificationButton.cs" />
     <Compile Include="Interface\Widgets\NotificationIcon.cs" />
+    <Compile Include="Interface\Widgets\NotificationBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

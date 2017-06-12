@@ -48,6 +48,16 @@
 			<B>0</B>
 		</TextColour>
 	</SideBar>
+	<NotificationBar>
+		<Position>
+			<X>0</X>
+			<Y>20</Y>
+		</Position>
+		<Size>
+			<X>40</X>
+			<Y>610</Y>
+		</Size>
+	</NotificationBar>
 	<RegionBar>
 		<Position>
 			<X>0</X>

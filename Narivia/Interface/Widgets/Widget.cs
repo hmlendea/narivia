@@ -17,7 +17,7 @@ namespace Narivia.Interface.Widgets
         /// Gets the size of this widget.
         /// </summary>
         /// <value>The size.</value>
-        public Vector2 Size { get; set; }
+        public virtual Vector2 Size { get; set; }
 
         /// <summary>
         /// Gets the screen area covered by this widget.
