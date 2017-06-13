@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.Infrastructure.Extensions;
 using Narivia.Models;
 
 namespace Narivia.GameLogic.GameManagers
@@ -38,8 +39,10 @@ namespace Narivia.GameLogic.GameManagers
                                                 .Select(x => x.Id)
                                                 .ToList();
 
+            // TODO: Do not target factions with good relations
             Dictionary<string, int> targets = world.Regions.Values
-                                                   .Where(r => r.FactionId != factionId)
+                                                   .Where(r => r.FactionId != factionId &&
+                                                               r.FactionId != "gaia")
                                                    .Select(x => x.Id)
                                                    .Except(regionsOwnedIds)
                                                    .Where(x => regionsOwnedIds.Any(y => world.RegionHasBorder(x, y)))
@@ -113,70 +116,54 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <param name="factionId">Faction identifier.</param>
         /// <param name="regionId">Region identifier.</param>
-        public void AttackRegion(string factionId, string regionId)
+        public BattleResult AttackRegion(string factionId, string regionId)
         {
             Random random = new Random();
 
             Region targetRegion = world.Regions[regionId];
+
             Faction attackerFaction = world.Factions[factionId];
             Faction defenderFaction = world.Factions[targetRegion.FactionId];
 
-            List<Army> attackerArmies = world.Armies.Values.Where(army => army.FactionId == attackerFaction.Id).ToList();
-            List<Army> defenderArmies = world.Armies.Values.Where(army => army.FactionId == defenderFaction.Id).ToList();
-
-            int attackerTroops = attackerArmies.Select(y => y.Size).Sum();
-            int defenderTroops = defenderArmies.Select(y => y.Size).Sum();
-
-            while (attackerTroops > 0 && defenderTroops > 0)
+            while (world.GetFactionTroopsCount(attackerFaction.Id) > 0 &&
+                   world.GetFactionTroopsCount(defenderFaction.Id) > 0)
             {
-                int attackerUnitNumber = random.Next(attackerArmies.Count);
-                int defenderUnitNumber = random.Next(defenderArmies.Count);
+                Army attackerArmy = world.GetFactionArmies(attackerFaction.Id)
+                                         .Where(a => a.Size > 0)
+                                         .RandomElement();
+                Army defenderArmy = world.GetFactionArmies(defenderFaction.Id)
+                                         .Where(a => a.Size > 0)
+                                         .RandomElement();
 
-                while (attackerArmies.ElementAt(attackerUnitNumber).Size == 0)
-                {
-                    attackerUnitNumber = random.Next(attackerArmies.Count);
-                }
-
-                while (defenderArmies.ElementAt(defenderUnitNumber).Size == 0)
-                {
-                    defenderUnitNumber = random.Next(defenderArmies.Count);
-                }
-
-                string attackerUnitId = attackerArmies.ElementAt(attackerUnitNumber).UnitId;
-                string defenderUnitId = defenderArmies.ElementAt(defenderUnitNumber).UnitId;
-
-                Unit attackerUnit = world.Units.Values.FirstOrDefault(unit => unit.Id == attackerUnitId);
-                Army attackerArmy = attackerArmies.FirstOrDefault(army => army.FactionId == attackerFaction.Id);
-
-                Unit defenderUnit = world.Units.Values.FirstOrDefault(unit => unit.Id == defenderUnitId);
-                Army defenderArmy = defenderArmies.FirstOrDefault(army => army.FactionId == defenderFaction.Id);
-
+                Unit attackerUnit = world.Units[attackerArmy.UnitId];
+                Unit defenderUnit = world.Units[defenderArmy.UnitId];
 
                 // TODO: Attack and Defence bonuses
 
-                attackerArmy.Size =
+                int attackerTroopsLeft =
                     (attackerUnit.Health * attackerArmy.Size - defenderUnit.Power * defenderArmy.Size) /
                     attackerUnit.Health;
 
-                defenderArmy.Size =
+                int defenderTroopsLeft =
                     (defenderUnit.Health * defenderArmy.Size - attackerUnit.Power * attackerArmy.Size) /
                     defenderUnit.Health;
 
-                attackerArmy.Size = Math.Max(0, attackerArmy.Size);
-                defenderArmy.Size = Math.Max(0, defenderArmy.Size);
+                attackerArmy.Size = Math.Max(0, attackerTroopsLeft);
+                defenderArmy.Size = Math.Max(0, defenderTroopsLeft);
             }
 
             // TODO: In the GameDomainService I should change the realations based on wether the
             // region was sovereign or not
 
-            if (attackerTroops > defenderTroops)
+            if (world.GetFactionTroopsCount(attackerFaction.Id) >
+                world.GetFactionTroopsCount(defenderFaction.Id))
             {
-                Console.WriteLine($"{factionId} won in {regionId}");
                 world.TransferRegion(regionId, factionId);
+
+                return BattleResult.Victory;
             }
 
-            // TODO: Do something when the attack failed
-            Console.WriteLine($"{factionId} lost in {regionId}");
+            return BattleResult.Defeat;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Narivia.GameLogic.GameManagers
     public class GameManager : IGameManager
     {
         IWorldManager world;
+        IAttackManager attack;
 
         /// <summary>
         /// Gets or sets the world tiles.
@@ -100,6 +101,8 @@ namespace Narivia.GameLogic.GameManagers
             world = new WorldManager();
             world.LoadWorld(worldId);
 
+            attack = new AttackManager(world);
+
             InitializeGame(factionId);
             InitializeEntities();
         }
@@ -129,7 +132,15 @@ namespace Narivia.GameLogic.GameManagers
                                                         u.UnitId == "militia")
                                    .Size += GetFactionRecruitment(faction.Id);
 
+                // A.I.
+                if (faction.Id == PlayerFactionId)
+                {
+                    continue;
+                }
+
                 // TODO: Choose region to attack and then attack it
+                string regionId = attack.ChooseRegionToAttack(faction.Id);
+                attack.AttackRegion(faction.Id, regionId);
             }
 
             Turn += 1;
@@ -263,7 +274,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction troops count.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionTroopsCount(string factionId)
-        => world.GetFactionArmies(factionId).Sum(a => a.Size);
+        => world.GetFactionTroopsCount(factionId);
 
         /// <summary>
         /// Gets the faction capital.

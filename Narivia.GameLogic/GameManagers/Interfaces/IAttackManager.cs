@@ -14,6 +14,6 @@
         /// </summary>
         /// <param name="factionId">Faction identifier.</param>
         /// <param name="regionId">Region identifier.</param>
-        void AttackRegion(string factionId, string regionId);
+        BattleResult AttackRegion(string factionId, string regionId);
     }
 }

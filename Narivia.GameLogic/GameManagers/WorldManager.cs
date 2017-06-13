@@ -239,6 +239,17 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Gets the faction troops count.
+        /// </summary>
+        /// <returns>The faction troops count.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public int GetFactionTroopsCount(string factionId)
+        {
+            return Armies.Values.Where(a => a.FactionId == factionId)
+                                .Sum(a => a.Size);
+        }
+
+        /// <summary>
         /// Gets the faction capital.
         /// </summary>
         /// <returns>Region identifier.</returns>

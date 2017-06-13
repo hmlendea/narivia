@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Narivia.Infrastructure.Extensions
@@ -47,6 +48,25 @@ namespace Narivia.Infrastructure.Extensions
             }
 
             return !enumerable.Any();
+        }
+
+        /// <summary>
+        /// Gets a random element.
+        /// </summary>
+        /// <returns>The element.</returns>
+        /// <param name="enumerable">Enumerable.</param>
+        public static T RandomElement<T>(this IEnumerable<T> enumerable)
+        {
+            int count = enumerable.Count();
+
+            if (count == 0)
+            {
+                return default(T);
+            }
+
+            Random random = new Random(DateTime.Now.Millisecond);
+
+            return enumerable.ElementAt(random.Next(count));
         }
     }
 }

@@ -165,6 +165,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         void TransferRegion(string regionId, string factionId);
 
         /// <summary>
+        /// Gets the faction troops count.
+        /// </summary>
+        /// <returns>The faction troops count.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        int GetFactionTroopsCount(string factionId);
+
+        /// <summary>
         /// Gets the faction capital.
         /// </summary>
         /// <returns>Region identifier.</returns>
