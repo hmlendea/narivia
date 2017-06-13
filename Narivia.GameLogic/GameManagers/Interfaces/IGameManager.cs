@@ -1,11 +1,17 @@
 ﻿using System.Collections.Generic;
 
+using Narivia.GameLogic.Events;
 using Narivia.Models;
 
 namespace Narivia.GameLogic.GameManagers.Interfaces
 {
     public interface IGameManager
     {
+        /// <summary>
+        /// Occurs when a player region is attacked.
+        /// </summary>
+        event RegionAttackEventHandler PlayerRegionAttacked;
+
         /// <summary>
         /// Gets or sets the world tiles.
         /// </summary>
@@ -190,6 +196,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The faction capital.</returns>
         /// <param name="factionId">Faction identifier.</param>
         string GetFactionCapital(string factionId);
+
+        /// <summary>
+        /// Gets the name of a region.
+        /// </summary>
+        /// <returns>The name.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        string GetRegionName(string regionId);
 
         /// <summary>
         /// Gets the regions of a faction.

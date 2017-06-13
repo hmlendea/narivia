@@ -1,4 +1,6 @@
-﻿namespace Narivia.GameLogic.GameManagers.Interfaces
+﻿using Narivia.GameLogic.Enumerations;
+
+namespace Narivia.GameLogic.GameManagers.Interfaces
 {
     public interface IAttackManager
     {

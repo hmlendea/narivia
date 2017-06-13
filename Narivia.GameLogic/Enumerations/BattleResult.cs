@@ -1,4 +1,4 @@
-﻿namespace Narivia.GameLogic
+﻿namespace Narivia.GameLogic.Enumerations
 {
     public enum BattleResult
     {

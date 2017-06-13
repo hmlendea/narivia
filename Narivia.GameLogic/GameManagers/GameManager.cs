@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.GameLogic.Enumerations;
+using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Models;
 
@@ -14,6 +16,11 @@ namespace Narivia.GameLogic.GameManagers
     {
         IWorldManager world;
         IAttackManager attack;
+
+        /// <summary>
+        /// Occurs when a player region is attacked.
+        /// </summary>
+        public event RegionAttackEventHandler PlayerRegionAttacked;
 
         /// <summary>
         /// Gets or sets the world tiles.
@@ -140,7 +147,18 @@ namespace Narivia.GameLogic.GameManagers
 
                 // TODO: Choose region to attack and then attack it
                 string regionId = attack.ChooseRegionToAttack(faction.Id);
-                attack.AttackRegion(faction.Id, regionId);
+                string regionFactionId = world.Regions[regionId].FactionId;
+                BattleResult result = attack.AttackRegion(faction.Id, regionId);
+
+                if (regionFactionId == PlayerFactionId)
+                {
+                    RegionAttackEventArgs e = new RegionAttackEventArgs(regionId, faction.Id, result);
+
+                    if (PlayerRegionAttacked != null)
+                    {
+                        PlayerRegionAttacked(this, e);
+                    }
+                }
             }
 
             Turn += 1;
@@ -283,6 +301,14 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public string GetFactionCapital(string factionId)
         => world.GetFactionCapital(factionId);
+
+        /// <summary>
+        /// Gets the name of a region.
+        /// </summary>
+        /// <returns>The name.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        public string GetRegionName(string regionId)
+        => world.Regions[regionId].Name;
 
         /// <summary>
         /// Gets the regions of a faction.

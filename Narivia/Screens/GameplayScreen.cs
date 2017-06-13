@@ -3,6 +3,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.GameLogic.Enumerations;
+using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
 using Narivia.Interface.Widgets;
@@ -52,7 +54,9 @@ namespace Narivia.Screens
         public override void LoadContent()
         {
             game = new GameManager();
-            game.NewGame("narivia", "alpalet");
+            game.NewGame("narivia", "mah_rodah");
+
+            game.PlayerRegionAttacked += OnPlayerRegionAttacked;
 
             GameMap.AssociateGameManager(ref game);
             RegionBar.AssociateGameManager(ref game);
@@ -169,7 +173,6 @@ namespace Narivia.Screens
             int outcomeNew = game.GetFactionOutcome(game.PlayerFactionId);
             int recruitmentNew = game.GetFactionRecruitment(game.PlayerFactionId);
 
-
             NotificationBar.AddNotification(NotificationIcon.TurnReport).Clicked += delegate
             {
                 ShowNotification($"Turn {game.Turn} Report",
@@ -203,6 +206,39 @@ namespace Narivia.Screens
                              NotificationType.Informational,
                              NotificationStyle.Big,
                              new Vector2(256, 128));
+        }
+
+        void OnPlayerRegionAttacked(object sender, RegionAttackEventArgs e)
+        {
+            string regionName = game.GetRegionName(e.RegionId);
+            string attackerFactionName = game.GetFactionName(e.AttackerFactionId);
+
+            if (e.BattleResult == BattleResult.Victory)
+            {
+                NotificationBar.AddNotification(NotificationIcon.RegionLost).Clicked += delegate
+                    {
+                        ShowNotification($"{regionName} region lost!",
+                                         $"Bad news!" + Environment.NewLine + Environment.NewLine +
+                                         $"One of our regions, {regionName}, was attacked by {attackerFactionName}, " +
+                                         $"who managed to break the defence and occupy it!",
+                                         NotificationType.Informational,
+                                         NotificationStyle.Big,
+                                         new Vector2(256, 224));
+                    };
+            }
+            else
+            {
+                NotificationBar.AddNotification(NotificationIcon.RegionLost).Clicked += delegate
+                    {
+                        ShowNotification($"{regionName} region defended!",
+                                         $"Important news!" + Environment.NewLine + Environment.NewLine +
+                                         $"One of our regions, {regionName}, was attacked by {attackerFactionName}, " +
+                                         $"but our brave troops managed to sucesfully defend it!",
+                                         NotificationType.Informational,
+                                         NotificationStyle.Big,
+                                         new Vector2(256, 224));
+                    };
+            }
         }
     }
 }
