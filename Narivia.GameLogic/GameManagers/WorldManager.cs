@@ -250,6 +250,38 @@ namespace Narivia.GameLogic.GameManagers
                                                       r.Type == RegionType.Capital).Id;
         }
 
+        /// <summary>
+        /// Gets the regions of a faction.
+        /// </summary>
+        /// <returns>The regions.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public IEnumerable<Region> GetFactionRegions(string factionId)
+        {
+            return Regions.Values.Where(r => r.FactionId == factionId);
+        }
+
+        /// <summary>
+        /// Gets the holdings of a faction.
+        /// </summary>
+        /// <returns>The holdings.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public IEnumerable<Holding> GetFactionHoldings(string factionId)
+        {
+            return Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
+                                              Regions[h.RegionId].FactionId == factionId);
+        }
+
+        /// <summary>
+        /// Gets the holdings of a region.
+        /// </summary>
+        /// <returns>The holdings.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        public IEnumerable<Holding> GetRegionHoldings(string regionId)
+        {
+            return Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
+                                              h.RegionId == regionId);
+        }
+
         void LoadEntities(string worldId)
         {
             IBiomeRepository biomeRepository = new BiomeRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml"));

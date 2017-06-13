@@ -158,16 +158,16 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         int GetFactionRecruitment(string factionId);
 
         /// <summary>
-        /// Gets the faction regions count.
+        /// Gets the regions count of a faction.
         /// </summary>
-        /// <returns>The faction regions count.</returns>
+        /// <returns>The number of regions.</returns>
         /// <param name="factionId">Faction identifier.</param>
         int GetFactionRegionsCount(string factionId);
 
         /// <summary>
-        /// Gets the faction holdings count.
+        /// Gets the holdings count of a faction.
         /// </summary>
-        /// <returns>The faction holdings count.</returns>
+        /// <returns>The number of holdings.</returns>
         /// <param name="factionId">Faction identifier.</param>
         int GetFactionHoldingsCount(string factionId);
 
@@ -191,6 +191,20 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The faction capital.</returns>
         /// <param name="factionId">Faction identifier.</param>
         string GetFactionCapital(string factionId);
+
+        /// <summary>
+        /// Gets the regions of a faction.
+        /// </summary>
+        /// <returns>The regions.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        IEnumerable<Region> GetFactionRegions(string factionId);
+
+        /// <summary>
+        /// Gets the holdings of a faction.
+        /// </summary>
+        /// <returns>The holdings.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        IEnumerable<Holding> GetFactionHoldings(string factionId);
 
         /// <summary>
         /// Gets the region holdings.

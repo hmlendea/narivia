@@ -109,11 +109,6 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         public void NextTurn()
         {
-            AttackManager attackManager = new AttackManager(world.Borders.Values,
-                                                            world.Holdings.Values,
-                                                            world.Regions.Values,
-                                                            world.Resources.Values);
-
             foreach (Faction faction in world.Factions.Values.Where(f => f.Alive))
             {
                 if (GetFactionRegionsCount(faction.Id) == 0)
@@ -134,8 +129,7 @@ namespace Narivia.GameLogic.GameManagers
                                                         u.UnitId == "militia")
                                    .Size += GetFactionRecruitment(faction.Id);
 
-                //string targetRegionId = ChooseAttack(faction.Id);
-                //AttackRegion(faction.Id, targetRegionId);
+                // TODO: Choose region to attack and then attack it
             }
 
             Turn += 1;
@@ -253,25 +247,18 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Gets the faction regions count.
+        /// Gets the regions count of a faction.
         /// </summary>
-        /// <returns>The faction regions count.</returns>
+        /// <returns>The number of regions.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionRegionsCount(string factionId)
-        {
-            return world.Regions.Values.Count(r => r.FactionId == factionId);
-        }
+        public int GetFactionRegionsCount(string factionId) => world.GetFactionRegions(factionId).ToList().Count;
 
         /// <summary>
-        /// Gets the faction holdings count.
+        /// Gets the holdings count of a faction.
         /// </summary>
-        /// <returns>The faction holdings count.</returns>
+        /// <returns>The number of holdings.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionHoldingsCount(string factionId)
-        {
-            return world.Holdings.Values.Count(h => h.Type != HoldingType.Empty &&
-                                                    world.Regions[h.RegionId].FactionId == factionId);
-        }
+        public int GetFactionHoldingsCount(string factionId) => world.GetFactionHoldings(factionId).ToList().Count;
 
         /// <summary>
         /// Gets the faction wealth.
@@ -306,15 +293,25 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Gets the region holdings.
+        /// Gets the regions of a faction.
         /// </summary>
-        /// <returns>The region holdings.</returns>
+        /// <returns>The regions.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public IEnumerable<Region> GetFactionRegions(string factionId) => world.GetFactionRegions(factionId);
+
+        /// <summary>
+        /// Gets the holdings of a faction.
+        /// </summary>
+        /// <returns>The holdings.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public IEnumerable<Holding> GetFactionHoldings(string factionId) => world.GetFactionHoldings(factionId);
+
+        /// <summary>
+        /// Gets the holdings of a region.
+        /// </summary>
+        /// <returns>The holdings.</returns>
         /// <param name="regionId">Region identifier.</param>
-        public IEnumerable<Holding> GetRegionHoldings(string regionId)
-        {
-            return world.Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
-                                                    h.RegionId == regionId);
-        }
+        public IEnumerable<Holding> GetRegionHoldings(string regionId) => world.GetRegionHoldings(regionId);
 
         /// <summary>
         /// Adds the specified amount of troops of a unit for a faction.
@@ -341,7 +338,7 @@ namespace Narivia.GameLogic.GameManagers
 
             if (factionWealth < costPerTroop * amount)
             {
-                // TODO: Log warning or something
+                // TODO: Maybe log a warning or something
                 amount = factionWealth / costPerTroop;
             }
 
@@ -378,224 +375,6 @@ namespace Narivia.GameLogic.GameManagers
             world.Regions.Values.Where(r => string.IsNullOrEmpty(r.SovereignFactionId)).ToList().ForEach(r => r.SovereignFactionId = r.FactionId);
 
             world.Factions["gaia"].Alive = false;
-        }
-
-        /// <summary>
-        /// WIP blitzkrieg sequencial algorithm for invading a faction.
-        /// </summary>
-        /// <returns>The region identifier.</returns>
-        /// <param name="factionId">Attacking faction identifier.</param>
-        /// <param name="targetFactionId">Targeted faction identifier.</param>
-        public string Blitzkrieg_Seq(string factionId, string targetFactionId)
-        {
-            AttackManager attackManager = new AttackManager(world.Borders.Values,
-                                                            world.Holdings.Values,
-                                                            world.Regions.Values,
-                                                            world.Resources.Values);
-
-            return attackManager.GetNextRegion_Seq(factionId, targetFactionId);
-        }
-
-        // TODO: Move this from here
-        /// <summary>
-        /// WIP blitzkrieg parallelized algorithm for invading a faction.
-        /// </summary>
-        /// <returns>The region identifier.</returns>
-        /// <param name="factionId">Attacking faction identifier.</param>
-        /// <param name="targetFactionId">Targeted faction identifier.</param>
-        public string Blitzkrieg_Parallel(string factionId, string targetFactionId)
-        {
-            AttackManager attackManager = new AttackManager(world.Borders.Values,
-                                                            world.Holdings.Values,
-                                                            world.Regions.Values,
-                                                            world.Resources.Values);
-
-            return attackManager.GetNextRegion_Parallel(factionId, targetFactionId);
-        }
-
-        // TODO: Move this from here
-        /// <summary>
-        /// WIP blitzkrieg sequencial algorithm for invading a faction.
-        /// </summary>
-        public void Blitzkrieg_AllFactions_Seq()
-        {
-            while (world.Regions.Values.Count(x => x.FactionId != "gaia" &&
-                                             world.Regions.Values.Any(y => y.FactionId == x.Id)) > 1)
-            {
-                Faction attackerFaction = world.Factions.Values.FirstOrDefault(x => x.Id != "gaia" &&
-                                                                              world.Regions.Values.Any(y => y.FactionId == x.Id));
-                Faction targetedFaction = world.Factions.Values.FirstOrDefault(x => x.Id != "gaia" &&
-                                                                              x.Id != attackerFaction.Id &&
-                                                                              world.Regions.Values.Any(y => y.FactionId == x.Id) &&
-                                                                              FactionHasBorder(attackerFaction.Id, x.Id));
-
-                if (targetedFaction == null)
-                {
-                    break;
-                }
-
-                //Console.WriteLine(attackerFaction.Id + " attacks " + targetedFaction.Id);
-
-                AttackManager attackManager = new AttackManager(world.Borders.Values,
-                                                                world.Holdings.Values,
-                                                                world.Regions.Values,
-                                                                world.Resources.Values);
-                string regionId = string.Empty;
-
-                while (regionId != null)
-                {
-                    regionId = attackManager.GetNextRegion_Seq(attackerFaction.Id, targetedFaction.Id);
-                }
-            }
-        }
-
-        // TODO: Move this from here
-        /// <summary>
-        /// WIP blitzkrieg parallelized algorithm for invading a faction.
-        /// </summary>
-        public void Blitzkrieg_AllFactions_Parallel()
-        {
-            while (world.Regions.Values.Any(x => x.FactionId != "gaia" &&
-                                           world.Regions.Values.Any(y => y.FactionId == x.Id)))
-            {
-                Faction attackerFaction = world.Factions.Values.FirstOrDefault(x => x.Id != "gaia" &&
-                                                                              world.Regions.Values.Any(y => y.FactionId == x.Id));
-                Faction targetedFaction = world.Factions.Values.FirstOrDefault(x => x.Id != "gaia" &&
-                                                                              x.Id != attackerFaction.Id &&
-                                                                              world.Regions.Values.Any(y => y.FactionId == x.Id) &&
-                                                                              FactionHasBorder(attackerFaction.Id, x.Id));
-
-                if (targetedFaction == null)
-                {
-                    break;
-                }
-
-                //Console.WriteLine(attackerFaction.Id + " attacks " + targetedFaction.Id);
-
-                AttackManager attackManager = new AttackManager(world.Borders.Values,
-                                                                world.Holdings.Values,
-                                                                world.Regions.Values,
-                                                                world.Resources.Values);
-                string regionId = string.Empty;
-
-                while (regionId != null)
-                {
-                    regionId = attackManager.GetNextRegion_Parallel(attackerFaction.Id, targetedFaction.Id);
-                }
-            }
-        }
-
-        // TODO: Replace this with Blitzkrieg
-        /// <summary>
-        /// Chooses a region to attack.
-        /// </summary>
-        /// <returns>The region identifier.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        string ChooseAttack(string factionId)
-        {
-            Random random = new Random();
-            List<Region> regionsOwned = world.Regions.Values.Where(x => x.FactionId == factionId).ToList();
-            List<string> choices = new List<string>();
-
-            foreach (Region region in regionsOwned)
-            {
-                List<Border> regionBorders = world.Borders.Values
-                                                    .Where(x => x.Region1Id == region.Id ||
-                                                                x.Region2Id == region.Id)
-                                                    .ToList();
-
-                foreach (Border border in regionBorders)
-                {
-                    Region region2 = world.Regions[border.Region2Id];
-
-                    if (region2.Id != region.Id && region2.FactionId != "gaia")
-                    {
-                        choices.Add(region2.Id);
-                    }
-                }
-            }
-
-            while (choices.Count > 0)
-            {
-                string regionId = choices[random.Next(choices.Count)];
-                Region region = world.Regions[regionId];
-
-                if (region.FactionId != "gaia")
-                {
-                    return regionId;
-                }
-
-                choices.Remove(regionId);
-            }
-
-            // TODO: Better handling of no region to attack
-            return null;
-        }
-
-        void AttackRegion(string factionId, string regionId)
-        {
-            Random random = new Random();
-
-            Region targetRegion = world.Regions[regionId];
-            Faction attackerFaction = world.Factions[factionId];
-            Faction defenderFaction = world.Factions[targetRegion.FactionId];
-
-            List<Army> attackerArmies = world.Armies.Values.Where(army => army.FactionId == attackerFaction.Id).ToList();
-            List<Army> defenderArmies = world.Armies.Values.Where(army => army.FactionId == defenderFaction.Id).ToList();
-
-            int attackerTroops = attackerArmies.Select(y => y.Size).Sum();
-            int defenderTroops = defenderArmies.Select(y => y.Size).Sum();
-
-            while (attackerTroops > 0 && defenderTroops > 0)
-            {
-                int attackerUnitNumber = random.Next(attackerArmies.Count);
-                int defenderUnitNumber = random.Next(defenderArmies.Count);
-
-                while (attackerArmies.ElementAt(attackerUnitNumber).Size == 0)
-                {
-                    attackerUnitNumber = random.Next(attackerArmies.Count);
-                }
-
-                while (defenderArmies.ElementAt(defenderUnitNumber).Size == 0)
-                {
-                    defenderUnitNumber = random.Next(defenderArmies.Count);
-                }
-
-                string attackerUnitId = attackerArmies.ElementAt(attackerUnitNumber).UnitId;
-                string defenderUnitId = defenderArmies.ElementAt(defenderUnitNumber).UnitId;
-
-                Unit attackerUnit = world.Units.Values.FirstOrDefault(unit => unit.Id == attackerUnitId);
-                Army attackerArmy = attackerArmies.FirstOrDefault(army => army.FactionId == attackerFaction.Id);
-
-                Unit defenderUnit = world.Units.Values.FirstOrDefault(unit => unit.Id == defenderUnitId);
-                Army defenderArmy = defenderArmies.FirstOrDefault(army => army.FactionId == defenderFaction.Id);
-
-
-                // TODO: Attack and Defence bonuses
-
-                attackerArmy.Size =
-                    (attackerUnit.Health * attackerArmy.Size - defenderUnit.Power * defenderArmy.Size) /
-                    attackerUnit.Health;
-
-                defenderArmy.Size =
-                    (defenderUnit.Health * defenderArmy.Size - attackerUnit.Power * attackerArmy.Size) /
-                    defenderUnit.Health;
-
-                attackerArmy.Size = Math.Max(0, attackerArmy.Size);
-                defenderArmy.Size = Math.Max(0, defenderArmy.Size);
-            }
-
-            // TODO: In the GameDomainService I should change the realations based on wether the
-            // region was sovereign or not
-
-            if (attackerTroops > defenderTroops)
-            {
-                Console.WriteLine($"{factionId} won in {regionId}");
-                world.TransferRegion(regionId, factionId);
-            }
-
-            // TODO: Do something when the attack failed
-            Console.WriteLine($"{factionId} lost in {regionId}");
         }
 
         /// <summary>

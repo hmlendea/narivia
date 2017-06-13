@@ -5,7 +5,7 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.GameManagers.Interfaces
 {
-    interface IWorldManager
+    public interface IWorldManager
     {
         /// <summary>
         /// Gets or sets the biomes.
@@ -170,5 +170,26 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>Region identifier.</returns>
         /// <param name="factionId">Faction identifier.</param>
         string GetFactionCapital(string factionId);
+
+        /// <summary>
+        /// Gets the regions of a faction.
+        /// </summary>
+        /// <returns>The regions.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        IEnumerable<Region> GetFactionRegions(string factionId);
+
+        /// <summary>
+        /// Gets the holdings of a faction.
+        /// </summary>
+        /// <returns>The holdings.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        IEnumerable<Holding> GetFactionHoldings(string factionId);
+
+        /// <summary>
+        /// Gets the region holdings.
+        /// </summary>
+        /// <returns>The region holdings.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        IEnumerable<Holding> GetRegionHoldings(string regionId);
     }
 }

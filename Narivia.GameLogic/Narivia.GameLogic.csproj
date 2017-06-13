@@ -55,6 +55,7 @@
     <Compile Include="GameManagers\AttackManager.cs" />
     <Compile Include="GameManagers\WorldManager.cs" />
     <Compile Include="GameManagers\Interfaces\IWorldManager.cs" />
+    <Compile Include="GameManagers\Interfaces\IAttackManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
