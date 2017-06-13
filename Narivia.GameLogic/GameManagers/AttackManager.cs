@@ -92,6 +92,8 @@ namespace Narivia.GameLogic.GameManagers
                 targets[region.Id] += regionsOwnedIds.Count(x => world.RegionHasBorder(x, region.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
 
                 // TODO: I should also take the relations into consideration
+
+                // TODO: Maybe add a random importance to each region in order to reduce predictibility a little
             });
 
             if (targets.Count == 0)
@@ -102,8 +104,6 @@ namespace Narivia.GameLogic.GameManagers
             int maxScore = targets.Max(x => x.Value);
             List<string> topTargets = targets.Keys.Where(x => targets[x] == maxScore).ToList();
             string regionId = topTargets[random.Next(0, topTargets.Count())];
-
-            world.TransferRegion(regionId, factionId);
 
             return regionId;
         }

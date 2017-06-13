@@ -251,13 +251,13 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Gets the regions of a faction.
+        /// Gets the armies of a faction.
         /// </summary>
-        /// <returns>The regions.</returns>
+        /// <returns>The armies.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public IEnumerable<Region> GetFactionRegions(string factionId)
+        public IEnumerable<Army> GetFactionArmies(string factionId)
         {
-            return Regions.Values.Where(r => r.FactionId == factionId);
+            return Armies.Values.Where(a => a.FactionId == factionId);
         }
 
         /// <summary>
@@ -269,6 +269,16 @@ namespace Narivia.GameLogic.GameManagers
         {
             return Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
                                               Regions[h.RegionId].FactionId == factionId);
+        }
+
+        /// <summary>
+        /// Gets the regions of a faction.
+        /// </summary>
+        /// <returns>The regions.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public IEnumerable<Region> GetFactionRegions(string factionId)
+        {
+            return Regions.Values.Where(r => r.FactionId == factionId);
         }
 
         /// <summary>

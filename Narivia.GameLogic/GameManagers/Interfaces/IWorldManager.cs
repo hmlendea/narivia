@@ -172,11 +172,11 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         string GetFactionCapital(string factionId);
 
         /// <summary>
-        /// Gets the regions of a faction.
+        /// Gets the armies of a faction.
         /// </summary>
-        /// <returns>The regions.</returns>
+        /// <returns>The armies.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        IEnumerable<Region> GetFactionRegions(string factionId);
+        IEnumerable<Army> GetFactionArmies(string factionId);
 
         /// <summary>
         /// Gets the holdings of a faction.
@@ -184,6 +184,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The holdings.</returns>
         /// <param name="factionId">Faction identifier.</param>
         IEnumerable<Holding> GetFactionHoldings(string factionId);
+
+        /// <summary>
+        /// Gets the regions of a faction.
+        /// </summary>
+        /// <returns>The regions.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        IEnumerable<Region> GetFactionRegions(string factionId);
 
         /// <summary>
         /// Gets the region holdings.

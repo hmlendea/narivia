@@ -139,23 +139,19 @@ namespace Narivia.GameLogic.GameManagers
         /// Checks wether the specified regions share a border.
         /// </summary>
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
-        /// <param name="region1Id">First region identifier.</param>
-        /// <param name="region2Id">Second region identifier.</param>
-        public bool RegionHasBorder(string region1Id, string region2Id)
-        {
-            return world.RegionHasBorder(region1Id, region2Id);
-        }
+        /// <param name="sourceRegionId">Source region identifier.</param>
+        /// <param name="targetRegionId">Target region identifier.</param>
+        public bool RegionHasBorder(string sourceRegionId, string targetRegionId)
+        => world.RegionHasBorder(sourceRegionId, targetRegionId);
 
         /// <summary>
-        /// Checks wether the specified regions share a border.
+        /// Checks wether the specified factions share a border.
         /// </summary>
-        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
-        /// <param name="faction1Id">First faction identifier.</param>
-        /// <param name="faction2Id">Second faction identifier.</param>
-        public bool FactionHasBorder(string faction1Id, string faction2Id)
-        {
-            return world.FactionHasBorder(faction1Id, faction2Id);
-        }
+        /// <returns><c>true</c>, if the specified factions share a border, <c>false</c> otherwise.</returns>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        public bool FactionHasBorder(string sourceFactionId, string targetFactionId)
+        => world.FactionHasBorder(sourceFactionId, targetFactionId);
 
         /// <summary>
         /// Returns the faction identifier at the given position.
@@ -164,20 +160,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
         public string FactionIdAtPosition(int x, int y)
-        {
-            return world.FactionIdAtPosition(x, y);
-        }
-
-        /// <summary>
-        /// Returns the faction colour at the given position.
-        /// </summary>
-        /// <returns>The faction colour.</returns>
-        /// <param name="x">The x coordinate.</param>
-        /// <param name="y">The y coordinate.</param>
-        public Colour FactionColourAtPosition(int x, int y)
-        {
-            return world.Factions[world.FactionIdAtPosition(x, y)].Colour;
-        }
+        => world.FactionIdAtPosition(x, y);
 
         /// <summary>
         /// Transfers the specified region to the specified faction.
@@ -185,9 +168,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="regionId">Region identifier.</param>
         /// <param name="factionId">Faction identifier.</param>
         public void TransferRegion(string regionId, string factionId)
-        {
-            world.TransferRegion(regionId, factionId);
-        }
+        => world.TransferRegion(regionId, factionId);
 
         /// <summary>
         /// Gets the name of the faction.
@@ -195,9 +176,15 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction name.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public string GetFactionName(string factionId)
-        {
-            return world.Factions.Values.FirstOrDefault(f => f.Id == factionId).Name;
-        }
+        => world.Factions[factionId].Name;
+
+        /// <summary>
+        /// Returns the colour of a faction.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public Colour GetFactionColour(string factionId)
+        => world.Factions[factionId].Colour;
 
         /// <summary>
         /// Gets the faction income.
@@ -251,14 +238,16 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <returns>The number of regions.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionRegionsCount(string factionId) => world.GetFactionRegions(factionId).ToList().Count;
+        public int GetFactionRegionsCount(string factionId)
+        => world.GetFactionRegions(factionId).ToList().Count;
 
         /// <summary>
         /// Gets the holdings count of a faction.
         /// </summary>
         /// <returns>The number of holdings.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionHoldingsCount(string factionId) => world.GetFactionHoldings(factionId).ToList().Count;
+        public int GetFactionHoldingsCount(string factionId)
+        => world.GetFactionHoldings(factionId).ToList().Count;
 
         /// <summary>
         /// Gets the faction wealth.
@@ -266,9 +255,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction wealth.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionWealth(string factionId)
-        {
-            return world.Factions.Values.FirstOrDefault(f => f.Id == factionId).Wealth;
-        }
+        => world.Factions[factionId].Wealth;
 
         /// <summary>
         /// Gets the faction troops count.
@@ -276,11 +263,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction troops count.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionTroopsCount(string factionId)
-        {
-            return world.Armies.Values
-                         .Where(x => x.FactionId == factionId)
-                         .Sum(x => x.Size);
-        }
+        => world.GetFactionArmies(factionId).Sum(a => a.Size);
 
         /// <summary>
         /// Gets the faction capital.
@@ -288,30 +271,31 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction capital.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public string GetFactionCapital(string factionId)
-        {
-            return world.GetFactionCapital(factionId);
-        }
+        => world.GetFactionCapital(factionId);
 
         /// <summary>
         /// Gets the regions of a faction.
         /// </summary>
         /// <returns>The regions.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public IEnumerable<Region> GetFactionRegions(string factionId) => world.GetFactionRegions(factionId);
+        public IEnumerable<Region> GetFactionRegions(string factionId)
+        => world.GetFactionRegions(factionId);
 
         /// <summary>
         /// Gets the holdings of a faction.
         /// </summary>
         /// <returns>The holdings.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public IEnumerable<Holding> GetFactionHoldings(string factionId) => world.GetFactionHoldings(factionId);
+        public IEnumerable<Holding> GetFactionHoldings(string factionId)
+        => world.GetFactionHoldings(factionId);
 
         /// <summary>
         /// Gets the holdings of a region.
         /// </summary>
         /// <returns>The holdings.</returns>
         /// <param name="regionId">Region identifier.</param>
-        public IEnumerable<Holding> GetRegionHoldings(string regionId) => world.GetRegionHoldings(regionId);
+        public IEnumerable<Holding> GetRegionHoldings(string regionId)
+        => world.GetRegionHoldings(regionId);
 
         /// <summary>
         /// Adds the specified amount of troops of a unit for a faction.

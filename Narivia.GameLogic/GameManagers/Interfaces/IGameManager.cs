@@ -94,17 +94,17 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// Checks wether the specified regions share a border.
         /// </summary>
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
-        /// <param name="region1Id">First region identifier.</param>
-        /// <param name="region2Id">Second region identifier.</param>
-        bool RegionHasBorder(string region1Id, string region2Id);
+        /// <param name="sourceRegionId">Source region identifier.</param>
+        /// <param name="targetRegionId">Target region identifier.</param>
+        bool RegionHasBorder(string sourceRegionId, string targetRegionId);
 
         /// <summary>
-        /// Checks wether the specified regions share a border.
+        /// Checks wether the specified factions share a border.
         /// </summary>
-        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
-        /// <param name="faction1Id">First faction identifier.</param>
-        /// <param name="faction2Id">Second faction identifier.</param>
-        bool FactionHasBorder(string faction1Id, string faction2Id);
+        /// <returns><c>true</c>, if the specified factions share a border, <c>false</c> otherwise.</returns>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        bool FactionHasBorder(string sourceFactionId, string targetFactionId);
 
         /// <summary>
         /// Returns the faction identifier at the given position.
@@ -113,14 +113,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
         string FactionIdAtPosition(int x, int y);
-
-        /// <summary>
-        /// Returns the faction colour at the given position.
-        /// </summary>
-        /// <returns>The faction colour.</returns>
-        /// <param name="x">The x coordinate.</param>
-        /// <param name="y">The y coordinate.</param>
-        Colour FactionColourAtPosition(int x, int y);
 
         /// <summary>
         /// Transfers the specified region to the specified faction.
@@ -135,6 +127,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The faction name.</returns>
         /// <param name="factionId">Faction identifier.</param>
         string GetFactionName(string factionId);
+
+        /// <summary>
+        /// Returns the colour of a faction.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        Colour GetFactionColour(string factionId);
 
         /// <summary>
         /// Gets the faction income.
