@@ -8,7 +8,7 @@ namespace Narivia.Infrastructure.Helpers
     /// <summary>
     /// Fast Bitmap.
     /// </summary>
-    public sealed class FastBitmap : IDisposable
+    public class FastBitmap : IDisposable
     {
         readonly Bitmap source;
         IntPtr Iptr = IntPtr.Zero;
@@ -120,7 +120,7 @@ namespace Narivia.Infrastructure.Helpers
         /// <summary>
         /// Locks the bitmap data
         /// </summary>
-        public virtual void LockBits()
+        public void LockBits()
         {
             if (bitsLocked)
             {
@@ -153,7 +153,7 @@ namespace Narivia.Infrastructure.Helpers
         /// <summary>
         /// Unlocks the bitmap data
         /// </summary>
-        public virtual void UnlockBits()
+        public void UnlockBits()
         {
             if (!bitsLocked)
             {
@@ -170,7 +170,7 @@ namespace Narivia.Infrastructure.Helpers
         /// <param name="x">X Coordinate</param>
         /// <param name="y">Y Coordinate</param>
         /// <returns>Pixel color</returns>
-        public virtual Color GetPixel(int x, int y)
+        public Color GetPixel(int x, int y)
         {
             Color clr = Color.Empty;
             byte a, r, g, b;
@@ -214,7 +214,7 @@ namespace Narivia.Infrastructure.Helpers
         /// <param name="x">X Coordinate</param>
         /// <param name="y">Y Coordinate</param>
         /// <param name="color">Pixel color</param>
-        public virtual void SetPixel(int x, int y, Color color)
+        public void SetPixel(int x, int y, Color color)
         {
             int colorComponentsCount = Depth / 8;
             int index = ((y * Width) + x) * colorComponentsCount;
@@ -247,7 +247,7 @@ namespace Narivia.Infrastructure.Helpers
         /// <see cref="Dispose"/> method leaves the <see cref="FastBitmap"/> in an unusable state. After
         /// calling <see cref="Dispose"/>, you must release all references to the <see cref="FastBitmap"/>
         /// so the garbage collector can reclaim the memory that the <see cref="FastBitmap"/> was occupying.</remarks>
-        public virtual void Dispose()
+        public void Dispose()
         {
             UnlockBits();
             source.Dispose();
