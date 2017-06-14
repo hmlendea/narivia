@@ -58,6 +58,7 @@
     <Compile Include="GameManagers\Interfaces\IAttackManager.cs" />
     <Compile Include="Events\RegionAttackEvent.cs" />
     <Compile Include="Enumerations\BattleResult.cs" />
+    <Compile Include="Generators\NameGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
@@ -78,6 +79,7 @@
     <Folder Include="GameManagers\Interfaces\" />
     <Folder Include="Events\" />
     <Folder Include="Enumerations\" />
+    <Folder Include="Generators\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
