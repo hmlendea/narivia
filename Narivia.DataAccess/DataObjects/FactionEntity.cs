@@ -28,5 +28,11 @@
         /// </summary>
         /// <value>The colour's hexadecimal value.</value>
         public string ColourHexadecimal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the culture identifier.
+        /// </summary>
+        /// <value>The culture identifier.</value>
+        public string CultureId { get; set; }
     }
 }

@@ -38,6 +38,13 @@ namespace Narivia.Models
         public Colour Colour { get; set; }
 
         /// <summary>
+        /// Gets or sets the culture identifier.
+        /// </summary>
+        /// <value>The culture identifier.</value>
+        [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
+        public string CultureId { get; set; }
+
+        /// <summary>
         /// Gets or sets the wealth.
         /// </summary>
         /// <value>The wealth.</value>

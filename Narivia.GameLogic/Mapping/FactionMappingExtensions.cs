@@ -16,7 +16,8 @@ namespace Narivia.GameLogic.Mapping
                 Id = factionEntity.Id,
                 Name = factionEntity.Name,
                 Description = factionEntity.Description,
-                Colour = ColourTranslator.FromHexadecimal(factionEntity.ColourHexadecimal)
+                Colour = ColourTranslator.FromHexadecimal(factionEntity.ColourHexadecimal),
+                CultureId = factionEntity.CultureId
             };
 
             return faction;
@@ -29,7 +30,8 @@ namespace Narivia.GameLogic.Mapping
                 Id = faction.Id,
                 Name = faction.Name,
                 Description = faction.Description,
-                ColourHexadecimal = ColourTranslator.ToHexadecimal(faction.Colour)
+                ColourHexadecimal = ColourTranslator.ToHexadecimal(faction.Colour),
+                CultureId = faction.CultureId
             };
 
             return factionEntity;
