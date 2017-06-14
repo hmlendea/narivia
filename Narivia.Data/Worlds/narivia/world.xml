@@ -13,6 +13,7 @@
   <BaseFactionIncome>50</BaseFactionIncome>
   <BaseFactionRecruitment>50</BaseFactionRecruitment>
   <MinTroopsAttack>200</MinTroopsAttack>
+  <HoldingsPerFaction>25</HoldingsPerFaction>
   <StartingTroops>75</StartingTroops>
   <StartingWealth>250</StartingWealth>
   <StartingReligion>10</StartingReligion>

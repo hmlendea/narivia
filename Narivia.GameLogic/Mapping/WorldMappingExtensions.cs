@@ -23,6 +23,7 @@ namespace Narivia.GameLogic.Mapping
                 BaseRegionIncome = worldEntity.BaseRegionIncome,
                 BaseRegionRecruitment = worldEntity.BaseRegionRecruitment,
                 BaseFactionRecruitment = worldEntity.BaseFactionRecruitment,
+                HoldingSlotsPerFaction = worldEntity.HoldingSlotsPerFaction,
                 StartingWealth = worldEntity.StartingWealth,
                 StartingTroops = worldEntity.StartingTroops
             };
@@ -45,6 +46,7 @@ namespace Narivia.GameLogic.Mapping
                 BaseRegionIncome = world.BaseRegionIncome,
                 BaseRegionRecruitment = world.BaseRegionRecruitment,
                 BaseFactionRecruitment = world.BaseFactionRecruitment,
+                HoldingSlotsPerFaction = world.HoldingSlotsPerFaction,
                 StartingWealth = world.StartingWealth,
                 StartingTroops = world.StartingTroops
             };

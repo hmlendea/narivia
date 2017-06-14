@@ -84,6 +84,13 @@ namespace Narivia.Models
         public int BaseFactionRecruitment { get; set; }
 
         /// <summary>
+        /// Gets or sets the number of holding slots per faction.
+        /// </summary>
+        /// <value>The number of holding slots per faction.</value>
+        [Range(0, int.MaxValue)]
+        public int HoldingSlotsPerFaction { get; set; }
+
+        /// <summary>
         /// Gets or sets the starting wealth.
         /// </summary>
         /// <value>The starting wealth.</value>
