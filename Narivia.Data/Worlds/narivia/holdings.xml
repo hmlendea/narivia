@@ -106,7 +106,7 @@
     <RegionId>lev_vesti</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_gal</Id>
+    <Id>h_fortah</Id>
     <Name>Fortah</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
@@ -3315,7 +3315,7 @@
     <Id>h_vorinsk</Id>
     <Name>Vorinsk</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>empty</Type>
+    <Type>Empty</Type>
     <RegionId>sovija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
