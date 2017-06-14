@@ -17,6 +17,13 @@ namespace Narivia.GameLogic.GameManagers
         IWorldManager world;
         IAttackManager attack;
 
+        const int HOLDING_CASTLE_INCOME = 5;
+        const int HOLDING_CASTLE_RECRUITMENT = 15;
+        const int HOLDING_CITY_INCOME = 15;
+        const int HOLDING_CITY_RECRUITMENT = 5;
+        const int HOLDING_TEMPLE_INCOME = 10;
+        const int HOLDING_TEMPLE_RECRUITMENT = 10;
+
         /// <summary>
         /// Occurs when a player region is attacked.
         /// </summary>
@@ -224,8 +231,10 @@ namespace Narivia.GameLogic.GameManagers
         {
             int income = 0;
 
-            income += world.Regions.Values.Count(r => r.FactionId == factionId) * BaseRegionIncome;
-            // TODO: Also calculate the holdings income
+            income += GetFactionRegionsCount(factionId) * BaseRegionIncome;
+            income += world.GetFactionHoldings(factionId).Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_INCOME;
+            income += world.GetFactionHoldings(factionId).Count(h => h.Type == HoldingType.City) * HOLDING_CITY_INCOME;
+            income += world.GetFactionHoldings(factionId).Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_INCOME;
 
             return income;
         }
@@ -241,7 +250,6 @@ namespace Narivia.GameLogic.GameManagers
 
             outcome += world.Armies.Values.Where(x => x.FactionId == factionId)
                                          .Sum(x => x.Size * world.Units[x.UnitId].Maintenance);
-            // TODO: Also calculate the holdings outcome
 
             return outcome;
         }

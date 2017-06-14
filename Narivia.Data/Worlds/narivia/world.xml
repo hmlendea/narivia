@@ -8,12 +8,13 @@
   <Author>Mlendea Horatiu</Author>
   <Width>640</Width>
   <Height>640</Height>
-  <BaseRegionIncome>10</BaseRegionIncome>
-  <BaseRegionRecruitment>2</BaseRegionRecruitment>
+  <BaseRegionIncome>20</BaseRegionIncome>
+  <BaseRegionRecruitment>5</BaseRegionRecruitment>
+  <BaseFactionIncome>50</BaseFactionIncome>
   <BaseFactionRecruitment>50</BaseFactionRecruitment>
   <MinTroopsAttack>200</MinTroopsAttack>
-  <StartingTroops>50</StartingTroops>
-  <StartingWealth>150</StartingWealth>
+  <StartingTroops>75</StartingTroops>
+  <StartingWealth>250</StartingWealth>
   <StartingReligion>10</StartingReligion>
   <HealingRate>0</HealingRate>
   <RecruitmentRate>
