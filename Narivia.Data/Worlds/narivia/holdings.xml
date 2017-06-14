@@ -1,234 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfHoldingEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <HoldingEntity>
-    <Id>h_alpalet_castle</Id>
-    <Name>Alpalet Castle</Name>
+    <Id>h_alpalet</Id>
+    <Name>Alpalet</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>alpalet</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_alpalet_city</Id>
-    <Name>Alpalet City</Name>
+    <Id>h_cantolet</Id>
+    <Name>Cantolet</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>alpalet</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_alpalet_temple</Id>
-    <Name>Alpalet Temple</Name>
+    <Id>h_talet</Id>
+    <Name>Talet</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>alpalet</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_larvenna_castle</Id>
-    <Name>Larvenna Castle</Name>
+    <Id>h_venna</Id>
+    <Name>Venna</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>larvenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_larvenna_city</Id>
-    <Name>Larvenna City</Name>
+    <Id>h_larra</Id>
+    <Name>Larra</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>larvenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_larvenna_temple</Id>
-    <Name>Larvenna Temple</Name>
+    <Id>h_ragola</Id>
+    <Name>Ragola</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>larvenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_vanilet_castle</Id>
-    <Name>Vanilet Castle</Name>
-    <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Castle</Type>
-    <RegionId>vanilet</RegionId>
-  </HoldingEntity>
-  <HoldingEntity>
-    <Id>h_vanilet_city</Id>
-    <Name>Vanilet City</Name>
+    <Id>h_trilet</Id>
+    <Name>Trilet</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>City</Type>
     <RegionId>vanilet</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_vanilet_temple</Id>
-    <Name>Vanilet Temple</Name>
+    <Id>h_amstalet</Id>
+    <Name>Amstalet</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>vanilet</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_hal_morthi_castle</Id>
-    <Name>Hal Morthi Castle</Name>
+    <Id>h_halet</Id>
+    <Name>Halet</Name>
+    <Description>Lorem ipsum dolor sit amet</Description>
+    <Type>Empty</Type>
+    <RegionId>vanilet</RegionId>
+  </HoldingEntity>
+  <HoldingEntity>
+    <Id>h_hal</Id>
+    <Name>Hal</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>hal_morthi</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_hal_morthi_city</Id>
-    <Name>Hal Morthi City</Name>
+    <Id>h_morthi</Id>
+    <Name>Morthi</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>hal_morthi</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_hal_morthi_temple</Id>
-    <Name>Hal Morthi Temple</Name>
+    <Id>h_roosh</Id>
+    <Name>Roosh</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>hal_morthi</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_lev_vesti_castle</Id>
-    <Name>Lev Vesti Castle</Name>
-    <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Castle</Type>
-    <RegionId>lev_vesti</RegionId>
-  </HoldingEntity>
-  <HoldingEntity>
-    <Id>h_lev_vesti_city</Id>
-    <Name>Lev Vesti City</Name>
+    <Id>h_lev</Id>
+    <Name>Lev</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>City</Type>
     <RegionId>lev_vesti</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_lev_vesti_temple</Id>
-    <Name>Lev Vesti Temple</Name>
+    <Id>h_voll</Id>
+    <Name>Voll</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>lev_vesti</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_gal_fortah_castle</Id>
-    <Name>Gal Fortah Castle</Name>
+    <Id>h_midd</Id>
+    <Name>Midd</Name>
+    <Description>Lorem ipsum dolor sit amet</Description>
+    <Type>Empty</Type>
+    <RegionId>lev_vesti</RegionId>
+  </HoldingEntity>
+  <HoldingEntity>
+    <Id>h_gal</Id>
+    <Name>Fortah</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>gal_fortah</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_gal_fortah_city</Id>
-    <Name>Gal Fortah City</Name>
+    <Id>h_gal</Id>
+    <Name>Gal</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>gal_fortah</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_gal_fortah_temple</Id>
-    <Name>Gal Fortah Temple</Name>
+    <Id>h_guul</Id>
+    <Name>Guul</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>gal_fortah</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_caravenna_castle</Id>
-    <Name>Caravenna Castle</Name>
+    <Id>h_carra</Id>
+    <Name>Carra</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>caravenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_caravenna_city</Id>
-    <Name>Caravenna City</Name>
+    <Id>h_cosenna</Id>
+    <Name>Cosenna</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>caravenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_caravenna_temple</Id>
-    <Name>Caravenna Temple</Name>
+    <Id>h_versala</Id>
+    <Name>Versala</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>caravenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_galenna_castle</Id>
-    <Name>Galenna Castle</Name>
+    <Id>h_breseno</Id>
+    <Name>Breseno</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>galenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_galenna_city</Id>
-    <Name>Galenna City</Name>
+    <Id>h_mareca</Id>
+    <Name>Mareca</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>galenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_galenna_temple</Id>
-    <Name>Galenna Temple</Name>
+    <Id>h_cremaro</Id>
+    <Name>Cremaro</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>galenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_dorenna_castle</Id>
-    <Name>Dorenna Castle</Name>
+    <Id>h_dora</Id>
+    <Name>Dora</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>dorenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_dorenna_city</Id>
-    <Name>Dorenna City</Name>
+    <Id>h_terna</Id>
+    <Name>Terna</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>dorenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_dorenna_temple</Id>
-    <Name>Dorenna Temple</Name>
+    <Id>h_ercola</Id>
+    <Name>Ercola</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Temple</Type>
     <RegionId>dorenna</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_viris_castle</Id>
-    <Name>Viris Castle</Name>
+    <Id>h_viris</Id>
+    <Name>Viris</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>viris</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_viris_city</Id>
-    <Name>Viris City</Name>
+    <Id>h_caris</Id>
+    <Name>Caris</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>viris</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_viris_temple</Id>
-    <Name>Viris Temple</Name>
+    <Id>h_taranis</Id>
+    <Name>Taranis</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>viris</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_veuristia_castle</Id>
-    <Name>Veuristia Castle</Name>
+    <Id>h_veuris</Id>
+    <Name>Veuris</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>veuristia</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_veuristia_city</Id>
-    <Name>Veuristia City</Name>
+    <Id>h_salis</Id>
+    <Name>Salis</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>veuristia</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_veuristia_temple</Id>
-    <Name>Veuristia Temple</Name>
+    <Id>h_caltanis</Id>
+    <Name>Caltanis</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>veuristia</RegionId>
   </HoldingEntity>
   <HoldingEntity>
@@ -3298,45 +3298,45 @@
     <RegionId>keplion</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_sovija_castle</Id>
-    <Name>Sovija Castle</Name>
+    <Id>h_sovija</Id>
+    <Name>Sovija</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>sovija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_sovija_city</Id>
-    <Name>Sovija City</Name>
+    <Id>h_petroja</Id>
+    <Name>Petroja</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>sovija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_sovija_temple</Id>
-    <Name>Sovija Temple</Name>
+    <Id>h_vorinsk</Id>
+    <Name>Vorinsk</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>empty</Type>
     <RegionId>sovija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_manija_castle</Id>
-    <Name>Manija Castle</Name>
+    <Id>h_kulovsk</Id>
+    <Name>Kulovsk</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>manija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_manija_city</Id>
-    <Name>Manija City</Name>
+    <Id>h_kalich</Id>
+    <Name>Kalich</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>manija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_manija_temple</Id>
-    <Name>Manija Temple</Name>
+    <Id>h_murov</Id>
+    <Name>Murov</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>manija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
@@ -3403,45 +3403,45 @@
     <RegionId>nampion</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_spogdija_castle</Id>
-    <Name>Spogdija Castle</Name>
+    <Id>h_spognov</Id>
+    <Name>Spognov</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>spogdija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_spogdija_city</Id>
-    <Name>Spogdija City</Name>
+    <Id>h_zlatovo</Id>
+    <Name>Zlatovo</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>City</Type>
     <RegionId>spogdija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_spogdija_temple</Id>
-    <Name>Spogdija Temple</Name>
+    <Id>h_volov</Id>
+    <Name>Volov</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Temple</Type>
     <RegionId>spogdija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_remnija_castle</Id>
-    <Name>Remnija Castle</Name>
+    <Id>h_koditsa</Id>
+    <Name>Koditsa</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>remnija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_remnija_city</Id>
-    <Name>Remnija City</Name>
+    <Id>h_solnich</Id>
+    <Name>Solnich</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>remnija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_remnija_temple</Id>
-    <Name>Remnija Temple</Name>
+    <Id>h_nolovysl</Id>
+    <Name>Nolovysl</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>remnija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
@@ -4558,24 +4558,24 @@
     <RegionId>bertimion</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_novodaja_castle</Id>
-    <Name>Novodaja Castle</Name>
+    <Id>h_shelewno</Id>
+    <Name>Shelewno</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>novodaja</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_novodaja_city</Id>
-    <Name>Novodaja City</Name>
+    <Id>h_gradich</Id>
+    <Name>Gradich</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>novodaja</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_novodaja_temple</Id>
-    <Name>Novodaja Temple</Name>
+    <Id>h_krasno</Id>
+    <Name>Krasno</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>novodaja</RegionId>
   </HoldingEntity>
   <HoldingEntity>
@@ -4768,87 +4768,87 @@
     <RegionId>haakon</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_yngling_castle</Id>
-    <Name>Yngling Castle</Name>
+    <Id>h_hagardalr</Id>
+    <Name>Hagardalr</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>yngling</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_yngling_city</Id>
-    <Name>Yngling City</Name>
+    <Id>h_alvik</Id>
+    <Name>alvik</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>yngling</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_yngling_temple</Id>
-    <Name>Yngling Temple</Name>
+    <Id>h_hvammen</Id>
+    <Name>Hvammen</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>yngling</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_forstaag_castle</Id>
-    <Name>Forstaag Castle</Name>
+    <Id>h_kalfagr</Id>
+    <Name>Kalfagr</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>forstaag</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_forstaag_city</Id>
-    <Name>Forstaag City</Name>
+    <Id>h_kjord</Id>
+    <Name>Kjord</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>forstaag</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_forstaag_temple</Id>
-    <Name>Forstaag Temple</Name>
+    <Id>h_melrakki</Id>
+    <Name>Melrakki</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>forstaag</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_hrisskar_castle</Id>
-    <Name>Hrisskar Castle</Name>
+    <Id>h_laugr</Id>
+    <Name>Laugr</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>hrisskar</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_hrisskar_city</Id>
-    <Name>Hrisskar City</Name>
+    <Id>h_gaulandr_city</Id>
+    <Name>Gaulandr</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>hrisskar</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_hrisskar_temple</Id>
-    <Name>Hrisskar Temple</Name>
+    <Id>h_loekr</Id>
+    <Name>Loekr</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>hrisskar</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_danija_castle</Id>
-    <Name>Danija Castle</Name>
+    <Id>h_danbrich</Id>
+    <Name>Danbrich</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
     <Type>Castle</Type>
     <RegionId>danija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_danija_city</Id>
-    <Name>Danija City</Name>
+    <Id>h_zhinsk_city</Id>
+    <Name>Zhinsk</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>City</Type>
+    <Type>Empty</Type>
     <RegionId>danija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
-    <Id>h_danija_temple</Id>
-    <Name>Danija Temple</Name>
+    <Id>h_proporod</Id>
+    <Name>Proporod</Name>
     <Description>Lorem ipsum dolor sit amet</Description>
-    <Type>Temple</Type>
+    <Type>Empty</Type>
     <RegionId>danija</RegionId>
   </HoldingEntity>
   <HoldingEntity>
