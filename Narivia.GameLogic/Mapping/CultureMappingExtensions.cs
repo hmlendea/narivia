@@ -15,7 +15,8 @@ namespace Narivia.GameLogic.Mapping
                 Id = cultureEntity.Id,
                 Name = cultureEntity.Name,
                 Description = cultureEntity.Description,
-                TextureSet = cultureEntity.TextureSet
+                TextureSet = cultureEntity.TextureSet,
+                SamplePlaceNames = cultureEntity.SamplePlaceNames,
             };
 
             return culture;
@@ -28,7 +29,8 @@ namespace Narivia.GameLogic.Mapping
                 Id = culture.Id,
                 Name = culture.Name,
                 Description = culture.Description,
-                TextureSet = culture.TextureSet
+                TextureSet = culture.TextureSet,
+                SamplePlaceNames = culture.SamplePlaceNames
             };
 
             return cultureEntity;
