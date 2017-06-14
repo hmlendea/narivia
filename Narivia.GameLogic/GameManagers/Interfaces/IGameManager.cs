@@ -128,6 +128,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         void TransferRegion(string regionId, string factionId);
 
         /// <summary>
+        /// Gets the culture of a faction.
+        /// </summary>
+        /// <returns>The culture.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        Culture GetFactionCulture(string factionId);
+
+        /// <summary>
         /// Gets the name of the faction.
         /// </summary>
         /// <returns>The faction name.</returns>
