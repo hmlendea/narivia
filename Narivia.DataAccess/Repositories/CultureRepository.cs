@@ -107,7 +107,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(id, nameof(ArmyEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(CultureEntity).Replace("Entity", ""));
             }
         }
     }

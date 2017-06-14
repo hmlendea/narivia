@@ -99,7 +99,7 @@ namespace Narivia.DataAccess.Repositories
             {
                 throw new DuplicateEntityException(
                     $"{region1Id}-{region2Id}",
-                    nameof(ArmyEntity).Replace("Entity", ""));
+                    nameof(BorderEntity).Replace("Entity", ""));
             }
         }
     }
