@@ -6,7 +6,46 @@
     <Name>Nordic</Name>
     <Description>The culture of the Nords</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Actene</string>
+      <string>Agopias</string>
+      <string>Alvik</string>
+      <string>Antene</string>
+      <string>Bjorfell</string>
+      <string>Brynjolfr</string>
+      <string>Coralas</string>
+      <string>Forstaag</string>
+      <string>Gammeland</string>
+      <string>Gaulandr</string>
+      <string>Gramdaar</string>
+      <string>Grothar</string>
+      <string>Gunnolfsfell</string>
+      <string>Haakon</string>
+      <string>Hagardalr</string>
+      <string>Hrisskar</string>
+      <string>Hrothgar</string>
+      <string>Hvammen</string>
+      <string>Hylfjord</string>
+      <string>Ingolfsfell</string>
+      <string>Jhgrothaar</string>
+      <string>Jhkaar</string>
+      <string>Jonheim</string>
+      <string>Jorundarfell</string>
+      <string>Kalfagr</string>
+      <string>Kjord</string>
+      <string>Laugr</string>
+      <string>Loekr</string>
+      <string>Manarfell</string>
+      <string>Melrakki</string>
+      <string>Meoalfell</string>
+      <string>Miretova</string>
+      <string>Mjorfell</string>
+      <string>Ordum</string>
+      <string>Skaal</string>
+      <string>Thanus</string>
+      <string>Urskaal</string>
+      <string>Yngaar</string>
+      <string>Yngling</string>
+      <string>Zenasya</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -15,7 +54,42 @@
     <Name>Sudic</Name>
     <Description>The culture of the Sudics</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Allid</string>
+      <string>Arid</string>
+      <string>Bahadiq</string>
+      <string>Batin</string>
+      <string>Dabba</string>
+      <string>Dourat</string>
+      <string>Hammasi</string>
+      <string>Hareeq</string>
+      <string>Kadda</string>
+      <string>Kahhka</string>
+      <string>Kermah</string>
+      <string>Kermasi</string>
+      <string>Kermasiya</string>
+      <string>Khabra</string>
+      <string>Kharid</string>
+      <string>Khayek</string>
+      <string>Mabayda</string>
+      <string>Majma</string>
+      <string>Marahkal</string>
+      <string>Marashan</string>
+      <string>Mukaydah</string>
+      <string>Muzahmyyia</string>
+      <string>Qallid</string>
+      <string>Qallubair</string>
+      <string>Rayyil</string>
+      <string>Rwadda</string>
+      <string>Ryadh</string>
+      <string>Sharid</string>
+      <string>Shatra</string>
+      <string>Sudair</string>
+      <string>Sulayya</string>
+      <string>Sulayyil</string>
+      <string>Surahkale</string>
+      <string>Surat</string>
+      <string>Tallubair</string>
+      <string>Usiyah</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -87,16 +161,108 @@
     <Name>Letian</Name>
     <Description>The culture of the Letians</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Alet</string>
+      <string>Alpalet</string>
+      <string>Amstalet</string>
+      <string>Barilet</string>
+      <string>Biciclet</string>
+      <string>Borgilet</string>
+      <string>Cantolet</string>
+      <string>Dacilet</string>
+      <string>Endalet</string>
+      <string>Ercolet</string>
+      <string>Fortalet</string>
+      <string>Genolet</string>
+      <string>Halet</string>
+      <string>Horilet</string>
+      <string>Mindalet</string>
+      <string>Nagalet</string>
+      <string>Ondolet</string>
+      <string>Pistalet</string>
+      <string>Portalet</string>
+      <string>Rovilet</string>
+      <string>Runalet</string>
+      <string>Salet</string>
+      <string>Sponilet</string>
+      <string>Starilet</string>
+      <string>Talet</string>
+      <string>Trilet</string>
+      <string>Vanilet</string>
+      <string>Vistalet</string>
+      <string>Zenolet</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
-    <Id>rennjan</Id>
-    <TextureSet>rennjan</TextureSet>
-    <Name>Rennjan</Name>
-    <Description>The culture of the Rannans and Sporadjans</Description>
+    <Id>sporic</Id>
+    <TextureSet>sporic</TextureSet>
+    <Name>Sporic</Name>
+    <Description>The culture of the Sporadjans</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Danbrich</string>
+      <string>Danija</string>
+      <string>Gradich</string>
+      <string>Kalich</string>
+      <string>Koditsa</string>
+      <string>Krasno</string>
+      <string>Kulovsk</string>
+      <string>Lublija</string>
+      <string>Malpija</string>
+      <string>Manija</string>
+      <string>Murov</string>
+      <string>Nolovysl</string>
+      <string>Novodaja</string>
+      <string>Petroja</string>
+      <string>Proporod</string>
+      <string>Remnija</string>
+      <string>Shelewno</string>
+      <string>Solnich</string>
+      <string>Sovija</string>
+      <string>Spogdija</string>
+      <string>Spognov</string>
+      <string>Sporadja</string>
+      <string>Volov</string>
+      <string>Vorinsk</string>
+      <string>Zhinsk</string>
+      <string>Zlatovo</string>
+    </SamplePlaceNames>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>rennan</Id>
+    <TextureSet>rennan</TextureSet>
+    <Name>Rennan</Name>
+    <Description>The culture of the Rennans</Description>
+    <SamplePlaceNames>
+      <string>Agrigno</string>
+      <string>Alessa</string>
+      <string>Avenna</string>
+      <string>Averona</string>
+      <string>Breseno</string>
+      <string>Caravenna</string>
+      <string>Carenna</string>
+      <string>Cerigno</string>
+      <string>Cosenna</string>
+      <string>Cremaro</string>
+      <string>Dora</string>
+      <string>Dorenna</string>
+      <string>Ercola</string>
+      <string>Fagussa</string>
+      <string>Ferra</string>
+      <string>Forenna</string>
+      <string>Galenna</string>
+      <string>Larra</string>
+      <string>Larvenna</string>
+      <string>Mareca</string>
+      <string>Marinnia</string>
+      <string>Peserno</string>
+      <string>Pratera</string>
+      <string>Ragola</string>
+      <string>Ravento</string>
+      <string>Reginna</string>
+      <string>Terna</string>
+      <string>Varania</string>
+      <string>Venna</string>
+      <string>Versanna</string>
+      <string>Vitera</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>

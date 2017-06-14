@@ -40,7 +40,7 @@ Their teritorry was very small in the First Era but they ensured their survival 
 
 They are the master traders of Western Narivia and once were the leaders of the Pegasus Alliance in the War of the Banks.</Description>
     <ColourHexadecimal>#B10000</ColourHexadecimal>
-    <CultureId>11</CultureId>
+    <CultureId>rennan</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>viristia</Id>
@@ -221,7 +221,7 @@ They are specialized in defence and never give up without a fight.</Description>
     <Name>Sporadja</Name>
     <Description />
     <ColourHexadecimal>#B2CC6B</ColourHexadecimal>
-    <CultureId>11</CultureId>
+    <CultureId>sporic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>endel</Id>
