@@ -10,42 +10,87 @@
       <string>Agopias</string>
       <string>Alvik</string>
       <string>Antene</string>
+      <string>Asolfra</string>
+      <string>Auoolfs</string>
+      <string>Berjabrek</string>
+      <string>Bjarnar</string>
       <string>Bjorfell</string>
+      <string>Boovarfell</string>
+      <string>Botaloekr</string>
+      <string>Brunnheim</string>
+      <string>Brunnvik</string>
       <string>Brynjolfr</string>
+      <string>Bulafjoror</string>
       <string>Coralas</string>
+      <string>Fjollavik</string>
       <string>Forstaag</string>
+      <string>Galmaar</string>
       <string>Gammeland</string>
       <string>Gaulandr</string>
+      <string>Geirholt</string>
+      <string>Gnupsloekr</string>
       <string>Gramdaar</string>
+      <string>Gringsmork</string>
       <string>Grothar</string>
+      <string>Grunansvik</string>
+      <string>Grunnheim</string>
+      <string>Gunnolfr</string>
       <string>Gunnolfsfell</string>
       <string>Haakon</string>
       <string>Hagardalr</string>
+      <string>Hauksgrof</string>
+      <string>Hofsloekr</string>
+      <string>Holmgar</string>
+      <string>Horgarholt</string>
+      <string>Horikr</string>
+      <string>Hoskulsa</string>
       <string>Hrisskar</string>
       <string>Hrothgar</string>
+      <string>Hvalland</string>
+      <string>Hvallir</string>
       <string>Hvammen</string>
+      <string>Hvindavik</string>
+      <string>Hvitserk</string>
       <string>Hylfjord</string>
       <string>Ingolfsfell</string>
+      <string>Jamtaloekr</string>
       <string>Jhgrothaar</string>
       <string>Jhkaar</string>
       <string>Jonheim</string>
       <string>Jorundarfell</string>
+      <string>Jotunheim</string>
+      <string>Kaldsvatn</string>
       <string>Kalfagr</string>
+      <string>Karlandr</string>
       <string>Kjord</string>
+      <string>Klofsvik</string>
+      <string>Kolbeinar</string>
+      <string>Kuoastrond</string>
+      <string>Lagabjarr</string>
+      <string>Lambakr</string>
       <string>Laugr</string>
       <string>Loekr</string>
+      <string>Lokheim</string>
+      <string>Loomudalr</string>
       <string>Manarfell</string>
+      <string>Manatun</string>
       <string>Melrakki</string>
       <string>Meoalfell</string>
+      <string>Miofjolr</string>
       <string>Miretova</string>
       <string>Mjorfell</string>
+      <string>Moolfsvik</string>
       <string>Ordum</string>
+      <string>Ragnagr</string>
+      <string>Sirekkr</string>
       <string>Skaal</string>
+      <string>Skaland</string>
+      <string>Skjallar</string>
       <string>Thanus</string>
       <string>Urskaal</string>
       <string>Yngaar</string>
       <string>Yngling</string>
-      <string>Zenasya</string>
+      <string>Zenasker</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -59,11 +104,16 @@
       <string>Bahadiq</string>
       <string>Batin</string>
       <string>Dabba</string>
+      <string>Disuyat</string>
+      <string>Dizeraat</string>
       <string>Dourat</string>
       <string>Hammasi</string>
       <string>Hareeq</string>
+      <string>Kadara</string>
       <string>Kadda</string>
       <string>Kahhka</string>
+      <string>Kalacca</string>
+      <string>Kaleba</string>
       <string>Kermah</string>
       <string>Kermasi</string>
       <string>Kermasiya</string>
@@ -74,8 +124,11 @@
       <string>Majma</string>
       <string>Marahkal</string>
       <string>Marashan</string>
+      <string>Marraca</string>
       <string>Mukaydah</string>
+      <string>Mustahil</string>
       <string>Muzahmyyia</string>
+      <string>Qaihkal</string>
       <string>Qallid</string>
       <string>Qallubair</string>
       <string>Rayyil</string>
@@ -88,7 +141,10 @@
       <string>Sulayyil</string>
       <string>Surahkale</string>
       <string>Surat</string>
+      <string>Tajayib</string>
       <string>Tallubair</string>
+      <string>Umarasto</string>
+      <string>Usiyah</string>
       <string>Usiyah</string>
     </SamplePlaceNames>
   </CultureEntity>
@@ -98,7 +154,43 @@
     <Name>Ayakan</Name>
     <Description>The culture of the Ayakans</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Atsunko</string>
+      <string>Ayako</string>
+      <string>Ayakotan</string>
+      <string>Chungwon</string>
+      <string>Daiki</string>
+      <string>Gakcho</string>
+      <string>Hinto</string>
+      <string>Hiraku</string>
+      <string>Hotaka</string>
+      <string>Ikhakita</string>
+      <string>Jiang</string>
+      <string>Jiangwang</string>
+      <string>Kaito</string>
+      <string>Khaki</string>
+      <string>Khugata</string>
+      <string>Manshiri</string>
+      <string>Mukami</string>
+      <string>Mungyong</string>
+      <string>Okumana</string>
+      <string>Qingol</string>
+      <string>Seong</string>
+      <string>Shako</string>
+      <string>Shang</string>
+      <string>Shiraku</string>
+      <string>Shiratama</string>
+      <string>Takeshi</string>
+      <string>Tawara</string>
+      <string>Tawashinan</string>
+      <string>Tongcho</string>
+      <string>Xiangtou</string>
+      <string>Yahako</string>
+      <string>Yahakotan</string>
+      <string>Yahatoro</string>
+      <string>Yanghou</string>
+      <string>Yuzuki</string>
+      <string>Yuzukita</string>
+      <string>Zhong</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -107,7 +199,50 @@
     <Name>Blumiac</Name>
     <Description>The culture of the Blumians</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Armorin</string>
+      <string>Barmin</string>
+      <string>Bluma</string>
+      <string>Blumin</string>
+      <string>Canumin</string>
+      <string>Capiana</string>
+      <string>Casta</string>
+      <string>Corvia</string>
+      <string>Crama</string>
+      <string>Cugismia</string>
+      <string>Daria</string>
+      <string>Eborin</string>
+      <string>Falnia</string>
+      <string>Farzimia</string>
+      <string>Fortimin</string>
+      <string>Fulgistia</string>
+      <string>Garmia</string>
+      <string>Gratea</string>
+      <string>Halmia</string>
+      <string>Hiberia</string>
+      <string>Hortia</string>
+      <string>Impera</string>
+      <string>Impimia</string>
+      <string>Karmin</string>
+      <string>Leptinia</string>
+      <string>Maurica</string>
+      <string>Neptistia</string>
+      <string>Optimia</string>
+      <string>Optimin</string>
+      <string>Optistia</string>
+      <string>Pedalia</string>
+      <string>Placistia</string>
+      <string>Ratimin</string>
+      <string>Saria</string>
+      <string>Tagin</string>
+      <string>Tagina</string>
+      <string>Tefimin</string>
+      <string>Trefla</string>
+      <string>Turimin</string>
+      <string>Urza</string>
+      <string>Vectistia</string>
+      <string>Vicuma</string>
+      <string>Vitistia</string>
+      <string>Zama</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -116,7 +251,601 @@
     <Name>Amionic</Name>
     <Description>The culture of the people of Amion</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Agathona</string>
+      <string>Agathondro</string>
+      <string>Agathonoi</string>
+      <string>Agathoura</string>
+      <string>Agathouri</string>
+      <string>Agathox</string>
+      <string>Agathraki</string>
+      <string>Agrelene</string>
+      <string>Agrelenes</string>
+      <string>Aitoliko</string>
+      <string>Aitolikos</string>
+      <string>Aminoupoi</string>
+      <string>Anavalaroi</string>
+      <string>Anavalaros</string>
+      <string>Anavalas</string>
+      <string>Anavalasae</string>
+      <string>Anavalavra</string>
+      <string>Anavalaxa</string>
+      <string>Antikaraki</string>
+      <string>Antikarasa</string>
+      <string>Antikon</string>
+      <string>Antikonera</string>
+      <string>Antikones</string>
+      <string>Antitida</string>
+      <string>Antitilos</string>
+      <string>Aretres</string>
+      <string>Aretressa</string>
+      <string>Aretronidi</string>
+      <string>Aretros</string>
+      <string>Arkouretra</string>
+      <string>Arkouretri</string>
+      <string>Arkouretta</string>
+      <string>Armakronga</string>
+      <string>Askalos</string>
+      <string>Askalouda</string>
+      <string>Askandelos</string>
+      <string>Askandrako</string>
+      <string>Askandro</string>
+      <string>Astelendos</string>
+      <string>Asterimos</string>
+      <string>Asteros</string>
+      <string>Asterovra</string>
+      <string>Atalamilos</string>
+      <string>Atalamorgo</string>
+      <string>Atalamosse</string>
+      <string>Atalanes</string>
+      <string>Atalaros</string>
+      <string>Atalarta</string>
+      <string>Atalasae</string>
+      <string>Atalasas</string>
+      <string>Atalendos</string>
+      <string>Atalenes</string>
+      <string>Atalida</string>
+      <string>Atokopani</string>
+      <string>Braurens</string>
+      <string>Brauretros</string>
+      <string>Brauretto</string>
+      <string>Chersaravi</string>
+      <string>Clazaresos</string>
+      <string>Clazarete</string>
+      <string>Clazaretto</string>
+      <string>Daskalos</string>
+      <string>Daskaloudi</string>
+      <string>Daskandili</string>
+      <string>Daskandros</string>
+      <string>Delasae</string>
+      <string>Delenes</string>
+      <string>Demaina</string>
+      <string>Demalouda</string>
+      <string>Demaloudi</string>
+      <string>Demalouti</string>
+      <string>Demespina</string>
+      <string>Demessos</string>
+      <string>Dragonada</string>
+      <string>Dragonas</string>
+      <string>Drakida</string>
+      <string>Drakina</string>
+      <string>Drakonero</string>
+      <string>Drakonoi</string>
+      <string>Elafonidi</string>
+      <string>Elafora</string>
+      <string>Elaforasa</string>
+      <string>Elaforasos</string>
+      <string>Elaforizo</string>
+      <string>Eratergos</string>
+      <string>Eratero</string>
+      <string>Eraterova</string>
+      <string>Ereikon</string>
+      <string>Ereikones</string>
+      <string>Ereikonos</string>
+      <string>Ereikos</string>
+      <string>Eretresos</string>
+      <string>Eretrokope</string>
+      <string>Eretronnos</string>
+      <string>Erimolos</string>
+      <string>Erimosses</string>
+      <string>Eschilos</string>
+      <string>Eschiloudi</string>
+      <string>Fotikon</string>
+      <string>Fotikones</string>
+      <string>Fotikonos</string>
+      <string>Fragonadak</string>
+      <string>Fragonas</string>
+      <string>Gaidourens</string>
+      <string>Gaidourete</string>
+      <string>Gaidouri</string>
+      <string>Gelenes</string>
+      <string>Gramilou</string>
+      <string>Gramilouda</string>
+      <string>Gramiloudi</string>
+      <string>Gramilouti</string>
+      <string>Gramina</string>
+      <string>Gramino</string>
+      <string>Grandilos</string>
+      <string>Grandilou</string>
+      <string>Grandrako</string>
+      <string>Grandro</string>
+      <string>Halamina</string>
+      <string>Halaminth</string>
+      <string>Halamorgo</string>
+      <string>Halamorgos</string>
+      <string>Halamothos</string>
+      <string>Halamoula</string>
+      <string>Halamoulo</string>
+      <string>Halaroi</string>
+      <string>Halaronnos</string>
+      <string>Halaros</string>
+      <string>Halarta</string>
+      <string>Halavra</string>
+      <string>Halkonero</string>
+      <string>Halkonoi</string>
+      <string>Halouda</string>
+      <string>Haloudi</string>
+      <string>Hemessa</string>
+      <string>Heminoupoi</string>
+      <string>Heminth</string>
+      <string>Heminthona</string>
+      <string>Ikakino</string>
+      <string>Ikarakida</string>
+      <string>Ikarakino</string>
+      <string>Ikarako</string>
+      <string>Ikarakon</string>
+      <string>Ikarakonos</string>
+      <string>Ikarasas</string>
+      <string>Ikarason</string>
+      <string>Ikarasouda</string>
+      <string>Ikaresouda</string>
+      <string>Ikaresoudi</string>
+      <string>Ikaretres</string>
+      <string>Ikaretri</string>
+      <string>Ithactergo</string>
+      <string>Ithakino</string>
+      <string>Itharakida</string>
+      <string>Itharakina</string>
+      <string>Itharasa</string>
+      <string>Itharasae</string>
+      <string>Itharasas</string>
+      <string>Itharasos</string>
+      <string>Itharavi</string>
+      <string>Ithonada</string>
+      <string>Ithonas</string>
+      <string>Ithondra</string>
+      <string>Ithondrako</string>
+      <string>Ithonoupoi</string>
+      <string>Ithourete</string>
+      <string>Ithouretri</string>
+      <string>Kalamorgo</string>
+      <string>Kalamorgos</string>
+      <string>Kalamos</string>
+      <string>Kalampos</string>
+      <string>Kalamprini</string>
+      <string>Kalanes</string>
+      <string>Kalaroi</string>
+      <string>Kalaronga</string>
+      <string>Kalaronnos</string>
+      <string>Kalarta</string>
+      <string>Kalasas</string>
+      <string>Kaleidones</string>
+      <string>Kalendos</string>
+      <string>Kaloudi</string>
+      <string>Kamilou</string>
+      <string>Kamiloudi</string>
+      <string>Kaminth</string>
+      <string>Kandili</string>
+      <string>Kandilos</string>
+      <string>Kandilou</string>
+      <string>Kandilouti</string>
+      <string>Kandraki</string>
+      <string>Kandros</string>
+      <string>Kanthonos</string>
+      <string>Kanthox</string>
+      <string>Kantiko</string>
+      <string>Kantikones</string>
+      <string>Kantikonos</string>
+      <string>Kantikos</string>
+      <string>Kantitilou</string>
+      <string>Karessa</string>
+      <string>Karessos</string>
+      <string>Karetra</string>
+      <string>Karetresos</string>
+      <string>Karetri</string>
+      <string>Karetronga</string>
+      <string>Karetros</string>
+      <string>Kastelene</string>
+      <string>Kastelenes</string>
+      <string>Kastera</string>
+      <string>Kastergo</string>
+      <string>Kasterimos</string>
+      <string>Kasterova</string>
+      <string>Katerifos</string>
+      <string>Katerimos</string>
+      <string>Katerova</string>
+      <string>Kavalamina</string>
+      <string>Kavalamino</string>
+      <string>Kavalamos</string>
+      <string>Kavalamou</string>
+      <string>Kavalarta</string>
+      <string>Kavalas</string>
+      <string>Kavalasa</string>
+      <string>Kavalasae</string>
+      <string>Kavalasas</string>
+      <string>Kefalkon</string>
+      <string>Kefalkones</string>
+      <string>Kefalkonos</string>
+      <string>Kleidon</string>
+      <string>Kleidouri</string>
+      <string>Kouretra</string>
+      <string>Kouretri</string>
+      <string>Kouretros</string>
+      <string>Kouretta</string>
+      <string>Kouretto</string>
+      <string>Kramilou</string>
+      <string>Kramilouda</string>
+      <string>Kramiloudi</string>
+      <string>Kramino</string>
+      <string>Kraminth</string>
+      <string>Kraminthos</string>
+      <string>Kraminthox</string>
+      <string>Lamilos</string>
+      <string>Lamilou</string>
+      <string>Lamilouti</string>
+      <string>Laminarta</string>
+      <string>Laminos</string>
+      <string>Lazaressa</string>
+      <string>Lazaretra</string>
+      <string>Lazaretres</string>
+      <string>Lazaretta</string>
+      <string>Leminarta</string>
+      <string>Leminos</string>
+      <string>Leminoupoi</string>
+      <string>Leontemino</string>
+      <string>Leontiko</string>
+      <string>Leontipsoi</string>
+      <string>Levithaca</string>
+      <string>Levithaki</string>
+      <string>Levitharas</string>
+      <string>Lichara</string>
+      <string>Licharako</string>
+      <string>Licharasa</string>
+      <string>Licharasae</string>
+      <string>Licharason</string>
+      <string>Lichari</string>
+      <string>Lithakida</string>
+      <string>Lithakinos</string>
+      <string>Lithara</string>
+      <string>Litharakon</string>
+      <string>Litharasa</string>
+      <string>Litharasae</string>
+      <string>Litharasas</string>
+      <string>Litharasos</string>
+      <string>Madourete</string>
+      <string>Madouri</string>
+      <string>Madourlida</string>
+      <string>Makonero</string>
+      <string>Makonoi</string>
+      <string>Makonoupoi</string>
+      <string>Makronga</string>
+      <string>Makronidi</string>
+      <string>Makrope</string>
+      <string>Mandili</string>
+      <string>Mandiloudi</string>
+      <string>Mandraki</string>
+      <string>Mandrako</string>
+      <string>Manolikos</string>
+      <string>Manoupoi</string>
+      <string>Marakon</string>
+      <string>Marakonoi</string>
+      <string>Marasas</string>
+      <string>Maresouda</string>
+      <string>Maressa</string>
+      <string>Maressos</string>
+      <string>Maretra</string>
+      <string>Maretres</string>
+      <string>Maretri</string>
+      <string>Maretros</string>
+      <string>Maretta</string>
+      <string>Maronga</string>
+      <string>Maronnos</string>
+      <string>Mathona</string>
+      <string>Mathonada</string>
+      <string>Mathonadak</string>
+      <string>Mathonas</string>
+      <string>Mathrakida</string>
+      <string>Mathrakon</string>
+      <string>Megalamina</string>
+      <string>Megalamou</string>
+      <string>Megalampos</string>
+      <string>Megalaros</string>
+      <string>Megalarta</string>
+      <string>Megalasae</string>
+      <string>Megalasas</string>
+      <string>Megandili</string>
+      <string>Megandra</string>
+      <string>Megandro</string>
+      <string>Meganocaea</string>
+      <string>Meganoliko</string>
+      <string>Megathona</string>
+      <string>Megathonoi</string>
+      <string>Megathos</string>
+      <string>Mesoudi</string>
+      <string>Mikronidi</string>
+      <string>Mikroula</string>
+      <string>Naucretra</string>
+      <string>Naucretres</string>
+      <string>Naucretri</string>
+      <string>Naucretto</string>
+      <string>Nikonera</string>
+      <string>Nikonero</string>
+      <string>Nikonoi</string>
+      <string>Nimolos</string>
+      <string>Nirakida</string>
+      <string>Nirakina</string>
+      <string>Nirakinos</string>
+      <string>Nirakon</string>
+      <string>Nirakones</string>
+      <string>Nirason</string>
+      <string>Niromnos</string>
+      <string>Niromonas</string>
+      <string>Olamino</string>
+      <string>Olamosse</string>
+      <string>Olamoulo</string>
+      <string>Olamprina</string>
+      <string>Omforasas</string>
+      <string>Omforason</string>
+      <string>Palamilos</string>
+      <string>Palamina</string>
+      <string>Palamino</string>
+      <string>Palamosse</string>
+      <string>Palamosses</string>
+      <string>Palamoulo</string>
+      <string>Palampos</string>
+      <string>Palamprina</string>
+      <string>Palanes</string>
+      <string>Palaronidi</string>
+      <string>Palaros</string>
+      <string>Palarta</string>
+      <string>Palasas</string>
+      <string>Pantassa</string>
+      <string>Panthouri</string>
+      <string>Pantiko</string>
+      <string>Pantikon</string>
+      <string>Pantikones</string>
+      <string>Pantikonoi</string>
+      <string>Pantipsoi</string>
+      <string>Pantitida</string>
+      <string>Paronnos</string>
+      <string>Pathonas</string>
+      <string>Pathondra</string>
+      <string>Pathondros</string>
+      <string>Pathonoi</string>
+      <string>Pathoura</string>
+      <string>Pathraki</string>
+      <string>Petalamos</string>
+      <string>Petalampos</string>
+      <string>Petalaroi</string>
+      <string>Petalasa</string>
+      <string>Petalasae</string>
+      <string>Petalasas</string>
+      <string>Petalida</string>
+      <string>Petalimnos</string>
+      <string>Petalouda</string>
+      <string>Petalouti</string>
+      <string>Petsopoulo</string>
+      <string>Pettalavra</string>
+      <string>Pettalida</string>
+      <string>Pettalo</string>
+      <string>Pharaki</string>
+      <string>Pharakina</string>
+      <string>Pharakinos</string>
+      <string>Pharakones</string>
+      <string>Pharasa</string>
+      <string>Pharason</string>
+      <string>Pharavi</string>
+      <string>Pigandelos</string>
+      <string>Pigandes</string>
+      <string>Pigandilos</string>
+      <string>Pigandilou</string>
+      <string>Pigandraki</string>
+      <string>Pigandros</string>
+      <string>Piganocaea</string>
+      <string>Pipergos</string>
+      <string>Pittalanes</string>
+      <string>Pittalaroi</string>
+      <string>Pittalasa</string>
+      <string>Pittalene</string>
+      <string>Pittalenes</string>
+      <string>Pittalida</string>
+      <string>Pittalou</string>
+      <string>Pittalouda</string>
+      <string>Pittaloudi</string>
+      <string>Plakara</string>
+      <string>Plakaraki</string>
+      <string>Plakaras</string>
+      <string>Plakarasae</string>
+      <string>Plakarason</string>
+      <string>Plakaravi</string>
+      <string>Plakares</string>
+      <string>Plakaressa</string>
+      <string>Plakaretri</string>
+      <string>Plakaretto</string>
+      <string>Plakarga</string>
+      <string>Pontemina</string>
+      <string>Pontikarga</string>
+      <string>Pontiko</string>
+      <string>Pontikon</string>
+      <string>Pontikos</string>
+      <string>Pontitilos</string>
+      <string>Proklou</string>
+      <string>Proklouda</string>
+      <string>Proklouti</string>
+      <string>Prokopani</string>
+      <string>Prokope</string>
+      <string>Psarakida</string>
+      <string>Psarakina</string>
+      <string>Psarakino</string>
+      <string>Psarako</string>
+      <string>Psarakon</string>
+      <string>Psarakonoi</string>
+      <string>Psarasas</string>
+      <string>Psarason</string>
+      <string>Psarasos</string>
+      <string>Psarasoudi</string>
+      <string>Psathonada</string>
+      <string>Psathos</string>
+      <string>Psathouri</string>
+      <string>Psathox</string>
+      <string>Psathraki</string>
+      <string>Psathrako</string>
+      <string>Pseiraki</string>
+      <string>Pseirakina</string>
+      <string>Pseirako</string>
+      <string>Pseirakon</string>
+      <string>Pseirasa</string>
+      <string>Pseirasae</string>
+      <string>Pseirason</string>
+      <string>Pseirina</string>
+      <string>Pserifos</string>
+      <string>Pserimos</string>
+      <string>Pserimosse</string>
+      <string>Safonidi</string>
+      <string>Saforasa</string>
+      <string>Saforasae</string>
+      <string>Saforasas</string>
+      <string>Saforason</string>
+      <string>Salamorgos</string>
+      <string>Salamosse</string>
+      <string>Salamou</string>
+      <string>Salamoula</string>
+      <string>Salamoulo</string>
+      <string>Salanes</string>
+      <string>Salaronidi</string>
+      <string>Salaronnos</string>
+      <string>Salaros</string>
+      <string>Samilouda</string>
+      <string>Samilouti</string>
+      <string>Saminoupoi</string>
+      <string>Saminth</string>
+      <string>Samosse</string>
+      <string>Samosses</string>
+      <string>Samoula</string>
+      <string>Samoulo</string>
+      <string>Santassa</string>
+      <string>Santhonos</string>
+      <string>Santhos</string>
+      <string>Santikarga</string>
+      <string>Santikonos</string>
+      <string>Santipsoi</string>
+      <string>Santitida</string>
+      <string>Scharakon</string>
+      <string>Scharasa</string>
+      <string>Scharasae</string>
+      <string>Scharasas</string>
+      <string>Scharasos</string>
+      <string>Seirakonos</string>
+      <string>Seirasae</string>
+      <string>Seirasas</string>
+      <string>Seirasos</string>
+      <string>Seirasouda</string>
+      <string>Seirasoudi</string>
+      <string>Seirina</string>
+      <string>Seirinarta</string>
+      <string>Seirini</string>
+      <string>Semainarta</string>
+      <string>Semalos</string>
+      <string>Semalou</string>
+      <string>Semaloudi</string>
+      <string>Seuthonada</string>
+      <string>Seuthonas</string>
+      <string>Seuthondra</string>
+      <string>Seuthonos</string>
+      <string>Seuthouri</string>
+      <string>Seuthox</string>
+      <string>Sideros</string>
+      <string>Sikinoupoi</string>
+      <string>Spetalas</string>
+      <string>Spetalasa</string>
+      <string>Spetalasas</string>
+      <string>Spetalavra</string>
+      <string>Spetalene</string>
+      <string>Spetalenes</string>
+      <string>Spetalo</string>
+      <string>Spetalou</string>
+      <string>Spetalouda</string>
+      <string>Spetalouti</string>
+      <string>Stroklou</string>
+      <string>Stroklouda</string>
+      <string>Stroklouti</string>
+      <string>Strokopani</string>
+      <string>Strokos</string>
+      <string>Stronga</string>
+      <string>Stronidi</string>
+      <string>Tellorina</string>
+      <string>Tellorini</string>
+      <string>Thactera</string>
+      <string>Thactergos</string>
+      <string>Thacteros</string>
+      <string>Tharakida</string>
+      <string>Tharakinos</string>
+      <string>Tharako</string>
+      <string>Tharakonos</string>
+      <string>Tharasas</string>
+      <string>Tharason</string>
+      <string>Tharasos</string>
+      <string>Tharavi</string>
+      <string>Thirakina</string>
+      <string>Thirakino</string>
+      <string>Thirakon</string>
+      <string>Thirakonoi</string>
+      <string>Thirakonos</string>
+      <string>Thirasos</string>
+      <string>Thirasouda</string>
+      <string>Thirasoudi</string>
+      <string>Tourenies</string>
+      <string>Tourens</string>
+      <string>Tourlida</string>
+      <string>Traforas</string>
+      <string>Trafori</string>
+      <string>Traforini</string>
+      <string>Traforizo</string>
+      <string>Tragonada</string>
+      <string>Tragonadak</string>
+      <string>Tromnos</string>
+      <string>Tromona</string>
+      <string>Tromonas</string>
+      <string>Valamino</string>
+      <string>Valamorgo</string>
+      <string>Valamos</string>
+      <string>Valamosses</string>
+      <string>Valamou</string>
+      <string>Valamoula</string>
+      <string>Valampos</string>
+      <string>Valamprina</string>
+      <string>Valanes</string>
+      <string>Valaroi</string>
+      <string>Valaronga</string>
+      <string>Valasae</string>
+      <string>Valavra</string>
+      <string>Valeidones</string>
+      <string>Valeidouri</string>
+      <string>Valendos</string>
+      <string>Vallorini</string>
+      <string>Vidonera</string>
+      <string>Vidoneros</string>
+      <string>Vidones</string>
+      <string>Vidourete</string>
+      <string>Vidouretra</string>
+      <string>Vidouretta</string>
+      <string>Vromonas</string>
+      <string>Zaforasae</string>
+      <string>Zaforason</string>
+      <string>Zaforasos</string>
+      <string>Zaforini</string>
+      <string>Zaforizo</string>
+      <string>Zakronnos</string>
+      <string>Zakrope</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -125,7 +854,63 @@
     <Name>Barbarian</Name>
     <Description>The culture of the Barbarians</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Aalholt</string>
+      <string>Asdel</string>
+      <string>Bardos</string>
+      <string>Bardroz</string>
+      <string>Biram</string>
+      <string>Birkrig</string>
+      <string>Boldel</string>
+      <string>Bolder</string>
+      <string>Boldolm</string>
+      <string>Bovac</string>
+      <string>Broggad</string>
+      <string>Brugen</string>
+      <string>Brugh</string>
+      <string>Brughul</string>
+      <string>Brughurd</string>
+      <string>Charogh</string>
+      <string>Cholbog</string>
+      <string>Cholden</string>
+      <string>Cholm</string>
+      <string>Cropat</string>
+      <string>Dholden</string>
+      <string>Dholm</string>
+      <string>Dhorradh</string>
+      <string>Endel</string>
+      <string>Ghadgirdel</string>
+      <string>Gholden</string>
+      <string>Gholm</string>
+      <string>Gholt</string>
+      <string>Gram</string>
+      <string>Grodh</string>
+      <string>Grugen</string>
+      <string>Gucragh</string>
+      <string>Haugel</string>
+      <string>Irarden</string>
+      <string>Khoddon</string>
+      <string>Kholm</string>
+      <string>Kholt</string>
+      <string>Kraddur</string>
+      <string>Laddodh</string>
+      <string>Mogodel</string>
+      <string>Mogodh</string>
+      <string>Nuddurd</string>
+      <string>Odilgodh</string>
+      <string>Rudur</string>
+      <string>Spater</string>
+      <string>Tulpa</string>
+      <string>Turodh</string>
+      <string>Virdel</string>
+      <string>Voldel</string>
+      <string>Voldrurd</string>
+      <string>Vrurd</string>
+      <string>Vulendel</string>
+      <string>Zalder</string>
+      <string>Zarmukh</string>
+      <string>Zraddon</string>
+      <string>Zraddu</string>
+      <string>Zradh</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -134,7 +919,47 @@
     <Name>Istian</Name>
     <Description>The culture of the Istians</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Apollentia</string>
+      <string>Astia</string>
+      <string>Ausentia</string>
+      <string>Castia</string>
+      <string>Cefalistia</string>
+      <string>Condistia</string>
+      <string>Corinistia</string>
+      <string>Daedalistia</string>
+      <string>Dubristia</string>
+      <string>Falistia</string>
+      <string>Garlistia</string>
+      <string>Garlistia</string>
+      <string>Gelistia</string>
+      <string>Gentia</string>
+      <string>Heristia</string>
+      <string>Horistia</string>
+      <string>Hortistia</string>
+      <string>Hudistia</string>
+      <string>Intelistia</string>
+      <string>Lakistia</string>
+      <string>Leodistia</string>
+      <string>Loristia</string>
+      <string>Lunistia</string>
+      <string>Meuristia</string>
+      <string>Mistia</string>
+      <string>Mistia</string>
+      <string>Naventia</string>
+      <string>Optistia</string>
+      <string>Ortistia</string>
+      <string>Pablistia</string>
+      <string>Rabistia</string>
+      <string>Stabistia</string>
+      <string>Sulistia</string>
+      <string>Tomistia</string>
+      <string>Tulistia</string>
+      <string>Turistia</string>
+      <string>Unistia</string>
+      <string>Vectistia</string>
+      <string>Veuristia</string>
+      <string>Viris</string>
+      <string>Viristia</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -143,7 +968,40 @@
     <Name>Shesan</Name>
     <Description>The culture of the Shesans</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Anshon</string>
+      <string>Aradesh</string>
+      <string>Bosher</string>
+      <string>Bushadu</string>
+      <string>Bushiga</string>
+      <string>Dashma</string>
+      <string>Desh</string>
+      <string>Deshesda</string>
+      <string>Feshta</string>
+      <string>Gargadesh</string>
+      <string>Gashda</string>
+      <string>Gishca</string>
+      <string>Loresh</string>
+      <string>Lortash</string>
+      <string>Minidesh</string>
+      <string>Muridesh</string>
+      <string>Musadesh</string>
+      <string>Nagadesh</string>
+      <string>Noshud</string>
+      <string>Nushida</string>
+      <string>Nushiga</string>
+      <string>Ongladesh</string>
+      <string>Orsheri</string>
+      <string>Orshud</string>
+      <string>Ortodesh</string>
+      <string>Pablidesh</string>
+      <string>Sfeshna</string>
+      <string>Sheba</string>
+      <string>Shesda</string>
+      <string>Shida</string>
+      <string>Shigahat</string>
+      <string>Shigaon</string>
+      <string>Shishga</string>
+      <string>Sopadesh</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -152,7 +1010,54 @@
     <Name>Chowo</Name>
     <Description>The culture of the Chowos</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Abeque</string>
+      <string>Sinopa</string>
+      <string>Chowozukayyil</string>
+      <string>Ayawamat</string>
+      <string>Urika</string>
+      <string>Chowowilawu</string>
+      <string>Soyala</string>
+      <string>Wihak</string>
+      <string>Chanzee</string>
+      <string>Akecha</string>
+      <string>Kwatongwi</string>
+      <string>Chipponaw</string>
+      <string>Onaiwee</string>
+      <string>Akeche</string>
+      <string>Matokya</string>
+      <string>Nechawi</string>
+      <string>Kalilawa</string>
+      <string>Sequawee</string>
+      <string>Achawi</string>
+      <string>Wattawani</string>
+      <string>Tihkoowee</string>
+      <string>Wahkoowanu</string>
+      <string>Mankoowa</string>
+      <string>Moquaw</string>
+      <string>Nuttawa</string>
+      <string>Honawa</string>
+      <string>Choctawa</string>
+      <string>Nawkawa</string>
+      <string>Ahawee</string>
+      <string>Hennaw</string>
+      <string>Kuwanu</string>
+      <string>Miwoko</string>
+      <string>Awini</string>
+      <string>Powaasharo</string>
+      <string>Sewanu</string>
+      <string>Mongwi</string>
+      <string>Hawihio</string>
+      <string>Mitenakw</string>
+      <string>Ayawanya</string>
+      <string>Epawee</string>
+      <string>Eluwiluye</string>
+      <string>Chowee</string>
+      <string>Buegowa</string>
+      <string>Kiwidawi</string>
+      <string>Ogawa</string>
+      <string>Gogawa</string>
+      <string>Macawiovi</string>
+      <string>Bagwuti</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -271,7 +1176,49 @@
     <Name>Befterian</Name>
     <Description>The culture of the Befterians</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Bafter</string>
+      <string>Batter</string>
+      <string>Befter</string>
+      <string>Beiler</string>
+      <string>Breder</string>
+      <string>Bremer</string>
+      <string>Cafter</string>
+      <string>Caster</string>
+      <string>Darmern</string>
+      <string>Dasser</string>
+      <string>Ebremer</string>
+      <string>Eibrucker</string>
+      <string>Eisler</string>
+      <string>Elter</string>
+      <string>Erkover</string>
+      <string>Gebdther</string>
+      <string>Geiser</string>
+      <string>Greiber</string>
+      <string>Grether</string>
+      <string>Guber</string>
+      <string>Hattener</string>
+      <string>Heiler</string>
+      <string>Heiner</string>
+      <string>Hernicher</string>
+      <string>Langter</string>
+      <string>Loapter</string>
+      <string>Mainer</string>
+      <string>Mangter</string>
+      <string>Mernster</string>
+      <string>Meskeiler</string>
+      <string>Necker</string>
+      <string>Pletter</string>
+      <string>Reiler</string>
+      <string>Spalter</string>
+      <string>Spanger</string>
+      <string>Speichter</string>
+      <string>Stadther</string>
+      <string>Tannern</string>
+      <string>Ulpter</string>
+      <string>Ummer</string>
+      <string>Usinger</string>
+      <string>Vadthen</string>
+      <string>Vreder</string>
     </SamplePlaceNames>
   </CultureEntity>
   <CultureEntity>
@@ -280,7 +1227,151 @@
     <Name>Rural</Name>
     <Description>The culture of the rural factions</Description>
     <SamplePlaceNames>
-      <string>Loremipsum</string>
+      <string>Aaria</string>
+      <string>Nordodar</string>
+      <string>Ardamus</string>
+      <string>Praari</string>
+      <string>Ulgat</string>
+      <string>Eletaari</string>
+      <string>Haari</string>
+      <string>Taltea</string>
+      <string>Ranaari</string>
+      <string>Taladar</string>
+      <string>Tinadar</string>
+      <string>Polgat</string>
+      <string>Saladar</string>
+      <string>Maldar</string>
+      <string>Galdar</string>
+      <string>Letaaria</string>
+      <string>Anaaria</string>
+      <string>Olaaria</string>
+      <string>Gaari</string>
+      <string>Preaa</string>
+      <string>Elaari</string>
+      <string>Apolgat</string>
+      <string>Apoldar</string>
+      <string>Rumdar</string>
+      <string>Fondar</string>
+      <string>Esodar</string>
+      <string>Taara</string>
+      <string>Linadar</string>
+      <string>Poldar</string>
+      <string>Ardodar</string>
+      <string>Sentinadar</string>
+      <string>Talidar</string>
+      <string>Aaridar</string>
+      <string>Caaria</string>
+      <string>Loraaria</string>
+      <string>Vardobar</string>
+      <string>Progat</string>
+      <string>Abraal</string>
+      <string>Greuldar</string>
+      <string>Ascaar</string>
+      <string>Calamus</string>
+      <string>Graan</string>
+      <string>Campodar</string>
+      <string>Rendar</string>
+      <string>Altamus</string>
+      <string>Eleamus</string>
+      <string>Ipsumus</string>
+    </SamplePlaceNames>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>iztop</Id>
+    <TextureSet>istian</TextureSet>
+    <Name>Iztop</Name>
+    <Description>The culture of the Lamizians and Altopians</Description>
+    <SamplePlaceNames>
+      <string>Altop</string>
+      <string>Apoleniz</string>
+      <string>Apolentop</string>
+      <string>Apoliztop</string>
+      <string>Aramiz</string>
+      <string>Azitop</string>
+      <string>Caltop</string>
+      <string>Cariz</string>
+      <string>Cartop</string>
+      <string>Daruz</string>
+      <string>Faltop</string>
+      <string>Fumizitop</string>
+      <string>Furtop</string>
+      <string>Geniz</string>
+      <string>Geniztop</string>
+      <string>Gentop</string>
+      <string>Horiz</string>
+      <string>Hortop</string>
+      <string>Iztop</string>
+      <string>Jamaz</string>
+      <string>Jiftop</string>
+      <string>Lamiz</string>
+      <string>Miztop</string>
+      <string>Namtop</string>
+      <string>Naveniz</string>
+      <string>Naventop</string>
+      <string>Naviztop</string>
+      <string>Nortop</string>
+      <string>Pentop</string>
+      <string>Ramiz</string>
+      <string>Saraniz</string>
+      <string>Saratop</string>
+      <string>Splediz</string>
+      <string>Tamaz</string>
+      <string>Topiz</string>
+      <string>Vabuz</string>
+      <string>Zintop</string>
+    </SamplePlaceNames>
+  </CultureEntity>
+  <CultureEntity>
+    <Id>naryrican</Id>
+    <TextureSet>sudic</TextureSet>
+    <Name>Naryrican</Name>
+    <Description>The culture of the Naryricans</Description>
+    <SamplePlaceNames>
+      <string>Amenhit</string>
+      <string>Amenholid</string>
+      <string>Arenpet</string>
+      <string>Bapedehat</string>
+      <string>Cenyrica</string>
+      <string>Dizerapica</string>
+      <string>Heporus</string>
+      <string>Heryshai</string>
+      <string>Hesateneg</string>
+      <string>Hesmetep</string>
+      <string>Hesmolid</string>
+      <string>Imhotyrica</string>
+      <string>Kavallid</string>
+      <string>Ketyrica</string>
+      <string>Khertum</string>
+      <string>Khetet</string>
+      <string>Kythraklia</string>
+      <string>Mednuket</string>
+      <string>Megarid</string>
+      <string>Meskhet</string>
+      <string>Naryrica</string>
+      <string>Nordyrica</string>
+      <string>Onyrica</string>
+      <string>Pakhetyrica</string>
+      <string>Panyrica</string>
+      <string>Portyrica</string>
+      <string>Psytta</string>
+      <string>Ptanyrica</string>
+      <string>Qetep</string>
+      <string>Qetepet</string>
+      <string>Rayek</string>
+      <string>Renenut</string>
+      <string>Seket</string>
+      <string>Sekhmetep</string>
+      <string>Sesklica</string>
+      <string>Setayek</string>
+      <string>Shayek</string>
+      <string>Shayrica</string>
+      <string>Sherpi</string>
+      <string>Tefnutet</string>
+      <string>Tenenenut</string>
+      <string>Thotepet</string>
+      <string>Tonyrica</string>
+      <string>Tulyrica</string>
+      <string>Wenenut</string>
     </SamplePlaceNames>
   </CultureEntity>
 </ArrayOfCultureEntity>
