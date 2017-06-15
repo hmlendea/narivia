@@ -6,6 +6,8 @@ namespace Narivia.Infrastructure.Extensions
 {
     public static class EnumerableExtensions
     {
+        static Random random;
+
         /// <summary>
         /// Gets the duplicated elements.
         /// </summary>
@@ -64,7 +66,10 @@ namespace Narivia.Infrastructure.Extensions
                 return default(T);
             }
 
-            Random random = new Random(DateTime.Now.Millisecond);
+            if (random == null)
+            {
+                random = new Random();
+            }
 
             return enumerable.ElementAt(random.Next(count));
         }
