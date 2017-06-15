@@ -54,7 +54,14 @@ namespace Narivia.Screens
         /// <value>The actions.</value>
         [XmlElement("Action")]
         public List<MenuAction> Actions { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the list selectors.
+        /// </summary>
+        /// <value>The list selectors.</value>
+        [XmlElement("ListSelector")]
+        public List<MenuListSelector> ListSelectors { get; set; }
+
         /// <summary>
         /// Gets all the items.
         /// </summary>
@@ -62,7 +69,8 @@ namespace Narivia.Screens
         [XmlIgnore]
         public List<MenuItem> Items => Toggles.Select(x => (MenuItem)x).Concat(
                                        Links.Select(x => (MenuItem)x)).Concat(
-                                       Actions.Select(x => (MenuItem)x)).ToList();
+                                       Actions.Select(x => (MenuItem)x)).Concat(
+                                       ListSelectors.Select(x => (MenuItem)x)).ToList();
 
         /// <summary>
         /// Gets the item number.
@@ -84,6 +92,7 @@ namespace Narivia.Screens
             Links = new List<MenuLink>();
             Toggles = new List<MenuToggle>();
             Actions = new List<MenuAction>();
+            ListSelectors = new List<MenuListSelector>();
         }
 
         /// <summary>
@@ -189,7 +198,7 @@ namespace Narivia.Screens
             dimensions = new Vector2(
                 (ScreenManager.Instance.Size.X - dimensions.X) / 2,
                 (ScreenManager.Instance.Size.Y - dimensions.Y) / 2);
-            
+
             foreach (MenuItem item in Items)
             {
                 if ("Xx".Contains(Axis))
