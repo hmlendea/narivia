@@ -81,7 +81,6 @@
     <Compile Include="Graphics\Image.cs" />
     <Compile Include="Graphics\ImageEffects\ImageEffect.cs" />
     <Compile Include="Graphics\ImageEffects\FadeEffect.cs" />
-    <Compile Include="Input\InputManager.cs" />
     <Compile Include="Helpers\XmlManager.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Audio\AudioManager.cs">
@@ -109,9 +108,6 @@
     <Compile Include="Interface\Widgets\NotificationButton.cs" />
     <Compile Include="Interface\Widgets\NotificationIcon.cs" />
     <Compile Include="Interface\Widgets\NotificationBar.cs" />
-    <Compile Include="Input\Events\MouseEvent.cs" />
-    <Compile Include="Input\Enumerations\MouseButton.cs" />
-    <Compile Include="Input\Enumerations\MouseButtonState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -150,6 +146,10 @@
       <Project>{2C8EACD9-7F02-4176-A2BE-DBE94B824A8C}</Project>
       <Name>Narivia.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Narivia.Input\Narivia.Input.csproj">
+      <Project>{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}</Project>
+      <Name>Narivia.Input</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -170,7 +170,5 @@
   <ItemGroup>
     <Folder Include="Interface\" />
     <Folder Include="Interface\Widgets\" />
-    <Folder Include="Input\Events\" />
-    <Folder Include="Input\Enumerations\" />
   </ItemGroup>
 </Project>

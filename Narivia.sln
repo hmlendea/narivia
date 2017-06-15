@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.GameLogic", "Narivi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Data", "Narivia.Data\Narivia.Data.csproj", "{2C8EACD9-7F02-4176-A2BE-DBE94B824A8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Input", "Narivia.Input\Narivia.Input.csproj", "{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,14 @@ Global
 		{2C8EACD9-7F02-4176-A2BE-DBE94B824A8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C8EACD9-7F02-4176-A2BE-DBE94B824A8C}.Release|x86.ActiveCfg = Release|Any CPU
 		{2C8EACD9-7F02-4176-A2BE-DBE94B824A8C}.Release|x86.Build.0 = Release|Any CPU
+		{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}.Debug|x86.Build.0 = Debug|Any CPU
+		{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}.Release|x86.ActiveCfg = Release|Any CPU
+		{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

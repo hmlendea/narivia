@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input.Enumerations;
-using Narivia.Screens;
 
 namespace Narivia.Input
 {
@@ -51,11 +50,7 @@ namespace Narivia.Input
             previousKeyState = currentKeyState;
             previousMouseState = currentMouseState;
 
-            if (!ScreenManager.Instance.Transitioning)
-            {
-                currentKeyState = Keyboard.GetState();
-            }
-
+            currentKeyState = Keyboard.GetState();
             currentMouseState = Mouse.GetState();
         }
 
