@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Serialization;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.Generators;
 using Narivia.GameLogic.Mapping;
 using Narivia.DataAccess.Repositories;
 using Narivia.DataAccess.Repositories.Interfaces;
@@ -19,6 +20,7 @@ namespace Narivia.GameLogic.GameManagers
     /// </summary>
     public class WorldManager : IWorldManager
     {
+        Random random;
         World world;
 
         string[,] worldTiles;
@@ -169,6 +171,14 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="WorldManager"/> class.
+        /// </summary>
+        public WorldManager()
+        {
+            random = new Random();
+        }
+
+        /// <summary>
         /// Loads the world.
         /// </summary>
         /// <param name="worldId">World identifier.</param>
@@ -177,6 +187,8 @@ namespace Narivia.GameLogic.GameManagers
             LoadEntities(worldId);
             LoadMap(worldId);
             LoadBorders();
+
+            InitializeEntities();
         }
 
         /// <summary>
@@ -332,7 +344,7 @@ namespace Narivia.GameLogic.GameManagers
             biomeList.ForEach(biome => Biomes.Add(biome.Id, biome));
             cultureList.ForEach(culture => Cultures.Add(culture.Id, culture));
             factionList.ForEach(faction => Factions.Add(faction.Id, faction));
-            holdingList.ForEach(holding => Holdings.Add(holding.Id, holding));
+            //holdingList.ForEach(holding => Holdings.Add(holding.Id, holding));
             regionList.ForEach(region => Regions.Add(region.Id, region));
             resourceList.ForEach(resource => Resources.Add(resource.Id, resource));
             unitList.ForEach(unit => Units.Add(unit.Id, unit));
@@ -443,6 +455,121 @@ namespace Narivia.GameLogic.GameManagers
             };
 
             Borders.Add(borderKey, border);
+        }
+
+        void InitializeEntities()
+        {
+            // Order is important
+            Regions.Values.ToList().ForEach(r => InitialiseRegion(r.Id));
+            Factions.Values.ToList().ForEach(f => InitialiseFaction(f.Id));
+        }
+
+        void InitialiseFaction(string factionId)
+        {
+            Faction faction = Factions[factionId];
+
+            if (faction.Id == "gaia")
+            {
+                faction.Alive = false;
+                return;
+            }
+
+            faction.Wealth = StartingWealth;
+            faction.Alive = true;
+
+            foreach (Unit unit in Units.Values.ToList())
+            {
+                Tuple<string, string> armyKey = new Tuple<string, string>(faction.Id, unit.Id);
+                Army army = new Army
+                {
+                    FactionId = faction.Id,
+                    UnitId = unit.Id,
+                    Size = StartingTroops
+                };
+
+                Armies.Add(armyKey, army);
+            }
+
+            GenerateHoldings(faction.Id);
+        }
+
+        void InitialiseRegion(string regionId)
+        {
+            Region region = Regions[regionId];
+
+            if (string.IsNullOrWhiteSpace(region.SovereignFactionId))
+            {
+                region.SovereignFactionId = region.FactionId;
+            }
+        }
+
+        void GenerateHoldings(string factionId)
+        {
+            Faction faction = Factions[factionId];
+
+            int holdingSlotsLeft = world.HoldingSlotsPerFaction;
+
+            string capitalRegionId = GetFactionCapital(faction.Id);
+
+            NameGenerator nameGenerator = new NameGenerator(Cultures[faction.CultureId].SamplePlaceNames, 3, 5);
+            nameGenerator.ExcludedSubstrings.AddRange(Factions.Values.Select(f => f.Name));
+            nameGenerator.ExcludedSubstrings.AddRange(Holdings.Values.Select(h => h.Name));
+            nameGenerator.ExcludedSubstrings.AddRange(Regions.Values.Select(r => r.Name));
+
+            List<Region> ownedRegions = GetFactionRegions(faction.Id).ToList();
+
+            foreach (Region region in ownedRegions)
+            {
+                Holding holding = GenerateHolding(nameGenerator, region.Id);
+
+                if (region.Id == capitalRegionId)
+                {
+                    holding.Name = region.Name;
+                    holding.Description = $"The government seat castle of {faction.Name}";
+                    holding.Type = HoldingType.Castle;
+                }
+
+                Holdings.Add(holding.Id, holding);
+                holdingSlotsLeft -= 1;
+            }
+
+            while (holdingSlotsLeft > 0)
+            {
+                Region region = ownedRegions.RandomElement();
+                Holding holding = GenerateHolding(nameGenerator, region.Id);
+
+                holding.Description = string.Empty;
+                holding.Type = HoldingType.Empty;
+
+                Holdings.Add(holding.Id, holding);
+                holdingSlotsLeft -= 1;
+            }
+        }
+
+        Holding GenerateHolding(NameGenerator generator, string regionId)
+        {
+            Region region = Regions[regionId];
+            Array holdingTypes = Enum.GetValues(typeof(HoldingType));
+
+            HoldingType holdingType = (HoldingType)holdingTypes.GetValue(random.Next(1, holdingTypes.Length));
+            string name = generator.GetName();
+
+            Holding holding = new Holding
+            {
+                Id = $"h_{name.Replace(" ", "_").ToLower()}",
+                RegionId = region.Id,
+                Name = name,
+                Description = $"The {name} {holdingType.ToString().ToLower()}", // TODO: Better description
+                Type = holdingType
+            };
+
+            // TODO: Make sure this never happens and then remove this workaround
+            while (Holdings.Values.Any(h => h.Id == holding.Id))
+            {
+                return GenerateHolding(generator, region.Id);
+            }
+
+            return holding;
         }
     }
 }

@@ -118,7 +118,6 @@ namespace Narivia.GameLogic.GameManagers
             attack = new AttackManager(world);
 
             InitializeGame(factionId);
-            InitializeEntities();
         }
 
         /// <summary>
@@ -386,32 +385,6 @@ namespace Narivia.GameLogic.GameManagers
         {
             PlayerFactionId = factionId;
             Turn = 0;
-        }
-
-        void InitializeEntities()
-        {
-            foreach (Faction faction in world.Factions.Values)
-            {
-                faction.Wealth = StartingWealth;
-                faction.Alive = true;
-
-                foreach (Unit unit in world.Units.Values.ToList())
-                {
-                    Tuple<string, string> armyKey = new Tuple<string, string>(faction.Id, unit.Id);
-                    Army army = new Army
-                    {
-                        FactionId = faction.Id,
-                        UnitId = unit.Id,
-                        Size = StartingTroopsPerUnit
-                    };
-
-                    world.Armies.Add(armyKey, army);
-                }
-            }
-
-            world.Regions.Values.Where(r => string.IsNullOrEmpty(r.SovereignFactionId)).ToList().ForEach(r => r.SovereignFactionId = r.FactionId);
-
-            world.Factions["gaia"].Alive = false;
         }
 
         /// <summary>
