@@ -35,6 +35,7 @@ namespace Narivia.Interface.Widgets
         Image regionNameBackground;
         Image regionNameText;
         List<Image> holdingIcons;
+        List<Image> holdingNames;
 
         /// <summary>
         /// Loads the content.
@@ -62,7 +63,7 @@ namespace Narivia.Interface.Widgets
             {
                 SpriteSize = regionNameBackground.Scale,
                 Tint = TextColour,
-                FontName = "SideBarFont",
+                FontName = "SideBarFont", // TODO: Consider providing a dedicated font
                 TextVerticalAlignment = VerticalAlignment.Center,
                 TextHorizontalAlignment = HorizontalAlignment.Center
             };
@@ -70,6 +71,7 @@ namespace Narivia.Interface.Widgets
             List<Holding> holdings = game.GetRegionHoldings(RegionId).ToList();
 
             holdingIcons = new List<Image>();
+            holdingNames = new List<Image>();
 
             foreach (Holding holding in holdings)
             {
@@ -77,11 +79,26 @@ namespace Narivia.Interface.Widgets
                 {
                     ImagePath = $"World/Assets/{game.WorldId}/holdings/generic",
                     SourceRectangle = new Rectangle(64 * ((int)holding.Type - 1), 0, 64, 64),
-                    Position = new Vector2(Position.X + 64 * (holdingIcons.Count), Position.Y + (Size.Y - 64) / 2)
+                    Position = new Vector2(Position.X + 64 * (holdingIcons.Count), Position.Y + Size.Y - 64)
+                };
+
+                Image holdingName = new Image
+                {
+                    Position = new Vector2(holdingIcon.Position.X, Position.Y + 2),
+                    Text = holding.Name,
+                    SpriteSize = new Vector2(holdingIcon.SourceRectangle.Width,
+                                             Size.Y - holdingIcon.SourceRectangle.Height + 10),
+                    FontName = "RegionBarHoldingFont",
+                    Tint = Color.Black,
+                    TextVerticalAlignment = VerticalAlignment.Center,
+                    TextHorizontalAlignment = HorizontalAlignment.Center
                 };
 
                 holdingIcons.Add(holdingIcon);
+                holdingNames.Add(holdingName);
+
                 holdingIcon.LoadContent();
+                holdingName.LoadContent();
             }
 
             background.LoadContent();
@@ -101,7 +118,10 @@ namespace Narivia.Interface.Widgets
             regionNameText.UnloadContent();
 
             holdingIcons.ForEach(x => x.UnloadContent());
+            holdingNames.ForEach(x => x.UnloadContent());
+
             holdingIcons.Clear();
+            holdingNames.Clear();
 
             base.UnloadContent();
         }
@@ -131,6 +151,7 @@ namespace Narivia.Interface.Widgets
             regionNameText.Update(gameTime);
 
             holdingIcons.ForEach(x => x.Update(gameTime));
+            holdingNames.ForEach(x => x.Update(gameTime));
 
             base.Update(gameTime);
         }
@@ -151,6 +172,7 @@ namespace Narivia.Interface.Widgets
             regionNameText.Draw(spriteBatch);
 
             holdingIcons.ForEach(x => x.Draw(spriteBatch));
+            holdingNames.ForEach(x => x.Draw(spriteBatch));
 
             base.Draw(spriteBatch);
         }
