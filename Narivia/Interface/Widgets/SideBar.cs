@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Input.Events;
 
 namespace Narivia.Interface.Widgets
 {
@@ -15,10 +16,6 @@ namespace Narivia.Interface.Widgets
         Image factionSymbol;
         Image factionName;
         Image turnCounter;
-
-        Button turnButton;
-        Button statsButton;
-        Button relationsButton;
 
         [XmlIgnore]
         public string FactionId { get; set; }
@@ -34,9 +31,26 @@ namespace Narivia.Interface.Widgets
 
         public Color TextColour { get; set; }
 
-        public event EventHandler TurnButtonClicked;
-        public event EventHandler StatsButtonClicked;
-        public event EventHandler RelationsButtonClicked;
+        /// <summary>
+        /// Gets the turn button.
+        /// </summary>
+        /// <value>The turn button.</value>
+        [XmlIgnore]
+        public Button TurnButton { get; private set; }
+
+        /// <summary>
+        /// Gets the stats button.
+        /// </summary>
+        /// <value>The stats button.</value>
+        [XmlIgnore]
+        public Button StatsButton { get; private set; }
+
+        /// <summary>
+        /// Gets the relations button.
+        /// </summary>
+        /// <value>The relations button.</value>
+        [XmlIgnore]
+        public Button RelationsButton { get; private set; }
 
         int margins = 5;
 
@@ -78,19 +92,19 @@ namespace Narivia.Interface.Widgets
                 Tint = TextColour
             };
 
-            turnButton = new Button
+            TurnButton = new Button
             {
                 Text = "End Turn",
                 TextColour = TextColour,
                 Size = new Vector2(224, 32)
             };
-            statsButton = new Button
+            StatsButton = new Button
             {
                 Text = "Stats",
                 TextColour = TextColour,
                 Size = new Vector2(96, 32)
             };
-            relationsButton = new Button
+            RelationsButton = new Button
             {
                 Text = "Relations",
                 TextColour = TextColour,
@@ -103,13 +117,9 @@ namespace Narivia.Interface.Widgets
             factionName.LoadContent();
             turnCounter.LoadContent();
 
-            turnButton.LoadContent();
-            statsButton.LoadContent();
-            relationsButton.LoadContent();
-
-            turnButton.Clicked += OnTurnButtonClicked;
-            statsButton.Clicked += OnStatsButtonClicked;
-            relationsButton.Clicked += OnRelationsButtonClicked;
+            TurnButton.LoadContent();
+            StatsButton.LoadContent();
+            RelationsButton.LoadContent();
 
             base.LoadContent();
         }
@@ -125,9 +135,9 @@ namespace Narivia.Interface.Widgets
             factionName.UnloadContent();
             turnCounter.UnloadContent();
 
-            turnButton.UnloadContent();
-            statsButton.UnloadContent();
-            relationsButton.UnloadContent();
+            TurnButton.UnloadContent();
+            StatsButton.UnloadContent();
+            RelationsButton.UnloadContent();
 
             base.UnloadContent();
         }
@@ -150,12 +160,12 @@ namespace Narivia.Interface.Widgets
 
             factionSymbol.Position = Position + new Vector2((Size.X - factionSymbol.ScreenArea.Width) / 2, factionName.ScreenArea.Bottom + margins);
 
-            turnButton.Position = Position + new Vector2((Size.X - turnButton.Size.X) / 2,
-                                                          Size.Y - turnButton.Size.Y - margins * 5);
-            statsButton.Position = Position + new Vector2((int)(Size.X - statsButton.Size.X - relationsButton.Size.X - margins * 5) / 2,
-                                                          (int)(Size.Y - statsButton.Size.Y) / 2);
-            relationsButton.Position = Position + new Vector2((int)(Size.X + statsButton.Size.X + margins * 5 - relationsButton.Size.X) / 2,
-                                                              (int)(Size.Y - relationsButton.Size.Y) / 2);
+            TurnButton.Position = Position + new Vector2((Size.X - TurnButton.Size.X) / 2,
+                                                          Size.Y - TurnButton.Size.Y - margins * 5);
+            StatsButton.Position = Position + new Vector2((int)(Size.X - StatsButton.Size.X - RelationsButton.Size.X - margins * 5) / 2,
+                                                          (int)(Size.Y - StatsButton.Size.Y) / 2);
+            RelationsButton.Position = Position + new Vector2((int)(Size.X + StatsButton.Size.X + margins * 5 - RelationsButton.Size.X) / 2,
+                                                              (int)(Size.Y - RelationsButton.Size.Y) / 2);
 
             background.Update(gameTime);
             factionSymbol.Update(gameTime);
@@ -163,9 +173,9 @@ namespace Narivia.Interface.Widgets
             factionName.Update(gameTime);
             turnCounter.Update(gameTime);
 
-            turnButton.Update(gameTime);
-            statsButton.Update(gameTime);
-            relationsButton.Update(gameTime);
+            TurnButton.Update(gameTime);
+            StatsButton.Update(gameTime);
+            RelationsButton.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -187,35 +197,11 @@ namespace Narivia.Interface.Widgets
             factionName.Draw(spriteBatch);
             turnCounter.Draw(spriteBatch);
 
-            turnButton.Draw(spriteBatch);
-            statsButton.Draw(spriteBatch);
-            relationsButton.Draw(spriteBatch);
+            TurnButton.Draw(spriteBatch);
+            StatsButton.Draw(spriteBatch);
+            RelationsButton.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
-        }
-
-        protected void OnTurnButtonClicked(object sender, EventArgs e)
-        {
-            if (TurnButtonClicked != null)
-            {
-                TurnButtonClicked(this, null);
-            }
-        }
-
-        protected void OnStatsButtonClicked(object sender, EventArgs e)
-        {
-            if (StatsButtonClicked != null)
-            {
-                StatsButtonClicked(this, null);
-            }
-        }
-
-        protected void OnRelationsButtonClicked(object sender, EventArgs e)
-        {
-            if (RelationsButtonClicked != null)
-            {
-                RelationsButtonClicked(this, null);
-            }
         }
     }
 }

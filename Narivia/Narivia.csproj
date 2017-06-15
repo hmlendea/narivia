@@ -84,7 +84,6 @@
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Helpers\XmlManager.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
-    <Compile Include="Input\MouseButton.cs" />
     <Compile Include="Audio\AudioManager.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -110,6 +109,9 @@
     <Compile Include="Interface\Widgets\NotificationButton.cs" />
     <Compile Include="Interface\Widgets\NotificationIcon.cs" />
     <Compile Include="Interface\Widgets\NotificationBar.cs" />
+    <Compile Include="Input\Events\MouseEvent.cs" />
+    <Compile Include="Input\Enumerations\MouseButton.cs" />
+    <Compile Include="Input\Enumerations\MouseButtonState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -168,5 +170,7 @@
   <ItemGroup>
     <Folder Include="Interface\" />
     <Folder Include="Interface\Widgets\" />
+    <Folder Include="Input\Events\" />
+    <Folder Include="Input\Enumerations\" />
   </ItemGroup>
 </Project>

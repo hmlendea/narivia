@@ -1,11 +1,11 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Audio;
 using Narivia.Graphics;
 using Narivia.Input;
+using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
 
 namespace Narivia.Interface.Widgets
 {
@@ -22,9 +22,6 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         /// <value>The icon.</value>
         public NotificationIcon Icon { get; set; }
-
-        // TODO: Maybe implement my own handler and args
-        public event EventHandler Clicked;
 
         Image background;
         Image icon;
@@ -122,16 +119,17 @@ namespace Narivia.Interface.Widgets
                 InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
             {
                 AudioManager.Instance.PlaySound("Interface/click");
-                OnClicked(this, null);
             }
         }
 
-        protected void OnClicked(object sender, EventArgs e)
+        /// <summary>
+        /// Fire by the Clicked event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected override void OnClicked(object sender, MouseEventArgs e)
         {
-            if (Clicked != null)
-            {
-                Clicked(this, null);
-            }
+            base.OnClicked(sender, e);
 
             Destroy();
         }

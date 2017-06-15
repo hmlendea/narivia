@@ -3,6 +3,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.Input;
+using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
+
 namespace Narivia.Interface.Widgets
 {
     public class Widget
@@ -50,6 +54,8 @@ namespace Narivia.Interface.Widgets
         [XmlIgnore]
         public bool Destroyed { get; private set; }
 
+        public event MouseEventHandler Clicked;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.Widgets.Widget"/> class.
         /// </summary>
@@ -86,6 +92,14 @@ namespace Narivia.Interface.Widgets
             {
                 return;
             }
+
+            if (InputManager.Instance.IsCursorInArea(ScreenArea) &&
+                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
+            {
+                OnClicked(this, new MouseEventArgs(MouseButton.LeftButton,
+                                                   MouseButtonState.Pressed,
+                                                   InputManager.Instance.MousePosition));
+            }
         }
 
         /// <summary>
@@ -108,6 +122,19 @@ namespace Narivia.Interface.Widgets
             UnloadContent();
 
             Destroyed = true;
+        }
+
+        /// <summary>
+        /// Fire by the Clicked event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnClicked(object sender, MouseEventArgs e)
+        {
+            if (Clicked != null)
+            {
+                Clicked(this, null);
+            }
         }
     }
 }

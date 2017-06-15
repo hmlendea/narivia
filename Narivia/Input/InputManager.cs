@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
+using Narivia.Input.Enumerations;
 using Narivia.Screens;
 
 namespace Narivia.Input
@@ -106,21 +107,33 @@ namespace Narivia.Input
         /// </summary>
         /// <param name="button">Mouse button.</param>
         /// <returns>The state of the specified mouse button.</returns>
-        public ButtonState GetMouseButtonState(MouseButton button)
+        public MouseButtonState GetMouseButtonState(MouseButton button)
         {
             switch (button)
             {
                 case MouseButton.LeftButton:
-                    return currentMouseState.LeftButton;
+                    if (currentMouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        return MouseButtonState.Pressed;
+                    }
+                    break;
 
                 case MouseButton.RightButton:
-                    return currentMouseState.RightButton;
+                    if (currentMouseState.RightButton == ButtonState.Pressed)
+                    {
+                        return MouseButtonState.Pressed;
+                    }
+                    break;
 
                 case MouseButton.MiddleButton:
-                    return currentMouseState.MiddleButton;
+                    if (currentMouseState.MiddleButton == ButtonState.Pressed)
+                    {
+                        return MouseButtonState.Pressed;
+                    }
+                    break;
             }
 
-            return ButtonState.Released;
+            return MouseButtonState.Released;
         }
 
         /// <summary>

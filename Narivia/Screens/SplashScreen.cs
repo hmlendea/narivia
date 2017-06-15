@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Input;
+using Narivia.Input.Enumerations;
 
 namespace Narivia.Screens
 {

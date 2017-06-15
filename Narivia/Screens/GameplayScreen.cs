@@ -7,6 +7,7 @@ using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
+using Narivia.Input.Events;
 using Narivia.Interface.Widgets;
 
 namespace Narivia.Screens
@@ -73,9 +74,9 @@ namespace Narivia.Screens
 
             base.LoadContent();
 
-            SideBar.TurnButtonClicked += SideBar_TurnButtonClicked;
-            SideBar.StatsButtonClicked += SideBar_StatsButtonClicked;
-            SideBar.RelationsButtonClicked += SideBar_RelationsButtonClicked;
+            SideBar.TurnButton.Clicked += SideBar_TurnButtonClicked;
+            SideBar.StatsButton.Clicked += SideBar_StatsButtonClicked;
+            SideBar.RelationsButton.Clicked += SideBar_RelationsButtonClicked;
 
             ShowNotification("Welcome",
                              $"Welcome to the world of {game.WorldName} " +
@@ -153,7 +154,7 @@ namespace Narivia.Screens
         {
         }
 
-        void SideBar_TurnButtonClicked(object sender, EventArgs e)
+        void SideBar_TurnButtonClicked(object sender, MouseEventArgs e)
         {
             NotificationBar.Clear();
 
@@ -180,7 +181,7 @@ namespace Narivia.Screens
                                  $"Holdings: {holdingsNew} ({(holdingsNew - holdingsOld).ToString("+0;-#")})" + Environment.NewLine +
                                  $"Wealth: {wealthNew} ({(wealthNew - wealthOld).ToString("+0;-#")})" + Environment.NewLine +
                                  $"Income: {incomeNew} ({(incomeNew - incomeOld).ToString("+0;-#")})" + Environment.NewLine +
-                                 $"Income: {outcomeNew} ({(outcomeNew - outcomeOld).ToString("+0;-#")})" + Environment.NewLine +
+                                 $"Outcome: {outcomeNew} ({(outcomeNew - outcomeOld).ToString("+0;-#")})" + Environment.NewLine +
                                  $"Militia Recruitment: {recruitmentNew} ({(recruitmentNew - recruitmentOld).ToString("+0;-#")})",
                                  NotificationType.Informational,
                                  NotificationStyle.Big,
@@ -188,7 +189,7 @@ namespace Narivia.Screens
             };
         }
 
-        void SideBar_StatsButtonClicked(object sender, EventArgs e)
+        void SideBar_StatsButtonClicked(object sender, MouseEventArgs e)
         {
             ShowNotification("Statistics",
                              $"Income: {game.GetFactionIncome(game.PlayerFactionId)}" + Environment.NewLine +
@@ -199,7 +200,7 @@ namespace Narivia.Screens
                              new Vector2(256, 160));
         }
 
-        void SideBar_RelationsButtonClicked(object sender, EventArgs e)
+        void SideBar_RelationsButtonClicked(object sender, MouseEventArgs e)
         {
             ShowNotification("Diplomatic Relations",
                              "Comming soon :)",

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Audio;
 using Narivia.Graphics;
 using Narivia.Input;
+using Narivia.Input.Enumerations;
 
 namespace Narivia.Interface.Widgets
 {
@@ -40,9 +41,6 @@ namespace Narivia.Interface.Widgets
         public string FontName { get; set; }
 
         public bool Hovered { get; set; }
-
-        // TODO: Maybe implement my own handler and args
-        public event EventHandler Clicked;
 
         const int tileSize = 32;
 
@@ -203,15 +201,6 @@ namespace Narivia.Interface.Widgets
                 InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
             {
                 AudioManager.Instance.PlaySound("Interface/click");
-                OnClicked(this, null);
-            }
-        }
-
-        protected void OnClicked(object sender, EventArgs e)
-        {
-            if (Clicked != null)
-            {
-                Clicked(this, null);
             }
         }
     }

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Narivia.Graphics;
 using Narivia.Graphics.ImageEffects;
 using Narivia.Input;
+using Narivia.Input.Enumerations;
 
 namespace Narivia.Interface
 {
@@ -29,11 +30,11 @@ namespace Narivia.Interface
                 Active = true
             };
 
-            ButtonState leftButtonState = InputManager.Instance.GetMouseButtonState(MouseButton.LeftButton);
+            MouseButtonState leftButtonState = InputManager.Instance.GetMouseButtonState(MouseButton.LeftButton);
 
             switch (leftButtonState)
             {
-                case ButtonState.Pressed:
+                case MouseButtonState.Pressed:
                     image.ImagePath = "Cursors/click";
                     break;
 

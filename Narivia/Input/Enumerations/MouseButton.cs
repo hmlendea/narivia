@@ -1,4 +1,4 @@
-﻿namespace Narivia.Input
+﻿namespace Narivia.Input.Enumerations
 {
     /// <summary>
     /// Mouse button.

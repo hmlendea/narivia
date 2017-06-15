@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Audio;
 using Narivia.Graphics;
 using Narivia.Input;
+using Narivia.Input.Enumerations;
 
 namespace Narivia.Interface.Widgets
 {
