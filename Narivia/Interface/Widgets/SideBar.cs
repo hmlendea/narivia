@@ -1,14 +1,15 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Input.Events;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Side bar widget.
+    /// </summary>
     public class SideBar : Widget
     {
         Image background;
@@ -17,18 +18,38 @@ namespace Narivia.Interface.Widgets
         Image factionName;
         Image turnCounter;
 
+        /// <summary>
+        /// Gets or sets the faction identifier.
+        /// </summary>
+        /// <value>The faction identifier.</value>
         [XmlIgnore]
         public string FactionId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the faction.
+        /// </summary>
+        /// <value>The name of the faction.</value>
         [XmlIgnore]
         public string FactionName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the world identifier.
+        /// </summary>
+        /// <value>The world identifier.</value>
         [XmlIgnore]
         public string WorldId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the turn.
+        /// </summary>
+        /// <value>The turn.</value>
         [XmlIgnore]
         public int Turn { get; set; }
 
+        /// <summary>
+        /// Gets or sets the text colour.
+        /// </summary>
+        /// <value>The text colour.</value>
         public Color TextColour { get; set; }
 
         /// <summary>

@@ -13,6 +13,9 @@ using Narivia.Input.Enumerations;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Menu item widget.
+    /// </summary>
     public class MenuItem : Widget
     {
         /// <summary>
@@ -33,6 +36,10 @@ namespace Narivia.Interface.Widgets
         /// <value>The selected text colour.</value>
         public Color SelectedTextColour { get; set; }
 
+        /// <summary>
+        /// Gets or sets the position.
+        /// </summary>
+        /// <value>The position.</value>
         public new Vector2 Position
         {
             get { return TextImage.Position; }
@@ -45,11 +52,21 @@ namespace Narivia.Interface.Widgets
         /// <value>The size.</value>
         public new Vector2 Size { get; set; }
 
+        /// <summary>
+        /// Gets the screen area.
+        /// </summary>
+        /// <value>The screen area.</value>
         public new Rectangle ScreenArea => TextImage.ScreenArea;
 
         // TODO: Maybe implement my own handler and args
+        /// <summary>
+        /// Occurs when activated.
+        /// </summary>
         public event EventHandler Activated;
 
+        /// <summary>
+        /// The text image.
+        /// </summary>
         protected Image TextImage;
 
         /// <summary>
@@ -154,6 +171,11 @@ namespace Narivia.Interface.Widgets
             TextImage.Draw(spriteBatch);
         }
 
+        /// <summary>
+        /// Fired by the Activated event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
         protected virtual void OnActivated(object sender, EventArgs e)
         {
             if (Activated != null)

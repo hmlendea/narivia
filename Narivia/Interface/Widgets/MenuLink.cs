@@ -52,6 +52,11 @@ namespace Narivia.Interface.Widgets
             base.Draw(spriteBatch);
         }
 
+        /// <summary>
+        /// Fired by the Activated event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
         protected override void OnActivated(object sender, EventArgs e)
         {
             base.OnActivated(sender, e);

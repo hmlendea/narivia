@@ -9,6 +9,9 @@ using Narivia.Input.Events;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Notification button widget.
+    /// </summary>
     public class NotificationButton : Widget
     {
         /// <summary>

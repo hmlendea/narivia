@@ -7,6 +7,9 @@ using Narivia.Graphics;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Info bar widget.
+    /// </summary>
     public class InfoBar : Widget
     {
         Image background;
@@ -16,24 +19,55 @@ namespace Narivia.Interface.Widgets
         Image wealthIcon, wealthText;
         Image troopsIcon, troopsText;
 
+        /// <summary>
+        /// Gets or sets the regions count.
+        /// </summary>
+        /// <value>The regions count.</value>
         [XmlIgnore]
         public int Regions { get; set; }
 
+        /// <summary>
+        /// Gets or sets the holdings count.
+        /// </summary>
+        /// <value>The holdings count.</value>
         [XmlIgnore]
         public int Holdings { get; set; }
 
+        /// <summary>
+        /// Gets or sets the wealth.
+        /// </summary>
+        /// <value>The wealth.</value>
         [XmlIgnore]
         public int Wealth { get; set; }
 
+        /// <summary>
+        /// Gets or sets the troops count.
+        /// </summary>
+        /// <value>The troops count.</value>
         [XmlIgnore]
         public int Troops { get; set; }
 
+        /// <summary>
+        /// Gets or sets the background colour.
+        /// </summary>
+        /// <value>The background colour.</value>
         public Color BackgroundColour { get; set; }
 
+        /// <summary>
+        /// Gets or sets the text colour.
+        /// </summary>
+        /// <value>The text colour.</value>
         public Color TextColour { get; set; }
 
+        /// <summary>
+        /// Gets or sets the spacing.
+        /// </summary>
+        /// <value>The spacing.</value>
         public float Spacing { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Narivia.Interface.Widgets.InfoBar"/> class.
+        /// </summary>
         public InfoBar()
         {
             BackgroundColour = Color.Black;

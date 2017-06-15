@@ -10,10 +10,21 @@ using Narivia.Input.Enumerations;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Notification widget.
+    /// </summary>
     public class Notification : Widget
     {
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>The type.</value>
         public NotificationType Type { get; set; }
 
+        /// <summary>
+        /// Gets or sets the style.
+        /// </summary>
+        /// <value>The style.</value>
         public NotificationStyle Style { get; set; }
 
         /// <summary>
@@ -55,6 +66,9 @@ namespace Narivia.Interface.Widgets
 
         const int tileSize = 32;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Notification"/> class.
+        /// </summary>
         public Notification()
         {
             Type = NotificationType.Informational;

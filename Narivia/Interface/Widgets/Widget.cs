@@ -9,6 +9,9 @@ using Narivia.Input.Events;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Widget.
+    /// </summary>
     public class Widget
     {
         /// <summary>
@@ -54,6 +57,9 @@ namespace Narivia.Interface.Widgets
         [XmlIgnore]
         public bool Destroyed { get; private set; }
 
+        /// <summary>
+        /// Occurs when clicked.
+        /// </summary>
         public event MouseEventHandler Clicked;
 
         /// <summary>

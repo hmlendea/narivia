@@ -11,6 +11,10 @@ namespace Narivia.Input
 {
     public class InputManager
     {
+        /// <summary>
+        /// Gets the mouse position.
+        /// </summary>
+        /// <value>The mouse position.</value>
         public Vector2 MousePosition => new Vector2(currentMouseState.Position.X, currentMouseState.Position.Y);
 
         KeyboardState currentKeyState, previousKeyState;

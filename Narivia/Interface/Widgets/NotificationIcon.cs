@@ -1,5 +1,8 @@
 ﻿namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Notification icon.
+    /// </summary>
     public enum NotificationIcon
     {
         DebugTest = 0,

@@ -8,6 +8,9 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Notification bar widget.
+    /// </summary>
     public class NotificationBar : Widget
     {
         [XmlIgnore]

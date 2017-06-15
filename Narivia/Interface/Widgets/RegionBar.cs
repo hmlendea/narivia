@@ -11,8 +11,15 @@ using Narivia.Models;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Region bar widget.
+    /// </summary>
     public class RegionBar : Widget
     {
+        /// <summary>
+        /// Gets the region identifier.
+        /// </summary>
+        /// <value>The region identifier.</value>
         [XmlIgnore]
         public string RegionId { get; private set; }
 

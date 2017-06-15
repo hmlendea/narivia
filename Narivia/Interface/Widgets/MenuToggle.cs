@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Menu toggle widget.
+    /// </summary>
     public class MenuToggle : MenuItem
     {
         /// <summary>
@@ -14,6 +17,10 @@ namespace Narivia.Interface.Widgets
         /// <value>The type of the property.</value>
         public string Property { get; set; }
 
+        /// <summary>
+        /// Gets the display text.
+        /// </summary>
+        /// <value>The display text.</value>
         public string DisplayText => Text + ": " + ToggleState;
 
         /// <summary>
@@ -65,6 +72,11 @@ namespace Narivia.Interface.Widgets
             base.Draw(spriteBatch);
         }
 
+        /// <summary>
+        /// Fired by the Activated event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
         protected override void OnActivated(object sender, EventArgs e)
         {
             base.OnActivated(sender, e);

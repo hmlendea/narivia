@@ -10,8 +10,15 @@ using Narivia.Input.Enumerations;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Button widget.
+    /// </summary>
     public class Button : Widget
     {
+        /// <summary>
+        /// Gets or sets the style.
+        /// </summary>
+        /// <value>The style.</value>
         public ButtonStyle Style { get; set; }
 
         /// <summary>
@@ -38,8 +45,16 @@ namespace Narivia.Interface.Widgets
         /// <value>The text colour.</value>
         public Color TextColour { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the font.
+        /// </summary>
+        /// <value>The name of the font.</value>
         public string FontName { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Button"/> is hovered.
+        /// </summary>
+        /// <value><c>true</c> if hovered; otherwise, <c>false</c>.</value>
         public bool Hovered { get; set; }
 
         const int tileSize = 32;

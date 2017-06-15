@@ -11,10 +11,21 @@ using Narivia.WorldMap;
 
 namespace Narivia.Interface.Widgets
 {
+    /// <summary>
+    /// Game map widget.
+    /// </summary>
     public class GameMap : Widget
     {
+        /// <summary>
+        /// Gets or sets the size.
+        /// </summary>
+        /// <value>The size.</value>
         public new Vector2 Size { get; set; }
 
+        /// <summary>
+        /// Gets the selected region identifier.
+        /// </summary>
+        /// <value>The selected region identifier.</value>
         [XmlIgnore]
         public string SelectedRegionId { get; private set; }
 
