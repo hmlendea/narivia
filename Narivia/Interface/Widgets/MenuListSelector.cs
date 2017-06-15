@@ -110,6 +110,11 @@ namespace Narivia.Interface.Widgets
                 return;
             }
 
+            if (SelectedIndex == -1)
+            {
+                SelectedIndex = 0;
+            }
+
             if (InputManager.Instance.IsKeyPressed(Keys.Right))
             {
                 SelectedIndex += 1;

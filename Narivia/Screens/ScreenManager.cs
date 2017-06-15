@@ -162,7 +162,26 @@ namespace Narivia.Screens
         /// <param name="screenName">Screen name.</param>
         public void ChangeScreens(string screenName)
         {
+            ChangeScreens(screenName, null);
+        }
+
+        /// <summary>
+        /// Changes the screen.
+        /// </summary>
+        /// <param name="screenName">Screen name.</param>
+        /// <param name="screenArgs">Screen arguments.</param>
+        public void ChangeScreens(string screenName, string[] screenArgs)
+        {
             newScreen = (Screen)Activator.CreateInstance(Type.GetType("Narivia.Screens." + screenName));
+
+            xmlScreenManager.Type = newScreen.Type;
+
+            if (File.Exists(currentScreen.XmlPath))
+            {
+                newScreen = xmlScreenManager.Load(newScreen.XmlPath);
+            }
+
+            newScreen.ScreenArgs = screenArgs;
 
             TransitionImage.ActivateEffect("FadeEffect");
             TransitionImage.Active = true;
@@ -184,13 +203,6 @@ namespace Narivia.Screens
             {
                 currentScreen.UnloadContent();
                 currentScreen = newScreen;
-                xmlScreenManager.Type = currentScreen.Type;
-
-                if (File.Exists(currentScreen.XmlPath))
-                {
-                    currentScreen = xmlScreenManager.Load(currentScreen.XmlPath);
-                }
-
                 currentScreen.LoadContent();
             }
             else if (TransitionImage.Opacity <= 0.0f)

@@ -2,9 +2,12 @@
 <NewGameScreen>
 	<Axis>Y</Axis>
 	<Link>
-		<Text>Load test map 'Narivia'</Text>
+		<Text>Start</Text>
 		<LinkId>GameplayScreen</LinkId>
 	</Link>
+	<ListSelector>
+		<Text>Faction</Text>
+	</ListSelector>
 	<Link>
 		<Text>Back</Text>
 		<LinkId>TitleScreen</LinkId>

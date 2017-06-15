@@ -19,6 +19,12 @@ namespace Narivia.Interface.Widgets
         public string LinkId { get; set; }
 
         /// <summary>
+        /// Gets or sets the link arguments.
+        /// </summary>
+        /// <value>The link arguments.</value>
+        public string LinkArgs { get; set; }
+
+        /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
@@ -61,7 +67,14 @@ namespace Narivia.Interface.Widgets
         {
             base.OnActivated(sender, e);
 
-            ScreenManager.Instance.ChangeScreens(LinkId);
+            string[] args = new string[0];
+
+            if (!string.IsNullOrWhiteSpace(LinkArgs))
+            {
+                args = LinkArgs.Split(' ');
+            }
+
+            ScreenManager.Instance.ChangeScreens(LinkId, args);
         }
     }
 }

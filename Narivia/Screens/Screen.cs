@@ -55,6 +55,12 @@ namespace Narivia.Screens
         public List<Button> Buttons { get; set; }
 
         /// <summary>
+        /// Gets or sets the screen arguments.
+        /// </summary>
+        /// <value>The screen arguments.</value>
+        public string[] ScreenArgs { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Screen"/> class.
         /// </summary>
         public Screen()

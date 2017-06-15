@@ -1,5 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using Narivia.GameLogic.GameManagers;
+using Narivia.Interface.Widgets;
+using Narivia.Models;
 
 namespace Narivia.Screens
 {
@@ -8,12 +15,29 @@ namespace Narivia.Screens
     /// </summary>
     public class NewGameScreen : MenuScreen
     {
+        GameManager game = new GameManager();
+        MenuListSelector factionSelector;
+        MenuLink startLink;
+
+        string selectedFactionName;
+
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
             base.LoadContent();
+
+            // TODO: Don't load everything unnecessarily
+            game.NewGame("narivia", "alpalet");
+
+            List<Faction> factions = game.GetFactions().Where(f => f.Id != "gaia").ToList();
+
+            // TODO: Identify and retrieve the items properly
+            factionSelector = ListSelectors.FirstOrDefault(x => x.Text == "Faction");
+            startLink = Links.FirstOrDefault(x => x.Text == "Start");
+
+            factionSelector.Values.AddRange(factions.Select(f => f.Name));
         }
 
         /// <summary>
@@ -31,6 +55,15 @@ namespace Narivia.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (selectedFactionName != factionSelector.SelectedValue)
+            {
+                selectedFactionName = factionSelector.SelectedValue;
+
+                string factionId = game.GetFactions().FirstOrDefault(f => f.Name == selectedFactionName).Id;
+
+                startLink.LinkArgs = $"narivia {factionId}";
+            }
         }
 
         /// <summary>

@@ -56,8 +56,17 @@ namespace Narivia.Screens
         /// </summary>
         public override void LoadContent()
         {
+            string initialWorldId = "narivia";
+            string initialFactionId = "alpalet";
+
+            if (ScreenArgs != null && ScreenArgs.Length >= 2)
+            {
+                initialWorldId = ScreenArgs[0];
+                initialFactionId = ScreenArgs[1];
+            }
+
             game = new GameManager();
-            game.NewGame("narivia", "mah_rodah");
+            game.NewGame(initialWorldId, initialFactionId);
 
             game.PlayerRegionAttacked += OnPlayerRegionAttacked;
 
