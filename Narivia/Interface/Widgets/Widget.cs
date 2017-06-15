@@ -139,7 +139,7 @@ namespace Narivia.Interface.Widgets
         {
             if (Clicked != null)
             {
-                Clicked(this, null);
+                Clicked(this, e);
             }
         }
     }
