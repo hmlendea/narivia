@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.Interface.Widgets.Enumerations;
 
 namespace Narivia.Interface.Widgets
 {

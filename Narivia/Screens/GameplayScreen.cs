@@ -9,6 +9,7 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
 using Narivia.Input.Events;
 using Narivia.Interface.Widgets;
+using Narivia.Interface.Widgets.Enumerations;
 
 namespace Narivia.Screens
 {

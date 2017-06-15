@@ -20,7 +20,7 @@ namespace Narivia.Interface.Widgets
         /// Gets or sets the size.
         /// </summary>
         /// <value>The size.</value>
-        public new Vector2 Size { get; set; }
+        public override Vector2 Size { get; set; }
 
         /// <summary>
         /// Gets the selected region identifier.

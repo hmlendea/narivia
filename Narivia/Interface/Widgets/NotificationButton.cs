@@ -6,6 +6,7 @@ using Narivia.Graphics;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
+using Narivia.Interface.Widgets.Enumerations;
 
 namespace Narivia.Interface.Widgets
 {

@@ -7,6 +7,7 @@ using Narivia.Audio;
 using Narivia.Graphics;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
+using Narivia.Interface.Widgets.Enumerations;
 
 namespace Narivia.Interface.Widgets
 {

@@ -1,4 +1,4 @@
-﻿namespace Narivia.Interface.Widgets
+﻿namespace Narivia.Interface.Widgets.Enumerations
 {
     /// <summary>
     /// Button style.

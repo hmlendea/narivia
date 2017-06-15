@@ -91,14 +91,11 @@
     <Compile Include="Interface\Camera.cs" />
     <Compile Include="Interface\Cursor.cs" />
     <Compile Include="Interface\Widgets\Button.cs" />
-    <Compile Include="Interface\Widgets\ButtonStyle.cs" />
     <Compile Include="Interface\Widgets\MenuAction.cs" />
     <Compile Include="Interface\Widgets\MenuItem.cs" />
     <Compile Include="Interface\Widgets\MenuLink.cs" />
     <Compile Include="Interface\Widgets\MenuToggle.cs" />
     <Compile Include="Interface\Widgets\Notification.cs" />
-    <Compile Include="Interface\Widgets\NotificationStyle.cs" />
-    <Compile Include="Interface\Widgets\NotificationType.cs" />
     <Compile Include="Interface\Widgets\Widget.cs" />
     <Compile Include="Interface\Widgets\GameMap.cs" />
     <Compile Include="Interface\Widgets\InfoBar.cs" />
@@ -106,8 +103,11 @@
     <Compile Include="Graphics\TextureFillMode.cs" />
     <Compile Include="Interface\Widgets\RegionBar.cs" />
     <Compile Include="Interface\Widgets\NotificationButton.cs" />
-    <Compile Include="Interface\Widgets\NotificationIcon.cs" />
     <Compile Include="Interface\Widgets\NotificationBar.cs" />
+    <Compile Include="Interface\Widgets\Enumerations\ButtonStyle.cs" />
+    <Compile Include="Interface\Widgets\Enumerations\NotificationIcon.cs" />
+    <Compile Include="Interface\Widgets\Enumerations\NotificationStyle.cs" />
+    <Compile Include="Interface\Widgets\Enumerations\NotificationType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -170,5 +170,6 @@
   <ItemGroup>
     <Folder Include="Interface\" />
     <Folder Include="Interface\Widgets\" />
+    <Folder Include="Interface\Widgets\Enumerations\" />
   </ItemGroup>
 </Project>
