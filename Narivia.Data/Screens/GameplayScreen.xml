@@ -67,5 +67,11 @@
 			<X>1000</X>
 			<Y>80</Y>
 		</Size>
+		<TextColour>
+			<A>255</A>
+			<R>255</R>
+			<G>215</G>
+			<B>0</B>
+		</TextColour>
 	</RegionBar>
 </GameplayScreen>

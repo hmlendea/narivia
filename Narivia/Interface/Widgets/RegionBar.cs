@@ -23,9 +23,17 @@ namespace Narivia.Interface.Widgets
         [XmlIgnore]
         public string RegionId { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the text colour.
+        /// </summary>
+        /// <value>The text colour.</value>
+        public Color TextColour { get; set; }
+
         IGameManager game;
 
         Image background;
+        Image regionNameBackground;
+        Image regionNameText;
         List<Image> holdingIcons;
 
         /// <summary>
@@ -40,6 +48,23 @@ namespace Narivia.Interface.Widgets
                 Position = Position,
                 TextureFillMode = TextureFillMode.Tile,
                 Scale = Size / 32
+            };
+
+            regionNameBackground = new Image
+            {
+                Tint = Color.Black,
+                ImagePath = "ScreenManager/FillImage",
+                SourceRectangle = new Rectangle(0, 0, 1, 1),
+                Scale = new Vector2(240, 32),
+            };
+
+            regionNameText = new Image
+            {
+                SpriteSize = regionNameBackground.Scale,
+                Tint = TextColour,
+                FontName = "SideBarFont",
+                TextVerticalAlignment = VerticalAlignment.Center,
+                TextHorizontalAlignment = HorizontalAlignment.Center
             };
 
             List<Holding> holdings = game.GetRegionHoldings(RegionId).ToList();
@@ -60,6 +85,8 @@ namespace Narivia.Interface.Widgets
             }
 
             background.LoadContent();
+            regionNameBackground.LoadContent();
+            regionNameText.LoadContent();
 
             base.LoadContent();
         }
@@ -70,8 +97,10 @@ namespace Narivia.Interface.Widgets
         public override void UnloadContent()
         {
             background.UnloadContent();
-            holdingIcons.ForEach(x => x.UnloadContent());
+            regionNameBackground.UnloadContent();
+            regionNameText.UnloadContent();
 
+            holdingIcons.ForEach(x => x.UnloadContent());
             holdingIcons.Clear();
 
             base.UnloadContent();
@@ -88,7 +117,19 @@ namespace Narivia.Interface.Widgets
                 return;
             }
 
+            Colour factionColour = game.GetFactionColour(game.GetRegionFaction(RegionId));
+
+            regionNameBackground.Tint = new Color(factionColour.Red, factionColour.Green, factionColour.Blue);
+            regionNameBackground.Position = new Vector2(Position.X + (Size.X - regionNameBackground.ScreenArea.Width) / 2,
+                                              Position.Y - regionNameBackground.ScreenArea.Height / 2);
+
+            regionNameText.Text = game.GetRegionName(RegionId);
+            regionNameText.Position = regionNameBackground.Position;
+
             background.Update(gameTime);
+            regionNameBackground.Update(gameTime);
+            regionNameText.Update(gameTime);
+
             holdingIcons.ForEach(x => x.Update(gameTime));
 
             base.Update(gameTime);
@@ -106,6 +147,9 @@ namespace Narivia.Interface.Widgets
             }
 
             background.Draw(spriteBatch);
+            regionNameBackground.Draw(spriteBatch);
+            regionNameText.Draw(spriteBatch);
+
             holdingIcons.ForEach(x => x.Draw(spriteBatch));
 
             base.Draw(spriteBatch);
