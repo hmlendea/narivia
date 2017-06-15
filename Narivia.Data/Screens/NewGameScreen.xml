@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<NewGameScreen>
+	<Axis>Y</Axis>
+	<Link>
+		<Text>Load test map 'Narivia'</Text>
+		<LinkId>GameplayScreen</LinkId>
+	</Link>
+	<Link>
+		<Text>Back</Text>
+		<LinkId>TitleScreen</LinkId>
+	</Link>
+</NewGameScreen>

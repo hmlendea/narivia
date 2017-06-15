@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TitleScreen>
-  <Axis>Y</Axis>
-  <Link>
-    <Text>Load test map 'Narivia'</Text>
-    <LinkId>GameplayScreen</LinkId>
-  </Link>
-  <Link>
-    <Text>Settings</Text>
-    <LinkId>SettingsScreen</LinkId>
-  </Link>
-  <Link>
-    <Text>Go back to SplashScreen</Text>
-    <LinkId>SplashScreen</LinkId>
-  </Link>
-  <Action>
-    <Text>Exit</Text>
-    <ActionId>Exit</ActionId>
-  </Action>
+	<Axis>Y</Axis>
+	<Link>
+		<Text>New Game</Text>
+		<LinkId>NewGameScreen</LinkId>
+	</Link>
+	<Link>
+		<Text>Settings</Text>
+		<LinkId>SettingsScreen</LinkId>
+	</Link>
+	<Link>
+		<Text>Go back to SplashScreen</Text>
+		<LinkId>SplashScreen</LinkId>
+	</Link>
+	<Action>
+		<Text>Exit</Text>
+		<ActionId>Exit</ActionId>
+	</Action>
 </TitleScreen>
