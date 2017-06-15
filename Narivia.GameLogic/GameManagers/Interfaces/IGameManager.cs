@@ -226,6 +226,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         string GetRegionName(string regionId);
 
         /// <summary>
+        /// Gets the factions.
+        /// </summary>
+        /// <returns>The factions.</returns>
+        IEnumerable<Faction> GetFactions();
+
+        /// <summary>
         /// Gets the regions of a faction.
         /// </summary>
         /// <returns>The regions.</returns>

@@ -349,6 +349,13 @@ namespace Narivia.GameLogic.GameManagers
         => world.Regions[regionId].Name;
 
         /// <summary>
+        /// Gets the factions.
+        /// </summary>
+        /// <returns>The factions.</returns>
+        public IEnumerable<Faction> GetFactions()
+        => world.Factions.Values;
+
+        /// <summary>
         /// Gets the regions of a faction.
         /// </summary>
         /// <returns>The regions.</returns>
