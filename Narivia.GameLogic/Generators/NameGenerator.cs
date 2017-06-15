@@ -12,16 +12,22 @@ namespace Narivia.GameLogic.Generators
     public class NameGenerator
     {
         /// <summary>
-        /// Gets the order.
+        /// Gets or sets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order { get; private set; }
+        public int Order { get; set; }
 
         /// <summary>
-        /// Gets the minimum name length.
+        /// Gets or sets the minimum length of the name.
         /// </summary>
-        /// <value>The minimum length of the generated name.</value>
-        public int MinNameLength { get; private set; }
+        /// <value>The minimum length of the name.</value>
+        public int MinNameLength { get; set; }
+
+        /// <summary>
+        /// Gets or sets the excluded substrings.
+        /// </summary>
+        /// <value>The excluded substrings.</value>
+        public List<string> ExcludedSubstrings { get; set; }
 
         readonly Random random = new Random();
         readonly Dictionary<string, List<char>> chains = new Dictionary<string, List<char>>();
@@ -49,6 +55,7 @@ namespace Narivia.GameLogic.Generators
 
             Order = order;
             MinNameLength = minNameLength;
+            ExcludedSubstrings = new List<string>();
 
             inputWords = input.ToList();
 
@@ -97,11 +104,18 @@ namespace Narivia.GameLogic.Generators
 
                 name = name.Substring(0, 1) + name.Substring(1).ToLower();
             }
-            while (used.Contains(name) || name.Length < MinNameLength);
+            while (name.Length < MinNameLength);
+
+            name = name.ToTitleCase();
+
+            if (used.Contains(name) || ExcludedSubstrings.Any(name.Contains))
+            {
+                return GetName();
+            }
 
             used.Add(name);
 
-            return name.ToTitleCase();
+            return name;
         }
 
         /// <summary>
