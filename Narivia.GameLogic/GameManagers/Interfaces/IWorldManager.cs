@@ -116,6 +116,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         int BaseFactionRecruitment { get; set; }
 
         /// <summary>
+        /// Gets or sets the minimum number of troops required to attack.
+        /// </summary>
+        /// <value>The minimum troops to attack.</value>
+        int MinTroopsPerAttack { get; set; }
+
+        /// <summary>
         /// Gets or sets the starting wealth.
         /// </summary>
         /// <value>The starting wealth.</value>

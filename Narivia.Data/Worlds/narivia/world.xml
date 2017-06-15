@@ -12,7 +12,7 @@
   <BaseRegionRecruitment>5</BaseRegionRecruitment>
   <BaseFactionIncome>50</BaseFactionIncome>
   <BaseFactionRecruitment>50</BaseFactionRecruitment>
-  <MinTroopsAttack>200</MinTroopsAttack>
+  <MinTroopsPerAttack>200</MinTroopsPerAttack>
   <HoldingSlotsPerFaction>25</HoldingSlotsPerFaction>
   <StartingTroops>75</StartingTroops>
   <StartingWealth>250</StartingWealth>

@@ -23,6 +23,7 @@ namespace Narivia.GameLogic.Mapping
                 BaseRegionIncome = worldEntity.BaseRegionIncome,
                 BaseRegionRecruitment = worldEntity.BaseRegionRecruitment,
                 BaseFactionRecruitment = worldEntity.BaseFactionRecruitment,
+                MinTroopsPerAttack = worldEntity.MinTroopsPerAttack,
                 HoldingSlotsPerFaction = worldEntity.HoldingSlotsPerFaction,
                 StartingWealth = worldEntity.StartingWealth,
                 StartingTroops = worldEntity.StartingTroops
@@ -46,6 +47,7 @@ namespace Narivia.GameLogic.Mapping
                 BaseRegionIncome = world.BaseRegionIncome,
                 BaseRegionRecruitment = world.BaseRegionRecruitment,
                 BaseFactionRecruitment = world.BaseFactionRecruitment,
+                MinTroopsPerAttack = world.MinTroopsPerAttack,
                 HoldingSlotsPerFaction = world.HoldingSlotsPerFaction,
                 StartingWealth = world.StartingWealth,
                 StartingTroops = world.StartingTroops

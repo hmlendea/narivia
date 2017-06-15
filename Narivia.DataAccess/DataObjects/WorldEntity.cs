@@ -72,6 +72,12 @@
         public int BaseFactionRecruitment { get; set; }
 
         /// <summary>
+        /// Gets or sets the minimum number of troops required to attack.
+        /// </summary>
+        /// <value>The minimum number of troops to attack.</value>
+        public int MinTroopsPerAttack { get; set; }
+
+        /// <summary>
         /// Gets or sets the number of holding slots per faction.
         /// </summary>
         /// <value>The number of holding slots per faction.</value>

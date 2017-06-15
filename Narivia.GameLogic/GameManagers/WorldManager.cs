@@ -151,6 +151,16 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Gets or sets the minimum number of troops required to attack.
+        /// </summary>
+        /// <value>The minimum troops to attack.</value>
+        public int MinTroopsPerAttack
+        {
+            get { return world.MinTroopsPerAttack; }
+            set { world.MinTroopsPerAttack = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the starting wealth.
         /// </summary>
         /// <value>The starting wealth.</value>
