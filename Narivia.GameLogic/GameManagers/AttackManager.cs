@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.Infrastructure.Exceptions;
 using Narivia.Infrastructure.Extensions;
 using Narivia.Models;
 
@@ -12,6 +13,8 @@ namespace Narivia.GameLogic.GameManagers
 {
     public class AttackManager : IAttackManager
     {
+        Random random;
+
         const int BLITZKRIEG_SOVEREIGNTY_IMPORTANCE = 30;
         const int BLITZKRIEG_HOLDING_CASTLE_IMPORTANCE = 30;
         const int BLITZKRIEG_HOLDING_CITY_IMPORTANCE = 20;
@@ -25,6 +28,8 @@ namespace Narivia.GameLogic.GameManagers
         public AttackManager(IWorldManager world)
         {
             this.world = world;
+
+            random = new Random();
         }
 
         /// <summary>
@@ -34,8 +39,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public string ChooseRegionToAttack(string factionId)
         {
-            Random random = new Random();
-
             List<string> regionsOwnedIds = world.GetFactionRegions(factionId)
                                                 .Select(x => x.Id)
                                                 .ToList();
@@ -46,7 +49,7 @@ namespace Narivia.GameLogic.GameManagers
                                                                r.FactionId != "gaia")
                                                    .Select(x => x.Id)
                                                    .Except(regionsOwnedIds)
-                                                   .Where(x => regionsOwnedIds.Any(y => world.RegionHasBorder(x, y)))
+                                                   .Where(x => regionsOwnedIds.Any(y => world.RegionBordersRegion(x, y)))
                                                    .ToDictionary(x => x, y => 0);
 
 
@@ -93,7 +96,7 @@ namespace Narivia.GameLogic.GameManagers
                     }
                 }
 
-                targets[region.Id] += regionsOwnedIds.Count(x => world.RegionHasBorder(x, region.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
+                targets[region.Id] += regionsOwnedIds.Count(x => world.RegionBordersRegion(x, region.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
 
                 // TODO: I should also take the relations into consideration
 
@@ -119,12 +122,22 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="regionId">Region identifier.</param>
         public BattleResult AttackRegion(string factionId, string regionId)
         {
-            Random random = new Random();
+            if (string.IsNullOrWhiteSpace(regionId) ||
+                !world.FactionBordersRegion(factionId, regionId))
+            {
+                throw new InvalidTargetRegionException(regionId);
+            }
 
             Region targetRegion = world.Regions[regionId];
 
             Faction attackerFaction = world.Factions[factionId];
             Faction defenderFaction = world.Factions[targetRegion.FactionId];
+
+            if (defenderFaction.Id == attackerFaction.Id ||
+                defenderFaction.Id == "gaia")
+            {
+                throw new InvalidTargetRegionException(regionId);
+            }
 
             while (world.GetFactionTroopsCount(attackerFaction.Id) > 0 &&
                    world.GetFactionTroopsCount(defenderFaction.Id) > 0)
