@@ -145,7 +145,7 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
         /// <param name="region1Id">First region identifier.</param>
         /// <param name="region2Id">Second region identifier.</param>
-        bool RegionHasBorder(string region1Id, string region2Id);
+        bool RegionBordersRegion(string region1Id, string region2Id);
 
         /// <summary>
         /// Checks wether the specified regions share a border.
@@ -153,7 +153,15 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
         /// <param name="faction1Id">First faction identifier.</param>
         /// <param name="faction2Id">Second faction identifier.</param>
-        bool FactionHasBorder(string faction1Id, string faction2Id);
+        bool FactionBordersFaction(string faction1Id, string faction2Id);
+
+        /// <summary>
+        /// Checks wether the specified faction shares a border with the specified region.
+        /// </summary>
+        /// <returns><c>true</c>, if the faction share a border with that region, <c>false</c> otherwise.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="regionId">Region identifier.</param>
+        bool FactionBordersRegion(string factionId, string regionId);
 
         /// <summary>
         /// Returns the faction identifier at the given position.

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
 using Narivia.Models;
 
@@ -61,6 +62,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         int BaseFactionRecruitment { get; }
 
         /// <summary>
+        /// Gets the minimum number of troops required to attack.
+        /// </summary>
+        /// <value>The minimum troops to attack.</value>
+        int MinTroopsPerAttack { get; }
+
+        /// <summary>
         /// Gets the starting wealth.
         /// </summary>
         /// <value>The starting wealth.</value>
@@ -102,7 +109,7 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
         /// <param name="sourceRegionId">Source region identifier.</param>
         /// <param name="targetRegionId">Target region identifier.</param>
-        bool RegionHasBorder(string sourceRegionId, string targetRegionId);
+        bool RegionBordersRegion(string sourceRegionId, string targetRegionId);
 
         /// <summary>
         /// Checks wether the specified factions share a border.
@@ -110,7 +117,7 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns><c>true</c>, if the specified factions share a border, <c>false</c> otherwise.</returns>
         /// <param name="sourceFactionId">Source faction identifier.</param>
         /// <param name="targetFactionId">Target faction identifier.</param>
-        bool FactionHasBorder(string sourceFactionId, string targetFactionId);
+        bool FactionBordersFaction(string sourceFactionId, string targetFactionId);
 
         /// <summary>
         /// Returns the faction identifier at the given position.
@@ -205,6 +212,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         string GetFactionCapital(string factionId);
 
         /// <summary>
+        /// Gets the faction idenfifier of a region.
+        /// </summary>
+        /// <returns>The faction identifier.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        string GetRegionFaction(string regionId);
+
+        /// <summary>
         /// Gets the name of a region.
         /// </summary>
         /// <returns>The name.</returns>
@@ -231,5 +245,11 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The region holdings.</returns>
         /// <param name="regionId">Region identifier.</param>
         IEnumerable<Holding> GetRegionHoldings(string regionId);
+
+        /// <summary>
+        /// The player faction will attack the specified region.
+        /// </summary>
+        /// <param name="regionId">Region identifier.</param>
+        BattleResult PlayerAttackRegion(string regionId);
     }
 }

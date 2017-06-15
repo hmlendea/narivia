@@ -82,6 +82,12 @@ namespace Narivia.GameLogic.GameManagers
         public int BaseFactionRecruitment => world.BaseFactionRecruitment;
 
         /// <summary>
+        /// Gets the minimum number of troops required to attack.
+        /// </summary>
+        /// <value>The minimum troops to attack.</value>
+        public int MinTroopsPerAttack => world.MinTroopsPerAttack;
+
+        /// <summary>
         /// Gets the starting wealth.
         /// </summary>
         /// <value>The starting wealth.</value>
@@ -176,8 +182,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
         /// <param name="sourceRegionId">Source region identifier.</param>
         /// <param name="targetRegionId">Target region identifier.</param>
-        public bool RegionHasBorder(string sourceRegionId, string targetRegionId)
-        => world.RegionHasBorder(sourceRegionId, targetRegionId);
+        public bool RegionBordersRegion(string sourceRegionId, string targetRegionId)
+        => world.RegionBordersRegion(sourceRegionId, targetRegionId);
 
         /// <summary>
         /// Checks wether the specified factions share a border.
@@ -185,8 +191,17 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the specified factions share a border, <c>false</c> otherwise.</returns>
         /// <param name="sourceFactionId">Source faction identifier.</param>
         /// <param name="targetFactionId">Target faction identifier.</param>
-        public bool FactionHasBorder(string sourceFactionId, string targetFactionId)
-        => world.FactionHasBorder(sourceFactionId, targetFactionId);
+        public bool FactionBordersFaction(string sourceFactionId, string targetFactionId)
+        => world.FactionBordersFaction(sourceFactionId, targetFactionId);
+
+        /// <summary>
+        /// Checks wether the specified faction shares a border with the specified region.
+        /// </summary>
+        /// <returns><c>true</c>, if the faction share a border with that region, <c>false</c> otherwise.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="regionId">Region identifier.</param>
+        public bool FactionBordersRegion(string factionId, string regionId)
+        => world.FactionBordersRegion(factionId, regionId);
 
         /// <summary>
         /// Returns the faction identifier at the given position.
@@ -318,6 +333,14 @@ namespace Narivia.GameLogic.GameManagers
         => world.GetFactionCapital(factionId);
 
         /// <summary>
+        /// Gets the faction idenfifier of a region.
+        /// </summary>
+        /// <returns>The faction identifier.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        public string GetRegionFaction(string regionId)
+        => world.Regions[regionId].FactionId;
+
+        /// <summary>
         /// Gets the name of a region.
         /// </summary>
         /// <returns>The name.</returns>
@@ -379,6 +402,19 @@ namespace Narivia.GameLogic.GameManagers
             }
 
             AddUnits(factionId, unitId, amount);
+        }
+
+        /// <summary>
+        /// The player faction will attack the specified region.
+        /// </summary>
+        /// <param name="regionId">Region identifier.</param>
+        public BattleResult PlayerAttackRegion(string regionId)
+        {
+            BattleResult result = attack.AttackRegion(PlayerFactionId, regionId);
+
+            NextTurn();
+
+            return result;
         }
 
         void InitializeGame(string factionId)

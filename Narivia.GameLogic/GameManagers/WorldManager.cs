@@ -207,7 +207,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
         /// <param name="region1Id">First region identifier.</param>
         /// <param name="region2Id">Second region identifier.</param>
-        public bool RegionHasBorder(string region1Id, string region2Id)
+        public bool RegionBordersRegion(string region1Id, string region2Id)
         {
             return Borders.Values.Any(x => (x.Region1Id == region1Id && x.Region2Id == region2Id) ||
                                            (x.Region1Id == region2Id && x.Region2Id == region1Id));
@@ -219,7 +219,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
         /// <param name="faction1Id">First faction identifier.</param>
         /// <param name="faction2Id">Second faction identifier.</param>
-        public bool FactionHasBorder(string faction1Id, string faction2Id)
+        public bool FactionBordersFaction(string faction1Id, string faction2Id)
         {
             List<Region> faction1Regions = Regions.Values.Where(x => x.FactionId == faction1Id).ToList();
             List<Region> faction2Regions = Regions.Values.Where(x => x.FactionId == faction2Id).ToList();
@@ -229,7 +229,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 foreach (Region region2 in faction2Regions)
                 {
-                    if (RegionHasBorder(region1.Id, region2.Id))
+                    if (RegionBordersRegion(region1.Id, region2.Id))
                     {
                         return true;
                     }
@@ -237,6 +237,17 @@ namespace Narivia.GameLogic.GameManagers
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Checks wether the specified faction shares a border with the specified region.
+        /// </summary>
+        /// <returns><c>true</c>, if the faction share a border with that region, <c>false</c> otherwise.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="regionId">Region identifier.</param>
+        public bool FactionBordersRegion(string factionId, string regionId)
+        {
+            return GetFactionRegions(factionId).Any(r => RegionBordersRegion(r.Id, regionId));
         }
 
         /// <summary>
@@ -452,7 +463,7 @@ namespace Narivia.GameLogic.GameManagers
 
         void SetBorder(string region1Id, string region2Id)
         {
-            if (RegionHasBorder(region1Id, region2Id))
+            if (RegionBordersRegion(region1Id, region2Id))
             {
                 return;
             }

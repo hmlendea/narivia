@@ -7,6 +7,7 @@ using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
+using Narivia.Infrastructure.Exceptions;
 using Narivia.Input.Events;
 using Narivia.Interface.Widgets;
 using Narivia.Interface.Widgets.Enumerations;
@@ -74,6 +75,8 @@ namespace Narivia.Screens
             NotificationBar.LoadContent();
 
             base.LoadContent();
+
+            GameMap.Clicked += GameMap_Clicked;
 
             SideBar.TurnButton.Clicked += SideBar_TurnButtonClicked;
             SideBar.StatsButton.Clicked += SideBar_StatsButtonClicked;
@@ -208,6 +211,74 @@ namespace Narivia.Screens
                              NotificationType.Informational,
                              NotificationStyle.Big,
                              new Vector2(256, 128));
+        }
+
+        void GameMap_Clicked(object sender, MouseEventArgs e)
+        {
+            string regionId = GameMap.SelectedRegionId;
+
+            if (string.IsNullOrEmpty(regionId))
+            {
+                return;
+            }
+
+            if (game.GetFactionTroopsCount(game.PlayerFactionId) < game.MinTroopsPerAttack)
+            {
+                ShowNotification($"Not enough troops!",
+                                 $"Sorry!" + Environment.NewLine + Environment.NewLine +
+                                 $"You do not have enough troops to attack any region right now.",
+                                 NotificationType.Informational,
+                                 NotificationStyle.Big,
+                                 new Vector2(256, 192));
+
+                return;
+            }
+
+            try
+            {
+                BattleResult result = game.PlayerAttackRegion(regionId);
+
+                string regionName = game.GetRegionName(regionId);
+                string defenderFactionId = game.GetRegionFaction(regionId);
+                string defenderFactionName = game.GetFactionName(defenderFactionId);
+
+                if (result == BattleResult.Victory)
+                {
+                    NotificationBar.AddNotification(NotificationIcon.BattleVictory).Clicked += delegate
+                        {
+                            ShowNotification($"Victory in {regionName}!",
+                                             $"Good news!" + Environment.NewLine + Environment.NewLine +
+                                             $"Our troops attacking {defenderFactionName} in {regionName} " +
+                                             $"have managed to break the defence and occupy the region!",
+                                             NotificationType.Informational,
+                                             NotificationStyle.Big,
+                                             new Vector2(256, 224));
+                        };
+                }
+                else
+                {
+                    NotificationBar.AddNotification(NotificationIcon.BattleDefeat).Clicked += delegate
+                        {
+                            ShowNotification($"Defeat in {regionName}!",
+                                             $"Bad news!" + Environment.NewLine + Environment.NewLine +
+                                             $"Our troops attacking {defenderFactionName} in {regionName} " +
+                                             $"were defeated by the defending forces!",
+                                             NotificationType.Informational,
+                                             NotificationStyle.Big,
+                                             new Vector2(256, 224));
+                        };
+                }
+            }
+            catch (InvalidTargetRegionException)
+            {
+                ShowNotification($"Invalid target!",
+                                 $"Sorry!" + Environment.NewLine + Environment.NewLine +
+                                 $"You have chosen an invalid target that cannot be attacked.",
+                                 NotificationType.Informational,
+                                 NotificationStyle.Big,
+                                 new Vector2(256, 192));
+            }
+
         }
 
         void OnPlayerRegionAttacked(object sender, RegionAttackEventArgs e)
