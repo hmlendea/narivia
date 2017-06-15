@@ -152,12 +152,12 @@ namespace Narivia.GameLogic.GameManagers
                                    .Size += GetFactionRecruitment(faction.Id);
 
                 // A.I.
-                if (faction.Id == PlayerFactionId)
+                if (faction.Id == PlayerFactionId ||
+                    GetFactionTroopsCount(faction.Id) < MinTroopsPerAttack)
                 {
                     continue;
                 }
 
-                // TODO: Choose region to attack and then attack it
                 string regionId = attack.ChooseRegionToAttack(faction.Id);
                 string regionFactionId = world.Regions[regionId].FactionId;
                 BattleResult result = attack.AttackRegion(faction.Id, regionId);
