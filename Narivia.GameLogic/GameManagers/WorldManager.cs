@@ -534,8 +534,31 @@ namespace Narivia.GameLogic.GameManagers
 
             string capitalRegionId = GetFactionCapital(faction.Id);
 
-            INameGenerator nameGenerator = new MarkovNameGenerator(File.ReadAllLines(Path.Combine(ApplicationPaths.WordListsDirectory,
-                                                                                                  culture.PlaceNameSchema + ".txt")).ToList());
+            INameGenerator nameGenerator;
+
+            switch (culture.PlaceNameGenerator)
+            {
+                case NameGenerator.RandomMixerNameGenerator:
+                    string wordList1path = Path.Combine(ApplicationPaths.WordListsDirectory, culture.PlaceNameSchema.Split(' ')[0] + ".txt");
+                    string wordList2path = Path.Combine(ApplicationPaths.WordListsDirectory, culture.PlaceNameSchema.Split(' ')[1] + ".txt");
+
+                    List<string> wordList1 = File.ReadAllLines(wordList1path).ToList();
+                    List<string> wordList2 = File.ReadAllLines(wordList2path).ToList();
+
+                    nameGenerator = new RandomMixerNameGenerator(wordList1, wordList2);
+
+                    break;
+
+                default:
+                case NameGenerator.MarkovNameGenerator:
+                    string listPath = Path.Combine(ApplicationPaths.WordListsDirectory, culture.PlaceNameSchema.Split(' ')[0] + ".txt");
+                    List<string> inputWords = File.ReadAllLines(listPath).ToList();
+
+                    nameGenerator = new MarkovNameGenerator(inputWords);
+
+                    break;
+            }
+
             nameGenerator.ExcludedSubstrings.AddRange(Factions.Values.Select(f => f.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Holdings.Values.Select(h => h.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Regions.Values.Select(r => r.Name));

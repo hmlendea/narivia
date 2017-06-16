@@ -21,8 +21,8 @@
     <TextureSet>ayakan</TextureSet>
     <Name>Ayakan</Name>
     <Description>The culture of the Ayakans</Description>
-    <PlaceNameGenerator>MarkovNameGenerator</PlaceNameGenerator>
-    <PlaceNameSchema>ayakan</PlaceNameSchema>
+    <PlaceNameGenerator>RandomMixerNameGenerator</PlaceNameGenerator>
+    <PlaceNameSchema>ayakan1 ayakan2</PlaceNameSchema>
   </CultureEntity>
   <CultureEntity>
     <Id>blumiac</Id>

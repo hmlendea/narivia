@@ -88,9 +88,6 @@
     <None Include="CommonAssets\WordLists\amionic.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="CommonAssets\WordLists\ayakan.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="CommonAssets\WordLists\barbarian.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

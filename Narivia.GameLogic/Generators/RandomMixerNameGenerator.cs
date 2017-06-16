@@ -23,18 +23,6 @@ namespace Narivia.GameLogic.Generators
         public List<string> ExcludedSubstrings { get; set; }
 
         /// <summary>
-        /// Gets or sets the first input list.
-        /// </summary>
-        /// <value>The first input list.</value>
-        public List<string> InputList1 { get; set; }
-
-        /// <summary>
-        /// Gets or sets the second input list.
-        /// </summary>
-        /// <value>The second input list.</value>
-        public List<string> InputList2 { get; set; }
-
-        /// <summary>
         /// Gets or sets the used words.
         /// </summary>
         /// <value>The used words.</value>
@@ -42,16 +30,24 @@ namespace Narivia.GameLogic.Generators
 
         readonly Random random;
 
+        List<string> wordList1;
+        List<string> wordList2;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomMixerNameGenerator"/> class.
         /// </summary>
-        public RandomMixerNameGenerator()
+        /// <param name="wordList1">Word list1.</param>
+        /// <param name="wordList2">Word list2.</param>
+        public RandomMixerNameGenerator(List<string> wordList1, List<string> wordList2)
         {
             random = new Random();
             MinNameLength = 5;
 
             ExcludedSubstrings = new List<string>();
             UsedWords = new List<string>();
+
+            this.wordList1 = wordList1;
+            this.wordList2 = wordList2;
         }
 
         /// <summary>
@@ -64,8 +60,8 @@ namespace Narivia.GameLogic.Generators
 
             while (string.IsNullOrWhiteSpace(word) || UsedWords.Contains(word))
             {
-                word = InputList1[random.Next(InputList1.Count)] +
-                       InputList2[random.Next(InputList2.Count)];
+                word = wordList1[random.Next(wordList1.Count)] +
+                       wordList2[random.Next(wordList2.Count)];
             }
 
             return word;
