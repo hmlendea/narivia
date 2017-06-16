@@ -251,5 +251,17 @@ namespace Narivia.Input
         {
             return area.Contains(MousePosition);
         }
+
+        /// <summary>
+        /// Resets the input states.
+        /// </summary>
+        public void ResetInputStates()
+        {
+            previousKeyState = currentKeyState;
+            previousMouseState = currentMouseState;
+
+            currentKeyState = new KeyboardState();
+            currentMouseState = new MouseState();
+        }
     }
 }

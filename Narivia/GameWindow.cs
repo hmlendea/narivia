@@ -100,6 +100,10 @@ namespace Narivia
             {
                 InputManager.Instance.Update();
             }
+            else
+            {
+                InputManager.Instance.ResetInputStates();
+            }
 
             cursor.Update(gameTime);
 
