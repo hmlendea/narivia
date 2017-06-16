@@ -234,6 +234,20 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         string GetRegionName(string regionId);
 
         /// <summary>
+        /// Gets the resource of a region.
+        /// </summary>
+        /// <returns>The resource identifier.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        string GetRegionResource(string regionId);
+
+        /// <summary>
+        /// Gets the name of the resource.
+        /// </summary>
+        /// <returns>The resource name.</returns>
+        /// <param name="resourceId">Resource identifier.</param>
+        string GetResourceName(string resourceId);
+
+        /// <summary>
         /// Gets the factions.
         /// </summary>
         /// <returns>The factions.</returns>

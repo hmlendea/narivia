@@ -36,6 +36,8 @@ namespace Narivia.Interface.Widgets
         Image background;
         Image regionNameBackground;
         Image regionNameText;
+        Image resourceIcon;
+        Image resourceName;
         List<Image> holdingIcons;
         List<Image> holdingNames;
 
@@ -70,6 +72,31 @@ namespace Narivia.Interface.Widgets
                 TextHorizontalAlignment = HorizontalAlignment.Center
             };
 
+            if (string.IsNullOrEmpty(RegionId))
+            {
+                return;
+            }
+
+            string resourceId = game.GetRegionResource(RegionId);
+
+            resourceIcon = new Image
+            {
+                ImagePath = $"World/Assets/{game.WorldId}/resources/{resourceId}_big",
+                SourceRectangle = new Rectangle(0, 0, 64, 64),
+                Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64)
+            };
+            resourceName = new Image
+            {
+                Position = new Vector2(resourceIcon.Position.X - HOLDING_SPACING_HORIZONTAL, Position.Y + 2),
+                Text = game.GetResourceName(resourceId),
+                SpriteSize = new Vector2(resourceIcon.SourceRectangle.Width + HOLDING_SPACING_HORIZONTAL * 2,
+                                         Size.Y - resourceIcon.SourceRectangle.Height + 10),
+                FontName = "RegionBarHoldingFont",
+                Tint = Color.Black,
+                TextVerticalAlignment = VerticalAlignment.Center,
+                TextHorizontalAlignment = HorizontalAlignment.Center
+            };
+
             List<Holding> holdings = game.GetRegionHoldings(RegionId).ToList();
 
             holdingIcons = new List<Image>();
@@ -81,7 +108,7 @@ namespace Narivia.Interface.Widgets
                 {
                     ImagePath = $"World/Assets/{game.WorldId}/holdings/generic",
                     SourceRectangle = new Rectangle(64 * ((int)holding.Type - 1), 0, 64, 64),
-                    Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL * (holdingIcons.Count + 1) + 64 * holdingIcons.Count,
+                    Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL * (holdingIcons.Count + 2) + 64 * (holdingIcons.Count + 1),
                                            Position.Y + Size.Y - 64)
                 };
 
@@ -104,6 +131,9 @@ namespace Narivia.Interface.Widgets
                 holdingName.LoadContent();
             }
 
+            resourceIcon.LoadContent();
+            resourceName.LoadContent();
+
             background.LoadContent();
             regionNameBackground.LoadContent();
             regionNameText.LoadContent();
@@ -119,6 +149,9 @@ namespace Narivia.Interface.Widgets
             background.UnloadContent();
             regionNameBackground.UnloadContent();
             regionNameText.UnloadContent();
+
+            resourceIcon.UnloadContent();
+            resourceName.UnloadContent();
 
             holdingIcons.ForEach(x => x.UnloadContent());
             holdingNames.ForEach(x => x.UnloadContent());
@@ -153,6 +186,9 @@ namespace Narivia.Interface.Widgets
             regionNameBackground.Update(gameTime);
             regionNameText.Update(gameTime);
 
+            resourceIcon.Update(gameTime);
+            resourceName.Update(gameTime);
+
             holdingIcons.ForEach(x => x.Update(gameTime));
             holdingNames.ForEach(x => x.Update(gameTime));
 
@@ -173,6 +209,9 @@ namespace Narivia.Interface.Widgets
             background.Draw(spriteBatch);
             regionNameBackground.Draw(spriteBatch);
             regionNameText.Draw(spriteBatch);
+
+            resourceIcon.Draw(spriteBatch);
+            resourceName.Draw(spriteBatch);
 
             holdingIcons.ForEach(x => x.Draw(spriteBatch));
             holdingNames.ForEach(x => x.Draw(spriteBatch));

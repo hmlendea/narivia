@@ -359,6 +359,22 @@ namespace Narivia.GameLogic.GameManagers
         => world.Regions[regionId].Name;
 
         /// <summary>
+        /// Gets the resource of a region.
+        /// </summary>
+        /// <returns>The resource identifier.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        public string GetRegionResource(string regionId)
+        => world.Resources[world.Regions[regionId].ResourceId].Id;
+
+        /// <summary>
+        /// Gets the name of the resource.
+        /// </summary>
+        /// <returns>The resource name.</returns>
+        /// <param name="resourceId">Resource identifier.</param>
+        public string GetResourceName(string resourceId)
+        => world.Resources[resourceId].Name;
+
+        /// <summary>
         /// Gets the factions.
         /// </summary>
         /// <returns>The factions.</returns>
