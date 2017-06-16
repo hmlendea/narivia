@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Narivia.GameLogic.Generators.Interfaces;
 
@@ -58,7 +59,9 @@ namespace Narivia.GameLogic.Generators
         {
             string word = string.Empty;
 
-            while (string.IsNullOrWhiteSpace(word) || UsedWords.Contains(word))
+            while (string.IsNullOrWhiteSpace(word) ||
+                   UsedWords.Contains(word) ||
+                   ExcludedSubstrings.Any(word.Contains))
             {
                 word = wordList1[random.Next(wordList1.Count)] +
                        wordList2[random.Next(wordList2.Count)];
