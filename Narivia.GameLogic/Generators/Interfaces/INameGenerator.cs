@@ -17,6 +17,12 @@ namespace Narivia.GameLogic.Generators.Interfaces
         int MaxNameLength { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum processing time.
+        /// </summary>
+        /// <value>The maximum processing time in milliseconds.</value>
+        int MaxProcessingTime { get; set; }
+
+        /// <summary>
         /// Gets or sets the excluded strings.
         /// </summary>
         /// <value>The excluded strings.</value>

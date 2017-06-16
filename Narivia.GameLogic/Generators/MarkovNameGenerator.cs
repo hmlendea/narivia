@@ -25,6 +25,12 @@ namespace Narivia.GameLogic.Generators
         public int MaxNameLength { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum processing time.
+        /// </summary>
+        /// <value>The maximum processing time in milliseconds.</value>
+        public int MaxProcessingTime { get; set; }
+
+        /// <summary>
         /// Gets or sets the excluded strings.
         /// </summary>
         /// <value>The excluded strings.</value>
@@ -53,6 +59,7 @@ namespace Narivia.GameLogic.Generators
 
             MinNameLength = 5;
             MaxNameLength = 10;
+            MaxProcessingTime = 1000;
 
             ExcludedStrings = new List<string>();
             UsedWords = new List<string>();
@@ -71,7 +78,10 @@ namespace Narivia.GameLogic.Generators
         {
             string name = string.Empty;
 
-            while (!IsNameValid(name))
+            DateTime startTime = DateTime.Now;
+
+            while (DateTime.Now < startTime.AddMilliseconds(MaxProcessingTime) &&
+                   !IsNameValid(name))
             {
                 string word = string.Empty;
 
