@@ -21,7 +21,18 @@ namespace Narivia.Interface.Widgets
         /// Gets the display text.
         /// </summary>
         /// <value>The display text.</value>
-        public string DisplayText => Text + ": " + ToggleState;
+        public string DisplayText
+        {
+            get
+            {
+                if (ToggleState)
+                {
+                    return Text + " : On";
+                }
+
+                return Text + " : Off";
+            }
+        }
 
         /// <summary>
         /// Gets or sets the toggle state.
