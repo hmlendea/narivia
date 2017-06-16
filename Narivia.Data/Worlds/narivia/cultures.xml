@@ -128,4 +128,12 @@
     <PlaceNameGenerator>MarkovNameGenerator</PlaceNameGenerator>
     <PlaceNameSchema>naryrican</PlaceNameSchema>
   </CultureEntity>
+  <CultureEntity>
+    <Id>rodah</Id>
+    <TextureSet>nordic</TextureSet>
+    <Name>Rodah</Name>
+    <Description>The culture of the Rodahians</Description>
+    <PlaceNameGenerator>RandomMixerNameGenerator</PlaceNameGenerator>
+    <PlaceNameSchema>rodah1 rodah2 rodah3</PlaceNameSchema>
+  </CultureEntity>
 </ArrayOfCultureEntity>
