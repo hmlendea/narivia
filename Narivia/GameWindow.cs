@@ -95,7 +95,11 @@ namespace Narivia
         {
             SettingsManager.Instance.Update(ref graphics);
             ScreenManager.Instance.Update(gameTime);
-            InputManager.Instance.Update();
+
+            if (IsActive)
+            {
+                InputManager.Instance.Update();
+            }
 
             cursor.Update(gameTime);
 
