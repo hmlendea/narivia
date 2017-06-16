@@ -41,6 +41,13 @@ namespace Narivia.GameLogic.Generators.Interfaces
         string GenerateName();
 
         /// <summary>
+        /// Generates names.
+        /// </summary>
+        /// <returns>The names.</returns>
+        /// <param name="maximumCount">Maximum count.</param>
+        List<string> GenerateNames(int maximumCount);
+
+        /// <summary>
         /// Reset the list of used names.
         /// </summary>
         void Reset();

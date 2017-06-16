@@ -115,6 +115,30 @@ namespace Narivia.GameLogic.Generators
         }
 
         /// <summary>
+        /// Generates names.
+        /// </summary>
+        /// <returns>The names.</returns>
+        /// <param name="maximumCount">Maximum count.</param>
+        public List<string> GenerateNames(int maximumCount)
+        {
+            List<string> names = new List<string>();
+            DateTime startTime = DateTime.Now;
+
+            while (DateTime.Now < startTime.AddMilliseconds(MaxProcessingTime) &&
+                   names.Count < maximumCount)
+            {
+                string name = GenerateName();
+
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    names.Add(name);
+                }
+            }
+
+            return names;
+        }
+
+        /// <summary>
         /// Reset the list of used names.
         /// </summary>
         public void Reset()
