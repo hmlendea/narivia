@@ -60,10 +60,7 @@ namespace Narivia.GameLogic.Generators
         /// Gets a name.
         /// </summary>
         /// <returns>The name.</returns>
-        public virtual string GenerateName()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract string GenerateName();
 
         /// <summary>
         /// Generates names.
