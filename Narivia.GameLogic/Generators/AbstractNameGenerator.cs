@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Narivia.GameLogic.Generators.Interfaces;
-using Narivia.Infrastructure.Extensions;
 
 namespace Narivia.GameLogic.Generators
 {
@@ -34,6 +33,24 @@ namespace Narivia.GameLogic.Generators
         public List<string> ExcludedStrings { get; set; }
 
         /// <summary>
+        /// Gets or sets the included strings.
+        /// </summary>
+        /// <value>The included strings.</value>
+        public List<string> IncludedStrings { get; set; }
+
+        /// <summary>
+        /// Gets or sets the string that all generated names must start with.
+        /// </summary>
+        /// <value>The string start filter.</value>
+        public string StartsWithFilter { get; set; }
+
+        /// <summary>
+        /// Gets or sets the string that all generated names must end with.
+        /// </summary>
+        /// <value>The string end filter.</value>
+        public string EndsWithFilter { get; set; }
+
+        /// <summary>
         /// Gets or sets the used words.
         /// </summary>
         /// <value>The used words.</value>
@@ -50,7 +67,11 @@ namespace Narivia.GameLogic.Generators
             MaxNameLength = 10;
             MaxProcessingTime = 1000;
 
+            StartsWithFilter = string.Empty;
+            EndsWithFilter = string.Empty;
+
             ExcludedStrings = new List<string>();
+            IncludedStrings = new List<string>();
             UsedWords = new List<string>();
 
             random = new Random();
@@ -111,12 +132,24 @@ namespace Narivia.GameLogic.Generators
                 return false;
             }
 
+            if (!name.StartsWith(StartsWithFilter, StringComparison.InvariantCulture) ||
+                !name.EndsWith(EndsWithFilter, StringComparison.InvariantCulture))
+            {
+                return false;
+            }
+
             if (UsedWords.Contains(name))
             {
                 return false;
             }
 
-            return !ExcludedStrings.Any(name.Contains);
+            if (ExcludedStrings.Any(name.Contains) ||
+                !IncludedStrings.All(name.Contains))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

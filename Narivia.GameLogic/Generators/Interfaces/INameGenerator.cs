@@ -29,6 +29,24 @@ namespace Narivia.GameLogic.Generators.Interfaces
         List<string> ExcludedStrings { get; set; }
 
         /// <summary>
+        /// Gets or sets the included strings.
+        /// </summary>
+        /// <value>The included strings.</value>
+        List<string> IncludedStrings { get; set; }
+
+        /// <summary>
+        /// Gets or sets the string that all generated names must start with.
+        /// </summary>
+        /// <value>The string start filter.</value>
+        string StartsWithFilter { get; set; }
+
+        /// <summary>
+        /// Gets or sets the string that all generated names must end with.
+        /// </summary>
+        /// <value>The string end filter.</value>
+        string EndsWithFilter { get; set; }
+
+        /// <summary>
         /// Gets the used words.
         /// </summary>
         /// <value>The used words.</value>
