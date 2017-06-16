@@ -30,11 +30,16 @@ namespace Narivia.GameLogic.Generators
         /// <value>The excluded substrings.</value>
         public List<string> ExcludedSubstrings { get; set; }
 
+        /// <summary>
+        /// Gets or sets the used words.
+        /// </summary>
+        /// <value>The used words.</value>
+        public List<string> UsedWords { get; private set; }
+
         readonly Random random = new Random();
         readonly Dictionary<string, List<char>> chains = new Dictionary<string, List<char>>();
 
-        List<string> inputWords = new List<string>();
-        List<string> used = new List<string>();
+        List<string> InputWords = new List<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkovNameGenerator"/> class.
@@ -58,9 +63,9 @@ namespace Narivia.GameLogic.Generators
             MinNameLength = minNameLength;
             ExcludedSubstrings = new List<string>();
 
-            inputWords = input.ToList();
+            InputWords = input.ToList();
 
-            foreach (string word in inputWords)
+            foreach (string word in InputWords)
             {
                 for (int i = 0; i < word.Length - order; i++)
                 {
@@ -90,7 +95,7 @@ namespace Narivia.GameLogic.Generators
 
                 while (string.IsNullOrWhiteSpace(word))
                 {
-                    word = inputWords[random.Next(inputWords.Count)];
+                    word = InputWords[random.Next(InputWords.Count)];
                 }
 
                 name = word.Substring(random.Next(0, word.Length - Order), Order);
@@ -114,12 +119,12 @@ namespace Narivia.GameLogic.Generators
 
             name = name.ToTitleCase();
 
-            if (used.Contains(name) || ExcludedSubstrings.Any(name.Contains))
+            if (UsedWords.Contains(name) || ExcludedSubstrings.Any(name.Contains))
             {
                 return GenerateName();
             }
 
-            used.Add(name);
+            UsedWords.Add(name);
 
             return name;
         }
@@ -129,7 +134,7 @@ namespace Narivia.GameLogic.Generators
         /// </summary>
         public void Reset()
         {
-            used.Clear();
+            UsedWords.Clear();
         }
 
         char GetLetter(string token)

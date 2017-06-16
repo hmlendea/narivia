@@ -17,6 +17,12 @@ namespace Narivia.GameLogic.Generators.Interfaces
         List<string> ExcludedSubstrings { get; set; }
 
         /// <summary>
+        /// Gets the used words.
+        /// </summary>
+        /// <value>The used words.</value>
+        List<string> UsedWords { get; }
+
+        /// <summary>
         /// Generates a name.
         /// </summary>
         /// <returns>The name.</returns>

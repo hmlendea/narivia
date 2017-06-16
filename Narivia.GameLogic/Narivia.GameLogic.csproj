@@ -60,6 +60,7 @@
     <Compile Include="Enumerations\BattleResult.cs" />
     <Compile Include="Generators\MarkovNameGenerator.cs" />
     <Compile Include="Generators\Interfaces\INameGenerator.cs" />
+    <Compile Include="Generators\RandomMixerGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
