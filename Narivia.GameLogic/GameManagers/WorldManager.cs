@@ -535,8 +535,7 @@ namespace Narivia.GameLogic.GameManagers
             string capitalRegionId = GetFactionCapital(faction.Id);
 
             INameGenerator nameGenerator = new MarkovNameGenerator(File.ReadAllLines(Path.Combine(ApplicationPaths.WordListsDirectory,
-                                                                                                  culture.PlaceNameSchema + ".txt")),
-                                                                   3, 5);
+                                                                                                  culture.PlaceNameSchema + ".txt")).ToList());
             nameGenerator.ExcludedSubstrings.AddRange(Factions.Values.Select(f => f.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Holdings.Values.Select(h => h.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Regions.Values.Select(r => r.Name));

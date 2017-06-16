@@ -13,12 +13,6 @@ namespace Narivia.GameLogic.Generators
     public class MarkovNameGenerator : INameGenerator
     {
         /// <summary>
-        /// Gets or sets the order.
-        /// </summary>
-        /// <value>The order.</value>
-        public int Order { get; set; }
-
-        /// <summary>
         /// Gets or sets the minimum length of the name.
         /// </summary>
         /// <value>The minimum length of the name.</value>
@@ -36,49 +30,29 @@ namespace Narivia.GameLogic.Generators
         /// <value>The used words.</value>
         public List<string> UsedWords { get; private set; }
 
-        readonly Random random = new Random();
-        readonly Dictionary<string, List<char>> chains = new Dictionary<string, List<char>>();
+        const int ORDER = 3;
 
-        List<string> InputWords = new List<string>();
+        readonly Random random;
+        readonly Dictionary<string, List<char>> chains;
+
+        List<string> inputWords;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkovNameGenerator"/> class.
         /// </summary>
-        /// <param name="input">Input names.</param>
-        /// <param name="order">Order.</param>
-        /// <param name="minNameLength">Minimum name length.</param>
-        public MarkovNameGenerator(IEnumerable<string> input, int order, int minNameLength)
+        /// <param name="inputWords">Input words.</param>
+        public MarkovNameGenerator(List<string> inputWords)
         {
-            if (order < 1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(order));
-            }
+            this.inputWords = inputWords;
 
-            if (minNameLength < 1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(minNameLength));
-            }
-
-            Order = order;
-            MinNameLength = minNameLength;
+            MinNameLength = 5;
             ExcludedSubstrings = new List<string>();
+            UsedWords = new List<string>();
 
-            InputWords = input.ToList();
+            random = new Random();
+            chains = new Dictionary<string, List<char>>();
 
-            foreach (string word in InputWords)
-            {
-                for (int i = 0; i < word.Length - order; i++)
-                {
-                    string token = word.Substring(i, order);
-
-                    if (!chains.ContainsKey(token))
-                    {
-                        chains[token] = new List<char>();
-                    }
-
-                    chains[token].Add(word[i + order]);
-                }
-            }
+            PopulateChains();
         }
 
         /// <summary>
@@ -89,20 +63,22 @@ namespace Narivia.GameLogic.Generators
         {
             string name = string.Empty;
 
-            do
+            while (name.Length < MinNameLength ||
+                   UsedWords.Contains(name) ||
+                   ExcludedSubstrings.Any(name.Contains))
             {
                 string word = string.Empty;
 
                 while (string.IsNullOrWhiteSpace(word))
                 {
-                    word = InputWords[random.Next(InputWords.Count)];
+                    word = inputWords[random.Next(inputWords.Count)];
                 }
 
-                name = word.Substring(random.Next(0, word.Length - Order), Order);
+                name = word.Substring(random.Next(0, word.Length - ORDER), ORDER);
 
                 while (name.Length < word.Length)
                 {
-                    string token = name.Substring(name.Length - Order, Order);
+                    string token = name.Substring(name.Length - ORDER, ORDER);
                     char letter = GetLetter(token);
 
                     if (letter == '?')
@@ -114,14 +90,7 @@ namespace Narivia.GameLogic.Generators
                 }
 
                 name = name.Substring(0, 1) + name.Substring(1).ToLower();
-            }
-            while (name.Length < MinNameLength);
-
-            name = name.ToTitleCase();
-
-            if (UsedWords.Contains(name) || ExcludedSubstrings.Any(name.Contains))
-            {
-                return GenerateName();
+                name = name.ToTitleCase();
             }
 
             UsedWords.Add(name);
@@ -130,11 +99,29 @@ namespace Narivia.GameLogic.Generators
         }
 
         /// <summary>
-        /// Reset this instance.
+        /// Reset the list of used names.
         /// </summary>
         public void Reset()
         {
             UsedWords.Clear();
+        }
+
+        void PopulateChains()
+        {
+            foreach (string word in inputWords)
+            {
+                for (int i = 0; i < word.Length - ORDER; i++)
+                {
+                    string token = word.Substring(i, ORDER);
+
+                    if (!chains.ContainsKey(token))
+                    {
+                        chains[token] = new List<char>();
+                    }
+
+                    chains[token].Add(word[i + ORDER]);
+                }
+            }
         }
 
         char GetLetter(string token)

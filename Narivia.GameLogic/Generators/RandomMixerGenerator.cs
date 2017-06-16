@@ -34,7 +34,12 @@ namespace Narivia.GameLogic.Generators
         /// <value>The second input list.</value>
         public List<string> InputList2 { get; set; }
 
-        List<string> used = new List<string>();
+        /// <summary>
+        /// Gets or sets the used words.
+        /// </summary>
+        /// <value>The used words.</value>
+        public List<string> UsedWords { get; private set; }
+
         readonly Random random;
 
         /// <summary>
@@ -43,10 +48,10 @@ namespace Narivia.GameLogic.Generators
         public RandomMixerGenerator()
         {
             random = new Random();
-            ExcludedSubstrings = new List<string>();
-            MinNameLength = 4;
+            MinNameLength = 5;
 
-            used = new List<string>();
+            ExcludedSubstrings = new List<string>();
+            UsedWords = new List<string>();
         }
 
         /// <summary>
@@ -57,7 +62,7 @@ namespace Narivia.GameLogic.Generators
         {
             string word = string.Empty;
 
-            while (string.IsNullOrWhiteSpace(word) || used.Contains(word))
+            while (string.IsNullOrWhiteSpace(word) || UsedWords.Contains(word))
             {
                 word = InputList1[random.Next(InputList1.Count)] +
                        InputList2[random.Next(InputList2.Count)];
@@ -67,11 +72,11 @@ namespace Narivia.GameLogic.Generators
         }
 
         /// <summary>
-        /// Reset the list of used words.
+        /// Reset the list of used names.
         /// </summary>
         public void Reset()
         {
-            used = new List<string>();
+            UsedWords = new List<string>();
         }
     }
 }
