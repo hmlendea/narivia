@@ -93,14 +93,14 @@ namespace Narivia.Screens
             SideBar.StatsButton.Clicked += SideBar_StatsButtonClicked;
             SideBar.RelationsButton.Clicked += SideBar_RelationsButtonClicked;
 
-            ShowNotification("Welcome",
-                             $"Welcome to the world of {game.WorldName} " +
-                             Environment.NewLine +
-                             Environment.NewLine +
-                             "This is still a very WIP project !!!",
+            string factionName = game.GetFactionName(game.PlayerFactionId);
+
+            ShowNotification($"Welcome to {game.WorldName}",
+                             $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
+                             $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!",
                              NotificationType.Informational,
                              NotificationStyle.Big,
-                             new Vector2(256, 128));
+                             new Vector2(256, 256));
 
             RegionBar.SetRegion(game.GetFactionCapital(game.PlayerFactionId));
         }
