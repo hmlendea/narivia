@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Narivia.Screens;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
 
@@ -115,11 +113,13 @@ namespace Narivia.Interface.Widgets
                 SelectedIndex = 0;
             }
 
-            if (InputManager.Instance.IsKeyPressed(Keys.Right))
+            if ((InputManager.Instance.IsCursorInArea(ScreenArea) && InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton)) ||
+                InputManager.Instance.IsKeyPressed(Keys.Right))
             {
                 SelectedIndex += 1;
             }
-            else if (InputManager.Instance.IsKeyPressed(Keys.Left))
+            if ((InputManager.Instance.IsCursorInArea(ScreenArea) && InputManager.Instance.IsMouseButtonPressed(MouseButton.RightButton)) ||
+                InputManager.Instance.IsKeyPressed(Keys.Left))
             {
                 SelectedIndex += 1;
             }
