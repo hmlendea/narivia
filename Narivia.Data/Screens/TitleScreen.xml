@@ -9,10 +9,6 @@
 		<Text>Settings</Text>
 		<LinkId>SettingsScreen</LinkId>
 	</Link>
-	<Link>
-		<Text>Go back to SplashScreen</Text>
-		<LinkId>SplashScreen</LinkId>
-	</Link>
 	<Action>
 		<Text>Exit</Text>
 		<ActionId>Exit</ActionId>
