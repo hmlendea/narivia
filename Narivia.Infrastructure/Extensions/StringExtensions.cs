@@ -1,4 +1,6 @@
-﻿namespace Narivia.Infrastructure.Extensions
+﻿using System.Linq;
+
+namespace Narivia.Infrastructure.Extensions
 {
     public static class StringExtensions
     {
@@ -9,7 +11,7 @@
         /// <returns>The duplicated elements.</returns>
         public static string ToTitleCase(this string source)
         {
-            return char.ToUpper(source[0]) + source.Substring(1);
+            return string.Join(string.Empty, source.Split(' ').Select(x => char.ToUpper(x[0]) + x.Substring(1)));
         }
     }
 }
