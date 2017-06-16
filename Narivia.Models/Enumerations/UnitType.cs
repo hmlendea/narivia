@@ -1,4 +1,4 @@
-﻿namespace Narivia.Models
+﻿namespace Narivia.Models.Enumerations
 {
     public enum UnitType
     {

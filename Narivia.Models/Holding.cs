@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using Narivia.Models.Enumerations;
+
 namespace Narivia.Models
 {
     /// <summary>

@@ -13,6 +13,7 @@ using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Infrastructure.Extensions;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
+using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.GameManagers
 {

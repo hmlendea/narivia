@@ -5,6 +5,7 @@ using System.Linq;
 using Narivia.DataAccess.DataObjects;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
+using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.Mapping
 {

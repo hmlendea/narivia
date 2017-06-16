@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
+using Narivia.Models.Enumerations;
+
 namespace Narivia.Models
 {
     /// <summary>
