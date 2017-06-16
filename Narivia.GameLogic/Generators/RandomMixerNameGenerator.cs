@@ -18,6 +18,12 @@ namespace Narivia.GameLogic.Generators
         public int MinNameLength { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum length of the name.
+        /// </summary>
+        /// <value>The maximum length of the name.</value>
+        public int MaxNameLength { get; set; }
+
+        /// <summary>
         /// Gets or sets the excluded substrings.
         /// </summary>
         /// <value>The excluded substrings.</value>
@@ -42,7 +48,9 @@ namespace Narivia.GameLogic.Generators
         public RandomMixerNameGenerator(List<string> wordList1, List<string> wordList2)
         {
             random = new Random();
+
             MinNameLength = 5;
+            MaxNameLength = 10;
 
             ExcludedSubstrings = new List<string>();
             UsedWords = new List<string>();
@@ -60,6 +68,8 @@ namespace Narivia.GameLogic.Generators
             string word = string.Empty;
 
             while (string.IsNullOrWhiteSpace(word) ||
+                   word.Length < MinNameLength ||
+                   word.Length > MaxNameLength ||
                    UsedWords.Contains(word) ||
                    ExcludedSubstrings.Any(word.Contains))
             {

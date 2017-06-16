@@ -11,6 +11,12 @@ namespace Narivia.GameLogic.Generators.Interfaces
         int MinNameLength { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum length of the name.
+        /// </summary>
+        /// <value>The maximum length of the name.</value>
+        int MaxNameLength { get; set; }
+
+        /// <summary>
         /// Gets or sets the excluded substrings.
         /// </summary>
         /// <value>The excluded substrings.</value>
