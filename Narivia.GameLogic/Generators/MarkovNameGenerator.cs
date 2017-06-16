@@ -71,10 +71,7 @@ namespace Narivia.GameLogic.Generators
         {
             string name = string.Empty;
 
-            while (name.Length < MinNameLength ||
-                   name.Length > MaxNameLength ||
-                   UsedWords.Contains(name) ||
-                   ExcludedStrings.Any(name.Contains))
+            while (!IsNameValid(name))
             {
                 string word = string.Empty;
 
@@ -144,6 +141,26 @@ namespace Narivia.GameLogic.Generators
             int index = random.Next(letters.Count);
 
             return letters[index];
+        }
+
+        bool IsNameValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return false;
+            }
+
+            if (name.Length < MinNameLength || name.Length > MaxNameLength)
+            {
+                return false;
+            }
+
+            if (UsedWords.Contains(name))
+            {
+                return false;
+            }
+
+            return !ExcludedStrings.Any(name.Contains);
         }
     }
 }
