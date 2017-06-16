@@ -1,15 +1,7 @@
-﻿using System;
-using System.Xml.Serialization;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-using Narivia.Audio;
 using Narivia.Graphics;
-using Narivia.Graphics.ImageEffects;
-using Narivia.Input;
-using Narivia.Input.Enumerations;
 
 namespace Narivia.Interface.Widgets
 {
@@ -41,6 +33,9 @@ namespace Narivia.Interface.Widgets
         Image background;
         Image text;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToolTip"/> class.
+        /// </summary>
         public ToolTip()
         {
             BackgroundColour = Color.DarkRed;
@@ -56,8 +51,7 @@ namespace Narivia.Interface.Widgets
             {
                 Tint = BackgroundColour,
                 ImagePath = "ScreenManager/FillImage",
-                SourceRectangle = new Rectangle(0, 0, 1, 1),
-                Scale = Size
+                SourceRectangle = new Rectangle(0, 0, 1, 1)
             };
 
             text = new Image
@@ -96,6 +90,9 @@ namespace Narivia.Interface.Widgets
             {
                 return;
             }
+
+            background.Scale = Size;
+            text.SpriteSize =
 
             background.Position = Position;
             text.Position = new Vector2(Position.X + TEXT_MARGINS, Position.Y + TEXT_MARGINS);
