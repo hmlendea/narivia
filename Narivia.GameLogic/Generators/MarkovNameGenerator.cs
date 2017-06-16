@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
-using Narivia.GameLogic.Generators.Interfaces;
 using Narivia.Infrastructure.Extensions;
 
 namespace Narivia.GameLogic.Generators
@@ -10,41 +8,10 @@ namespace Narivia.GameLogic.Generators
     /// <summary>
     /// Name generator using Markov Chains.
     /// </summary>
-    public class MarkovNameGenerator : INameGenerator
+    public class MarkovNameGenerator : AbstractNameGenerator
     {
-        /// <summary>
-        /// Gets or sets the minimum length of the name.
-        /// </summary>
-        /// <value>The minimum length of the name.</value>
-        public int MinNameLength { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum length of the name.
-        /// </summary>
-        /// <value>The maximum length of the name.</value>
-        public int MaxNameLength { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum processing time.
-        /// </summary>
-        /// <value>The maximum processing time in milliseconds.</value>
-        public int MaxProcessingTime { get; set; }
-
-        /// <summary>
-        /// Gets or sets the excluded strings.
-        /// </summary>
-        /// <value>The excluded strings.</value>
-        public List<string> ExcludedStrings { get; set; }
-
-        /// <summary>
-        /// Gets or sets the used words.
-        /// </summary>
-        /// <value>The used words.</value>
-        public List<string> UsedWords { get; private set; }
-
         const int ORDER = 3;
 
-        readonly Random random;
         readonly Dictionary<string, List<char>> chains;
 
         List<string> inputWords;
@@ -57,24 +24,16 @@ namespace Narivia.GameLogic.Generators
         {
             this.inputWords = inputWords;
 
-            MinNameLength = 5;
-            MaxNameLength = 10;
-            MaxProcessingTime = 1000;
-
-            ExcludedStrings = new List<string>();
-            UsedWords = new List<string>();
-
-            random = new Random();
             chains = new Dictionary<string, List<char>>();
 
             PopulateChains();
         }
 
         /// <summary>
-        /// Gets a name.
+        /// Generates a name.
         /// </summary>
         /// <returns>The name.</returns>
-        public string GenerateName()
+        public override string GenerateName()
         {
             string name = string.Empty;
 
@@ -114,38 +73,6 @@ namespace Narivia.GameLogic.Generators
             return name;
         }
 
-        /// <summary>
-        /// Generates names.
-        /// </summary>
-        /// <returns>The names.</returns>
-        /// <param name="maximumCount">Maximum count.</param>
-        public List<string> GenerateNames(int maximumCount)
-        {
-            List<string> names = new List<string>();
-            DateTime startTime = DateTime.Now;
-
-            while (DateTime.Now < startTime.AddMilliseconds(MaxProcessingTime) &&
-                   names.Count < maximumCount)
-            {
-                string name = GenerateName();
-
-                if (!string.IsNullOrWhiteSpace(name))
-                {
-                    names.Add(name);
-                }
-            }
-
-            return names;
-        }
-
-        /// <summary>
-        /// Reset the list of used names.
-        /// </summary>
-        public void Reset()
-        {
-            UsedWords.Clear();
-        }
-
         void PopulateChains()
         {
             foreach (string word in inputWords)
@@ -175,26 +102,6 @@ namespace Narivia.GameLogic.Generators
             int index = random.Next(letters.Count);
 
             return letters[index];
-        }
-
-        bool IsNameValid(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return false;
-            }
-
-            if (name.Length < MinNameLength || name.Length > MaxNameLength)
-            {
-                return false;
-            }
-
-            if (UsedWords.Contains(name))
-            {
-                return false;
-            }
-
-            return !ExcludedStrings.Any(name.Contains);
         }
     }
 }

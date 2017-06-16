@@ -1,68 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-
-using Narivia.GameLogic.Generators.Interfaces;
 
 namespace Narivia.GameLogic.Generators
 {
     /// <summary>
     /// Random name generator that mixes words from different lists
     /// </summary>
-    public class RandomMixerNameGenerator : INameGenerator
+    public class RandomMixerNameGenerator : AbstractNameGenerator
     {
-        /// <summary>
-        /// Gets or sets the minimum length of the name.
-        /// </summary>
-        /// <value>The minimum length of the name.</value>
-        public int MinNameLength { get; set; }
+        readonly int wordListsCount;
 
-        /// <summary>
-        /// Gets or sets the maximum length of the name.
-        /// </summary>
-        /// <value>The maximum length of the name.</value>
-        public int MaxNameLength { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum processing time.
-        /// </summary>
-        /// <value>The maximum processing time in milliseconds.</value>
-        public int MaxProcessingTime { get; set; }
-
-        /// <summary>
-        /// Gets or sets the excluded strings.
-        /// </summary>
-        /// <value>The excluded strings.</value>
-        public List<string> ExcludedStrings { get; set; }
-
-        /// <summary>
-        /// Gets or sets the used words.
-        /// </summary>
-        /// <value>The used words.</value>
-        public List<string> UsedWords { get; private set; }
-
-        readonly Random random;
-
-        int wordListsCount;
-
-        List<string> wordList1;
-        List<string> wordList2;
-        List<string> wordList3;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RandomMixerNameGenerator"/> class.
-        /// </summary>
-        RandomMixerNameGenerator()
-        {
-            random = new Random();
-
-            MinNameLength = 5;
-            MaxNameLength = 10;
-            MaxProcessingTime = 1000;
-
-            ExcludedStrings = new List<string>();
-            UsedWords = new List<string>();
-        }
+        readonly List<string> wordList1;
+        readonly List<string> wordList2;
+        readonly List<string> wordList3;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomMixerNameGenerator"/> class.
@@ -71,7 +21,6 @@ namespace Narivia.GameLogic.Generators
         /// <param name="wordList2">Word list 2.</param>
         /// <param name="wordList3">Word list 3.</param>
         public RandomMixerNameGenerator(List<string> wordList1, List<string> wordList2, List<string> wordList3)
-            : this()
         {
             wordListsCount = 3;
 
@@ -86,7 +35,6 @@ namespace Narivia.GameLogic.Generators
         /// <param name="wordList1">Word list1.</param>
         /// <param name="wordList2">Word list2.</param>
         public RandomMixerNameGenerator(List<string> wordList1, List<string> wordList2)
-            : this()
         {
             wordListsCount = 2;
 
@@ -98,7 +46,7 @@ namespace Narivia.GameLogic.Generators
         /// Generates a name.
         /// </summary>
         /// <returns>The name.</returns>
-        public string GenerateName()
+        public override string GenerateName()
         {
             string name = string.Empty;
 
@@ -111,38 +59,6 @@ namespace Narivia.GameLogic.Generators
             }
 
             return name;
-        }
-
-        /// <summary>
-        /// Generates names.
-        /// </summary>
-        /// <returns>The names.</returns>
-        /// <param name="maximumCount">Maximum count.</param>
-        public List<string> GenerateNames(int maximumCount)
-        {
-            List<string> names = new List<string>();
-            DateTime startTime = DateTime.Now;
-
-            while (DateTime.Now < startTime.AddMilliseconds(MaxProcessingTime) &&
-                   names.Count < maximumCount)
-            {
-                string name = GenerateName();
-
-                if (!string.IsNullOrWhiteSpace(name))
-                {
-                    names.Add(name);
-                }
-            }
-
-            return names;
-        }
-
-        /// <summary>
-        /// Reset the list of used names.
-        /// </summary>
-        public void Reset()
-        {
-            UsedWords = new List<string>();
         }
 
         string GetRandomName()
@@ -164,26 +80,6 @@ namespace Narivia.GameLogic.Generators
             }
 
             return name;
-        }
-
-        bool IsNameValid(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return false;
-            }
-
-            if (name.Length < MinNameLength || name.Length > MaxNameLength)
-            {
-                return false;
-            }
-
-            if (UsedWords.Contains(name))
-            {
-                return false;
-            }
-
-            return !ExcludedStrings.Any(name.Contains);
         }
     }
 }
