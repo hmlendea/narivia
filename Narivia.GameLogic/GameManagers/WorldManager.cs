@@ -535,9 +535,9 @@ namespace Narivia.GameLogic.GameManagers
             string capitalRegionId = GetFactionCapital(faction.Id);
 
             INameGenerator nameGenerator = CreateNameGenerator(faction.CultureId);
-            nameGenerator.ExcludedSubstrings.AddRange(Factions.Values.Select(f => f.Name));
-            nameGenerator.ExcludedSubstrings.AddRange(Holdings.Values.Select(h => h.Name));
-            nameGenerator.ExcludedSubstrings.AddRange(Regions.Values.Select(r => r.Name));
+            nameGenerator.ExcludedStrings.AddRange(Factions.Values.Select(f => f.Name));
+            nameGenerator.ExcludedStrings.AddRange(Holdings.Values.Select(h => h.Name));
+            nameGenerator.ExcludedStrings.AddRange(Regions.Values.Select(r => r.Name));
 
             List<Region> ownedRegions = GetFactionRegions(faction.Id).ToList();
 

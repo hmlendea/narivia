@@ -17,10 +17,10 @@ namespace Narivia.GameLogic.Generators.Interfaces
         int MaxNameLength { get; set; }
 
         /// <summary>
-        /// Gets or sets the excluded substrings.
+        /// Gets or sets the excluded strings.
         /// </summary>
-        /// <value>The excluded substrings.</value>
-        List<string> ExcludedSubstrings { get; set; }
+        /// <value>The excluded strings.</value>
+        List<string> ExcludedStrings { get; set; }
 
         /// <summary>
         /// Gets the used words.

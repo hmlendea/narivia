@@ -25,10 +25,10 @@ namespace Narivia.GameLogic.Generators
         public int MaxNameLength { get; set; }
 
         /// <summary>
-        /// Gets or sets the excluded substrings.
+        /// Gets or sets the excluded strings.
         /// </summary>
-        /// <value>The excluded substrings.</value>
-        public List<string> ExcludedSubstrings { get; set; }
+        /// <value>The excluded strings.</value>
+        public List<string> ExcludedStrings { get; set; }
 
         /// <summary>
         /// Gets or sets the used words.
@@ -54,7 +54,7 @@ namespace Narivia.GameLogic.Generators
             MinNameLength = 5;
             MaxNameLength = 10;
 
-            ExcludedSubstrings = new List<string>();
+            ExcludedStrings = new List<string>();
             UsedWords = new List<string>();
 
             random = new Random();
@@ -74,7 +74,7 @@ namespace Narivia.GameLogic.Generators
             while (name.Length < MinNameLength ||
                    name.Length > MaxNameLength ||
                    UsedWords.Contains(name) ||
-                   ExcludedSubstrings.Any(name.Contains))
+                   ExcludedStrings.Any(name.Contains))
             {
                 string word = string.Empty;
 
