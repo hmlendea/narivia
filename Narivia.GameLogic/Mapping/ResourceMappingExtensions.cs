@@ -8,8 +8,16 @@ using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.Mapping
 {
+    /// <summary>
+    /// Resource mapping extensions for converting between entities and domain models.
+    /// </summary>
     static class ResourceMappingExtensions
     {
+        /// <summary>
+        /// Converts the entity into a domain model.
+        /// </summary>
+        /// <returns>The domain model.</returns>
+        /// <param name="resourceEntity">Resource entity.</param>
         internal static Resource ToDomainModel(this ResourceEntity resourceEntity)
         {
             Resource resource = new Resource
@@ -24,6 +32,11 @@ namespace Narivia.GameLogic.Mapping
             return resource;
         }
 
+        /// <summary>
+        /// Converts the domail model into an entity.
+        /// </summary>
+        /// <returns>The entity.</returns>
+        /// <param name="resource">Resource.</param>
         internal static ResourceEntity ToEntity(this Resource resource)
         {
             ResourceEntity resourceEntity = new ResourceEntity
@@ -38,6 +51,11 @@ namespace Narivia.GameLogic.Mapping
             return resourceEntity;
         }
 
+        /// <summary>
+        /// Converts the entities into domain models.
+        /// </summary>
+        /// <returns>The domain models.</returns>
+        /// <param name="resourceEntities">Resource entities.</param>
         internal static IEnumerable<Resource> ToDomainModels(this IEnumerable<ResourceEntity> resourceEntities)
         {
             IEnumerable<Resource> resources = resourceEntities.Select(resourceEntity => resourceEntity.ToDomainModel());
@@ -45,6 +63,11 @@ namespace Narivia.GameLogic.Mapping
             return resources;
         }
 
+        /// <summary>
+        /// Converts the domain models into entities.
+        /// </summary>
+        /// <returns>The entities.</returns>
+        /// <param name="resources">Resources.</param>
         internal static IEnumerable<ResourceEntity> ToEntities(this IEnumerable<Resource> resources)
         {
             IEnumerable<ResourceEntity> resourceEntities = resources.Select(resource => resource.ToEntity());

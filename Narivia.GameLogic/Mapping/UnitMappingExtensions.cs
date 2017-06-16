@@ -8,8 +8,16 @@ using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.Mapping
 {
+    /// <summary>
+    /// Unit mapping extensions for converting between entities and domain models.
+    /// </summary>
     static class UnitMappingExtensions
     {
+        /// <summary>
+        /// Converts the entity into a domain model.
+        /// </summary>
+        /// <returns>The domain model.</returns>
+        /// <param name="unitEntity">Unit entity.</param>
         internal static Unit ToDomainModel(this UnitEntity unitEntity)
         {
             Unit unit = new Unit
@@ -27,6 +35,11 @@ namespace Narivia.GameLogic.Mapping
             return unit;
         }
 
+        /// <summary>
+        /// Converts the domail model into an entity.
+        /// </summary>
+        /// <returns>The entity.</returns>
+        /// <param name="unit">Unit.</param>
         internal static UnitEntity ToEntity(this Unit unit)
         {
             UnitEntity unitEntity = new UnitEntity
@@ -44,6 +57,11 @@ namespace Narivia.GameLogic.Mapping
             return unitEntity;
         }
 
+        /// <summary>
+        /// Converts the entities into domain models.
+        /// </summary>
+        /// <returns>The domain models.</returns>
+        /// <param name="unitEntities">Unit entities.</param>
         internal static IEnumerable<Unit> ToDomainModels(this IEnumerable<UnitEntity> unitEntities)
         {
             IEnumerable<Unit> units = unitEntities.Select(unitEntity => unitEntity.ToDomainModel());
@@ -51,6 +69,11 @@ namespace Narivia.GameLogic.Mapping
             return units;
         }
 
+        /// <summary>
+        /// Converts the domain models into entities.
+        /// </summary>
+        /// <returns>The entities.</returns>
+        /// <param name="units">Units.</param>
         internal static IEnumerable<UnitEntity> ToEntities(this IEnumerable<Unit> units)
         {
             IEnumerable<UnitEntity> unitEntities = units.Select(unit => unit.ToEntity());

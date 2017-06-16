@@ -9,8 +9,16 @@ using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.Mapping
 {
+    /// <summary>
+    /// Region mapping extensions for converting between entities and domain models.
+    /// </summary>
     static class RegionMappingExtensions
     {
+        /// <summary>
+        /// Converts the entity into a domain model.
+        /// </summary>
+        /// <returns>The domain model.</returns>
+        /// <param name="regionEntity">Region entity.</param>
         internal static Region ToDomainModel(this RegionEntity regionEntity)
         {
             Region region = new Region
@@ -28,6 +36,11 @@ namespace Narivia.GameLogic.Mapping
             return region;
         }
 
+        /// <summary>
+        /// Converts the domail model into an entity.
+        /// </summary>
+        /// <returns>The entity.</returns>
+        /// <param name="region">Region.</param>
         internal static RegionEntity ToEntity(this Region region)
         {
             RegionEntity regionEntity = new RegionEntity
@@ -45,6 +58,11 @@ namespace Narivia.GameLogic.Mapping
             return regionEntity;
         }
 
+        /// <summary>
+        /// Converts the entities into domain models.
+        /// </summary>
+        /// <returns>The domain models.</returns>
+        /// <param name="regionEntities">Region entities.</param>
         internal static IEnumerable<Region> ToDomainModels(this IEnumerable<RegionEntity> regionEntities)
         {
             IEnumerable<Region> regions = regionEntities.Select(regionEntity => regionEntity.ToDomainModel());
@@ -52,6 +70,11 @@ namespace Narivia.GameLogic.Mapping
             return regions;
         }
 
+        /// <summary>
+        /// Converts the domain models into entities.
+        /// </summary>
+        /// <returns>The entities.</returns>
+        /// <param name="regions">Regions.</param>
         internal static IEnumerable<RegionEntity> ToEntities(this IEnumerable<Region> regions)
         {
             IEnumerable<RegionEntity> regionEntities = regions.Select(region => region.ToEntity());

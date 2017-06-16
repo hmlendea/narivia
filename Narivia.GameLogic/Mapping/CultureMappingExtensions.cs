@@ -8,8 +8,16 @@ using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.Mapping
 {
+    /// <summary>
+    /// Culture mapping extensions for converting between entities and domain models.
+    /// </summary>
     static class CultureMappingExtensions
     {
+        /// <summary>
+        /// Converts the entity into a domain model.
+        /// </summary>
+        /// <returns>The domain model.</returns>
+        /// <param name="cultureEntity">Culture entity.</param>
         internal static Culture ToDomainModel(this CultureEntity cultureEntity)
         {
             Culture culture = new Culture
@@ -25,6 +33,11 @@ namespace Narivia.GameLogic.Mapping
             return culture;
         }
 
+        /// <summary>
+        /// Converts the domail model into an entity.
+        /// </summary>
+        /// <returns>The entity.</returns>
+        /// <param name="culture">Culture.</param>
         internal static CultureEntity ToEntity(this Culture culture)
         {
             CultureEntity cultureEntity = new CultureEntity
@@ -40,6 +53,11 @@ namespace Narivia.GameLogic.Mapping
             return cultureEntity;
         }
 
+        /// <summary>
+        /// Converts the entities into domain models.
+        /// </summary>
+        /// <returns>The domain models.</returns>
+        /// <param name="cultureEntities">Culture entities.</param>
         internal static IEnumerable<Culture> ToDomainModels(this IEnumerable<CultureEntity> cultureEntities)
         {
             IEnumerable<Culture> cultures = cultureEntities.Select(cultureEntity => cultureEntity.ToDomainModel());
@@ -47,6 +65,11 @@ namespace Narivia.GameLogic.Mapping
             return cultures;
         }
 
+        /// <summary>
+        /// Converts the domain models into entities.
+        /// </summary>
+        /// <returns>The entities.</returns>
+        /// <param name="cultures">Cultures.</param>
         internal static IEnumerable<CultureEntity> ToEntities(this IEnumerable<Culture> cultures)
         {
             IEnumerable<CultureEntity> cultureEntities = cultures.Select(culture => culture.ToEntity());
