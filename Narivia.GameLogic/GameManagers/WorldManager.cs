@@ -532,7 +532,7 @@ namespace Narivia.GameLogic.GameManagers
 
             string capitalRegionId = GetFactionCapital(faction.Id);
 
-            NameGenerator nameGenerator = new NameGenerator(Cultures[faction.CultureId].SamplePlaceNames, 3, 5);
+            MarkovNameGenerator nameGenerator = new MarkovNameGenerator(Cultures[faction.CultureId].SamplePlaceNames, 3, 5);
             nameGenerator.ExcludedSubstrings.AddRange(Factions.Values.Select(f => f.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Holdings.Values.Select(h => h.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Regions.Values.Select(r => r.Name));
@@ -567,13 +567,13 @@ namespace Narivia.GameLogic.GameManagers
             }
         }
 
-        Holding GenerateHolding(NameGenerator generator, string regionId)
+        Holding GenerateHolding(MarkovNameGenerator generator, string regionId)
         {
             Region region = Regions[regionId];
             Array holdingTypes = Enum.GetValues(typeof(HoldingType));
 
             HoldingType holdingType = (HoldingType)holdingTypes.GetValue(random.Next(1, holdingTypes.Length));
-            string name = generator.GetName();
+            string name = generator.GenerateName();
 
             Holding holding = new Holding
             {

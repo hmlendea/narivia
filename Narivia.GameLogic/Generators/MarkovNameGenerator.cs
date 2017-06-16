@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Narivia.GameLogic.Generators.Interfaces;
 using Narivia.Infrastructure.Extensions;
 
 namespace Narivia.GameLogic.Generators
@@ -9,7 +10,7 @@ namespace Narivia.GameLogic.Generators
     /// <summary>
     /// Name generator using Markov Chains.
     /// </summary>
-    public class NameGenerator
+    public class MarkovNameGenerator : INameGenerator
     {
         /// <summary>
         /// Gets or sets the order.
@@ -36,12 +37,12 @@ namespace Narivia.GameLogic.Generators
         List<string> used = new List<string>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NameGenerator"/> class.
+        /// Initializes a new instance of the <see cref="MarkovNameGenerator"/> class.
         /// </summary>
         /// <param name="input">Input names.</param>
         /// <param name="order">Order.</param>
         /// <param name="minNameLength">Minimum name length.</param>
-        public NameGenerator(IEnumerable<string> input, int order, int minNameLength)
+        public MarkovNameGenerator(IEnumerable<string> input, int order, int minNameLength)
         {
             if (order < 1)
             {
@@ -79,7 +80,7 @@ namespace Narivia.GameLogic.Generators
         /// Gets a name.
         /// </summary>
         /// <returns>The name.</returns>
-        public string GetName()
+        public string GenerateName()
         {
             string name = string.Empty;
 
@@ -110,7 +111,7 @@ namespace Narivia.GameLogic.Generators
 
             if (used.Contains(name) || ExcludedSubstrings.Any(name.Contains))
             {
-                return GetName();
+                return GenerateName();
             }
 
             used.Add(name);
