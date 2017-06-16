@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -124,10 +126,14 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
+            Dictionary<string, int> troops = new Dictionary<string, int>();
+
+            game.GetUnits().ToList().ForEach(u => troops.Add(u.Name, game.GetFactionArmySize(game.PlayerFactionId, u.Id)));
+
             InfoBar.Regions = game.GetFactionRegionsCount(game.PlayerFactionId);
             InfoBar.Holdings = game.GetFactionHoldingsCount(game.PlayerFactionId);
             InfoBar.Wealth = game.GetFactionWealth(game.PlayerFactionId);
-            InfoBar.Troops = game.GetFactionTroopsCount(game.PlayerFactionId);
+            InfoBar.Troops = troops;
 
             if (!string.IsNullOrEmpty(GameMap.SelectedRegionId))
             {

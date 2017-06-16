@@ -212,6 +212,14 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         string GetFactionCapital(string factionId);
 
         /// <summary>
+        /// Gets the faction army size.
+        /// </summary>
+        /// <returns>The faction army size.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="unitId">Unit identifier.</param>
+        int GetFactionArmySize(string factionId, string unitId);
+
+        /// <summary>
         /// Gets the faction idenfifier of a region.
         /// </summary>
         /// <returns>The faction identifier.</returns>
@@ -251,6 +259,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The region holdings.</returns>
         /// <param name="regionId">Region identifier.</param>
         IEnumerable<Holding> GetRegionHoldings(string regionId);
+
+        /// <summary>
+        /// Gets the units.
+        /// </summary>
+        /// <returns>The units.</returns>
+        IEnumerable<Unit> GetUnits();
 
         /// <summary>
         /// The player faction will attack the specified region.

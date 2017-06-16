@@ -1,9 +1,12 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Input;
 
 namespace Narivia.Interface.Widgets
 {
@@ -18,6 +21,11 @@ namespace Narivia.Interface.Widgets
         Image holdingsIcon, holdingsText;
         Image wealthIcon, wealthText;
         Image troopsIcon, troopsText;
+
+        ToolTip regionsTooltip;
+        ToolTip holdingsTooltip;
+        ToolTip wealthTooltip;
+        ToolTip troopsTooltip;
 
         /// <summary>
         /// Gets or sets the regions count.
@@ -45,7 +53,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         /// <value>The troops count.</value>
         [XmlIgnore]
-        public int Troops { get; set; }
+        public Dictionary<string, int> Troops { get; set; }
 
         /// <summary>
         /// Gets or sets the background colour.
@@ -113,31 +121,52 @@ namespace Narivia.Interface.Widgets
 
             regionsText = new Image
             {
-                Text = Regions.ToString(),
                 SpriteSize = new Vector2(32, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
             holdingsText = new Image
             {
-                Text = Holdings.ToString(),
                 SpriteSize = new Vector2(32, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
             wealthText = new Image
             {
-                Text = Wealth.ToString(),
                 SpriteSize = new Vector2(48, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
             troopsText = new Image
             {
-                Text = Troops.ToString(),
                 SpriteSize = new Vector2(48, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
+            };
+
+            regionsTooltip = new ToolTip
+            {
+                Text = "Nr. of regions",
+                Size = new Vector2(128, 20),
+                Visible = false
+            };
+            holdingsTooltip = new ToolTip
+            {
+                Text = "Nr. of holdings",
+                Size = new Vector2(128, 20),
+                Visible = false
+            };
+            wealthTooltip = new ToolTip
+            {
+                Text = "The wealth",
+                Size = new Vector2(128, 20),
+                Visible = false
+            };
+            troopsTooltip = new ToolTip
+            {
+                Text = "The troops",
+                Size = new Vector2(128, 128),
+                Visible = false
             };
 
             background.LoadContent();
@@ -151,6 +180,11 @@ namespace Narivia.Interface.Widgets
             holdingsText.LoadContent();
             wealthText.LoadContent();
             troopsText.LoadContent();
+
+            regionsTooltip.LoadContent();
+            holdingsTooltip.LoadContent();
+            wealthTooltip.LoadContent();
+            troopsTooltip.LoadContent();
 
             base.LoadContent();
         }
@@ -172,6 +206,11 @@ namespace Narivia.Interface.Widgets
             wealthText.UnloadContent();
             troopsText.UnloadContent();
 
+            regionsTooltip.UnloadContent();
+            holdingsTooltip.UnloadContent();
+            wealthTooltip.UnloadContent();
+            troopsTooltip.UnloadContent();
+
             base.UnloadContent();
         }
 
@@ -189,7 +228,7 @@ namespace Narivia.Interface.Widgets
             regionsText.Text = Regions.ToString();
             holdingsText.Text = Holdings.ToString();
             wealthText.Text = Wealth.ToString();
-            troopsText.Text = Troops.ToString();
+            troopsText.Text = Troops.Values.Sum().ToString();
 
             regionsIcon.Position = new Vector2(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ScreenArea.Height) / 2);
             regionsText.Position = new Vector2(regionsIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - regionsText.ScreenArea.Height) / 2);
@@ -199,6 +238,14 @@ namespace Narivia.Interface.Widgets
             wealthText.Position = new Vector2(wealthIcon.ScreenArea.Right + Spacing, holdingsText.Position.Y);
             troopsIcon.Position = new Vector2(wealthText.ScreenArea.Right + Spacing, wealthIcon.Position.Y);
             troopsText.Position = new Vector2(troopsIcon.ScreenArea.Right + Spacing, wealthText.Position.Y);
+
+            regionsTooltip.Position = new Vector2(regionsIcon.Position.X, ScreenArea.Bottom);
+            holdingsTooltip.Position = new Vector2(holdingsIcon.Position.X, ScreenArea.Bottom);
+            wealthTooltip.Position = new Vector2(wealthIcon.Position.X, ScreenArea.Bottom);
+            troopsTooltip.Position = new Vector2(troopsIcon.Position.X, ScreenArea.Bottom);
+
+            troopsTooltip.Text = string.Empty;
+            Troops.ToList().ForEach(t => troopsTooltip.Text += $"{t.Key}: {t.Value}\n");
 
             background.Update(gameTime);
 
@@ -211,6 +258,13 @@ namespace Narivia.Interface.Widgets
             holdingsText.Update(gameTime);
             wealthText.Update(gameTime);
             troopsText.Update(gameTime);
+
+            regionsTooltip.Update(gameTime);
+            holdingsTooltip.Update(gameTime);
+            wealthTooltip.Update(gameTime);
+            troopsTooltip.Update(gameTime);
+
+            HandleInput();
 
             base.Update(gameTime);
         }
@@ -238,7 +292,55 @@ namespace Narivia.Interface.Widgets
             wealthText.Draw(spriteBatch);
             troopsText.Draw(spriteBatch);
 
+            regionsTooltip.Draw(spriteBatch);
+            holdingsTooltip.Draw(spriteBatch);
+            wealthTooltip.Draw(spriteBatch);
+            troopsTooltip.Draw(spriteBatch);
+
             base.Draw(spriteBatch);
+        }
+
+        void HandleInput()
+        {
+            if (InputManager.Instance.IsCursorInArea(regionsIcon.ScreenArea) ||
+                InputManager.Instance.IsCursorInArea(regionsText.ScreenArea))
+            {
+                regionsTooltip.Visible = true;
+            }
+            else
+            {
+                regionsTooltip.Visible = false;
+            }
+
+            if (InputManager.Instance.IsCursorInArea(holdingsIcon.ScreenArea) ||
+                InputManager.Instance.IsCursorInArea(holdingsText.ScreenArea))
+            {
+                holdingsTooltip.Visible = true;
+            }
+            else
+            {
+                holdingsTooltip.Visible = false;
+            }
+
+            if (InputManager.Instance.IsCursorInArea(wealthIcon.ScreenArea) ||
+                InputManager.Instance.IsCursorInArea(wealthText.ScreenArea))
+            {
+                wealthTooltip.Visible = true;
+            }
+            else
+            {
+                wealthTooltip.Visible = false;
+            }
+
+            if (InputManager.Instance.IsCursorInArea(troopsIcon.ScreenArea) ||
+                InputManager.Instance.IsCursorInArea(troopsText.ScreenArea))
+            {
+                troopsTooltip.Visible = true;
+            }
+            else
+            {
+                troopsTooltip.Visible = false;
+            }
         }
     }
 }

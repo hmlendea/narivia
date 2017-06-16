@@ -222,6 +222,15 @@ namespace Narivia.GameLogic.GameManagers
         => world.TransferRegion(regionId, factionId);
 
         /// <summary>
+        /// Gets the faction army size.
+        /// </summary>
+        /// <returns>The faction army size.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="unitId">Unit identifier.</param>
+        public int GetFactionArmySize(string factionId, string unitId)
+        => world.Armies.Values.FirstOrDefault(a => a.FactionId == factionId && a.UnitId == unitId).Size;
+
+        /// <summary>
         /// Gets the culture of a faction.
         /// </summary>
         /// <returns>The culture.</returns>
@@ -379,6 +388,13 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="regionId">Region identifier.</param>
         public IEnumerable<Holding> GetRegionHoldings(string regionId)
         => world.GetRegionHoldings(regionId);
+
+        /// <summary>
+        /// Gets the units.
+        /// </summary>
+        /// <returns>The units.</returns>
+        public IEnumerable<Unit> GetUnits()
+        => world.Units.Values;
 
         /// <summary>
         /// Adds the specified amount of troops of a unit for a faction.
