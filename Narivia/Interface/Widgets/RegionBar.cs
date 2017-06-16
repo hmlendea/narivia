@@ -16,6 +16,8 @@ namespace Narivia.Interface.Widgets
     /// </summary>
     public class RegionBar : Widget
     {
+        const int HOLDING_SPACING_HORIZONTAL = 5;
+
         /// <summary>
         /// Gets the region identifier.
         /// </summary>
@@ -79,14 +81,15 @@ namespace Narivia.Interface.Widgets
                 {
                     ImagePath = $"World/Assets/{game.WorldId}/holdings/generic",
                     SourceRectangle = new Rectangle(64 * ((int)holding.Type - 1), 0, 64, 64),
-                    Position = new Vector2(Position.X + 64 * (holdingIcons.Count), Position.Y + Size.Y - 64)
+                    Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL * (holdingIcons.Count + 1) + 64 * holdingIcons.Count,
+                                           Position.Y + Size.Y - 64)
                 };
 
                 Image holdingName = new Image
                 {
-                    Position = new Vector2(holdingIcon.Position.X, Position.Y + 2),
+                    Position = new Vector2(holdingIcon.Position.X - HOLDING_SPACING_HORIZONTAL, Position.Y + 2),
                     Text = holding.Name,
-                    SpriteSize = new Vector2(holdingIcon.SourceRectangle.Width,
+                    SpriteSize = new Vector2(holdingIcon.SourceRectangle.Width + HOLDING_SPACING_HORIZONTAL * 2,
                                              Size.Y - holdingIcon.SourceRectangle.Height + 10),
                     FontName = "RegionBarHoldingFont",
                     Tint = Color.Black,
