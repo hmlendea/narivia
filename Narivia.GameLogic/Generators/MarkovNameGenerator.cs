@@ -86,7 +86,12 @@ namespace Narivia.GameLogic.Generators
 
             do
             {
-                string word = inputWords[random.Next(inputWords.Count)];
+                string word = string.Empty;
+
+                while (string.IsNullOrWhiteSpace(word))
+                {
+                    word = inputWords[random.Next(inputWords.Count)];
+                }
 
                 name = word.Substring(random.Next(0, word.Length - Order), Order);
 

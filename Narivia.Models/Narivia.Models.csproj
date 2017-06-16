@@ -52,6 +52,7 @@
     <Compile Include="UnitType.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Relation.cs" />
+    <Compile Include="NameGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

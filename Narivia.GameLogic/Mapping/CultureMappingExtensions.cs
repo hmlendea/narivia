@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
@@ -16,7 +17,8 @@ namespace Narivia.GameLogic.Mapping
                 Name = cultureEntity.Name,
                 Description = cultureEntity.Description,
                 TextureSet = cultureEntity.TextureSet,
-                SamplePlaceNames = cultureEntity.SamplePlaceNames,
+                PlaceNameGenerator = (NameGenerator)Enum.Parse(typeof(NameGenerator), cultureEntity.PlaceNameGenerator),
+                PlaceNameSchema = cultureEntity.PlaceNameSchema
             };
 
             return culture;
@@ -30,7 +32,8 @@ namespace Narivia.GameLogic.Mapping
                 Name = culture.Name,
                 Description = culture.Description,
                 TextureSet = culture.TextureSet,
-                SamplePlaceNames = culture.SamplePlaceNames
+                PlaceNameGenerator = culture.PlaceNameGenerator.ToString(),
+                PlaceNameSchema = culture.PlaceNameSchema
             };
 
             return cultureEntity;

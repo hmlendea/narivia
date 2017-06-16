@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Narivia.Models
 {
@@ -38,17 +37,15 @@ namespace Narivia.Models
         public string TextureSet { get; set; }
 
         /// <summary>
-        /// Gets or sets the sample place names.
+        /// Gets or sets the place name generator.
         /// </summary>
-        /// <value>The sample place names.</value>
-        public List<string> SamplePlaceNames { get; set; }
+        /// <value>The place name generator.</value>
+        public NameGenerator PlaceNameGenerator { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Culture"/> class.
+        /// Gets or sets the place name generator schema.
         /// </summary>
-        public Culture()
-        {
-            SamplePlaceNames = new List<string>();
-        }
+        /// <value>The place name generator schema.</value>
+        public string PlaceNameSchema { get; set; }
     }
 }

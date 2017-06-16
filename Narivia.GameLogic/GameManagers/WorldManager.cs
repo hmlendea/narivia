@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.Generators;
+using Narivia.GameLogic.Generators.Interfaces;
 using Narivia.GameLogic.Mapping;
 using Narivia.DataAccess.Repositories;
 using Narivia.DataAccess.Repositories.Interfaces;
@@ -527,12 +528,15 @@ namespace Narivia.GameLogic.GameManagers
         void GenerateHoldings(string factionId)
         {
             Faction faction = Factions[factionId];
+            Culture culture = Cultures[faction.CultureId];
 
             int holdingSlotsLeft = world.HoldingSlotsPerFaction;
 
             string capitalRegionId = GetFactionCapital(faction.Id);
 
-            MarkovNameGenerator nameGenerator = new MarkovNameGenerator(Cultures[faction.CultureId].SamplePlaceNames, 3, 5);
+            INameGenerator nameGenerator = new MarkovNameGenerator(File.ReadAllLines(Path.Combine(ApplicationPaths.WordListsDirectory,
+                                                                                                  culture.PlaceNameSchema + ".txt")),
+                                                                   3, 5);
             nameGenerator.ExcludedSubstrings.AddRange(Factions.Values.Select(f => f.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Holdings.Values.Select(h => h.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Regions.Values.Select(r => r.Name));
@@ -567,7 +571,7 @@ namespace Narivia.GameLogic.GameManagers
             }
         }
 
-        Holding GenerateHolding(MarkovNameGenerator generator, string regionId)
+        Holding GenerateHolding(INameGenerator generator, string regionId)
         {
             Region region = Regions[regionId];
             Array holdingTypes = Enum.GetValues(typeof(HoldingType));

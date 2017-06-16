@@ -17,6 +17,18 @@ namespace Narivia.Infrastructure.Helpers
         public static string WorldsDirectory => Path.Combine(rootDirectory, "Worlds");
 
         /// <summary>
+        /// Gets the common assets directory.
+        /// </summary>
+        /// <value>The common assets directory.</value>
+        public static string CommonAssetsDirectory => Path.Combine(rootDirectory, "CommonAssets");
+
+        /// <summary>
+        /// Gets the word lists directory.
+        /// </summary>
+        /// <value>The word lists directory.</value>
+        public static string WordListsDirectory => Path.Combine(CommonAssetsDirectory, "WordLists");
+
+        /// <summary>
         /// Gets the options file.
         /// </summary>
         /// <value>The options file.</value>
