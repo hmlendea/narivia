@@ -529,37 +529,12 @@ namespace Narivia.GameLogic.GameManagers
         void GenerateHoldings(string factionId)
         {
             Faction faction = Factions[factionId];
-            Culture culture = Cultures[faction.CultureId];
 
             int holdingSlotsLeft = world.HoldingSlotsPerFaction;
 
             string capitalRegionId = GetFactionCapital(faction.Id);
 
-            INameGenerator nameGenerator;
-
-            switch (culture.PlaceNameGenerator)
-            {
-                case NameGenerator.RandomMixerNameGenerator:
-                    string wordList1path = Path.Combine(ApplicationPaths.WordListsDirectory, culture.PlaceNameSchema.Split(' ')[0] + ".txt");
-                    string wordList2path = Path.Combine(ApplicationPaths.WordListsDirectory, culture.PlaceNameSchema.Split(' ')[1] + ".txt");
-
-                    List<string> wordList1 = File.ReadAllLines(wordList1path).ToList();
-                    List<string> wordList2 = File.ReadAllLines(wordList2path).ToList();
-
-                    nameGenerator = new RandomMixerNameGenerator(wordList1, wordList2);
-
-                    break;
-
-                default:
-                case NameGenerator.MarkovNameGenerator:
-                    string listPath = Path.Combine(ApplicationPaths.WordListsDirectory, culture.PlaceNameSchema.Split(' ')[0] + ".txt");
-                    List<string> inputWords = File.ReadAllLines(listPath).ToList();
-
-                    nameGenerator = new MarkovNameGenerator(inputWords);
-
-                    break;
-            }
-
+            INameGenerator nameGenerator = CreateNameGenerator(faction.CultureId);
             nameGenerator.ExcludedSubstrings.AddRange(Factions.Values.Select(f => f.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Holdings.Values.Select(h => h.Name));
             nameGenerator.ExcludedSubstrings.AddRange(Regions.Values.Select(r => r.Name));
@@ -592,6 +567,37 @@ namespace Narivia.GameLogic.GameManagers
                 Holdings.Add(holding.Id, holding);
                 holdingSlotsLeft -= 1;
             }
+        }
+
+        /// <summary>
+        /// Creates a name generator.
+        /// </summary>
+        /// <returns>The name generator.</returns>
+        /// <param name="cultureId">Culture identifier.</param>
+        INameGenerator CreateNameGenerator(string cultureId)
+        {
+            INameGenerator nameGenerator;
+            Culture culture = Cultures[cultureId];
+
+            List<List<string>> wordLists = culture.PlaceNameSchema.Split(' ').ToList()
+                                                  .Select(x => File.ReadAllLines(Path.Combine(ApplicationPaths.WordListsDirectory,
+                                                                                              $"{x}.txt")).ToList())
+                                                  .ToList();
+
+            if (culture.PlaceNameGenerator == NameGenerator.RandomMixerNameGenerator && wordLists.Count == 2)
+            {
+                nameGenerator = new RandomMixerNameGenerator(wordLists[0], wordLists[1]);
+            }
+            else if (culture.PlaceNameGenerator == NameGenerator.RandomMixerNameGenerator && wordLists.Count == 3)
+            {
+                nameGenerator = new RandomMixerNameGenerator(wordLists[0], wordLists[1], wordLists[2]);
+            }
+            else // Default: Markov
+            {
+                nameGenerator = new MarkovNameGenerator(wordLists[0]);
+            }
+
+            return nameGenerator;
         }
 
         Holding GenerateHolding(INameGenerator generator, string regionId)

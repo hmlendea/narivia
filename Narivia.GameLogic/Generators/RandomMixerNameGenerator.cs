@@ -37,15 +37,16 @@ namespace Narivia.GameLogic.Generators
 
         readonly Random random;
 
+        int wordListsCount;
+
         List<string> wordList1;
         List<string> wordList2;
+        List<string> wordList3;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomMixerNameGenerator"/> class.
         /// </summary>
-        /// <param name="wordList1">Word list1.</param>
-        /// <param name="wordList2">Word list2.</param>
-        public RandomMixerNameGenerator(List<string> wordList1, List<string> wordList2)
+        RandomMixerNameGenerator()
         {
             random = new Random();
 
@@ -54,6 +55,33 @@ namespace Narivia.GameLogic.Generators
 
             ExcludedSubstrings = new List<string>();
             UsedWords = new List<string>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RandomMixerNameGenerator"/> class.
+        /// </summary>
+        /// <param name="wordList1">Word list 1.</param>
+        /// <param name="wordList2">Word list 2.</param>
+        /// <param name="wordList3">Word list 3.</param>
+        public RandomMixerNameGenerator(List<string> wordList1, List<string> wordList2, List<string> wordList3)
+            : this()
+        {
+            wordListsCount = 3;
+
+            this.wordList1 = wordList1;
+            this.wordList2 = wordList2;
+            this.wordList3 = wordList3;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RandomMixerNameGenerator"/> class.
+        /// </summary>
+        /// <param name="wordList1">Word list1.</param>
+        /// <param name="wordList2">Word list2.</param>
+        public RandomMixerNameGenerator(List<string> wordList1, List<string> wordList2)
+            : this()
+        {
+            wordListsCount = 2;
 
             this.wordList1 = wordList1;
             this.wordList2 = wordList2;
@@ -65,19 +93,18 @@ namespace Narivia.GameLogic.Generators
         /// <returns>The name.</returns>
         public string GenerateName()
         {
-            string word = string.Empty;
+            string name = string.Empty;
 
-            while (string.IsNullOrWhiteSpace(word) ||
-                   word.Length < MinNameLength ||
-                   word.Length > MaxNameLength ||
-                   UsedWords.Contains(word) ||
-                   ExcludedSubstrings.Any(word.Contains))
+            while (string.IsNullOrWhiteSpace(name) ||
+                   name.Length < MinNameLength ||
+                   name.Length > MaxNameLength ||
+                   UsedWords.Contains(name) ||
+                   ExcludedSubstrings.Any(name.Contains))
             {
-                word = wordList1[random.Next(wordList1.Count)] +
-                       wordList2[random.Next(wordList2.Count)];
+                name = GetRandomName();
             }
 
-            return word;
+            return name;
         }
 
         /// <summary>
@@ -86,6 +113,27 @@ namespace Narivia.GameLogic.Generators
         public void Reset()
         {
             UsedWords = new List<string>();
+        }
+
+        string GetRandomName()
+        {
+            string name = string.Empty;
+
+            switch (wordListsCount)
+            {
+                case 2:
+                    name = wordList1[random.Next(wordList1.Count)] +
+                           wordList2[random.Next(wordList2.Count)];
+                    break;
+
+                case 3:
+                    name = wordList1[random.Next(wordList1.Count)] +
+                           wordList2[random.Next(wordList2.Count)] +
+                           wordList3[random.Next(wordList3.Count)];
+                    break;
+            }
+
+            return name;
         }
     }
 }
