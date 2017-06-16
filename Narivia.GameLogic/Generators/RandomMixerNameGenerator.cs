@@ -8,7 +8,7 @@ namespace Narivia.GameLogic.Generators
     /// <summary>
     /// Random name generator that mixes words from different lists
     /// </summary>
-    public class RandomMixerGenerator : INameGenerator
+    public class RandomMixerNameGenerator : INameGenerator
     {
         /// <summary>
         /// Gets or sets the minimum length of the name.
@@ -43,9 +43,9 @@ namespace Narivia.GameLogic.Generators
         readonly Random random;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RandomMixerGenerator"/> class.
+        /// Initializes a new instance of the <see cref="RandomMixerNameGenerator"/> class.
         /// </summary>
-        public RandomMixerGenerator()
+        public RandomMixerNameGenerator()
         {
             random = new Random();
             MinNameLength = 5;
