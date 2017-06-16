@@ -129,8 +129,8 @@ namespace Narivia.Interface.Widgets
             textImage.TextVerticalAlignment = VerticalAlignment.Center;
             textImage.Tint = TextColour;
             textImage.FontName = fontName;
-            textImage.Position = new Vector2(Position.X, Position.Y + tileSize * 2);
-            textImage.SpriteSize = new Vector2(Size.X, Size.Y - titleImage.SpriteSize.Y);
+            textImage.Position = new Vector2(Position.X + tileSize / 2, Position.Y + tileSize * 2.5f);
+            textImage.SpriteSize = new Vector2(Size.X - tileSize, Size.Y - titleImage.SpriteSize.Y - tileSize);
 
             yesButtonImage = new Image
             {
