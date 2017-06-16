@@ -110,6 +110,7 @@
     <Compile Include="Interface\Widgets\Enumerations\NotificationType.cs" />
     <Compile Include="Screens\NewGameScreen.cs" />
     <Compile Include="Interface\Widgets\MenuListSelector.cs" />
+    <Compile Include="Interface\Widgets\ToolTip.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

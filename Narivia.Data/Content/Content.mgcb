@@ -959,3 +959,10 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/RegionBarHoldingFont.spritefont
 
+#begin Fonts/ToolTipFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ToolTipFont.spritefont
+
