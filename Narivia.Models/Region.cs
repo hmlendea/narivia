@@ -63,6 +63,15 @@ namespace Narivia.Models
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this <see cref=".Region"/> is locked.
+        /// A region is normally locked as soon as it is conquered, and is unlocked when the turn has passed.
+        /// This is done in order to prevent the same region from being conquered multiple times in one turn.
+        /// </summary>
+        /// <value><c>true</c> if locked; otherwise, <c>false</c>.</value>
+        [XmlIgnore]
+        public bool Locked { get; set; }
+
+        /// <summary>
         /// Gets or sets the resource identifier.
         /// </summary>
         /// <value>The resource identifier.</value>

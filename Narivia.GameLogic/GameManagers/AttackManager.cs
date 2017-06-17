@@ -47,7 +47,8 @@ namespace Narivia.GameLogic.GameManagers
             // TODO: Do not target factions with good relations
             Dictionary<string, int> targets = world.Regions.Values
                                                    .Where(r => r.FactionId != factionId &&
-                                                               r.FactionId != "gaia")
+                                                               r.FactionId != "gaia" &&
+                                                               r.Locked == false)
                                                    .Select(x => x.Id)
                                                    .Except(regionsOwnedIds)
                                                    .Where(x => regionsOwnedIds.Any(y => world.RegionBordersRegion(x, y)))
@@ -124,6 +125,7 @@ namespace Narivia.GameLogic.GameManagers
         public BattleResult AttackRegion(string factionId, string regionId)
         {
             if (string.IsNullOrWhiteSpace(regionId) ||
+                world.Regions[regionId].Locked ||
                 !world.FactionBordersRegion(factionId, regionId))
             {
                 throw new InvalidTargetRegionException(regionId);
@@ -174,6 +176,7 @@ namespace Narivia.GameLogic.GameManagers
                 world.GetFactionTroopsCount(defenderFaction.Id))
             {
                 world.TransferRegion(regionId, factionId);
+                world.Regions[regionId].Locked = true;
 
                 return BattleResult.Victory;
             }

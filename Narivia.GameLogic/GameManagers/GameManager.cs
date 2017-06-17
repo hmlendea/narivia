@@ -178,6 +178,7 @@ namespace Narivia.GameLogic.GameManagers
                 }
             }
 
+            world.Regions.Values.ToList().ForEach(r => r.Locked = false);
             UpdateFactionsAliveStatus();
 
             Turn += 1;
