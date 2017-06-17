@@ -193,6 +193,20 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         string GetFactionCapital(string factionId);
 
         /// <summary>
+        /// Gets or sets the X map coordinate of the centre of the faction territoriy.
+        /// </summary>
+        /// <value>The X coordinate.</value>
+        /// <param name="factionId">Faction identifier.</param>
+        int GetFactionCentreX(string factionId);
+
+        /// <summary>
+        /// Gets or sets the Y map coordinate of the centre of the faction territoriy.
+        /// </summary>
+        /// <value>The Y coordinate.</value>
+        /// <param name="factionId">Faction identifier.</param>
+        int GetFactionCentreY(string factionId);
+
+        /// <summary>
         /// Gets the armies of a faction.
         /// </summary>
         /// <returns>The armies.</returns>

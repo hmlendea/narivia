@@ -377,6 +377,22 @@ namespace Narivia.GameLogic.GameManagers
         => world.GetFactionCapital(factionId);
 
         /// <summary>
+        /// Gets or sets the X map coordinate of the centre of the faction territoriy.
+        /// </summary>
+        /// <value>The X coordinate.</value>
+        /// <param name="factionId">Faction identifier.</param>
+        public int GetFactionCentreX(string factionId)
+        => world.GetFactionCentreX(factionId);
+
+        /// <summary>
+        /// Gets or sets the Y map coordinate of the centre of the faction territoriy.
+        /// </summary>
+        /// <value>The Y coordinate.</value>
+        /// <param name="factionId">Faction identifier.</param>
+        public int GetFactionCentreY(string factionId)
+        => world.GetFactionCentreY(factionId);
+
+        /// <summary>
         /// Gets the faction idenfifier of a region.
         /// </summary>
         /// <returns>The faction identifier.</returns>

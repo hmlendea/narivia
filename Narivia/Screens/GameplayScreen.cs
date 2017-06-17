@@ -97,6 +97,9 @@ namespace Narivia.Screens
             RegionBar.SetRegion(game.GetFactionCapital(game.PlayerFactionId));
 
             LinkEvents();
+
+            GameMap.CentreCameraOnPosition(game.GetFactionCentreX(game.PlayerFactionId),
+                                           game.GetFactionCentreY(game.PlayerFactionId));
         }
 
         /// <summary>

@@ -125,6 +125,14 @@ namespace Narivia.Interface
         {
 
         }
+
+        /// <summary>
+        /// Centres the camera on the position.
+        /// </summary>
+        public void CentreOnPosition(Vector2 position)
+        {
+            Position = new Vector2(position.X - Size.X / 2, position.Y - Size.Y / 2);
+        }
     }
 }
 

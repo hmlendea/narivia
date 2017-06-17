@@ -161,6 +161,14 @@ namespace Narivia.Interface.Widgets
             this.game = game;
         }
 
+        /// <summary>
+        /// Centres the camera on the position.
+        /// </summary>
+        public void CentreCameraOnPosition(int x, int y)
+        {
+            camera.CentreOnPosition(new Vector2(x * GameWindow.TILE_DIMENSIONS, y * GameWindow.TILE_DIMENSIONS));
+        }
+
         void DrawRegionHighlight(SpriteBatch spriteBatch)
         {
             if (string.IsNullOrEmpty(SelectedRegionId))

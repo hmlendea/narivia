@@ -297,6 +297,72 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Gets or sets the X map coordinate of the centre of the faction territoriy.
+        /// </summary>
+        /// <value>The X coordinate.</value>
+        /// <param name="factionId">Faction identifier.</param>
+        public int GetFactionCentreX(string factionId)
+        {
+            int minX = world.Width - 1;
+            int maxX = 0;
+
+            for (int y = 0; y < world.Height; y++)
+            {
+                for (int x = 0; x < world.Width; x++)
+                {
+                    if (Regions[worldTiles[x, y]].FactionId != factionId)
+                    {
+                        continue;
+                    }
+
+                    if (x < minX)
+                    {
+                        minX = x;
+                    }
+                    else if (x > maxX)
+                    {
+                        maxX = x;
+                    }
+                }
+            }
+
+            return (minX + maxX) / 2;
+        }
+
+        /// <summary>
+        /// Gets or sets the Y map coordinate of the centre of the faction territoriy.
+        /// </summary>
+        /// <value>The Y coordinate.</value>
+        /// <param name="factionId">Faction identifier.</param>
+        public int GetFactionCentreY(string factionId)
+        {
+            int minY = world.Height - 1;
+            int maxY = 0;
+
+            for (int y = 0; y < world.Height; y++)
+            {
+                for (int x = 0; x < world.Width; x++)
+                {
+                    if (Regions[worldTiles[x, y]].FactionId != factionId)
+                    {
+                        continue;
+                    }
+
+                    if (y < minY)
+                    {
+                        minY = y;
+                    }
+                    else if (y > maxY)
+                    {
+                        maxY = y;
+                    }
+                }
+            }
+
+            return (minY + maxY) / 2;
+        }
+
+        /// <summary>
         /// Gets the armies of a faction.
         /// </summary>
         /// <returns>The armies.</returns>
