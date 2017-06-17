@@ -31,9 +31,9 @@ namespace Narivia.GameLogic.GameManagers
         public event RegionAttackEventHandler PlayerRegionAttacked;
 
         /// <summary>
-        /// Occurs when a faction died.
+        /// Occurs when a faction was destroyed.
         /// </summary>
-        public event FactionLifeEventHandler FactionDied;
+        public event FactionLifeEventHandler FactionDestroyed;
 
         /// <summary>
         /// Occurs when a faction was revived.
@@ -498,15 +498,15 @@ namespace Narivia.GameLogic.GameManagers
 
         void UpdateFactionsAliveStatus()
         {
-            foreach (Faction faction in world.Factions.Values)
+            foreach (Faction faction in world.Factions.Values.Where(f => f.Id != "gaia"))
             {
                 bool wasAlive = faction.Alive;
 
                 faction.Alive = GetFactionRegionsCount(faction.Id) > 0;
 
-                if (wasAlive && !faction.Alive && FactionDied != null)
+                if (wasAlive && !faction.Alive && FactionDestroyed != null)
                 {
-                    FactionDied(this, new FactionLifeEventArgs(faction.Id));
+                    FactionDestroyed(this, new FactionLifeEventArgs(faction.Id));
                 }
                 else if (!wasAlive && faction.Alive && FactionRevived != null)
                 {

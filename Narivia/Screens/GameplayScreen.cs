@@ -70,8 +70,6 @@ namespace Narivia.Screens
             game = new GameManager();
             game.NewGame(initialWorldId, initialFactionId);
 
-            game.PlayerRegionAttacked += OnPlayerRegionAttacked;
-
             GameMap.AssociateGameManager(ref game);
             RegionBar.AssociateGameManager(ref game);
 
@@ -87,12 +85,6 @@ namespace Narivia.Screens
 
             base.LoadContent();
 
-            GameMap.Clicked += GameMap_Clicked;
-
-            SideBar.TurnButton.Clicked += SideBar_TurnButtonClicked;
-            SideBar.StatsButton.Clicked += SideBar_StatsButtonClicked;
-            SideBar.RelationsButton.Clicked += SideBar_RelationsButtonClicked;
-
             string factionName = game.GetFactionName(game.PlayerFactionId);
 
             ShowNotification($"Welcome to {game.WorldName}",
@@ -103,6 +95,8 @@ namespace Narivia.Screens
                              new Vector2(256, 256));
 
             RegionBar.SetRegion(game.GetFactionCapital(game.PlayerFactionId));
+
+            LinkEvents();
         }
 
         /// <summary>
@@ -169,8 +163,17 @@ namespace Narivia.Screens
             base.Draw(spriteBatch);
         }
 
-        void AddTurnNotification()
+        void LinkEvents()
         {
+            game.PlayerRegionAttacked += game_OnPlayerRegionAttacked;
+            game.FactionDestroyed += game_OnFactionDestroyed;
+            game.FactionRevived += game_OnFactionRevived;
+
+            GameMap.Clicked += GameMap_Clicked;
+
+            SideBar.TurnButton.Clicked += SideBar_TurnButtonClicked;
+            SideBar.StatsButton.Clicked += SideBar_StatsButtonClicked;
+            SideBar.RelationsButton.Clicked += SideBar_RelationsButtonClicked;
         }
 
         void SideBar_TurnButtonClicked(object sender, MouseEventArgs e)
@@ -296,7 +299,7 @@ namespace Narivia.Screens
 
         }
 
-        void OnPlayerRegionAttacked(object sender, RegionAttackEventArgs e)
+        void game_OnPlayerRegionAttacked(object sender, RegionAttackEventArgs e)
         {
             string regionName = game.GetRegionName(e.RegionId);
             string attackerFactionName = game.GetFactionName(e.AttackerFactionId);
@@ -327,6 +330,36 @@ namespace Narivia.Screens
                                          new Vector2(256, 224));
                     };
             }
+        }
+
+        void game_OnFactionDestroyed(object sender, FactionLifeEventArgs e)
+        {
+            string factionName = game.GetFactionName(e.FactionId);
+
+            NotificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
+                {
+                    ShowNotification($"{factionName} destroyed!",
+                                     $"A significant development in the war just took place, " +
+                                     $"as {factionName} was destroyed!",
+                                     NotificationType.Informational,
+                                     NotificationStyle.Big,
+                                     new Vector2(256, 192));
+                };
+        }
+
+        void game_OnFactionRevived(object sender, FactionLifeEventArgs e)
+        {
+            string factionName = game.GetFactionName(e.FactionId);
+
+            NotificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
+                {
+                    ShowNotification($"{factionName} revived!",
+                                     $"A significant development in the war just took place, " +
+                                     $"as {factionName} was revived!",
+                                     NotificationType.Informational,
+                                     NotificationStyle.Big,
+                                     new Vector2(256, 192));
+                };
         }
     }
 }

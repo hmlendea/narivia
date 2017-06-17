@@ -16,7 +16,7 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <summary>
         /// Occurs when a faction died.
         /// </summary>
-        event FactionLifeEventHandler FactionDied;
+        event FactionLifeEventHandler FactionDestroyed;
 
         /// <summary>
         /// Occurs when a faction was revived.
