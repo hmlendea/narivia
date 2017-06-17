@@ -244,7 +244,7 @@ namespace Narivia.Screens
             {
                 ShowNotification($"Not enough troops!",
                                  $"Sorry!" + Environment.NewLine + Environment.NewLine +
-                                 $"You do not have enough troops to attack any region right now.",
+                                 $"You do need at least {game.MinTroopsPerAttack} troops to attack any region.",
                                  NotificationType.Informational,
                                  NotificationStyle.Big,
                                  new Vector2(256, 192));
