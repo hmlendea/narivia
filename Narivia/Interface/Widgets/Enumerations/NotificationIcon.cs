@@ -26,7 +26,7 @@
         FactionDestroyed = 3,
 
         /// <summary>
-        /// 3 - Icon for revived faction notitifications.
+        /// 4 - Icon for revived faction notitifications.
         /// </summary>
         FactionRevived = 4,
 
@@ -46,23 +46,28 @@
         RegionLiberated = 7,
 
         /// <summary>
-        /// 9 - Icon for turn reports.
+        /// 8 - Icon for turn reports.
         /// </summary>
         TurnReport = 8,
 
         /// <summary>
-        /// 4 - Icon fo recruitment reports.
+        /// 9 - Icon fo recruitment reports.
         /// </summary>
         RecruitmentReport = 9,
 
         /// <summary>
-        /// 8 - Icon for relations reports.
+        /// 10 - Icon for relations reports.
         /// </summary>
         RelationsReport = 10,
 
         /// <summary>
-        /// 10 - Icon for generic information.
+        /// 11 - Icon for when the game has finished.
         /// </summary>
-        Information = 11
+        GameFinished = 11,
+
+        /// <summary>
+        /// 12 - Icon for generic information.
+        /// </summary>
+        Information = 12
     }
 }

@@ -41,6 +41,11 @@ namespace Narivia.GameLogic.GameManagers
         public event FactionEventHandler FactionRevived;
 
         /// <summary>
+        /// Occurs a faction won the game.
+        /// </summary>
+        public event FactionEventHandler FactionWon;
+
+        /// <summary>
         /// Gets or sets the world tiles.
         /// </summary>
         /// <value>The world tiles.</value>
@@ -180,6 +185,7 @@ namespace Narivia.GameLogic.GameManagers
 
             world.Regions.Values.ToList().ForEach(r => r.Locked = false);
             UpdateFactionsAliveStatus();
+            CheckForWinner();
 
             Turn += 1;
         }
@@ -527,6 +533,21 @@ namespace Narivia.GameLogic.GameManagers
                 {
                     FactionRevived(this, new FactionEventArgs(faction.Id));
                 }
+            }
+        }
+
+        void CheckForWinner()
+        {
+            if (world.Factions.Values.Count(f => f.Alive) > 1)
+            {
+                return;
+            }
+
+            Faction faction = world.Factions.Values.FirstOrDefault(f => f.Alive);
+
+            if (FactionWon != null)
+            {
+                FactionWon(this, new FactionEventArgs(faction.Id));
             }
         }
 

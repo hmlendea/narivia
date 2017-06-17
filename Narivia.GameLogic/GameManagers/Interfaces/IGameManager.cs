@@ -24,6 +24,11 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         event FactionEventHandler FactionRevived;
 
         /// <summary>
+        /// Occurs a faction won the game.
+        /// </summary>
+        event FactionEventHandler FactionWon;
+
+        /// <summary>
         /// Gets or sets the world tiles.
         /// </summary>
         /// <value>The world tiles.</value>

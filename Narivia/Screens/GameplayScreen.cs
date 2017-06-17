@@ -171,6 +171,7 @@ namespace Narivia.Screens
             game.PlayerRegionAttacked += game_OnPlayerRegionAttacked;
             game.FactionDestroyed += game_OnFactionDestroyed;
             game.FactionRevived += game_OnFactionRevived;
+            game.FactionWon += game_OnFactionWon;
 
             GameMap.Clicked += GameMap_Clicked;
 
@@ -383,6 +384,21 @@ namespace Narivia.Screens
                     ShowNotification($"{factionName} revived!",
                                      $"A significant development in the war just took place, " +
                                      $"as {factionName} was revived!",
+                                     NotificationType.Informational,
+                                     NotificationStyle.Big,
+                                     new Vector2(256, 192));
+                };
+        }
+
+        void game_OnFactionWon(object sender, FactionEventArgs e)
+        {
+            string factionName = game.GetFactionName(e.FactionId);
+
+            NotificationBar.AddNotification(NotificationIcon.GameFinished).Clicked += delegate
+                {
+                    ShowNotification($"{factionName} has won!",
+                                     $"The war is over!" + Environment.NewLine +
+                                     $"{factionName} has conquered the world and established a new world order!",
                                      NotificationType.Informational,
                                      NotificationStyle.Big,
                                      new Vector2(256, 192));
