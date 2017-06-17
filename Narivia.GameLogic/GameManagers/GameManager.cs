@@ -169,6 +169,12 @@ namespace Narivia.GameLogic.GameManagers
                 }
 
                 string regionId = attack.ChooseRegionToAttack(faction.Id);
+
+                if (string.IsNullOrEmpty(regionId))
+                {
+                    continue;
+                }
+
                 string regionFactionId = world.Regions[regionId].FactionId;
                 BattleResult result = attack.AttackRegion(faction.Id, regionId);
 
