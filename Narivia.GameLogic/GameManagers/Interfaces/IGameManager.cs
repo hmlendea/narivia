@@ -11,17 +11,17 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <summary>
         /// Occurs when a player region is attacked.
         /// </summary>
-        event RegionAttackEventHandler PlayerRegionAttacked;
+        event BattleEventHandler PlayerRegionAttacked;
 
         /// <summary>
         /// Occurs when a faction died.
         /// </summary>
-        event FactionLifeEventHandler FactionDestroyed;
+        event FactionEventHandler FactionDestroyed;
 
         /// <summary>
         /// Occurs when a faction was revived.
         /// </summary>
-        event FactionLifeEventHandler FactionRevived;
+        event FactionEventHandler FactionRevived;
 
         /// <summary>
         /// Gets or sets the world tiles.

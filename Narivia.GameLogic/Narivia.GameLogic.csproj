@@ -56,13 +56,13 @@
     <Compile Include="GameManagers\WorldManager.cs" />
     <Compile Include="GameManagers\Interfaces\IWorldManager.cs" />
     <Compile Include="GameManagers\Interfaces\IAttackManager.cs" />
-    <Compile Include="Events\RegionAttackEvent.cs" />
+    <Compile Include="Events\BattleEvent.cs" />
     <Compile Include="Enumerations\BattleResult.cs" />
     <Compile Include="Generators\MarkovNameGenerator.cs" />
     <Compile Include="Generators\Interfaces\INameGenerator.cs" />
     <Compile Include="Generators\RandomMixerNameGenerator.cs" />
     <Compile Include="Generators\AbstractNameGenerator.cs" />
-    <Compile Include="Events\FactionLifeEvent.cs" />
+    <Compile Include="Events\FactionEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">

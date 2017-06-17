@@ -2,9 +2,15 @@
 
 namespace Narivia.GameLogic.Events
 {
-    public delegate void RegionAttackEventHandler(object sender, RegionAttackEventArgs e);
+    /// <summary>
+    /// Battle event handler.
+    /// </summary>
+    public delegate void BattleEventHandler(object sender, BattleEventArgs e);
 
-    public class RegionAttackEventArgs
+    /// <summary>
+    /// Battle event arguments.
+    /// </summary>
+    public class BattleEventArgs
     {
         /// <summary>
         /// The region identifier.
@@ -22,12 +28,12 @@ namespace Narivia.GameLogic.Events
         public BattleResult BattleResult { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegionAttackEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="BattleEventArgs"/> class.
         /// </summary>
         /// <param name="regionId">Region identifier.</param>
         /// <param name="attackerFactionId">Attacker faction identifier.</param>
         /// <param name="battleResult">Battle result.</param>
-        public RegionAttackEventArgs(string regionId, string attackerFactionId, BattleResult battleResult)
+        public BattleEventArgs(string regionId, string attackerFactionId, BattleResult battleResult)
         {
             RegionId = regionId;
             AttackerFactionId = attackerFactionId;

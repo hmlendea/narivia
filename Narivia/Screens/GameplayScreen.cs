@@ -326,7 +326,7 @@ namespace Narivia.Screens
             }
         }
 
-        void game_OnPlayerRegionAttacked(object sender, RegionAttackEventArgs e)
+        void game_OnPlayerRegionAttacked(object sender, BattleEventArgs e)
         {
             string regionName = game.GetRegionName(e.RegionId);
             string attackerFactionName = game.GetFactionName(e.AttackerFactionId);
@@ -359,7 +359,7 @@ namespace Narivia.Screens
             }
         }
 
-        void game_OnFactionDestroyed(object sender, FactionLifeEventArgs e)
+        void game_OnFactionDestroyed(object sender, FactionEventArgs e)
         {
             string factionName = game.GetFactionName(e.FactionId);
 
@@ -374,7 +374,7 @@ namespace Narivia.Screens
                 };
         }
 
-        void game_OnFactionRevived(object sender, FactionLifeEventArgs e)
+        void game_OnFactionRevived(object sender, FactionEventArgs e)
         {
             string factionName = game.GetFactionName(e.FactionId);
 

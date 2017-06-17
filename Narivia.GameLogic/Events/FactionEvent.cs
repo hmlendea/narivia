@@ -1,14 +1,14 @@
 ﻿namespace Narivia.GameLogic.Events
 {
     /// <summary>
-    /// Faction life event handler.
+    /// Faction event handler.
     /// </summary>
-    public delegate void FactionLifeEventHandler(object sender, FactionLifeEventArgs e);
+    public delegate void FactionEventHandler(object sender, FactionEventArgs e);
 
     /// <summary>
-    /// Faction life event arguments.
+    /// Faction event arguments.
     /// </summary>
-    public class FactionLifeEventArgs
+    public class FactionEventArgs
     {
         /// <summary>
         /// The faction identifier.
@@ -16,11 +16,11 @@
         public string FactionId { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegionAttackEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="BattleEventArgs"/> class.
         /// </summary>
         /// <param name="factionId">Faction identifier.</param>
         /// <param name="isAlive">Faction alive status.</param>
-        public FactionLifeEventArgs(string factionId)
+        public FactionEventArgs(string factionId)
         {
             FactionId = factionId;
         }

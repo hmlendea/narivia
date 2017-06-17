@@ -28,17 +28,17 @@ namespace Narivia.GameLogic.GameManagers
         /// <summary>
         /// Occurs when a player region is attacked.
         /// </summary>
-        public event RegionAttackEventHandler PlayerRegionAttacked;
+        public event BattleEventHandler PlayerRegionAttacked;
 
         /// <summary>
         /// Occurs when a faction was destroyed.
         /// </summary>
-        public event FactionLifeEventHandler FactionDestroyed;
+        public event FactionEventHandler FactionDestroyed;
 
         /// <summary>
         /// Occurs when a faction was revived.
         /// </summary>
-        public event FactionLifeEventHandler FactionRevived;
+        public event FactionEventHandler FactionRevived;
 
         /// <summary>
         /// Gets or sets the world tiles.
@@ -169,7 +169,7 @@ namespace Narivia.GameLogic.GameManagers
 
                 if (regionFactionId == PlayerFactionId)
                 {
-                    RegionAttackEventArgs e = new RegionAttackEventArgs(regionId, faction.Id, result);
+                    BattleEventArgs e = new BattleEventArgs(regionId, faction.Id, result);
 
                     if (PlayerRegionAttacked != null)
                     {
@@ -521,11 +521,11 @@ namespace Narivia.GameLogic.GameManagers
 
                 if (wasAlive && !faction.Alive && FactionDestroyed != null)
                 {
-                    FactionDestroyed(this, new FactionLifeEventArgs(faction.Id));
+                    FactionDestroyed(this, new FactionEventArgs(faction.Id));
                 }
                 else if (!wasAlive && faction.Alive && FactionRevived != null)
                 {
-                    FactionRevived(this, new FactionLifeEventArgs(faction.Id));
+                    FactionRevived(this, new FactionEventArgs(faction.Id));
                 }
             }
         }
