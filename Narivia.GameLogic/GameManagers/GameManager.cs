@@ -486,8 +486,6 @@ namespace Narivia.GameLogic.GameManagers
         {
             BattleResult result = attack.AttackRegion(PlayerFactionId, regionId);
 
-            NextTurn();
-
             return result;
         }
 

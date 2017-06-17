@@ -176,7 +176,7 @@ namespace Narivia.Screens
             SideBar.RelationsButton.Clicked += SideBar_RelationsButtonClicked;
         }
 
-        void SideBar_TurnButtonClicked(object sender, MouseEventArgs e)
+        void NextTurn()
         {
             NotificationBar.Clear();
 
@@ -209,6 +209,11 @@ namespace Narivia.Screens
                                  NotificationStyle.Big,
                                  new Vector2(256, 224));
             };
+        }
+
+        void SideBar_TurnButtonClicked(object sender, MouseEventArgs e)
+        {
+            NextTurn();
         }
 
         void SideBar_StatsButtonClicked(object sender, MouseEventArgs e)
@@ -256,6 +261,8 @@ namespace Narivia.Screens
             {
                 BattleResult result = game.PlayerAttackRegion(regionId);
 
+                NextTurn();
+
                 string regionName = game.GetRegionName(regionId);
                 string defenderFactionId = game.GetRegionFaction(regionId);
                 string defenderFactionName = game.GetFactionName(defenderFactionId);
@@ -296,7 +303,6 @@ namespace Narivia.Screens
                                  NotificationStyle.Big,
                                  new Vector2(256, 192));
             }
-
         }
 
         void game_OnPlayerRegionAttacked(object sender, RegionAttackEventArgs e)
@@ -319,7 +325,7 @@ namespace Narivia.Screens
             }
             else
             {
-                NotificationBar.AddNotification(NotificationIcon.RegionLost).Clicked += delegate
+                NotificationBar.AddNotification(NotificationIcon.RegionDefended).Clicked += delegate
                     {
                         ShowNotification($"{regionName} region defended!",
                                          $"Important news!" + Environment.NewLine + Environment.NewLine +
