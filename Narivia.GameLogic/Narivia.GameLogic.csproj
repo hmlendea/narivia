@@ -62,6 +62,7 @@
     <Compile Include="Generators\Interfaces\INameGenerator.cs" />
     <Compile Include="Generators\RandomMixerNameGenerator.cs" />
     <Compile Include="Generators\AbstractNameGenerator.cs" />
+    <Compile Include="Events\FactionLifeEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">

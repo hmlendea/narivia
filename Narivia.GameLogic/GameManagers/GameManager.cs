@@ -31,6 +31,16 @@ namespace Narivia.GameLogic.GameManagers
         public event RegionAttackEventHandler PlayerRegionAttacked;
 
         /// <summary>
+        /// Occurs when a faction died.
+        /// </summary>
+        public event FactionLifeEventHandler FactionDied;
+
+        /// <summary>
+        /// Occurs when a faction was revived.
+        /// </summary>
+        public event FactionLifeEventHandler FactionRevived;
+
+        /// <summary>
         /// Gets or sets the world tiles.
         /// </summary>
         /// <value>The world tiles.</value>
@@ -134,12 +144,6 @@ namespace Narivia.GameLogic.GameManagers
         {
             foreach (Faction faction in world.Factions.Values.Where(f => f.Alive))
             {
-                if (GetFactionRegionsCount(faction.Id) == 0)
-                {
-                    faction.Alive = false;
-                    continue;
-                }
-
                 // Economy
                 faction.Wealth += GetFactionIncome(faction.Id);
                 faction.Wealth -= GetFactionOutcome(faction.Id);
@@ -173,6 +177,8 @@ namespace Narivia.GameLogic.GameManagers
                     }
                 }
             }
+
+            UpdateFactionsAliveStatus();
 
             Turn += 1;
         }
@@ -488,6 +494,25 @@ namespace Narivia.GameLogic.GameManagers
         {
             PlayerFactionId = factionId;
             Turn = 0;
+        }
+
+        void UpdateFactionsAliveStatus()
+        {
+            foreach (Faction faction in world.Factions.Values)
+            {
+                bool wasAlive = faction.Alive;
+
+                faction.Alive = GetFactionRegionsCount(faction.Id) > 0;
+
+                if (wasAlive && !faction.Alive && FactionDied != null)
+                {
+                    FactionDied(this, new FactionLifeEventArgs(faction.Id));
+                }
+                else if (!wasAlive && faction.Alive && FactionRevived != null)
+                {
+                    FactionRevived(this, new FactionLifeEventArgs(faction.Id));
+                }
+            }
         }
 
         /// <summary>
