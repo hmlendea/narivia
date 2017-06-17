@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Input;
+using Narivia.Input.Events;
 
 namespace Narivia.Interface.Widgets
 {
@@ -187,6 +188,8 @@ namespace Narivia.Interface.Widgets
             troopsTooltip.LoadContent();
 
             base.LoadContent();
+
+            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -212,6 +215,8 @@ namespace Narivia.Interface.Widgets
             troopsTooltip.UnloadContent();
 
             base.UnloadContent();
+
+            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -264,8 +269,6 @@ namespace Narivia.Interface.Widgets
             wealthTooltip.Update(gameTime);
             troopsTooltip.Update(gameTime);
 
-            HandleInput();
-
             base.Update(gameTime);
         }
 
@@ -300,10 +303,10 @@ namespace Narivia.Interface.Widgets
             base.Draw(spriteBatch);
         }
 
-        void HandleInput()
+        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
         {
-            if (InputManager.Instance.IsCursorInArea(regionsIcon.ScreenArea) ||
-                InputManager.Instance.IsCursorInArea(regionsText.ScreenArea))
+            if (regionsIcon.ScreenArea.Contains(e.CurrentMousePosition) ||
+                regionsText.ScreenArea.Contains(e.CurrentMousePosition))
             {
                 regionsTooltip.Visible = true;
             }
@@ -312,8 +315,8 @@ namespace Narivia.Interface.Widgets
                 regionsTooltip.Visible = false;
             }
 
-            if (InputManager.Instance.IsCursorInArea(holdingsIcon.ScreenArea) ||
-                InputManager.Instance.IsCursorInArea(holdingsText.ScreenArea))
+            if (holdingsIcon.ScreenArea.Contains(e.CurrentMousePosition) ||
+                holdingsText.ScreenArea.Contains(e.CurrentMousePosition))
             {
                 holdingsTooltip.Visible = true;
             }
@@ -322,8 +325,8 @@ namespace Narivia.Interface.Widgets
                 holdingsTooltip.Visible = false;
             }
 
-            if (InputManager.Instance.IsCursorInArea(wealthIcon.ScreenArea) ||
-                InputManager.Instance.IsCursorInArea(wealthText.ScreenArea))
+            if (wealthIcon.ScreenArea.Contains(e.CurrentMousePosition) ||
+                wealthText.ScreenArea.Contains(e.CurrentMousePosition))
             {
                 wealthTooltip.Visible = true;
             }
@@ -332,8 +335,8 @@ namespace Narivia.Interface.Widgets
                 wealthTooltip.Visible = false;
             }
 
-            if (InputManager.Instance.IsCursorInArea(troopsIcon.ScreenArea) ||
-                InputManager.Instance.IsCursorInArea(troopsText.ScreenArea))
+            if (troopsIcon.ScreenArea.Contains(e.CurrentMousePosition) ||
+                troopsText.ScreenArea.Contains(e.CurrentMousePosition))
             {
                 troopsTooltip.Visible = true;
             }

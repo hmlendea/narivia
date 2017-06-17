@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
 using Narivia.Input;
+using Narivia.Input.Events;
 using Narivia.Models;
 using Narivia.WorldMap;
 
@@ -36,6 +37,8 @@ namespace Narivia.Interface.Widgets
         Image regionHighlight;
         Image selectedRegionHighlight;
         Image factionBorder;
+
+        Vector2 mouseCoords;
 
         /// <summary>
         /// Loads the content.
@@ -77,6 +80,8 @@ namespace Narivia.Interface.Widgets
             factionBorder.LoadContent();
 
             base.LoadContent();
+
+            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -92,6 +97,8 @@ namespace Narivia.Interface.Widgets
             factionBorder.UnloadContent();
 
             base.UnloadContent();
+
+            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -112,10 +119,10 @@ namespace Narivia.Interface.Widgets
 
             base.Update(gameTime);
 
-            Vector2 gameCoordsCursor = ScreenToMapCoordinates(InputManager.Instance.MousePosition);
+            Vector2 mouseGameMapCoords = ScreenToMapCoordinates(mouseCoords);
 
-            int x = (int)gameCoordsCursor.X;
-            int y = (int)gameCoordsCursor.Y;
+            int x = (int)mouseGameMapCoords.X;
+            int y = (int)mouseGameMapCoords.Y;
 
             if (x > 0 && x < game.WorldWidth &&
                 y > 0 && y < game.WorldHeight)
@@ -300,6 +307,11 @@ namespace Narivia.Interface.Widgets
         {
             return new Vector2((int)((camera.Position.X + screenCoords.X) / map.TileDimensions.X),
                                (int)((camera.Position.Y + screenCoords.Y) / map.TileDimensions.Y));
+        }
+
+        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            mouseCoords = e.CurrentMousePosition;
         }
     }
 }

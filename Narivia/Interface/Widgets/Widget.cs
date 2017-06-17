@@ -60,7 +60,7 @@ namespace Narivia.Interface.Widgets
         /// <summary>
         /// Occurs when clicked.
         /// </summary>
-        public event MouseEventHandler Clicked;
+        public event MouseButtonEventHandler Clicked;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.Widgets.Widget"/> class.
@@ -77,7 +77,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public virtual void LoadContent()
         {
-
+            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public virtual void UnloadContent()
         {
-
+            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
         }
 
         /// <summary>
@@ -97,14 +97,6 @@ namespace Narivia.Interface.Widgets
             if (!Enabled)
             {
                 return;
-            }
-
-            if (InputManager.Instance.IsCursorInArea(ScreenArea) &&
-                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
-            {
-                OnClicked(this, new MouseEventArgs(MouseButton.LeftButton,
-                                                   MouseButtonState.Pressed,
-                                                   InputManager.Instance.MousePosition));
             }
         }
 
@@ -135,12 +127,22 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        protected virtual void OnClicked(object sender, MouseEventArgs e)
+        protected virtual void OnClicked(object sender, MouseButtonEventArgs e)
         {
             if (Clicked != null)
             {
                 Clicked(this, e);
             }
+        }
+
+        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (!ScreenArea.Contains(e.MousePosition))
+            {
+                return;
+            }
+
+            OnClicked(this, new MouseButtonEventArgs(e.Button, MouseButtonState.Pressed, e.MousePosition));
         }
     }
 }

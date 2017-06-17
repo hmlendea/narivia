@@ -7,6 +7,7 @@ using Narivia.Audio;
 using Narivia.Graphics;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
 using Narivia.Interface.Widgets.Enumerations;
 
 namespace Narivia.Interface.Widgets
@@ -98,6 +99,9 @@ namespace Narivia.Interface.Widgets
             textImage.LoadContent();
 
             base.LoadContent();
+
+            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -113,6 +117,9 @@ namespace Narivia.Interface.Widgets
             textImage.UnloadContent();
 
             base.UnloadContent();
+
+            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -133,15 +140,6 @@ namespace Narivia.Interface.Widgets
 
             textImage.Position = Position;
 
-            if (ScreenArea.Contains(InputManager.Instance.MousePosition))
-            {
-                Hovered = true;
-            }
-            else
-            {
-                Hovered = false;
-            }
-
             for (int x = 0; x < ButtonSize; x++)
             {
                 Image image = images[x];
@@ -151,8 +149,6 @@ namespace Narivia.Interface.Widgets
             }
 
             textImage.Update(gameTime);
-
-            CheckForInput();
 
             base.Update(gameTime);
         }
@@ -206,17 +202,30 @@ namespace Narivia.Interface.Widgets
             return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
         }
 
-        void CheckForInput()
+        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
-            if (InputManager.Instance.IsCursorEnteringArea(ScreenArea))
+            if (!ScreenArea.Contains(e.MousePosition) || e.Button != MouseButton.LeftButton)
             {
-                AudioManager.Instance.PlaySound("Interface/select");
+                return;
             }
 
-            if (InputManager.Instance.IsCursorInArea(ScreenArea) &&
-                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
+            AudioManager.Instance.PlaySound("Interface/click");
+        }
+
+        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            if (ScreenArea.Contains(e.CurrentMousePosition))
             {
-                AudioManager.Instance.PlaySound("Interface/click");
+                Hovered = true;
+
+                if (!ScreenArea.Contains(e.PreviousMousePosition))
+                {
+                    AudioManager.Instance.PlaySound("Interface/select");
+                }
+            }
+            else
+            {
+                Hovered = false;
             }
         }
     }

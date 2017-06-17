@@ -1,27 +1,27 @@
 ﻿namespace Narivia.Input.Enumerations
 {
     /// <summary>
-    /// Mouse button state.
+    /// Keyboard key state.
     /// </summary>
-    public enum MouseButtonState
+    public enum KeyboardKeyState
     {
         /// <summary>
-        /// The mouse button was just pressed.
+        /// The key was just pressed.
         /// </summary>
         Pressed,
 
         /// <summary>
-        /// They mouse button was just released.
+        /// They key was just released.
         /// </summary>
         Released,
 
         /// <summary>
-        /// The mouse button is down.
+        /// The key is down.
         /// </summary>
         Down,
 
         /// <summary>
-        /// The mouse button is up.
+        /// The key is up.
         /// </summary>
         Up
     }

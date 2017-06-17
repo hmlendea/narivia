@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 
-using Narivia.Input.Enumerations;
-
 namespace Narivia.Input.Events
 {
     /// <summary>
@@ -15,34 +13,25 @@ namespace Narivia.Input.Events
     public class MouseEventArgs
     {
         /// <summary>
-        /// Gets the button.
+        /// Gets current position of the mouse.
         /// </summary>
-        /// <value>The button.</value>
-        public MouseButton Button { get; private set; }
+        /// <value>The current mouse position.</value>
+        public Vector2 CurrentMousePosition { get; private set; }
 
         /// <summary>
-        /// Gets the state of the button.
+        /// Gets previous position of the mouse.
         /// </summary>
-        /// <value>The state of the button.</value>
-        public MouseButtonState ButtonState { get; private set; }
-
-        /// <summary>
-        /// Gets position of the mouse.
-        /// </summary>
-        /// <value>The mouse position.</value>
-        public Vector2 MousePosition { get; private set; }
+        /// <value>The previous mouse position.</value>
+        public Vector2 PreviousMousePosition { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseEventArgs"/> class.
         /// </summary>
-        /// <param name="button">Button.</param>
-        /// <param name="buttonState">Button state.</param>
-        /// <param name="mousePosition">Mouse position.</param>
-        public MouseEventArgs(MouseButton button, MouseButtonState buttonState, Vector2 mousePosition)
+        /// <param name="currentMousePosition">Mouse position.</param>
+        public MouseEventArgs(Vector2 currentMousePosition, Vector2 previousMousePosition)
         {
-            Button = button;
-            ButtonState = buttonState;
-            MousePosition = mousePosition;
+            CurrentMousePosition = currentMousePosition;
+            PreviousMousePosition = previousMousePosition;
         }
     }
 }

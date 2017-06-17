@@ -37,7 +37,10 @@
     <Compile Include="InputManager.cs" />
     <Compile Include="Enumerations\MouseButton.cs" />
     <Compile Include="Enumerations\MouseButtonState.cs" />
+    <Compile Include="Events\MouseButtonEvent.cs" />
     <Compile Include="Events\MouseEvent.cs" />
+    <Compile Include="Enumerations\KeyboardKeyState.cs" />
+    <Compile Include="Events\KeyboardKeyEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enumerations\" />

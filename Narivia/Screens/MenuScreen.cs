@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
+using Narivia.Input.Events;
 using Narivia.Interface.Widgets;
 
 namespace Narivia.Screens
@@ -105,6 +106,9 @@ namespace Narivia.Screens
             Items.ForEach(item => item.LoadContent());
 
             AlignMenuItems();
+
+            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
+            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -115,6 +119,9 @@ namespace Narivia.Screens
             base.UnloadContent();
 
             Items.ForEach(item => item.UnloadContent());
+
+            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
+            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -126,37 +133,6 @@ namespace Narivia.Screens
             base.Update(gameTime);
 
             int newSelectedItemIndex = ItemNumber;
-
-            if ("Xx".Contains(Axis))
-            {
-                if (InputManager.Instance.IsKeyPressed(Keys.Right, Keys.D))
-                {
-                    newSelectedItemIndex = ItemNumber + 1;
-                }
-                else if (InputManager.Instance.IsKeyPressed(Keys.Left, Keys.A))
-                {
-                    newSelectedItemIndex = ItemNumber - 1;
-                }
-            }
-            else if ("Yy".Contains(Axis))
-            {
-                if (InputManager.Instance.IsKeyPressed(Keys.Down, Keys.S))
-                {
-                    newSelectedItemIndex = ItemNumber + 1;
-                }
-                else if (InputManager.Instance.IsKeyPressed(Keys.Up, Keys.W))
-                {
-                    newSelectedItemIndex = ItemNumber - 1;
-                }
-            }
-
-            for (int i = 0; i < Items.Count; i++)
-            {
-                if (InputManager.Instance.IsCursorInArea(Items[i].ScreenArea))
-                {
-                    newSelectedItemIndex = i;
-                }
-            }
 
             if (newSelectedItemIndex < 0)
             {
@@ -216,6 +192,43 @@ namespace Narivia.Screens
 
                 dimensions += new Vector2(item.Size.X + Spacing / 2,
                                           item.Size.Y + Spacing / 2);
+            }
+        }
+
+        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Items[i].ScreenArea.Contains(e.CurrentMousePosition))
+                {
+                    ItemNumber = i;
+                }
+            }
+        }
+
+        void InputManager_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
+        {
+            if ("Yy".Contains(Axis))
+            {
+                if (e.Key == Keys.W || e.Key == Keys.Up)
+                {
+                    ItemNumber -= 1;
+                }
+                else if (e.Key == Keys.S || e.Key == Keys.Down)
+                {
+                    ItemNumber += 1;
+                }
+            }
+            else if ("Xx".Contains(Axis))
+            {
+                if (e.Key == Keys.D || e.Key == Keys.Right)
+                {
+                    ItemNumber -= 1;
+                }
+                else if (e.Key == Keys.A || e.Key == Keys.Left)
+                {
+                    ItemNumber += 1;
+                }
             }
         }
     }

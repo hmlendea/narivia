@@ -51,6 +51,9 @@ namespace Narivia.Interface.Widgets
             icon.LoadContent();
 
             base.LoadContent();
+
+            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -62,6 +65,9 @@ namespace Narivia.Interface.Widgets
             icon.UnloadContent();
 
             base.UnloadContent();
+
+            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -114,16 +120,6 @@ namespace Narivia.Interface.Widgets
 
         void CheckForInput()
         {
-            if (InputManager.Instance.IsCursorEnteringArea(ScreenArea))
-            {
-                AudioManager.Instance.PlaySound("Interface/select");
-            }
-
-            if (InputManager.Instance.IsCursorInArea(ScreenArea) &&
-                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
-            {
-                AudioManager.Instance.PlaySound("Interface/click");
-            }
         }
 
         /// <summary>
@@ -131,11 +127,29 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        protected override void OnClicked(object sender, MouseEventArgs e)
+        protected override void OnClicked(object sender, MouseButtonEventArgs e)
         {
             base.OnClicked(sender, e);
 
             Destroy();
+        }
+
+        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (!ScreenArea.Contains(e.MousePosition) || e.Button != MouseButton.LeftButton)
+            {
+                return;
+            }
+
+            AudioManager.Instance.PlaySound("Interface/click");
+        }
+
+        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            if (ScreenArea.Contains(e.CurrentMousePosition) && !ScreenArea.Contains(e.PreviousMousePosition))
+            {
+                AudioManager.Instance.PlaySound("Interface/select");
+            }
         }
     }
 }

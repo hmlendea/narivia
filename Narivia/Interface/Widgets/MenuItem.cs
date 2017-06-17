@@ -10,6 +10,7 @@ using Narivia.Graphics;
 using Narivia.Graphics.ImageEffects;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
 
 namespace Narivia.Interface.Widgets
 {
@@ -109,6 +110,10 @@ namespace Narivia.Interface.Widgets
             TextImage.LoadContent();
 
             TextImage.ActivateEffect("FadeEffect");
+
+            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
+            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -118,6 +123,10 @@ namespace Narivia.Interface.Widgets
         {
             base.UnloadContent();
             TextImage.UnloadContent();
+
+            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
+            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -133,23 +142,10 @@ namespace Narivia.Interface.Widgets
 
             TextImage.SpriteSize = Size;
 
-            if (InputManager.Instance.IsCursorEnteringArea(ScreenArea))
-            {
-                AudioManager.Instance.PlaySound("Interface/select");
-                Selected = true;
-            }
-
             if (Selected)
             {
                 TextImage.Active = true;
                 TextImage.Tint = SelectedTextColour;
-
-                if (InputManager.Instance.IsKeyPressed(Keys.Enter, Keys.E) ||
-                   (InputManager.Instance.IsCursorInArea(ScreenArea) && (InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) ||
-                                                                         InputManager.Instance.IsMouseButtonPressed(MouseButton.RightButton))))
-                {
-                    OnActivated(this, null);
-                }
             }
             else
             {
@@ -184,6 +180,31 @@ namespace Narivia.Interface.Widgets
             }
 
             AudioManager.Instance.PlaySound("Interface/click");
+        }
+
+        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (ScreenArea.Contains(e.MousePosition))
+            {
+                OnActivated(this, null);
+            }
+        }
+
+        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            if (ScreenArea.Contains(e.CurrentMousePosition) && !ScreenArea.Contains(e.PreviousMousePosition))
+            {
+                AudioManager.Instance.PlaySound("Interface/select");
+                Selected = true;
+            }
+        }
+
+        void InputManager_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
+        {
+            if (Selected && e.Key == Keys.Enter || e.Key == Keys.E)
+            {
+                OnActivated(this, null);
+            }
         }
     }
 }

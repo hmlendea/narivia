@@ -233,12 +233,12 @@ namespace Narivia.Screens
             };
         }
 
-        void SideBar_TurnButtonClicked(object sender, MouseEventArgs e)
+        void SideBar_TurnButtonClicked(object sender, MouseButtonEventArgs e)
         {
             NextTurn();
         }
 
-        void SideBar_StatsButtonClicked(object sender, MouseEventArgs e)
+        void SideBar_StatsButtonClicked(object sender, MouseButtonEventArgs e)
         {
             ShowNotification("Statistics",
                              $"Income: {game.GetFactionIncome(game.PlayerFactionId)}" + Environment.NewLine +
@@ -249,7 +249,7 @@ namespace Narivia.Screens
                              new Vector2(256, 160));
         }
 
-        void SideBar_RelationsButtonClicked(object sender, MouseEventArgs e)
+        void SideBar_RelationsButtonClicked(object sender, MouseButtonEventArgs e)
         {
             ShowNotification("Diplomatic Relations",
                              "Comming soon :)",
@@ -258,7 +258,7 @@ namespace Narivia.Screens
                              new Vector2(256, 128));
         }
 
-        void GameMap_Clicked(object sender, MouseEventArgs e)
+        void GameMap_Clicked(object sender, MouseButtonEventArgs e)
         {
             string regionId = GameMap.SelectedRegionId;
 

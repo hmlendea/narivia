@@ -7,6 +7,7 @@ using Narivia.Audio;
 using Narivia.Graphics;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
 using Narivia.Interface.Widgets.Enumerations;
 
 namespace Narivia.Interface.Widgets
@@ -156,6 +157,9 @@ namespace Narivia.Interface.Widgets
             yesButtonImage.LoadContent();
 
             base.LoadContent();
+
+            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -178,6 +182,9 @@ namespace Narivia.Interface.Widgets
             }
 
             base.UnloadContent();
+
+            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -199,8 +206,6 @@ namespace Narivia.Interface.Widgets
             {
                 noButtonImage.Update(gameTime);
             }
-
-            CheckForInput();
 
             base.Update(gameTime);
         }
@@ -262,23 +267,9 @@ namespace Narivia.Interface.Widgets
             return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
         }
 
-        void CheckForInput()
+        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
-            // TODO: Improve this method's code quality
-
-            if (InputManager.Instance.IsCursorEnteringArea(yesButtonImage.ScreenArea))
-            {
-                AudioManager.Instance.PlaySound("Interface/select");
-            }
-
-            if (Type == NotificationType.Interogative &&
-                InputManager.Instance.IsCursorEnteringArea(yesButtonImage.ScreenArea))
-            {
-                AudioManager.Instance.PlaySound("Interface/select");
-            }
-
-            if (InputManager.Instance.IsCursorInArea(yesButtonImage.ScreenArea) &&
-                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
+            if (yesButtonImage.ScreenArea.Contains(e.MousePosition) && e.Button == MouseButton.LeftButton)
             {
                 AudioManager.Instance.PlaySound("Interface/click");
 
@@ -286,12 +277,26 @@ namespace Narivia.Interface.Widgets
             }
 
             if (Type == NotificationType.Interogative &&
-                InputManager.Instance.IsCursorInArea(noButtonImage.ScreenArea) &&
-                InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton))
+                noButtonImage.ScreenArea.Contains(e.MousePosition) &&
+                e.Button == MouseButton.LeftButton)
             {
                 AudioManager.Instance.PlaySound("Interface/click");
 
                 Destroy();
+            }
+        }
+
+        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            if (yesButtonImage.ScreenArea.Contains(e.CurrentMousePosition) && !yesButtonImage.ScreenArea.Contains(e.PreviousMousePosition))
+            {
+                AudioManager.Instance.PlaySound("Interface/select");
+            }
+
+            if (Type == NotificationType.Interogative &&
+                noButtonImage.ScreenArea.Contains(e.CurrentMousePosition) && !noButtonImage.ScreenArea.Contains(e.PreviousMousePosition))
+            {
+                AudioManager.Instance.PlaySound("Interface/select");
             }
         }
     }

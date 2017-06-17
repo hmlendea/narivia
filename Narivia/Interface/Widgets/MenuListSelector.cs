@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
 using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
 
 namespace Narivia.Interface.Widgets
 {
@@ -85,6 +86,9 @@ namespace Narivia.Interface.Widgets
             {
                 SelectedIndex = 0;
             }
+
+            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
+            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
         }
 
         /// <summary>
@@ -93,6 +97,9 @@ namespace Narivia.Interface.Widgets
         public override void UnloadContent()
         {
             base.UnloadContent();
+
+            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
+            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
         }
 
         /// <summary>
@@ -111,17 +118,6 @@ namespace Narivia.Interface.Widgets
             if (SelectedIndex == -1)
             {
                 SelectedIndex = 0;
-            }
-
-            if ((InputManager.Instance.IsCursorInArea(ScreenArea) && InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton)) ||
-                InputManager.Instance.IsKeyPressed(Keys.Right))
-            {
-                SelectedIndex += 1;
-            }
-            if ((InputManager.Instance.IsCursorInArea(ScreenArea) && InputManager.Instance.IsMouseButtonPressed(MouseButton.RightButton)) ||
-                InputManager.Instance.IsKeyPressed(Keys.Left))
-            {
-                SelectedIndex += 1;
             }
 
             if (SelectedIndex > Values.Count - 1)
@@ -143,6 +139,40 @@ namespace Narivia.Interface.Widgets
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+        }
+
+        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (!ScreenArea.Contains(e.MousePosition))
+            {
+                return;
+            }
+
+            if (e.Button == MouseButton.LeftButton)
+            {
+                SelectedIndex += 1;
+            }
+            else if (e.Button == MouseButton.RightButton)
+            {
+                SelectedIndex -= 1;
+            }
+        }
+
+        /// <summary>
+        /// Fires when a keyboard key was pressed.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        void InputManager_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
+        {
+            if (e.Key == Keys.Right || e.Key == Keys.D)
+            {
+                SelectedIndex += 1;
+            }
+            else if (e.Key == Keys.Left || e.Key == Keys.A)
+            {
+                SelectedIndex -= 1;
+            }
         }
     }
 }

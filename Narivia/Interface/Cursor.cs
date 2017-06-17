@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 using Narivia.Graphics;
 using Narivia.Graphics.ImageEffects;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
 
 namespace Narivia.Interface
 {
@@ -15,41 +15,56 @@ namespace Narivia.Interface
         /// Gets or sets the position.
         /// </summary>
         /// <value>The position.</value>
-        public Vector2 Position { get; private set; }
+        public Vector2 Position
+        {
+            get { return idleImage.Position; }
+            private set
+            {
+                idleImage.Position = value;
+                clickImage.Position = value;
+            }
+        }
 
-        Image image;
+        public MouseButtonState State { get; private set; }
+
+        Image idleImage;
+        Image clickImage;
 
         /// <summary>
         /// Loads the content.
         /// </summary>
         public void LoadContent()
         {
-            image = new Image
+            idleImage = new Image
             {
                 Effects = "AnimationEffect",
+                ImagePath = "Cursors/idle",
+                Active = true
+            };
+            clickImage = new Image
+            {
+                Effects = "AnimationEffect",
+                ImagePath = "Cursors/click",
                 Active = true
             };
 
-            MouseButtonState leftButtonState = InputManager.Instance.GetMouseButtonState(MouseButton.LeftButton);
-
-            switch (leftButtonState)
+            idleImage.AnimationEffect = new AnimationEffect
             {
-                case MouseButtonState.Pressed:
-                    image.ImagePath = "Cursors/click";
-                    break;
-
-                default:
-                    image.ImagePath = "Cursors/idle";
-                    break;
-            }
-
-            image.AnimationEffect = new AnimationEffect
+                FrameAmount = new Vector2(8, 1),
+                SwitchFrame = 150
+            };
+            clickImage.AnimationEffect = new AnimationEffect
             {
                 FrameAmount = new Vector2(8, 1),
                 SwitchFrame = 150
             };
 
-            image.LoadContent();
+            idleImage.LoadContent();
+            clickImage.LoadContent();
+
+            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseButtonReleased += InputManager_OnMouseButtonReleased;
+            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -57,7 +72,12 @@ namespace Narivia.Interface
         /// </summary>
         public void UnloadContent()
         {
-            image.UnloadContent();
+            idleImage.UnloadContent();
+            clickImage.UnloadContent();
+
+            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
+            InputManager.Instance.MouseButtonReleased -= InputManager_OnMouseButtonReleased;
+            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -66,15 +86,8 @@ namespace Narivia.Interface
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            // Reload the content when the left mouse button state changes
-            if (InputManager.Instance.IsMouseButtonPressed(MouseButton.LeftButton) ||
-                InputManager.Instance.IsMouseButtonReleased(MouseButton.LeftButton))
-            {
-                LoadContent();
-            }
-
-            image.Position = InputManager.Instance.MousePosition;
-            image.Update(gameTime);
+            idleImage.Update(gameTime);
+            clickImage.Update(gameTime);
         }
 
         /// <summary>
@@ -83,7 +96,35 @@ namespace Narivia.Interface
         /// <param name="spriteBatch">Sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            image.Draw(spriteBatch);
+            if (State == MouseButtonState.Pressed)
+            {
+                clickImage.Draw(spriteBatch);
+            }
+            else
+            {
+                idleImage.Draw(spriteBatch);
+            }
+        }
+
+        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Button == MouseButton.LeftButton)
+            {
+                State = MouseButtonState.Pressed;
+            }
+        }
+
+        void InputManager_OnMouseButtonReleased(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Button == MouseButton.LeftButton)
+            {
+                State = MouseButtonState.Released;
+            }
+        }
+
+        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            Position = e.CurrentMousePosition;
         }
     }
 }

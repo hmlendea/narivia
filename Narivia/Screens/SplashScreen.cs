@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Graphics;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
 
 namespace Narivia.Screens
 {
@@ -56,6 +57,9 @@ namespace Narivia.Screens
             AlignItems();
             BackgroundImage.ActivateEffect("RotationEffect");
             BackgroundImage.ActivateEffect("ZoomEffect");
+
+            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
+            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
         }
 
         /// <summary>
@@ -67,6 +71,9 @@ namespace Narivia.Screens
             BackgroundImage.UnloadContent();
             OverlayImage.UnloadContent();
             LogoImage.UnloadContent();
+
+            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
+            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
         }
 
         /// <summary>
@@ -83,12 +90,6 @@ namespace Narivia.Screens
             Delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             AlignItems();
-
-            if (InputManager.Instance.IsMouseButtonDown(MouseButton.LeftButton) ||
-                InputManager.Instance.IsAnyKeyDown() || Delay <= 0)
-            {
-                ScreenManager.Instance.ChangeScreens("TitleScreen");
-            }
         }
 
         /// <summary>
@@ -120,6 +121,16 @@ namespace Narivia.Screens
             OverlayImage.Scale = overlayScale;
 
             LogoImage.Position = (ScreenManager.Instance.Size - LogoImage.SpriteSize) / 2;
+        }
+
+        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            ScreenManager.Instance.ChangeScreens("TitleScreen");
+        }
+
+        void InputManager_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
+        {
+            ScreenManager.Instance.ChangeScreens("TitleScreen");
         }
     }
 }

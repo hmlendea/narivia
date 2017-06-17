@@ -6,16 +6,49 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
 
 namespace Narivia.Input
 {
+    /// <summary>
+    /// Input manager.
+    /// </summary>
     public class InputManager
     {
         /// <summary>
-        /// Gets the mouse position.
+        /// Occurs when a mouse button was pressed.
         /// </summary>
-        /// <value>The mouse position.</value>
-        public Vector2 MousePosition => new Vector2(currentMouseState.Position.X, currentMouseState.Position.Y);
+        public event MouseButtonEventHandler MouseButtonPressed;
+
+        /// <summary>
+        /// Occurs when a mouse button was released.
+        /// </summary>
+        public event MouseButtonEventHandler MouseButtonReleased;
+
+        /// <summary>
+        /// Occurs when a mouse button is down.
+        /// </summary>
+        public event MouseButtonEventHandler MouseButtonDown;
+
+        /// <summary>
+        /// Occurs when the mouse moves.
+        /// </summary>
+        public event MouseEventHandler MouseMoved;
+
+        /// <summary>
+        /// Occurs when a keyboard key was pressed.
+        /// </summary>
+        public event KeyboardKeyEventHandler KeyboardKeyPressed;
+
+        /// <summary>
+        /// Occurs when a keyboard key was released.
+        /// </summary>
+        public event KeyboardKeyEventHandler KeyboardKeyReleased;
+
+        /// <summary>
+        /// Occurs when a keyboard key is down.
+        /// </summary>
+        public event KeyboardKeyEventHandler KeyboardKeyDown;
 
         KeyboardState currentKeyState, previousKeyState;
         MouseState currentMouseState, previousMouseState;
@@ -56,200 +89,15 @@ namespace Narivia.Input
 
             currentKeyState = Keyboard.GetState();
             currentMouseState = Mouse.GetState();
-        }
 
-        /// <summary>
-        /// Checks if any of the keys is pressed.
-        /// </summary>
-        /// <returns><c>true</c>, if any of the keys is pressed, <c>false</c> otherwise.</returns>
-        /// <param name="keys">Keys.</param>
-        public bool IsKeyPressed(params Keys[] keys)
-        {
-            return keys.Any(key => currentKeyState.IsKeyDown(key) &&
-                                   previousKeyState.IsKeyUp(key));
-        }
+            CheckKeyboardKeyPressed();
+            CheckKeyboardKeyReleased();
+            CheckKeyboardKeyDown();
 
-        /// <summary>
-        /// Checks if any of the keys is released.
-        /// </summary>
-        /// <returns><c>true</c>, if any of they keys is released, <c>false</c> otherwise.</returns>
-        /// <param name="keys">Keys.</param>
-        public bool IsKeyReleased(params Keys[] keys)
-        {
-            return keys.Any(key => currentKeyState.IsKeyUp(key) &&
-                                   previousKeyState.IsKeyDown(key));
-        }
-
-        /// <summary>
-        /// Checks if any of the keys is down.
-        /// </summary>
-        /// <returns><c>true</c>, if any of the keys is down, <c>false</c> otherwise.</returns>
-        /// <param name="keys">Keys.</param>
-        public bool IsKeyDown(params Keys[] keys)
-        {
-            return keys.Any(currentKeyState.IsKeyDown);
-        }
-
-        /// <summary>
-        /// Checks if any key is down.
-        /// </summary>
-        /// <returns><c>true</c>, if any key is down, <c>false</c> otherwise.</returns>
-        public bool IsAnyKeyDown()
-        {
-            List<Keys> keys = Enum.GetValues(typeof(Keys)).Cast<Keys>().ToList();
-
-            return keys.Any(currentKeyState.IsKeyDown);
-        }
-
-        /// <summary>
-        /// Gets the state of the specified mouse button.
-        /// </summary>
-        /// <param name="button">Mouse button.</param>
-        /// <returns>The state of the specified mouse button.</returns>
-        public MouseButtonState GetMouseButtonState(MouseButton button)
-        {
-            switch (button)
-            {
-                case MouseButton.LeftButton:
-                    if (currentMouseState.LeftButton == ButtonState.Pressed)
-                    {
-                        return MouseButtonState.Pressed;
-                    }
-                    break;
-
-                case MouseButton.RightButton:
-                    if (currentMouseState.RightButton == ButtonState.Pressed)
-                    {
-                        return MouseButtonState.Pressed;
-                    }
-                    break;
-
-                case MouseButton.MiddleButton:
-                    if (currentMouseState.MiddleButton == ButtonState.Pressed)
-                    {
-                        return MouseButtonState.Pressed;
-                    }
-                    break;
-            }
-
-            return MouseButtonState.Released;
-        }
-
-        /// <summary>
-        /// Checks if any of the mouse buttons is pressed.
-        /// </summary>
-        /// <returns><c>true</c>, if any of the mouse buttons is pressed, <c>false</c> otherwise.</returns>
-        /// <param name="buttons">Mouse buttons.</param>
-        public bool IsMouseButtonPressed(params MouseButton[] buttons)
-        {
-            foreach (MouseButton button in buttons)
-            {
-                switch (button)
-                {
-                    case MouseButton.LeftButton:
-                        return currentMouseState.LeftButton == ButtonState.Pressed &&
-                               previousMouseState.LeftButton == ButtonState.Released;
-
-                    case MouseButton.RightButton:
-                        return currentMouseState.RightButton == ButtonState.Pressed &&
-                               previousMouseState.RightButton == ButtonState.Released;
-
-                    case MouseButton.MiddleButton:
-                        return currentMouseState.MiddleButton == ButtonState.Pressed &&
-                               previousMouseState.MiddleButton == ButtonState.Released;
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Checks if any of the mouse buttons is released.
-        /// </summary>
-        /// <returns><c>true</c>, if any of the mouse buttons is released, <c>false</c> otherwise.</returns>
-        /// <param name="buttons">Mouse buttons.</param>
-        public bool IsMouseButtonReleased(params MouseButton[] buttons)
-        {
-            foreach (MouseButton button in buttons)
-            {
-                switch (button)
-                {
-                    case MouseButton.LeftButton:
-                        return currentMouseState.LeftButton == ButtonState.Released &&
-                               previousMouseState.LeftButton == ButtonState.Pressed;
-
-                    case MouseButton.RightButton:
-                        return currentMouseState.RightButton == ButtonState.Released &&
-                               previousMouseState.RightButton == ButtonState.Pressed;
-
-                    case MouseButton.MiddleButton:
-                        return currentMouseState.MiddleButton == ButtonState.Released &&
-                               previousMouseState.MiddleButton == ButtonState.Pressed;
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Checks if any of the mouse buttons is down.
-        /// </summary>
-        /// <returns><c>true</c>, if any of the mouse buttons is down, <c>false</c> otherwise.</returns>
-        /// <param name="buttons">Mouse buttons.</param>
-        public bool IsMouseButtonDown(params MouseButton[] buttons)
-        {
-            foreach (MouseButton button in buttons)
-            {
-                switch (button)
-                {
-                    case MouseButton.LeftButton:
-                        return currentMouseState.LeftButton == ButtonState.Pressed;
-
-                    case MouseButton.RightButton:
-                        return currentMouseState.RightButton == ButtonState.Pressed;
-
-                    case MouseButton.MiddleButton:
-                        return currentMouseState.MiddleButton == ButtonState.Pressed;
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Checks if the cursor is entering a specified area.
-        /// </summary>
-        /// <returns><c>true</c>, if the cursor entering the specified area, <c>false</c> otherwise.</returns>
-        /// <param name="area">Area.</param>
-        public bool IsCursorEnteringArea(Rectangle area)
-        {
-            Vector2 currentMousePosition = new Vector2(currentMouseState.X, currentMouseState.Y);
-            Vector2 previousMousePosition = new Vector2(previousMouseState.X, previousMouseState.Y);
-
-            return area.Contains(currentMousePosition) && !area.Contains(previousMousePosition);
-        }
-
-        /// <summary>
-        /// Checks if the cursor is leaving a specified area.
-        /// </summary>
-        /// <returns><c>true</c>, if the cursor leaving the specified area, <c>false</c> otherwise.</returns>
-        /// <param name="area">Area.</param>
-        public bool IsCursorLeavingArea(Rectangle area)
-        {
-            Vector2 currentMousePosition = new Vector2(currentMouseState.X, currentMouseState.Y);
-            Vector2 previousMousePosition = new Vector2(previousMouseState.X, previousMouseState.Y);
-
-            return !area.Contains(currentMousePosition) && area.Contains(previousMousePosition);
-        }
-
-        /// <summary>
-        /// Checks if the cursor is inside a specified area.
-        /// </summary>
-        /// <returns><c>true</c>, if the cursor is inside the specified area, <c>false</c> otherwise.</returns>
-        /// <param name="area">Area.</param>
-        public bool IsCursorInArea(Rectangle area)
-        {
-            return area.Contains(MousePosition);
+            CheckMouseButtonPressed();
+            CheckMouseButtonReleased();
+            CheckMouseButtonDown();
+            CheckMouseMoved();
         }
 
         /// <summary>
@@ -262,6 +110,226 @@ namespace Narivia.Input
 
             currentKeyState = new KeyboardState();
             currentMouseState = new MouseState();
+        }
+
+        void CheckKeyboardKeyPressed()
+        {
+            foreach (Keys key in Enum.GetValues(typeof(Keys)))
+            {
+                if (currentKeyState.IsKeyDown(key) && previousKeyState.IsKeyUp(key))
+                {
+                    this_OnKeyboardKeyPressed(this, new KeyboardKeyEventArgs(key, KeyboardKeyState.Pressed));
+                }
+            }
+        }
+
+        void CheckKeyboardKeyReleased()
+        {
+            foreach (Keys key in Enum.GetValues(typeof(Keys)))
+            {
+                if (currentKeyState.IsKeyUp(key) && previousKeyState.IsKeyDown(key))
+                {
+                    this_OnKeyboardKeyReleased(this, new KeyboardKeyEventArgs(key, KeyboardKeyState.Released));
+                }
+            }
+        }
+
+        void CheckKeyboardKeyDown()
+        {
+            foreach (Keys key in Enum.GetValues(typeof(Keys)))
+            {
+                if (currentKeyState.IsKeyDown(key))
+                {
+                    this_OnKeyboardKeyDown(this, new KeyboardKeyEventArgs(key, KeyboardKeyState.Down));
+                }
+            }
+        }
+
+        void CheckMouseButtonPressed()
+        {
+            if (currentMouseState.LeftButton == ButtonState.Pressed &&
+                previousMouseState.LeftButton != ButtonState.Pressed)
+            {
+                this_OnMouseButtonPressed(this, new MouseButtonEventArgs(MouseButton.LeftButton,
+                                                                         MouseButtonState.Pressed,
+                                                                         new Vector2(currentMouseState.Position.X,
+                                                                                     currentMouseState.Position.Y)));
+            }
+
+            if (currentMouseState.RightButton == ButtonState.Pressed &&
+                previousMouseState.RightButton != ButtonState.Pressed)
+            {
+                this_OnMouseButtonPressed(this, new MouseButtonEventArgs(MouseButton.RightButton,
+                                                                         MouseButtonState.Pressed,
+                                                                         new Vector2(currentMouseState.Position.X,
+                                                                                     currentMouseState.Position.Y)));
+            }
+
+            if (currentMouseState.MiddleButton == ButtonState.Pressed &&
+                previousMouseState.MiddleButton != ButtonState.Pressed)
+            {
+                this_OnMouseButtonPressed(this, new MouseButtonEventArgs(MouseButton.MiddleButton,
+                                                                         MouseButtonState.Pressed,
+                                                                         new Vector2(currentMouseState.Position.X,
+                                                                                     currentMouseState.Position.Y)));
+            }
+        }
+
+        void CheckMouseButtonReleased()
+        {
+            if (currentMouseState.LeftButton == ButtonState.Released &&
+                previousMouseState.LeftButton != ButtonState.Released)
+            {
+                this_OnMouseButtonReleased(this, new MouseButtonEventArgs(MouseButton.LeftButton,
+                                                                          MouseButtonState.Released,
+                                                                          new Vector2(currentMouseState.Position.X,
+                                                                                      currentMouseState.Position.Y)));
+            }
+
+            if (currentMouseState.RightButton == ButtonState.Released &&
+                previousMouseState.RightButton != ButtonState.Released)
+            {
+                this_OnMouseButtonReleased(this, new MouseButtonEventArgs(MouseButton.RightButton,
+                                                                          MouseButtonState.Released,
+                                                                          new Vector2(currentMouseState.Position.X,
+                                                                                      currentMouseState.Position.Y)));
+            }
+
+            if (currentMouseState.MiddleButton == ButtonState.Released &&
+                previousMouseState.MiddleButton != ButtonState.Released)
+            {
+                this_OnMouseButtonReleased(this, new MouseButtonEventArgs(MouseButton.MiddleButton,
+                                                                          MouseButtonState.Released,
+                                                                          new Vector2(currentMouseState.Position.X,
+                                                                                      currentMouseState.Position.Y)));
+            }
+        }
+
+        void CheckMouseButtonDown()
+        {
+            if (currentMouseState.LeftButton == ButtonState.Pressed)
+            {
+                this_OnMouseButtonDown(this, new MouseButtonEventArgs(MouseButton.LeftButton,
+                                                                      MouseButtonState.Down,
+                                                                      new Vector2(currentMouseState.Position.X,
+                                                                                  currentMouseState.Position.Y)));
+            }
+
+            if (currentMouseState.RightButton == ButtonState.Pressed)
+            {
+                this_OnMouseButtonDown(this, new MouseButtonEventArgs(MouseButton.RightButton,
+                                                                      MouseButtonState.Down,
+                                                                      new Vector2(currentMouseState.Position.X,
+                                                                                  currentMouseState.Position.Y)));
+            }
+
+            if (currentMouseState.MiddleButton == ButtonState.Pressed)
+            {
+                this_OnMouseButtonDown(this, new MouseButtonEventArgs(MouseButton.MiddleButton,
+                                                                      MouseButtonState.Down,
+                                                                      new Vector2(currentMouseState.Position.X,
+                                                                                  currentMouseState.Position.Y)));
+            }
+        }
+
+        void CheckMouseMoved()
+        {
+            if (currentMouseState.Position != previousMouseState.Position)
+            {
+                this_OnMouseMoved(this, new MouseEventArgs(new Vector2(currentMouseState.Position.X, currentMouseState.Position.Y),
+                                                           new Vector2(previousMouseState.Position.X, previousMouseState.Position.Y)));
+            }
+        }
+
+        /// <summary>
+        /// Fires when a keyboard key was pressed.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        void this_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
+        {
+            if (KeyboardKeyPressed != null)
+            {
+                KeyboardKeyPressed(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Fires when a keyboard key was released.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        void this_OnKeyboardKeyReleased(object sender, KeyboardKeyEventArgs e)
+        {
+            if (KeyboardKeyReleased != null)
+            {
+                KeyboardKeyReleased(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Fires when a keyboard key is down.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        void this_OnKeyboardKeyDown(object sender, KeyboardKeyEventArgs e)
+        {
+            if (KeyboardKeyDown != null)
+            {
+                KeyboardKeyDown(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Fires when a mouse button was pressed.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        void this_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (MouseButtonPressed != null)
+            {
+                MouseButtonPressed(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Fires when a mouse button was released.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        void this_OnMouseButtonReleased(object sender, MouseButtonEventArgs e)
+        {
+            if (MouseButtonReleased != null)
+            {
+                MouseButtonReleased(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Fires when a mouse button is down.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        void this_OnMouseButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (MouseButtonDown != null)
+            {
+                MouseButtonDown(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Fires when the mouse was moved.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        void this_OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            if (MouseMoved != null)
+            {
+                MouseMoved(sender, e);
+            }
         }
     }
 }

@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
+using Narivia.Input.Enumerations;
+using Narivia.Input.Events;
 using Narivia.Settings;
 
 namespace Narivia.Interface
@@ -39,6 +41,9 @@ namespace Narivia.Interface
         /// <value><c>true</c> if moved; otherwise, <c>false</c>.</value>
         public bool JustMoved { get; set; }
 
+        int directionY;
+        int directionX;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.Entities.Camera"/> class.
         /// </summary>
@@ -55,7 +60,7 @@ namespace Narivia.Interface
         /// </summary>
         public void LoadContent()
         {
-
+            InputManager.Instance.KeyboardKeyDown += InputManager_OnKeyboardKeyDown;
         }
 
         /// <summary>
@@ -63,7 +68,7 @@ namespace Narivia.Interface
         /// </summary>
         public void UnloadContent()
         {
-
+            InputManager.Instance.KeyboardKeyDown -= InputManager_OnKeyboardKeyDown;
         }
 
         /// <summary>
@@ -74,11 +79,11 @@ namespace Narivia.Interface
         {
             Vector2 newVelocity = Velocity;
 
-            if (InputManager.Instance.IsKeyDown(Keys.Up, Keys.W))
+            if (directionY == -1)
             {
                 newVelocity.Y = -Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            else if (InputManager.Instance.IsKeyDown(Keys.Down, Keys.S))
+            else if (directionY == 1)
             {
                 newVelocity.Y = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
@@ -87,11 +92,11 @@ namespace Narivia.Interface
                 newVelocity.Y = 0;
             }
 
-            if (InputManager.Instance.IsKeyDown(Keys.Left, Keys.A))
+            if (directionX == -1)
             {
                 newVelocity.X = -Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            else if (InputManager.Instance.IsKeyDown(Keys.Right, Keys.D))
+            else if (directionX == 1)
             {
                 newVelocity.X = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
@@ -115,6 +120,9 @@ namespace Narivia.Interface
             {
                 JustMoved = false;
             }
+
+            directionX = 0;
+            directionY = 0;
         }
 
         /// <summary>
@@ -132,6 +140,27 @@ namespace Narivia.Interface
         public void CentreOnPosition(Vector2 position)
         {
             Position = new Vector2(position.X - Size.X / 2, position.Y - Size.Y / 2);
+        }
+
+        void InputManager_OnKeyboardKeyDown(object sender, KeyboardKeyEventArgs e)
+        {
+            if (e.Key == Keys.Up || e.Key == Keys.W)
+            {
+                directionY = -1;
+            }
+            else if (e.Key == Keys.Down || e.Key == Keys.S)
+            {
+                directionY = 1;
+            }
+
+            if (e.Key == Keys.Left || e.Key == Keys.A)
+            {
+                directionX = -1;
+            }
+            else if (e.Key == Keys.Right || e.Key == Keys.D)
+            {
+                directionX = 1;
+            }
         }
     }
 }
