@@ -263,10 +263,23 @@ namespace Narivia.GameLogic.GameManagers
         {
             int income = 0;
 
-            income += GetFactionRegionsCount(factionId) * BaseRegionIncome;
-            income += world.GetFactionHoldings(factionId).Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_INCOME;
-            income += world.GetFactionHoldings(factionId).Count(h => h.Type == HoldingType.City) * HOLDING_CITY_INCOME;
-            income += world.GetFactionHoldings(factionId).Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_INCOME;
+            foreach (Region region in GetFactionRegions(factionId))
+            {
+                Resource resource = world.Resources[region.ResourceId];
+
+                int regionIncome = BaseRegionIncome;
+
+                regionIncome += world.GetRegionHoldings(region.Id).Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_INCOME;
+                regionIncome += world.GetRegionHoldings(factionId).Count(h => h.Type == HoldingType.City) * HOLDING_CITY_INCOME;
+                regionIncome += world.GetRegionHoldings(factionId).Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_INCOME;
+
+                if (resource.Type == ResourceType.Economy)
+                {
+                    regionIncome += (int)(regionIncome * 0.1 * resource.Output);
+                }
+
+                income += regionIncome;
+            }
 
             return income;
         }
@@ -295,9 +308,23 @@ namespace Narivia.GameLogic.GameManagers
         {
             int recruitment = 0;
 
-            recruitment += world.Regions.Values.Count(r => r.FactionId == factionId) * BaseRegionRecruitment;
-            recruitment += BaseFactionRecruitment;
-            // TODO: Also calculate the holdings recruitment
+            foreach (Region region in GetFactionRegions(factionId))
+            {
+                Resource resource = world.Resources[region.ResourceId];
+
+                int regionRecruitment = BaseRegionRecruitment;
+
+                regionRecruitment += world.GetRegionHoldings(region.Id).Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_RECRUITMENT;
+                regionRecruitment += world.GetRegionHoldings(factionId).Count(h => h.Type == HoldingType.City) * HOLDING_CITY_RECRUITMENT;
+                regionRecruitment += world.GetRegionHoldings(factionId).Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_RECRUITMENT;
+
+                if (resource.Type == ResourceType.Military)
+                {
+                    regionRecruitment += (int)(regionRecruitment * 0.1 * resource.Output);
+                }
+
+                recruitment += regionRecruitment;
+            }
 
             return recruitment;
         }
