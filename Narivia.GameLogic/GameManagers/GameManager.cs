@@ -313,7 +313,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionRecruitment(string factionId)
         {
-            int recruitment = 0;
+            int recruitment = BaseFactionRecruitment;
 
             foreach (Region region in GetFactionRegions(factionId))
             {
