@@ -489,8 +489,12 @@ namespace Narivia.GameLogic.GameManagers
         {
             Region region = world.Regions[regionId];
 
-            world.AddHolding(regionId, holdingType);
-            world.Factions[region.FactionId].Wealth -= HoldingsPrice;
+
+            if (world.Holdings.Values.Count(h => h.RegionId == regionId && h.Type == HoldingType.Empty) > 0)
+            {
+                world.AddHolding(regionId, holdingType);
+                world.Factions[region.FactionId].Wealth -= HoldingsPrice;
+            }
         }
 
         /// <summary>
