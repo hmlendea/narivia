@@ -55,6 +55,9 @@ namespace Narivia.Screens
 
         RecruitmentDialog recruitmentDialog;
 
+        Dictionary<string, int> troopsOld;
+        int regionsOld, holdingsOld, wealthOld, incomeOld, outcomeOld, recruitmentOld;
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -78,6 +81,10 @@ namespace Narivia.Screens
 
             game = new GameManager();
             game.NewGame(initialWorldId, initialFactionId);
+
+
+            troopsOld = new Dictionary<string, int>();
+            game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetFactionArmySize(game.PlayerFactionId, u.Id)));
 
             GameMap.AssociateGameManager(ref game);
             RegionBar.AssociateGameManager(ref game);
@@ -210,16 +217,6 @@ namespace Narivia.Screens
         {
             NotificationBar.Clear();
 
-            Dictionary<string, int> troopsOld = new Dictionary<string, int>();
-            game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetFactionArmySize(game.PlayerFactionId, u.Id)));
-
-            int regionsOld = game.GetFactionRegionsCount(game.PlayerFactionId);
-            int holdingsOld = game.GetFactionHoldingsCount(game.PlayerFactionId);
-            int wealthOld = game.GetFactionWealth(game.PlayerFactionId);
-            int incomeOld = game.GetFactionIncome(game.PlayerFactionId);
-            int outcomeOld = game.GetFactionOutcome(game.PlayerFactionId);
-            int recruitmentOld = game.GetFactionRecruitment(game.PlayerFactionId);
-
             game.NextTurn();
 
             Dictionary<string, int> troopsNew = new Dictionary<string, int>();
@@ -246,17 +243,25 @@ namespace Narivia.Screens
                                  new Vector2(256, 224));
             };
 
+            string body = string.Empty;
+
+            foreach (string key in troopsNew.Keys)
+            {
+                body += $"{key}: {troopsNew[key]} ({(troopsNew[key] - troopsOld[key]).ToString("+0;-#")})" + Environment.NewLine;
+            }
+
             NotificationBar.AddNotification(NotificationIcon.RecruitmentReport).Clicked += delegate
             {
-                string body = string.Empty;
-
-                foreach (string key in troopsNew.Keys)
-                {
-                    body += $"{key}: {troopsNew[key]} ({(troopsNew[key] - troopsOld[key]).ToString("+0;-#")})" + Environment.NewLine;
-                }
-
                 ShowNotification($"Recruitment Report", body, NotificationType.Informational, NotificationStyle.Big, new Vector2(256, 224));
             };
+
+            troopsOld = troopsNew;
+            regionsOld = regionsNew;
+            holdingsOld = holdingsNew;
+            wealthOld = wealthNew;
+            incomeOld = incomeNew;
+            outcomeOld = outcomeNew;
+            recruitmentOld = recruitmentNew;
         }
 
         void SideBar_TurnButtonClicked(object sender, MouseButtonEventArgs e)
