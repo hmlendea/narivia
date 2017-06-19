@@ -212,6 +212,14 @@ namespace Narivia.GameLogic.GameManagers
         => world.RegionBordersRegion(sourceRegionId, targetRegionId);
 
         /// <summary>
+        /// Checks wether a region has empty holding slots.
+        /// </summary>
+        /// <returns><c>true</c>, if the region has empty holding slots, <c>false</c> otherwise.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        public bool RegionHasEmptyHoldingSlots(string regionId)
+        => world.RegionHasEmptyHoldingSlots(regionId);
+
+        /// <summary>
         /// Checks wether the specified factions share a border.
         /// </summary>
         /// <returns><c>true</c>, if the specified factions share a border, <c>false</c> otherwise.</returns>
@@ -490,7 +498,7 @@ namespace Narivia.GameLogic.GameManagers
             Region region = world.Regions[regionId];
 
 
-            if (world.Holdings.Values.Count(h => h.RegionId == regionId && h.Type == HoldingType.Empty) > 0)
+            if (RegionHasEmptyHoldingSlots(regionId))
             {
                 world.AddHolding(regionId, holdingType);
                 world.Factions[region.FactionId].Wealth -= HoldingsPrice;

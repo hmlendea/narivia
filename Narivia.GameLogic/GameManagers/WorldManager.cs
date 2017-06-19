@@ -226,6 +226,16 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Checks wether a region has empty holding slots.
+        /// </summary>
+        /// <returns><c>true</c>, if the region has empty holding slots, <c>false</c> otherwise.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        public bool RegionHasEmptyHoldingSlots(string regionId)
+        {
+            return Holdings.Values.Count(h => h.RegionId == regionId && h.Type == HoldingType.Empty) > 0;
+        }
+
+        /// <summary>
         /// Checks wether the specified regions share a border.
         /// </summary>
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>

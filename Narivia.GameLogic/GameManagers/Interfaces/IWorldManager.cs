@@ -155,6 +155,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         bool RegionBordersRegion(string region1Id, string region2Id);
 
         /// <summary>
+        /// Checks wether a region has empty holding slots.
+        /// </summary>
+        /// <returns><c>true</c>, if the region has empty holding slots, <c>false</c> otherwise.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        bool RegionHasEmptyHoldingSlots(string regionId);
+
+        /// <summary>
         /// Checks wether the specified regions share a border.
         /// </summary>
         /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
