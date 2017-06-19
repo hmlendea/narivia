@@ -202,6 +202,8 @@ namespace Narivia.Screens
             SideBar.TurnButton.Clicked += SideBar_TurnButtonClicked;
             SideBar.StatsButton.Clicked += SideBar_StatsButtonClicked;
             SideBar.RelationsButton.Clicked += SideBar_RelationsButtonClicked;
+            SideBar.RecruitButton.Clicked += SideBar_RecruitButtonClicked;
+            SideBar.BuildButton.Clicked += SideBar_BuildButtonClicked;
         }
 
         void NextTurn()
@@ -280,6 +282,16 @@ namespace Narivia.Screens
                              NotificationType.Informational,
                              NotificationStyle.Big,
                              new Vector2(256, 128));
+        }
+
+        void SideBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            recruitmentDialog.Show();
+        }
+
+        void SideBar_BuildButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+
         }
 
         void GameMap_Clicked(object sender, MouseButtonEventArgs e)
