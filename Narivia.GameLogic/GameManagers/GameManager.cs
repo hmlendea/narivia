@@ -5,6 +5,7 @@ using System.Linq;
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.Infrastructure.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 
@@ -159,8 +160,6 @@ namespace Narivia.GameLogic.GameManagers
                 faction.Wealth += GetFactionIncome(faction.Id);
                 faction.Wealth -= GetFactionOutcome(faction.Id);
 
-                // Build
-
                 // Recruit
                 // TODO: Find a way around the hardcoded "militia" unit identifier
                 world.Armies.Values.FirstOrDefault(u => u.FactionId == faction.Id &&
@@ -168,15 +167,18 @@ namespace Narivia.GameLogic.GameManagers
                                    .Size += GetFactionRecruitment(faction.Id);
 
                 // A.I.
-                if (faction.Id == PlayerFactionId ||
-                    GetFactionTroopsCount(faction.Id) < MinTroopsPerAttack)
+                if (faction.Id == PlayerFactionId)
                 {
                     continue;
                 }
 
+                AiBuild(faction.Id);
+                AiRecruit(faction.Id);
+
                 string regionId = attack.ChooseRegionToAttack(faction.Id);
 
-                if (string.IsNullOrEmpty(regionId))
+                if (GetFactionTroopsCount(faction.Id) < MinTroopsPerAttack ||
+                    string.IsNullOrEmpty(regionId))
                 {
                     continue;
                 }
@@ -601,6 +603,51 @@ namespace Narivia.GameLogic.GameManagers
             int oldRelations = sourceRelation.Value;
             sourceRelation.Value = Math.Max(-100, Math.Min(sourceRelation.Value + delta, 100));
             targetRelation.Value = sourceRelation.Value;
+        }
+
+        void AiBuild(string factionId)
+        {
+            while (GetFactionWealth(factionId) >= HoldingsPrice)
+            {
+                List<Region> validSovereignRegions = GetFactionRegions(factionId).Where(r => r.State == RegionState.Sovereign &&
+                                                                                             RegionHasEmptyHoldingSlots(r.Id)).ToList();
+
+                if (validSovereignRegions.Count < 1)
+                {
+                    break;
+                }
+
+                HoldingType type = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).RandomElement();
+
+                BuildHolding(validSovereignRegions.RandomElement().Id, type);
+            }
+
+            while (GetFactionWealth(factionId) >= HoldingsPrice)
+            {
+                List<Region> validOccupiedRegions = GetFactionRegions(factionId).Where(r => r.State == RegionState.Occupied &&
+                                                                                             RegionHasEmptyHoldingSlots(r.Id)).ToList();
+
+                if (validOccupiedRegions.Count < 1)
+                {
+                    break;
+                }
+
+                HoldingType type = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).RandomElement();
+
+                BuildHolding(validOccupiedRegions.RandomElement().Id, type);
+            }
+        }
+
+        void AiRecruit(string factionId)
+        {
+            int minPrice = world.Units.Values.Min(u => u.Price);
+
+            while (GetFactionWealth(factionId) >= minPrice)
+            {
+                string unitId = world.Units.Keys.RandomElement();
+
+                RecruitUnits(factionId, unitId, 1);
+            }
         }
     }
 }
