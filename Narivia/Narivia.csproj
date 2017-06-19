@@ -111,6 +111,7 @@
     <Compile Include="Screens\NewGameScreen.cs" />
     <Compile Include="Interface\Widgets\MenuListSelector.cs" />
     <Compile Include="Interface\Widgets\ToolTip.cs" />
+    <Compile Include="Interface\Widgets\RecruitmentDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

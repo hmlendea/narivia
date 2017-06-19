@@ -494,16 +494,13 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="amount">Amount.</param>
         public void RecruitUnits(string factionId, string unitId, int amount)
         {
-            int costPerTroop = world.Units[unitId].Price;
-            int factionWealth = world.Factions[factionId].Wealth;
-
-            if (factionWealth < costPerTroop * amount)
+            if (world.Factions[factionId].Wealth < world.Units[unitId].Price * amount)
             {
-                // TODO: Maybe log a warning or something
-                amount = factionWealth / costPerTroop;
+                amount = world.Factions[factionId].Wealth / world.Units[unitId].Price;
             }
 
             AddUnits(factionId, unitId, amount);
+            world.Factions[factionId].Wealth -= world.Units[unitId].Price * amount;
         }
 
         /// <summary>

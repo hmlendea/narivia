@@ -123,6 +123,24 @@ namespace Narivia.Interface.Widgets
         }
 
         /// <summary>
+        /// Shows this widget.
+        /// </summary>
+        public virtual void Show()
+        {
+            Enabled = true;
+            Visible = true;
+        }
+
+        /// <summary>
+        /// Hide this widget.
+        /// </summary>
+        public virtual void Hide()
+        {
+            Enabled = false;
+            Visible = false;
+        }
+
+        /// <summary>
         /// Fire by the Clicked event.
         /// </summary>
         /// <param name="sender">Sender object.</param>

@@ -310,6 +310,14 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Unit> GetUnits();
 
         /// <summary>
+        /// Recruits the specified amount of troops of a unit for a faction.
+        /// </summary>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="unitId">Unit identifier.</param>
+        /// <param name="amount">Amount.</param>
+        void RecruitUnits(string factionId, string unitId, int amount);
+
+        /// <summary>
         /// The player faction will attack the specified region.
         /// </summary>
         /// <param name="regionId">Region identifier.</param>
