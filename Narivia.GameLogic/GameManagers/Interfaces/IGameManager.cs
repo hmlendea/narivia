@@ -3,6 +3,7 @@
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
 using Narivia.Models;
+using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.GameManagers.Interfaces
 {
@@ -93,6 +94,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// </summary>
         /// <value>The starting troops per unit.</value>
         int StartingTroopsPerUnit { get; }
+
+        /// <summary>
+        /// Gets the price of holdings.
+        /// </summary>
+        /// <value>The holdings price.</value>
+        int HoldingsPrice { get; }
 
         /// <summary>
         /// Gets the player faction identifier.
@@ -308,6 +315,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// </summary>
         /// <returns>The units.</returns>
         IEnumerable<Unit> GetUnits();
+
+        /// <summary>
+        /// Builds the specified holding type in a region.
+        /// </summary>
+        /// <param name="regionId">Region identifier.</param>
+        /// <param name="holdingType">Holding type.</param>
+        void BuildHolding(string regionId, HoldingType holdingType);
 
         /// <summary>
         /// Recruits the specified amount of troops of a unit for a faction.

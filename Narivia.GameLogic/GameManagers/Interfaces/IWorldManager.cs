@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Narivia.Models;
+using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.GameManagers.Interfaces
 {
@@ -134,6 +135,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         int StartingTroops { get; set; }
 
         /// <summary>
+        /// Gets or sets the price of holdings.
+        /// </summary>
+        /// <value>The holdings price.</value>
+        int HoldingsPrice { get; set; }
+
+        /// <summary>
         /// Loads the world.
         /// </summary>
         /// <param name="worldId">World identifier.</param>
@@ -233,5 +240,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The region holdings.</returns>
         /// <param name="regionId">Region identifier.</param>
         IEnumerable<Holding> GetRegionHoldings(string regionId);
+
+        /// <summary>
+        /// Adds the specified holding type in a region.
+        /// </summary>
+        /// <param name="regionId">Region identifier.</param>
+        /// <param name="holdingType">Holding type.</param>
+        void AddHolding(string regionId, HoldingType holdingType);
     }
 }

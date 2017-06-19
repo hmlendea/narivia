@@ -116,6 +116,12 @@ namespace Narivia.GameLogic.GameManagers
         public int StartingTroopsPerUnit => world.StartingTroops;
 
         /// <summary>
+        /// Gets the price of holdings.
+        /// </summary>
+        /// <value>The holdings price.</value>
+        public int HoldingsPrice => world.HoldingsPrice;
+
+        /// <summary>
         /// Gets the player faction identifier.
         /// </summary>
         /// <value>The player faction identifier.</value>
@@ -473,6 +479,19 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The units.</returns>
         public IEnumerable<Unit> GetUnits()
         => world.Units.Values;
+
+        /// <summary>
+        /// Builds the specified holding type in a region.
+        /// </summary>
+        /// <param name="regionId">Region identifier.</param>
+        /// <param name="holdingType">Holding type.</param>
+        public void BuildHolding(string regionId, HoldingType holdingType)
+        {
+            Region region = world.Regions[regionId];
+
+            world.AddHolding(regionId, holdingType);
+            world.Factions[region.FactionId].Wealth -= HoldingsPrice;
+        }
 
         /// <summary>
         /// Adds the specified amount of troops of a unit for a faction.

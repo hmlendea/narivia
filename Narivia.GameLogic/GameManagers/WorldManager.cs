@@ -183,6 +183,16 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Gets or sets the price of holdings.
+        /// </summary>
+        /// <value>The holdings price.</value>
+        public int HoldingsPrice
+        {
+            get { return world.HoldingsPrice; }
+            set { world.HoldingsPrice = value; }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="WorldManager"/> class.
         /// </summary>
         public WorldManager()
@@ -402,6 +412,22 @@ namespace Narivia.GameLogic.GameManagers
         {
             return Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
                                               h.RegionId == regionId);
+        }
+
+        /// <summary>
+        /// Adds the specified holding type in a region.
+        /// </summary>
+        /// <param name="regionId">Region identifier.</param>
+        /// <param name="holdingType">Holding type.</param>
+        public void AddHolding(string regionId, HoldingType holdingType)
+        {
+            Holding emptySlot = Holdings.Values.FirstOrDefault(h => h.RegionId == regionId &&
+                                                                    h.Type == HoldingType.Empty);
+
+            if (emptySlot != null)
+            {
+                emptySlot.Type = holdingType;
+            }
         }
 
         void LoadEntities(string worldId)
