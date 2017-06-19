@@ -73,6 +73,20 @@ namespace Narivia.Interface.Widgets
         [XmlIgnore]
         public Button RelationsButton { get; private set; }
 
+        /// <summary>
+        /// Gets the recruit button.
+        /// </summary>
+        /// <value>The recruit button.</value>
+        [XmlIgnore]
+        public Button RecruitButton { get; private set; }
+
+        /// <summary>
+        /// Gets the build button.
+        /// </summary>
+        /// <value>The build button.</value>
+        [XmlIgnore]
+        public Button BuildButton { get; private set; }
+
         int margins = 5;
 
         /// <summary>
@@ -84,7 +98,6 @@ namespace Narivia.Interface.Widgets
             {
                 ImagePath = "Interface/backgrounds",
                 SourceRectangle = new Rectangle(0, 0, 32, 32),
-                Position = Position,
                 TextureFillMode = TextureFillMode.Tile,
                 Scale = Size / 32
             };
@@ -131,6 +144,20 @@ namespace Narivia.Interface.Widgets
                 TextColour = TextColour,
                 Size = new Vector2(96, 32)
             };
+            RecruitButton = new Button
+            {
+                Text = "Recruit",
+                TextColour = TextColour,
+                Size = new Vector2(96, 32)
+            };
+            BuildButton = new Button
+            {
+                Text = "Build",
+                TextColour = TextColour,
+                Size = new Vector2(96, 32)
+            };
+
+            SetChildrenPositions();
 
             background.LoadContent();
             factionSymbol.LoadContent();
@@ -138,9 +165,11 @@ namespace Narivia.Interface.Widgets
             factionName.LoadContent();
             turnCounter.LoadContent();
 
-            TurnButton.LoadContent();
             StatsButton.LoadContent();
             RelationsButton.LoadContent();
+            RecruitButton.LoadContent();
+            BuildButton.LoadContent();
+            TurnButton.LoadContent();
 
             base.LoadContent();
         }
@@ -156,9 +185,11 @@ namespace Narivia.Interface.Widgets
             factionName.UnloadContent();
             turnCounter.UnloadContent();
 
-            TurnButton.UnloadContent();
             StatsButton.UnloadContent();
             RelationsButton.UnloadContent();
+            RecruitButton.UnloadContent();
+            BuildButton.UnloadContent();
+            TurnButton.UnloadContent();
 
             base.UnloadContent();
         }
@@ -176,17 +207,7 @@ namespace Narivia.Interface.Widgets
 
             turnCounter.Text = $"Turn: {Turn}";
 
-            factionName.Position = Position + new Vector2(margins, margins);
-            turnCounter.Position = Position + new Vector2(Size.X - turnCounter.ScreenArea.Width - margins, margins);
-
-            factionSymbol.Position = Position + new Vector2((Size.X - factionSymbol.ScreenArea.Width) / 2, factionName.ScreenArea.Bottom + margins);
-
-            TurnButton.Position = Position + new Vector2((Size.X - TurnButton.Size.X) / 2,
-                                                          Size.Y - TurnButton.Size.Y - margins * 5);
-            StatsButton.Position = Position + new Vector2((int)(Size.X - StatsButton.Size.X - RelationsButton.Size.X - margins * 5) / 2,
-                                                          (int)(Size.Y - StatsButton.Size.Y) / 2);
-            RelationsButton.Position = Position + new Vector2((int)(Size.X + StatsButton.Size.X + margins * 5 - RelationsButton.Size.X) / 2,
-                                                              (int)(Size.Y - RelationsButton.Size.Y) / 2);
+            SetChildrenPositions();
 
             background.Update(gameTime);
             factionSymbol.Update(gameTime);
@@ -194,9 +215,11 @@ namespace Narivia.Interface.Widgets
             factionName.Update(gameTime);
             turnCounter.Update(gameTime);
 
-            TurnButton.Update(gameTime);
             StatsButton.Update(gameTime);
             RelationsButton.Update(gameTime);
+            RecruitButton.Update(gameTime);
+            BuildButton.Update(gameTime);
+            TurnButton.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -218,11 +241,34 @@ namespace Narivia.Interface.Widgets
             factionName.Draw(spriteBatch);
             turnCounter.Draw(spriteBatch);
 
-            TurnButton.Draw(spriteBatch);
             StatsButton.Draw(spriteBatch);
             RelationsButton.Draw(spriteBatch);
+            RecruitButton.Draw(spriteBatch);
+            BuildButton.Draw(spriteBatch);
+            TurnButton.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
+        }
+
+        void SetChildrenPositions()
+        {
+            background.Position = Position;
+
+            factionName.Position = Position + new Vector2(margins, margins);
+            turnCounter.Position = Position + new Vector2(Size.X - turnCounter.ScreenArea.Width - margins, margins);
+
+            factionSymbol.Position = Position + new Vector2((Size.X - factionSymbol.ScreenArea.Width) / 2, factionName.ScreenArea.Bottom + margins);
+
+            TurnButton.Position = Position + new Vector2((Size.X - TurnButton.Size.X) / 2,
+                                                          Size.Y - TurnButton.Size.Y - margins * 5);
+            StatsButton.Position = Position + new Vector2((int)(Size.X - StatsButton.Size.X - RelationsButton.Size.X - margins * 5) / 2,
+                                                          (int)(Size.Y - StatsButton.Size.Y - RecruitButton.Size.Y - margins) / 2);
+            RelationsButton.Position = Position + new Vector2((int)(Size.X + StatsButton.Size.X + margins * 5 - RelationsButton.Size.X) / 2,
+                                                              (int)(Size.Y - RelationsButton.Size.Y - BuildButton.Size.Y - margins) / 2);
+            RecruitButton.Position = Position + new Vector2((int)(Size.X - RecruitButton.Size.X - BuildButton.Size.X - margins * 5) / 2,
+                                                            (int)(Size.Y + StatsButton.Size.Y - RecruitButton.Size.Y + margins) / 2);
+            BuildButton.Position = Position + new Vector2((int)(Size.X + RecruitButton.Size.X + margins * 5 - BuildButton.Size.X) / 2,
+                                                          (int)(Size.Y + RelationsButton.Size.Y - BuildButton.Size.Y + margins) / 2);
         }
     }
 }
