@@ -558,6 +558,18 @@
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/camels.png
 
+#begin World/Assets/narivia/resources/camels_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/camels_big.png
+
 #begin World/Assets/narivia/resources/fish.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -569,6 +581,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/fish.png
+
+#begin World/Assets/narivia/resources/fish_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/fish_big.png
 
 #begin World/Assets/narivia/resources/gold.png
 /importer:TextureImporter
@@ -582,6 +606,18 @@
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/gold.png
 
+#begin World/Assets/narivia/resources/gold_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/gold_big.png
+
 #begin World/Assets/narivia/resources/grapes.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -593,6 +629,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/grapes.png
+
+#begin World/Assets/narivia/resources/grapes_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/grapes_big.png
 
 #begin World/Assets/narivia/resources/horses.png
 /importer:TextureImporter
@@ -606,6 +654,18 @@
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/horses.png
 
+#begin World/Assets/narivia/resources/horses_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/horses_big.png
+
 #begin World/Assets/narivia/resources/iron.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -617,6 +677,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/iron.png
+
+#begin World/Assets/narivia/resources/iron_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/iron_big.png
 
 #begin World/Assets/narivia/resources/pearls.png
 /importer:TextureImporter
@@ -630,6 +702,18 @@
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/pearls.png
 
+#begin World/Assets/narivia/resources/pearls_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/pearls_big.png
+
 #begin World/Assets/narivia/resources/silver.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -641,6 +725,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/silver.png
+
+#begin World/Assets/narivia/resources/silver_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/silver_big.png
 
 #begin World/Assets/narivia/resources/slaves.png
 /importer:TextureImporter
@@ -654,6 +750,42 @@
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/slaves.png
 
+#begin World/Assets/narivia/resources/slaves_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/slaves_big.png
+
+#begin World/Assets/narivia/resources/timber.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/timber.png
+
+#begin World/Assets/narivia/resources/timber_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/timber_big.png
+
 #begin World/Assets/narivia/resources/whales.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -665,6 +797,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/whales.png
+
+#begin World/Assets/narivia/resources/whales_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/whales_big.png
 
 #begin World/Assets/narivia/resources/wheat.png
 /importer:TextureImporter
@@ -678,6 +822,18 @@
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/wheat.png
 
+#begin World/Assets/narivia/resources/wheat_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/wheat_big.png
+
 #begin World/Assets/narivia/resources/wild_animals.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -689,6 +845,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/resources/wild_animals.png
+
+#begin World/Assets/narivia/resources/wild_animals_big.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/resources/wild_animals_big.png
 
 #begin World/Assets/narivia/symbols/aaria.png
 /importer:TextureImporter
@@ -1110,7 +1278,7 @@
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/symbols/viristia.png
 
-#begin World/Assets/narivia/resources/camels_big.png
+#begin World/Assets/narivia/units/knight.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1120,9 +1288,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/camels_big.png
+/build:World/Assets/narivia/units/knight.png
 
-#begin World/Assets/narivia/resources/fish_big.png
+#begin World/Assets/narivia/units/maceman.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1132,9 +1300,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/fish_big.png
+/build:World/Assets/narivia/units/maceman.png
 
-#begin World/Assets/narivia/resources/gold_big.png
+#begin World/Assets/narivia/units/man-at-arms.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1144,9 +1312,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/gold_big.png
+/build:World/Assets/narivia/units/man-at-arms.png
 
-#begin World/Assets/narivia/resources/grapes_big.png
+#begin World/Assets/narivia/units/militia.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1156,9 +1324,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/grapes_big.png
+/build:World/Assets/narivia/units/militia.png
 
-#begin World/Assets/narivia/resources/horses_big.png
+#begin World/Assets/narivia/units/swordsman.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1168,113 +1336,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/horses_big.png
-
-#begin World/Assets/narivia/resources/iron_big.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/iron_big.png
-
-#begin World/Assets/narivia/resources/pearls_big.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/pearls_big.png
-
-#begin World/Assets/narivia/resources/silver_big.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/silver_big.png
-
-#begin World/Assets/narivia/resources/slaves_big.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/slaves_big.png
-
-#begin World/Assets/narivia/resources/whales_big.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/whales_big.png
-
-#begin World/Assets/narivia/resources/wheat_big.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/wheat_big.png
-
-#begin World/Assets/narivia/resources/wild_animals_big.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/wild_animals_big.png
-
-#begin World/Assets/narivia/resources/timber.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/timber.png
-
-#begin World/Assets/narivia/resources/timber_big.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/resources/timber_big.png
+/build:World/Assets/narivia/units/swordsman.png
 
