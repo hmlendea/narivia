@@ -70,7 +70,6 @@ namespace Narivia.Interface.Widgets
         {
             holdingImages = new List<Image>();
             holdingTypes = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).ToList();
-            regions = game.GetFactionRegions(game.PlayerFactionId).ToList();
 
             background = new Image
             {
@@ -193,6 +192,7 @@ namespace Narivia.Interface.Widgets
 
             base.LoadContent();
 
+            UpdateRegionList();
             SelectHolding(0);
             SelectRegion(0);
 
@@ -250,6 +250,7 @@ namespace Narivia.Interface.Widgets
             }
 
             SetChildrenPositions();
+            UpdateRegionList();
 
             background.Update(gameTime);
             holdingBackground.Update(gameTime);
@@ -312,6 +313,15 @@ namespace Narivia.Interface.Widgets
         public void AssociateGameManager(ref IGameManager game)
         {
             this.game = game;
+        }
+
+        /// <summary>
+        /// Updates the region list.
+        /// </summary>
+        void UpdateRegionList()
+        {
+            regions = game.GetFactionRegions(game.PlayerFactionId).Where(r => game.RegionHasEmptyHoldingSlots(r.Id)).ToList();
+            SelectRegion(currentRegionIndex);
         }
 
         void SetChildrenPositions()
