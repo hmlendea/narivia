@@ -32,16 +32,18 @@ namespace Narivia.Interface.Widgets
         Image background;
         Image unitBackground;
         Image unitText;
+        Image troopsText;
         List<Image> unitImages;
 
         Image healthIcon;
         Image powerIcon;
         Image priceIcon;
+        Image maintenanceIcon;
 
         Image healthText;
         Image powerText;
         Image priceText;
-        Image troopsText;
+        Image maintenanceText;
 
         Button previousButton;
         Button nextButton;
@@ -119,6 +121,11 @@ namespace Narivia.Interface.Widgets
                 ImagePath = "Interface/game_icons",
                 SourceRectangle = new Rectangle(16, 0, 16, 16)
             };
+            maintenanceIcon = new Image
+            {
+                ImagePath = "Interface/game_icons",
+                SourceRectangle = new Rectangle(96, 0, 16, 16)
+            };
 
             healthText = new Image
             {
@@ -142,6 +149,15 @@ namespace Narivia.Interface.Widgets
             {
                 Text = "0",
                 SpriteSize = new Vector2(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
+                FontName = "InfoBarFont",
+                TextVerticalAlignment = VerticalAlignment.Left,
+                TextHorizontalAlignment = HorizontalAlignment.Center,
+                Tint = TextColour
+            };
+            maintenanceText = new Image
+            {
+                Text = "0",
+                SpriteSize = new Vector2(maintenanceIcon.SourceRectangle.Width * 2, maintenanceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 TextVerticalAlignment = VerticalAlignment.Left,
                 TextHorizontalAlignment = HorizontalAlignment.Center,
@@ -211,15 +227,17 @@ namespace Narivia.Interface.Widgets
             background.LoadContent();
             unitBackground.LoadContent();
             unitText.LoadContent();
+            troopsText.LoadContent();
 
             healthIcon.LoadContent();
             powerIcon.LoadContent();
             priceIcon.LoadContent();
+            maintenanceIcon.LoadContent();
 
             healthText.LoadContent();
             powerText.LoadContent();
             priceText.LoadContent();
-            troopsText.LoadContent();
+            maintenanceText.LoadContent();
 
             nextButton.LoadContent();
             previousButton.LoadContent();
@@ -251,15 +269,17 @@ namespace Narivia.Interface.Widgets
             background.UnloadContent();
             unitBackground.UnloadContent();
             unitText.UnloadContent();
+            troopsText.UnloadContent();
 
             healthIcon.UnloadContent();
             powerIcon.UnloadContent();
             priceIcon.UnloadContent();
+            maintenanceIcon.UnloadContent();
 
             healthText.UnloadContent();
             powerText.UnloadContent();
             priceText.UnloadContent();
-            troopsText.UnloadContent();
+            maintenanceText.UnloadContent();
 
             nextButton.UnloadContent();
             previousButton.UnloadContent();
@@ -306,15 +326,18 @@ namespace Narivia.Interface.Widgets
             background.Update(gameTime);
             unitBackground.Update(gameTime);
             unitText.Update(gameTime);
+            priceText.Update(gameTime);
+            troopsText.Update(gameTime);
 
             healthIcon.Update(gameTime);
             powerIcon.Update(gameTime);
             priceIcon.Update(gameTime);
+            maintenanceIcon.Update(gameTime);
 
             healthText.Update(gameTime);
             powerText.Update(gameTime);
             priceText.Update(gameTime);
-            troopsText.Update(gameTime);
+            maintenanceText.Update(gameTime);
 
             nextButton.Update(gameTime);
             previousButton.Update(gameTime);
@@ -346,11 +369,13 @@ namespace Narivia.Interface.Widgets
             healthIcon.Draw(spriteBatch);
             powerIcon.Draw(spriteBatch);
             priceIcon.Draw(spriteBatch);
+            maintenanceIcon.Draw(spriteBatch);
 
             healthText.Draw(spriteBatch);
             powerText.Draw(spriteBatch);
             priceText.Draw(spriteBatch);
             troopsText.Draw(spriteBatch);
+            maintenanceText.Draw(spriteBatch);
 
             nextButton.Draw(spriteBatch);
             previousButton.Draw(spriteBatch);
@@ -379,15 +404,17 @@ namespace Narivia.Interface.Widgets
             background.Position = Position;
             unitBackground.Position = new Vector2(Position.X + (Size.X - unitBackground.Scale.X) / 2, Position.Y + unitText.SpriteSize.Y + SPACING);
             unitText.Position = unitBackground.Position;
-
-            healthIcon.Position = new Vector2(unitBackground.Position.X, unitBackground.ScreenArea.Bottom + SPACING);
-            powerIcon.Position = new Vector2(healthIcon.Position.X, healthIcon.ScreenArea.Bottom + SPACING);
-            priceIcon.Position = new Vector2(powerIcon.Position.X, powerIcon.ScreenArea.Bottom + SPACING);
-
-            healthText.Position = new Vector2(healthIcon.ScreenArea.Right + SPACING, healthIcon.Position.Y);
-            powerText.Position = new Vector2(powerIcon.ScreenArea.Right + SPACING, powerIcon.Position.Y);
-            priceText.Position = new Vector2(priceIcon.ScreenArea.Right + SPACING, priceIcon.Position.Y);
             troopsText.Position = new Vector2(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom - troopsText.ScreenArea.Height);
+
+            healthIcon.Position = new Vector2(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom + SPACING);
+            powerIcon.Position = new Vector2(healthIcon.ScreenArea.Left, healthIcon.ScreenArea.Bottom + SPACING);
+            priceIcon.Position = new Vector2(powerIcon.ScreenArea.Left, powerIcon.ScreenArea.Bottom + SPACING);
+            maintenanceIcon.Position = new Vector2(priceIcon.ScreenArea.Left, priceIcon.ScreenArea.Bottom + SPACING);
+
+            healthText.Position = new Vector2(healthIcon.ScreenArea.Right + SPACING, healthIcon.ScreenArea.Top);
+            powerText.Position = new Vector2(powerIcon.ScreenArea.Right + SPACING, powerIcon.ScreenArea.Top);
+            priceText.Position = new Vector2(priceIcon.ScreenArea.Right + SPACING, priceIcon.ScreenArea.Top);
+            maintenanceText.Position = new Vector2(maintenanceIcon.ScreenArea.Right + SPACING, maintenanceIcon.ScreenArea.Top);
 
             previousButton.Position = new Vector2(unitBackground.ScreenArea.Left - previousButton.ScreenArea.Width - SPACING, unitBackground.ScreenArea.Top);
             nextButton.Position = new Vector2(unitBackground.ScreenArea.Right + SPACING, unitBackground.ScreenArea.Top);
@@ -420,6 +447,7 @@ namespace Narivia.Interface.Widgets
             healthText.Text = units[currentUnitIndex].Health.ToString();
             powerText.Text = units[currentUnitIndex].Power.ToString();
             priceText.Text = units[currentUnitIndex].Price.ToString();
+            maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
         }
 
         void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)

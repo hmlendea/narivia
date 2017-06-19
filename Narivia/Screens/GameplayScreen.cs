@@ -74,7 +74,7 @@ namespace Narivia.Screens
 
             recruitmentDialog = new RecruitmentDialog
             {
-                Size = new Vector2(256, 256),
+                Size = new Vector2(256, 288),
                 Enabled = false,
                 Visible = false
             };
