@@ -112,6 +112,7 @@
     <Compile Include="Interface\Widgets\MenuListSelector.cs" />
     <Compile Include="Interface\Widgets\ToolTip.cs" />
     <Compile Include="Interface\Widgets\RecruitmentDialog.cs" />
+    <Compile Include="Interface\Widgets\BuildDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

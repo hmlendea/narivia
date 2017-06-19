@@ -54,6 +54,7 @@ namespace Narivia.Screens
         IGameManager game;
 
         RecruitmentDialog recruitmentDialog;
+        BuildDialog buildDialog;
 
         Dictionary<string, int> troopsOld;
         int regionsOld, holdingsOld, wealthOld, incomeOld, outcomeOld, recruitmentOld;
@@ -72,16 +73,14 @@ namespace Narivia.Screens
                 initialFactionId = ScreenArgs[1];
             }
 
-            recruitmentDialog = new RecruitmentDialog
-            {
-                Size = new Vector2(256, 288),
-                Enabled = false,
-                Visible = false
-            };
+            recruitmentDialog = new RecruitmentDialog { Size = new Vector2(256, 288) };
+            buildDialog = new BuildDialog { Size = new Vector2(256, 224) };
+
+            recruitmentDialog.Hide();
+            buildDialog.Hide();
 
             game = new GameManager();
             game.NewGame(initialWorldId, initialFactionId);
-
 
             troopsOld = new Dictionary<string, int>();
             game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetFactionArmySize(game.PlayerFactionId, u.Id)));
@@ -89,6 +88,7 @@ namespace Narivia.Screens
             GameMap.AssociateGameManager(ref game);
             RegionBar.AssociateGameManager(ref game);
             recruitmentDialog.AssociateGameManager(ref game);
+            buildDialog.AssociateGameManager(ref game);
 
             SideBar.WorldId = game.WorldId;
             SideBar.FactionId = game.PlayerFactionId;
@@ -101,6 +101,7 @@ namespace Narivia.Screens
             NotificationBar.LoadContent();
 
             recruitmentDialog.LoadContent();
+            buildDialog.LoadContent();
 
             base.LoadContent();
 
@@ -134,6 +135,7 @@ namespace Narivia.Screens
             NotificationBar.UnloadContent();
 
             recruitmentDialog.UnloadContent();
+            buildDialog.UnloadContent();
 
             base.UnloadContent();
         }
@@ -151,6 +153,8 @@ namespace Narivia.Screens
 
             recruitmentDialog.Position = new Vector2(GameMap.Position.X + (GameMap.Size.X - recruitmentDialog.Size.X) / 2,
                                                      GameMap.Position.Y + (GameMap.Size.Y - recruitmentDialog.Size.Y) / 2);
+            buildDialog.Position = new Vector2(GameMap.Position.X + (GameMap.Size.X - buildDialog.Size.X) / 2,
+                                               GameMap.Position.Y + (GameMap.Size.Y - buildDialog.Size.Y) / 2);
 
             InfoBar.Regions = game.GetFactionRegionsCount(game.PlayerFactionId);
             InfoBar.Holdings = game.GetFactionHoldingsCount(game.PlayerFactionId);
@@ -174,6 +178,7 @@ namespace Narivia.Screens
             NotificationBar.Update(gameTime);
 
             recruitmentDialog.Update(gameTime);
+            buildDialog.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -193,6 +198,7 @@ namespace Narivia.Screens
             NotificationBar.Draw(spriteBatch);
 
             recruitmentDialog.Draw(spriteBatch);
+            buildDialog.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
         }
@@ -296,7 +302,7 @@ namespace Narivia.Screens
 
         void SideBar_BuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
-
+            buildDialog.Show();
         }
 
         void GameMap_Clicked(object sender, MouseButtonEventArgs e)
