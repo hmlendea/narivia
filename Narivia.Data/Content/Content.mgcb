@@ -1302,18 +1302,6 @@
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/units/maceman.png
 
-#begin World/Assets/narivia/units/man-at-arms.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:World/Assets/narivia/units/man-at-arms.png
-
 #begin World/Assets/narivia/units/militia.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1337,4 +1325,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:World/Assets/narivia/units/swordsman.png
+
+#begin World/Assets/narivia/units/manatarms.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Assets/narivia/units/manatarms.png
 
