@@ -5,7 +5,7 @@
     <Name>Militia</Name>
     <Description>The base unit in the game. Weak but useful when in great numbers.</Description>
     <Type>Light</Type>
-    <Price>0</Price>
+    <Price>2</Price>
     <Maintenance>0</Maintenance>
     <Power>1</Power>
     <Health>2</Health>
@@ -41,7 +41,7 @@
     <Health>3</Health>
   </UnitEntity>
   <UnitEntity>
-    <Id>Knight</Id>
+    <Id>knight</Id>
     <Name>Knight</Name>
     <Description>Balanced unit, good at leading invasions</Description>
     <Type>Heavy</Type>
