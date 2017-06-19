@@ -139,6 +139,7 @@ namespace Narivia.Interface.Widgets
             }
 
             textImage.Position = Position;
+            textImage.Text = Text;
 
             for (int x = 0; x < ButtonSize; x++)
             {
