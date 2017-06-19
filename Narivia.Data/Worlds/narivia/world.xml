@@ -17,6 +17,7 @@
   <StartingTroops>75</StartingTroops>
   <StartingWealth>250</StartingWealth>
   <StartingReligion>10</StartingReligion>
+  <HoldingsPrice>700</HoldingsPrice>
   <HealingRate>0</HealingRate>
   <RecruitmentRate>
     <Min>50</Min>

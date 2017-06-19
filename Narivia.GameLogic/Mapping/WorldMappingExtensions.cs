@@ -34,7 +34,8 @@ namespace Narivia.GameLogic.Mapping
                 MinTroopsPerAttack = worldEntity.MinTroopsPerAttack,
                 HoldingSlotsPerFaction = worldEntity.HoldingSlotsPerFaction,
                 StartingWealth = worldEntity.StartingWealth,
-                StartingTroops = worldEntity.StartingTroops
+                StartingTroops = worldEntity.StartingTroops,
+                HoldingsPrice = worldEntity.HoldingsPrice
             };
 
             return world;
@@ -63,7 +64,8 @@ namespace Narivia.GameLogic.Mapping
                 MinTroopsPerAttack = world.MinTroopsPerAttack,
                 HoldingSlotsPerFaction = world.HoldingSlotsPerFaction,
                 StartingWealth = world.StartingWealth,
-                StartingTroops = world.StartingTroops
+                StartingTroops = world.StartingTroops,
+                HoldingsPrice = world.HoldingsPrice
             };
 
             return worldEntity;

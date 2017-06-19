@@ -94,5 +94,11 @@
         /// </summary>
         /// <value>The starting troops.</value>
         public int StartingTroops { get; set; }
+
+        /// <summary>
+        /// Gets or sets the price of holdings;
+        /// </summary>
+        /// <value>The holdings price.</value>
+        public int HoldingsPrice { get; set; }
     }
 }
