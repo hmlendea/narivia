@@ -92,7 +92,7 @@ namespace Narivia.Interface.Widgets
             }
 
             background.Scale = Size;
-            text.SpriteSize =
+            text.SpriteSize = Size;
 
             background.Position = Position;
             text.Position = new Vector2(Position.X + TEXT_MARGINS, Position.Y + TEXT_MARGINS);

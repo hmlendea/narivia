@@ -147,25 +147,25 @@ namespace Narivia.Interface.Widgets
 
             regionsTooltip = new ToolTip
             {
-                Text = "Nr. of regions",
-                Size = new Vector2(128, 20),
+                Text = "Regions",
+                Size = new Vector2(100, 20),
                 Visible = false
             };
             holdingsTooltip = new ToolTip
             {
-                Text = "Nr. of holdings",
-                Size = new Vector2(128, 20),
+                Text = "Holdings",
+                Size = new Vector2(100, 20),
                 Visible = false
             };
             wealthTooltip = new ToolTip
             {
-                Text = "The wealth",
-                Size = new Vector2(128, 20),
+                Text = "Wealth",
+                Size = new Vector2(100, 20),
                 Visible = false
             };
             troopsTooltip = new ToolTip
             {
-                Text = "The troops",
+                Text = "Troops",
                 Size = new Vector2(128, 128),
                 Visible = false
             };
