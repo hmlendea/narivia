@@ -122,25 +122,25 @@ namespace Narivia.Interface.Widgets
 
             regionsText = new Image
             {
-                SpriteSize = new Vector2(32, 16),
+                SpriteSize = new Vector2(40, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
             holdingsText = new Image
             {
-                SpriteSize = new Vector2(32, 16),
+                SpriteSize = new Vector2(60, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
             wealthText = new Image
             {
-                SpriteSize = new Vector2(48, 16),
+                SpriteSize = new Vector2(60, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
             troopsText = new Image
             {
-                SpriteSize = new Vector2(48, 16),
+                SpriteSize = new Vector2(60, 16),
                 FontName = "InfoBarFont",
                 Tint = TextColour
             };
