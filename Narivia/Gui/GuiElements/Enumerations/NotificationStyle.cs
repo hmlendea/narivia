@@ -1,4 +1,4 @@
-﻿namespace Narivia.Interface.Widgets.Enumerations
+﻿namespace Narivia.Gui.GuiElements.Enumerations
 {
     /// <summary>
     /// Notification style.

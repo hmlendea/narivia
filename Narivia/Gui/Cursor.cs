@@ -7,7 +7,7 @@ using Narivia.Input;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 
-namespace Narivia.Interface
+namespace Narivia.Gui
 {
     public class Cursor
     {

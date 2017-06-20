@@ -1,22 +1,22 @@
-﻿using System.Xml.Serialization;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Side bar widget.
+    /// Side bar GUI element.
     /// </summary>
-    public class SideBar : Widget
+    public class GuiSideBar : GuiElement
     {
-        Image background;
+        GuiImage background;
+        GuiImage factionImage;
 
-        Image factionSymbol;
-        Image factionName;
-        Image turnCounter;
+        GuiText factionText;
+        GuiText turnText;
 
         /// <summary>
         /// Gets or sets the faction identifier.
@@ -53,32 +53,32 @@ namespace Narivia.Interface.Widgets
         public Color TextColour { get; set; }
 
         /// <summary>
-        /// Gets the turn button.
-        /// </summary>
-        /// <value>The turn button.</value>
-        [XmlIgnore]
-        public Button TurnButton { get; private set; }
-
-        /// <summary>
         /// Gets the stats button.
         /// </summary>
         /// <value>The stats button.</value>
         [XmlIgnore]
-        public Button StatsButton { get; private set; }
+        public GuiButton StatsButton { get; private set; }
 
         /// <summary>
         /// Gets the recruit button.
         /// </summary>
         /// <value>The recruit button.</value>
         [XmlIgnore]
-        public Button RecruitButton { get; private set; }
+        public GuiButton RecruitButton { get; private set; }
 
         /// <summary>
         /// Gets the build button.
         /// </summary>
         /// <value>The build button.</value>
         [XmlIgnore]
-        public Button BuildButton { get; private set; }
+        public GuiButton BuildButton { get; private set; }
+
+        /// <summary>
+        /// Gets the turn button.
+        /// </summary>
+        /// <value>The turn button.</value>
+        [XmlIgnore]
+        public GuiButton TurnButton { get; private set; }
 
         int margins = 5;
 
@@ -87,75 +87,71 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void LoadContent()
         {
-            background = new Image
+            background = new GuiImage
             {
-                ImagePath = "Interface/backgrounds",
+                ContentFile = "Interface/backgrounds",
                 SourceRectangle = new Rectangle(0, 0, 32, 32),
-                TextureFillMode = TextureFillMode.Tile,
-                Scale = Size / 32
+                FillMode = TextureFillMode.Tile
             };
 
-            factionSymbol = new Image
+            factionImage = new GuiImage
             {
-                ImagePath = $"World/Assets/{WorldId}/symbols/{FactionId}",
+                ContentFile = $"World/Assets/{WorldId}/symbols/{FactionId}",
                 SourceRectangle = new Rectangle(0, 0, 128, 128)
             };
 
-            factionName = new Image
+            factionText = new GuiText
             {
                 Text = FactionName,
                 FontName = "SideBarFont",
-                SpriteSize = new Vector2(Size.X * 2 / 3, 48),
-                TextVerticalAlignment = VerticalAlignment.Left,
-                Tint = TextColour
+                Size = new Vector2(Size.X * 2 / 3, 48),
+                VerticalAlignment = VerticalAlignment.Left
             };
 
-            turnCounter = new Image
+            turnText = new GuiText
             {
-                Text = $"Turn: {Turn}",
                 FontName = "SideBarFont",
-                SpriteSize = new Vector2(Size.X / 3, 48),
-                TextVerticalAlignment = VerticalAlignment.Right,
-                Tint = TextColour
+                Size = new Vector2(Size.X / 3, 48),
+                VerticalAlignment = VerticalAlignment.Right
             };
 
-            TurnButton = new Button
-            {
-                Text = "End Turn",
-                TextColour = TextColour,
-                Size = new Vector2(224, 32)
-            };
-            StatsButton = new Button
+            StatsButton = new GuiButton
             {
                 Text = "Stats",
                 TextColour = TextColour,
                 Size = new Vector2(96, 32)
             };
-            RecruitButton = new Button
+            RecruitButton = new GuiButton
             {
                 Text = "Recruit",
                 TextColour = TextColour,
                 Size = new Vector2(96, 32)
             };
-            BuildButton = new Button
+            BuildButton = new GuiButton
             {
                 Text = "Build",
                 TextColour = TextColour,
                 Size = new Vector2(96, 32)
             };
+            TurnButton = new GuiButton
+            {
+                Text = "End Turn",
+                TextColour = TextColour,
+                Size = new Vector2(224, 32)
+            };
 
-            SetChildrenPositions();
+            SetChildrenProperties();
 
-            background.LoadContent();
-            factionSymbol.LoadContent();
+            Children.Add(background);
+            Children.Add(factionImage);
 
-            factionName.LoadContent();
-            turnCounter.LoadContent();
+            Children.Add(factionText);
+            Children.Add(turnText);
 
-            StatsButton.LoadContent();
-            RecruitButton.LoadContent();
-            BuildButton.LoadContent();
-            TurnButton.LoadContent();
+            Children.Add(StatsButton);
+            Children.Add(RecruitButton);
+            Children.Add(BuildButton);
+            Children.Add(TurnButton);
 
             base.LoadContent();
         }
@@ -165,17 +161,6 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void UnloadContent()
         {
-            background.UnloadContent();
-            factionSymbol.UnloadContent();
-
-            factionName.UnloadContent();
-            turnCounter.UnloadContent();
-
-            StatsButton.UnloadContent();
-            RecruitButton.UnloadContent();
-            BuildButton.UnloadContent();
-            TurnButton.UnloadContent();
-
             base.UnloadContent();
         }
 
@@ -185,25 +170,7 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
-            turnCounter.Text = $"Turn: {Turn}";
-
-            SetChildrenPositions();
-
-            background.Update(gameTime);
-            factionSymbol.Update(gameTime);
-
-            factionName.Update(gameTime);
-            turnCounter.Update(gameTime);
-
-            StatsButton.Update(gameTime);
-            RecruitButton.Update(gameTime);
-            BuildButton.Update(gameTime);
-            TurnButton.Update(gameTime);
+            SetChildrenProperties();
 
             base.Update(gameTime);
         }
@@ -214,33 +181,18 @@ namespace Narivia.Interface.Widgets
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Visible)
-            {
-                return;
-            }
-
-            background.Draw(spriteBatch);
-            factionSymbol.Draw(spriteBatch);
-
-            factionName.Draw(spriteBatch);
-            turnCounter.Draw(spriteBatch);
-
-            StatsButton.Draw(spriteBatch);
-            RecruitButton.Draw(spriteBatch);
-            BuildButton.Draw(spriteBatch);
-            TurnButton.Draw(spriteBatch);
-
             base.Draw(spriteBatch);
         }
 
-        void SetChildrenPositions()
+        void SetChildrenProperties()
         {
             background.Position = Position;
+            background.Scale = Size / background.SourceRectangle.Width;
 
-            factionName.Position = Position + new Vector2(margins, margins);
-            turnCounter.Position = Position + new Vector2(Size.X - turnCounter.ScreenArea.Width - margins, margins);
+            factionText.Position = Position + new Vector2(margins, margins);
+            turnText.Position = Position + new Vector2(Size.X - turnText.ScreenArea.Width - margins, margins);
 
-            factionSymbol.Position = Position + new Vector2((Size.X - factionSymbol.ScreenArea.Width) / 2, factionName.ScreenArea.Bottom + margins);
+            factionImage.Position = Position + new Vector2((Size.X - factionImage.ScreenArea.Width) / 2, factionText.ScreenArea.Bottom + margins);
 
             TurnButton.Position = Position + new Vector2((int)(Size.X - TurnButton.Size.X) / 2,
                                                          (int)(Size.Y - TurnButton.Size.Y - margins));
@@ -250,6 +202,12 @@ namespace Narivia.Interface.Widgets
                                                             (int)(Size.Y + StatsButton.Size.Y - RecruitButton.Size.Y + margins) / 2);
             BuildButton.Position = Position + new Vector2((int)(Size.X + RecruitButton.Size.X + margins * 5 - BuildButton.Size.X) / 2,
                                                           (int)(Size.Y + RecruitButton.Size.Y - BuildButton.Size.Y + margins) / 2);
+
+            factionText.Text = FactionName;
+            factionText.TextColour = TextColour;
+
+            turnText.Text = $"Turn: {Turn}";
+            turnText.TextColour = TextColour;
         }
     }
 }

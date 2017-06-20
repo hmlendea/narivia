@@ -1,20 +1,30 @@
-﻿using System;
+using System;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Menu action widget.
+    /// Menu toggle GUI element.
     /// </summary>
-    public class MenuAction : MenuItem
+    public class GuiMenuToggle : GuiMenuItem
     {
         /// <summary>
-        /// Gets or sets the action.
+        /// Gets or sets the property.
         /// </summary>
-        /// <value>The type of the action.</value>
-        public string ActionId { get; set; }
+        /// <value>The type of the property.</value>
+        public string Property { get; set; }
+
+        /// <summary>
+        /// Gets or sets the toggle state.
+        /// </summary>
+        /// <value>The type of the toggle state.</value>
+        [XmlIgnore]
+        public bool ToggleState { get; set; }
+
+        string originalText;
 
         /// <summary>
         /// Loads the content.
@@ -22,6 +32,8 @@ namespace Narivia.Interface.Widgets
         public override void LoadContent()
         {
             base.LoadContent();
+
+            originalText = Text;
         }
 
         /// <summary>
@@ -38,9 +50,13 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
+            if (ToggleState)
             {
-                return;
+                Text = originalText + " : On";
+            }
+            else
+            {
+                Text = originalText + " : Off";
             }
 
             base.Update(gameTime);
@@ -52,11 +68,6 @@ namespace Narivia.Interface.Widgets
         /// <returns>The draw.</returns>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
             base.Draw(spriteBatch);
         }
 
@@ -69,12 +80,7 @@ namespace Narivia.Interface.Widgets
         {
             base.OnActivated(sender, e);
 
-            switch (ActionId)
-            {
-                case "Exit":
-                    Program.Game.Exit();
-                    break;
-            }
+            ToggleState = !ToggleState;
         }
     }
 }

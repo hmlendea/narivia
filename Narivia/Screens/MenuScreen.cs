@@ -8,7 +8,8 @@ using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
 using Narivia.Input.Events;
-using Narivia.Interface.Widgets;
+using Narivia.Gui;
+using Narivia.Gui.GuiElements;
 
 namespace Narivia.Screens
 {
@@ -40,38 +41,38 @@ namespace Narivia.Screens
         /// </summary>
         /// <value>The links.</value>
         [XmlElement("Link")]
-        public List<MenuLink> Links { get; set; }
+        public List<GuiMenuLink> Links { get; set; }
 
         /// <summary>
         /// Gets or sets the toggles.
         /// </summary>
         /// <value>The toggles.</value>
         [XmlElement("Toggle")]
-        public List<MenuToggle> Toggles { get; set; }
+        public List<GuiMenuToggle> Toggles { get; set; }
 
         /// <summary>
         /// Gets or sets the actions.
         /// </summary>
         /// <value>The actions.</value>
         [XmlElement("Action")]
-        public List<MenuAction> Actions { get; set; }
+        public List<GuiMenuAction> Actions { get; set; }
 
         /// <summary>
         /// Gets or sets the list selectors.
         /// </summary>
         /// <value>The list selectors.</value>
         [XmlElement("ListSelector")]
-        public List<MenuListSelector> ListSelectors { get; set; }
+        public List<GuiMenuListSelector> ListSelectors { get; set; }
 
         /// <summary>
         /// Gets all the items.
         /// </summary>
         /// <value>The items.</value>
         [XmlIgnore]
-        public List<MenuItem> Items => Toggles.Select(x => (MenuItem)x).Concat(
-                                       Links.Select(x => (MenuItem)x)).Concat(
-                                       Actions.Select(x => (MenuItem)x)).Concat(
-                                       ListSelectors.Select(x => (MenuItem)x)).ToList();
+        public List<GuiMenuItem> Items => Toggles.Select(x => (GuiMenuItem)x).Concat(
+                                       Links.Select(x => (GuiMenuItem)x)).Concat(
+                                       Actions.Select(x => (GuiMenuItem)x)).Concat(
+                                       ListSelectors.Select(x => (GuiMenuItem)x)).ToList();
 
         /// <summary>
         /// Gets the item number.
@@ -90,10 +91,10 @@ namespace Narivia.Screens
             Axis = "Y";
             Spacing = 30;
 
-            Links = new List<MenuLink>();
-            Toggles = new List<MenuToggle>();
-            Actions = new List<MenuAction>();
-            ListSelectors = new List<MenuListSelector>();
+            Links = new List<GuiMenuLink>();
+            Toggles = new List<GuiMenuToggle>();
+            Actions = new List<GuiMenuAction>();
+            ListSelectors = new List<GuiMenuListSelector>();
         }
 
         /// <summary>
@@ -101,9 +102,12 @@ namespace Narivia.Screens
         /// </summary>
         public override void LoadContent()
         {
-            base.LoadContent();
+            GuiManager.Instance.GuiElements.AddRange(Toggles);
+            GuiManager.Instance.GuiElements.AddRange(Links);
+            GuiManager.Instance.GuiElements.AddRange(Actions);
+            GuiManager.Instance.GuiElements.AddRange(ListSelectors);
 
-            Items.ForEach(item => item.LoadContent());
+            base.LoadContent();
 
             AlignMenuItems();
 
@@ -118,8 +122,6 @@ namespace Narivia.Screens
         {
             base.UnloadContent();
 
-            Items.ForEach(item => item.UnloadContent());
-
             InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
             InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
@@ -130,8 +132,6 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
             int newSelectedItemIndex = ItemNumber;
 
             if (newSelectedItemIndex < 0)
@@ -150,7 +150,7 @@ namespace Narivia.Screens
 
             ItemNumber = newSelectedItemIndex;
 
-            Items.ForEach(item => item.Update(gameTime));
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -160,8 +160,6 @@ namespace Narivia.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-
-            Items.ForEach(item => item.Draw(spriteBatch));
         }
 
         void AlignMenuItems()
@@ -175,7 +173,7 @@ namespace Narivia.Screens
                 (ScreenManager.Instance.Size.X - dimensions.X) / 2,
                 (ScreenManager.Instance.Size.Y - dimensions.Y) / 2);
 
-            foreach (MenuItem item in Items)
+            foreach (GuiMenuItem item in Items)
             {
                 if ("Xx".Contains(Axis))
                 {

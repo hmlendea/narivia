@@ -88,31 +88,34 @@
     </Compile>
     <Compile Include="Graphics\HorizontalAlignment.cs" />
     <Compile Include="Graphics\VerticalAlignment.cs" />
-    <Compile Include="Interface\Camera.cs" />
-    <Compile Include="Interface\Cursor.cs" />
-    <Compile Include="Interface\Widgets\Button.cs" />
-    <Compile Include="Interface\Widgets\MenuAction.cs" />
-    <Compile Include="Interface\Widgets\MenuItem.cs" />
-    <Compile Include="Interface\Widgets\MenuLink.cs" />
-    <Compile Include="Interface\Widgets\MenuToggle.cs" />
-    <Compile Include="Interface\Widgets\Notification.cs" />
-    <Compile Include="Interface\Widgets\Widget.cs" />
-    <Compile Include="Interface\Widgets\GameMap.cs" />
-    <Compile Include="Interface\Widgets\InfoBar.cs" />
-    <Compile Include="Interface\Widgets\SideBar.cs" />
+    <Compile Include="Gui\Camera.cs" />
+    <Compile Include="Gui\Cursor.cs" />
+    <Compile Include="Gui\GuiElements\GuiButton.cs" />
+    <Compile Include="Gui\GuiElements\GuiMenuAction.cs" />
+    <Compile Include="Gui\GuiElements\GuiMenuItem.cs" />
+    <Compile Include="Gui\GuiElements\GuiMenuLink.cs" />
+    <Compile Include="Gui\GuiElements\GuiMenuToggle.cs" />
+    <Compile Include="Gui\GuiElements\GuiNotificationDialog.cs" />
+    <Compile Include="Gui\GuiElements\GuiElement.cs" />
+    <Compile Include="Gui\GuiElements\GuiWorldmap.cs" />
+    <Compile Include="Gui\GuiElements\GuiInfoBar.cs" />
+    <Compile Include="Gui\GuiElements\GuiSideBar.cs" />
     <Compile Include="Graphics\TextureFillMode.cs" />
-    <Compile Include="Interface\Widgets\RegionBar.cs" />
-    <Compile Include="Interface\Widgets\NotificationButton.cs" />
-    <Compile Include="Interface\Widgets\NotificationBar.cs" />
-    <Compile Include="Interface\Widgets\Enumerations\ButtonStyle.cs" />
-    <Compile Include="Interface\Widgets\Enumerations\NotificationIcon.cs" />
-    <Compile Include="Interface\Widgets\Enumerations\NotificationStyle.cs" />
-    <Compile Include="Interface\Widgets\Enumerations\NotificationType.cs" />
+    <Compile Include="Gui\GuiElements\GuiRegionBar.cs" />
+    <Compile Include="Gui\GuiElements\GuiNotificationIndicator.cs" />
+    <Compile Include="Gui\GuiElements\GuiNotificationBar.cs" />
+    <Compile Include="Gui\GuiElements\Enumerations\ButtonStyle.cs" />
+    <Compile Include="Gui\GuiElements\Enumerations\NotificationIcon.cs" />
+    <Compile Include="Gui\GuiElements\Enumerations\NotificationStyle.cs" />
+    <Compile Include="Gui\GuiElements\Enumerations\NotificationType.cs" />
     <Compile Include="Screens\NewGameScreen.cs" />
-    <Compile Include="Interface\Widgets\MenuListSelector.cs" />
-    <Compile Include="Interface\Widgets\ToolTip.cs" />
-    <Compile Include="Interface\Widgets\RecruitmentDialog.cs" />
-    <Compile Include="Interface\Widgets\BuildDialog.cs" />
+    <Compile Include="Gui\GuiElements\GuiMenuListSelector.cs" />
+    <Compile Include="Gui\GuiElements\GuiToolTip.cs" />
+    <Compile Include="Gui\GuiElements\GuiRecruitmentDialog.cs" />
+    <Compile Include="Gui\GuiElements\GuiBuildingDialog.cs" />
+    <Compile Include="Gui\GuiManager.cs" />
+    <Compile Include="Gui\GuiElements\GuiText.cs" />
+    <Compile Include="Gui\GuiElements\GuiImage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -173,8 +176,8 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="Interface\Widgets\" />
-    <Folder Include="Interface\Widgets\Enumerations\" />
+    <Folder Include="Gui\" />
+    <Folder Include="Gui\GuiElements\" />
+    <Folder Include="Gui\GuiElements\Enumerations\" />
   </ItemGroup>
 </Project>

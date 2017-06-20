@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Audio;
 using Narivia.Helpers;
 using Narivia.Input;
-using Narivia.Interface;
+using Narivia.Gui;
 using Narivia.Screens;
 using Narivia.Settings;
 

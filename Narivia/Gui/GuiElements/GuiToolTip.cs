@@ -1,17 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Graphics;
-
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Tool tip widget.
+    /// Tool tip GUI element.
     /// </summary>
-    public class ToolTip : Widget
+    public class GuiTooltip : GuiElement
     {
-        const int TEXT_MARGINS = 2;
-
         /// <summary>
         /// Gets or sets the text.
         /// </summary>
@@ -30,16 +26,16 @@ namespace Narivia.Interface.Widgets
         /// <value>The text colour.</value>
         public Color TextColour { get; set; }
 
-        Image background;
-        Image text;
+        GuiText text;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolTip"/> class.
+        /// Initializes a new instance of the <see cref="GuiTooltip"/> class.
         /// </summary>
-        public ToolTip()
+        public GuiTooltip()
         {
             BackgroundColour = Color.DarkRed;
             TextColour = Color.Gold;
+            Visible = false;
         }
 
         /// <summary>
@@ -47,24 +43,15 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void LoadContent()
         {
-            background = new Image
+            text = new GuiText
             {
-                Tint = BackgroundColour,
-                ImagePath = "ScreenManager/FillImage",
-                SourceRectangle = new Rectangle(0, 0, 1, 1)
-            };
-
-            text = new Image
-            {
-                SpriteSize = new Vector2(Size.X - TEXT_MARGINS * 2, Size.Y - TEXT_MARGINS * 2),
-                Tint = TextColour,
                 FontName = "ToolTipFont",
-                TextVerticalAlignment = VerticalAlignment.Center,
-                TextHorizontalAlignment = HorizontalAlignment.Center
+                Margins = 2
             };
 
-            background.LoadContent();
-            text.LoadContent();
+            SetChildrenProperties();
+
+            Children.Add(text);
 
             base.LoadContent();
         }
@@ -74,9 +61,6 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void UnloadContent()
         {
-            background.UnloadContent();
-            text.UnloadContent();
-
             base.UnloadContent();
         }
 
@@ -86,21 +70,7 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
-            background.Scale = Size;
-            text.SpriteSize = Size;
-
-            background.Position = Position;
-            text.Position = new Vector2(Position.X + TEXT_MARGINS, Position.Y + TEXT_MARGINS);
-
-            text.Text = Text;
-
-            background.Update(gameTime);
-            text.Update(gameTime);
+            SetChildrenProperties();
 
             base.Update(gameTime);
         }
@@ -111,15 +81,16 @@ namespace Narivia.Interface.Widgets
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Visible)
-            {
-                return;
-            }
-
-            background.Draw(spriteBatch);
-            text.Draw(spriteBatch);
-
             base.Draw(spriteBatch);
+        }
+
+        void SetChildrenProperties()
+        {
+            text.Text = Text;
+            text.TextColour = TextColour;
+            text.BackgroundColour = BackgroundColour;
+            text.Position = Position;
+            text.Size = Size;
         }
     }
 }

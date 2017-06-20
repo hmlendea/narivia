@@ -5,21 +5,17 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Audio;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
-using Narivia.Input;
-using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
-using Narivia.Interface.Widgets.Enumerations;
 using Narivia.Models;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Unit recruitment dialog.
+    /// Unit recruitment dialog GUI element.
     /// </summary>
-    public class RecruitmentDialog : Widget
+    public class GuiRecruitmentDialog : GuiElement
     {
         /// <summary>
         /// Gets or sets the text colour.
@@ -29,29 +25,29 @@ namespace Narivia.Interface.Widgets
 
         IGameManager game;
 
-        Image background;
-        Image unitBackground;
-        Image unitText;
-        Image troopsText;
-        List<Image> unitImages;
+        GuiImage background;
+        GuiImage unitBackground;
+        GuiText unitText;
+        GuiText troopsText;
+        List<GuiImage> unitImages;
 
-        Image healthIcon;
-        Image powerIcon;
-        Image priceIcon;
-        Image maintenanceIcon;
+        GuiImage healthIcon;
+        GuiImage powerIcon;
+        GuiImage priceIcon;
+        GuiImage maintenanceIcon;
 
-        Image healthText;
-        Image powerText;
-        Image priceText;
-        Image maintenanceText;
+        GuiText healthText;
+        GuiText powerText;
+        GuiText priceText;
+        GuiText maintenanceText;
 
-        Button previousButton;
-        Button nextButton;
-        Button plusButton;
-        Button minusButton;
+        GuiButton previousButton;
+        GuiButton nextButton;
+        GuiButton plusButton;
+        GuiButton minusButton;
 
-        Button recruitButton;
-        Button cancelButton;
+        GuiButton recruitButton;
+        GuiButton cancelButton;
 
         List<Unit> units;
 
@@ -61,9 +57,9 @@ namespace Narivia.Interface.Widgets
         const int SPACING = 8;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RecruitmentDialog"/> class.
+        /// Initializes a new instance of the <see cref="GuiRecruitmentDialog"/> class.
         /// </summary>
-        public RecruitmentDialog()
+        public GuiRecruitmentDialog()
         {
             TextColour = Color.Gold;
         }
@@ -73,137 +69,121 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void LoadContent()
         {
-            unitImages = new List<Image>();
+            unitImages = new List<GuiImage>();
             units = game.GetUnits().ToList();
 
             currentUnitIndex = 0;
             troopsAmount = 0;
 
-            background = new Image
+            background = new GuiImage
             {
-                ImagePath = "Interface/backgrounds",
+                ContentFile = "Interface/backgrounds",
                 SourceRectangle = new Rectangle(0, 0, 32, 32),
-                Position = Position,
-                TextureFillMode = TextureFillMode.Tile,
+                FillMode = TextureFillMode.Tile,
                 Scale = Size / 32
             };
-            unitBackground = new Image
+            unitBackground = new GuiImage
             {
-                ImagePath = "ScreenManager/FillImage",
+                ContentFile = "ScreenManager/FillImage",
                 SourceRectangle = new Rectangle(0, 0, 1, 1),
-                Position = Position,
                 Scale = new Vector2(100, 100),
-                Tint = Color.Black
+                TintColour = Color.Black
             };
 
-            unitText = new Image
+            unitText = new GuiText
             {
                 Text = "Militia",
-                SpriteSize = new Vector2(unitBackground.Scale.X, 18),
-                FontName = "InfoBarFont",
-                TextVerticalAlignment = VerticalAlignment.Center,
-                TextHorizontalAlignment = HorizontalAlignment.Center,
-                Tint = TextColour
+                Size = new Vector2(unitBackground.Scale.X, 18),
+                FontName = "InfoBarFont"
             };
 
-            healthIcon = new Image
+            healthIcon = new GuiImage
             {
-                ImagePath = "Interface/game_icons",
+                ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(64, 0, 16, 16)
             };
-            powerIcon = new Image
+            powerIcon = new GuiImage
             {
-                ImagePath = "Interface/game_icons",
+                ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(80, 0, 16, 16)
             };
-            priceIcon = new Image
+            priceIcon = new GuiImage
             {
-                ImagePath = "Interface/game_icons",
+                ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(16, 0, 16, 16)
             };
-            maintenanceIcon = new Image
+            maintenanceIcon = new GuiImage
             {
-                ImagePath = "Interface/game_icons",
+                ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(96, 0, 16, 16)
             };
 
-            healthText = new Image
+            healthText = new GuiText
             {
                 Text = "0",
-                SpriteSize = new Vector2(healthIcon.SourceRectangle.Width * 2, healthIcon.SourceRectangle.Height),
+                Size = new Vector2(healthIcon.SourceRectangle.Width * 2, healthIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
-                TextVerticalAlignment = VerticalAlignment.Left,
-                TextHorizontalAlignment = HorizontalAlignment.Center,
-                Tint = TextColour
+                VerticalAlignment = VerticalAlignment.Left
             };
-            powerText = new Image
+            powerText = new GuiText
             {
                 Text = "0",
-                SpriteSize = new Vector2(powerIcon.SourceRectangle.Width * 2, powerIcon.SourceRectangle.Height),
+                Size = new Vector2(powerIcon.SourceRectangle.Width * 2, powerIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
-                TextVerticalAlignment = VerticalAlignment.Left,
-                TextHorizontalAlignment = HorizontalAlignment.Center,
-                Tint = TextColour
+                VerticalAlignment = VerticalAlignment.Left
             };
-            priceText = new Image
+            priceText = new GuiText
             {
                 Text = "0",
-                SpriteSize = new Vector2(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
+                Size = new Vector2(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
-                TextVerticalAlignment = VerticalAlignment.Left,
-                TextHorizontalAlignment = HorizontalAlignment.Center,
-                Tint = TextColour
+                VerticalAlignment = VerticalAlignment.Left
             };
-            maintenanceText = new Image
+            maintenanceText = new GuiText
             {
                 Text = "0",
-                SpriteSize = new Vector2(maintenanceIcon.SourceRectangle.Width * 2, maintenanceIcon.SourceRectangle.Height),
+                Size = new Vector2(maintenanceIcon.SourceRectangle.Width * 2, maintenanceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
-                TextVerticalAlignment = VerticalAlignment.Left,
-                TextHorizontalAlignment = HorizontalAlignment.Center,
-                Tint = TextColour
+                VerticalAlignment = VerticalAlignment.Left
             };
-            troopsText = new Image
+            troopsText = new GuiText
             {
                 Text = "x1",
-                SpriteSize = new Vector2(unitBackground.Scale.Y, 18),
-                FontName = "InfoBarFont",
-                TextVerticalAlignment = VerticalAlignment.Center,
-                TextHorizontalAlignment = HorizontalAlignment.Center,
-                Tint = TextColour
+                Size = new Vector2(unitBackground.Scale.Y, 18),
+                FontName = "InfoBarFont"
             };
 
-            nextButton = new Button
+            nextButton = new GuiButton
             {
                 Text = ">",
                 TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
-            previousButton = new Button
+            previousButton = new GuiButton
             {
                 Text = "<",
                 TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
-            plusButton = new Button
+            plusButton = new GuiButton
             {
                 Text = "+",
                 TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
-            minusButton = new Button
+            minusButton = new GuiButton
             {
                 Text = "-",
                 TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
-            recruitButton = new Button
+            recruitButton = new GuiButton
             {
                 Text = "Recruit",
                 TextColour = TextColour,
                 Size = new Vector2(128, 32)
             };
-            cancelButton = new Button
+            cancelButton = new GuiButton
             {
                 Text = "Cancel",
                 TextColour = TextColour,
@@ -212,44 +192,45 @@ namespace Narivia.Interface.Widgets
 
             foreach (Unit unit in units)
             {
-                Image unitImage = new Image
+                GuiImage unitImage = new GuiImage
                 {
-                    ImagePath = $"World/Assets/{game.WorldId}/units/{unit.Id}",
-                    SourceRectangle = new Rectangle(0, 0, 64, 64)
+                    ContentFile = $"World/Assets/{game.WorldId}/units/{unit.Id}",
+                    SourceRectangle = new Rectangle(0, 0, 64, 64),
+                    Visible = false
                 };
 
                 unitImages.Add(unitImage);
-                unitImage.LoadContent();
             }
+            unitImages[currentUnitIndex].Visible = true;
 
-            SetChildrenPositions();
+            SetChildrenProperties();
 
-            background.LoadContent();
-            unitBackground.LoadContent();
-            unitText.LoadContent();
-            troopsText.LoadContent();
+            Children.Add(background);
+            Children.Add(unitBackground);
 
-            healthIcon.LoadContent();
-            powerIcon.LoadContent();
-            priceIcon.LoadContent();
-            maintenanceIcon.LoadContent();
+            Children.AddRange(unitImages);
 
-            healthText.LoadContent();
-            powerText.LoadContent();
-            priceText.LoadContent();
-            maintenanceText.LoadContent();
+            Children.Add(unitText);
+            Children.Add(troopsText);
 
-            nextButton.LoadContent();
-            previousButton.LoadContent();
-            plusButton.LoadContent();
-            minusButton.LoadContent();
-            recruitButton.LoadContent();
-            cancelButton.LoadContent();
+            Children.Add(healthIcon);
+            Children.Add(powerIcon);
+            Children.Add(priceIcon);
+            Children.Add(maintenanceIcon);
+
+            Children.Add(healthText);
+            Children.Add(powerText);
+            Children.Add(priceText);
+            Children.Add(maintenanceText);
+
+            Children.Add(nextButton);
+            Children.Add(previousButton);
+            Children.Add(plusButton);
+            Children.Add(minusButton);
+            Children.Add(recruitButton);
+            Children.Add(cancelButton);
 
             base.LoadContent();
-
-            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
 
             previousButton.Clicked += previousButton_OnClicked;
             nextButton.Clicked += nextButton_OnClicked;
@@ -266,34 +247,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void UnloadContent()
         {
-            background.UnloadContent();
-            unitBackground.UnloadContent();
-            unitText.UnloadContent();
-            troopsText.UnloadContent();
-
-            healthIcon.UnloadContent();
-            powerIcon.UnloadContent();
-            priceIcon.UnloadContent();
-            maintenanceIcon.UnloadContent();
-
-            healthText.UnloadContent();
-            powerText.UnloadContent();
-            priceText.UnloadContent();
-            maintenanceText.UnloadContent();
-
-            nextButton.UnloadContent();
-            previousButton.UnloadContent();
-            plusButton.UnloadContent();
-            minusButton.UnloadContent();
-            recruitButton.UnloadContent();
-            cancelButton.UnloadContent();
-
-            unitImages.ForEach(i => i.UnloadContent());
-
             base.UnloadContent();
-
-            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -302,11 +256,6 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
             int wealth = game.GetFactionWealth(game.PlayerFactionId);
 
             if (troopsAmount < 0)
@@ -321,32 +270,7 @@ namespace Narivia.Interface.Widgets
             troopsText.Text = $"x{troopsAmount}";
             recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
 
-            SetChildrenPositions();
-
-            background.Update(gameTime);
-            unitBackground.Update(gameTime);
-            unitText.Update(gameTime);
-            priceText.Update(gameTime);
-            troopsText.Update(gameTime);
-
-            healthIcon.Update(gameTime);
-            powerIcon.Update(gameTime);
-            priceIcon.Update(gameTime);
-            maintenanceIcon.Update(gameTime);
-
-            healthText.Update(gameTime);
-            powerText.Update(gameTime);
-            priceText.Update(gameTime);
-            maintenanceText.Update(gameTime);
-
-            nextButton.Update(gameTime);
-            previousButton.Update(gameTime);
-            plusButton.Update(gameTime);
-            minusButton.Update(gameTime);
-            recruitButton.Update(gameTime);
-            cancelButton.Update(gameTime);
-
-            unitImages[currentUnitIndex].Update(gameTime);
+            SetChildrenProperties();
 
             base.Update(gameTime);
         }
@@ -357,35 +281,6 @@ namespace Narivia.Interface.Widgets
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Visible)
-            {
-                return;
-            }
-
-            background.Draw(spriteBatch);
-            unitBackground.Draw(spriteBatch);
-            unitText.Draw(spriteBatch);
-
-            healthIcon.Draw(spriteBatch);
-            powerIcon.Draw(spriteBatch);
-            priceIcon.Draw(spriteBatch);
-            maintenanceIcon.Draw(spriteBatch);
-
-            healthText.Draw(spriteBatch);
-            powerText.Draw(spriteBatch);
-            priceText.Draw(spriteBatch);
-            troopsText.Draw(spriteBatch);
-            maintenanceText.Draw(spriteBatch);
-
-            nextButton.Draw(spriteBatch);
-            previousButton.Draw(spriteBatch);
-            plusButton.Draw(spriteBatch);
-            minusButton.Draw(spriteBatch);
-            recruitButton.Draw(spriteBatch);
-            cancelButton.Draw(spriteBatch);
-
-            unitImages[currentUnitIndex].Draw(spriteBatch);
-
             base.Draw(spriteBatch);
         }
 
@@ -399,10 +294,10 @@ namespace Narivia.Interface.Widgets
             this.game = game;
         }
 
-        void SetChildrenPositions()
+        void SetChildrenProperties()
         {
             background.Position = Position;
-            unitBackground.Position = new Vector2(Position.X + (Size.X - unitBackground.Scale.X) / 2, Position.Y + unitText.SpriteSize.Y + SPACING);
+            unitBackground.Position = new Vector2(Position.X + (Size.X - unitBackground.Scale.X) / 2, Position.Y + unitText.Size.Y + SPACING);
             unitText.Position = unitBackground.Position;
             troopsText.Position = new Vector2(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom - troopsText.ScreenArea.Height);
 
@@ -426,6 +321,13 @@ namespace Narivia.Interface.Widgets
 
             unitImages.ForEach(i => i.Position = new Vector2(unitBackground.Position.X + (unitBackground.Scale.X - i.SourceRectangle.Width) / 2,
                                                              unitBackground.Position.Y + (unitBackground.Scale.Y - i.SourceRectangle.Height) / 2));
+
+            unitText.TextColour = TextColour;
+            troopsText.TextColour = TextColour;
+            healthText.TextColour = TextColour;
+            powerText.TextColour = TextColour;
+            priceText.TextColour = TextColour;
+            maintenanceText.TextColour = TextColour;
         }
 
         void SelectUnit(int index)
@@ -448,24 +350,9 @@ namespace Narivia.Interface.Widgets
             powerText.Text = units[currentUnitIndex].Power.ToString();
             priceText.Text = units[currentUnitIndex].Price.ToString();
             maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
-        }
 
-        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
-        {
-            if (!ScreenArea.Contains(e.MousePosition) || e.Button != MouseButton.LeftButton)
-            {
-                return;
-            }
-
-            AudioManager.Instance.PlaySound("Interface/click");
-        }
-
-        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
-        {
-            if (ScreenArea.Contains(e.CurrentMousePosition) && !ScreenArea.Contains(e.PreviousMousePosition))
-            {
-                AudioManager.Instance.PlaySound("Interface/select");
-            }
+            unitImages.ForEach(i => i.Visible = false);
+            unitImages[currentUnitIndex].Visible = true;
         }
 
         void previousButton_OnClicked(object sender, MouseButtonEventArgs e)

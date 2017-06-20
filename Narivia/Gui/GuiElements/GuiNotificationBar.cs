@@ -1,25 +1,22 @@
-﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.Interface.Widgets.Enumerations;
+using Narivia.Gui.GuiElements.Enumerations;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Notification bar widget.
+    /// Notification bar GUI element.
     /// </summary>
-    public class NotificationBar : Widget
+    public class GuiNotificationBar : GuiElement
     {
         [XmlIgnore]
         public string RegionId { get; private set; }
 
         IGameManager game;
-
-        List<NotificationButton> notificationButtons;
 
         int spacing;
 
@@ -30,8 +27,6 @@ namespace Narivia.Interface.Widgets
         {
             spacing = 4;
 
-            notificationButtons = new List<NotificationButton>();
-
             base.LoadContent();
         }
 
@@ -40,9 +35,6 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void UnloadContent()
         {
-            notificationButtons.ForEach(x => x.UnloadContent());
-            notificationButtons.Clear();
-
             base.UnloadContent();
         }
 
@@ -52,16 +44,7 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
-            notificationButtons.RemoveAll(x => x.Destroyed);
-
             AlignItems();
-
-            notificationButtons.ForEach(x => x.Update(gameTime));
 
             base.Update(gameTime);
         }
@@ -72,13 +55,6 @@ namespace Narivia.Interface.Widgets
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Visible)
-            {
-                return;
-            }
-
-            notificationButtons.ForEach(x => x.Draw(spriteBatch));
-
             base.Draw(spriteBatch);
         }
 
@@ -87,24 +63,24 @@ namespace Narivia.Interface.Widgets
         /// Adds the notification.
         /// </summary>
         /// <param name="icon">Icon.</param>
-        public NotificationButton AddNotification(NotificationIcon icon)
+        public GuiNotificationIndicator AddNotification(NotificationIcon icon)
         {
-            NotificationButton notificationButton = new NotificationButton
+            GuiNotificationIndicator notificationButton = new GuiNotificationIndicator
             {
                 Position = new Vector2(Position.X + spacing,
-                                       Position.Y + Size.Y - (notificationButtons.Count + 1) * (32 + spacing)),
+                                       Position.Y + Size.Y - (Children.Count + 1) * (32 + spacing)),
                 Icon = icon
             };
 
-            notificationButtons.Add(notificationButton);
             notificationButton.LoadContent();
+            Children.Add(notificationButton);
 
             return notificationButton;
         }
 
         public void Clear()
         {
-            notificationButtons.ForEach(x => x.Destroy());
+            Children.ForEach(x => x.Destroy());
         }
 
         // TODO: Handle this better
@@ -119,9 +95,9 @@ namespace Narivia.Interface.Widgets
 
         void AlignItems()
         {
-            for (int i = 0; i < notificationButtons.Count; i++)
+            for (int i = 0; i < Children.Count; i++)
             {
-                notificationButtons[i].Position = new Vector2(
+                Children[i].Position = new Vector2(
                     Position.X + spacing,
                     Position.Y + Size.Y - (i + 1) * (32 + spacing));
             }

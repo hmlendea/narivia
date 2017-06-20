@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
@@ -9,12 +9,12 @@ using Narivia.Input;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Menu item widget that cycles through the values of a list of strings
+    /// Menu item GUI element that cycles through the values of a list of strings
     /// </summary>
-    public class MenuListSelector : MenuItem
+    public class GuiMenuListSelector : GuiMenuItem
     {
         /// <summary>
         /// Gets or sets the values.
@@ -27,7 +27,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         /// <value>The index of the selected value.</value>
         [XmlIgnore]
-        public int SelectedIndex { get; private set; }
+        public int SelectedIndex { get; set; }
 
         /// <summary>
         /// Gets the selected value.
@@ -47,29 +47,12 @@ namespace Narivia.Interface.Widgets
             }
         }
 
-        /// <summary>
-        /// Gets the display text.
-        /// </summary>
-        /// <value>The display text.</value>
-        public string DisplayText
-        {
-            get
-            {
-                string displayText = Text;
-
-                if (!string.IsNullOrEmpty(SelectedValue))
-                {
-                    displayText += $" : {SelectedValue}";
-                }
-
-                return displayText;
-            }
-        }
+        string originalText;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MenuListSelector"/> class.
+        /// Initializes a new instance of the <see cref="GuiMenuListSelector"/> class.
         /// </summary>
-        public MenuListSelector()
+        public GuiMenuListSelector()
         {
             Values = new List<string>();
             SelectedIndex = -1;
@@ -86,6 +69,8 @@ namespace Narivia.Interface.Widgets
             {
                 SelectedIndex = 0;
             }
+
+            originalText = Text;
 
             InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
             InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
@@ -108,16 +93,11 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            Text = originalText;
 
             if (Values.Count == 0)
             {
                 return;
-            }
-
-            if (SelectedIndex == -1)
-            {
-                SelectedIndex = 0;
             }
 
             if (SelectedIndex > Values.Count - 1)
@@ -129,7 +109,9 @@ namespace Narivia.Interface.Widgets
                 SelectedIndex = Values.Count - 1;
             }
 
-            TextImage.Text = DisplayText;
+            Text += $" : {SelectedValue}";
+
+            base.Update(gameTime);
         }
 
         /// <summary>

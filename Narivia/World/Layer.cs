@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Interface;
+using Narivia.Gui;
 
 namespace Narivia.WorldMap
 {

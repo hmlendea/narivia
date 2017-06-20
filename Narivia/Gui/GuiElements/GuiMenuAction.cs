@@ -1,28 +1,20 @@
-﻿using System;
+using System;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Screens;
-
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Menu link widget
+    /// Menu action GUI element.
     /// </summary>
-    public class MenuLink : MenuItem
+    public class GuiMenuAction : GuiMenuItem
     {
         /// <summary>
-        /// Gets or sets the link identifier.
+        /// Gets or sets the action.
         /// </summary>
-        /// <value>The link identifier.</value>
-        public string LinkId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the link arguments.
-        /// </summary>
-        /// <value>The link arguments.</value>
-        public string LinkArgs { get; set; }
+        /// <value>The type of the action.</value>
+        public string ActionId { get; set; }
 
         /// <summary>
         /// Loads the content.
@@ -52,7 +44,7 @@ namespace Narivia.Interface.Widgets
         /// <summary>
         /// Draws the content on the specified spriteBatch.
         /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
+        /// <returns>The draw.</returns>
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
@@ -67,14 +59,12 @@ namespace Narivia.Interface.Widgets
         {
             base.OnActivated(sender, e);
 
-            string[] args = new string[0];
-
-            if (!string.IsNullOrWhiteSpace(LinkArgs))
+            switch (ActionId)
             {
-                args = LinkArgs.Split(' ');
+                case "Exit":
+                    Program.Game.Exit();
+                    break;
             }
-
-            ScreenManager.Instance.ChangeScreens(LinkId, args);
         }
     }
 }

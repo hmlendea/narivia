@@ -5,21 +5,18 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Audio;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
-using Narivia.Input;
-using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Unit recruitment dialog.
+    /// Unit recruitment dialog GUI element.
     /// </summary>
-    public class BuildDialog : Widget
+    public class GuiBuildingDialog : GuiElement
     {
         /// <summary>
         /// Gets or sets the text colour.
@@ -33,19 +30,19 @@ namespace Narivia.Interface.Widgets
         Image holdingBackground;
         List<Image> holdingImages;
 
-        Image holdingText;
-        Image regionText;
+        GuiText holdingText;
+        GuiText regionText;
 
         Image priceIcon;
-        Image priceText;
+        GuiText priceText;
 
-        Button previousHoldingButton;
-        Button nextHoldingButton;
-        Button previouseRegionButton;
-        Button nextRegionButton;
+        GuiButton previousHoldingButton;
+        GuiButton nextHoldingButton;
+        GuiButton previouseRegionButton;
+        GuiButton nextRegionButton;
 
-        Button buildButton;
-        Button cancelButton;
+        GuiButton buildButton;
+        GuiButton cancelButton;
 
         List<HoldingType> holdingTypes;
         List<Region> regions;
@@ -56,9 +53,9 @@ namespace Narivia.Interface.Widgets
         const int SPACING = 8;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BuildDialog"/> class.
+        /// Initializes a new instance of the <see cref="GuiBuildingDialog"/> class.
         /// </summary>
-        public BuildDialog()
+        public GuiBuildingDialog()
         {
             TextColour = Color.Gold;
         }
@@ -88,23 +85,17 @@ namespace Narivia.Interface.Widgets
                 Tint = Color.Black
             };
 
-            holdingText = new Image
+            holdingText = new GuiText
             {
                 Text = "Castle",
-                SpriteSize = new Vector2(holdingBackground.Scale.X, 18),
-                FontName = "InfoBarFont",
-                TextVerticalAlignment = VerticalAlignment.Center,
-                TextHorizontalAlignment = HorizontalAlignment.Center,
-                Tint = TextColour
+                Size = new Vector2(holdingBackground.Scale.X, 18),
+                FontName = "InfoBarFont"
             };
-            regionText = new Image
+            regionText = new GuiText
             {
                 Text = "Region",
-                SpriteSize = new Vector2(holdingBackground.Scale.X, 18),
-                FontName = "InfoBarFont",
-                TextVerticalAlignment = VerticalAlignment.Center,
-                TextHorizontalAlignment = HorizontalAlignment.Center,
-                Tint = TextColour
+                Size = new Vector2(holdingBackground.Scale.X, 18),
+                FontName = "InfoBarFont"
             };
 
             priceIcon = new Image
@@ -112,53 +103,50 @@ namespace Narivia.Interface.Widgets
                 ImagePath = "Interface/game_icons",
                 SourceRectangle = new Rectangle(16, 0, 16, 16)
             };
-            priceText = new Image
+            priceText = new GuiText
             {
                 Text = "0",
-                SpriteSize = new Vector2(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
+                Size = new Vector2(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
-                TextVerticalAlignment = VerticalAlignment.Left,
-                TextHorizontalAlignment = HorizontalAlignment.Center,
-                Tint = TextColour
+                VerticalAlignment = VerticalAlignment.Left
             };
 
-            previousHoldingButton = new Button
+            previousHoldingButton = new GuiButton
             {
                 Text = "<",
                 TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
-            nextHoldingButton = new Button
+            nextHoldingButton = new GuiButton
             {
                 Text = ">",
                 TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
-            previouseRegionButton = new Button
+            previouseRegionButton = new GuiButton
             {
                 Text = "<",
                 TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
-            nextRegionButton = new Button
+            nextRegionButton = new GuiButton
             {
                 Text = ">",
                 TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
-            buildButton = new Button
+            buildButton = new GuiButton
             {
                 Text = "Build",
                 TextColour = TextColour,
                 Size = new Vector2(128, 32)
             };
-            cancelButton = new Button
+            cancelButton = new GuiButton
             {
                 Text = "Cancel",
                 TextColour = TextColour,
                 Size = new Vector2(64, 32)
             };
-
 
             for (int i = 0; i < holdingTypes.Count; i++)
             {
@@ -172,32 +160,29 @@ namespace Narivia.Interface.Widgets
                 holdingTypeImage.LoadContent();
             }
 
-            SetChildrenPositions();
+            SetChildrenProperties();
 
             background.LoadContent();
             holdingBackground.LoadContent();
 
-            holdingText.LoadContent();
-            regionText.LoadContent();
+            Children.Add(holdingText);
+            Children.Add(regionText);
 
             priceIcon.LoadContent();
-            priceText.LoadContent();
+            Children.Add(priceText);
 
-            nextHoldingButton.LoadContent();
-            previousHoldingButton.LoadContent();
-            nextRegionButton.LoadContent();
-            previouseRegionButton.LoadContent();
-            buildButton.LoadContent();
-            cancelButton.LoadContent();
+            Children.Add(nextHoldingButton);
+            Children.Add(previousHoldingButton);
+            Children.Add(nextRegionButton);
+            Children.Add(previouseRegionButton);
+            Children.Add(buildButton);
+            Children.Add(cancelButton);
 
             base.LoadContent();
 
             UpdateRegionList();
             SelectHolding(0);
             SelectRegion(0);
-
-            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
 
             previousHoldingButton.Clicked += previousHoldingButton_OnClicked;
             nextHoldingButton.Clicked += nextHoldingButton_OnClicked;
@@ -217,25 +202,11 @@ namespace Narivia.Interface.Widgets
             background.UnloadContent();
             holdingBackground.UnloadContent();
 
-            holdingText.UnloadContent();
-            regionText.UnloadContent();
-
             priceIcon.UnloadContent();
-            priceText.UnloadContent();
-
-            nextHoldingButton.UnloadContent();
-            previousHoldingButton.UnloadContent();
-            nextRegionButton.UnloadContent();
-            previouseRegionButton.UnloadContent();
-            buildButton.UnloadContent();
-            cancelButton.UnloadContent();
 
             holdingImages.ForEach(i => i.UnloadContent());
 
             base.UnloadContent();
-
-            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -244,29 +215,13 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
-            SetChildrenPositions();
+            SetChildrenProperties();
             UpdateRegionList();
 
             background.Update(gameTime);
             holdingBackground.Update(gameTime);
 
-            holdingText.Update(gameTime);
-            regionText.Update(gameTime);
-
             priceIcon.Update(gameTime);
-            priceText.Update(gameTime);
-
-            nextHoldingButton.Update(gameTime);
-            previousHoldingButton.Update(gameTime);
-            nextRegionButton.Update(gameTime);
-            previouseRegionButton.Update(gameTime);
-            buildButton.Update(gameTime);
-            cancelButton.Update(gameTime);
 
             holdingImages[currentHoldingTypeIndex].Update(gameTime);
 
@@ -279,26 +234,10 @@ namespace Narivia.Interface.Widgets
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Visible)
-            {
-                return;
-            }
-
             background.Draw(spriteBatch);
             holdingBackground.Draw(spriteBatch);
 
-            holdingText.Draw(spriteBatch);
-            regionText.Draw(spriteBatch);
-
             priceIcon.Draw(spriteBatch);
-            priceText.Draw(spriteBatch);
-
-            nextHoldingButton.Draw(spriteBatch);
-            previousHoldingButton.Draw(spriteBatch);
-            nextRegionButton.Draw(spriteBatch);
-            previouseRegionButton.Draw(spriteBatch);
-            buildButton.Draw(spriteBatch);
-            cancelButton.Draw(spriteBatch);
 
             holdingImages[currentHoldingTypeIndex].Draw(spriteBatch);
 
@@ -324,10 +263,10 @@ namespace Narivia.Interface.Widgets
             SelectRegion(currentRegionIndex);
         }
 
-        void SetChildrenPositions()
+        void SetChildrenProperties()
         {
             background.Position = Position;
-            holdingBackground.Position = new Vector2(Position.X + (Size.X - holdingBackground.Scale.X) / 2, Position.Y + holdingText.SpriteSize.Y + SPACING);
+            holdingBackground.Position = new Vector2(Position.X + (Size.X - holdingBackground.Scale.X) / 2, Position.Y + holdingText.Size.Y + SPACING);
 
             holdingText.Position = holdingBackground.Position;
             regionText.Position = new Vector2(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom - regionText.ScreenArea.Height);
@@ -348,6 +287,10 @@ namespace Narivia.Interface.Widgets
 
             holdingImages.ForEach(i => i.Position = new Vector2(holdingBackground.Position.X + (holdingBackground.Scale.X - i.SourceRectangle.Width) / 2,
                                                              holdingBackground.Position.Y + (holdingBackground.Scale.Y - i.SourceRectangle.Height) / 2));
+
+            holdingText.TextColour = TextColour;
+            regionText.TextColour = TextColour;
+            priceText.TextColour = TextColour;
         }
 
         void SelectHolding(int index)
@@ -385,24 +328,6 @@ namespace Narivia.Interface.Widgets
             }
 
             regionText.Text = regions[currentRegionIndex].Name;
-        }
-
-        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
-        {
-            if (!ScreenArea.Contains(e.MousePosition) || e.Button != MouseButton.LeftButton)
-            {
-                return;
-            }
-
-            AudioManager.Instance.PlaySound("Interface/click");
-        }
-
-        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
-        {
-            if (ScreenArea.Contains(e.CurrentMousePosition) && !ScreenArea.Contains(e.PreviousMousePosition))
-            {
-                AudioManager.Instance.PlaySound("Interface/select");
-            }
         }
 
         void previousHoldingButton_OnClicked(object sender, MouseButtonEventArgs e)

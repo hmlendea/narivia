@@ -10,12 +10,12 @@ using Narivia.Input.Events;
 using Narivia.Models;
 using Narivia.WorldMap;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Game map widget.
+    /// World map GUI element.
     /// </summary>
-    public class GameMap : Widget
+    public class GuiWorldmap : GuiElement
     {
         /// <summary>
         /// Gets or sets the size.

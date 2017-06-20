@@ -7,7 +7,7 @@ using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 using Narivia.Settings;
 
-namespace Narivia.Interface
+namespace Narivia.Gui
 {
     public class Camera
     {

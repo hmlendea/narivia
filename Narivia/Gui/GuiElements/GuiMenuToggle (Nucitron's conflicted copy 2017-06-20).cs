@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Menu toggle widget.
+    /// Menu toggle GUI element.
     /// </summary>
-    public class MenuToggle : MenuItem
+    public class GuiMenuToggle : GuiMenuItem
     {
         /// <summary>
         /// Gets or sets the property.
@@ -47,7 +47,7 @@ namespace Narivia.Interface.Widgets
         public override void LoadContent()
         {
             base.LoadContent();
-            TextImage.Text = DisplayText;
+            text.Text = DisplayText;
         }
 
         /// <summary>
@@ -64,12 +64,7 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
-            TextImage.Text = DisplayText;
+            text.Text = DisplayText;
 
             base.Update(gameTime);
         }

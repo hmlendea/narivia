@@ -118,7 +118,7 @@ namespace Narivia.Graphics
             {
                 return new Rectangle(
                     (int)(Position.X),
-                          (int)(Position.Y),
+                    (int)(Position.Y),
                     (int)(SourceRectangle.Width * Scale.X),
                     (int)(SourceRectangle.Height * Scale.Y));
             }

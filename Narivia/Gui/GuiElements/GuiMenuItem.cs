@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
@@ -6,18 +6,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Audio;
-using Narivia.Graphics;
 using Narivia.Graphics.ImageEffects;
 using Narivia.Input;
-using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Menu item widget.
+    /// Menu item GUI element.
     /// </summary>
-    public class MenuItem : Widget
+    public class GuiMenuItem : GuiElement
     {
         /// <summary>
         /// Gets or sets the text.
@@ -37,28 +35,6 @@ namespace Narivia.Interface.Widgets
         /// <value>The selected text colour.</value>
         public Color SelectedTextColour { get; set; }
 
-        /// <summary>
-        /// Gets or sets the position.
-        /// </summary>
-        /// <value>The position.</value>
-        public new Vector2 Position
-        {
-            get { return TextImage.Position; }
-            set { TextImage.Position = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the size.
-        /// </summary>
-        /// <value>The size.</value>
-        public new Vector2 Size { get; set; }
-
-        /// <summary>
-        /// Gets the screen area.
-        /// </summary>
-        /// <value>The screen area.</value>
-        public new Rectangle ScreenArea => TextImage.ScreenArea;
-
         // TODO: Maybe implement my own handler and args
         /// <summary>
         /// Occurs when activated.
@@ -66,21 +42,21 @@ namespace Narivia.Interface.Widgets
         public event EventHandler Activated;
 
         /// <summary>
-        /// The text image.
+        /// The text GUI element.
         /// </summary>
-        protected Image TextImage;
+        protected GuiText text;
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:Narivia.Widgets.MenuItem"/> is selected.
+        /// Gets or sets a value indicating whether this <see cref="GuiMenuItem"/> is selected.
         /// </summary>
         /// <value><c>true</c> if selected; otherwise, <c>false</c>.</value>
         [XmlIgnore]
         public bool Selected { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Widgets.MenuItem"/> class.
+        /// Initializes a new instance of the <see cref="T:Narivia.GUI elements.MenuItem"/> class.
         /// </summary>
-        public MenuItem()
+        public GuiMenuItem()
         {
             TextColour = Color.White;
             SelectedTextColour = Color.Gold;
@@ -93,23 +69,20 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void LoadContent()
         {
-            TextImage = new Image
-            {
-                Text = Text,
-                SpriteSize = Size,
-                TextVerticalAlignment = VerticalAlignment.Center,
-                TextHorizontalAlignment = HorizontalAlignment.Center
-            };
-            TextImage.FadeEffect = new FadeEffect
+            text = new GuiText { FontName = "MenuFont" };
+            text.FadeEffect = new FadeEffect
             {
                 Speed = 2,
                 MinimumOpacity = 0.25f
             };
 
-            base.LoadContent();
-            TextImage.LoadContent();
+            SetChildrenProperties();
 
-            TextImage.ActivateEffect("FadeEffect");
+            Children.Add(text);
+
+            base.LoadContent();
+
+            text.ActivateEffect("FadeEffect");
 
             InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
             InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
@@ -122,7 +95,6 @@ namespace Narivia.Interface.Widgets
         public override void UnloadContent()
         {
             base.UnloadContent();
-            TextImage.UnloadContent();
 
             InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
             InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
@@ -135,26 +107,9 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
-            TextImage.SpriteSize = Size;
-
-            if (Selected)
-            {
-                TextImage.Active = true;
-                TextImage.Tint = SelectedTextColour;
-            }
-            else
-            {
-                TextImage.Active = false;
-                TextImage.Tint = TextColour;
-            }
+            SetChildrenProperties();
 
             base.Update(gameTime);
-            TextImage.Update(gameTime);
         }
 
         /// <summary>
@@ -164,7 +119,24 @@ namespace Narivia.Interface.Widgets
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            TextImage.Draw(spriteBatch);
+        }
+
+        void SetChildrenProperties()
+        {
+            text.Text = Text;
+            text.Position = Position;
+            text.Size = Size;
+
+            if (Selected)
+            {
+                text.EffectsActive = true;
+                text.TextColour = SelectedTextColour;
+            }
+            else
+            {
+                text.EffectsActive = false;
+                text.TextColour = TextColour;
+            }
         }
 
         /// <summary>

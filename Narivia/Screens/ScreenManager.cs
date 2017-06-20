@@ -130,6 +130,8 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
+            currentScreen.Update(gameTime);
+
             if (Transitioning)
             {
                 Transition(gameTime);
@@ -138,8 +140,6 @@ namespace Narivia.Screens
 
             Size = SettingsManager.Instance.Resolution;
             TransitionImage.Scale = Size;
-
-            currentScreen.Update(gameTime);
         }
 
         /// <summary>

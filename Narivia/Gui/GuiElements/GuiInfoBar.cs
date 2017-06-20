@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -6,27 +6,31 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Input;
 using Narivia.Input.Events;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Info bar widget.
+    /// Info bar GUI element.
     /// </summary>
-    public class InfoBar : Widget
+    public class GuiInfoBar : GuiElement
     {
-        Image background;
+        GuiImage background;
 
-        Image regionsIcon, regionsText;
-        Image holdingsIcon, holdingsText;
-        Image wealthIcon, wealthText;
-        Image troopsIcon, troopsText;
+        GuiImage regionsIcon;
+        GuiImage holdingsIcon;
+        GuiImage wealthIcon;
+        GuiImage troopsIcon;
 
-        ToolTip regionsTooltip;
-        ToolTip holdingsTooltip;
-        ToolTip wealthTooltip;
-        ToolTip troopsTooltip;
+        GuiText regionsText;
+        GuiText holdingsText;
+        GuiText wealthText;
+        GuiText troopsText;
+
+        GuiTooltip regionsTooltip;
+        GuiTooltip holdingsTooltip;
+        GuiTooltip wealthTooltip;
+        GuiTooltip troopsTooltip;
 
         /// <summary>
         /// Gets or sets the regions count.
@@ -75,9 +79,9 @@ namespace Narivia.Interface.Widgets
         public float Spacing { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Interface.Widgets.InfoBar"/> class.
+        /// Initializes a new instance of the <see cref="T:Narivia.Interface.GUI elements.InfoBar"/> class.
         /// </summary>
-        public InfoBar()
+        public GuiInfoBar()
         {
             BackgroundColour = Color.Black;
             TextColour = Color.Gold;
@@ -90,106 +94,99 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void LoadContent()
         {
-            background = new Image
+            background = new GuiImage
             {
-                ImagePath = "ScreenManager/FillImage",
-                SourceRectangle = new Rectangle(0, 0, 1, 1),
-                Position = Position,
-                Scale = Size,
-                Tint = BackgroundColour
+                ContentFile = "ScreenManager/FillImage",
+                SourceRectangle = new Rectangle(0, 0, 1, 1)
             };
 
-            regionsIcon = new Image
+            regionsIcon = new GuiImage
             {
-                ImagePath = "Interface/game_icons",
+                ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(0, 0, 16, 16)
             };
-            holdingsIcon = new Image
+            holdingsIcon = new GuiImage
             {
-                ImagePath = "Interface/game_icons",
+                ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(48, 0, 16, 16)
             };
-            wealthIcon = new Image
+            wealthIcon = new GuiImage
             {
-                ImagePath = "Interface/game_icons",
+                ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(16, 0, 16, 16)
             };
-            troopsIcon = new Image
+            troopsIcon = new GuiImage
             {
-                ImagePath = "Interface/game_icons",
+                ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(32, 0, 16, 16)
             };
 
-            regionsText = new Image
+            regionsText = new GuiText
             {
-                SpriteSize = new Vector2(40, 16),
-                FontName = "InfoBarFont",
-                Tint = TextColour
+                Size = new Vector2(40, 16),
+                VerticalAlignment = VerticalAlignment.Left
             };
-            holdingsText = new Image
+            holdingsText = new GuiText
             {
-                SpriteSize = new Vector2(60, 16),
-                FontName = "InfoBarFont",
-                Tint = TextColour
+                Size = new Vector2(60, 16),
+                VerticalAlignment = VerticalAlignment.Left
             };
-            wealthText = new Image
+            wealthText = new GuiText
             {
-                SpriteSize = new Vector2(60, 16),
-                FontName = "InfoBarFont",
-                Tint = TextColour
+                Size = new Vector2(60, 16),
+                VerticalAlignment = VerticalAlignment.Left
             };
-            troopsText = new Image
+            troopsText = new GuiText
             {
-                SpriteSize = new Vector2(60, 16),
-                FontName = "InfoBarFont",
-                Tint = TextColour
+                Size = new Vector2(60, 16),
+                VerticalAlignment = VerticalAlignment.Left
             };
 
-            regionsTooltip = new ToolTip
+            regionsTooltip = new GuiTooltip
             {
                 Text = "Regions",
                 Size = new Vector2(100, 20),
                 Visible = false
             };
-            holdingsTooltip = new ToolTip
+            holdingsTooltip = new GuiTooltip
             {
                 Text = "Holdings",
                 Size = new Vector2(100, 20),
                 Visible = false
             };
-            wealthTooltip = new ToolTip
+            wealthTooltip = new GuiTooltip
             {
                 Text = "Wealth",
                 Size = new Vector2(100, 20),
                 Visible = false
             };
-            troopsTooltip = new ToolTip
+            troopsTooltip = new GuiTooltip
             {
                 Text = "Troops",
                 Size = new Vector2(128, 128),
                 Visible = false
             };
 
-            background.LoadContent();
+            SetChildrenProperties();
 
-            regionsIcon.LoadContent();
-            holdingsIcon.LoadContent();
-            wealthIcon.LoadContent();
-            troopsIcon.LoadContent();
+            Children.Add(background);
 
-            regionsText.LoadContent();
-            holdingsText.LoadContent();
-            wealthText.LoadContent();
-            troopsText.LoadContent();
+            Children.Add(regionsIcon);
+            Children.Add(holdingsIcon);
+            Children.Add(wealthIcon);
+            Children.Add(troopsIcon);
 
-            regionsTooltip.LoadContent();
-            holdingsTooltip.LoadContent();
-            wealthTooltip.LoadContent();
-            troopsTooltip.LoadContent();
+            Children.Add(regionsText);
+            Children.Add(holdingsText);
+            Children.Add(wealthText);
+            Children.Add(troopsText);
+
+            Children.Add(regionsTooltip);
+            Children.Add(holdingsTooltip);
+            Children.Add(wealthTooltip);
+            Children.Add(troopsTooltip);
 
             base.LoadContent();
-
-            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -197,26 +194,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void UnloadContent()
         {
-            background.UnloadContent();
-
-            regionsIcon.UnloadContent();
-            holdingsIcon.UnloadContent();
-            wealthIcon.UnloadContent();
-            troopsIcon.UnloadContent();
-
-            regionsText.UnloadContent();
-            holdingsText.UnloadContent();
-            wealthText.UnloadContent();
-            troopsText.UnloadContent();
-
-            regionsTooltip.UnloadContent();
-            holdingsTooltip.UnloadContent();
-            wealthTooltip.UnloadContent();
-            troopsTooltip.UnloadContent();
-
             base.UnloadContent();
-
-            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -225,16 +203,22 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (!Enabled)
-            {
-                return;
-            }
+            SetChildrenProperties();
 
-            regionsText.Text = Regions.ToString();
-            holdingsText.Text = Holdings.ToString();
-            wealthText.Text = Wealth.ToString();
-            troopsText.Text = Troops.Values.Sum().ToString();
+            base.Update(gameTime);
+        }
 
+        /// <summary>
+        /// Draws the content on the specified spriteBatch.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+        }
+
+        void SetChildrenProperties()
+        {
             regionsIcon.Position = new Vector2(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ScreenArea.Height) / 2);
             regionsText.Position = new Vector2(regionsIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - regionsText.ScreenArea.Height) / 2);
             holdingsIcon.Position = new Vector2(regionsText.ScreenArea.Right + Spacing, regionsIcon.Position.Y);
@@ -249,62 +233,38 @@ namespace Narivia.Interface.Widgets
             wealthTooltip.Position = new Vector2(wealthIcon.Position.X, ScreenArea.Bottom);
             troopsTooltip.Position = new Vector2(troopsIcon.Position.X, ScreenArea.Bottom);
 
+            regionsText.Text = Regions.ToString();
+            holdingsText.Text = Holdings.ToString();
+            wealthText.Text = Wealth.ToString();
+            troopsText.Text = "0";
+
             troopsTooltip.Text = string.Empty;
-            Troops.ToList().ForEach(t => troopsTooltip.Text += $"{t.Key}: {t.Value}\n");
 
-            background.Update(gameTime);
+            if (Troops != null && Troops.Count > 0)
+            {
+                troopsText.Text = Troops.Values.Sum().ToString();
+                Troops.ToList().ForEach(t => troopsTooltip.Text += $"{t.Key}: {t.Value}\n");
+            }
 
-            regionsIcon.Update(gameTime);
-            holdingsIcon.Update(gameTime);
-            wealthIcon.Update(gameTime);
-            troopsIcon.Update(gameTime);
+            regionsText.TextColour = TextColour;
+            holdingsText.TextColour = TextColour;
+            wealthText.TextColour = TextColour;
+            troopsText.TextColour = TextColour;
 
-            regionsText.Update(gameTime);
-            holdingsText.Update(gameTime);
-            wealthText.Update(gameTime);
-            troopsText.Update(gameTime);
-
-            regionsTooltip.Update(gameTime);
-            holdingsTooltip.Update(gameTime);
-            wealthTooltip.Update(gameTime);
-            troopsTooltip.Update(gameTime);
-
-            base.Update(gameTime);
+            background.Position = Position;
+            background.Scale = Size;
+            background.TintColour = BackgroundColour;
         }
 
         /// <summary>
-        /// Draws the content on the specified spriteBatch.
+        /// Fired by the MouseMoved event.
         /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected override void OnMouseMoved(object sender, MouseEventArgs e)
         {
-            if (!Visible)
-            {
-                return;
-            }
+            base.OnMouseMoved(sender, e);
 
-            background.Draw(spriteBatch);
-
-            regionsIcon.Draw(spriteBatch);
-            holdingsIcon.Draw(spriteBatch);
-            wealthIcon.Draw(spriteBatch);
-            troopsIcon.Draw(spriteBatch);
-
-            regionsText.Draw(spriteBatch);
-            holdingsText.Draw(spriteBatch);
-            wealthText.Draw(spriteBatch);
-            troopsText.Draw(spriteBatch);
-
-            regionsTooltip.Draw(spriteBatch);
-            holdingsTooltip.Draw(spriteBatch);
-            wealthTooltip.Draw(spriteBatch);
-            troopsTooltip.Draw(spriteBatch);
-
-            base.Draw(spriteBatch);
-        }
-
-        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
-        {
             if (regionsIcon.ScreenArea.Contains(e.CurrentMousePosition) ||
                 regionsText.ScreenArea.Contains(e.CurrentMousePosition))
             {

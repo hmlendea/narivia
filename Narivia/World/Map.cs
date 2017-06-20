@@ -9,7 +9,7 @@ using TiledSharp;
 
 using Narivia.Graphics;
 using Narivia.Infrastructure.Helpers;
-using Narivia.Interface;
+using Narivia.Gui;
 
 namespace Narivia.WorldMap
 {

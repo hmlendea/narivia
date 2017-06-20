@@ -6,8 +6,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Interface.Widgets;
-using Narivia.Interface.Widgets.Enumerations;
+using Narivia.Gui;
+using Narivia.Gui.GuiElements;
+using Narivia.Gui.GuiElements.Enumerations;
 
 namespace Narivia.Screens
 {
@@ -41,18 +42,18 @@ namespace Narivia.Screens
         public Color BackgroundColour { get; set; }
 
         /// <summary>
-        /// Gets or sets the notification widgets.
+        /// Gets or sets the notification GUI elements.
         /// </summary>
         /// <value>The notifications.</value>
         [XmlElement("Notification")]
-        public List<Notification> Notifications { get; set; }
+        public List<GuiNotificationDialog> Notifications { get; set; }
 
         /// <summary>
-        /// Gets or sets the button widgets.
+        /// Gets or sets the button GUI elements.
         /// </summary>
         /// <value>The buttons.</value>
         [XmlElement("Button")]
-        public List<Button> Buttons { get; set; }
+        public List<GuiButton> Buttons { get; set; }
 
         /// <summary>
         /// Gets or sets the screen arguments.
@@ -68,8 +69,8 @@ namespace Narivia.Screens
             Type = GetType();
             XmlPath = @"Screens/" + Type.ToString().Replace("Narivia.Screens.", "") + ".xml";
 
-            Notifications = new List<Notification>();
-            Buttons = new List<Button>();
+            Notifications = new List<GuiNotificationDialog>();
+            Buttons = new List<GuiButton>();
         }
 
         /// <summary>
@@ -80,8 +81,10 @@ namespace Narivia.Screens
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
             ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
 
-            Notifications.ForEach(x => x.LoadContent());
-            Buttons.ForEach(x => x.LoadContent());
+            GuiManager.Instance.GuiElements.AddRange(Notifications);
+            GuiManager.Instance.GuiElements.AddRange(Buttons);
+
+            GuiManager.Instance.LoadContent();
         }
 
         /// <summary>
@@ -91,8 +94,7 @@ namespace Narivia.Screens
         {
             content.Unload();
 
-            Notifications.ForEach(x => x.UnloadContent());
-            Buttons.ForEach(x => x.UnloadContent());
+            GuiManager.Instance.UnloadContent();
         }
 
         /// <summary>
@@ -101,11 +103,7 @@ namespace Narivia.Screens
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-            Notifications.RemoveAll(x => x.Destroyed);
-            Buttons.RemoveAll(x => x.Destroyed);
-
-            Notifications.ForEach(x => x.Update(gameTime));
-            Buttons.ForEach(x => x.Update(gameTime));
+            GuiManager.Instance.Update(gameTime);
         }
 
         /// <summary>
@@ -115,9 +113,7 @@ namespace Narivia.Screens
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
-
-            Notifications.ForEach(x => x.Draw(spriteBatch));
-            Buttons.ForEach(x => x.Draw(spriteBatch));
+            GuiManager.Instance.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -130,7 +126,7 @@ namespace Narivia.Screens
         /// <param name="size">Size.</param>
         public void ShowNotification(string title, string text, NotificationType type, NotificationStyle style, Vector2 size)
         {
-            Notification notification = new Notification
+            GuiNotificationDialog notification = new GuiNotificationDialog
             {
                 Title = title,
                 Text = text,
@@ -142,7 +138,7 @@ namespace Narivia.Screens
 
             notification.LoadContent();
 
-            Notifications.Add(notification);
+            GuiManager.Instance.GuiElements.Add(notification);
         }
     }
 }

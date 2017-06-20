@@ -11,8 +11,9 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
 using Narivia.Infrastructure.Exceptions;
 using Narivia.Input.Events;
-using Narivia.Interface.Widgets;
-using Narivia.Interface.Widgets.Enumerations;
+using Narivia.Gui;
+using Narivia.Gui.GuiElements;
+using Narivia.Gui.GuiElements.Enumerations;
 
 namespace Narivia.Screens
 {
@@ -25,36 +26,36 @@ namespace Narivia.Screens
         /// Gets or sets the game map.
         /// </summary>
         /// <value>The game map.</value>
-        public GameMap GameMap { get; set; }
+        public GuiWorldmap GameMap { get; set; }
 
         /// <summary>
         /// Gets or sets the info bar.
         /// </summary>
         /// <value>The info bar.</value>
-        public InfoBar InfoBar { get; set; }
+        public GuiInfoBar InfoBar { get; set; }
 
         /// <summary>
         /// Gets or sets the region bar.
         /// </summary>
         /// <value>The region bar.</value>
-        public RegionBar RegionBar { get; set; }
+        public GuiRegionBar RegionBar { get; set; }
 
         /// <summary>
         /// Gets or sets the side bar.
         /// </summary>
         /// <value>The side bar.</value>
-        public SideBar SideBar { get; set; }
+        public GuiSideBar SideBar { get; set; }
 
         /// <summary>
         /// Gets or sets the notification bar.
         /// </summary>
         /// <value>The notification bar.</value>
-        public NotificationBar NotificationBar { get; set; }
+        public GuiNotificationBar NotificationBar { get; set; }
 
         IGameManager game;
 
-        RecruitmentDialog recruitmentDialog;
-        BuildDialog buildDialog;
+        GuiRecruitmentDialog recruitmentDialog;
+        GuiBuildingDialog buildDialog;
 
         Dictionary<string, int> troopsOld;
         Dictionary<string, int> relationsOld;
@@ -74,8 +75,8 @@ namespace Narivia.Screens
                 initialFactionId = ScreenArgs[1];
             }
 
-            recruitmentDialog = new RecruitmentDialog { Size = new Vector2(256, 288) };
-            buildDialog = new BuildDialog { Size = new Vector2(256, 224) };
+            recruitmentDialog = new GuiRecruitmentDialog { Size = new Vector2(256, 288) };
+            buildDialog = new GuiBuildingDialog { Size = new Vector2(256, 224) };
 
             recruitmentDialog.Hide();
             buildDialog.Hide();
@@ -98,14 +99,13 @@ namespace Narivia.Screens
             SideBar.FactionId = game.PlayerFactionId;
             SideBar.FactionName = game.GetFactionName(game.PlayerFactionId);
 
-            GameMap.LoadContent();
-            InfoBar.LoadContent();
-            RegionBar.LoadContent();
-            SideBar.LoadContent();
-            NotificationBar.LoadContent();
-
-            recruitmentDialog.LoadContent();
-            buildDialog.LoadContent();
+            GuiManager.Instance.GuiElements.Add(GameMap);
+            GuiManager.Instance.GuiElements.Add(InfoBar);
+            GuiManager.Instance.GuiElements.Add(RegionBar);
+            GuiManager.Instance.GuiElements.Add(SideBar);
+            GuiManager.Instance.GuiElements.Add(NotificationBar);
+            GuiManager.Instance.GuiElements.Add(recruitmentDialog);
+            GuiManager.Instance.GuiElements.Add(buildDialog);
 
             base.LoadContent();
 
@@ -131,16 +131,6 @@ namespace Narivia.Screens
         /// </summary>
         public override void UnloadContent()
         {
-            GameMap.UnloadContent();
-
-            InfoBar.UnloadContent();
-            RegionBar.UnloadContent();
-            SideBar.UnloadContent();
-            NotificationBar.UnloadContent();
-
-            recruitmentDialog.UnloadContent();
-            buildDialog.UnloadContent();
-
             base.UnloadContent();
         }
 
@@ -174,16 +164,6 @@ namespace Narivia.Screens
             SideBar.FactionId = game.PlayerFactionId;
             SideBar.FactionName = game.GetFactionName(game.PlayerFactionId);
 
-            GameMap.Update(gameTime);
-
-            InfoBar.Update(gameTime);
-            RegionBar.Update(gameTime);
-            SideBar.Update(gameTime);
-            NotificationBar.Update(gameTime);
-
-            recruitmentDialog.Update(gameTime);
-            buildDialog.Update(gameTime);
-
             base.Update(gameTime);
         }
 
@@ -194,16 +174,6 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            GameMap.Draw(spriteBatch);
-
-            InfoBar.Draw(spriteBatch);
-            RegionBar.Draw(spriteBatch);
-            SideBar.Draw(spriteBatch);
-            NotificationBar.Draw(spriteBatch);
-
-            recruitmentDialog.Draw(spriteBatch);
-            buildDialog.Draw(spriteBatch);
-
             base.Draw(spriteBatch);
         }
 

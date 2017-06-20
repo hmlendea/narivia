@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,14 +8,14 @@ using Narivia.Graphics;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
-using Narivia.Interface.Widgets.Enumerations;
+using Narivia.Gui.GuiElements.Enumerations;
 
-namespace Narivia.Interface.Widgets
+namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Notification widget.
+    /// Notification GUI element.
     /// </summary>
-    public class Notification : Widget
+    public class GuiNotificationDialog : GuiElement
     {
         /// <summary>
         /// Gets or sets the type.
@@ -60,18 +60,19 @@ namespace Narivia.Interface.Widgets
         /// <value>The text colour.</value>
         public Color TextColour { get; set; }
 
-        Image[,] images;
-        Image titleImage;
-        Image textImage;
-        Image yesButtonImage;
-        Image noButtonImage;
+        GuiImage[,] images;
+        GuiImage yesButtonImage;
+        GuiImage noButtonImage;
+
+        GuiText title;
+        GuiText text;
 
         const int tileSize = 32;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Notification"/> class.
+        /// Initializes a new instance of the <see cref="GuiNotificationDialog"/> class.
         /// </summary>
-        public Notification()
+        public GuiNotificationDialog()
         {
             Type = NotificationType.Informational;
             Style = NotificationStyle.Big;
@@ -85,9 +86,10 @@ namespace Narivia.Interface.Widgets
         {
             string imagePath, fontName;
 
-            images = new Image[(int)NotificationSize.X, (int)NotificationSize.Y];
-            titleImage = new Image();
-            textImage = new Image();
+            images = new GuiImage[(int)NotificationSize.X, (int)NotificationSize.Y];
+
+            title = new GuiText();
+            text = new GuiText();
 
             switch (Style)
             {
@@ -103,63 +105,54 @@ namespace Narivia.Interface.Widgets
                     break;
             }
 
+            title.FontName = "NotificationTitleFontBig";
+            text.FontName = fontName;
+
             for (int y = 0; y < NotificationSize.Y; y++)
             {
                 for (int x = 0; x < NotificationSize.X; x++)
                 {
-                    images[x, y] = new Image
+                    images[x, y] = new GuiImage
                     {
-                        ImagePath = imagePath,
-                        FontName = fontName,
+                        ContentFile = imagePath,
                         Position = new Vector2(Position.X + x * tileSize, Position.Y + y * tileSize),
                         SourceRectangle = CalculateSourceRectangle(x, y)
                     };
 
-                    images[x, y].LoadContent();
+                    Children.Add(images[x, y]);
                 }
             }
 
-            titleImage.Text = Title;
-            titleImage.TextVerticalAlignment = VerticalAlignment.Center;
-            titleImage.Tint = TextColour;
-            titleImage.FontName = "NotificationTitleFontBig";
-            titleImage.Position = new Vector2(Position.X, Position.Y + tileSize);
-            titleImage.SpriteSize = new Vector2(NotificationSize.X * tileSize, tileSize);
-
-            textImage.Text = Text;
-            textImage.TextVerticalAlignment = VerticalAlignment.Center;
-            textImage.Tint = TextColour;
-            textImage.FontName = fontName;
-            textImage.Position = new Vector2(Position.X + tileSize / 2, Position.Y + tileSize * 2.5f);
-            textImage.SpriteSize = new Vector2(Size.X - tileSize, Size.Y - titleImage.SpriteSize.Y - tileSize);
-
-            yesButtonImage = new Image
+            yesButtonImage = new GuiImage
             {
-                ImagePath = "Interface/notification_controls",
+                ContentFile = "Interface/notification_controls",
                 SourceRectangle = new Rectangle(0, 0, tileSize, tileSize),
                 Position = new Vector2(Position.X + (NotificationSize.X - 1) * tileSize, Position.Y)
             };
+            yesButtonImage.Clicked += yesButton_OnClicked;
+            yesButtonImage.MouseEntered += yesNoButton_OnMouseEntered;
 
             if (Type == NotificationType.Interogative)
             {
-                noButtonImage = new Image
+                noButtonImage = new GuiImage
                 {
-                    ImagePath = "Interface/notification_controls",
+                    ContentFile = "Interface/notification_controls",
                     SourceRectangle = new Rectangle(tileSize, 0, tileSize, tileSize),
                     Position = new Vector2(Position.X, Position.Y)
                 };
+                noButtonImage.Clicked += noButton_OnClicked;
+                noButtonImage.MouseEntered += yesNoButton_OnMouseEntered;
 
-                noButtonImage.LoadContent();
+                Children.Add(noButtonImage);
             }
 
-            titleImage.LoadContent();
-            textImage.LoadContent();
-            yesButtonImage.LoadContent();
+            SetChildrenProperties();
+
+            Children.Add(title);
+            Children.Add(text);
+            Children.Add(yesButtonImage);
 
             base.LoadContent();
-
-            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -167,24 +160,7 @@ namespace Narivia.Interface.Widgets
         /// </summary>
         public override void UnloadContent()
         {
-            foreach (Image image in images)
-            {
-                image.UnloadContent();
-            }
-
-            titleImage.UnloadContent();
-            textImage.UnloadContent();
-            yesButtonImage.UnloadContent();
-
-            if (Type == NotificationType.Interogative)
-            {
-                noButtonImage.UnloadContent();
-            }
-
             base.UnloadContent();
-
-            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -193,19 +169,7 @@ namespace Narivia.Interface.Widgets
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            foreach (Image image in images)
-            {
-                image.Update(gameTime);
-            }
-
-            titleImage.Update(gameTime);
-            textImage.Update(gameTime);
-            yesButtonImage.Update(gameTime);
-
-            if (Type == NotificationType.Interogative)
-            {
-                noButtonImage.Update(gameTime);
-            }
+            SetChildrenProperties();
 
             base.Update(gameTime);
         }
@@ -216,21 +180,20 @@ namespace Narivia.Interface.Widgets
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Image image in images)
-            {
-                image.Draw(spriteBatch);
-            }
-
-            titleImage.Draw(spriteBatch);
-            textImage.Draw(spriteBatch);
-            yesButtonImage.Draw(spriteBatch);
-
-            if (Type == NotificationType.Interogative)
-            {
-                noButtonImage.Draw(spriteBatch);
-            }
-
             base.Draw(spriteBatch);
+        }
+
+        void SetChildrenProperties()
+        {
+            title.Text = Title;
+            title.TextColour = TextColour;
+            title.Position = new Vector2(Position.X, Position.Y + tileSize);
+            title.Size = new Vector2(NotificationSize.X * tileSize, tileSize);
+
+            text.Text = Text;
+            text.TextColour = TextColour;
+            text.Position = new Vector2(Position.X + tileSize / 2, Position.Y + tileSize * 1.5f);
+            text.Size = new Vector2(Size.X - tileSize, Size.Y - title.Size.Y - tileSize * 1.5f);
         }
 
         Rectangle CalculateSourceRectangle(int x, int y)
@@ -267,37 +230,23 @@ namespace Narivia.Interface.Widgets
             return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
         }
 
-        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        void yesButton_OnClicked(object sender, MouseButtonEventArgs e)
         {
-            if (yesButtonImage.ScreenArea.Contains(e.MousePosition) && e.Button == MouseButton.LeftButton)
-            {
-                AudioManager.Instance.PlaySound("Interface/click");
+            AudioManager.Instance.PlaySound("Interface/click");
 
-                Destroy();
-            }
-
-            if (Type == NotificationType.Interogative &&
-                noButtonImage.ScreenArea.Contains(e.MousePosition) &&
-                e.Button == MouseButton.LeftButton)
-            {
-                AudioManager.Instance.PlaySound("Interface/click");
-
-                Destroy();
-            }
+            Destroy();
         }
 
-        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        void noButton_OnClicked(object sender, MouseButtonEventArgs e)
         {
-            if (yesButtonImage.ScreenArea.Contains(e.CurrentMousePosition) && !yesButtonImage.ScreenArea.Contains(e.PreviousMousePosition))
-            {
-                AudioManager.Instance.PlaySound("Interface/select");
-            }
+            AudioManager.Instance.PlaySound("Interface/click");
 
-            if (Type == NotificationType.Interogative &&
-                noButtonImage.ScreenArea.Contains(e.CurrentMousePosition) && !noButtonImage.ScreenArea.Contains(e.PreviousMousePosition))
-            {
-                AudioManager.Instance.PlaySound("Interface/select");
-            }
+            Destroy();
+        }
+
+        void yesNoButton_OnMouseEntered(object sender, MouseEventArgs e)
+        {
+            AudioManager.Instance.PlaySound("Interface/select");
         }
     }
 }

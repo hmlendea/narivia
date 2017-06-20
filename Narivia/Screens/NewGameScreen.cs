@@ -5,7 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers;
-using Narivia.Interface.Widgets;
+using Narivia.Gui;
+using Narivia.Gui.GuiElements;
 using Narivia.Models;
 
 namespace Narivia.Screens
@@ -16,8 +17,8 @@ namespace Narivia.Screens
     public class NewGameScreen : MenuScreen
     {
         GameManager game = new GameManager();
-        MenuListSelector factionSelector;
-        MenuLink startLink;
+        GuiMenuListSelector factionSelector;
+        GuiMenuLink startLink;
 
         string selectedFactionName;
 
@@ -38,6 +39,7 @@ namespace Narivia.Screens
             startLink = Links.FirstOrDefault(x => x.Text == "Start");
 
             factionSelector.Values.AddRange(factions.Select(f => f.Name));
+            factionSelector.SelectedIndex = 0;
         }
 
         /// <summary>
