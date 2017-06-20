@@ -11,7 +11,17 @@ namespace Narivia.Infrastructure.Extensions
         /// <returns>The duplicated elements.</returns>
         public static string ToTitleCase(this string source)
         {
-            return string.Join(string.Empty, source.Split(' ').Select(x => char.ToUpper(x[0]) + x.Substring(1)));
+            char[] chars = source.ToLower().ToCharArray();
+
+            for (int i = 0; i < chars.Count(); i++)
+            {
+                if (i == 0 || chars[i - 1] == ' ')
+                {
+                    chars[i] = char.ToUpper(chars[i]);
+                }
+            }
+
+            return new string(chars);
         }
     }
 }
