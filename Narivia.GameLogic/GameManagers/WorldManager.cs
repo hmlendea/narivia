@@ -501,6 +501,7 @@ namespace Narivia.GameLogic.GameManagers
         void LoadEntities(string worldId)
         {
             IBiomeRepository biomeRepository = new BiomeRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml"));
+            IBorderRepository borderRepository = new BorderRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "borders.xml"));
             ICultureRepository cultureRepository = new CultureRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml"));
             IFactionRepository factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
             IHoldingRepository holdingRepository = new HoldingRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
@@ -509,6 +510,7 @@ namespace Narivia.GameLogic.GameManagers
             IUnitRepository unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
 
             List<Biome> biomeList = biomeRepository.GetAll().ToDomainModels().ToList();
+            List<Border> borderList = borderRepository.GetAll().ToDomainModels().ToList();
             List<Culture> cultureList = cultureRepository.GetAll().ToDomainModels().ToList();
             List<Faction> factionList = factionRepository.GetAll().ToDomainModels().ToList();
             List<Holding> holdingList = holdingRepository.GetAll().ToDomainModels().ToList();
@@ -517,6 +519,7 @@ namespace Narivia.GameLogic.GameManagers
             List<Unit> unitList = unitRepository.GetAll().ToDomainModels().ToList();
 
             Biomes = new Dictionary<string, Biome>();
+            Borders = new Dictionary<Tuple<string, string>, Border>();
             Cultures = new Dictionary<string, Culture>();
             Factions = new Dictionary<string, Faction>();
             Holdings = new Dictionary<string, Holding>();
@@ -525,6 +528,7 @@ namespace Narivia.GameLogic.GameManagers
             Units = new Dictionary<string, Unit>();
 
             biomeList.ForEach(biome => Biomes.Add(biome.Id, biome));
+            borderList.ForEach(border => Borders.Add(new Tuple<string, string>(border.Region1Id, border.Region2Id), border));
             cultureList.ForEach(culture => Cultures.Add(culture.Id, culture));
             factionList.ForEach(faction => Factions.Add(faction.Id, faction));
             //holdingList.ForEach(holding => Holdings.Add(holding.Id, holding));
@@ -536,7 +540,6 @@ namespace Narivia.GameLogic.GameManagers
         void LoadMap(string worldId)
         {
             Armies = new Dictionary<Tuple<string, string>, Army>();
-            Borders = new Dictionary<Tuple<string, string>, Border>();
             Relations = new Dictionary<Tuple<string, string>, Relation>();
 
             Dictionary<int, string> regionColourIds = new Dictionary<int, string>();

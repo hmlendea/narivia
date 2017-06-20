@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories.Interfaces;
@@ -12,37 +13,32 @@ namespace Narivia.DataAccess.Repositories
     /// </summary>
     public class BorderRepository : IBorderRepository
     {
-        /// <summary>
-        /// Gets or sets the borders.
-        /// </summary>
-        /// <value>The borders.</value>
-        readonly Dictionary<Tuple<string, string>, BorderEntity> borderEntitiesStore;
+        readonly XmlDatabase<BorderEntity> xmlDatabase;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.BorderRepository"/> class.
         /// </summary>
-        public BorderRepository()
+        public BorderRepository(string fileName)
         {
-            borderEntitiesStore = new Dictionary<Tuple<string, string>, BorderEntity>();
+            xmlDatabase = new XmlDatabase<BorderEntity>(fileName);
         }
 
         /// <summary>
         /// Adds the specified border.
         /// </summary>
-        /// <param name="border">Border.</param>
-        public void Add(BorderEntity border)
+        /// <param name="borderEntity">Border.</param>
+        public void Add(BorderEntity borderEntity)
         {
-            Tuple<string, string> key = new Tuple<string, string>(border.Region1Id, border.Region2Id);
+            List<BorderEntity> borderEntities = xmlDatabase.LoadEntities().ToList();
+            borderEntities.Add(borderEntity);
 
             try
             {
-                borderEntitiesStore.Add(key, border);
+                xmlDatabase.SaveEntities(borderEntities);
             }
             catch
             {
-                throw new DuplicateEntityException(
-                    $"{border.Region1Id}-{border.Region2Id}",
-                    nameof(BorderEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException($"{borderEntity.Region1Id}-{borderEntity.Region2Id}", nameof(BorderEntity).Replace("Entity", ""));
             }
         }
 
@@ -54,20 +50,13 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="region2Id">Second region identifier.</param>
         public BorderEntity Get(string region1Id, string region2Id)
         {
-            Tuple<string, string> key = new Tuple<string, string>(region1Id, region2Id);
-
-            if (!borderEntitiesStore.ContainsKey(key))
-            {
-                return null;
-            }
-
-            BorderEntity borderEntity = borderEntitiesStore[key];
+            List<BorderEntity> borderEntities = xmlDatabase.LoadEntities().ToList();
+            BorderEntity borderEntity = borderEntities.FirstOrDefault(x => x.Region1Id == region1Id &&
+                                                                           x.Region2Id == region2Id);
 
             if (borderEntity == null)
             {
-                throw new EntityNotFoundException(
-                    $"{region1Id}-{region2Id}",
-                    nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException($"{borderEntity.Region1Id}-{borderEntity.Region2Id}", nameof(BorderEntity).Replace("Entity", ""));
             }
 
             return borderEntity;
@@ -79,7 +68,9 @@ namespace Narivia.DataAccess.Repositories
         /// <returns>The borders.</returns>
         public IEnumerable<BorderEntity> GetAll()
         {
-            return borderEntitiesStore.Values;
+            List<BorderEntity> borderEntities = xmlDatabase.LoadEntities().ToList();
+
+            return borderEntities;
         }
 
         /// <summary>
@@ -89,17 +80,17 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="region2Id">Second region identifier.</param>
         public void Remove(string region1Id, string region2Id)
         {
-            Tuple<string, string> key = new Tuple<string, string>(region1Id, region2Id);
+            List<BorderEntity> borderEntities = xmlDatabase.LoadEntities().ToList();
+            borderEntities.RemoveAll(x => x.Region1Id == region1Id &&
+                                         x.Region2Id == region2Id);
 
             try
             {
-                borderEntitiesStore.Remove(key);
+                xmlDatabase.SaveEntities(borderEntities);
             }
             catch
             {
-                throw new DuplicateEntityException(
-                    $"{region1Id}-{region2Id}",
-                    nameof(BorderEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException($"{region1Id}-{region2Id}", nameof(BorderEntity).Replace("Entity", ""));
             }
         }
     }
