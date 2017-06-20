@@ -1,5 +1,6 @@
 Armorin
 Barmin
+Bastia
 Bluma
 Blumin
 Canumin
@@ -10,10 +11,16 @@ Crama
 Cugismia
 Daria
 Eborin
+Elenia
+Erborea
 Falnia
 Farzimia
+Floria
 Fortimin
+Fosmin
+Frogia
 Fulgistia
+Galenia
 Garmia
 Gratea
 Halmia
@@ -30,10 +37,12 @@ Optimin
 Optistia
 Pedalia
 Placistia
+Rafia
 Ratimin
 Saria
-Tagina
+Scalmin
 Tagin
+Tagina
 Tefimin
 Trefla
 Turimin

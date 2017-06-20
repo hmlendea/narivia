@@ -11,8 +11,10 @@ Dasser
 Ebremer
 Eibrucker
 Eisler
+Elmter
 Elter
 Erkover
+Gaffer
 Gebdther
 Geiser
 Greiber
@@ -22,6 +24,7 @@ Hattener
 Heiler
 Heiner
 Hernicher
+Iotter
 Langter
 Loapter
 Mainer
@@ -30,15 +33,22 @@ Mernster
 Meskeiler
 Necker
 Pletter
+Raffer
+Ratter
 Reiler
 Spalter
 Spanger
+Sparter
 Speichter
 Stadther
+Taffer
 Tannern
+Trater
+Truffer
 Ulpter
 Ummer
 Usinger
 Vadthen
 Vreder
+Zaffer
 
