@@ -35,6 +35,7 @@ namespace Narivia.Gui.GuiElements
 
         GuiImage background;
         GuiImage resourceImage;
+        GuiImage factionImage;
         List<GuiImage> holdingImages;
 
         GuiText regionNameText;
@@ -169,6 +170,7 @@ namespace Narivia.Gui.GuiElements
             }
 
             string resourceId = game.GetRegionResource(RegionId);
+            string factionId = game.GetRegionFaction(RegionId);
 
             resourceImage = new GuiImage
             {
@@ -177,8 +179,18 @@ namespace Narivia.Gui.GuiElements
                 Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64)
             };
 
+            factionImage = new GuiImage
+            {
+                ContentFile = $"World/Assets/{game.WorldId}/symbols/{factionId}",
+                SourceRectangle = new Rectangle(0, 0, 128, 128),
+                Scale = new Vector2(regionNameText.Size.Y / 128, regionNameText.Size.Y / 128)
+            };
+
             resourceImage.LoadContent();
+            factionImage.LoadContent();
+
             Children.Add(resourceImage);
+            Children.Add(factionImage);
         }
 
         // TODO: Handle this better
@@ -198,7 +210,7 @@ namespace Narivia.Gui.GuiElements
 
             regionNameText.TextColour = TextColour;
             regionNameText.Position = new Vector2(Position.X + (Size.X - regionNameText.ScreenArea.Width) / 2,
-                                                  Position.Y - regionNameText.ScreenArea.Height / 2);
+                                                  Position.Y - regionNameText.ScreenArea.Height * 0.75f);
 
             if (!string.IsNullOrWhiteSpace(RegionId))
             {
@@ -208,6 +220,8 @@ namespace Narivia.Gui.GuiElements
                 regionNameText.BackgroundColour = new Color(factionColour.Red, factionColour.Green, factionColour.Blue);
 
                 resourceText.Text = game.GetResourceName(game.GetRegionResource(RegionId));
+
+                factionImage.Position = new Vector2(regionNameText.Position.X - 64, regionNameText.Position.Y - 48);
             }
         }
     }
