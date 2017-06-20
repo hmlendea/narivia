@@ -214,7 +214,6 @@ namespace Narivia.Screens
 
             SideBar.TurnButton.Clicked += SideBar_TurnButtonClicked;
             SideBar.StatsButton.Clicked += SideBar_StatsButtonClicked;
-            SideBar.RelationsButton.Clicked += SideBar_RelationsButtonClicked;
             SideBar.RecruitButton.Clicked += SideBar_RecruitButtonClicked;
             SideBar.BuildButton.Clicked += SideBar_BuildButtonClicked;
         }
@@ -284,15 +283,6 @@ namespace Narivia.Screens
                              NotificationType.Informational,
                              NotificationStyle.Big,
                              new Vector2(256, 160));
-        }
-
-        void SideBar_RelationsButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            ShowNotification("Diplomatic Relations",
-                             "Comming soon :)",
-                             NotificationType.Informational,
-                             NotificationStyle.Big,
-                             new Vector2(256, 128));
         }
 
         void SideBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)

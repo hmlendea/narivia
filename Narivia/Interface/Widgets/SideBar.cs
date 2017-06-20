@@ -67,13 +67,6 @@ namespace Narivia.Interface.Widgets
         public Button StatsButton { get; private set; }
 
         /// <summary>
-        /// Gets the relations button.
-        /// </summary>
-        /// <value>The relations button.</value>
-        [XmlIgnore]
-        public Button RelationsButton { get; private set; }
-
-        /// <summary>
         /// Gets the recruit button.
         /// </summary>
         /// <value>The recruit button.</value>
@@ -138,12 +131,6 @@ namespace Narivia.Interface.Widgets
                 TextColour = TextColour,
                 Size = new Vector2(96, 32)
             };
-            RelationsButton = new Button
-            {
-                Text = "Relations",
-                TextColour = TextColour,
-                Size = new Vector2(96, 32)
-            };
             RecruitButton = new Button
             {
                 Text = "Recruit",
@@ -166,7 +153,6 @@ namespace Narivia.Interface.Widgets
             turnCounter.LoadContent();
 
             StatsButton.LoadContent();
-            RelationsButton.LoadContent();
             RecruitButton.LoadContent();
             BuildButton.LoadContent();
             TurnButton.LoadContent();
@@ -186,7 +172,6 @@ namespace Narivia.Interface.Widgets
             turnCounter.UnloadContent();
 
             StatsButton.UnloadContent();
-            RelationsButton.UnloadContent();
             RecruitButton.UnloadContent();
             BuildButton.UnloadContent();
             TurnButton.UnloadContent();
@@ -216,7 +201,6 @@ namespace Narivia.Interface.Widgets
             turnCounter.Update(gameTime);
 
             StatsButton.Update(gameTime);
-            RelationsButton.Update(gameTime);
             RecruitButton.Update(gameTime);
             BuildButton.Update(gameTime);
             TurnButton.Update(gameTime);
@@ -242,7 +226,6 @@ namespace Narivia.Interface.Widgets
             turnCounter.Draw(spriteBatch);
 
             StatsButton.Draw(spriteBatch);
-            RelationsButton.Draw(spriteBatch);
             RecruitButton.Draw(spriteBatch);
             BuildButton.Draw(spriteBatch);
             TurnButton.Draw(spriteBatch);
@@ -259,16 +242,14 @@ namespace Narivia.Interface.Widgets
 
             factionSymbol.Position = Position + new Vector2((Size.X - factionSymbol.ScreenArea.Width) / 2, factionName.ScreenArea.Bottom + margins);
 
-            TurnButton.Position = Position + new Vector2((Size.X - TurnButton.Size.X) / 2,
-                                                          Size.Y - TurnButton.Size.Y - margins * 5);
-            StatsButton.Position = Position + new Vector2((int)(Size.X - StatsButton.Size.X - RelationsButton.Size.X - margins * 5) / 2,
+            TurnButton.Position = Position + new Vector2((int)(Size.X - TurnButton.Size.X) / 2,
+                                                         (int)(Size.Y - TurnButton.Size.Y - margins));
+            StatsButton.Position = Position + new Vector2((int)(Size.X - StatsButton.Size.X) / 2,
                                                           (int)(Size.Y - StatsButton.Size.Y - RecruitButton.Size.Y - margins) / 2);
-            RelationsButton.Position = Position + new Vector2((int)(Size.X + StatsButton.Size.X + margins * 5 - RelationsButton.Size.X) / 2,
-                                                              (int)(Size.Y - RelationsButton.Size.Y - BuildButton.Size.Y - margins) / 2);
             RecruitButton.Position = Position + new Vector2((int)(Size.X - RecruitButton.Size.X - BuildButton.Size.X - margins * 5) / 2,
                                                             (int)(Size.Y + StatsButton.Size.Y - RecruitButton.Size.Y + margins) / 2);
             BuildButton.Position = Position + new Vector2((int)(Size.X + RecruitButton.Size.X + margins * 5 - BuildButton.Size.X) / 2,
-                                                          (int)(Size.Y + RelationsButton.Size.Y - BuildButton.Size.Y + margins) / 2);
+                                                          (int)(Size.Y + RecruitButton.Size.Y - BuildButton.Size.Y + margins) / 2);
         }
     }
 }
