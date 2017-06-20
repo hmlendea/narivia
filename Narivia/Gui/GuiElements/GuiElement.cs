@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Input;
+using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 
 namespace Narivia.Gui.GuiElements
@@ -105,7 +106,7 @@ namespace Narivia.Gui.GuiElements
 
             Destroyed = false;
 
-            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
+            //InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
             InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
@@ -116,7 +117,7 @@ namespace Narivia.Gui.GuiElements
         {
             Children.ForEach(x => x.UnloadContent());
 
-            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
+            //InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
             InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
 
             Destroyed = true;
@@ -133,6 +134,35 @@ namespace Narivia.Gui.GuiElements
             foreach (GuiElement guiElement in Children.Where(w => w.Enabled))
             {
                 guiElement.Update(gameTime);
+            }
+        }
+
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
+        public void HandleInput()
+        {
+            Vector2 mousePos = InputManager.Instance.MousePosition;
+
+            if (Enabled && Visible && ScreenArea.Contains(mousePos) &&
+                !InputManager.Instance.MouseButtonInputHandled &&
+                InputManager.Instance.IsLeftMouseButtonClicked() &&
+                Clicked != null)
+            {
+                MouseButtonEventArgs e = new MouseButtonEventArgs(MouseButton.LeftButton, MouseButtonState.Pressed, mousePos);
+
+                InputManager_OnMouseButtonPressed(this, e);
+                InputManager.Instance.MouseButtonInputHandled = true;
+            }
+
+            foreach (GuiElement child in Children)
+            {
+                if (InputManager.Instance.MouseButtonInputHandled)
+                {
+                    break;
+                }
+
+                child.HandleInput();
             }
         }
 

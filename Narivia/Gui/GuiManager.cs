@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Gui.GuiElements;
+using Narivia.Input;
 
 namespace Narivia.Gui
 {
@@ -71,9 +72,21 @@ namespace Narivia.Gui
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-            GuiElements.RemoveAll(w => w.Destroyed);
+            GuiElements.RemoveAll(e => e.Destroyed);
 
-            foreach (GuiElement guiElement in GuiElements.Where(w => w.Enabled))
+            foreach (GuiElement guiElement in GuiElements.Where(e => e.Enabled).Reverse())
+            {
+                if (InputManager.Instance.MouseButtonInputHandled)
+                {
+                    break;
+                }
+
+                guiElement.HandleInput();
+            }
+
+            InputManager.Instance.MouseButtonInputHandled = false;
+
+            foreach (GuiElement guiElement in GuiElements.Where(e => e.Enabled))
             {
                 guiElement.Update(gameTime);
             }

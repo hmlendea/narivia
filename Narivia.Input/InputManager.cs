@@ -331,5 +331,19 @@ namespace Narivia.Input
                 MouseMoved(sender, e);
             }
         }
+
+        public Vector2 MousePosition => new Vector2(currentMouseState.Position.X, currentMouseState.Position.Y);
+        public bool MouseButtonInputHandled { get; set; }
+
+        public bool IsLeftMouseButtonClicked()
+        {
+            if (currentMouseState.LeftButton == ButtonState.Pressed &&
+                previousMouseState.LeftButton == ButtonState.Released)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
