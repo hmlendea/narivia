@@ -57,6 +57,7 @@ namespace Narivia.Screens
         BuildDialog buildDialog;
 
         Dictionary<string, int> troopsOld;
+        Dictionary<string, int> relationsOld;
         int regionsOld, holdingsOld, wealthOld, incomeOld, outcomeOld, recruitmentOld;
 
         /// <summary>
@@ -83,7 +84,10 @@ namespace Narivia.Screens
             game.NewGame(initialWorldId, initialFactionId);
 
             troopsOld = new Dictionary<string, int>();
+            relationsOld = new Dictionary<string, int>();
+
             game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetFactionArmySize(game.PlayerFactionId, u.Id)));
+            game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsOld.Add(r.TargetFactionId, r.Value));
 
             GameMap.AssociateGameManager(ref game);
             RegionBar.AssociateGameManager(ref game);
@@ -225,7 +229,10 @@ namespace Narivia.Screens
             game.NextTurn();
 
             Dictionary<string, int> troopsNew = new Dictionary<string, int>();
+            Dictionary<string, int> relationsNew = new Dictionary<string, int>();
+
             game.GetUnits().ToList().ForEach(u => troopsNew.Add(u.Name, game.GetFactionArmySize(game.PlayerFactionId, u.Id)));
+            game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsNew.Add(r.TargetFactionId, r.Value));
 
             int regionsNew = game.GetFactionRegionsCount(game.PlayerFactionId);
             int holdingsNew = game.GetFactionHoldingsCount(game.PlayerFactionId);
@@ -248,19 +255,38 @@ namespace Narivia.Screens
                                  new Vector2(256, 224));
             };
 
-            string body = string.Empty;
+            string recruitmentBody = string.Empty;
+            string relationsBody = string.Empty;
 
             foreach (string key in troopsNew.Keys)
             {
-                body += $"{key}: {troopsNew[key]} ({(troopsNew[key] - troopsOld[key]).ToString("+0;-#")})" + Environment.NewLine;
+                recruitmentBody += $"{key}: {troopsNew[key]} ({(troopsNew[key] - troopsOld[key]).ToString("+0;-#")})" + Environment.NewLine;
+            }
+
+            foreach (string targetfactionId in relationsNew.Keys.Where(key => relationsNew[key] != relationsOld[key]))
+            {
+                int delta = relationsNew[targetfactionId] - relationsOld[targetfactionId];
+
+                relationsBody += $"{game.GetFactionName(targetfactionId)}: {relationsNew[targetfactionId].ToString("+0;-#")} " +
+                                 $"({delta.ToString("+0;-#")})" + Environment.NewLine;
             }
 
             NotificationBar.AddNotification(NotificationIcon.RecruitmentReport).Clicked += delegate
             {
-                ShowNotification($"Recruitment Report", body, NotificationType.Informational, NotificationStyle.Big, new Vector2(256, 224));
+                ShowNotification($"Recruitment Report", recruitmentBody, NotificationType.Informational, NotificationStyle.Big, new Vector2(256, 224));
             };
 
+            if (!string.IsNullOrWhiteSpace(relationsBody))
+            {
+                NotificationBar.AddNotification(NotificationIcon.RelationsReport).Clicked += delegate
+                {
+                    ShowNotification($"Relations Report", relationsBody, NotificationType.Informational, NotificationStyle.Big, new Vector2(256, 196));
+                };
+            }
+
             troopsOld = troopsNew;
+            relationsOld = relationsNew;
+
             regionsOld = regionsNew;
             holdingsOld = holdingsNew;
             wealthOld = wealthNew;
