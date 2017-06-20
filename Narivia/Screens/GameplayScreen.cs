@@ -211,22 +211,15 @@ namespace Narivia.Screens
             int outcomeNew = game.GetFactionOutcome(game.PlayerFactionId);
             int recruitmentNew = game.GetFactionRecruitment(game.PlayerFactionId);
 
-            NotificationBar.AddNotification(NotificationIcon.TurnReport).Clicked += delegate
-            {
-                ShowNotification($"Turn {game.Turn} Report",
-                                 $"Regions: {regionsNew} ({(regionsNew - regionsOld).ToString("+0;-#")})" + Environment.NewLine +
-                                 $"Holdings: {holdingsNew} ({(holdingsNew - holdingsOld).ToString("+0;-#")})" + Environment.NewLine +
-                                 $"Wealth: {wealthNew} ({(wealthNew - wealthOld).ToString("+0;-#")})" + Environment.NewLine +
-                                 $"Income: {incomeNew} ({(incomeNew - incomeOld).ToString("+0;-#")})" + Environment.NewLine +
-                                 $"Outcome: {outcomeNew} ({(outcomeNew - outcomeOld).ToString("+0;-#")})" + Environment.NewLine +
-                                 $"Militia Recruitment: {recruitmentNew} ({(recruitmentNew - recruitmentOld).ToString("+0;-#")})",
-                                 NotificationType.Informational,
-                                 NotificationStyle.Big,
-                                 new Vector2(256, 224));
-            };
-
             string recruitmentBody = string.Empty;
             string relationsBody = string.Empty;
+            string turnBody = $"Regions: {regionsNew} ({(regionsNew - regionsOld).ToString("+0;-#")})" + Environment.NewLine +
+                              $"Holdings: {holdingsNew} ({(holdingsNew - holdingsOld).ToString("+0;-#")})" + Environment.NewLine +
+                              $"Wealth: {wealthNew} ({(wealthNew - wealthOld).ToString("+0;-#")})" + Environment.NewLine +
+                              $"Income: {incomeNew} ({(incomeNew - incomeOld).ToString("+0;-#")})" + Environment.NewLine +
+                              $"Outcome: {outcomeNew} ({(outcomeNew - outcomeOld).ToString("+0;-#")})" + Environment.NewLine +
+                              $"Militia Recruitment: {recruitmentNew} ({(recruitmentNew - recruitmentOld).ToString("+0;-#")})";
+
 
             foreach (string key in troopsNew.Keys)
             {
@@ -240,6 +233,11 @@ namespace Narivia.Screens
                 relationsBody += $"{game.GetFactionName(targetfactionId)}: {relationsNew[targetfactionId].ToString("+0;-#")} " +
                                  $"({delta.ToString("+0;-#")})" + Environment.NewLine;
             }
+
+            NotificationBar.AddNotification(NotificationIcon.TurnReport).Clicked += delegate
+            {
+                ShowNotification($"Turn {game.Turn} Report", turnBody, NotificationType.Informational, NotificationStyle.Big, new Vector2(256, 224));
+            };
 
             NotificationBar.AddNotification(NotificationIcon.RecruitmentReport).Clicked += delegate
             {
@@ -314,13 +312,13 @@ namespace Narivia.Screens
 
             try
             {
-                BattleResult result = game.PlayerAttackRegion(regionId);
-
-                NextTurn();
-
                 string regionName = game.GetRegionName(regionId);
                 string defenderFactionId = game.GetRegionFaction(regionId);
                 string defenderFactionName = game.GetFactionName(defenderFactionId);
+
+                BattleResult result = game.PlayerAttackRegion(regionId);
+
+                NextTurn();
 
                 if (result == BattleResult.Victory)
                 {
