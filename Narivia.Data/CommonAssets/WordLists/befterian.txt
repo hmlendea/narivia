@@ -1,4 +1,5 @@
 Bafter
+Bagdther
 Batter
 Befter
 Beiler
@@ -15,10 +16,12 @@ Elmter
 Elter
 Erkover
 Gaffer
+Gaghter
 Gebdther
 Geiser
 Greiber
 Grether
+Grofter
 Guber
 Hattener
 Heiler
@@ -32,10 +35,15 @@ Mangter
 Mernster
 Meskeiler
 Necker
+Peckther
+Plakther
 Pletter
 Raffer
+Rapter
 Ratter
 Reiler
+Sfakther
+Sinter
 Spalter
 Spanger
 Sparter
@@ -49,6 +57,7 @@ Ulpter
 Ummer
 Usinger
 Vadthen
+Voggel
 Vreder
 Zaffer
 

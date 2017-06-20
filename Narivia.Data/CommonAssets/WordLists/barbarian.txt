@@ -5,6 +5,7 @@ Bardos
 Bardroz
 Biram
 Birkrig
+Bogan
 Boldel
 Bolder
 Boldolm
@@ -23,6 +24,7 @@ Deng
 Dholden
 Dholm
 Dhorradh
+Dulgau
 Endel
 Fald
 Gand
@@ -32,6 +34,7 @@ Gholm
 Gholt
 Gram
 Grodh
+Grovun
 Grugen
 Gucragh
 Haugel
