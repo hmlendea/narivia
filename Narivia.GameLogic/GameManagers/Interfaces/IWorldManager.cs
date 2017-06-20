@@ -221,6 +221,14 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         int GetFactionCentreY(string factionId);
 
         /// <summary>
+        /// Gets the relation between two factions.
+        /// </summary>
+        /// <returns>The faction relation.</returns>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        int GetFactionRelation(string sourceFactionId, string targetFactionId);
+
+        /// <summary>
         /// Gets the armies of a faction.
         /// </summary>
         /// <returns>The armies.</returns>

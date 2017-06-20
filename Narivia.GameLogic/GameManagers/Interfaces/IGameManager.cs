@@ -284,6 +284,14 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         string GetRegionResource(string regionId);
 
         /// <summary>
+        /// Gets the relation between two factions.
+        /// </summary>
+        /// <returns>The faction relation.</returns>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        int GetFactionRelation(string sourceFactionId, string targetFactionId);
+
+        /// <summary>
         /// Gets the name of the resource.
         /// </summary>
         /// <returns>The resource name.</returns>

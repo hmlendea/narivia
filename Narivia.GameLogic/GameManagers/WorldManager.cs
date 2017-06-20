@@ -383,6 +383,18 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Gets the relation between two factions.
+        /// </summary>
+        /// <returns>The faction relation.</returns>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        public int GetFactionRelation(string sourceFactionId, string targetFactionId)
+        {
+            return Relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
+                                                        r.TargetFactionId == targetFactionId).Value;
+        }
+
+        /// <summary>
         /// Gets the armies of a faction.
         /// </summary>
         /// <returns>The armies.</returns>
@@ -661,6 +673,8 @@ namespace Narivia.GameLogic.GameManagers
                 Armies.Add(armyKey, army);
             }
 
+            Factions.Values.ToList().ForEach(f => InitialiseRelation(factionId, f.Id));
+
             GenerateHoldings(faction.Id);
         }
 
@@ -672,6 +686,27 @@ namespace Narivia.GameLogic.GameManagers
             {
                 region.SovereignFactionId = region.FactionId;
             }
+        }
+
+        void InitialiseRelation(string sourceFactionId, string targetFactionId)
+        {
+            if (sourceFactionId == targetFactionId ||
+                sourceFactionId == "gaia" ||
+                targetFactionId == "gaia")
+            {
+                return;
+            }
+
+            Relation relation = new Relation
+            {
+                SourceFactionId = sourceFactionId,
+                TargetFactionId = targetFactionId,
+                Value = 0
+            };
+
+            Tuple<string, string> relationKey = new Tuple<string, string>(relation.SourceFactionId, relation.TargetFactionId);
+
+            Relations.Add(relationKey, relation);
         }
 
         void GenerateHoldings(string factionId)

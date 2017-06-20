@@ -362,6 +362,15 @@ namespace Narivia.GameLogic.GameManagers
         => world.GetFactionRegions(factionId).ToList().Count;
 
         /// <summary>
+        /// Gets the relation between two factions.
+        /// </summary>
+        /// <returns>The faction relation.</returns>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        public int GetFactionRelation(string sourceFactionId, string targetFactionId)
+        => world.GetFactionRelation(sourceFactionId, targetFactionId);
+
+        /// <summary>
         /// Gets the holdings count of a faction.
         /// </summary>
         /// <returns>The number of holdings.</returns>
@@ -587,40 +596,43 @@ namespace Narivia.GameLogic.GameManagers
         BattleResult AttackRegion(string factionId, string regionId)
         {
             Region region = world.Regions[regionId];
-            string regionFactionId = world.Regions[regionId].FactionId;
+            string oldRegionFactionId = region.FactionId;
 
             BattleResult result = attack.AttackRegion(factionId, regionId);
 
-            world.SetRelations(factionId, regionFactionId, 0);
+            if (GetFactionRelation(factionId, oldRegionFactionId) > 0)
+            {
+                world.SetRelations(factionId, oldRegionFactionId, 0);
+            }
 
             if (result == BattleResult.Victory)
             {
-                world.ChangeRelations(factionId, regionFactionId, -10);
+                world.ChangeRelations(factionId, oldRegionFactionId, -10);
             }
 
             switch (region.Type)
             {
                 case RegionType.Capital:
-                    world.ChangeRelations(factionId, regionFactionId, -10);
+                    world.ChangeRelations(factionId, oldRegionFactionId, -10);
                     break;
 
                 case RegionType.Province:
-                    world.ChangeRelations(factionId, regionFactionId, -5);
+                    world.ChangeRelations(factionId, oldRegionFactionId, -5);
                     break;
             }
 
             switch (region.State)
             {
                 case RegionState.Sovereign:
-                    world.ChangeRelations(factionId, regionFactionId, -5);
+                    world.ChangeRelations(factionId, oldRegionFactionId, -5);
                     break;
 
                 case RegionState.Occupied:
-                    world.ChangeRelations(factionId, regionFactionId, -2);
+                    world.ChangeRelations(factionId, oldRegionFactionId, -2);
                     break;
             }
 
-            if (regionFactionId == PlayerFactionId)
+            if (region.FactionId == PlayerFactionId)
             {
                 BattleEventArgs e = new BattleEventArgs(regionId, factionId, result);
 

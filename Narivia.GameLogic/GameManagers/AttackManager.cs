@@ -54,8 +54,6 @@ namespace Narivia.GameLogic.GameManagers
                                                    .Where(x => regionsOwnedIds.Any(y => world.RegionBordersRegion(x, y)))
                                                    .ToDictionary(x => x, y => 0);
 
-
-
             Parallel.ForEach(world.Regions.Values.Where(r => targets.ContainsKey(r.Id)).ToList(), (region) =>
             {
                 if (region.SovereignFactionId == factionId)
@@ -99,8 +97,7 @@ namespace Narivia.GameLogic.GameManagers
                 }
 
                 targets[region.Id] += regionsOwnedIds.Count(x => world.RegionBordersRegion(x, region.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
-
-                // TODO: I should also take the relations into consideration
+                targets[region.Id] -= world.GetFactionRelation(factionId, region.FactionId);
 
                 // TODO: Maybe add a random importance to each region in order to reduce predictibility a little
             });
@@ -141,8 +138,6 @@ namespace Narivia.GameLogic.GameManagers
             {
                 throw new InvalidTargetRegionException(regionId);
             }
-
-            world.SetRelations(attackerFaction.Id, defenderFaction.Id, 0);
 
             while (world.GetFactionTroopsCount(attackerFaction.Id) > 0 &&
                    world.GetFactionTroopsCount(defenderFaction.Id) > 0)
