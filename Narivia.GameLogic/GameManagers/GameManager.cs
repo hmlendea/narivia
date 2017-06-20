@@ -183,18 +183,7 @@ namespace Narivia.GameLogic.GameManagers
                     continue;
                 }
 
-                string regionFactionId = world.Regions[regionId].FactionId;
-                BattleResult result = attack.AttackRegion(faction.Id, regionId);
-
-                if (regionFactionId == PlayerFactionId)
-                {
-                    BattleEventArgs e = new BattleEventArgs(regionId, faction.Id, result);
-
-                    if (PlayerRegionAttacked != null)
-                    {
-                        PlayerRegionAttacked(this, e);
-                    }
-                }
+                AttackRegion(faction.Id, regionId);
             }
 
             world.Regions.Values.ToList().ForEach(r => r.Locked = false);
@@ -468,6 +457,14 @@ namespace Narivia.GameLogic.GameManagers
         => world.GetFactionRegions(factionId);
 
         /// <summary>
+        /// Gets the relations of a faction.
+        /// </summary>
+        /// <returns>The relations of a faction.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public IEnumerable<Relation> GetFactionRelations(string factionId)
+        => world.GetFactionRelations(factionId);
+
+        /// <summary>
         /// Gets the holdings of a faction.
         /// </summary>
         /// <returns>The holdings.</returns>
@@ -542,7 +539,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="regionId">Region identifier.</param>
         public BattleResult PlayerAttackRegion(string regionId)
         {
-            BattleResult result = attack.AttackRegion(PlayerFactionId, regionId);
+            BattleResult result = AttackRegion(PlayerFactionId, regionId);
 
             return result;
         }
@@ -587,22 +584,53 @@ namespace Narivia.GameLogic.GameManagers
             }
         }
 
-        /// <summary>
-        /// Changes the relations between two factions.
-        /// </summary>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        /// <param name="delta">Relations value delta.</param>
-        void ChangeRelations(string sourceFactionId, string targetFactionId, int delta)
+        BattleResult AttackRegion(string factionId, string regionId)
         {
-            Relation sourceRelation = world.Relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
-                                                                                 r.TargetFactionId == targetFactionId);
-            Relation targetRelation = world.Relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
-                                                                                 r.TargetFactionId == sourceFactionId);
+            Region region = world.Regions[regionId];
+            string regionFactionId = world.Regions[regionId].FactionId;
 
-            int oldRelations = sourceRelation.Value;
-            sourceRelation.Value = Math.Max(-100, Math.Min(sourceRelation.Value + delta, 100));
-            targetRelation.Value = sourceRelation.Value;
+            BattleResult result = attack.AttackRegion(factionId, regionId);
+
+            world.SetRelations(factionId, regionFactionId, 0);
+
+            if (result == BattleResult.Victory)
+            {
+                world.ChangeRelations(factionId, regionFactionId, -10);
+            }
+
+            switch (region.Type)
+            {
+                case RegionType.Capital:
+                    world.ChangeRelations(factionId, regionFactionId, -10);
+                    break;
+
+                case RegionType.Province:
+                    world.ChangeRelations(factionId, regionFactionId, -5);
+                    break;
+            }
+
+            switch (region.State)
+            {
+                case RegionState.Sovereign:
+                    world.ChangeRelations(factionId, regionFactionId, -5);
+                    break;
+
+                case RegionState.Occupied:
+                    world.ChangeRelations(factionId, regionFactionId, -2);
+                    break;
+            }
+
+            if (regionFactionId == PlayerFactionId)
+            {
+                BattleEventArgs e = new BattleEventArgs(regionId, factionId, result);
+
+                if (PlayerRegionAttacked != null)
+                {
+                    PlayerRegionAttacked(this, e);
+                }
+            }
+
+            return result;
         }
 
         void AiBuild(string factionId)

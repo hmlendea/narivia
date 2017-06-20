@@ -414,6 +414,17 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Gets the relations of a faction.
+        /// </summary>
+        /// <returns>The relations of a faction.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public IEnumerable<Relation> GetFactionRelations(string factionId)
+        {
+            return Relations.Values.Where(r => r.SourceFactionId == factionId &&
+                                               r.SourceFactionId != r.TargetFactionId);
+        }
+
+        /// <summary>
         /// Gets the holdings of a region.
         /// </summary>
         /// <returns>The holdings.</returns>
@@ -438,6 +449,41 @@ namespace Narivia.GameLogic.GameManagers
             {
                 emptySlot.Type = holdingType;
             }
+        }
+
+        /// <summary>
+        /// Changes the relations between two factions.
+        /// </summary>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        /// <param name="delta">Relations value delta.</param>
+        public void ChangeRelations(string sourceFactionId, string targetFactionId, int delta)
+        {
+            Relation sourceRelation = Relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
+                                                                           r.TargetFactionId == targetFactionId);
+            Relation targetRelation = Relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
+                                                                           r.TargetFactionId == sourceFactionId);
+
+            int oldRelations = sourceRelation.Value;
+            sourceRelation.Value = Math.Max(-100, Math.Min(sourceRelation.Value + delta, 100));
+            targetRelation.Value = sourceRelation.Value;
+        }
+
+        /// <summary>
+        /// Sets the relations between two factions.
+        /// </summary>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        /// <param name="value">Relations value.</param>
+        public void SetRelations(string sourceFactionId, string targetFactionId, int value)
+        {
+            Relation sourceRelation = Relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
+                                                                           r.TargetFactionId == targetFactionId);
+            Relation targetRelation = Relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
+                                                                           r.TargetFactionId == sourceFactionId);
+
+            sourceRelation.Value = Math.Max(-100, Math.Min(value, 100));
+            targetRelation.Value = Math.Max(-100, Math.Min(value, 100));
         }
 
         void LoadEntities(string worldId)

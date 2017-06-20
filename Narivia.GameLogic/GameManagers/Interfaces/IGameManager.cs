@@ -304,6 +304,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Region> GetFactionRegions(string factionId);
 
         /// <summary>
+        /// Gets the relations of a faction.
+        /// </summary>
+        /// <returns>The relations of a faction.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        IEnumerable<Relation> GetFactionRelations(string factionId);
+
+        /// <summary>
         /// Gets the holdings of a faction.
         /// </summary>
         /// <returns>The holdings.</returns>

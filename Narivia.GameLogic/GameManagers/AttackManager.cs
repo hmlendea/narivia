@@ -142,6 +142,8 @@ namespace Narivia.GameLogic.GameManagers
                 throw new InvalidTargetRegionException(regionId);
             }
 
+            world.SetRelations(attackerFaction.Id, defenderFaction.Id, 0);
+
             while (world.GetFactionTroopsCount(attackerFaction.Id) > 0 &&
                    world.GetFactionTroopsCount(defenderFaction.Id) > 0)
             {
