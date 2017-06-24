@@ -210,7 +210,7 @@ namespace Narivia.Gui.GuiElements
 
             regionNameText.TextColour = TextColour;
             regionNameText.Position = new Vector2(Position.X + (Size.X - regionNameText.ScreenArea.Width) / 2,
-                                                  Position.Y - regionNameText.ScreenArea.Height * 0.75f);
+                                                  Position.Y - regionNameText.ScreenArea.Height);
 
             if (!string.IsNullOrWhiteSpace(RegionId))
             {
