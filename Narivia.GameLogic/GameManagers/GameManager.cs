@@ -632,7 +632,7 @@ namespace Narivia.GameLogic.GameManagers
                     break;
             }
 
-            if (region.FactionId == PlayerFactionId)
+            if (oldRegionFactionId == PlayerFactionId)
             {
                 BattleEventArgs e = new BattleEventArgs(regionId, factionId, result);
 
