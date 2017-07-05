@@ -314,6 +314,13 @@ namespace Narivia.Gui.GuiElements
 
         void SelectRegion(int index)
         {
+            if (regions.Count == 0)
+            {
+                // TODO: Handle this properly
+
+                return;
+            }
+
             if (index > regions.Count - 1)
             {
                 currentRegionIndex = 0;
@@ -352,6 +359,13 @@ namespace Narivia.Gui.GuiElements
 
         void buildButton_OnClicked(object sender, MouseButtonEventArgs e)
         {
+            if (regions.Count == 0)
+            {
+                // TODO: Handle this properly
+
+                return;
+            }
+
             if (game.GetFactionWealth(game.PlayerFactionId) >= game.HoldingsPrice)
             {
                 game.BuildHolding(regions[currentRegionIndex].Id, holdingTypes[currentHoldingTypeIndex]);
