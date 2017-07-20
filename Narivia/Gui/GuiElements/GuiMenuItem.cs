@@ -60,7 +60,7 @@ namespace Narivia.Gui.GuiElements
         public GuiMenuItem()
         {
             TextColour = Colour.White;
-            SelectedTextColour = Colour.Gold;
+            SelectedTextColour = Colour.ChromeYellow;
 
             Size = new Vector2(512, 48);
         }

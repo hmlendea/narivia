@@ -70,7 +70,7 @@ namespace Narivia.Gui.GuiElements
         public GuiButton()
         {
             FontName = "ButtonFont";
-            TextColour = Colour.Gold;
+            TextColour = Colour.ChromeYellow;
         }
 
         /// <summary>

@@ -52,9 +52,12 @@
 
         public static Colour Black => new Colour(0, 0, 0, 255);
         public static Colour Blue => new Colour(0, 0, 255, 255);
+        public static Colour ChromeYellow => new Colour(252, 209, 22, 255);
+        public static Colour CobaltBlue => new Colour(0, 43, 127, 255);
         public static Colour DarkRed => new Colour(139, 0, 0, 255);
         public static Colour DodgerBlue => new Colour(30, 144, 255, 255);
         public static Colour Gold => new Colour(255, 215, 0, 255);
+        public static Colour Vermilion => new Colour(206, 17, 38, 255);
         public static Colour White => new Colour(255, 255, 255, 255);
 
         public static Colour FromArgb(byte r, byte g, byte b) => ColourTranslator.FromArgb(r, g, b);

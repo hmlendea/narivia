@@ -58,7 +58,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiBuildingDialog()
         {
-            TextColour = Colour.Gold;
+            TextColour = Colour.ChromeYellow;
         }
 
         /// <summary>

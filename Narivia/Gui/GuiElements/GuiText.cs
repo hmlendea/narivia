@@ -75,7 +75,7 @@ namespace Narivia.Gui.GuiElements
         public GuiText()
         {
             FontName = "ButtonFont";
-            TextColour = Colour.Gold;
+            TextColour = Colour.ChromeYellow;
             BackgroundColour = Colour.Transparent;
 
             VerticalAlignment = VerticalAlignment.Center;
@@ -89,7 +89,7 @@ namespace Narivia.Gui.GuiElements
         {
             backgroundImage = new Image
             {
-                ImagePath = "Interface/backgrounds",
+                ImagePath = "ScreenManager/FillImage",
                 SourceRectangle = new Rectangle(0, 0, 1, 1)
             };
             textImage = new Image();

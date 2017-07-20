@@ -61,7 +61,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiRecruitmentDialog()
         {
-            TextColour = Colour.Gold;
+            TextColour = Colour.ChromeYellow;
         }
 
         /// <summary>

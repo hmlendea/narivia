@@ -36,7 +36,7 @@ namespace Narivia.Gui.GuiElements
         public GuiTooltip()
         {
             BackgroundColour = Colour.DarkRed;
-            TextColour = Colour.Gold;
+            TextColour = Colour.ChromeYellow;
             Visible = false;
         }
 

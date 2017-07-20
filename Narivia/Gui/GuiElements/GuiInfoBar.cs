@@ -85,7 +85,7 @@ namespace Narivia.Gui.GuiElements
         public GuiInfoBar()
         {
             BackgroundColour = Colour.Black;
-            TextColour = Colour.Gold;
+            TextColour = Colour.ChromeYellow;
 
             Spacing = 6.0f;
         }
