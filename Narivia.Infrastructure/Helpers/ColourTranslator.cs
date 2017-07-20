@@ -81,7 +81,7 @@ namespace Narivia.Infrastructure.Helpers
 
         public static Colour FromArgb(byte a, byte r, byte g, byte b)
         {
-            return new Colour(a, r, g, b);
+            return new Colour(r, g, b, a);
         }
     }
 }
