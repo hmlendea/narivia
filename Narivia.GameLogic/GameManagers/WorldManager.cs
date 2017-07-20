@@ -557,8 +557,8 @@ namespace Narivia.GameLogic.GameManagers
             biomeMap = new string[world.Width, world.Height];
 
             // Mapping the colours
-            Regions.Values.ToList().ForEach(region => regionColourIds.Register(ColourTranslator.ToArgb(region.Colour), region.Id));
-            Biomes.Values.ToList().ForEach(biome => biomeColourIds.Register(ColourTranslator.ToArgb(biome.Colour), biome.Id));
+            Regions.Values.ToList().ForEach(region => regionColourIds.Register(region.Colour.ToArgb(), region.Id));
+            Biomes.Values.ToList().ForEach(biome => biomeColourIds.Register(biome.Colour.ToArgb(), biome.Id));
 
             // Reading the map pixel by pixel
             using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "map.png")))
@@ -567,9 +567,10 @@ namespace Narivia.GameLogic.GameManagers
                 {
                     for (int x = 0; x < world.Height; x++)
                     {
-                        int colour = bmp.GetPixel(x, y).ToArgb();
+                        Colour clr = bmp.GetPixel(x,y);
+                        int argb = bmp.GetPixel(x, y).ToArgb();
 
-                        worldTiles[x, y] = regionColourIds[colour];
+                        worldTiles[x, y] = regionColourIds[argb];
                     }
                 }
             }
