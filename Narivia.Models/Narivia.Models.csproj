@@ -10,6 +10,8 @@
     <RootNamespace>Narivia.Models</RootNamespace>
     <AssemblyName>Narivia.Models</AssemblyName>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -19,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -27,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -37,7 +41,6 @@
     <Compile Include="Army.cs" />
     <Compile Include="Biome.cs" />
     <Compile Include="Border.cs" />
-    <Compile Include="Colour.cs" />
     <Compile Include="Culture.cs" />
     <Compile Include="Faction.cs" />
     <Compile Include="Holding.cs" />
@@ -54,8 +57,12 @@
     <Compile Include="Enumerations\ResourceType.cs" />
     <Compile Include="Enumerations\UnitType.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Enumerations\" />
+    <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
+      <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
+      <Name>Narivia.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Events;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
@@ -22,7 +23,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
+        public Colour TextColour { get; set; }
 
         IGameManager game;
 
@@ -57,7 +58,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiBuildingDialog()
         {
-            TextColour = Color.Gold;
+            TextColour = Colour.Gold;
         }
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = new Rectangle(0, 0, 1, 1),
                 Position = Position,
                 Scale = new Vector2(100, 100),
-                Tint = Color.Black
+                Tint = Colour.Black
             };
 
             holdingText = new GuiText

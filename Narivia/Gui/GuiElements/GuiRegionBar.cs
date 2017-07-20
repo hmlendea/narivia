@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
 namespace Narivia.Gui.GuiElements
@@ -29,7 +30,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
+        public Colour TextColour { get; set; }
 
         IGameManager game;
 
@@ -69,7 +70,7 @@ namespace Narivia.Gui.GuiElements
                 Text = "Resource",
                 Size = new Vector2(64 + HOLDING_SPACING_HORIZONTAL * 2, Size.Y - 74),
                 FontName = "RegionBarHoldingFont",
-                TextColour = Color.Black,
+                TextColour = Colour.Black,
                 HorizontalAlignment = HorizontalAlignment.Top
             };
 
@@ -156,7 +157,7 @@ namespace Narivia.Gui.GuiElements
                     Size = new Vector2(holdingImage.SourceRectangle.Width + HOLDING_SPACING_HORIZONTAL * 2,
                                              Size.Y - holdingImage.SourceRectangle.Height + 10),
                     FontName = "RegionBarHoldingFont",
-                    TextColour = Color.Black,
+                    TextColour = Colour.Black,
                     HorizontalAlignment = HorizontalAlignment.Top
                 };
 
@@ -217,7 +218,7 @@ namespace Narivia.Gui.GuiElements
                 Colour factionColour = game.GetFactionColour(game.GetRegionFaction(RegionId));
 
                 regionNameText.Text = game.GetRegionName(RegionId);
-                regionNameText.BackgroundColour = new Color(factionColour.Red, factionColour.Green, factionColour.Blue);
+                regionNameText.BackgroundColour = new Colour(factionColour.R, factionColour.G, factionColour.B);
 
                 resourceText.Text = game.GetResourceName(game.GetRegionResource(RegionId));
 

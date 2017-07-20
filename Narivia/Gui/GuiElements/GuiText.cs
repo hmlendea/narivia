@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Graphics.ImageEffects;
+using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -21,13 +22,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
+        public Colour TextColour { get; set; }
 
         /// <summary>
         /// Gets or sets the background colour.
         /// </summary>
         /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
+        public Colour BackgroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the font.
@@ -74,8 +75,8 @@ namespace Narivia.Gui.GuiElements
         public GuiText()
         {
             FontName = "ButtonFont";
-            TextColour = Color.Gold;
-            BackgroundColour = Color.Transparent;
+            TextColour = Colour.Gold;
+            BackgroundColour = Colour.Transparent;
 
             VerticalAlignment = VerticalAlignment.Center;
             HorizontalAlignment = HorizontalAlignment.Center;
@@ -132,7 +133,7 @@ namespace Narivia.Gui.GuiElements
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (BackgroundColour != Color.Transparent)
+            if (BackgroundColour != Colour.Transparent)
             {
                 backgroundImage.Draw(spriteBatch);
             }

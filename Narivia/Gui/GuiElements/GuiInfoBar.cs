@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Events;
 
 namespace Narivia.Gui.GuiElements
@@ -64,13 +65,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the background colour.
         /// </summary>
         /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
+        public Colour BackgroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
+        public Colour TextColour { get; set; }
 
         /// <summary>
         /// Gets or sets the spacing.
@@ -83,8 +84,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiInfoBar()
         {
-            BackgroundColour = Color.Black;
-            TextColour = Color.Gold;
+            BackgroundColour = Colour.Black;
+            TextColour = Colour.Gold;
 
             Spacing = 6.0f;
         }

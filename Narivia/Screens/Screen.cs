@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Gui;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
+using Narivia.Infrastructure.Extensions;
+using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Screens
 {
@@ -39,7 +41,7 @@ namespace Narivia.Screens
         /// Gets or sets the background colour.
         /// </summary>
         /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
+        public Colour BackgroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the notification GUI elements.
@@ -71,6 +73,8 @@ namespace Narivia.Screens
 
             Notifications = new List<GuiNotificationDialog>();
             Buttons = new List<GuiButton>();
+
+            BackgroundColour = Colour.Black;
         }
 
         /// <summary>
@@ -79,7 +83,7 @@ namespace Narivia.Screens
         public virtual void LoadContent()
         {
             content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
-            ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
+            ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour.ToXnaColor());
 
             GuiManager.Instance.GuiElements.AddRange(Notifications);
             GuiManager.Instance.GuiElements.AddRange(Buttons);
@@ -112,7 +116,7 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour);
+            ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour.ToXnaColor());
             GuiManager.Instance.Draw(spriteBatch);
         }
 

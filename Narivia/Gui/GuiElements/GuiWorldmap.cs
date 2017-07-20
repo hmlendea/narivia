@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
 using Narivia.Input.Events;
-using Narivia.Models;
 using Narivia.WorldMap;
 
 namespace Narivia.Gui.GuiElements
@@ -52,7 +52,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ImagePath = "World/Effects/border",
                 SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS * 3, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
-                Tint = Color.White,
+                Tint = Colour.White,
                 Opacity = 1.0f
             };
 
@@ -60,7 +60,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ImagePath = "World/Effects/border",
                 SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS * 3, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
-                Tint = Color.White,
+                Tint = Colour.White,
                 Opacity = 1.0f
             };
 
@@ -68,7 +68,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ImagePath = "World/Effects/border",
                 SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
-                Tint = Color.Blue,
+                Tint = Colour.Blue,
                 Opacity = 1.0f
             };
 
@@ -215,13 +215,13 @@ namespace Narivia.Gui.GuiElements
                     if (SelectedRegionId == regionId)
                     {
                         selectedRegionHighlight.Position = screenCoords;
-                        selectedRegionHighlight.Tint = new Color(factionColour.Red, factionColour.Green, factionColour.Blue);
+                        selectedRegionHighlight.Tint = factionColour;
                         selectedRegionHighlight.Draw(spriteBatch);
                     }
                     else
                     {
                         regionHighlight.Position = screenCoords;
-                        regionHighlight.Tint = new Color(factionColour.Red, factionColour.Green, factionColour.Blue);
+                        regionHighlight.Tint = factionColour;
                         regionHighlight.Draw(spriteBatch);
                     }
                 }
@@ -264,7 +264,7 @@ namespace Narivia.Gui.GuiElements
                     string factionIdE = game.FactionIdAtPosition(x + 1, y);
 
                     factionBorder.Position = screenCoords;
-                    factionBorder.Tint = new Color(factionColour.Red, factionColour.Green, factionColour.Blue);
+                    factionBorder.Tint = factionColour;
 
                     if (factionIdN != factionId &&
                         factionIdN != "gaia")

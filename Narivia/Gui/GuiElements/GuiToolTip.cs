@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.Infrastructure.Helpers;
+
 namespace Narivia.Gui.GuiElements
 {
     /// <summary>
@@ -18,13 +20,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the background colour.
         /// </summary>
         /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
+        public Colour BackgroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
+        public Colour TextColour { get; set; }
 
         GuiText text;
 
@@ -33,8 +35,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiTooltip()
         {
-            BackgroundColour = Color.DarkRed;
-            TextColour = Color.Gold;
+            BackgroundColour = Colour.DarkRed;
+            TextColour = Colour.Gold;
             Visible = false;
         }
 

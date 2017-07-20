@@ -1,7 +1,5 @@
 ﻿using System;
 
-using Narivia.Models;
-
 namespace Narivia.Infrastructure.Helpers
 {
     public static class ColourTranslator
@@ -12,7 +10,7 @@ namespace Narivia.Infrastructure.Helpers
         /// <returns>The hexadecimal code.</returns>
         public static string ToHexadecimal(Colour colour)
         {
-            string hexa = string.Format("#{0:X2}{1:X2}{2:X2}", colour.Red, colour.Green, colour.Blue);
+            string hexa = string.Format("#{0:X2}{1:X2}{2:X2}", colour.R, colour.G, colour.B);
 
             return hexa;
         }
@@ -33,15 +31,15 @@ namespace Narivia.Infrastructure.Helpers
 
             if (hexa.Length == 3)
             {
-                colour.Red = Convert.ToByte(hexa[0] + "" + hexa[0], 16);
-                colour.Green = Convert.ToByte(hexa[1] + "" + hexa[1], 16);
-                colour.Blue = Convert.ToByte(hexa[2] + "" + hexa[2], 16);
+                colour.R = Convert.ToByte(hexa[0] + "" + hexa[0], 16);
+                colour.G = Convert.ToByte(hexa[1] + "" + hexa[1], 16);
+                colour.B = Convert.ToByte(hexa[2] + "" + hexa[2], 16);
             }
             else if (hexa.Length == 6)
             {
-                colour.Red = Convert.ToByte(hexa[0] + "" + hexa[1], 16);
-                colour.Green = Convert.ToByte(hexa[2] + "" + hexa[3], 16);
-                colour.Blue = Convert.ToByte(hexa[4] + "" + hexa[5], 16);
+                colour.R = Convert.ToByte(hexa[0] + "" + hexa[1], 16);
+                colour.G = Convert.ToByte(hexa[2] + "" + hexa[3], 16);
+                colour.B = Convert.ToByte(hexa[4] + "" + hexa[5], 16);
             }
             else
             {
@@ -57,10 +55,10 @@ namespace Narivia.Infrastructure.Helpers
         /// <returns>The ARGB integer value.</returns>
         public static int ToArgb(Colour colour)
         {
-            int argb = (colour.Alpha << 24) |
-                       (colour.Red << 16) |
-                       (colour.Green << 8) |
-                       colour.Blue;
+            int argb = (colour.A << 24) |
+                       (colour.R << 16) |
+                       (colour.G << 8) |
+                       colour.B;
 
             return argb;
         }
@@ -74,6 +72,16 @@ namespace Narivia.Infrastructure.Helpers
         {
             // TODO: Implement this (Colour.FromArgb)
             throw new NotImplementedException();
+        }
+
+        public static Colour FromArgb(byte r, byte g, byte b)
+        {
+            return new Colour(r, g, b);
+        }
+
+        public static Colour FromArgb(byte a, byte r, byte g, byte b)
+        {
+            return new Colour(a, r, g, b);
         }
     }
 }

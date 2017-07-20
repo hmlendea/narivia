@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -50,7 +51,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
+        public Colour TextColour { get; set; }
 
         /// <summary>
         /// Gets the stats button.

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -7,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Events;
 using Narivia.Models;
 
@@ -21,7 +21,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
+        public Colour TextColour { get; set; }
 
         IGameManager game;
 
@@ -61,7 +61,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiRecruitmentDialog()
         {
-            TextColour = Color.Gold;
+            TextColour = Colour.Gold;
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Narivia.Gui.GuiElements
                 ContentFile = "ScreenManager/FillImage",
                 SourceRectangle = new Rectangle(0, 0, 1, 1),
                 Scale = new Vector2(100, 100),
-                TintColour = Color.Black
+                TintColour = Colour.Black
             };
 
             unitText = new GuiText

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Graphics.ImageEffects;
+using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -21,7 +22,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the tint colour.
         /// </summary>
         /// <value>The tint colour.</value>
-        public Color TintColour { get; set; }
+        public Colour TintColour { get; set; }
 
         /// <summary>
         /// Gets or sets the source rectangle.
@@ -60,7 +61,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiImage()
         {
-            TintColour = Color.White;
+            TintColour = Colour.White;
             Scale = Vector2.One;
         }
 

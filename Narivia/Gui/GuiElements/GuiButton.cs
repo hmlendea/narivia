@@ -5,9 +5,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Audio;
+using Narivia.Gui.GuiElements.Enumerations;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
-using Narivia.Gui.GuiElements.Enumerations;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -44,7 +45,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
+        public Colour TextColour { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the font.
@@ -69,7 +70,7 @@ namespace Narivia.Gui.GuiElements
         public GuiButton()
         {
             FontName = "ButtonFont";
-            TextColour = Color.Gold;
+            TextColour = Colour.Gold;
         }
 
         /// <summary>

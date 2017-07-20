@@ -170,9 +170,9 @@ namespace Narivia.Infrastructure.Helpers
         /// <param name="x">X Coordinate</param>
         /// <param name="y">Y Coordinate</param>
         /// <returns>Pixel color</returns>
-        public Color GetPixel(int x, int y)
+        public Colour GetPixel(int x, int y)
         {
-            Color clr = Color.Empty;
+            Colour colour = new Colour();
             byte a, r, g, b;
             int colorComponentsCount = Depth / 8;
             int index = ((y * Width) + x) * colorComponentsCount;
@@ -189,23 +189,23 @@ namespace Narivia.Infrastructure.Helpers
                     g = Pixels[index + 1];
                     r = Pixels[index + 2];
                     a = Pixels[index + 3];
-                    clr = Color.FromArgb(a, r, g, b);
+                    colour = Colour.FromArgb(a, r, g, b);
                     break;
 
                 case 24:
                     b = Pixels[index];
                     g = Pixels[index + 1];
                     r = Pixels[index + 2];
-                    clr = Color.FromArgb(r, g, b);
+                    colour = Colour.FromArgb(r, g, b);
                     break;
 
                 case 8:
                     b = Pixels[index];
-                    clr = Color.FromArgb(b, b, b);
+                    colour = Colour.FromArgb(b, b, b);
                     break;
             }
 
-            return clr;
+            return colour;
         }
 
         /// <summary>
@@ -213,8 +213,8 @@ namespace Narivia.Infrastructure.Helpers
         /// </summary>
         /// <param name="x">X Coordinate</param>
         /// <param name="y">Y Coordinate</param>
-        /// <param name="color">Pixel color</param>
-        public void SetPixel(int x, int y, Color color)
+        /// <param name="colour">Pixel colour</param>
+        public void SetPixel(int x, int y, Colour colour)
         {
             int colorComponentsCount = Depth / 8;
             int index = ((y * Width) + x) * colorComponentsCount;
@@ -222,20 +222,20 @@ namespace Narivia.Infrastructure.Helpers
             switch (Depth)
             {
                 case 32:
-                    Pixels[index] = color.B;
-                    Pixels[index + 1] = color.G;
-                    Pixels[index + 2] = color.R;
-                    Pixels[index + 3] = color.A;
+                    Pixels[index] = colour.B;
+                    Pixels[index + 1] = colour.G;
+                    Pixels[index + 2] = colour.R;
+                    Pixels[index + 3] = colour.A;
                     break;
 
                 case 24:
-                    Pixels[index] = color.B;
-                    Pixels[index + 1] = color.G;
-                    Pixels[index + 2] = color.R;
+                    Pixels[index] = colour.B;
+                    Pixels[index + 1] = colour.G;
+                    Pixels[index + 2] = colour.R;
                     break;
 
                 case 8:
-                    Pixels[index] = color.B;
+                    Pixels[index] = colour.B;
                     break;
             }
         }

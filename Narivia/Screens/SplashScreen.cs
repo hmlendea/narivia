@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
-using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 
 namespace Narivia.Screens
@@ -41,7 +41,7 @@ namespace Narivia.Screens
 
         public SplashScreen()
         {
-            BackgroundColour = Color.DodgerBlue;
+            BackgroundColour = Colour.DodgerBlue;
         }
 
         /// <summary>

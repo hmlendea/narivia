@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Screens;
 using Narivia.Graphics.ImageEffects;
+using Narivia.Infrastructure.Extensions;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Helpers;
 
 namespace Narivia.Graphics
@@ -40,7 +42,7 @@ namespace Narivia.Graphics
         /// Gets or sets the tint.
         /// </summary>
         /// <value>The tint.</value>
-        public Color Tint { get; set; }
+        public Colour Tint { get; set; }
 
         /// <summary>
         /// Gets or sets the opacity.
@@ -212,7 +214,7 @@ namespace Narivia.Graphics
             Scale = Vector2.One;
             TextureFillMode = TextureFillMode.Stretch;
 
-            Tint = Color.White;
+            Tint = Colour.White;
         }
 
         /// <summary>
@@ -331,7 +333,7 @@ namespace Narivia.Graphics
             if (TextureFillMode == TextureFillMode.Stretch)
             {
                 spriteBatch.Draw(Texture, Position + origin, SourceRectangle,
-                    Tint * Opacity, Rotation,
+                    Tint.ToXnaColor() * Opacity, Rotation,
                     origin, Scale * Zoom,
                     SpriteEffects.None, 0.0f);
             }
@@ -348,7 +350,7 @@ namespace Narivia.Graphics
                                                   Position.Y + origin.Y + y * SourceRectangle.Height);
 
                         spriteBatch.Draw(Texture, pos, SourceRectangle,
-                            Tint * Opacity, Rotation,
+                            Tint.ToXnaColor() * Opacity, Rotation,
                             origin, 1.0f,
                             SpriteEffects.None, 0.0f);
                     }
@@ -431,7 +433,7 @@ namespace Narivia.Graphics
             split.ForEach(ActivateEffect);
         }
 
-        void DrawString(SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color color)
+        void DrawString(SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Colour colour)
         {
             Vector2 textOrigin = Vector2.Zero;
             Vector2 totalSize = font.MeasureString(text);
@@ -463,7 +465,7 @@ namespace Narivia.Graphics
                 textOrigin = new Vector2((int)Math.Round(textOrigin.X),
                                          (int)Math.Round(textOrigin.Y));
 
-                ScreenManager.Instance.SpriteBatch.DrawString(spriteFont, line, Position + textOrigin, color);
+                ScreenManager.Instance.SpriteBatch.DrawString(spriteFont, line, Position + textOrigin, colour.ToXnaColor());
 
                 textOrigin.Y += lineSize.Y;
             }
