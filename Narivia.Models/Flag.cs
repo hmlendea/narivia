@@ -32,6 +32,13 @@ namespace Narivia.Models
         public string Emblem { get; set; }
 
         /// <summary>
+        /// Gets or sets the skin.
+        /// </summary>
+        /// <value>The skin.</value>
+        [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
+        public string Skin { get; set; }
+
+        /// <summary>
         /// Gets or sets the primary colour.
         /// </summary>
         /// <value>The primary colour.</value>

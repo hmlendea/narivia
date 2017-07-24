@@ -23,6 +23,12 @@ namespace Narivia.Gui.GuiElements
         public string Emblem { get; set; }
 
         /// <summary>
+        /// Gets or sets the skin.
+        /// </summary>
+        /// <value>The skin.</value>
+        public string Skin { get; set; }
+
+        /// <summary>
         /// Gets or sets the primary colour.
         /// </summary>
         /// <value>The primary colour.</value>
@@ -36,6 +42,7 @@ namespace Narivia.Gui.GuiElements
 
         GuiImage backgroundImage;
         GuiImage emblemImage;
+        GuiImage skinImage;
 
         /// <summary>
         /// Loads the content.
@@ -52,9 +59,15 @@ namespace Narivia.Gui.GuiElements
                 ContentFile = $"Interface/Flags/Emblems/{Emblem}",
                 SourceRectangle = new Rectangle(0, 0, 128, 128)
             };
+            skinImage = new GuiImage
+            {
+                ContentFile = $"Interface/Flags/Skins/{Skin}",
+                SourceRectangle = new Rectangle(0, 0, 128, 128)
+            };
 
             Children.Add(backgroundImage);
             Children.Add(emblemImage);
+            Children.Add(skinImage);
 
             SetChildrenProperties();
 
@@ -93,6 +106,7 @@ namespace Narivia.Gui.GuiElements
         {
             backgroundImage.Position = Position;
             emblemImage.Position = Position;
+            skinImage.Position = Position;
         }
     }
 }

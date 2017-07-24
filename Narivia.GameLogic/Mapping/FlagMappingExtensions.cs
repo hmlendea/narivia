@@ -24,6 +24,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = flagEntity.Id,
                 Background = flagEntity.Background,
                 Emblem = flagEntity.Emblem,
+                Skin = flagEntity.Skin,
                 PrimaryColour = ColourTranslator.FromHexadecimal(flagEntity.PrimaryColourHexadecimal),
                 SecondaryColour = ColourTranslator.FromHexadecimal(flagEntity.SecondaryColourHexadecimal)
             };
@@ -43,6 +44,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = flag.Id,
                 Background = flag.Background,
                 Emblem = flag.Emblem,
+                Skin = flag.Skin,
                 PrimaryColourHexadecimal = ColourTranslator.ToHexadecimal(flag.PrimaryColour),
                 SecondaryColourHexadecimal = ColourTranslator.ToHexadecimal(flag.SecondaryColour)
             };

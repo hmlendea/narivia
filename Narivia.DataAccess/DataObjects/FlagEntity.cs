@@ -24,6 +24,12 @@
         public string Emblem { get; set; }
 
         /// <summary>
+        /// Gets or sets the skin.
+        /// </summary>
+        /// <value>The skin.</value>
+        public string Skin { get; set; }
+
+        /// <summary>
         /// Gets or sets the primary colour in hexadecimal.
         /// </summary>
         /// <value>The primary colour.</value>
