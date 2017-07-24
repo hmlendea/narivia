@@ -1,4 +1,6 @@
-﻿namespace Narivia.Infrastructure.Helpers
+﻿using System;
+
+namespace Narivia.Infrastructure.Helpers
 {
     public class Colour
     {
@@ -43,11 +45,11 @@
         }
 
         public Colour(byte r, byte g, byte b, byte a)
-            : this (r, g, b)
+            : this(r, g, b)
         {
             A = a;
         }
-        
+
         public static Colour Transparent => new Colour(0, 0, 0, 0);
 
         public static Colour Black => new Colour(0, 0, 0, 255);
@@ -57,6 +59,8 @@
         public static Colour DarkRed => new Colour(139, 0, 0, 255);
         public static Colour DodgerBlue => new Colour(30, 144, 255, 255);
         public static Colour Gold => new Colour(255, 215, 0, 255);
+        public static Colour Green => new Colour(0, 255, 0, 255);
+        public static Colour Red => new Colour(255, 0, 0, 255);
         public static Colour Vermilion => new Colour(206, 17, 38, 255);
         public static Colour White => new Colour(255, 255, 255, 255);
 
@@ -69,6 +73,13 @@
         /// </summary>
         /// <returns>The ARGB integer value.</returns>
         public int ToArgb() => ColourTranslator.ToArgb(this);
+
+        public bool IsSimilarTo(Colour colour, int tolerance)
+        {
+            return Math.Abs(R - colour.R) <= tolerance &&
+                   Math.Abs(G - colour.G) <= tolerance &&
+                   Math.Abs(B - colour.B) <= tolerance;
+        }
 
         public static Colour Multiply(Colour value, float scale)
         {

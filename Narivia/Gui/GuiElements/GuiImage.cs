@@ -30,6 +30,12 @@ namespace Narivia.Gui.GuiElements
         /// <value>The tint colour.</value>
         public Colour TintColour { get; set; }
 
+        public Colour GreenReplacement { get; set; }
+
+        public Colour RedReplacement { get; set; }
+
+        public Colour BlueReplacement { get; set; }
+
         /// <summary>
         /// Gets or sets the source rectangle.
         /// </summary>
@@ -79,7 +85,10 @@ namespace Narivia.Gui.GuiElements
             image = new Image
             {
                 ImagePath = ContentFile,
-                TransparencyMaskPath = MaskFile
+                TransparencyMaskPath = MaskFile,
+                RedReplacement = RedReplacement,
+                GreenReplacement = GreenReplacement,
+                BlueReplacement = BlueReplacement
             };
 
             SetChildrenProperties();

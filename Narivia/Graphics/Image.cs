@@ -44,6 +44,12 @@ namespace Narivia.Graphics
         /// <value>The tint.</value>
         public Colour Tint { get; set; }
 
+        public Colour GreenReplacement { get; set; }
+
+        public Colour RedReplacement { get; set; }
+
+        public Colour BlueReplacement { get; set; }
+
         /// <summary>
         /// Gets or sets the opacity.
         /// </summary>
@@ -252,6 +258,21 @@ namespace Narivia.Graphics
                 TransparencyMask = content.Load<Texture2D>(TransparencyMaskPath);
             }
 
+            if (RedReplacement != null)
+            {
+                ReplaceColour(Colour.Red, RedReplacement, 15);
+            }
+
+            if (GreenReplacement != null)
+            {
+                ReplaceColour(Colour.Green, GreenReplacement, 15);
+            }
+
+            if (BlueReplacement != null)
+            {
+                ReplaceColour(Colour.Blue, BlueReplacement, 15);
+            }
+
             font = content.Load<SpriteFont>("Fonts/" + FontName);
 
             if (SpriteSize == Vector2.Zero)
@@ -454,6 +475,23 @@ namespace Narivia.Graphics
 
             effectKeys.ForEach(DeactivateEffect);
             split.ForEach(ActivateEffect);
+        }
+
+        public void ReplaceColour(Colour original, Colour replacement, int tolerance)
+        {
+            Color[] data = new Color[Texture.Width * Texture.Height];
+
+            Texture.GetData(data);
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (data[i].ToNariviaColour().IsSimilarTo(original, tolerance))
+                {
+                    data[i] = replacement.ToXnaColor();
+                }
+            }
+
+            Texture.SetData(data);
         }
 
         void DrawString(SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Colour colour)
