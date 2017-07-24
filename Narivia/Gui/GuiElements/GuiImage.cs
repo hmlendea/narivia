@@ -19,6 +19,12 @@ namespace Narivia.Gui.GuiElements
         public string ContentFile { get; set; }
 
         /// <summary>
+        /// Gets or sets the mask file.
+        /// </summary>
+        /// <value>The mask file.</value>
+        public string MaskFile { get; set; }
+
+        /// <summary>
         /// Gets or sets the tint colour.
         /// </summary>
         /// <value>The tint colour.</value>
@@ -70,7 +76,11 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            image = new Image { ImagePath = ContentFile };
+            image = new Image
+            {
+                ImagePath = ContentFile,
+                TransparencyMaskPath = MaskFile
+            };
 
             SetChildrenProperties();
 

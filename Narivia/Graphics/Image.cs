@@ -93,6 +93,12 @@ namespace Narivia.Graphics
         public string ImagePath { get; set; }
 
         /// <summary>
+        /// Gets or sets the transparency mask path.
+        /// </summary>
+        /// <value>The transparency mask path.</value>
+        public string TransparencyMaskPath { get; set; }
+
+        /// <summary>
         /// Gets or sets the position.
         /// </summary>
         /// <value>The position.</value>
@@ -139,6 +145,13 @@ namespace Narivia.Graphics
         /// <value>The texture.</value>
         [XmlIgnore]
         public Texture2D Texture { get; set; }
+
+        /// <summary>
+        /// Gets or sets the transparency mask.
+        /// </summary>
+        /// <value>The transparency mask.</value>
+        [XmlIgnore]
+        public Texture2D TransparencyMask { get; set; }
 
         /// <summary>
         /// Gets or sets the fill mode.
@@ -234,6 +247,11 @@ namespace Narivia.Graphics
                 Texture = content.Load<Texture2D>(ImagePath);
             }
 
+            if (!string.IsNullOrEmpty(TransparencyMaskPath))
+            {
+                TransparencyMask = content.Load<Texture2D>(TransparencyMaskPath);
+            }
+
             font = content.Load<SpriteFont>("Fonts/" + FontName);
 
             if (SpriteSize == Vector2.Zero)
@@ -271,6 +289,11 @@ namespace Narivia.Graphics
             if (Texture != null)
             {
                 ScreenManager.Instance.SpriteBatch.Draw(Texture, Vector2.Zero, Color.White);
+
+                if (TransparencyMask != null)
+                {
+                    ApplyTransparencyMask();
+                }
             }
 
             ScreenManager.Instance.SpriteBatch.End();
@@ -469,6 +492,30 @@ namespace Narivia.Graphics
 
                 textOrigin.Y += lineSize.Y;
             }
+        }
+
+        void ApplyTransparencyMask()
+        {
+            Color[] textureBits = new Color[Texture.Width * Texture.Height];
+            Color[] maskBits = new Color[TransparencyMask.Width * TransparencyMask.Height];
+
+            Texture.GetData(textureBits);
+            TransparencyMask.GetData(maskBits);
+
+            for (int y = 0; y < TransparencyMask.Height; y++)
+            {
+                for (int x = 0; x < TransparencyMask.Width; x++)
+                {
+                    int i = x + y * Texture.Width;
+
+                    textureBits[i] = Color.FromNonPremultiplied(textureBits[i].R,
+                                                                textureBits[i].G,
+                                                                textureBits[i].B,
+                                                                textureBits[i].A - 255 + maskBits[i].R);
+                }
+            }
+
+            Texture.SetData(textureBits);
         }
     }
 }
