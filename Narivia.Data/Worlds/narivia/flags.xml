@@ -4,245 +4,280 @@
     <Id>gaia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#00A1FF</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#00A1FF</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>alpalet_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#300065</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#300065</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>mah_rodah_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#7B7B7B</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#7B7B7B</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>caravenna_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#B10000</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#B10000</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>viristia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#FFD400</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#FFD400</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>meuristia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#006353</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#006353</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>befteria_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#2D7B00</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#2D7B00</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ne_quin_arid_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#D3BA8E</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#D3BA8E</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>fatima_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#FFACD5</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#FFACD5</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>optimia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#00AB98</PrimaryColourHexadecimal>
-     <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#00AB98</BackgroundPrimaryColourHexadecimal>
+     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>impera_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#0072FF</PrimaryColourHexadecimal>
-     <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#0072FF</BackgroundPrimaryColourHexadecimal>
+     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>impimia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#A74B00</PrimaryColourHexadecimal>
-     <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#A74B00</BackgroundPrimaryColourHexadecimal>
+     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>faladai_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#82004B</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#82004B</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>daria_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#6556FF</PrimaryColourHexadecimal>
-     <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#6556FF</BackgroundPrimaryColourHexadecimal>
+     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>lamiz_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#7EACF8</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#7EACF8</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>sudair_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#FFD377</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#FFD377</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>targat_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#536978</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#536978</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>estaton_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#FF6565</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#FF6565</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>deshesda_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#00F86A</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#00F86A</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>altop_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#B25B98</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#B25B98</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>aaria_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#A56258</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#A56258</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>nordodar_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#694B7B</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#694B7B</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>naryrica_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#FFA577</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#FFA577</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ardamus_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#70A55F</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#70A55F</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ayako_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#FF00FF</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#FF00FF</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>abeque_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#AE8E00</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#AE8E00</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>amion_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#948F00</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#948F00</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>sporadja_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#B2CC6B</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#B2CC6B</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>endel_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#C3DF00</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#C3DF00</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>consus_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#FFA400</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#FFA400</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>jhgrothaar_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#C3EBFF</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#C3EBFF</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>antene_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#C3BA00</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#C3BA00</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>bardos_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#653E1C</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#653E1C</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>gammeland_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#FFFFFF</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#FFFFFF</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ingolfsfell_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
-    <PrimaryColourHexadecimal>#9AFF9A</PrimaryColourHexadecimal>
-    <SecondaryColourHexadecimal>#000000</SecondaryColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#9AFF9A</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
 </ArrayOfFlagEntity>

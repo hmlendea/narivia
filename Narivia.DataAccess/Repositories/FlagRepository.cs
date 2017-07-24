@@ -88,8 +88,9 @@ namespace Narivia.DataAccess.Repositories
             flagEntityToUpdate.Background = flagEntity.Background;
             flagEntityToUpdate.Emblem = flagEntity.Emblem;
             flagEntityToUpdate.Skin = flagEntity.Skin;
-            flagEntityToUpdate.PrimaryColourHexadecimal = flagEntity.PrimaryColourHexadecimal;
-            flagEntityToUpdate.SecondaryColourHexadecimal = flagEntity.SecondaryColourHexadecimal;
+            flagEntityToUpdate.BackgroundPrimaryColourHexadecimal = flagEntity.BackgroundPrimaryColourHexadecimal;
+            flagEntityToUpdate.BackgroundSecondaryColourHexadecimal = flagEntity.BackgroundSecondaryColourHexadecimal;
+            flagEntityToUpdate.EmblemColourHexadecimal = flagEntity.EmblemColourHexadecimal;
 
             xmlDatabase.SaveEntities(flagEntities);
         }

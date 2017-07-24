@@ -29,16 +29,22 @@ namespace Narivia.Gui.GuiElements
         public string Skin { get; set; }
 
         /// <summary>
-        /// Gets or sets the primary colour.
+        /// Gets or sets the background primary colour.
         /// </summary>
-        /// <value>The primary colour.</value>
-        public Colour PrimaryColour { get; set; }
+        /// <value>The background primary colour.</value>
+        public Colour BackgroundPrimaryColour { get; set; }
 
         /// <summary>
-        /// Gets or sets the secondary colour.
+        /// Gets or sets the background secondary colour.
         /// </summary>
-        /// <value>The secondary colour.</value>
-        public Colour SecondaryColour { get; set; }
+        /// <value>The background secondary colour.</value>
+        public Colour BackgroundSecondaryColour { get; set; }
+
+        /// <summary>
+        /// Gets or sets the emblem colour.
+        /// </summary>
+        /// <value>The emblem colour.</value>
+        public Colour EmblemColour { get; set; }
 
         GuiImage backgroundImage;
         GuiImage emblemImage;
@@ -53,13 +59,16 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = $"Interface/Flags/Backgrounds/{Background}",
                 MaskFile = $"Interface/Flags/Skins/{Skin}_mask",
-                SourceRectangle = new Rectangle(0, 0, 128, 128)
+                SourceRectangle = new Rectangle(0, 0, 128, 128),
+                RedReplacement = BackgroundPrimaryColour,
+                GreenReplacement = BackgroundSecondaryColour
             };
             emblemImage = new GuiImage
             {
                 ContentFile = $"Interface/Flags/Emblems/{Emblem}",
                 MaskFile = $"Interface/Flags/Skins/{Skin}_mask",
-                SourceRectangle = new Rectangle(0, 0, 128, 128)
+                SourceRectangle = new Rectangle(0, 0, 128, 128),
+                TintColour = EmblemColour
             };
             skinImage = new GuiImage
             {

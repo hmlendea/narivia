@@ -30,15 +30,21 @@
         public string Skin { get; set; }
 
         /// <summary>
-        /// Gets or sets the primary colour in hexadecimal.
+        /// Gets or sets the background primary colour in hexadecimal.
         /// </summary>
-        /// <value>The primary colour.</value>
-        public string PrimaryColourHexadecimal { get; set; }
+        /// <value>The background primary colour in hexadecimal.</value>
+        public string BackgroundPrimaryColourHexadecimal { get; set; }
 
         /// <summary>
-        /// Gets or sets the secondary colour in hexadecimal.
+        /// Gets or sets the background secondary colour in hexadecimal.
         /// </summary>
-        /// <value>The secondary colour.</value>
-        public string SecondaryColourHexadecimal { get; set; }
+        /// <value>The background secondary colour in hexadecimal.</value>
+        public string BackgroundSecondaryColourHexadecimal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the emblem colour in hexadecimal.
+        /// </summary>
+        /// <value>The emblem colour in hexadecimal.</value>
+        public string EmblemColourHexadecimal { get; set; }
     }
 }
