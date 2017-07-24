@@ -52,11 +52,13 @@ namespace Narivia.Gui.GuiElements
             backgroundImage = new GuiImage
             {
                 ContentFile = $"Interface/Flags/Backgrounds/{Background}",
+                MaskFile = $"Interface/Flags/Skins/{Skin}_mask",
                 SourceRectangle = new Rectangle(0, 0, 128, 128)
             };
             emblemImage = new GuiImage
             {
                 ContentFile = $"Interface/Flags/Emblems/{Emblem}",
+                MaskFile = $"Interface/Flags/Skins/{Skin}_mask",
                 SourceRectangle = new Rectangle(0, 0, 128, 128)
             };
             skinImage = new GuiImage
