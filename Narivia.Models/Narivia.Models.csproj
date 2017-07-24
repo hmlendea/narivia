@@ -56,6 +56,7 @@
     <Compile Include="Enumerations\RegionState.cs" />
     <Compile Include="Enumerations\ResourceType.cs" />
     <Compile Include="Enumerations\UnitType.cs" />
+    <Compile Include="Flag.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

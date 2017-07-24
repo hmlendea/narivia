@@ -70,6 +70,9 @@
     <Compile Include="DataObjects\RelationEntity.cs" />
     <Compile Include="Repositories\Interfaces\IRelationRepository.cs" />
     <Compile Include="Repositories\RelationRepository.cs" />
+    <Compile Include="DataObjects\FlagEntity.cs" />
+    <Compile Include="Repositories\Interfaces\IFlagRepository.cs" />
+    <Compile Include="Repositories\Interfaces\FlagRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">

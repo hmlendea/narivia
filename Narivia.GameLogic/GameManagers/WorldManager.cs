@@ -47,6 +47,12 @@ namespace Narivia.GameLogic.GameManagers
         public Dictionary<string, Faction> Factions { get; set; }
 
         /// <summary>
+        /// Gets or sets the flags.
+        /// </summary>
+        /// <value>The flags.</value>
+        public Dictionary<string, Flag> Flags { get; set; }
+
+        /// <summary>
         /// Gets or sets the holdings.
         /// </summary>
         /// <value>The holdings.</value>
@@ -504,6 +510,7 @@ namespace Narivia.GameLogic.GameManagers
             IBorderRepository borderRepository = new BorderRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "borders.xml"));
             ICultureRepository cultureRepository = new CultureRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml"));
             IFactionRepository factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
+            IFlagRepository flagRepository = new FlagRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "flags.xml"));
             IHoldingRepository holdingRepository = new HoldingRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
             IRegionRepository regionRepository = new RegionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
             IResourceRepository resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
@@ -513,6 +520,7 @@ namespace Narivia.GameLogic.GameManagers
             List<Border> borderList = borderRepository.GetAll().ToDomainModels().ToList();
             List<Culture> cultureList = cultureRepository.GetAll().ToDomainModels().ToList();
             List<Faction> factionList = factionRepository.GetAll().ToDomainModels().ToList();
+            List<Flag> flagList = flagRepository.GetAll().ToDomainModels().ToList();
             List<Holding> holdingList = holdingRepository.GetAll().ToDomainModels().ToList();
             List<Region> regionList = regionRepository.GetAll().ToDomainModels().ToList();
             List<Resource> resourceList = resourceRepository.GetAll().ToDomainModels().ToList();
@@ -522,6 +530,7 @@ namespace Narivia.GameLogic.GameManagers
             Borders = new Dictionary<Tuple<string, string>, Border>();
             Cultures = new Dictionary<string, Culture>();
             Factions = new Dictionary<string, Faction>();
+            Flags = new Dictionary<string, Flag>();
             Holdings = new Dictionary<string, Holding>();
             Regions = new Dictionary<string, Region>();
             Resources = new Dictionary<string, Resource>();
@@ -531,6 +540,7 @@ namespace Narivia.GameLogic.GameManagers
             borderList.ForEach(border => Borders.Add(new Tuple<string, string>(border.Region1Id, border.Region2Id), border));
             cultureList.ForEach(culture => Cultures.Add(culture.Id, culture));
             factionList.ForEach(faction => Factions.Add(faction.Id, faction));
+            flagList.ForEach(flag => Flags.Add(flag.Id, flag));
             //holdingList.ForEach(holding => Holdings.Add(holding.Id, holding));
             regionList.ForEach(region => Regions.Add(region.Id, region));
             resourceList.ForEach(resource => Resources.Add(resource.Id, resource));
@@ -567,7 +577,7 @@ namespace Narivia.GameLogic.GameManagers
                 {
                     for (int x = 0; x < world.Height; x++)
                     {
-                        Colour clr = bmp.GetPixel(x,y);
+                        Colour clr = bmp.GetPixel(x, y);
                         int argb = bmp.GetPixel(x, y).ToArgb();
 
                         worldTiles[x, y] = regionColourIds[argb];
