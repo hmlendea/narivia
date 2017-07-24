@@ -116,6 +116,7 @@
     <Compile Include="Gui\GuiManager.cs" />
     <Compile Include="Gui\GuiElements\GuiText.cs" />
     <Compile Include="Gui\GuiElements\GuiImage.cs" />
+    <Compile Include="Gui\GuiElements\GuiFactionFlag.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
