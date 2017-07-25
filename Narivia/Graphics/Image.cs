@@ -353,9 +353,16 @@ namespace Narivia.Graphics
                            TextHorizontalAlignment, TextVerticalAlignment, Tint * Opacity);
             }
 
+            Texture2D textureToDraw = Texture;
+
+            if (TransparencyMask != null)
+            {
+                textureToDraw = TextureBlend(Texture, TransparencyMask);
+            }
+
             if (TextureFillMode == TextureFillMode.Stretch)
             {
-                spriteBatch.Draw(Texture, Position + origin, SourceRectangle,
+                spriteBatch.Draw(textureToDraw, Position + origin, SourceRectangle,
                     Tint.ToXnaColor() * Opacity, Rotation,
                     origin, Scale * Zoom,
                     SpriteEffects.None, 0.0f);
@@ -372,7 +379,7 @@ namespace Narivia.Graphics
                         Vector2 pos = new Vector2(Position.X + origin.X + x * SourceRectangle.Width,
                                                   Position.Y + origin.Y + y * SourceRectangle.Height);
 
-                        spriteBatch.Draw(Texture, pos, SourceRectangle,
+                        spriteBatch.Draw(textureToDraw, pos, SourceRectangle,
                             Tint.ToXnaColor() * Opacity, Rotation,
                             origin, 1.0f,
                             SpriteEffects.None, 0.0f);
@@ -511,49 +518,44 @@ namespace Narivia.Graphics
             }
         }
 
-        void ApplyTransparencyMask()
+        Texture2D TextureBlend(Texture2D texture, Texture2D mask)
         {
-            if (Texture == null || TransparencyMask == null)
-            {
-                return;
-            }
+            Color[] textureBits = new Color[texture.Width * texture.Height];
+            Color[] maskBits = new Color[mask.Width * mask.Height];
 
-            Color[] textureBits = new Color[Texture.Width * Texture.Height];
-            Color[] maskBits = new Color[TransparencyMask.Width * TransparencyMask.Height];
-
-            Texture.GetData(textureBits);
-            TransparencyMask.GetData(maskBits);
+            texture.GetData(textureBits);
+            mask.GetData(maskBits);
 
             int startX, startY, endX, endY;
 
-            if (TransparencyMask.Width > Texture.Width)
+            if (mask.Width > texture.Width)
             {
-                startX = TransparencyMask.Width - Texture.Width;
-                endX = startX + Texture.Width;
+                startX = mask.Width - texture.Width;
+                endX = startX + texture.Width;
             }
             else
             {
-                startX = Texture.Width - TransparencyMask.Width;
-                endX = startX + TransparencyMask.Width;
+                startX = texture.Width - mask.Width;
+                endX = startX + mask.Width;
             }
 
-            if (TransparencyMask.Height > Texture.Height)
+            if (mask.Height > texture.Height)
             {
-                startY = TransparencyMask.Height - Texture.Height;
-                endY = startY + Texture.Height;
+                startY = mask.Height - texture.Height;
+                endY = startY + texture.Height;
             }
             else
             {
-                startY = Texture.Height - TransparencyMask.Height;
-                endY = startY + TransparencyMask.Height;
+                startY = texture.Height - mask.Height;
+                endY = startY + mask.Height;
             }
 
             for (int y = startY; y < endY; y++)
             {
                 for (int x = startX; x < endX; x++)
                 {
-                    int indexTexture = x - startX + (y - startY) * Texture.Width;
-                    int indexMask = x - startX + (y - startY) * TransparencyMask.Width;
+                    int indexTexture = x - startX + (y - startY) * texture.Width;
+                    int indexMask = x - startX + (y - startY) * mask.Width;
 
                     if (indexTexture == textureBits.Length || indexMask == maskBits.Length)
                     {
@@ -567,7 +569,10 @@ namespace Narivia.Graphics
                 }
             }
 
-            Texture.SetData(textureBits);
+            Texture2D blendedTexture = new Texture2D(texture.GraphicsDevice ,texture.Width, texture.Height);
+            blendedTexture.SetData(textureBits);
+
+            return blendedTexture;
         }
 
         void LoadImage()
@@ -595,9 +600,6 @@ namespace Narivia.Graphics
             {
                 ReplaceColour(Colour.Blue, BlueReplacement, 15);
             }
-
-            // Force reload of the transparency mask
-            loadedTransparencyMaskPath = string.Empty;
         }
 
         void LoadTransparencyMask()
@@ -610,8 +612,6 @@ namespace Narivia.Graphics
             TransparencyMask = content.Load<Texture2D>(TransparencyMaskPath);
 
             loadedTransparencyMaskPath = TransparencyMaskPath;
-
-            ApplyTransparencyMask();
         }
     }
 }
