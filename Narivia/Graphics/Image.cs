@@ -32,6 +32,9 @@ namespace Narivia.Graphics
 
         readonly Dictionary<string, ImageEffect> effectList;
 
+        string loadedImagePath;
+        string loadedTransparencyMaskPath;
+
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Image"/> is active.
         /// </summary>
@@ -248,30 +251,8 @@ namespace Narivia.Graphics
                 Text = string.Empty;
             }
 
-            if (!string.IsNullOrEmpty(ImagePath))
-            {
-                Texture = content.Load<Texture2D>(ImagePath);
-            }
-
-            if (!string.IsNullOrEmpty(TransparencyMaskPath))
-            {
-                TransparencyMask = content.Load<Texture2D>(TransparencyMaskPath);
-            }
-
-            if (RedReplacement != null)
-            {
-                ReplaceColour(Colour.Red, RedReplacement, 15);
-            }
-
-            if (GreenReplacement != null)
-            {
-                ReplaceColour(Colour.Green, GreenReplacement, 15);
-            }
-
-            if (BlueReplacement != null)
-            {
-                ReplaceColour(Colour.Blue, BlueReplacement, 15);
-            }
+            LoadImage();
+            LoadTransparencyMask();
 
             font = content.Load<SpriteFont>("Fonts/" + FontName);
 
@@ -310,11 +291,6 @@ namespace Narivia.Graphics
             if (Texture != null)
             {
                 ScreenManager.Instance.SpriteBatch.Draw(Texture, Vector2.Zero, Color.White);
-
-                if (TransparencyMask != null)
-                {
-                    ApplyTransparencyMask();
-                }
             }
 
             ScreenManager.Instance.SpriteBatch.End();
@@ -354,6 +330,9 @@ namespace Narivia.Graphics
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
+            LoadImage();
+            LoadTransparencyMask();
+
             List<ImageEffect> activeEffects = effectList.Values.Where(effect => effect.Active).ToList();
 
             activeEffects.ForEach(effect => effect.Update(gameTime));
@@ -534,6 +513,11 @@ namespace Narivia.Graphics
 
         void ApplyTransparencyMask()
         {
+            if (Texture == null || TransparencyMask == null)
+            {
+                return;
+            }
+
             Color[] textureBits = new Color[Texture.Width * Texture.Height];
             Color[] maskBits = new Color[TransparencyMask.Width * TransparencyMask.Height];
 
@@ -554,6 +538,52 @@ namespace Narivia.Graphics
             }
 
             Texture.SetData(textureBits);
+        }
+
+        void LoadImage()
+        {
+            if (loadedImagePath == ImagePath || string.IsNullOrEmpty(ImagePath))
+            {
+                return;
+            }
+            
+            Texture = content.Load<Texture2D>(ImagePath);
+
+            loadedImagePath = ImagePath;
+            
+            if (RedReplacement != null)
+            {
+                ReplaceColour(Colour.Red, RedReplacement, 15);
+            }
+
+            if (GreenReplacement != null)
+            {
+                ReplaceColour(Colour.Green, GreenReplacement, 15);
+            }
+
+            if (BlueReplacement != null)
+            {
+                ReplaceColour(Colour.Blue, BlueReplacement, 15);
+            }
+
+            if (loadedTransparencyMaskPath == TransparencyMaskPath)
+            {
+                ApplyTransparencyMask();
+            }
+        }
+
+        void LoadTransparencyMask()
+        {
+            if (loadedTransparencyMaskPath == TransparencyMaskPath || string.IsNullOrEmpty(TransparencyMaskPath))
+            {
+                return;
+            }
+
+            TransparencyMask = content.Load<Texture2D>(TransparencyMaskPath);
+
+            loadedTransparencyMaskPath = TransparencyMaskPath;
+
+            ApplyTransparencyMask();
         }
     }
 }

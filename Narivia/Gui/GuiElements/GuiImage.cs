@@ -82,14 +82,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            image = new Image
-            {
-                ImagePath = ContentFile,
-                TransparencyMaskPath = MaskFile,
-                RedReplacement = RedReplacement,
-                GreenReplacement = GreenReplacement,
-                BlueReplacement = BlueReplacement
-            };
+            image = new Image();
 
             SetChildrenProperties();
 
@@ -141,6 +134,12 @@ namespace Narivia.Gui.GuiElements
 
         void SetChildrenProperties()
         {
+
+            image.TransparencyMaskPath = MaskFile;
+            image.RedReplacement = RedReplacement;
+            image.GreenReplacement = GreenReplacement;
+            image.BlueReplacement = BlueReplacement;
+            image.ImagePath = ContentFile;
             image.SourceRectangle = SourceRectangle;
             image.Tint = TintColour;
             image.Position = Position;

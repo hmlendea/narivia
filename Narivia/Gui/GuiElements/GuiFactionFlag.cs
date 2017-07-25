@@ -71,22 +71,14 @@ namespace Narivia.Gui.GuiElements
         {
             backgroundImage = new GuiImage
             {
-                ContentFile = $"Interface/Flags/Backgrounds/{Background}",
-                MaskFile = $"Interface/Flags/Skins/{Skin}_mask",
-                SourceRectangle = new Rectangle(0, 0, 128, 128),
-                RedReplacement = BackgroundPrimaryColour,
-                GreenReplacement = BackgroundSecondaryColour
+                SourceRectangle = new Rectangle(0, 0, 128, 128)
             };
             emblemImage = new GuiImage
             {
-                ContentFile = $"Interface/Flags/Emblems/{Emblem}",
-                MaskFile = $"Interface/Flags/Skins/{Skin}_mask",
-                SourceRectangle = new Rectangle(0, 0, 128, 128),
-                TintColour = EmblemColour
+                SourceRectangle = new Rectangle(0, 0, 128, 128)
             };
             skinImage = new GuiImage
             {
-                ContentFile = $"Interface/Flags/Skins/{Skin}",
                 SourceRectangle = new Rectangle(0, 0, 128, 128)
             };
 
@@ -129,14 +121,22 @@ namespace Narivia.Gui.GuiElements
 
         void SetChildrenProperties()
         {
+            backgroundImage.ContentFile = $"Interface/Flags/Backgrounds/{Background}";
+            backgroundImage.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
+            backgroundImage.RedReplacement = BackgroundPrimaryColour;
+            backgroundImage.GreenReplacement = BackgroundSecondaryColour;
             backgroundImage.Position = Position;
             backgroundImage.Scale = new Vector2(Size.X / backgroundImage.SourceRectangle.Size.X,
                                                 Size.Y / backgroundImage.SourceRectangle.Size.Y);
 
+            emblemImage.ContentFile = $"Interface/Flags/Emblems/{Emblem}";
+            emblemImage.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
+            emblemImage.TintColour = EmblemColour;
             emblemImage.Position = Position;
             emblemImage.Scale = new Vector2(Size.X / emblemImage.SourceRectangle.Size.X,
                                             Size.Y / emblemImage.SourceRectangle.Size.Y);
 
+            skinImage.ContentFile = $"Interface/Flags/Skins/{Skin}";
             skinImage.Position = Position;
             skinImage.Scale = new Vector2(Size.X / skinImage.SourceRectangle.Size.X,
                                           Size.Y / skinImage.SourceRectangle.Size.Y);
