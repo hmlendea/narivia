@@ -524,16 +524,46 @@ namespace Narivia.Graphics
             Texture.GetData(textureBits);
             TransparencyMask.GetData(maskBits);
 
-            for (int y = 0; y < TransparencyMask.Height; y++)
-            {
-                for (int x = 0; x < TransparencyMask.Width; x++)
-                {
-                    int i = x + y * Texture.Width;
+            int startX, startY, endX, endY;
 
-                    textureBits[i] = Color.FromNonPremultiplied(textureBits[i].R,
-                                                                textureBits[i].G,
-                                                                textureBits[i].B,
-                                                                textureBits[i].A - 255 + maskBits[i].R);
+            if (TransparencyMask.Width > Texture.Width)
+            {
+                startX = TransparencyMask.Width - Texture.Width;
+                endX = startX + Texture.Width;
+            }
+            else
+            {
+                startX = Texture.Width - TransparencyMask.Width;
+                endX = startX + TransparencyMask.Width;
+            }
+
+            if (TransparencyMask.Height > Texture.Height)
+            {
+                startY = TransparencyMask.Height - Texture.Height;
+                endY = startY + Texture.Height;
+            }
+            else
+            {
+                startY = Texture.Height - TransparencyMask.Height;
+                endY = startY + TransparencyMask.Height;
+            }
+
+            for (int y = startY; y < endY; y++)
+            {
+                for (int x = startX; x < endX; x++)
+                {
+                    int indexTexture = x - startX + (y - startY) * Texture.Width;
+                    int indexMask = x - startX + (y - startY) * TransparencyMask.Width;
+
+                    if (indexTexture == textureBits.Length || indexMask == maskBits.Length)
+                    {
+                        break;
+                    }
+
+                    textureBits[indexTexture] = Color.FromNonPremultiplied(textureBits[indexTexture].R,
+                                                                           textureBits[indexTexture].G,
+                                                                           textureBits[indexTexture].B,
+                                                                           textureBits[indexTexture].A - 255 + maskBits[indexMask].R);
                 }
             }
 
@@ -566,10 +596,8 @@ namespace Narivia.Graphics
                 ReplaceColour(Colour.Blue, BlueReplacement, 15);
             }
 
-            if (loadedTransparencyMaskPath == TransparencyMaskPath)
-            {
-                ApplyTransparencyMask();
-            }
+            // Force reload of the transparency mask
+            loadedTransparencyMaskPath = string.Empty;
         }
 
         void LoadTransparencyMask()
