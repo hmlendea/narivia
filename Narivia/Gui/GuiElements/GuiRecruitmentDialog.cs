@@ -2,7 +2,6 @@
 using System.Linq;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
@@ -27,9 +26,9 @@ namespace Narivia.Gui.GuiElements
 
         GuiImage background;
         GuiImage unitBackground;
+        GuiImage unitImage;
         GuiText unitText;
         GuiText troopsText;
-        List<GuiImage> unitImages;
 
         GuiImage healthIcon;
         GuiImage powerIcon;
@@ -69,18 +68,13 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            unitImages = new List<GuiImage>();
             units = game.GetUnits().ToList();
-
-            currentUnitIndex = 0;
-            troopsAmount = 0;
 
             background = new GuiImage
             {
                 ContentFile = "Interface/backgrounds",
                 SourceRectangle = new Rectangle(0, 0, 32, 32),
-                FillMode = TextureFillMode.Tile,
-                Scale = Size / 32
+                FillMode = TextureFillMode.Tile
             };
             unitBackground = new GuiImage
             {
@@ -89,10 +83,14 @@ namespace Narivia.Gui.GuiElements
                 Scale = new Vector2(100, 100),
                 TintColour = Colour.Black
             };
+            unitImage = new GuiImage
+            {
+                ContentFile = $"World/Assets/{game.WorldId}/units/{units[currentUnitIndex].Id}",
+                SourceRectangle = new Rectangle(0, 0, 64, 64)
+            };
 
             unitText = new GuiText
             {
-                Text = "Militia",
                 Size = new Vector2(unitBackground.Scale.X, 18),
                 FontName = "InfoBarFont"
             };
@@ -120,35 +118,30 @@ namespace Narivia.Gui.GuiElements
 
             healthText = new GuiText
             {
-                Text = "0",
                 Size = new Vector2(healthIcon.SourceRectangle.Width * 2, healthIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
             powerText = new GuiText
             {
-                Text = "0",
                 Size = new Vector2(powerIcon.SourceRectangle.Width * 2, powerIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
             priceText = new GuiText
             {
-                Text = "0",
                 Size = new Vector2(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
             maintenanceText = new GuiText
             {
-                Text = "0",
                 Size = new Vector2(maintenanceIcon.SourceRectangle.Width * 2, maintenanceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
             troopsText = new GuiText
             {
-                Text = "x1",
                 Size = new Vector2(unitBackground.Scale.Y, 18),
                 FontName = "InfoBarFont"
             };
@@ -156,57 +149,37 @@ namespace Narivia.Gui.GuiElements
             nextButton = new GuiButton
             {
                 Text = ">",
-                TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
             previousButton = new GuiButton
             {
                 Text = "<",
-                TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
             plusButton = new GuiButton
             {
                 Text = "+",
-                TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
             minusButton = new GuiButton
             {
                 Text = "-",
-                TextColour = TextColour,
                 Size = new Vector2(32, 32)
             };
             recruitButton = new GuiButton
             {
                 Text = "Recruit",
-                TextColour = TextColour,
                 Size = new Vector2(128, 32)
             };
             cancelButton = new GuiButton
             {
                 Text = "Cancel",
-                TextColour = TextColour,
                 Size = new Vector2(64, 32)
             };
 
-            foreach (Unit unit in units)
-            {
-                GuiImage unitImage = new GuiImage
-                {
-                    ContentFile = $"World/Assets/{game.WorldId}/units/{unit.Id}",
-                    SourceRectangle = new Rectangle(0, 0, 64, 64),
-                    Visible = false
-                };
-
-                unitImages.Add(unitImage);
-            }
-            unitImages[currentUnitIndex].Visible = true;
-            
             Children.Add(background);
             Children.Add(unitBackground);
-
-            Children.AddRange(unitImages);
+            Children.Add(unitImage);
 
             Children.Add(unitText);
             Children.Add(troopsText);
@@ -239,30 +212,7 @@ namespace Narivia.Gui.GuiElements
             recruitButton.Clicked += recruitButton_OnClicked;
             cancelButton.Clicked += cancelButton_OnClicked;
         }
-        
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
-        {
-            int wealth = game.GetFactionWealth(game.PlayerFactionId);
 
-            if (troopsAmount < 0)
-            {
-                troopsAmount = 0;
-            }
-            else if (wealth < units[currentUnitIndex].Price * troopsAmount)
-            {
-                troopsAmount = wealth / units[currentUnitIndex].Price;
-            }
-
-            troopsText.Text = $"x{troopsAmount}";
-            recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
-            
-            base.Update(gameTime);
-        }
-        
         // TODO: Handle this better
         /// <summary>
         /// Associates the game manager.
@@ -278,9 +228,17 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Position = Position;
+            background.Scale = Size / 32;
+
             unitBackground.Position = new Vector2(Position.X + (Size.X - unitBackground.Scale.X) / 2, Position.Y + unitText.Size.Y + SPACING);
+
             unitText.Position = unitBackground.Position;
+            unitText.Text = units[currentUnitIndex].Name;
+            unitText.TextColour = TextColour;
+
             troopsText.Position = new Vector2(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom - troopsText.ScreenArea.Height);
+            troopsText.Text = $"x{troopsAmount}";
+            troopsText.TextColour = TextColour;
 
             healthIcon.Position = new Vector2(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom + SPACING);
             powerIcon.Position = new Vector2(healthIcon.ScreenArea.Left, healthIcon.ScreenArea.Bottom + SPACING);
@@ -288,27 +246,40 @@ namespace Narivia.Gui.GuiElements
             maintenanceIcon.Position = new Vector2(priceIcon.ScreenArea.Left, priceIcon.ScreenArea.Bottom + SPACING);
 
             healthText.Position = new Vector2(healthIcon.ScreenArea.Right + SPACING, healthIcon.ScreenArea.Top);
+            healthText.Text = units[currentUnitIndex].Health.ToString();
+            healthText.TextColour = TextColour;
+
             powerText.Position = new Vector2(powerIcon.ScreenArea.Right + SPACING, powerIcon.ScreenArea.Top);
+            powerText.Text = units[currentUnitIndex].Power.ToString();
+            powerText.TextColour = TextColour;
+
             priceText.Position = new Vector2(priceIcon.ScreenArea.Right + SPACING, priceIcon.ScreenArea.Top);
+            priceText.Text = units[currentUnitIndex].Price.ToString();
+            priceText.TextColour = TextColour;
+
             maintenanceText.Position = new Vector2(maintenanceIcon.ScreenArea.Right + SPACING, maintenanceIcon.ScreenArea.Top);
+            maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
+            maintenanceText.TextColour = TextColour;
 
             previousButton.Position = new Vector2(unitBackground.ScreenArea.Left - previousButton.ScreenArea.Width - SPACING, unitBackground.ScreenArea.Top);
-            nextButton.Position = new Vector2(unitBackground.ScreenArea.Right + SPACING, unitBackground.ScreenArea.Top);
-            plusButton.Position = new Vector2(unitBackground.ScreenArea.Right + SPACING, unitBackground.ScreenArea.Bottom - plusButton.ScreenArea.Height);
-            minusButton.Position = new Vector2(unitBackground.ScreenArea.Left - minusButton.ScreenArea.Width - SPACING, unitBackground.ScreenArea.Bottom - minusButton.ScreenArea.Height);
+            previousButton.TextColour = TextColour;
 
+            nextButton.Position = new Vector2(unitBackground.ScreenArea.Right + SPACING, unitBackground.ScreenArea.Top);
+            nextButton.TextColour = TextColour;
+
+            plusButton.Position = new Vector2(unitBackground.ScreenArea.Right + SPACING, unitBackground.ScreenArea.Bottom - plusButton.ScreenArea.Height);
+            plusButton.TextColour = TextColour;
+
+            minusButton.Position = new Vector2(unitBackground.ScreenArea.Left - minusButton.ScreenArea.Width - SPACING, unitBackground.ScreenArea.Bottom - minusButton.ScreenArea.Height);
+            minusButton.TextColour = TextColour;
+
+            recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
             recruitButton.Position = new Vector2(Position.X + SPACING, Position.Y + Size.Y - recruitButton.Size.Y - SPACING);
             cancelButton.Position = new Vector2(Position.X + Size.X - cancelButton.Size.X - SPACING, Position.Y + Size.Y - recruitButton.Size.Y - SPACING);
 
-            unitImages.ForEach(i => i.Position = new Vector2(unitBackground.Position.X + (unitBackground.Scale.X - i.SourceRectangle.Width) / 2,
-                                                             unitBackground.Position.Y + (unitBackground.Scale.Y - i.SourceRectangle.Height) / 2));
-
-            unitText.TextColour = TextColour;
-            troopsText.TextColour = TextColour;
-            healthText.TextColour = TextColour;
-            powerText.TextColour = TextColour;
-            priceText.TextColour = TextColour;
-            maintenanceText.TextColour = TextColour;
+            unitImage.ContentFile = $"World/Assets/{game.WorldId}/units/{units[currentUnitIndex].Id}";
+            unitImage.Position = new Vector2(unitBackground.Position.X + (unitBackground.Scale.X - unitImage.SourceRectangle.Width) / 2,
+                                             unitBackground.Position.Y + (unitBackground.Scale.Y - unitImage.SourceRectangle.Height) / 2);
         }
 
         void SelectUnit(int index)
@@ -325,15 +296,22 @@ namespace Narivia.Gui.GuiElements
             {
                 currentUnitIndex = index;
             }
+        }
 
-            unitText.Text = units[currentUnitIndex].Name;
-            healthText.Text = units[currentUnitIndex].Health.ToString();
-            powerText.Text = units[currentUnitIndex].Power.ToString();
-            priceText.Text = units[currentUnitIndex].Price.ToString();
-            maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
+        void AddTroops(int delta)
+        {
+            int wealth = game.GetFactionWealth(game.PlayerFactionId);
 
-            unitImages.ForEach(i => i.Visible = false);
-            unitImages[currentUnitIndex].Visible = true;
+            troopsAmount += delta;
+
+            if (troopsAmount < 0)
+            {
+                troopsAmount = 0;
+            }
+            else if (wealth < units[currentUnitIndex].Price * troopsAmount)
+            {
+                troopsAmount = wealth / units[currentUnitIndex].Price;
+            }
         }
 
         void previousButton_OnClicked(object sender, MouseButtonEventArgs e)
@@ -348,12 +326,12 @@ namespace Narivia.Gui.GuiElements
 
         void plusButton_OnClicked(object sender, MouseButtonEventArgs e)
         {
-            troopsAmount += 1;
+            AddTroops(1);
         }
 
         void minus_OnClicked(object sender, MouseButtonEventArgs e)
         {
-            troopsAmount -= 1;
+            AddTroops(-1);
         }
 
         void recruitButton_OnClicked(object sender, MouseButtonEventArgs e)
