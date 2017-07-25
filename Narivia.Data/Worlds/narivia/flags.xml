@@ -21,11 +21,11 @@
   <FlagEntity>
     <Id>mah_rodah_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>thor-hammer</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#7B7B7B</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>caravenna_flag</Id>
@@ -93,11 +93,11 @@
   <FlagEntity>
     <Id>impera_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>eagle</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#0072FF</BackgroundPrimaryColourHexadecimal>
      <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>impimia_flag</Id>
@@ -237,11 +237,11 @@
   <FlagEntity>
     <Id>amion_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>spartan-helmet</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#948F00</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>sporadja_flag</Id>
@@ -273,11 +273,11 @@
   <FlagEntity>
     <Id>jhgrothaar_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>viking-helmet</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#C3EBFF</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>antene_flag</Id>
@@ -291,7 +291,7 @@
   <FlagEntity>
     <Id>bardos_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>crossed-axes</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#653E1C</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
