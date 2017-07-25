@@ -12,11 +12,11 @@
   <FlagEntity>
     <Id>alpalet_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>divergence</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#300065</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>mah_rodah_flag</Id>
@@ -39,11 +39,11 @@
   <FlagEntity>
     <Id>viristia_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>crossed-spears</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFD400</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>meuristia_flag</Id>
@@ -57,11 +57,11 @@
   <FlagEntity>
     <Id>befteria_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>oak-tree</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#2D7B00</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#FFFF21</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ne_quin_arid_flag</Id>
@@ -84,7 +84,7 @@
   <FlagEntity>
     <Id>optimia_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>virtual-marker</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#00AB98</BackgroundPrimaryColourHexadecimal>
      <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
