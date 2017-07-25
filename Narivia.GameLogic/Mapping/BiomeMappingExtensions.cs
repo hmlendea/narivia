@@ -24,7 +24,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = biomeEntity.Id,
                 Name = biomeEntity.Name,
                 Description = biomeEntity.Description,
-                Colour = ColourTranslator.FromHexadecimal(biomeEntity.ColourHexadecimal)
+                Colour = Colour.FromHexadecimal(biomeEntity.ColourHexadecimal)
             };
 
             return biome;
@@ -42,7 +42,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = biome.Id,
                 Name = biome.Name,
                 Description = biome.Description,
-                ColourHexadecimal = ColourTranslator.ToHexadecimal(biome.Colour)
+                ColourHexadecimal = biome.Colour.ToHexadecimal()
             };
 
             return biomeEntity;

@@ -16,7 +16,7 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Creates a colour from the hexadecimal code.
+        /// Creates a colour from a hexadecimal code.
         /// </summary>
         /// <returns>The colour.</returns>
         /// <param name="hexa">Hexadecimal code.</param>
@@ -43,7 +43,7 @@ namespace Narivia.Infrastructure.Helpers
             }
             else
             {
-                throw new ArgumentException("Hex colour '" + hexa + "' is invalid.");
+                throw new ArgumentException("Hexadecimal colour '" + hexa + "' is invalid.");
             }
 
             return colour;
@@ -64,7 +64,7 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Creates a colour from the ARGB integer.
+        /// Creates a colour from an ARGB integer.
         /// </summary>
         /// <returns>The colour.</returns>
         /// <param name="argb">ARGB integer.</param>
@@ -74,11 +74,26 @@ namespace Narivia.Infrastructure.Helpers
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Creates a colour from RGB values.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="r">Red value.</param>
+        /// <param name="g">Green value.</param>
+        /// <param name="b">Blue value.</param>
         public static Colour FromArgb(byte r, byte g, byte b)
         {
             return new Colour(r, g, b);
         }
 
+        /// <summary>
+        /// Creates a colour from ARGB values.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="a">Alpha value.</param>
+        /// <param name="r">Red value.</param>
+        /// <param name="g">Green value.</param>
+        /// <param name="b">Blue value.</param>
         public static Colour FromArgb(byte a, byte r, byte g, byte b)
         {
             return new Colour(r, g, b, a);

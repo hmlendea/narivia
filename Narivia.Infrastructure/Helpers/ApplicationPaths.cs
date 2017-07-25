@@ -8,6 +8,10 @@ namespace Narivia.Infrastructure.Helpers
     {
         static readonly string rootDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
+        /// <summary>
+        /// Gets the user data directory.
+        /// </summary>
+        /// <value>The user data directory.</value>
         public static string UserDataDirectory => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Narivia");
 
         /// <summary>

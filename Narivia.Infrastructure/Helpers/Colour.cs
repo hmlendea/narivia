@@ -64,15 +64,50 @@ namespace Narivia.Infrastructure.Helpers
         public static Colour Vermilion => new Colour(206, 17, 38, 255);
         public static Colour White => new Colour(255, 255, 255, 255);
 
+        /// <summary>
+        /// Creates a colour from an ARGB integer.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="argb">ARGB integer.</param>
+        public static Colour FromArgb(int argb) => ColourTranslator.FromArgb(argb);
+
+        /// <summary>
+        /// Creates a colour from RGB values.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="r">Red value.</param>
+        /// <param name="g">Green value.</param>
+        /// <param name="b">Blue value.</param>
         public static Colour FromArgb(byte r, byte g, byte b) => ColourTranslator.FromArgb(r, g, b);
 
+        /// <summary>
+        /// Creates a colour from ARGB values.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="a">Alpha value.</param>
+        /// <param name="r">Red value.</param>
+        /// <param name="g">Green value.</param>
+        /// <param name="b">Blue value.</param>
         public static Colour FromArgb(byte a, byte r, byte g, byte b) => ColourTranslator.FromArgb(a, r, g, b);
+
+        /// <summary>
+        /// Creates a colour from a hexadecimal code.
+        /// </summary>
+        /// <returns>The colour.</returns>
+        /// <param name="hexa">Hexadecimal code.</param>
+        public static Colour FromHexadecimal(string hexa) => ColourTranslator.FromHexadecimal(hexa);
 
         /// <summary>
         /// Converts the colour to a 32 bit integer.
         /// </summary>
         /// <returns>The ARGB integer value.</returns>
         public int ToArgb() => ColourTranslator.ToArgb(this);
+
+        /// <summary>
+        /// Converts the colour to a hexadecimal string.
+        /// </summary>
+        /// <returns>A string representing the hexadecimal code of the colour.</returns>
+        public string ToHexadecimal() => ColourTranslator.ToHexadecimal(this);
 
         public bool IsSimilarTo(Colour colour, int tolerance)
         {

@@ -139,7 +139,9 @@ namespace Narivia.Infrastructure.Helpers
             Depth = Image.GetPixelFormatSize(source.PixelFormat);
 
             if (Depth != 8 && Depth != 24 && Depth != 32)
+            {
                 throw new ArgumentException("Only 8, 24 and 32 bpp images are supported.");
+            }
 
             bitmapData = source.LockBits(rect, ImageLockMode.ReadWrite, source.PixelFormat);
 
@@ -165,11 +167,11 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Get the color of the specified pixel
+        /// Gets the colour of the specified pixel
         /// </summary>
-        /// <param name="x">X Coordinate</param>
-        /// <param name="y">Y Coordinate</param>
-        /// <returns>Pixel color</returns>
+        /// <param name="x">X coordinate</param>
+        /// <param name="y">Y coordinate</param>
+        /// <returns>Pixel colour</returns>
         public Colour GetPixel(int x, int y)
         {
             Colour colour = new Colour();
@@ -209,10 +211,10 @@ namespace Narivia.Infrastructure.Helpers
         }
 
         /// <summary>
-        /// Set the color of the specified pixel
+        /// Sets the colour of the specified pixel
         /// </summary>
-        /// <param name="x">X Coordinate</param>
-        /// <param name="y">Y Coordinate</param>
+        /// <param name="x">X coordinate</param>
+        /// <param name="y">Y coordinate</param>
         /// <param name="colour">Pixel colour</param>
         public void SetPixel(int x, int y, Colour colour)
         {
