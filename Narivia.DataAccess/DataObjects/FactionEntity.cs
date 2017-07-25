@@ -30,6 +30,12 @@
         public string ColourHexadecimal { get; set; }
 
         /// <summary>
+        /// Gets or sets the flag identifier.
+        /// </summary>
+        /// <value>The flag identifier.</value>
+        public string FlagId { get; set; }
+
+        /// <summary>
         /// Gets or sets the culture identifier.
         /// </summary>
         /// <value>The culture identifier.</value>

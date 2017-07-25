@@ -389,6 +389,14 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Gets the flag of a factions.
+        /// </summary>
+        /// <returns>The faction flag.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public Flag GetFactionFlag(string factionId)
+        => Flags[Factions[factionId].FlagId];
+
+        /// <summary>
         /// Gets the relation between two factions.
         /// </summary>
         /// <returns>The faction relation.</returns>

@@ -280,6 +280,14 @@ namespace Narivia.GameLogic.GameManagers
         => world.Factions[factionId].Colour;
 
         /// <summary>
+        /// Gets the flag of a factions.
+        /// </summary>
+        /// <returns>The faction flag.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public Flag GetFactionFlag(string factionId)
+        => world.GetFactionFlag(factionId);
+
+        /// <summary>
         /// Gets the faction income.
         /// </summary>
         /// <returns>The faction income.</returns>

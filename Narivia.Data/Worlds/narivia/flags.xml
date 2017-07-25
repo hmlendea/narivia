@@ -4,6 +4,7 @@
     <Id>gaia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#00A1FF</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -12,6 +13,7 @@
     <Id>alpalet_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#300065</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -20,6 +22,7 @@
     <Id>mah_rodah_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#7B7B7B</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -28,6 +31,7 @@
     <Id>caravenna_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#B10000</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -36,6 +40,7 @@
     <Id>viristia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFD400</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -44,6 +49,7 @@
     <Id>meuristia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#006353</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -52,6 +58,7 @@
     <Id>befteria_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#2D7B00</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -60,6 +67,7 @@
     <Id>ne_quin_arid_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#D3BA8E</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -68,6 +76,7 @@
     <Id>fatima_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFACD5</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -76,6 +85,7 @@
     <Id>optimia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#00AB98</BackgroundPrimaryColourHexadecimal>
      <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -84,6 +94,7 @@
     <Id>impera_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#0072FF</BackgroundPrimaryColourHexadecimal>
      <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -92,6 +103,7 @@
     <Id>impimia_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#A74B00</BackgroundPrimaryColourHexadecimal>
      <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -100,6 +112,7 @@
     <Id>faladai_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#82004B</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -108,6 +121,7 @@
     <Id>daria_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#6556FF</BackgroundPrimaryColourHexadecimal>
      <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -116,6 +130,7 @@
     <Id>lamiz_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#7EACF8</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -124,6 +139,7 @@
     <Id>sudair_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFD377</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -132,6 +148,7 @@
     <Id>targat_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#536978</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -140,6 +157,7 @@
     <Id>estaton_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FF6565</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -148,6 +166,7 @@
     <Id>deshesda_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#00F86A</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -156,6 +175,7 @@
     <Id>altop_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#B25B98</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -164,6 +184,7 @@
     <Id>aaria_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#A56258</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -172,6 +193,7 @@
     <Id>nordodar_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#694B7B</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -180,6 +202,7 @@
     <Id>naryrica_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFA577</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -188,6 +211,7 @@
     <Id>ardamus_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#70A55F</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -196,6 +220,7 @@
     <Id>ayako_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FF00FF</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -204,6 +229,7 @@
     <Id>abeque_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#AE8E00</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -212,6 +238,7 @@
     <Id>amion_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#948F00</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -220,6 +247,7 @@
     <Id>sporadja_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#B2CC6B</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -228,6 +256,7 @@
     <Id>endel_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#C3DF00</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -236,6 +265,7 @@
     <Id>consus_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFA400</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -244,6 +274,7 @@
     <Id>jhgrothaar_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#C3EBFF</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -252,6 +283,7 @@
     <Id>antene_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#C3BA00</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -260,6 +292,7 @@
     <Id>bardos_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#653E1C</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -268,6 +301,7 @@
     <Id>gammeland_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFFFFF</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
@@ -276,6 +310,7 @@
     <Id>ingolfsfell_flag</Id>
     <Background>full</Background>
     <Emblem>freedom_dove</Emblem>
+    <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#9AFF9A</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>

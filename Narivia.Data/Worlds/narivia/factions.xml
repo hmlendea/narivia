@@ -5,7 +5,8 @@
     <Name>Gaia</Name>
     <Description>Good old mother nature!</Description>
     <ColourHexadecimal>#00A1FF</ColourHexadecimal>
-    <CultureId>0</CultureId>
+    <FlagId>gaia_flag</FlagId>
+	<CultureId>0</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>alpalet</Id>
@@ -16,7 +17,8 @@ Their architecture is of an original and ancient style, the most beautifull in t
 
 They are expansionists and consider themselves the true owners of whole Western Central Island as they were the original colonists in many of this places.</Description>
     <ColourHexadecimal>#300065</ColourHexadecimal>
-    <CultureId>letian</CultureId>
+    <FlagId>alpalet_flag</FlagId>
+	<CultureId>letian</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>mah_rodah</Id>
@@ -27,7 +29,8 @@ They are very intelligent people and usually they don't go to war with anyone ex
 
 They have very powerfull defences wich were build at the end of the First Era to ensure their survival of the Cold War.</Description>
     <ColourHexadecimal>#7B7B7B</ColourHexadecimal>
-    <CultureId>rodah</CultureId>
+    <FlagId>mah_rodah_flag</FlagId>
+	<CultureId>rodah</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>caravenna</Id>
@@ -40,7 +43,8 @@ Their teritorry was very small in the First Era but they ensured their survival 
 
 They are the master traders of Western Narivia and once were the leaders of the Pegasus Alliance in the War of the Banks.</Description>
     <ColourHexadecimal>#B10000</ColourHexadecimal>
-    <CultureId>rennan</CultureId>
+    <FlagId>caravenna_flag</FlagId>
+	<CultureId>rennan</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>viristia</Id>
@@ -56,7 +60,8 @@ They are the original Istian people and leaders of the Istian Empire each time i
 They are very powerfull in both Attack and Defence and their objective is to reunify the Istian Empire as an everlasting nation and even expand it.
 </Description>
     <ColourHexadecimal>#FFD400</ColourHexadecimal>
-    <CultureId>istian</CultureId>
+    <FlagId>viristia_flag</FlagId>
+	<CultureId>istian</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>meuristia</Id>
@@ -67,209 +72,239 @@ Their CultureId is mostly the same as the Viristian CultureId. They separated fr
 
 They are specialized in defence and never give up without a fight.</Description>
     <ColourHexadecimal>#006353</ColourHexadecimal>
-    <CultureId>istian</CultureId>
+    <FlagId>meuristia_flag</FlagId>
+	<CultureId>istian</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>befteria</Id>
     <Name>Befteria</Name>
     <Description />
     <ColourHexadecimal>#2D7B00</ColourHexadecimal>
-    <CultureId>befterian</CultureId>
+    <FlagId>befteria_flag</FlagId>
+	<CultureId>befterian</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>ne_quin_arid</Id>
     <Name>Ne Quin Arid</Name>
     <Description />
     <ColourHexadecimal>#D3BA8E</ColourHexadecimal>
-    <CultureId>sudic</CultureId>
+    <FlagId>ne_quin_arid_flag</FlagId>
+	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>fatima</Id>
     <Name>Fatima</Name>
     <Description />
     <ColourHexadecimal>#FFACD5</ColourHexadecimal>
-    <CultureId>sudic</CultureId>
+    <FlagId>fatima_flag</FlagId>
+	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>optimia</Id>
     <Name>Optimia</Name>
     <Description />
     <ColourHexadecimal>#00AB98</ColourHexadecimal>
-     <CultureId>blumiac</CultureId>
+     <FlagId>optimia_flag</FlagId>
+	<CultureId>blumiac</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>impera</Id>
     <Name>Impera</Name>
     <Description />
     <ColourHexadecimal>#0072FF</ColourHexadecimal>
-     <CultureId>blumiac</CultureId>
+     <FlagId>impera_flag</FlagId>
+	<CultureId>blumiac</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>impimia</Id>
     <Name>Impimia</Name>
     <Description />
     <ColourHexadecimal>#A74B00</ColourHexadecimal>
-     <CultureId>blumiac</CultureId>
+     <FlagId>impimia_flag</FlagId>
+	<CultureId>blumiac</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>faladai</Id>
     <Name>Faladai</Name>
     <Description />
     <ColourHexadecimal>#82004B</ColourHexadecimal>
-    <CultureId>sudic</CultureId>
+    <FlagId>faladai_flag</FlagId>
+	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>daria</Id>
     <Name>Daria</Name>
     <Description />
     <ColourHexadecimal>#6556FF</ColourHexadecimal>
-     <CultureId>blumiac</CultureId>
+     <FlagId>daria_flag</FlagId>
+	<CultureId>blumiac</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>lamiz</Id>
     <Name>Lamiz</Name>
     <Description />
     <ColourHexadecimal>#7EACF8</ColourHexadecimal>
-    <CultureId>iztop</CultureId>
+    <FlagId>lamiz_flag</FlagId>
+	<CultureId>iztop</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>sudair</Id>
     <Name>Sudair</Name>
     <Description />
     <ColourHexadecimal>#FFD377</ColourHexadecimal>
-    <CultureId>sudic</CultureId>
+    <FlagId>sudair_flag</FlagId>
+	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>targat</Id>
     <Name>Targat</Name>
     <Description />
     <ColourHexadecimal>#536978</ColourHexadecimal>
-    <CultureId>nordic</CultureId>
+    <FlagId>targat_flag</FlagId>
+	<CultureId>nordic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>estaton</Id>
     <Name>Estaton</Name>
     <Description />
     <ColourHexadecimal>#FF6565</ColourHexadecimal>
-    <CultureId>sudic</CultureId>
+    <FlagId>estaton_flag</FlagId>
+	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>deshesda</Id>
     <Name>Deshesda</Name>
     <Description />
     <ColourHexadecimal>#00F86A</ColourHexadecimal>
-    <CultureId>shesan</CultureId>
+    <FlagId>deshesda_flag</FlagId>
+	<CultureId>shesan</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>altop</Id>
     <Name>Altop</Name>
     <Description />
     <ColourHexadecimal>#B25B98</ColourHexadecimal>
-    <CultureId>iztop</CultureId>
+    <FlagId>altop_flag</FlagId>
+	<CultureId>iztop</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>aaria</Id>
     <Name>Aaria</Name>
     <Description />
     <ColourHexadecimal>#A56258</ColourHexadecimal>
-    <CultureId>rural</CultureId>
+    <FlagId>aaria_flag</FlagId>
+	<CultureId>rural</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>nordodar</Id>
     <Name>Nordodar</Name>
     <Description />
     <ColourHexadecimal>#694B7B</ColourHexadecimal>
-    <CultureId>rural</CultureId>
+    <FlagId>nordodar_flag</FlagId>
+	<CultureId>rural</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>naryrica</Id>
     <Name>Naryrica</Name>
     <Description />
     <ColourHexadecimal>#FFA577</ColourHexadecimal>
-    <CultureId>naryrican</CultureId>
+    <FlagId>naryrica_flag</FlagId>
+	<CultureId>naryrican</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>ardamus</Id>
     <Name>Ardamus</Name>
     <Description />
     <ColourHexadecimal>#70A55F</ColourHexadecimal>
-    <CultureId>rural</CultureId>
+    <FlagId>ardamus_flag</FlagId>
+	<CultureId>rural</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>ayako</Id>
     <Name>Ayako</Name>
     <Description />
     <ColourHexadecimal>#FF00FF</ColourHexadecimal>
-    <CultureId>ayakan</CultureId>
+    <FlagId>ayako_flag</FlagId>
+	<CultureId>ayakan</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>abeque</Id>
     <Name>Abeque</Name>
     <Description />
     <ColourHexadecimal>#AE8E00</ColourHexadecimal>
-    <CultureId>chowo</CultureId>
+    <FlagId>abeque_flag</FlagId>
+	<CultureId>chowo</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>amion</Id>
     <Name>Amion</Name>
     <Description />
     <ColourHexadecimal>#948F00</ColourHexadecimal>
-    <CultureId>amionic</CultureId>
+    <FlagId>amion_flag</FlagId>
+	<CultureId>amionic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>sporadja</Id>
     <Name>Sporadja</Name>
     <Description />
     <ColourHexadecimal>#B2CC6B</ColourHexadecimal>
-    <CultureId>sporic</CultureId>
+    <FlagId>sporadja_flag</FlagId>
+	<CultureId>sporic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>endel</Id>
     <Name>Endel</Name>
     <Description />
     <ColourHexadecimal>#C3DF00</ColourHexadecimal>
-    <CultureId>barbarian</CultureId>
+    <FlagId>endel_flag</FlagId>
+	<CultureId>barbarian</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>consus</Id>
     <Name>Consus</Name>
     <Description />
     <ColourHexadecimal>#FFA400</ColourHexadecimal>
-    <CultureId>amionic</CultureId>
+    <FlagId>consus_flag</FlagId>
+	<CultureId>amionic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>jhgrothaar</Id>
     <Name>Jhgrothaar</Name>
     <Description />
     <ColourHexadecimal>#C3EBFF</ColourHexadecimal>
-    <CultureId>nordic</CultureId>
+    <FlagId>jhgrothaar_flag</FlagId>
+	<CultureId>nordic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>antene</Id>
     <Name>Antene</Name>
     <Description />
     <ColourHexadecimal>#C3BA00</ColourHexadecimal>
-    <CultureId>nordic</CultureId>
+    <FlagId>antene_flag</FlagId>
+	<CultureId>nordic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>bardos</Id>
     <Name>Bardos</Name>
     <Description />
     <ColourHexadecimal>#653E1C</ColourHexadecimal>
-    <CultureId>barbarian</CultureId>
+    <FlagId>bardos_flag</FlagId>
+	<CultureId>barbarian</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>gammeland</Id>
     <Name>Gammeland</Name>
     <Description />
     <ColourHexadecimal>#FFFFFF</ColourHexadecimal>
-    <CultureId>nordic</CultureId>
+    <FlagId>gammeland_flag</FlagId>
+	<CultureId>nordic</CultureId>
   </FactionEntity>
   <FactionEntity>
     <Id>ingolfsfell</Id>
     <Name>Ingolfsfell</Name>
     <Description />
     <ColourHexadecimal>#9AFF9A</ColourHexadecimal>
-    <CultureId>nordic</CultureId>
+    <FlagId>ingolfsfell_flag</FlagId>
+	<CultureId>nordic</CultureId>
   </FactionEntity>
 </ArrayOfFactionEntity>

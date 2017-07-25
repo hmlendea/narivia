@@ -186,6 +186,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         Colour GetFactionColour(string factionId);
 
         /// <summary>
+        /// Gets the flag of a factions.
+        /// </summary>
+        /// <returns>The faction flag.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        Flag GetFactionFlag(string factionId);
+
+        /// <summary>
         /// Gets the faction income.
         /// </summary>
         /// <returns>The faction income.</returns>
