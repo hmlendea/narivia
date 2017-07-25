@@ -85,7 +85,7 @@ namespace Narivia.Gui.GuiElements
             image = new Image();
 
             SetChildrenProperties();
-
+            
             image.LoadContent();
 
             base.LoadContent();
@@ -107,8 +107,6 @@ namespace Narivia.Gui.GuiElements
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            SetChildrenProperties();
-
             image.Update(gameTime);
 
             base.Update(gameTime);
@@ -132,8 +130,9 @@ namespace Narivia.Gui.GuiElements
         public void ActivateEffect(string effect)
         => image.ActivateEffect(effect);
 
-        void SetChildrenProperties()
+        protected override void SetChildrenProperties()
         {
+            base.SetChildrenProperties();
 
             image.TransparencyMaskPath = MaskFile;
             image.RedReplacement = RedReplacement;

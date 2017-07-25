@@ -92,40 +92,10 @@ namespace Narivia.Gui.GuiElements
                 images.Add(image);
             }
 
-            SetChildrenProperties();
-
             Children.AddRange(images);
             Children.Add(text);
 
             base.LoadContent();
-        }
-
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
-
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
-        {
-            SetChildrenProperties();
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -169,8 +139,10 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
-        void SetChildrenProperties()
+        protected override void SetChildrenProperties()
         {
+            base.SetChildrenProperties();
+
             for (int i = 0; i < images.Count; i++)
             {
                 images[i].Position = new Vector2(Position.X + i * tileSize, Position.Y);

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Infrastructure.Helpers;
@@ -167,9 +166,7 @@ namespace Narivia.Gui.GuiElements
                 Size = new Vector2(128, 128),
                 Visible = false
             };
-
-            SetChildrenProperties();
-
+            
             Children.Add(background);
 
             Children.Add(regionsIcon);
@@ -190,36 +187,10 @@ namespace Narivia.Gui.GuiElements
             base.LoadContent();
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
+        protected override void SetChildrenProperties()
         {
-            base.UnloadContent();
-        }
+            base.SetChildrenProperties();
 
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
-        {
-            SetChildrenProperties();
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
-
-        void SetChildrenProperties()
-        {
             regionsIcon.Position = new Vector2(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ScreenArea.Height) / 2);
             regionsText.Position = new Vector2(regionsIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - regionsText.ScreenArea.Height) / 2);
             holdingsIcon.Position = new Vector2(regionsText.ScreenArea.Right + Spacing, regionsIcon.Position.Y);

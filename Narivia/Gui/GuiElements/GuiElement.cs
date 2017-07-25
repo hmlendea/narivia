@@ -102,6 +102,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public virtual void LoadContent()
         {
+            SetChildrenProperties();
+
             Children.ForEach(x => x.LoadContent());
 
             Destroyed = false;
@@ -130,6 +132,8 @@ namespace Narivia.Gui.GuiElements
         public virtual void Update(GameTime gameTime)
         {
             Children.RemoveAll(w => w.Destroyed);
+
+            SetChildrenProperties();
 
             foreach (GuiElement guiElement in Children.Where(w => w.Enabled))
             {
@@ -204,6 +208,10 @@ namespace Narivia.Gui.GuiElements
         {
             Enabled = false;
             Visible = false;
+        }
+
+        protected virtual void SetChildrenProperties()
+        {
         }
 
         /// <summary>

@@ -14,6 +14,7 @@ using Narivia.Models.Enumerations;
 
 namespace Narivia.Gui.GuiElements
 {
+    // TODO: Requires more refactoring and cleaning
     /// <summary>
     /// Unit recruitment dialog GUI element.
     /// </summary>
@@ -27,14 +28,14 @@ namespace Narivia.Gui.GuiElements
 
         IGameManager game;
 
-        Image background;
-        Image holdingBackground;
+        GuiImage background;
+        GuiImage holdingBackground;
         List<Image> holdingImages;
 
         GuiText holdingText;
         GuiText regionText;
 
-        Image priceIcon;
+        GuiImage priceIcon;
         GuiText priceText;
 
         GuiButton previousHoldingButton;
@@ -69,21 +70,21 @@ namespace Narivia.Gui.GuiElements
             holdingImages = new List<Image>();
             holdingTypes = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).ToList();
 
-            background = new Image
+            background = new GuiImage
             {
-                ImagePath = "Interface/backgrounds",
+                ContentFile = "Interface/backgrounds",
                 SourceRectangle = new Rectangle(0, 0, 32, 32),
                 Position = Position,
-                TextureFillMode = TextureFillMode.Tile,
+                FillMode = TextureFillMode.Tile,
                 Scale = Size / 32
             };
-            holdingBackground = new Image
+            holdingBackground = new GuiImage
             {
-                ImagePath = "ScreenManager/FillImage",
+                ContentFile = "ScreenManager/FillImage",
                 SourceRectangle = new Rectangle(0, 0, 1, 1),
                 Position = Position,
                 Scale = new Vector2(100, 100),
-                Tint = Colour.Black
+                TintColour = Colour.Black
             };
 
             holdingText = new GuiText
@@ -99,9 +100,9 @@ namespace Narivia.Gui.GuiElements
                 FontName = "InfoBarFont"
             };
 
-            priceIcon = new Image
+            priceIcon = new GuiImage
             {
-                ImagePath = "Interface/game_icons",
+                ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(16, 0, 16, 16)
             };
             priceText = new GuiText
@@ -160,16 +161,13 @@ namespace Narivia.Gui.GuiElements
                 holdingImages.Add(holdingTypeImage);
                 holdingTypeImage.LoadContent();
             }
-
-            SetChildrenProperties();
-
-            background.LoadContent();
-            holdingBackground.LoadContent();
+            Children.Add(background);
+            Children.Add(holdingBackground);
 
             Children.Add(holdingText);
             Children.Add(regionText);
 
-            priceIcon.LoadContent();
+            Children.Add(priceIcon);
             Children.Add(priceText);
 
             Children.Add(nextHoldingButton);
@@ -200,11 +198,6 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void UnloadContent()
         {
-            background.UnloadContent();
-            holdingBackground.UnloadContent();
-
-            priceIcon.UnloadContent();
-
             holdingImages.ForEach(i => i.UnloadContent());
 
             base.UnloadContent();
@@ -216,13 +209,7 @@ namespace Narivia.Gui.GuiElements
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            SetChildrenProperties();
             UpdateRegionList();
-
-            background.Update(gameTime);
-            holdingBackground.Update(gameTime);
-
-            priceIcon.Update(gameTime);
 
             holdingImages[currentHoldingTypeIndex].Update(gameTime);
 
@@ -235,14 +222,9 @@ namespace Narivia.Gui.GuiElements
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            background.Draw(spriteBatch);
-            holdingBackground.Draw(spriteBatch);
-
-            priceIcon.Draw(spriteBatch);
+            base.Draw(spriteBatch);
 
             holdingImages[currentHoldingTypeIndex].Draw(spriteBatch);
-
-            base.Draw(spriteBatch);
         }
 
         // TODO: Handle this better
@@ -264,8 +246,10 @@ namespace Narivia.Gui.GuiElements
             SelectRegion(currentRegionIndex);
         }
 
-        void SetChildrenProperties()
+        protected override void SetChildrenProperties()
         {
+            base.SetChildrenProperties();
+
             background.Position = Position;
             holdingBackground.Position = new Vector2(Position.X + (Size.X - holdingBackground.Scale.X) / 2, Position.Y + holdingText.Size.Y + SPACING);
 

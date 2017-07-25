@@ -2,7 +2,6 @@ using System;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Audio;
@@ -76,9 +75,7 @@ namespace Narivia.Gui.GuiElements
                 Speed = 2,
                 MinimumOpacity = 0.25f
             };
-
-            SetChildrenProperties();
-
+            
             Children.Add(text);
 
             base.LoadContent();
@@ -102,28 +99,10 @@ namespace Narivia.Gui.GuiElements
             InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
+        protected override void SetChildrenProperties()
         {
-            SetChildrenProperties();
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
-
-        void SetChildrenProperties()
-        {
+            base.SetChildrenProperties();
+            
             text.Text = Text;
             text.Position = Position;
             text.Size = Size;

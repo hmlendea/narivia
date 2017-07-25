@@ -202,9 +202,7 @@ namespace Narivia.Gui.GuiElements
                 unitImages.Add(unitImage);
             }
             unitImages[currentUnitIndex].Visible = true;
-
-            SetChildrenProperties();
-
+            
             Children.Add(background);
             Children.Add(unitBackground);
 
@@ -241,15 +239,7 @@ namespace Narivia.Gui.GuiElements
             recruitButton.Clicked += recruitButton_OnClicked;
             cancelButton.Clicked += cancelButton_OnClicked;
         }
-
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
-
+        
         /// <summary>
         /// Updates the content.
         /// </summary>
@@ -269,21 +259,10 @@ namespace Narivia.Gui.GuiElements
 
             troopsText.Text = $"x{troopsAmount}";
             recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
-
-            SetChildrenProperties();
-
+            
             base.Update(gameTime);
         }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
-
+        
         // TODO: Handle this better
         /// <summary>
         /// Associates the game manager.
@@ -294,8 +273,10 @@ namespace Narivia.Gui.GuiElements
             this.game = game;
         }
 
-        void SetChildrenProperties()
+        protected override void SetChildrenProperties()
         {
+            base.SetChildrenProperties();
+
             background.Position = Position;
             unitBackground.Position = new Vector2(Position.X + (Size.X - unitBackground.Scale.X) / 2, Position.Y + unitText.Size.Y + SPACING);
             unitText.Position = unitBackground.Position;

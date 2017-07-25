@@ -12,6 +12,7 @@ using Narivia.Models;
 
 namespace Narivia.Gui.GuiElements
 {
+    // TODO: Requires more refactoring and cleaning
     /// <summary>
     /// Region bar GUI element.
     /// </summary>
@@ -74,42 +75,12 @@ namespace Narivia.Gui.GuiElements
                 HorizontalAlignment = HorizontalAlignment.Top
             };
 
-            SetChildrenProperties();
-
             Children.Add(background);
 
             Children.Add(regionNameText);
             Children.Add(resourceText);
 
             base.LoadContent();
-        }
-
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
-
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
-        {
-            SetChildrenProperties();
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -202,7 +173,7 @@ namespace Narivia.Gui.GuiElements
             this.game = game;
         }
 
-        void SetChildrenProperties()
+        protected override void SetChildrenProperties()
         {
             background.Position = Position;
             background.Scale = Size / background.SourceRectangle.Width;

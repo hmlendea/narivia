@@ -86,41 +86,13 @@ namespace Narivia.Gui.GuiElements
             Children.Add(emblemImage);
             Children.Add(skinImage);
 
-            SetChildrenProperties();
-
             base.LoadContent();
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
+        protected override void SetChildrenProperties()
         {
-            base.UnloadContent();
-        }
+            base.SetChildrenProperties();
 
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
-        {
-            SetChildrenProperties();
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
-
-        void SetChildrenProperties()
-        {
             backgroundImage.ContentFile = $"Interface/Flags/Backgrounds/{Background}";
             backgroundImage.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
             backgroundImage.RedReplacement = BackgroundPrimaryColour;

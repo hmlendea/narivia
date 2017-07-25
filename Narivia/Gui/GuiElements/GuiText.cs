@@ -66,7 +66,7 @@ namespace Narivia.Gui.GuiElements
         /// <value><c>true</c> if the effects are active; otherwise, <c>false</c>.</value>
         public bool EffectsActive { get; set; }
 
-        Image backgroundImage;
+        GuiImage backgroundImage;
         Image textImage;
 
         /// <summary>
@@ -87,16 +87,18 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            backgroundImage = new Image
+            backgroundImage = new GuiImage
             {
-                ImagePath = "ScreenManager/FillImage",
+                ContentFile = "ScreenManager/FillImage",
                 SourceRectangle = new Rectangle(0, 0, 1, 1)
             };
+
             textImage = new Image();
+            
+            Children.Add(backgroundImage);
 
             SetChildrenProperties();
 
-            backgroundImage.LoadContent();
             textImage.LoadContent();
 
             base.LoadContent();
@@ -107,10 +109,9 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void UnloadContent()
         {
-            backgroundImage.UnloadContent();
-            textImage.UnloadContent();
-
             base.UnloadContent();
+
+            textImage.UnloadContent();
         }
 
         /// <summary>
@@ -119,12 +120,9 @@ namespace Narivia.Gui.GuiElements
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            SetChildrenProperties();
-
-            backgroundImage.Update(gameTime);
-            textImage.Update(gameTime);
-
             base.Update(gameTime);
+
+            textImage.Update(gameTime);
         }
 
         /// <summary>
@@ -133,14 +131,9 @@ namespace Narivia.Gui.GuiElements
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (BackgroundColour != Colour.Transparent)
-            {
-                backgroundImage.Draw(spriteBatch);
-            }
+            base.Draw(spriteBatch);
 
             textImage.Draw(spriteBatch);
-
-            base.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -150,9 +143,11 @@ namespace Narivia.Gui.GuiElements
         public void ActivateEffect(string effect)
         => textImage.ActivateEffect(effect);
 
-        void SetChildrenProperties()
+        protected override void SetChildrenProperties()
         {
-            backgroundImage.Tint = BackgroundColour;
+            base.SetChildrenProperties();
+
+            backgroundImage.TintColour = BackgroundColour;
             backgroundImage.Position = Position;
             backgroundImage.Scale = new Vector2(Size.X + Margins * 2, Size.Y + Margins * 2);
 

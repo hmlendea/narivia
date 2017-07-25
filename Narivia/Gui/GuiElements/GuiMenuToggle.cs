@@ -37,14 +37,6 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
-
-        /// <summary>
         /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
@@ -60,15 +52,6 @@ namespace Narivia.Gui.GuiElements
             }
 
             base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <returns>The draw.</returns>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
         }
 
         /// <summary>

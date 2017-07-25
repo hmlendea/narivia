@@ -143,9 +143,7 @@ namespace Narivia.Gui.GuiElements
 
                 Children.Add(noButtonImage);
             }
-
-            SetChildrenProperties();
-
+            
             Children.Add(title);
             Children.Add(text);
             Children.Add(yesButtonImage);
@@ -153,36 +151,10 @@ namespace Narivia.Gui.GuiElements
             base.LoadContent();
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
+        protected override void SetChildrenProperties()
         {
-            base.UnloadContent();
-        }
+            base.SetChildrenProperties();
 
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
-        {
-            SetChildrenProperties();
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
-
-        void SetChildrenProperties()
-        {
             title.Text = Title;
             title.TextColour = TextColour;
             title.Position = new Vector2(Position.X, Position.Y + tileSize);
