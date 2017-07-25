@@ -92,12 +92,11 @@ namespace Narivia.Screens
 
             GameMap.AssociateGameManager(ref game);
             RegionBar.AssociateGameManager(ref game);
+            SideBar.AssociateGameManager(ref game);
             recruitmentDialog.AssociateGameManager(ref game);
             buildDialog.AssociateGameManager(ref game);
-
-            SideBar.WorldId = game.WorldId;
+            
             SideBar.FactionId = game.PlayerFactionId;
-            SideBar.FactionName = game.GetFactionName(game.PlayerFactionId);
 
             GuiManager.Instance.GuiElements.Add(GameMap);
             GuiManager.Instance.GuiElements.Add(InfoBar);
@@ -159,10 +158,8 @@ namespace Narivia.Screens
             {
                 RegionBar.SetRegion(GameMap.SelectedRegionId);
             }
-
-            SideBar.Turn = game.Turn;
+            
             SideBar.FactionId = game.PlayerFactionId;
-            SideBar.FactionName = game.GetFactionName(game.PlayerFactionId);
 
             base.Update(gameTime);
         }

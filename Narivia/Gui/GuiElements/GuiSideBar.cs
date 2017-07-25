@@ -3,8 +3,10 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
 using Narivia.Infrastructure.Helpers;
+using Narivia.Models;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -14,7 +16,7 @@ namespace Narivia.Gui.GuiElements
     public class GuiSideBar : GuiElement
     {
         GuiImage background;
-        GuiImage factionImage;
+        GuiFactionFlag factionImage;
 
         GuiText factionText;
         GuiText turnText;
@@ -25,28 +27,7 @@ namespace Narivia.Gui.GuiElements
         /// <value>The faction identifier.</value>
         [XmlIgnore]
         public string FactionId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the faction.
-        /// </summary>
-        /// <value>The name of the faction.</value>
-        [XmlIgnore]
-        public string FactionName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the world identifier.
-        /// </summary>
-        /// <value>The world identifier.</value>
-        [XmlIgnore]
-        public string WorldId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the turn.
-        /// </summary>
-        /// <value>The turn.</value>
-        [XmlIgnore]
-        public int Turn { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the text colour.
         /// </summary>
@@ -81,6 +62,8 @@ namespace Narivia.Gui.GuiElements
         [XmlIgnore]
         public GuiButton TurnButton { get; private set; }
 
+        IGameManager game;
+
         int margins = 5;
 
         /// <summary>
@@ -95,15 +78,13 @@ namespace Narivia.Gui.GuiElements
                 FillMode = TextureFillMode.Tile
             };
 
-            factionImage = new GuiImage
+            factionImage = new GuiFactionFlag
             {
-                ContentFile = $"World/Assets/{WorldId}/symbols/{FactionId}",
-                SourceRectangle = new Rectangle(0, 0, 128, 128)
+                Size = new Vector2(128, 128)
             };
 
             factionText = new GuiText
             {
-                Text = FactionName,
                 FontName = "SideBarFont",
                 Size = new Vector2(Size.X * 2 / 3, 48),
                 VerticalAlignment = VerticalAlignment.Left
@@ -185,6 +166,16 @@ namespace Narivia.Gui.GuiElements
             base.Draw(spriteBatch);
         }
 
+        // TODO: Handle this better
+        /// <summary>
+        /// Associates the game manager.
+        /// </summary>
+        /// <param name="game">Game.</param>
+        public void AssociateGameManager(ref IGameManager game)
+        {
+            this.game = game;
+        }
+
         void SetChildrenProperties()
         {
             background.Position = Position;
@@ -204,10 +195,19 @@ namespace Narivia.Gui.GuiElements
             BuildButton.Position = Position + new Vector2((int)(Size.X + RecruitButton.Size.X + margins * 5 - BuildButton.Size.X) / 2,
                                                           (int)(Size.Y + RecruitButton.Size.Y - BuildButton.Size.Y + margins) / 2);
 
-            factionText.Text = FactionName;
+            factionText.Text = game.GetFactionName(FactionId);
             factionText.TextColour = TextColour;
 
-            turnText.Text = $"Turn: {Turn}";
+            Flag factionFlag = game.GetFactionFlag(FactionId);
+
+            factionImage.Background = factionFlag.Background;
+            factionImage.Emblem = factionFlag.Emblem;
+            factionImage.Skin = factionFlag.Skin;
+            factionImage.BackgroundPrimaryColour = factionFlag.BackgroundPrimaryColour;
+            factionImage.BackgroundSecondaryColour = factionFlag.BackgroundSecondaryColour;
+            factionImage.EmblemColour = factionFlag.EmblemColour;
+
+            turnText.Text = $"Turn: {game.Turn}";
             turnText.TextColour = TextColour;
         }
     }

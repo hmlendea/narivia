@@ -36,7 +36,7 @@ namespace Narivia.Gui.GuiElements
 
         GuiImage background;
         GuiImage resourceImage;
-        GuiImage factionImage;
+        GuiFactionFlag factionImage;
         List<GuiImage> holdingImages;
 
         GuiText regionNameText;
@@ -180,11 +180,9 @@ namespace Narivia.Gui.GuiElements
                 Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64)
             };
 
-            factionImage = new GuiImage
+            factionImage = new GuiFactionFlag
             {
-                ContentFile = $"World/Assets/{game.WorldId}/symbols/{factionId}",
-                SourceRectangle = new Rectangle(0, 0, 128, 128),
-                Scale = new Vector2(regionNameText.Size.Y / 128, regionNameText.Size.Y / 128)
+                Size = new Vector2(regionNameText.Size.Y, regionNameText.Size.Y)
             };
 
             resourceImage.LoadContent();
@@ -215,6 +213,8 @@ namespace Narivia.Gui.GuiElements
 
             if (!string.IsNullOrWhiteSpace(RegionId))
             {
+                string factionId = game.GetRegionFaction(RegionId);
+
                 Colour factionColour = game.GetFactionColour(game.GetRegionFaction(RegionId));
 
                 regionNameText.Text = game.GetRegionName(RegionId);
@@ -222,7 +222,15 @@ namespace Narivia.Gui.GuiElements
 
                 resourceText.Text = game.GetResourceName(game.GetRegionResource(RegionId));
 
+                Flag factionFlag = game.GetFactionFlag(factionId);
+
                 factionImage.Position = new Vector2(regionNameText.Position.X - 64, regionNameText.Position.Y - 48);
+                factionImage.Background = factionFlag.Background;
+                factionImage.Emblem = factionFlag.Emblem;
+                factionImage.Skin = factionFlag.Skin;
+                factionImage.BackgroundPrimaryColour = factionFlag.BackgroundPrimaryColour;
+                factionImage.BackgroundSecondaryColour = factionFlag.BackgroundSecondaryColour;
+                factionImage.EmblemColour = factionFlag.EmblemColour;
             }
         }
     }
