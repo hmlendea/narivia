@@ -30,11 +30,11 @@
   <FlagEntity>
     <Id>caravenna_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>horse-head</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#B10000</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>viristia_flag</Id>
@@ -147,11 +147,11 @@
   <FlagEntity>
     <Id>targat_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>wolf-howl</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#536978</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#F4E2A0</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>estaton_flag</Id>
@@ -264,11 +264,11 @@
   <FlagEntity>
     <Id>consus_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>bull-head</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFA400</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>jhgrothaar_flag</Id>

@@ -355,11 +355,12 @@ namespace Narivia.Graphics
 
             Texture2D textureToDraw = Texture;
 
+            // TODO: Find a better way to do this, because this one doesn't keep the mipmaps
             if (TransparencyMask != null)
             {
                 textureToDraw = TextureBlend(Texture, TransparencyMask);
             }
-
+            
             if (TextureFillMode == TextureFillMode.Stretch)
             {
                 spriteBatch.Draw(textureToDraw, Position + origin, SourceRectangle,
