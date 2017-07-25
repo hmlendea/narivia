@@ -75,11 +75,11 @@
   <FlagEntity>
     <Id>fatima_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>scarab</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFACD5</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>optimia_flag</Id>
@@ -210,20 +210,20 @@
   <FlagEntity>
     <Id>ardamus_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>stag-head</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#70A55F</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ayako_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>star-shuriken</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FF00FF</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>abeque_flag</Id>
