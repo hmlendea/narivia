@@ -51,6 +51,20 @@ namespace Narivia.Gui.GuiElements
         GuiImage skinImage;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="GuiFactionFlag"/> class.
+        /// </summary>
+        public GuiFactionFlag()
+        {
+            Background = "half";
+            Emblem = "freedom_dove";
+            Skin = "buckler";
+            BackgroundPrimaryColour = Colour.CobaltBlue;
+            BackgroundSecondaryColour = Colour.Vermilion;
+            EmblemColour = Colour.ChromeYellow;
+            Size = new Vector2(128, 128);
+        }
+
+        /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
@@ -116,8 +130,16 @@ namespace Narivia.Gui.GuiElements
         void SetChildrenProperties()
         {
             backgroundImage.Position = Position;
+            backgroundImage.Scale = new Vector2(Size.X / backgroundImage.SourceRectangle.Size.X,
+                                                Size.Y / backgroundImage.SourceRectangle.Size.Y);
+
             emblemImage.Position = Position;
+            emblemImage.Scale = new Vector2(Size.X / emblemImage.SourceRectangle.Size.X,
+                                            Size.Y / emblemImage.SourceRectangle.Size.Y);
+
             skinImage.Position = Position;
+            skinImage.Scale = new Vector2(Size.X / skinImage.SourceRectangle.Size.X,
+                                          Size.Y / skinImage.SourceRectangle.Size.Y);
         }
     }
 }
