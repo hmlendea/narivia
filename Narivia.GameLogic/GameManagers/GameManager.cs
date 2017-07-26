@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
 using System.Linq;
 
 using Narivia.GameLogic.Enumerations;
@@ -174,7 +176,8 @@ namespace Narivia.GameLogic.GameManagers
                 AttackRegion(faction.Id, regionId);
             }
 
-            GetRegions().ToList().ForEach(r => r.Locked = false);
+            Parallel.ForEach(GetRegions(), region => region.Locked = false);
+
             UpdateFactionsAliveStatus();
             CheckForWinner();
 
@@ -314,27 +317,12 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionIncome(string factionId)
         {
-            int income = 0;
+            ConcurrentBag<int> incomes = new ConcurrentBag<int>();
 
-            foreach (Region region in GetFactionRegions(factionId))
-            {
-                Resource resource = GetResource(region.ResourceId);
+            Parallel.ForEach(GetFactionRegions(factionId),
+                             region => incomes.Add(GetRegionIncome(region.Id)));
 
-                int regionIncome = BaseRegionIncome;
-
-                regionIncome += world.GetRegionHoldings(region.Id).Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_INCOME;
-                regionIncome += world.GetRegionHoldings(factionId).Count(h => h.Type == HoldingType.City) * HOLDING_CITY_INCOME;
-                regionIncome += world.GetRegionHoldings(factionId).Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_INCOME;
-
-                if (resource.Type == ResourceType.Economy)
-                {
-                    regionIncome += (int)(regionIncome * 0.1 * resource.Output);
-                }
-
-                income += regionIncome;
-            }
-
-            return income;
+            return incomes.Sum();
         }
 
         /// <summary>
@@ -360,27 +348,12 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionRecruitment(string factionId)
         {
-            int recruitment = BaseFactionRecruitment;
+            ConcurrentBag<int> recruitments = new ConcurrentBag<int>();
 
-            foreach (Region region in GetFactionRegions(factionId))
-            {
-                Resource resource = GetResource(region.ResourceId);
+            Parallel.ForEach(GetFactionRegions(factionId),
+                             region => recruitments.Add(GetRegionRecruitment(region.Id)));
 
-                int regionRecruitment = BaseRegionRecruitment;
-
-                regionRecruitment += world.GetRegionHoldings(region.Id).Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_RECRUITMENT;
-                regionRecruitment += world.GetRegionHoldings(factionId).Count(h => h.Type == HoldingType.City) * HOLDING_CITY_RECRUITMENT;
-                regionRecruitment += world.GetRegionHoldings(factionId).Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_RECRUITMENT;
-
-                if (resource.Type == ResourceType.Military)
-                {
-                    regionRecruitment += (int)(regionRecruitment * 0.1 * resource.Output);
-                }
-
-                recruitment += regionRecruitment;
-            }
-
-            return recruitment;
+            return recruitments.Sum();
         }
 
         /// <summary>
@@ -480,6 +453,58 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="regionId">Region identifier.</param>
         public IEnumerable<Holding> GetRegionHoldings(string regionId)
         => world.GetRegionHoldings(regionId);
+
+        /// <summary>
+        /// Gets the income of a region.
+        /// </summary>
+        /// <returns>The region income.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        public int GetRegionIncome(string regionId)
+        {
+            Region region = GetRegion(regionId);
+            Resource resource = GetResource(region.ResourceId);
+
+            List<Holding> holdings = world.GetRegionHoldings(region.Id).ToList();
+
+            int income = BaseRegionIncome;
+
+            income += holdings.Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_INCOME;
+            income += holdings.Count(h => h.Type == HoldingType.City) * HOLDING_CITY_INCOME;
+            income += holdings.Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_INCOME;
+
+            if (resource.Type == ResourceType.Economy)
+            {
+                income += (int)(income * 0.1 * resource.Output);
+            }
+
+            return income;
+        }
+
+        /// <summary>
+        /// Gets the recruitment of a region.
+        /// </summary>
+        /// <returns>The region recruitment.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        public int GetRegionRecruitment(string regionId)
+        {
+            Region region = GetRegion(regionId);
+            Resource resource = GetResource(region.ResourceId);
+
+            List<Holding> holdings = world.GetRegionHoldings(region.Id).ToList();
+
+            int recruitment = BaseRegionRecruitment;
+
+            recruitment += holdings.Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_RECRUITMENT;
+            recruitment += holdings.Count(h => h.Type == HoldingType.City) * HOLDING_CITY_RECRUITMENT;
+            recruitment += holdings.Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_RECRUITMENT;
+
+            if (resource.Type == ResourceType.Military)
+            {
+                recruitment += (int)(recruitment * 0.1 * resource.Output);
+            }
+
+            return recruitment;
+        }
 
         /// <summary>
         /// Gets the regions.
@@ -621,21 +646,22 @@ namespace Narivia.GameLogic.GameManagers
 
         void UpdateFactionsAliveStatus()
         {
-            foreach (Faction faction in GetFactions().Where(f => f.Id != "gaia"))
-            {
-                bool wasAlive = faction.Alive;
+            Parallel.ForEach(GetFactions().Where(f => f.Id != "gaia"),
+                             faction =>
+                             {
+                                 bool wasAlive = faction.Alive;
 
-                faction.Alive = GetFactionRegions(faction.Id).Count() > 0;
+                                 faction.Alive = GetFactionRegions(faction.Id).Count() > 0;
 
-                if (wasAlive && !faction.Alive && FactionDestroyed != null)
-                {
-                    FactionDestroyed(this, new FactionEventArgs(faction.Id));
-                }
-                else if (!wasAlive && faction.Alive && FactionRevived != null)
-                {
-                    FactionRevived(this, new FactionEventArgs(faction.Id));
-                }
-            }
+                                 if (wasAlive && !faction.Alive && FactionDestroyed != null)
+                                 {
+                                     FactionDestroyed(this, new FactionEventArgs(faction.Id));
+                                 }
+                                 else if (!wasAlive && faction.Alive && FactionRevived != null)
+                                 {
+                                     FactionRevived(this, new FactionEventArgs(faction.Id));
+                                 }
+                             });
         }
 
         void CheckForWinner()

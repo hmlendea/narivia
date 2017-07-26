@@ -339,6 +339,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Holding> GetRegionHoldings(string regionId);
 
         /// <summary>
+        /// Gets the income of a region.
+        /// </summary>
+        /// <returns>The region income.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        int GetRegionIncome(string regionId);
+
+        /// <summary>
         /// Gets the regions.
         /// </summary>
         /// <returns>The regions.</returns>
