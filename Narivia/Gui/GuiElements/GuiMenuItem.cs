@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Audio;
-using Narivia.Graphics.SpriteEffects;
+using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
 using Narivia.Input.Events;

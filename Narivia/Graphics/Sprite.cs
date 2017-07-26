@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Screens;
-using Narivia.Graphics.SpriteEffects;
+using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
 using Narivia.Infrastructure.Extensions;
 using Narivia.Infrastructure.Helpers;
@@ -396,7 +396,7 @@ namespace Narivia.Graphics
                         spriteBatch.Draw(textureToDraw, pos, SourceRectangle,
                             Tint.ToXnaColor() * Opacity, Rotation,
                             origin, 1.0f,
-                            Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0.0f);
+                            SpriteEffects.None, 0.0f);
                     }
                 }
             }

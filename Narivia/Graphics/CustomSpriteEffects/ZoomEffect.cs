@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Narivia.Graphics.SpriteEffects
+namespace Narivia.Graphics.CustomSpriteEffects
 {
     /// <summary>
     /// Zoom sprite effect.

@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Narivia.Graphics.SpriteEffects
+namespace Narivia.Graphics.CustomSpriteEffects
 {
     /// <summary>
-    /// Fade sprite effect.
+    /// Rotation sprite effect.
     /// </summary>
-    public class FadeEffect : CustomSpriteEffect
+    public class RotationEffect : CustomSpriteEffect
     {
         /// <summary>
         /// Gets or sets the speed.
@@ -14,31 +14,24 @@ namespace Narivia.Graphics.SpriteEffects
         public float Speed { get; set; }
 
         /// <summary>
-        /// Gets or sets the minimum opacity.
+        /// Gets or sets the maximum rotation.
         /// </summary>
-        /// <value>The minimum opacity.</value>
-        public float MinimumOpacity { get; set; }
+        /// <value>The maximum rotation.</value>
+        public float MaximumRotation { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum opacity.
-        /// </summary>
-        /// <value>The maximum opacity.</value>
-        public float MaximumOpacity { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="FadeEffect"/> is increasing.
+        /// Gets or sets a value indicating whether this <see cref="RotationEffect"/> is increasing.
         /// </summary>
         /// <value><c>true</c> if increasing; otherwise, <c>false</c>.</value>
         public bool Increasing { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FadeEffect"/> class.
+        /// Initializes a new instance of the <see cref="RotationEffect"/> class.
         /// </summary>
-        public FadeEffect()
+        public RotationEffect()
         {
-            Speed = 1;
-            MinimumOpacity = 0.0f;
-            MaximumOpacity = 1.0f;
+            Speed = 0.5f;
+            MaximumRotation = 1.0f;
             Increasing = false;
         }
 
@@ -71,27 +64,27 @@ namespace Narivia.Graphics.SpriteEffects
             {
                 if (Increasing == false)
                 {
-                    Sprite.Opacity -= Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    Sprite.Rotation -= Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
                 }
                 else
                 {
-                    Sprite.Opacity += Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    Sprite.Rotation += Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
-                if (Sprite.Opacity < MinimumOpacity)
+                if (Sprite.Rotation < -MaximumRotation)
                 {
                     Increasing = true;
-                    Sprite.Opacity = MinimumOpacity;
+                    Sprite.Rotation = -MaximumRotation;
                 }
-                else if (Sprite.Opacity > MaximumOpacity)
+                else if (Sprite.Rotation > MaximumRotation)
                 {
                     Increasing = false;
-                    Sprite.Opacity = MaximumOpacity;
+                    Sprite.Rotation = MaximumRotation;
                 }
             }
             else
             {
-                Sprite.Opacity = MaximumOpacity;
+                Sprite.Rotation = MaximumRotation;
             }
         }
     }

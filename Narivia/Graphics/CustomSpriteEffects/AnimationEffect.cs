@@ -2,7 +2,7 @@
 
 using Microsoft.Xna.Framework;
 
-namespace Narivia.Graphics.SpriteEffects
+namespace Narivia.Graphics.CustomSpriteEffects
 {
     /// <summary>
     /// Animation sprite effect.

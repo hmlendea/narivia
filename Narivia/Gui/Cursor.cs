@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Graphics.SpriteEffects;
+using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
