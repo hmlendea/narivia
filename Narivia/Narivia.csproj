@@ -63,6 +63,7 @@
     <Compile Include="Graphics\SpriteEffects\AnimationEffect.cs" />
     <Compile Include="Graphics\SpriteEffects\RotationEffect.cs" />
     <Compile Include="Graphics\SpriteEffects\ZoomEffect.cs" />
+    <Compile Include="Gui\FpsCounter.cs" />
     <Compile Include="Helpers\FramerateCounter.cs" />
     <Compile Include="Helpers\StringUtils.cs" />
     <Compile Include="Screens\MenuScreen.cs" />

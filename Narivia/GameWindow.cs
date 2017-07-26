@@ -1,10 +1,7 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Audio;
-using Narivia.Helpers;
 using Narivia.Input;
 using Narivia.Gui;
 using Narivia.Screens;
@@ -19,10 +16,8 @@ namespace Narivia
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        SpriteFont fpsFont;
-        Vector2 fpsCounterSize;
-        string fpsString;
 
+        readonly FpsCounter fpsCounter;
         readonly Cursor cursor;
 
         /// <summary>
@@ -38,6 +33,7 @@ namespace Narivia
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            fpsCounter = new FpsCounter();
             cursor = new Cursor();
         }
 
@@ -72,9 +68,8 @@ namespace Narivia
 
             AudioManager.Instance.LoadContent(Content);
 
+            fpsCounter.LoadContent(Content);
             cursor.LoadContent();
-
-            fpsFont = Content.Load<SpriteFont>("Fonts/FrameCounterFont");
         }
 
         /// <summary>
@@ -83,6 +78,8 @@ namespace Narivia
         protected override void UnloadContent()
         {
             ScreenManager.Instance.UnloadContent();
+
+            fpsCounter.UnloadContent();
             cursor.UnloadContent();
         }
 
@@ -100,15 +97,13 @@ namespace Narivia
             {
                 InputManager.Instance.Update();
             }
-            else
+            else // TODO: It shouldn't reset them every single tick when the window's not active
             {
                 InputManager.Instance.ResetInputStates();
             }
 
+            fpsCounter.Update(gameTime);
             cursor.Update(gameTime);
-
-            fpsString = $"FPS: {Math.Round(FramerateCounter.Instance.AverageFramesPerSecond)}";
-            fpsCounterSize = fpsFont.MeasureString(fpsString);
 
             base.Update(gameTime);
         }
@@ -119,20 +114,14 @@ namespace Narivia
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            FramerateCounter.Instance.Update(deltaTime);
-
             graphics.GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
 
             ScreenManager.Instance.Draw(spriteBatch);
-            cursor.Draw(spriteBatch);
 
-            if (SettingsManager.Instance.DebugMode)
-            {
-                spriteBatch.DrawString(fpsFont, fpsString, new Vector2(1, 1), Color.Lime);
-            }
+            fpsCounter.Draw(spriteBatch);
+            cursor.Draw(spriteBatch);
 
             spriteBatch.End();
 
@@ -140,4 +129,3 @@ namespace Narivia
         }
     }
 }
-
