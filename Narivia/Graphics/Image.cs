@@ -34,6 +34,7 @@ namespace Narivia.Graphics
 
         string loadedImagePath;
         string loadedTransparencyMaskPath;
+        Colour replacedRedColour, replacedGreenColour, replacedBlueColour;
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Image"/> is active.
@@ -353,6 +354,7 @@ namespace Narivia.Graphics
                            TextHorizontalAlignment, TextVerticalAlignment, Tint * Opacity);
             }
 
+            // TODO: Do not do this for every Draw call
             Texture2D textureToDraw = Texture;
 
             // TODO: Find a better way to do this, because this one doesn't keep the mipmaps
@@ -360,7 +362,22 @@ namespace Narivia.Graphics
             {
                 textureToDraw = TextureBlend(Texture, TransparencyMask);
             }
-            
+
+            if (RedReplacement != null)
+            {
+                textureToDraw = ReplaceColour(textureToDraw, Colour.Red, RedReplacement, 15);
+            }
+
+            if (GreenReplacement != null)
+            {
+                textureToDraw = ReplaceColour(textureToDraw, Colour.Green, GreenReplacement, 15);
+            }
+
+            if (BlueReplacement != null)
+            {
+                textureToDraw = ReplaceColour(textureToDraw, Colour.Blue, BlueReplacement, 15);
+            }
+
             if (TextureFillMode == TextureFillMode.Stretch)
             {
                 spriteBatch.Draw(textureToDraw, Position + origin, SourceRectangle,
@@ -464,11 +481,12 @@ namespace Narivia.Graphics
             split.ForEach(ActivateEffect);
         }
 
-        public void ReplaceColour(Colour original, Colour replacement, int tolerance)
+        public Texture2D ReplaceColour(Texture2D texture, Colour original, Colour replacement, int tolerance)
         {
-            Color[] data = new Color[Texture.Width * Texture.Height];
+            Texture2D newTexture = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
+            Color[] data = new Color[texture.Width * texture.Height];
 
-            Texture.GetData(data);
+            texture.GetData(data);
 
             for (int i = 0; i < data.Length; i++)
             {
@@ -478,7 +496,9 @@ namespace Narivia.Graphics
                 }
             }
 
-            Texture.SetData(data);
+            newTexture.SetData(data);
+
+            return newTexture;
         }
 
         void DrawString(SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Colour colour)
@@ -570,7 +590,7 @@ namespace Narivia.Graphics
                 }
             }
 
-            Texture2D blendedTexture = new Texture2D(texture.GraphicsDevice ,texture.Width, texture.Height);
+            Texture2D blendedTexture = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
             blendedTexture.SetData(textureBits);
 
             return blendedTexture;
@@ -582,25 +602,10 @@ namespace Narivia.Graphics
             {
                 return;
             }
-            
+
             Texture = content.Load<Texture2D>(ImagePath);
 
             loadedImagePath = ImagePath;
-            
-            if (RedReplacement != null)
-            {
-                ReplaceColour(Colour.Red, RedReplacement, 15);
-            }
-
-            if (GreenReplacement != null)
-            {
-                ReplaceColour(Colour.Green, GreenReplacement, 15);
-            }
-
-            if (BlueReplacement != null)
-            {
-                ReplaceColour(Colour.Blue, BlueReplacement, 15);
-            }
         }
 
         void LoadTransparencyMask()

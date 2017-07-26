@@ -55,12 +55,6 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiFactionFlag()
         {
-            Background = "half";
-            Emblem = "freedom_dove";
-            Skin = "buckler";
-            BackgroundPrimaryColour = Colour.CobaltBlue;
-            BackgroundSecondaryColour = Colour.Vermilion;
-            EmblemColour = Colour.ChromeYellow;
             Size = new Vector2(128, 128);
         }
 
