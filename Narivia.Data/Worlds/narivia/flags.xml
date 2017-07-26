@@ -282,11 +282,11 @@
   <FlagEntity>
     <Id>antene_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>triple-beak</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#C3BA00</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>bardos_flag</Id>
@@ -309,10 +309,10 @@
   <FlagEntity>
     <Id>ingolfsfell_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>barbarian-axe</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#9AFF9A</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
 </ArrayOfFlagEntity>
