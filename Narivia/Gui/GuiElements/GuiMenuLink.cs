@@ -1,8 +1,5 @@
 using System;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
 using Narivia.Screens;
 
 namespace Narivia.Gui.GuiElements
@@ -23,7 +20,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <value>The link arguments.</value>
         public string LinkArgs { get; set; }
-       
+
         /// <summary>
         /// Fired by the Activated event.
         /// </summary>

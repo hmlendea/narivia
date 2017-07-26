@@ -6,7 +6,10 @@ using Narivia.GameLogic.Generators.Interfaces;
 
 namespace Narivia.GameLogic.Generators
 {
-    public abstract class AbstractNameGenerator : INameGenerator
+    /// <summary>
+    /// Name generator.
+    /// </summary>
+    public abstract class NameGenerator : INameGenerator
     {
         /// <summary>
         /// Gets or sets the minimum length of the name.
@@ -59,9 +62,9 @@ namespace Narivia.GameLogic.Generators
         protected readonly Random random;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AbstractNameGenerator"/> class.
+        /// Initializes a new instance of the <see cref="NameGenerator"/> class.
         /// </summary>
-        protected AbstractNameGenerator()
+        protected NameGenerator()
         {
             MinNameLength = 5;
             MaxNameLength = 10;

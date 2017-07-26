@@ -6,7 +6,7 @@ namespace Narivia.GameLogic.Generators
     /// <summary>
     /// Random name generator that mixes words from different lists
     /// </summary>
-    public class RandomMixerNameGenerator : AbstractNameGenerator
+    public class RandomMixerNameGenerator : NameGenerator
     {
         readonly int wordListsCount;
 

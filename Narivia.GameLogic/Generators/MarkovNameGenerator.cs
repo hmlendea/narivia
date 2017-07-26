@@ -8,7 +8,7 @@ namespace Narivia.GameLogic.Generators
     /// <summary>
     /// Name generator using Markov Chains.
     /// </summary>
-    public class MarkovNameGenerator : AbstractNameGenerator
+    public class MarkovNameGenerator : NameGenerator
     {
         const int ORDER = 3;
 

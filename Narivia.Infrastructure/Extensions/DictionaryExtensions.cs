@@ -5,22 +5,22 @@ namespace Narivia.Infrastructure.Extensions
     public static class DictionaryExtensions
     {
         /// <summary>
-        /// Registers the specified key-element pair into the source dictionary.
+        /// Adds or updates the specified key-value pair in the source dictionary.
         /// </summary>
         /// <param name="source">Source.</param>
         /// <param name="key">Key.</param>
-        /// <param name="element">Element.</param>
+        /// <param name="value">Element.</param>
         /// <typeparam name="TKey">The key type.</typeparam>
         /// <typeparam name="TElement">The element type.</typeparam>
-        public static void Register<TKey, TElement>(this IDictionary<TKey, TElement> source, TKey key, TElement element)
+        public static void AddOrUpdate<TKey, TElement>(this IDictionary<TKey, TElement> source, TKey key, TElement value)
         {
             if (source.ContainsKey(key))
             {
-                source[key] = element;
+                source[key] = value;
             }
             else
             {
-                source.Add(key, element);
+                source.Add(key, value);
             }
         }
     }

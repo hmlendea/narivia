@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
-using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 using Narivia.Settings;
 

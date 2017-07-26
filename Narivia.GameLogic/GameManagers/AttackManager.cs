@@ -1,17 +1,20 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Narivia.DataAccess.Exceptions;
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.Infrastructure.Exceptions;
 using Narivia.Infrastructure.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.GameManagers
 {
+    /// <summary>
+    /// Attack manager.
+    /// </summary>
     public class AttackManager : IAttackManager
     {
         Random random;
@@ -26,6 +29,10 @@ namespace Narivia.GameLogic.GameManagers
 
         readonly IWorldManager world;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AttackManager"/> class.
+        /// </summary>
+        /// <param name="world">World.</param>
         public AttackManager(IWorldManager world)
         {
             this.world = world;

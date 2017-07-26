@@ -2,6 +2,9 @@
 
 namespace Narivia.Infrastructure.Helpers
 {
+    /// <summary>
+    /// Colour.
+    /// </summary>
     public class Colour
     {
         /// <summary>
@@ -28,6 +31,9 @@ namespace Narivia.Infrastructure.Helpers
         /// <value>The blue value.</value>
         public byte B { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Colour"/> class.
+        /// </summary>
         public Colour()
         {
             A = 255;
@@ -36,6 +42,12 @@ namespace Narivia.Infrastructure.Helpers
             B = 0;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Colour"/> class.
+        /// </summary>
+        /// <param name="r">The red component.</param>
+        /// <param name="g">The green component.</param>
+        /// <param name="b">The blue component.</param>
         public Colour(byte r, byte g, byte b)
             : this()
         {
@@ -44,6 +56,13 @@ namespace Narivia.Infrastructure.Helpers
             B = b;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Colour"/> class.
+        /// </summary>
+        /// <param name="r">The red component.</param>
+        /// <param name="g">The green component.</param>
+        /// <param name="b">The blue component.</param>
+        /// <param name="a">The alpha component.</param>
         public Colour(byte r, byte g, byte b, byte a)
             : this(r, g, b)
         {
@@ -109,6 +128,12 @@ namespace Narivia.Infrastructure.Helpers
         /// <returns>A string representing the hexadecimal code of the colour.</returns>
         public string ToHexadecimal() => ColourTranslator.ToHexadecimal(this);
 
+        /// <summary>
+        /// Checks wether the current colour is similar to another.
+        /// </summary>
+        /// <returns><c>true</c>, if it is similar, <c>false</c> otherwise.</returns>
+        /// <param name="colour">Colour to compare.</param>
+        /// <param name="tolerance">Tolerance.</param>
         public bool IsSimilarTo(Colour colour, int tolerance)
         {
             return Math.Abs(R - colour.R) <= tolerance &&
@@ -116,19 +141,31 @@ namespace Narivia.Infrastructure.Helpers
                    Math.Abs(B - colour.B) <= tolerance;
         }
 
-        public static Colour Multiply(Colour value, float scale)
+        /// <summary>
+        /// Multiplies a specified colour by a factor.
+        /// </summary>
+        /// <returns>The multiply.</returns>
+        /// <param name="colour">Colour.</param>
+        /// <param name="factor">Factor.</param>
+        public static Colour Multiply(Colour colour, float factor)
         {
-            byte newA = (byte)(value.A * scale);
-            byte newR = (byte)(value.R * scale);
-            byte newG = (byte)(value.G * scale);
-            byte newB = (byte)(value.B * scale);
+            byte newA = (byte)(colour.A * factor);
+            byte newR = (byte)(colour.R * factor);
+            byte newG = (byte)(colour.G * factor);
+            byte newB = (byte)(colour.B * factor);
 
             return new Colour(newR, newG, newB, newA);
         }
 
-        public static Colour operator *(Colour value, float scale)
+        /// <summary>
+        /// Multiplies a specified colour by a factor.
+        /// </summary>
+        /// <returns>The multiply.</returns>
+        /// <param name="colour">Colour.</param>
+        /// <param name="factor">Factor.</param>
+        public static Colour operator *(Colour colour, float factor)
         {
-            return Multiply(value, scale);
+            return Multiply(colour, factor);
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
+using Narivia.DataAccess.Exceptions;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Infrastructure.Exceptions;
 
 namespace Narivia.DataAccess.Repositories
 {

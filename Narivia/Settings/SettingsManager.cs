@@ -7,6 +7,9 @@ using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Settings
 {
+    /// <summary>
+    /// Settings manager.
+    /// </summary>
     public class SettingsManager
     {
         static volatile SettingsManager instance;

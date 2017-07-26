@@ -1,30 +1,30 @@
 ﻿using System;
 
-namespace Narivia.Infrastructure.Exceptions
+namespace Narivia.DataAccess.Exceptions
 {
     /// <summary>
-    /// Duplicate entity exception.
+    /// Repository exception.
     /// </summary>
-    public class DuplicateEntityException : Exception
+    public class EntityNotFoundException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DuplicateEntityException"/> class.
         /// </summary>
         /// <param name="entityId">Entity identifier.</param>
         /// <param name="entityType">Entity type.</param>
-        public DuplicateEntityException(string entityId, string entityType)
-            : base($"The {entityId} {entityType} entity is duplicated.")
+        public EntityNotFoundException(string entityId, string entityType)
+            : base($"The {entityId} {entityType} entity can not be found.")
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DuplicateEntityException"/> class.
+        /// Initializes a new instance of the <see cref="EntityNotFoundException"/> class.
         /// </summary>
         /// <param name="entityId">Entity identifier.</param>
         /// <param name="entityType">Entity type.</param>
         /// <param name="innerException">Inner exception.</param>
-        public DuplicateEntityException(string entityId, string entityType, Exception innerException)
-            : base($"The {entityId} {entityType} entity is duplicated.", innerException)
+        public EntityNotFoundException(string entityId, string entityType, Exception innerException)
+            : base($"The {entityId} {entityType} entity can not be found.", innerException)
         {
         }
     }

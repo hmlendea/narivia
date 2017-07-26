@@ -2,7 +2,6 @@ using System;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Narivia.Gui.GuiElements
 {

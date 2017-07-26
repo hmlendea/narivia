@@ -65,7 +65,7 @@
     <Compile Include="Generators\MarkovNameGenerator.cs" />
     <Compile Include="Generators\Interfaces\INameGenerator.cs" />
     <Compile Include="Generators\RandomMixerNameGenerator.cs" />
-    <Compile Include="Generators\AbstractNameGenerator.cs" />
+    <Compile Include="Generators\NameGenerator.cs" />
     <Compile Include="Events\FactionEvent.cs" />
     <Compile Include="Mapping\FlagMappingExtensions.cs" />
   </ItemGroup>

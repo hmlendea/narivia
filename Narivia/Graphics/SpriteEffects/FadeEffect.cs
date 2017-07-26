@@ -3,7 +3,7 @@
 namespace Narivia.Graphics.SpriteEffects
 {
     /// <summary>
-    /// Fade effect.
+    /// Fade sprite effect.
     /// </summary>
     public class FadeEffect : CustomSpriteEffect
     {

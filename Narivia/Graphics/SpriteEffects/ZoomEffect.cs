@@ -3,7 +3,7 @@
 namespace Narivia.Graphics.SpriteEffects
 {
     /// <summary>
-    /// Zoom effect.
+    /// Zoom sprite effect.
     /// </summary>
     public class ZoomEffect : CustomSpriteEffect
     {

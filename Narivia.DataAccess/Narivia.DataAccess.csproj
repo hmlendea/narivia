@@ -73,6 +73,9 @@
     <Compile Include="DataObjects\FlagEntity.cs" />
     <Compile Include="Repositories\Interfaces\IFlagRepository.cs" />
     <Compile Include="Repositories\FlagRepository.cs" />
+    <Compile Include="Exceptions\DuplicateEntityException.cs" />
+    <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Exceptions\InvalidTargetRegionException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
@@ -85,6 +88,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

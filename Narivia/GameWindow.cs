@@ -17,7 +17,7 @@ namespace Narivia
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        readonly FpsCounter fpsCounter;
+        readonly FpsIndicator fpsIndicator;
         readonly Cursor cursor;
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Narivia
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            fpsCounter = new FpsCounter();
+            fpsIndicator = new FpsIndicator();
             cursor = new Cursor();
         }
 
@@ -68,7 +68,7 @@ namespace Narivia
 
             AudioManager.Instance.LoadContent(Content);
 
-            fpsCounter.LoadContent(Content);
+            fpsIndicator.LoadContent(Content);
             cursor.LoadContent();
         }
 
@@ -79,7 +79,7 @@ namespace Narivia
         {
             ScreenManager.Instance.UnloadContent();
 
-            fpsCounter.UnloadContent();
+            fpsIndicator.UnloadContent();
             cursor.UnloadContent();
         }
 
@@ -102,7 +102,7 @@ namespace Narivia
                 InputManager.Instance.ResetInputStates();
             }
 
-            fpsCounter.Update(gameTime);
+            fpsIndicator.Update(gameTime);
             cursor.Update(gameTime);
 
             base.Update(gameTime);
@@ -120,7 +120,7 @@ namespace Narivia
 
             ScreenManager.Instance.Draw(spriteBatch);
 
-            fpsCounter.Draw(spriteBatch);
+            fpsIndicator.Draw(spriteBatch);
             cursor.Draw(spriteBatch);
 
             spriteBatch.End();

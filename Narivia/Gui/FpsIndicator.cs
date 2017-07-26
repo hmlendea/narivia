@@ -10,9 +10,9 @@ using Narivia.Settings;
 namespace Narivia.Gui
 {
     /// <summary>
-    /// FPS Counter
+    /// FPS indicator.
     /// </summary>
-    public class FpsCounter
+    public class FpsIndicator
     {
         GameTime gameTime;
         SpriteFont fpsFont;
@@ -25,11 +25,14 @@ namespace Narivia.Gui
         /// <value>The position.</value>
         public Vector2 Position { get; set; }
 
-        public FpsCounter()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FpsIndicator"/> class.
+        /// </summary>
+        public FpsIndicator()
         {
             Position = Vector2.Zero;
         }
-      
+
         /// <summary>
         /// Loads the content.
         /// </summary>

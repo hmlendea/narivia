@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Narivia.DataAccess.DataObjects
+﻿namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// Culture data entity.

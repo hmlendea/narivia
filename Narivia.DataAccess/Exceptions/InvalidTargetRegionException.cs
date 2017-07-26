@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Narivia.Infrastructure.Exceptions
+namespace Narivia.DataAccess.Exceptions
 {
     /// <summary>
     /// Invalid target region exception.

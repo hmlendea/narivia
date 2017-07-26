@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace Narivia.Infrastructure.Helpers
 {
+    /// <summary>
+    /// Application paths.
+    /// </summary>
     public static class ApplicationPaths
     {
         static readonly string rootDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);

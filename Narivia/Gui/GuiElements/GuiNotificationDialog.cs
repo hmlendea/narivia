@@ -1,7 +1,6 @@
 using System;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Audio;
 using Narivia.Gui.GuiElements.Enumerations;
@@ -143,7 +142,7 @@ namespace Narivia.Gui.GuiElements
 
                 Children.Add(noButtonImage);
             }
-            
+
             Children.Add(title);
             Children.Add(text);
             Children.Add(yesButtonImage);

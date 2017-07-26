@@ -3,7 +3,7 @@
 namespace Narivia.Graphics.SpriteEffects
 {
     /// <summary>
-    /// Rotation effect.
+    /// Rotation sprite effect.
     /// </summary>
     public class RotationEffect : CustomSpriteEffect
     {

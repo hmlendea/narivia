@@ -3,11 +3,20 @@ using System.Linq;
 
 namespace Narivia.Helpers
 {
+    /// <summary>
+    /// Framerate counter.
+    /// </summary>
     public class FramerateCounter
     {
         static volatile FramerateCounter instance;
         static object syncRoot = new object();
 
+        readonly Queue<float> sampleBuffer;
+
+        /// <summary>
+        /// Gets the instance of the FramerateCounter.
+        /// </summary>
+        /// <value>The instance.</value>
         public static FramerateCounter Instance
         {
             get
@@ -56,7 +65,13 @@ namespace Narivia.Helpers
         /// </summary>
         public const int MAXIMUM_SAMPLES = 100;
 
-        readonly Queue<float> sampleBuffer = new Queue<float>();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FramerateCounter"/> class.
+        /// </summary>
+        public FramerateCounter()
+        {
+            sampleBuffer = new Queue<float>();
+        }
 
         /// <summary>
         /// Updates the framerate.

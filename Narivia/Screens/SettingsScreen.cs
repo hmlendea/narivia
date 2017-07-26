@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,6 +8,9 @@ using Narivia.Settings;
 
 namespace Narivia.Screens
 {
+    /// <summary>
+    /// Settings screen.
+    /// </summary>
     public class SettingsScreen : MenuScreen
     {
         GuiMenuToggle fullScreenToggle;

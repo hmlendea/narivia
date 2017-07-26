@@ -19,7 +19,6 @@
         /// Initializes a new instance of the <see cref="BattleEventArgs"/> class.
         /// </summary>
         /// <param name="factionId">Faction identifier.</param>
-        /// <param name="isAlive">Faction alive status.</param>
         public FactionEventArgs(string factionId)
         {
             FactionId = factionId;

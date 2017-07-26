@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Narivia.Infrastructure.Extensions
 {
+    /// <summary>
+    /// Enumerable extensions.
+    /// </summary>
     public static class EnumerableExtensions
     {
         static Random random;

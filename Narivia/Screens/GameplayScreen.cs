@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +9,7 @@ using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
-using Narivia.Infrastructure.Exceptions;
+using Narivia.DataAccess.Exceptions;
 using Narivia.Input.Events;
 using Narivia.Gui;
 using Narivia.Gui.GuiElements;

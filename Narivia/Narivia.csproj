@@ -63,7 +63,7 @@
     <Compile Include="Graphics\SpriteEffects\AnimationEffect.cs" />
     <Compile Include="Graphics\SpriteEffects\RotationEffect.cs" />
     <Compile Include="Graphics\SpriteEffects\ZoomEffect.cs" />
-    <Compile Include="Gui\FpsCounter.cs" />
+    <Compile Include="Gui\FpsIndicator.cs" />
     <Compile Include="Helpers\FramerateCounter.cs" />
     <Compile Include="Helpers\StringUtils.cs" />
     <Compile Include="Screens\MenuScreen.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Graphics\Sprite.cs" />
-    <Compile Include="Graphics\SpriteEffects\ImageEffect.cs" />
+    <Compile Include="Graphics\SpriteEffects\CustomSpriteEffect.cs" />
     <Compile Include="Graphics\SpriteEffects\FadeEffect.cs" />
     <Compile Include="Helpers\XmlManager.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />

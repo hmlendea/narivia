@@ -1,6 +1,3 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
 using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Gui.GuiElements
@@ -50,7 +47,7 @@ namespace Narivia.Gui.GuiElements
                 FontName = "ToolTipFont",
                 Margins = 2
             };
-            
+
             Children.Add(text);
 
             base.LoadContent();

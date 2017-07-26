@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers;
-using Narivia.Gui;
 using Narivia.Gui.GuiElements;
 using Narivia.Models;
 

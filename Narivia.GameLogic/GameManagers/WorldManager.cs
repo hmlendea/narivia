@@ -22,7 +22,8 @@ namespace Narivia.GameLogic.GameManagers
     /// </summary>
     public class WorldManager : IWorldManager
     {
-        Random random;
+        readonly Random random;
+
         World world;
 
         string[,] worldTiles;
@@ -523,10 +524,10 @@ namespace Narivia.GameLogic.GameManagers
             IRegionRepository regionRepository = new RegionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
             IResourceRepository resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
             IUnitRepository unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
-            
+
             Biomes = biomeRepository.GetAll().ToDictionary(biome => biome.Id, biome => biome.ToDomainModel());
             Borders = borderRepository.GetAll().ToDictionary(border => new Tuple<string, string>(border.Region1Id, border.Region2Id), border => border.ToDomainModel());
-            Cultures = cultureRepository.GetAll().ToDictionary(culture => culture.Id,  culture => culture.ToDomainModel());
+            Cultures = cultureRepository.GetAll().ToDictionary(culture => culture.Id, culture => culture.ToDomainModel());
             Factions = factionRepository.GetAll().ToDictionary(faction => faction.Id, faction => faction.ToDomainModel());
             Flags = flagRepository.GetAll().ToDictionary(flag => flag.Id, flag => flag.ToDomainModel());
             Holdings = new Dictionary<string, Holding>();
@@ -555,8 +556,8 @@ namespace Narivia.GameLogic.GameManagers
             biomeMap = new string[world.Width, world.Height];
 
             // Mapping the colours
-            Regions.Values.ToList().ForEach(region => regionColourIds.Register(region.Colour.ToArgb(), region.Id));
-            Biomes.Values.ToList().ForEach(biome => biomeColourIds.Register(biome.Colour.ToArgb(), biome.Id));
+            Regions.Values.ToList().ForEach(region => regionColourIds.AddOrUpdate(region.Colour.ToArgb(), region.Id));
+            Biomes.Values.ToList().ForEach(biome => biomeColourIds.AddOrUpdate(biome.Colour.ToArgb(), biome.Id));
 
             // Reading the map pixel by pixel
             using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "map.png")))
@@ -769,11 +770,11 @@ namespace Narivia.GameLogic.GameManagers
                                                                                               $"{x}.txt")).ToList())
                                                   .ToList();
 
-            if (culture.PlaceNameGenerator == NameGenerator.RandomMixerNameGenerator && wordLists.Count == 2)
+            if (culture.PlaceNameGenerator == Models.Enumerations.NameGenerator.RandomMixerNameGenerator && wordLists.Count == 2)
             {
                 nameGenerator = new RandomMixerNameGenerator(wordLists[0], wordLists[1]);
             }
-            else if (culture.PlaceNameGenerator == NameGenerator.RandomMixerNameGenerator && wordLists.Count == 3)
+            else if (culture.PlaceNameGenerator == Models.Enumerations.NameGenerator.RandomMixerNameGenerator && wordLists.Count == 3)
             {
                 nameGenerator = new RandomMixerNameGenerator(wordLists[0], wordLists[1], wordLists[2]);
             }
