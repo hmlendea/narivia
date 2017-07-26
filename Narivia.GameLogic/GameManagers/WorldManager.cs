@@ -284,11 +284,11 @@ namespace Narivia.GameLogic.GameManagers
         => factions.Values;
 
         /// <summary>
-        /// Gets the faction troops count.
+        /// Gets the faction troops amount.
         /// </summary>
-        /// <returns>The faction troops count.</returns>
+        /// <returns>The faction troops amount.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionTroopsCount(string factionId)
+        public int GetFactionTroopsAmount(string factionId)
         {
             return armies.Values.Where(a => a.FactionId == factionId)
                                 .Sum(a => a.Size);
@@ -297,13 +297,13 @@ namespace Narivia.GameLogic.GameManagers
         /// <summary>
         /// Gets the faction capital.
         /// </summary>
-        /// <returns>Region identifier.</returns>
+        /// <returns>Region.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public string GetFactionCapital(string factionId)
+        public Region GetFactionCapital(string factionId)
         {
             return regions.Values.FirstOrDefault(r => r.FactionId == factionId &&
                                                       r.SovereignFactionId == factionId &&
-                                                      r.Type == RegionType.Capital).Id;
+                                                      r.Type == RegionType.Capital);
         }
 
         /// <summary>
@@ -729,10 +729,9 @@ namespace Narivia.GameLogic.GameManagers
         void GenerateHoldings(string factionId)
         {
             Faction faction = factions[factionId];
+            Region capitalRegion = GetFactionCapital(faction.Id);
 
             int holdingSlotsLeft = world.HoldingSlotsPerFaction;
-
-            string capitalRegionId = GetFactionCapital(faction.Id);
 
             INameGenerator nameGenerator = CreateNameGenerator(faction.CultureId);
             nameGenerator.ExcludedStrings.AddRange(factions.Values.Select(f => f.Name));
@@ -745,7 +744,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 Holding holding = GenerateHolding(nameGenerator, region.Id);
 
-                if (region.Id == capitalRegionId)
+                if (region.Id == capitalRegion.Id)
                 {
                     holding.Name = region.Name;
                     holding.Description = $"The government seat castle of {faction.Name}";

@@ -118,7 +118,7 @@ namespace Narivia.Screens
                              NotificationStyle.Big,
                              new Vector2(256, 256));
 
-            RegionBar.SetRegion(game.GetFactionCapital(game.PlayerFactionId));
+            RegionBar.SetRegion(game.GetFactionCapital(game.PlayerFactionId).Id);
 
             LinkEvents();
 
@@ -296,7 +296,7 @@ namespace Narivia.Screens
                 return;
             }
 
-            if (game.GetFactionTroopsCount(game.PlayerFactionId) < game.MinTroopsPerAttack)
+            if (game.GetFactionTroopsAmount(game.PlayerFactionId) < game.MinTroopsPerAttack)
             {
                 ShowNotification($"Not enough troops!",
                                  $"Sorry!" + Environment.NewLine + Environment.NewLine +

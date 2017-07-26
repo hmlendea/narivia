@@ -110,7 +110,7 @@ namespace Narivia.Gui.GuiElements
             holdingTexts.Clear();
             holdingImages.Clear();
 
-            List<Holding> holdings = game.GetRegionHoldings(RegionId).ToList();
+            List<Holding> holdings = game.GetRegionHoldings(RegionId).OrderBy(h => h.Name).ToList();
 
             holdingImages = new List<GuiImage>();
 

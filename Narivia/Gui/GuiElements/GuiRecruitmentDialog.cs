@@ -68,7 +68,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            units = game.GetUnits().ToList();
+            units = game.GetUnits().OrderBy(u => u.Price).ToList();
 
             background = new GuiImage
             {

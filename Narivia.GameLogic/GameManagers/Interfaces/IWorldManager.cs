@@ -162,18 +162,18 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Faction> GetFactions();
 
         /// <summary>
-        /// Gets the faction troops count.
+        /// Gets the faction troops amount.
         /// </summary>
-        /// <returns>The faction troops count.</returns>
+        /// <returns>The faction troops amount.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        int GetFactionTroopsCount(string factionId);
+        int GetFactionTroopsAmount(string factionId);
 
         /// <summary>
         /// Gets the faction capital.
         /// </summary>
-        /// <returns>Region identifier.</returns>
+        /// <returns>Region.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        string GetFactionCapital(string factionId);
+        Region GetFactionCapital(string factionId);
 
         /// <summary>
         /// Gets or sets the X map coordinate of the centre of the faction territoriy.

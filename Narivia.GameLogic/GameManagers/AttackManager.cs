@@ -146,8 +146,8 @@ namespace Narivia.GameLogic.GameManagers
                 throw new InvalidTargetRegionException(regionId);
             }
 
-            while (world.GetFactionTroopsCount(attackerFaction.Id) > 0 &&
-                   world.GetFactionTroopsCount(defenderFaction.Id) > 0)
+            while (world.GetFactionTroopsAmount(attackerFaction.Id) > 0 &&
+                   world.GetFactionTroopsAmount(defenderFaction.Id) > 0)
             {
                 Army attackerArmy = world.GetFactionArmies(attackerFaction.Id)
                                          .Where(a => a.Size > 0)
@@ -176,8 +176,8 @@ namespace Narivia.GameLogic.GameManagers
             // TODO: In the GameDomainService I should change the realations based on wether the
             // region was sovereign or not
 
-            if (world.GetFactionTroopsCount(attackerFaction.Id) >
-                world.GetFactionTroopsCount(defenderFaction.Id))
+            if (world.GetFactionTroopsAmount(attackerFaction.Id) >
+                world.GetFactionTroopsAmount(defenderFaction.Id))
             {
                 world.TransferRegion(regionId, factionId);
                 targetRegion.Locked = true;

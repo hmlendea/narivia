@@ -2,7 +2,6 @@
 
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 
@@ -32,12 +31,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// Occurs a faction won the game.
         /// </summary>
         event FactionEventHandler FactionWon;
-
-        /// <summary>
-        /// Gets or sets the world tiles.
-        /// </summary>
-        /// <value>The world tiles.</value>
-        string[,] WorldTiles { get; set; }
 
         /// <summary>
         /// Gets the width of the world.
@@ -270,18 +263,18 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Holding> GetFactionHoldings(string factionId);
 
         /// <summary>
-        /// Gets the faction troops count.
+        /// Gets the faction troops amount.
         /// </summary>
-        /// <returns>The faction troops count.</returns>
+        /// <returns>The faction troops amount.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        int GetFactionTroopsCount(string factionId);
+        int GetFactionTroopsAmount(string factionId);
 
         /// <summary>
         /// Gets the faction capital.
         /// </summary>
-        /// <returns>The faction capital.</returns>
+        /// <returns>The faction capital region.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        string GetFactionCapital(string factionId);
+        Region GetFactionCapital(string factionId);
 
         /// <summary>
         /// Gets or sets the X map coordinate of the centre of the faction territoriy.
@@ -297,13 +290,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <param name="factionId">Faction identifier.</param>
         int GetFactionCentreY(string factionId);
 
-        /// <summary>
-        /// Gets the relation between two factions.
-        /// </summary>
-        /// <returns>The faction relation.</returns>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        int GetFactionRelation(string sourceFactionId, string targetFactionId);
 
         /// <summary>
         /// Gets the relations of a faction.
@@ -359,6 +345,20 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Region> GetRegions();
 
         /// <summary>
+        /// Gets the relation between two factions.
+        /// </summary>
+        /// <returns>The faction relation.</returns>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        Relation GetRelation(string sourceFactionId, string targetFactionId);
+
+        /// <summary>
+        /// Gets the relations between factions.
+        /// </summary>
+        /// <returns>The relations.</returns>
+        IEnumerable<Relation> GetRelations();
+
+        /// <summary>
         /// Gets the resource.
         /// </summary>
         /// <returns>The resource.</returns>
@@ -372,11 +372,27 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Resource> GetResources();
 
         /// <summary>
+        /// Gets the world tile.
+        /// </summary>
+        /// <returns>The world tile.</returns>
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        string GetWorldTile(int x, int y);
+
+        /// <summary>
         /// Gets the unit.
         /// </summary>
         /// <returns>The unit.</returns>
         /// <param name="unitId">Unit identifier.</param>
         Unit GetUnit(string unitId);
+
+        /// <summary>
+        /// Sets the world tile.
+        /// </summary>
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        /// <param name="value">Value.</param>
+        void SetWorldTile(int x, int y, string value);
 
         /// <summary>
         /// Gets the units.
