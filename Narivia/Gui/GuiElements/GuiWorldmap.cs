@@ -205,7 +205,7 @@ namespace Narivia.Gui.GuiElements
 
                     string regionId = game.WorldTiles[x, y];
                     string factionId = game.FactionIdAtPosition(x, y);
-                    Colour factionColour = game.GetFactionColour(factionId);
+                    Colour factionColour = game.GetFaction(factionId).Colour;
 
                     if (factionId == "gaia")
                     {
@@ -251,7 +251,7 @@ namespace Narivia.Gui.GuiElements
                     }
 
                     string factionId = game.FactionIdAtPosition(x, y);
-                    Colour factionColour = game.GetFactionColour(factionId);
+                    Colour factionColour = game.GetFaction(factionId).Colour;
 
                     if (factionId == "gaia")
                     {

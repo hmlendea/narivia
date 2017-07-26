@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -86,7 +87,7 @@ namespace Narivia.WorldMap
         /// </summary>
         public void UnloadContent()
         {
-            tiles.ForEach(tile => tile.UnloadContent());
+            Parallel.ForEach(tiles, t => t.UnloadContent());
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace Narivia.WorldMap
         {
             Sprite.Update(gameTime);
 
-            tiles.ForEach(tile => tile.Update(gameTime));
+            Parallel.ForEach(tiles, t => t.Update(gameTime));
         }
 
         /// <summary>

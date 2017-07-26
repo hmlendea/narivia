@@ -8,6 +8,9 @@ using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.GameManagers.Interfaces
 {
+    /// <summary>
+    /// Game manager interface.
+    /// </summary>
     public interface IGameManager
     {
         /// <summary>
@@ -165,25 +168,64 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         void TransferRegion(string regionId, string factionId);
 
         /// <summary>
+        /// Gets the army.
+        /// </summary>
+        /// <returns>The army.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        /// <param name="unitId">Unit identifier.</param>
+        Army GetArmy(string factionId, string unitId);
+
+        /// <summary>
+        /// Gets the armies.
+        /// </summary>
+        /// <returns>The armies.</returns>
+        IEnumerable<Army> GetArmies();
+
+        /// <summary>
+        /// Gets the biome.
+        /// </summary>
+        /// <returns>The biome.</returns>
+        /// <param name="biomeId">Biome identifier.</param>
+        Biome GetBiome(string biomeId);
+
+        /// <summary>
+        /// Gets the biomes.
+        /// </summary>
+        /// <returns>The biomes.</returns>
+        IEnumerable<Biome> GetBiomes();
+
+        /// <summary>
+        /// Gets the culture.
+        /// </summary>
+        /// <returns>The culture.</returns>
+        /// <param name="cultureId">Culture identifier.</param>
+        Culture GetCulture(string cultureId);
+
+        /// <summary>
+        /// Gets the cultures.
+        /// </summary>
+        /// <returns>The cultures.</returns>
+        IEnumerable<Culture> GetCultures();
+
+        /// <summary>
+        /// Gets the faction.
+        /// </summary>
+        /// <returns>The faction.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        Faction GetFaction(string factionId);
+
+        /// <summary>
+        /// Gets the factions.
+        /// </summary>
+        /// <returns>The factions.</returns>
+        IEnumerable<Faction> GetFactions();
+
+        /// <summary>
         /// Gets the culture of a faction.
         /// </summary>
         /// <returns>The culture.</returns>
         /// <param name="factionId">Faction identifier.</param>
         Culture GetFactionCulture(string factionId);
-
-        /// <summary>
-        /// Gets the name of the faction.
-        /// </summary>
-        /// <returns>The faction name.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        string GetFactionName(string factionId);
-
-        /// <summary>
-        /// Returns the colour of a faction.
-        /// </summary>
-        /// <returns>The colour.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        Colour GetFactionColour(string factionId);
 
         /// <summary>
         /// Gets the flag of a factions.
@@ -214,25 +256,18 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         int GetFactionRecruitment(string factionId);
 
         /// <summary>
-        /// Gets the regions count of a faction.
+        /// Gets the regions of a faction.
         /// </summary>
-        /// <returns>The number of regions.</returns>
+        /// <returns>The regions.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        int GetFactionRegionsCount(string factionId);
+        IEnumerable<Region> GetFactionRegions(string factionId);
 
         /// <summary>
-        /// Gets the holdings count of a faction.
+        /// Gets the holdings of a faction.
         /// </summary>
-        /// <returns>The number of holdings.</returns>
+        /// <returns>The holdings.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        int GetFactionHoldingsCount(string factionId);
-
-        /// <summary>
-        /// Gets the faction wealth.
-        /// </summary>
-        /// <returns>The faction wealth.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        int GetFactionWealth(string factionId);
+        IEnumerable<Holding> GetFactionHoldings(string factionId);
 
         /// <summary>
         /// Gets the faction troops count.
@@ -263,61 +298,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         int GetFactionCentreY(string factionId);
 
         /// <summary>
-        /// Gets the faction army size.
-        /// </summary>
-        /// <returns>The faction army size.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        /// <param name="unitId">Unit identifier.</param>
-        int GetFactionArmySize(string factionId, string unitId);
-
-        /// <summary>
-        /// Gets the faction idenfifier of a region.
-        /// </summary>
-        /// <returns>The faction identifier.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        string GetRegionFaction(string regionId);
-
-        /// <summary>
-        /// Gets the name of a region.
-        /// </summary>
-        /// <returns>The name.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        string GetRegionName(string regionId);
-
-        /// <summary>
-        /// Gets the resource of a region.
-        /// </summary>
-        /// <returns>The resource identifier.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        string GetRegionResource(string regionId);
-
-        /// <summary>
         /// Gets the relation between two factions.
         /// </summary>
         /// <returns>The faction relation.</returns>
         /// <param name="sourceFactionId">Source faction identifier.</param>
         /// <param name="targetFactionId">Target faction identifier.</param>
         int GetFactionRelation(string sourceFactionId, string targetFactionId);
-
-        /// <summary>
-        /// Gets the name of the resource.
-        /// </summary>
-        /// <returns>The resource name.</returns>
-        /// <param name="resourceId">Resource identifier.</param>
-        string GetResourceName(string resourceId);
-
-        /// <summary>
-        /// Gets the factions.
-        /// </summary>
-        /// <returns>The factions.</returns>
-        IEnumerable<Faction> GetFactions();
-
-        /// <summary>
-        /// Gets the regions of a faction.
-        /// </summary>
-        /// <returns>The regions.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        IEnumerable<Region> GetFactionRegions(string factionId);
 
         /// <summary>
         /// Gets the relations of a faction.
@@ -327,11 +313,37 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Relation> GetFactionRelations(string factionId);
 
         /// <summary>
-        /// Gets the holdings of a faction.
+        /// Gets the flag.
+        /// </summary>
+        /// <returns>The flag.</returns>
+        /// <param name="flagId">Flag identifier.</param>
+        Flag GetFlag(string flagId);
+
+        /// <summary>
+        /// Gets the flags.
+        /// </summary>
+        /// <returns>The flags.</returns>
+        IEnumerable<Flag> GetFlags();
+
+        /// <summary>
+        /// Gets the holding.
+        /// </summary>
+        /// <returns>The holding.</returns>
+        /// <param name="holdingId">Holding identifier.</param>
+        Holding GetHolding(string holdingId);
+
+        /// <summary>
+        /// Gets the holdings.
         /// </summary>
         /// <returns>The holdings.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        IEnumerable<Holding> GetFactionHoldings(string factionId);
+        IEnumerable<Holding> GetHoldings();
+
+        /// <summary>
+        /// Gets the region.
+        /// </summary>
+        /// <returns>The region.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        Region GetRegion(string regionId);
 
         /// <summary>
         /// Gets the region holdings.
@@ -339,6 +351,32 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The region holdings.</returns>
         /// <param name="regionId">Region identifier.</param>
         IEnumerable<Holding> GetRegionHoldings(string regionId);
+
+        /// <summary>
+        /// Gets the regions.
+        /// </summary>
+        /// <returns>The regions.</returns>
+        IEnumerable<Region> GetRegions();
+
+        /// <summary>
+        /// Gets the resource.
+        /// </summary>
+        /// <returns>The resource.</returns>
+        /// <param name="resourceId">Resource identifier.</param>
+        Resource GetResource(string resourceId);
+
+        /// <summary>
+        /// Gets the resources.
+        /// </summary>
+        /// <returns>The resources.</returns>
+        IEnumerable<Resource> GetResources();
+
+        /// <summary>
+        /// Gets the unit.
+        /// </summary>
+        /// <returns>The unit.</returns>
+        /// <param name="unitId">Unit identifier.</param>
+        Unit GetUnit(string unitId);
 
         /// <summary>
         /// Gets the units.

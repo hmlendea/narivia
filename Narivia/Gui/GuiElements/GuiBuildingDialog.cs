@@ -316,7 +316,7 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            if (game.GetFactionWealth(game.PlayerFactionId) >= game.HoldingsPrice)
+            if (game.GetFaction(game.PlayerFactionId).Wealth >= game.HoldingsPrice)
             {
                 game.BuildHolding(regions[currentRegionIndex].Id, holdingTypes[currentHoldingTypeIndex]);
             }

@@ -31,7 +31,10 @@ namespace Narivia.Screens
             // TODO: Don't load everything unnecessarily
             game.NewGame("narivia", "alpalet");
 
-            List<Faction> factions = game.GetFactions().Where(f => f.Id != "gaia").ToList();
+            List<Faction> factions = game.GetFactions()
+                                         .Where(f => f.Id != "gaia")
+                                         .OrderBy(f => f.Name)
+                                         .ToList();
 
             // TODO: Identify and retrieve the items properly
             factionSelector = ListSelectors.FirstOrDefault(x => x.Text == "Faction");

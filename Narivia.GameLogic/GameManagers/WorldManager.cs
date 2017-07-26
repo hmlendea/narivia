@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
@@ -29,71 +31,17 @@ namespace Narivia.GameLogic.GameManagers
         string[,] worldTiles;
         string[,] biomeMap;
 
-        /// <summary>
-        /// Gets or sets the biomes.
-        /// </summary>
-        /// <value>The biomes.</value>
-        public Dictionary<string, Biome> Biomes { get; set; }
-
-        /// <summary>
-        /// Gets or sets the cultures.
-        /// </summary>
-        /// <value>The cultures.</value>
-        public Dictionary<string, Culture> Cultures { get; set; }
-
-        /// <summary>
-        /// Gets or sets the factions.
-        /// </summary>
-        /// <value>The factions.</value>
-        public Dictionary<string, Faction> Factions { get; set; }
-
-        /// <summary>
-        /// Gets or sets the flags.
-        /// </summary>
-        /// <value>The flags.</value>
-        public Dictionary<string, Flag> Flags { get; set; }
-
-        /// <summary>
-        /// Gets or sets the holdings.
-        /// </summary>
-        /// <value>The holdings.</value>
-        public Dictionary<string, Holding> Holdings { get; set; }
-
-        /// <summary>
-        /// Gets or sets the regions.
-        /// </summary>
-        /// <value>The regions.</value>
-        public Dictionary<string, Region> Regions { get; set; }
-
-        /// <summary>
-        /// Gets or sets the resources.
-        /// </summary>
-        /// <value>The resources.</value>
-        public Dictionary<string, Resource> Resources { get; set; }
-
-        /// <summary>
-        /// Gets or sets the units.
-        /// </summary>
-        /// <value>The units.</value>
-        public Dictionary<string, Unit> Units { get; set; }
-
-        /// <summary>
-        /// Gets or sets the armies.
-        /// </summary>
-        /// <value>The armies.</value>
-        public Dictionary<Tuple<string, string>, Army> Armies { get; set; }
-
-        /// <summary>
-        /// Gets or sets the borders.
-        /// </summary>
-        /// <value>The borders.</value>
-        public Dictionary<Tuple<string, string>, Border> Borders { get; set; }
-
-        /// <summary>
-        /// Gets or sets the relations.
-        /// </summary>
-        /// <value>The relations.</value>
-        public Dictionary<Tuple<string, string>, Relation> Relations { get; set; }
+        ConcurrentDictionary<string, Biome> biomes;
+        ConcurrentDictionary<string, Culture> cultures;
+        ConcurrentDictionary<string, Faction> factions;
+        ConcurrentDictionary<string, Flag> flags;
+        ConcurrentDictionary<string, Holding> holdings;
+        ConcurrentDictionary<string, Region> regions;
+        ConcurrentDictionary<string, Resource> resources;
+        ConcurrentDictionary<string, Unit> units;
+        ConcurrentDictionary<Tuple<string, string>, Army> armies;
+        ConcurrentDictionary<Tuple<string, string>, Border> borders;
+        ConcurrentDictionary<Tuple<string, string>, Relation> relations;
 
         /// <summary>
         /// Gets or sets the world tiles.
@@ -228,7 +176,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="region2Id">Second region identifier.</param>
         public bool RegionBordersRegion(string region1Id, string region2Id)
         {
-            return Borders.Values.Any(x => (x.Region1Id == region1Id && x.Region2Id == region2Id) ||
+            return borders.Values.Any(x => (x.Region1Id == region1Id && x.Region2Id == region2Id) ||
                                            (x.Region1Id == region2Id && x.Region2Id == region1Id));
         }
 
@@ -239,7 +187,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="regionId">Region identifier.</param>
         public bool RegionHasEmptyHoldingSlots(string regionId)
         {
-            return Holdings.Values.Count(h => h.RegionId == regionId && h.Type == HoldingType.Empty) > 0;
+            return holdings.Values.Count(h => h.RegionId == regionId && h.Type == HoldingType.Empty) > 0;
         }
 
         /// <summary>
@@ -250,8 +198,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="faction2Id">Second faction identifier.</param>
         public bool FactionBordersFaction(string faction1Id, string faction2Id)
         {
-            List<Region> faction1Regions = Regions.Values.Where(x => x.FactionId == faction1Id).ToList();
-            List<Region> faction2Regions = Regions.Values.Where(x => x.FactionId == faction2Id).ToList();
+            List<Region> faction1Regions = regions.Values.Where(x => x.FactionId == faction1Id).ToList();
+            List<Region> faction2Regions = regions.Values.Where(x => x.FactionId == faction2Id).ToList();
 
             // TODO: Optimise this!!!
             foreach (Region region1 in faction1Regions)
@@ -287,7 +235,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="y">The y coordinate.</param>
         public string FactionIdAtPosition(int x, int y)
         {
-            return Regions[worldTiles[x, y]].FactionId;
+            return regions[worldTiles[x, y]].FactionId;
         }
 
         /// <summary>
@@ -297,8 +245,43 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public void TransferRegion(string regionId, string factionId)
         {
-            Regions[regionId].FactionId = factionId;
+            regions[regionId].FactionId = factionId;
         }
+
+        /// <summary>
+        /// Gets the armies.
+        /// </summary>
+        /// <returns>The armies.</returns>
+        public IEnumerable<Army> GetArmies()
+        => armies.Values;
+
+        /// <summary>
+        /// Gets the biomes.
+        /// </summary>
+        /// <returns>The biomes.</returns>
+        public IEnumerable<Biome> GetBiomes()
+        => biomes.Values;
+
+        /// <summary>
+        /// Gets the borders.
+        /// </summary>
+        /// <returns>The borders.</returns>
+        public IEnumerable<Border> GetBorders()
+        => borders.Values;
+
+        /// <summary>
+        /// Gets the cultures.
+        /// </summary>
+        /// <returns>The cultures.</returns>
+        public IEnumerable<Culture> GetCultures()
+        => cultures.Values;
+
+        /// <summary>
+        /// Gets the factions.
+        /// </summary>
+        /// <returns>The factions.</returns>
+        public IEnumerable<Faction> GetFactions()
+        => factions.Values;
 
         /// <summary>
         /// Gets the faction troops count.
@@ -307,7 +290,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionTroopsCount(string factionId)
         {
-            return Armies.Values.Where(a => a.FactionId == factionId)
+            return armies.Values.Where(a => a.FactionId == factionId)
                                 .Sum(a => a.Size);
         }
 
@@ -318,7 +301,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public string GetFactionCapital(string factionId)
         {
-            return Regions.Values.FirstOrDefault(r => r.FactionId == factionId &&
+            return regions.Values.FirstOrDefault(r => r.FactionId == factionId &&
                                                       r.SovereignFactionId == factionId &&
                                                       r.Type == RegionType.Capital).Id;
         }
@@ -337,7 +320,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 for (int x = 0; x < world.Width; x++)
                 {
-                    if (Regions[worldTiles[x, y]].FactionId != factionId)
+                    if (regions[worldTiles[x, y]].FactionId != factionId)
                     {
                         continue;
                     }
@@ -370,7 +353,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 for (int x = 0; x < world.Width; x++)
                 {
-                    if (Regions[worldTiles[x, y]].FactionId != factionId)
+                    if (regions[worldTiles[x, y]].FactionId != factionId)
                     {
                         continue;
                     }
@@ -390,14 +373,6 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Gets the flag of a factions.
-        /// </summary>
-        /// <returns>The faction flag.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public Flag GetFactionFlag(string factionId)
-        => Flags[Factions[factionId].FlagId];
-
-        /// <summary>
         /// Gets the relation between two factions.
         /// </summary>
         /// <returns>The faction relation.</returns>
@@ -405,7 +380,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="targetFactionId">Target faction identifier.</param>
         public int GetFactionRelation(string sourceFactionId, string targetFactionId)
         {
-            return Relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
+            return relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
                                                         r.TargetFactionId == targetFactionId).Value;
         }
 
@@ -416,7 +391,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Army> GetFactionArmies(string factionId)
         {
-            return Armies.Values.Where(a => a.FactionId == factionId);
+            return armies.Values.Where(a => a.FactionId == factionId);
         }
 
         /// <summary>
@@ -426,8 +401,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Holding> GetFactionHoldings(string factionId)
         {
-            return Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
-                                              Regions[h.RegionId].FactionId == factionId);
+            return holdings.Values.Where(h => h.Type != HoldingType.Empty &&
+                                              regions[h.RegionId].FactionId == factionId);
         }
 
         /// <summary>
@@ -437,7 +412,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Region> GetFactionRegions(string factionId)
         {
-            return Regions.Values.Where(r => r.FactionId == factionId);
+            return regions.Values.Where(r => r.FactionId == factionId);
         }
 
         /// <summary>
@@ -447,9 +422,30 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Relation> GetFactionRelations(string factionId)
         {
-            return Relations.Values.Where(r => r.SourceFactionId == factionId &&
+            return relations.Values.Where(r => r.SourceFactionId == factionId &&
                                                r.SourceFactionId != r.TargetFactionId);
         }
+
+        /// <summary>
+        /// Gets the flags.
+        /// </summary>
+        /// <returns>The flags.</returns>
+        public IEnumerable<Flag> GetFlags()
+        => flags.Values;
+
+        /// <summary>
+        /// Gets the holdings.
+        /// </summary>
+        /// <returns>The holdings.</returns>
+        public IEnumerable<Holding> GetHoldings()
+        => holdings.Values;
+
+        /// <summary>
+        /// Gets the regions.
+        /// </summary>
+        /// <returns>The regions.</returns>
+        public IEnumerable<Region> GetRegions()
+        => regions.Values;
 
         /// <summary>
         /// Gets the holdings of a region.
@@ -457,10 +453,30 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The holdings.</returns>
         /// <param name="regionId">Region identifier.</param>
         public IEnumerable<Holding> GetRegionHoldings(string regionId)
-        {
-            return Holdings.Values.Where(h => h.Type != HoldingType.Empty &&
-                                              h.RegionId == regionId);
-        }
+        => holdings.Values
+                   .Where(h => h.Type != HoldingType.Empty &&
+                               h.RegionId == regionId);
+
+        /// <summary>
+        /// Gets the relations.
+        /// </summary>
+        /// <returns>The relations.</returns>
+        public IEnumerable<Relation> GetRelations()
+        => relations.Values;
+
+        /// <summary>
+        /// Gets the resources.
+        /// </summary>
+        /// <returns>The resources.</returns>
+        public IEnumerable<Resource> GetResources()
+        => resources.Values;
+
+        /// <summary>
+        /// Gets the units.
+        /// </summary>
+        /// <returns>The units.</returns>
+        public IEnumerable<Unit> GetUnits()
+        => units.Values;
 
         /// <summary>
         /// Adds the specified holding type in a region.
@@ -469,7 +485,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="holdingType">Holding type.</param>
         public void AddHolding(string regionId, HoldingType holdingType)
         {
-            Holding emptySlot = Holdings.Values.FirstOrDefault(h => h.RegionId == regionId &&
+            Holding emptySlot = holdings.Values.FirstOrDefault(h => h.RegionId == regionId &&
                                                                     h.Type == HoldingType.Empty);
 
             if (emptySlot != null)
@@ -486,9 +502,9 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="delta">Relations value delta.</param>
         public void ChangeRelations(string sourceFactionId, string targetFactionId, int delta)
         {
-            Relation sourceRelation = Relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
+            Relation sourceRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
                                                                            r.TargetFactionId == targetFactionId);
-            Relation targetRelation = Relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
+            Relation targetRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
                                                                            r.TargetFactionId == sourceFactionId);
 
             int oldRelations = sourceRelation.Value;
@@ -504,9 +520,9 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="value">Relations value.</param>
         public void SetRelations(string sourceFactionId, string targetFactionId, int value)
         {
-            Relation sourceRelation = Relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
+            Relation sourceRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
                                                                            r.TargetFactionId == targetFactionId);
-            Relation targetRelation = Relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
+            Relation targetRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
                                                                            r.TargetFactionId == sourceFactionId);
 
             sourceRelation.Value = Math.Max(-100, Math.Min(value, 100));
@@ -525,24 +541,33 @@ namespace Narivia.GameLogic.GameManagers
             IResourceRepository resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
             IUnitRepository unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
 
-            Biomes = biomeRepository.GetAll().ToDictionary(biome => biome.Id, biome => biome.ToDomainModel());
-            Borders = borderRepository.GetAll().ToDictionary(border => new Tuple<string, string>(border.Region1Id, border.Region2Id), border => border.ToDomainModel());
-            Cultures = cultureRepository.GetAll().ToDictionary(culture => culture.Id, culture => culture.ToDomainModel());
-            Factions = factionRepository.GetAll().ToDictionary(faction => faction.Id, faction => faction.ToDomainModel());
-            Flags = flagRepository.GetAll().ToDictionary(flag => flag.Id, flag => flag.ToDomainModel());
-            Holdings = new Dictionary<string, Holding>();
-            Regions = regionRepository.GetAll().ToDictionary(region => region.Id, region => region.ToDomainModel());
-            Resources = resourceRepository.GetAll().ToDictionary(resource => resource.Id, resource => resource.ToDomainModel());
-            Units = unitRepository.GetAll().ToDictionary(unit => unit.Id, unit => unit.ToDomainModel());
+            IEnumerable<Biome> biomeList = biomeRepository.GetAll().ToDomainModels();
+            IEnumerable<Border> borderList = borderRepository.GetAll().ToDomainModels();
+            IEnumerable<Culture> cultureList = cultureRepository.GetAll().ToDomainModels();
+            IEnumerable<Faction> factionList = factionRepository.GetAll().ToDomainModels();
+            IEnumerable<Flag> flagList = flagRepository.GetAll().ToDomainModels();
+            IEnumerable<Region> regionList = regionRepository.GetAll().ToDomainModels();
+            IEnumerable<Resource> resourceList = resourceRepository.GetAll().ToDomainModels();
+            IEnumerable<Unit> unitList = unitRepository.GetAll().ToDomainModels();
+
+            biomes = new ConcurrentDictionary<string, Biome>(biomeList.ToDictionary(biome => biome.Id, biome => biome));
+            borders = new ConcurrentDictionary<Tuple<string, string>, Border>(borderList.ToDictionary(border => new Tuple<string, string>(border.Region1Id, border.Region2Id), border => border));
+            cultures = new ConcurrentDictionary<string, Culture>(cultureList.ToDictionary(culture => culture.Id, culture => culture));
+            factions = new ConcurrentDictionary<string, Faction>(factionList.ToDictionary(faction => faction.Id, faction => faction));
+            flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
+            holdings = new ConcurrentDictionary<string, Holding>();
+            regions = new ConcurrentDictionary<string, Region>(regionList.ToDictionary(region => region.Id, region => region));
+            resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
+            units = new ConcurrentDictionary<string, Unit>(unitList.ToDictionary(unit => unit.Id, unit => unit));
         }
 
         void LoadMap(string worldId)
         {
-            Armies = new Dictionary<Tuple<string, string>, Army>();
-            Relations = new Dictionary<Tuple<string, string>, Relation>();
+            armies = new ConcurrentDictionary<Tuple<string, string>, Army>();
+            relations = new ConcurrentDictionary<Tuple<string, string>, Relation>();
 
-            Dictionary<int, string> regionColourIds = new Dictionary<int, string>();
-            Dictionary<int, string> biomeColourIds = new Dictionary<int, string>();
+            ConcurrentDictionary<int, string> regionColourIds = new ConcurrentDictionary<int, string>();
+            ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
 
             XmlSerializer xs = new XmlSerializer(typeof(World));
 
@@ -556,39 +581,27 @@ namespace Narivia.GameLogic.GameManagers
             biomeMap = new string[world.Width, world.Height];
 
             // Mapping the colours
-            Regions.Values.ToList().ForEach(region => regionColourIds.AddOrUpdate(region.Colour.ToArgb(), region.Id));
-            Biomes.Values.ToList().ForEach(biome => biomeColourIds.AddOrUpdate(biome.Colour.ToArgb(), biome.Id));
+            Parallel.ForEach(regions.Values, r => regionColourIds.AddOrUpdate(r.Colour.ToArgb(), r.Id));
+            Parallel.ForEach(biomes.Values, b => biomeColourIds.AddOrUpdate(b.Colour.ToArgb(), b.Id));
 
             // Reading the map pixel by pixel
             using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "map.png")))
             {
-                for (int y = 0; y < world.Width; y++)
-                {
-                    for (int x = 0; x < world.Height; x++)
-                    {
-                        Colour clr = bmp.GetPixel(x, y);
-                        int argb = bmp.GetPixel(x, y).ToArgb();
-
-                        worldTiles[x, y] = regionColourIds[argb];
-                    }
-                }
+                Parallel.For(0, world.Height,
+                             y => Parallel.For(0, world.Width,
+                                               x => worldTiles[x, y] = regionColourIds[bmp.GetPixel(x, y).ToArgb()]));
             }
 
             // Reading the biome map pixel by pixel
             using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes_map.png")))
             {
-                for (int y = 0; y < world.Width; y++)
-                {
-                    for (int x = 0; x < world.Height; x++)
-                    {
-                        int colour = bmp.GetPixel(x, y).ToArgb();
-
-                        biomeMap[x, y] = biomeColourIds[colour];
-                    }
-                }
+                Parallel.For(0, world.Height,
+                             y => Parallel.For(0, world.Width,
+                                               x => biomeMap[x, y] = biomeColourIds[bmp.GetPixel(x, y).ToArgb()]));
             }
         }
 
+        // TODO: Parallelise this
         void LoadBorders()
         {
             for (int x = 0; x < world.Width; x += 5)
@@ -640,19 +653,19 @@ namespace Narivia.GameLogic.GameManagers
                 Region2Id = region2Id
             };
 
-            Borders.Add(borderKey, border);
+            borders.AddOrUpdate(borderKey, border);
         }
 
         void InitializeEntities()
         {
             // Order is important
-            Regions.Values.ToList().ForEach(r => InitialiseRegion(r.Id));
-            Factions.Values.ToList().ForEach(f => InitialiseFaction(f.Id));
+            regions.Values.ToList().ForEach(r => InitialiseRegion(r.Id));
+            factions.Values.ToList().ForEach(f => InitialiseFaction(f.Id));
         }
 
         void InitialiseFaction(string factionId)
         {
-            Faction faction = Factions[factionId];
+            Faction faction = factions[factionId];
 
             if (faction.Id == "gaia")
             {
@@ -663,7 +676,8 @@ namespace Narivia.GameLogic.GameManagers
             faction.Wealth = StartingWealth;
             faction.Alive = true;
 
-            foreach (Unit unit in Units.Values.ToList())
+            Parallel.ForEach(units.Values,
+                             unit =>
             {
                 Tuple<string, string> armyKey = new Tuple<string, string>(faction.Id, unit.Id);
                 Army army = new Army
@@ -673,17 +687,17 @@ namespace Narivia.GameLogic.GameManagers
                     Size = StartingTroops
                 };
 
-                Armies.Add(armyKey, army);
-            }
+                armies.AddOrUpdate(armyKey, army);
+            });
 
-            Factions.Values.ToList().ForEach(f => InitialiseRelation(factionId, f.Id));
+            Parallel.ForEach(factions.Values, f => InitialiseRelation(factionId, f.Id));
 
             GenerateHoldings(faction.Id);
         }
 
         void InitialiseRegion(string regionId)
         {
-            Region region = Regions[regionId];
+            Region region = regions[regionId];
 
             if (string.IsNullOrWhiteSpace(region.SovereignFactionId))
             {
@@ -709,21 +723,21 @@ namespace Narivia.GameLogic.GameManagers
 
             Tuple<string, string> relationKey = new Tuple<string, string>(relation.SourceFactionId, relation.TargetFactionId);
 
-            Relations.Add(relationKey, relation);
+            relations.AddOrUpdate(relationKey, relation);
         }
 
         void GenerateHoldings(string factionId)
         {
-            Faction faction = Factions[factionId];
+            Faction faction = factions[factionId];
 
             int holdingSlotsLeft = world.HoldingSlotsPerFaction;
 
             string capitalRegionId = GetFactionCapital(faction.Id);
 
             INameGenerator nameGenerator = CreateNameGenerator(faction.CultureId);
-            nameGenerator.ExcludedStrings.AddRange(Factions.Values.Select(f => f.Name));
-            nameGenerator.ExcludedStrings.AddRange(Holdings.Values.Select(h => h.Name));
-            nameGenerator.ExcludedStrings.AddRange(Regions.Values.Select(r => r.Name));
+            nameGenerator.ExcludedStrings.AddRange(factions.Values.Select(f => f.Name));
+            nameGenerator.ExcludedStrings.AddRange(holdings.Values.Select(h => h.Name));
+            nameGenerator.ExcludedStrings.AddRange(regions.Values.Select(r => r.Name));
 
             List<Region> ownedRegions = GetFactionRegions(faction.Id).ToList();
 
@@ -738,7 +752,7 @@ namespace Narivia.GameLogic.GameManagers
                     holding.Type = HoldingType.Castle;
                 }
 
-                Holdings.Add(holding.Id, holding);
+                holdings.AddOrUpdate(holding.Id, holding);
                 holdingSlotsLeft -= 1;
             }
 
@@ -750,7 +764,7 @@ namespace Narivia.GameLogic.GameManagers
                 holding.Description = string.Empty;
                 holding.Type = HoldingType.Empty;
 
-                Holdings.Add(holding.Id, holding);
+                holdings.AddOrUpdate(holding.Id, holding);
                 holdingSlotsLeft -= 1;
             }
         }
@@ -763,7 +777,7 @@ namespace Narivia.GameLogic.GameManagers
         INameGenerator CreateNameGenerator(string cultureId)
         {
             INameGenerator nameGenerator;
-            Culture culture = Cultures[cultureId];
+            Culture culture = cultures[cultureId];
 
             List<List<string>> wordLists = culture.PlaceNameSchema.Split(' ').ToList()
                                                   .Select(x => File.ReadAllLines(Path.Combine(ApplicationPaths.WordListsDirectory,
@@ -788,7 +802,7 @@ namespace Narivia.GameLogic.GameManagers
 
         Holding GenerateHolding(INameGenerator generator, string regionId)
         {
-            Region region = Regions[regionId];
+            Region region = regions[regionId];
             Array holdingTypes = Enum.GetValues(typeof(HoldingType));
 
             HoldingType holdingType = (HoldingType)holdingTypes.GetValue(random.Next(1, holdingTypes.Length));
@@ -804,7 +818,7 @@ namespace Narivia.GameLogic.GameManagers
             };
 
             // TODO: Make sure this never happens and then remove this workaround
-            while (Holdings.Values.Any(h => h.Id == holding.Id))
+            while (holdings.Values.Any(h => h.Id == holding.Id))
             {
                 return GenerateHolding(generator, region.Id);
             }

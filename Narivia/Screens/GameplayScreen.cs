@@ -14,6 +14,7 @@ using Narivia.Input.Events;
 using Narivia.Gui;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
+using Narivia.Models;
 
 namespace Narivia.Screens
 {
@@ -87,7 +88,7 @@ namespace Narivia.Screens
             troopsOld = new Dictionary<string, int>();
             relationsOld = new Dictionary<string, int>();
 
-            game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetFactionArmySize(game.PlayerFactionId, u.Id)));
+            game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
             game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsOld.Add(r.TargetFactionId, r.Value));
 
             GameMap.AssociateGameManager(ref game);
@@ -95,7 +96,7 @@ namespace Narivia.Screens
             SideBar.AssociateGameManager(ref game);
             recruitmentDialog.AssociateGameManager(ref game);
             buildDialog.AssociateGameManager(ref game);
-            
+
             SideBar.FactionId = game.PlayerFactionId;
 
             GuiManager.Instance.GuiElements.Add(GameMap);
@@ -108,7 +109,7 @@ namespace Narivia.Screens
 
             base.LoadContent();
 
-            string factionName = game.GetFactionName(game.PlayerFactionId);
+            string factionName = game.GetFaction(game.PlayerFactionId).Name;
 
             ShowNotification($"Welcome to {game.WorldName}",
                              $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
@@ -142,23 +143,23 @@ namespace Narivia.Screens
         {
             Dictionary<string, int> troops = new Dictionary<string, int>();
 
-            game.GetUnits().ToList().ForEach(u => troops.Add(u.Name, game.GetFactionArmySize(game.PlayerFactionId, u.Id)));
+            game.GetUnits().ToList().ForEach(u => troops.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
 
             recruitmentDialog.Position = new Vector2(GameMap.Position.X + (GameMap.Size.X - recruitmentDialog.Size.X) / 2,
                                                      GameMap.Position.Y + (GameMap.Size.Y - recruitmentDialog.Size.Y) / 2);
             buildDialog.Position = new Vector2(GameMap.Position.X + (GameMap.Size.X - buildDialog.Size.X) / 2,
                                                GameMap.Position.Y + (GameMap.Size.Y - buildDialog.Size.Y) / 2);
 
-            InfoBar.Regions = game.GetFactionRegionsCount(game.PlayerFactionId);
-            InfoBar.Holdings = game.GetFactionHoldingsCount(game.PlayerFactionId);
-            InfoBar.Wealth = game.GetFactionWealth(game.PlayerFactionId);
+            InfoBar.Regions = game.GetFactionRegions(game.PlayerFactionId).Count();
+            InfoBar.Holdings = game.GetFactionHoldings(game.PlayerFactionId).Count();
+            InfoBar.Wealth = game.GetFaction(game.PlayerFactionId).Wealth;
             InfoBar.Troops = troops;
 
             if (!string.IsNullOrEmpty(GameMap.SelectedRegionId))
             {
                 RegionBar.SetRegion(GameMap.SelectedRegionId);
             }
-            
+
             SideBar.FactionId = game.PlayerFactionId;
 
             base.Update(gameTime);
@@ -198,12 +199,12 @@ namespace Narivia.Screens
             Dictionary<string, int> troopsNew = new Dictionary<string, int>();
             Dictionary<string, int> relationsNew = new Dictionary<string, int>();
 
-            game.GetUnits().ToList().ForEach(u => troopsNew.Add(u.Name, game.GetFactionArmySize(game.PlayerFactionId, u.Id)));
+            game.GetUnits().ToList().ForEach(u => troopsNew.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
             game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsNew.Add(r.TargetFactionId, r.Value));
 
-            int regionsNew = game.GetFactionRegionsCount(game.PlayerFactionId);
-            int holdingsNew = game.GetFactionHoldingsCount(game.PlayerFactionId);
-            int wealthNew = game.GetFactionWealth(game.PlayerFactionId);
+            int regionsNew = game.GetFactionRegions(game.PlayerFactionId).Count();
+            int holdingsNew = game.GetFactionHoldings(game.PlayerFactionId).Count();
+            int wealthNew = game.GetFaction(game.PlayerFactionId).Wealth;
             int incomeNew = game.GetFactionIncome(game.PlayerFactionId);
             int outcomeNew = game.GetFactionOutcome(game.PlayerFactionId);
             int recruitmentNew = game.GetFactionRecruitment(game.PlayerFactionId);
@@ -227,7 +228,7 @@ namespace Narivia.Screens
             {
                 int delta = relationsNew[targetfactionId] - relationsOld[targetfactionId];
 
-                relationsBody += $"{game.GetFactionName(targetfactionId)}: {relationsNew[targetfactionId].ToString("+0;-#")} " +
+                relationsBody += $"{game.GetFaction(targetfactionId).Name}: {relationsNew[targetfactionId].ToString("+0;-#")} " +
                                  $"({delta.ToString("+0;-#")})" + Environment.NewLine;
             }
 
@@ -309,9 +310,10 @@ namespace Narivia.Screens
 
             try
             {
-                string regionName = game.GetRegionName(regionId);
-                string defenderFactionId = game.GetRegionFaction(regionId);
-                string defenderFactionName = game.GetFactionName(defenderFactionId);
+                Region region = game.GetRegion(regionId);
+
+                string regionName = region.Name;
+                string defenderFactionName = game.GetFaction(region.FactionId).Name;
 
                 BattleResult result = game.PlayerAttackRegion(regionId);
 
@@ -357,8 +359,8 @@ namespace Narivia.Screens
 
         void game_OnPlayerRegionAttacked(object sender, BattleEventArgs e)
         {
-            string regionName = game.GetRegionName(e.RegionId);
-            string attackerFactionName = game.GetFactionName(e.AttackerFactionId);
+            string regionName = game.GetRegion(e.RegionId).Name;
+            string attackerFactionName = game.GetFaction(e.AttackerFactionId).Name;
 
             if (e.BattleResult == BattleResult.Victory)
             {
@@ -390,7 +392,7 @@ namespace Narivia.Screens
 
         void game_OnFactionDestroyed(object sender, FactionEventArgs e)
         {
-            string factionName = game.GetFactionName(e.FactionId);
+            string factionName = game.GetFaction(e.FactionId).Name;
 
             NotificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
                 {
@@ -405,7 +407,7 @@ namespace Narivia.Screens
 
         void game_OnFactionRevived(object sender, FactionEventArgs e)
         {
-            string factionName = game.GetFactionName(e.FactionId);
+            string factionName = game.GetFaction(e.FactionId).Name;
 
             NotificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
                 {
@@ -420,7 +422,7 @@ namespace Narivia.Screens
 
         void game_OnFactionWon(object sender, FactionEventArgs e)
         {
-            string factionName = game.GetFactionName(e.FactionId);
+            string factionName = game.GetFaction(e.FactionId).Name;
 
             NotificationBar.AddNotification(NotificationIcon.GameFinished).Clicked += delegate
                 {

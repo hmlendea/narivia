@@ -77,7 +77,7 @@ namespace Narivia.Gui.GuiElements
                 TextColour = Colour.Black,
                 HorizontalAlignment = HorizontalAlignment.Top
             };
-            
+
             RegionId = game.GetFactionRegions(game.PlayerFactionId).First().Id;
 
             Children.Add(background);
@@ -109,7 +109,7 @@ namespace Narivia.Gui.GuiElements
             holdingImages.ForEach(w => w.Destroy());
             holdingTexts.Clear();
             holdingImages.Clear();
-            
+
             List<Holding> holdings = game.GetRegionHoldings(RegionId).ToList();
 
             holdingImages = new List<GuiImage>();
@@ -166,30 +166,29 @@ namespace Narivia.Gui.GuiElements
 
             if (!string.IsNullOrWhiteSpace(RegionId))
             {
-                string resourceId = game.GetRegionResource(RegionId);
-                string factionId = game.GetRegionFaction(RegionId);
+                Region region = game.GetRegion(RegionId);
+                Resource resource = game.GetResource(region.ResourceId);
+                Faction faction = game.GetFaction(region.FactionId);
+                Flag flag = game.GetFlag(faction.FlagId);
 
-                Colour factionColour = game.GetFactionColour(game.GetRegionFaction(RegionId));
-                Flag factionFlag = game.GetFactionFlag(factionId);
+                regionNameText.Text = region.Name;
+                regionNameText.BackgroundColour = new Colour(faction.Colour.R, faction.Colour.G, faction.Colour.B);
 
-                regionNameText.Text = game.GetRegionName(RegionId);
-                regionNameText.BackgroundColour = new Colour(factionColour.R, factionColour.G, factionColour.B);
-                
                 factionImage.Position = new Vector2(regionNameText.Position.X - 64, regionNameText.Position.Y - 48);
                 factionImage.Size = new Vector2(regionNameText.Size.Y, regionNameText.Size.Y);
-                factionImage.Background = factionFlag.Background;
-                factionImage.Emblem = factionFlag.Emblem;
-                factionImage.Skin = factionFlag.Skin;
-                factionImage.BackgroundPrimaryColour = factionFlag.BackgroundPrimaryColour;
-                factionImage.BackgroundSecondaryColour = factionFlag.BackgroundSecondaryColour;
-                factionImage.EmblemColour = factionFlag.EmblemColour;
+                factionImage.Background = flag.Background;
+                factionImage.Emblem = flag.Emblem;
+                factionImage.Skin = flag.Skin;
+                factionImage.BackgroundPrimaryColour = flag.BackgroundPrimaryColour;
+                factionImage.BackgroundSecondaryColour = flag.BackgroundSecondaryColour;
+                factionImage.EmblemColour = flag.EmblemColour;
 
                 resourceImage.Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64);
-                resourceImage.ContentFile = $"World/Assets/{game.WorldId}/resources/{resourceId}_big";
+                resourceImage.ContentFile = $"World/Assets/{game.WorldId}/resources/{region.ResourceId}_big";
 
                 resourceText.Position = new Vector2(Position.X, Position.Y + 2);
                 resourceText.Size = new Vector2(64 + HOLDING_SPACING_HORIZONTAL * 2, Size.Y - 74);
-                resourceText.Text = game.GetResourceName(game.GetRegionResource(RegionId));
+                resourceText.Text = resource.Name;
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -49,6 +50,7 @@ namespace Narivia.WorldMap
         {
             tmxMap = new TmxMap(Path.Combine(ApplicationPaths.WorldsDirectory, worldName, "world.tmx"));
 
+            // TODO: Consider parallelisation
             foreach (TmxLayer tmxLayer in tmxMap.Layers)
             {
                 // Check if the tileset layer property exists
@@ -79,12 +81,8 @@ namespace Narivia.WorldMap
 
                 TmxTileset tmxTileset = tmxMap.Tilesets[tilesetName];
 
-                foreach (TmxLayerTile tile in tmxLayer.Tiles.Where(x => x.Gid > 0))
-                {
-                    int index = tile.Gid - tmxTileset.FirstGid;
-
-                    layer.TileMap[tile.X, tile.Y] = index.ToString();
-                }
+                Parallel.ForEach(tmxLayer.Tiles.Where(tile => tile.Gid > 0),
+                                 tile => layer.TileMap[tile.X, tile.Y] = (tile.Gid - tmxTileset.FirstGid).ToString());
 
                 Layers.Add(layer);
 
@@ -97,7 +95,7 @@ namespace Narivia.WorldMap
         /// </summary>
         public void UnloadContent()
         {
-            Layers.ForEach(layer => layer.UnloadContent());
+            Parallel.ForEach(Layers, l => l.UnloadContent());
         }
 
         /// <summary>
@@ -106,7 +104,7 @@ namespace Narivia.WorldMap
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            Layers.ForEach(layer => layer.Update(gameTime));
+            Parallel.ForEach(Layers, l => l.Update(gameTime));
         }
 
         /// <summary>
@@ -116,6 +114,7 @@ namespace Narivia.WorldMap
         /// <param name="camera">Camera.</param>
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
+            // The order in which the layers are drawn is very important
             Layers.ForEach(layer => layer.Draw(spriteBatch, camera));
         }
     }

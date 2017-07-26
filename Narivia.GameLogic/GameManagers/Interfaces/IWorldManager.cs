@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Narivia.Models;
 using Narivia.Models.Enumerations;
@@ -8,66 +7,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
 {
     public interface IWorldManager
     {
-        /// <summary>
-        /// Gets or sets the biomes.
-        /// </summary>
-        /// <value>The biomes.</value>
-        Dictionary<string, Biome> Biomes { get; set; }
-
-        /// <summary>
-        /// Gets or sets the cultures.
-        /// </summary>
-        /// <value>The cultures.</value>
-        Dictionary<string, Culture> Cultures { get; set; }
-
-        /// <summary>
-        /// Gets or sets the factions.
-        /// </summary>
-        /// <value>The factions.</value>
-        Dictionary<string, Faction> Factions { get; set; }
-
-        /// <summary>
-        /// Gets or sets the holdings.
-        /// </summary>
-        /// <value>The holdings.</value>
-        Dictionary<string, Holding> Holdings { get; set; }
-
-        /// <summary>
-        /// Gets or sets the regions.
-        /// </summary>
-        /// <value>The regions.</value>
-        Dictionary<string, Region> Regions { get; set; }
-
-        /// <summary>
-        /// Gets or sets the resources.
-        /// </summary>
-        /// <value>The resources.</value>
-        Dictionary<string, Resource> Resources { get; set; }
-
-        /// <summary>
-        /// Gets or sets the units.
-        /// </summary>
-        /// <value>The units.</value>
-        Dictionary<string, Unit> Units { get; set; }
-
-        /// <summary>
-        /// Gets or sets the armies.
-        /// </summary>
-        /// <value>The armies.</value>
-        Dictionary<Tuple<string, string>, Army> Armies { get; set; }
-
-        /// <summary>
-        /// Gets or sets the borders.
-        /// </summary>
-        /// <value>The borders.</value>
-        Dictionary<Tuple<string, string>, Border> Borders { get; set; }
-
-        /// <summary>
-        /// Gets or sets the relations.
-        /// </summary>
-        /// <value>The relations.</value>
-        Dictionary<Tuple<string, string>, Relation> Relations { get; set; }
-
         /// <summary>
         /// Gets or sets the world tiles.
         /// </summary>
@@ -193,6 +132,36 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         void TransferRegion(string regionId, string factionId);
 
         /// <summary>
+        /// Gets the armies.
+        /// </summary>
+        /// <returns>The armies.</returns>
+        IEnumerable<Army> GetArmies();
+
+        /// <summary>
+        /// Gets the biomes.
+        /// </summary>
+        /// <returns>The biomes.</returns>
+        IEnumerable<Biome> GetBiomes();
+
+        /// <summary>
+        /// Gets the borders.
+        /// </summary>
+        /// <returns>The borders.</returns>
+        IEnumerable<Border> GetBorders();
+
+        /// <summary>
+        /// Gets the cultures.
+        /// </summary>
+        /// <returns>The cultures.</returns>
+        IEnumerable<Culture> GetCultures();
+
+        /// <summary>
+        /// Gets the factions.
+        /// </summary>
+        /// <returns>The factions.</returns>
+        IEnumerable<Faction> GetFactions();
+
+        /// <summary>
         /// Gets the faction troops count.
         /// </summary>
         /// <returns>The faction troops count.</returns>
@@ -219,13 +188,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <value>The Y coordinate.</value>
         /// <param name="factionId">Faction identifier.</param>
         int GetFactionCentreY(string factionId);
-
-        /// <summary>
-        /// Gets the flag of a factions.
-        /// </summary>
-        /// <returns>The faction flag.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        Flag GetFactionFlag(string factionId);
 
         /// <summary>
         /// Gets the relation between two factions.
@@ -264,11 +226,47 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Relation> GetFactionRelations(string factionId);
 
         /// <summary>
+        /// Gets the flags.
+        /// </summary>
+        /// <returns>The flags.</returns>
+        IEnumerable<Flag> GetFlags();
+
+        /// <summary>
+        /// Gets the holdings.
+        /// </summary>
+        /// <returns>The holdings.</returns>
+        IEnumerable<Holding> GetHoldings();
+
+        /// <summary>
+        /// Gets the regions.
+        /// </summary>
+        /// <returns>The regions.</returns>
+        IEnumerable<Region> GetRegions();
+
+        /// <summary>
         /// Gets the region holdings.
         /// </summary>
         /// <returns>The region holdings.</returns>
         /// <param name="regionId">Region identifier.</param>
         IEnumerable<Holding> GetRegionHoldings(string regionId);
+
+        /// <summary>
+        /// Gets the relations.
+        /// </summary>
+        /// <returns>The relations.</returns>
+        IEnumerable<Relation> GetRelations();
+
+        /// <summary>
+        /// Gets the resources.
+        /// </summary>
+        /// <returns>The resources.</returns>
+        IEnumerable<Resource> GetResources();
+
+        /// <summary>
+        /// Gets the units.
+        /// </summary>
+        /// <returns>The units.</returns>
+        IEnumerable<Unit> GetUnits();
 
         /// <summary>
         /// Adds the specified holding type in a region.

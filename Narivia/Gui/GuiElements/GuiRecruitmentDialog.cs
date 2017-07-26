@@ -300,7 +300,7 @@ namespace Narivia.Gui.GuiElements
 
         void AddTroops(int delta)
         {
-            int wealth = game.GetFactionWealth(game.PlayerFactionId);
+            int wealth = game.GetFaction(game.PlayerFactionId).Wealth;
 
             troopsAmount += delta;
 

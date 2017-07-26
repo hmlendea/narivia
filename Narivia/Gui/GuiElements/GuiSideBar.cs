@@ -26,7 +26,7 @@ namespace Narivia.Gui.GuiElements
         /// <value>The faction identifier.</value>
         [XmlIgnore]
         public string FactionId { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the text colour.
         /// </summary>
@@ -120,7 +120,7 @@ namespace Narivia.Gui.GuiElements
                 TextColour = TextColour,
                 Size = new Vector2(224, 32)
             };
-            
+
             Children.Add(background);
             Children.Add(factionImage);
 
@@ -134,7 +134,7 @@ namespace Narivia.Gui.GuiElements
 
             base.LoadContent();
         }
-        
+
         // TODO: Handle this better
         /// <summary>
         /// Associates the game manager.
@@ -166,7 +166,7 @@ namespace Narivia.Gui.GuiElements
             BuildButton.Position = Position + new Vector2((int)(Size.X + RecruitButton.Size.X + margins * 5 - BuildButton.Size.X) / 2,
                                                           (int)(Size.Y + RecruitButton.Size.Y - BuildButton.Size.Y + margins) / 2);
 
-            factionText.Text = game.GetFactionName(FactionId);
+            factionText.Text = game.GetFaction(FactionId).Name;
             factionText.TextColour = TextColour;
 
             Flag factionFlag = game.GetFactionFlag(FactionId);

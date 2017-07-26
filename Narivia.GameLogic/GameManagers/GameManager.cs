@@ -6,7 +6,6 @@ using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Infrastructure.Extensions;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 
@@ -155,7 +154,7 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         public void NextTurn()
         {
-            foreach (Faction faction in world.Factions.Values.Where(f => f.Alive))
+            foreach (Faction faction in world.GetFactions().Where(f => f.Alive))
             {
                 // Economy
                 faction.Wealth += GetFactionIncome(faction.Id);
@@ -163,9 +162,7 @@ namespace Narivia.GameLogic.GameManagers
 
                 // Recruit
                 // TODO: Find a way around the hardcoded "militia" unit identifier
-                world.Armies.Values.FirstOrDefault(u => u.FactionId == faction.Id &&
-                                                        u.UnitId == "militia")
-                                   .Size += GetFactionRecruitment(faction.Id);
+                GetArmy(faction.Id, "militia").Size += GetFactionRecruitment(faction.Id);
 
                 // A.I.
                 if (faction.Id == PlayerFactionId)
@@ -187,7 +184,7 @@ namespace Narivia.GameLogic.GameManagers
                 AttackRegion(faction.Id, regionId);
             }
 
-            world.Regions.Values.ToList().ForEach(r => r.Locked = false);
+            GetRegions().ToList().ForEach(r => r.Locked = false);
             UpdateFactionsAliveStatus();
             CheckForWinner();
 
@@ -247,13 +244,62 @@ namespace Narivia.GameLogic.GameManagers
         => world.TransferRegion(regionId, factionId);
 
         /// <summary>
-        /// Gets the faction army size.
+        /// Gets the army.
         /// </summary>
-        /// <returns>The faction army size.</returns>
+        /// <returns>The army.</returns>
         /// <param name="factionId">Faction identifier.</param>
         /// <param name="unitId">Unit identifier.</param>
-        public int GetFactionArmySize(string factionId, string unitId)
-        => world.Armies.Values.FirstOrDefault(a => a.FactionId == factionId && a.UnitId == unitId).Size;
+        public Army GetArmy(string factionId, string unitId)
+        => GetArmies().FirstOrDefault(a => a.FactionId == factionId &&
+                                                 a.UnitId == unitId);
+
+        /// <summary>
+        /// Gets the armies.
+        /// </summary>
+        /// <returns>The armies.</returns>
+        public IEnumerable<Army> GetArmies()
+        => world.GetArmies();
+
+        /// <summary>
+        /// Gets the biome.
+        /// </summary>
+        /// <returns>The biome.</returns>
+        /// <param name="biomeId">Biome identifier.</param>
+        public Biome GetBiome(string biomeId)
+        => GetBiomes().FirstOrDefault(b => b.Id == biomeId);
+
+        public IEnumerable<Biome> GetBiomes()
+        => world.GetBiomes();
+
+        /// <summary>
+        /// Gets the culture.
+        /// </summary>
+        /// <returns>The culture.</returns>
+        /// <param name="cultureId">Culture identifier.</param>
+        public Culture GetCulture(string cultureId)
+        => GetCultures().FirstOrDefault(c => c.Id == cultureId);
+
+        /// <summary>
+        /// Gets the cultures.
+        /// </summary>
+        /// <returns>The cultures.</returns>
+        public IEnumerable<Culture> GetCultures()
+        => world.GetCultures();
+
+        /// <summary>
+        /// Gets the faction.
+        /// </summary>
+        /// <returns>The faction.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public Faction GetFaction(string factionId)
+        => GetFactions().FirstOrDefault(f => f.Id == factionId);
+
+        /// <summary>
+        /// Gets the factions.
+        /// </summary>
+        /// <returns>The factions.</returns>
+        public IEnumerable<Faction> GetFactions()
+        => world.GetFactions();
 
         /// <summary>
         /// Gets the culture of a faction.
@@ -261,23 +307,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The culture.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public Culture GetFactionCulture(string factionId)
-        => world.Cultures[world.Factions[factionId].CultureId];
-
-        /// <summary>
-        /// Gets the name of the faction.
-        /// </summary>
-        /// <returns>The faction name.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public string GetFactionName(string factionId)
-        => world.Factions[factionId].Name;
-
-        /// <summary>
-        /// Returns the colour of a faction.
-        /// </summary>
-        /// <returns>The colour.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public Colour GetFactionColour(string factionId)
-        => world.Factions[factionId].Colour;
+        => GetCulture(GetFaction(factionId).CultureId);
 
         /// <summary>
         /// Gets the flag of a factions.
@@ -285,7 +315,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction flag.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public Flag GetFactionFlag(string factionId)
-        => world.GetFactionFlag(factionId);
+        => GetFlag(GetFaction(factionId).FlagId);
 
         /// <summary>
         /// Gets the faction income.
@@ -298,7 +328,7 @@ namespace Narivia.GameLogic.GameManagers
 
             foreach (Region region in GetFactionRegions(factionId))
             {
-                Resource resource = world.Resources[region.ResourceId];
+                Resource resource = GetResource(region.ResourceId);
 
                 int regionIncome = BaseRegionIncome;
 
@@ -326,8 +356,9 @@ namespace Narivia.GameLogic.GameManagers
         {
             int outcome = 0;
 
-            outcome += world.Armies.Values.Where(x => x.FactionId == factionId)
-                                         .Sum(x => x.Size * world.Units[x.UnitId].Maintenance);
+            outcome += world.GetArmies()
+                            .Where(x => x.FactionId == factionId)
+                            .Sum(x => x.Size * GetUnit(x.UnitId).Maintenance);
 
             return outcome;
         }
@@ -343,7 +374,7 @@ namespace Narivia.GameLogic.GameManagers
 
             foreach (Region region in GetFactionRegions(factionId))
             {
-                Resource resource = world.Resources[region.ResourceId];
+                Resource resource = GetResource(region.ResourceId);
 
                 int regionRecruitment = BaseRegionRecruitment;
 
@@ -363,14 +394,6 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Gets the regions count of a faction.
-        /// </summary>
-        /// <returns>The number of regions.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionRegionsCount(string factionId)
-        => world.GetFactionRegions(factionId).ToList().Count;
-
-        /// <summary>
         /// Gets the relation between two factions.
         /// </summary>
         /// <returns>The faction relation.</returns>
@@ -378,22 +401,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="targetFactionId">Target faction identifier.</param>
         public int GetFactionRelation(string sourceFactionId, string targetFactionId)
         => world.GetFactionRelation(sourceFactionId, targetFactionId);
-
-        /// <summary>
-        /// Gets the holdings count of a faction.
-        /// </summary>
-        /// <returns>The number of holdings.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionHoldingsCount(string factionId)
-        => world.GetFactionHoldings(factionId).ToList().Count;
-
-        /// <summary>
-        /// Gets the faction wealth.
-        /// </summary>
-        /// <returns>The faction wealth.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionWealth(string factionId)
-        => world.Factions[factionId].Wealth;
 
         /// <summary>
         /// Gets the faction troops count.
@@ -428,43 +435,75 @@ namespace Narivia.GameLogic.GameManagers
         => world.GetFactionCentreY(factionId);
 
         /// <summary>
-        /// Gets the faction idenfifier of a region.
+        /// Gets the flag.
         /// </summary>
-        /// <returns>The faction identifier.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        public string GetRegionFaction(string regionId)
-        => world.Regions[regionId].FactionId;
+        /// <returns>The flag.</returns>
+        /// <param name="flagId">Flag identifier.</param>
+        public Flag GetFlag(string flagId)
+        => GetFlags().FirstOrDefault(f => f.Id == flagId);
 
         /// <summary>
-        /// Gets the name of a region.
+        /// Gets the flags.
         /// </summary>
-        /// <returns>The name.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        public string GetRegionName(string regionId)
-        => world.Regions[regionId].Name;
+        /// <returns>The flags.</returns>
+        public IEnumerable<Flag> GetFlags()
+        => world.GetFlags();
 
         /// <summary>
-        /// Gets the resource of a region.
+        /// Gets the holding.
         /// </summary>
-        /// <returns>The resource identifier.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        public string GetRegionResource(string regionId)
-        => world.Resources[world.Regions[regionId].ResourceId].Id;
+        /// <returns>The holding.</returns>
+        /// <param name="holdingId">Holding identifier.</param>
+        public Holding GetHolding(string holdingId)
+        => GetHoldings().FirstOrDefault(h => h.Id == holdingId);
+
+        public IEnumerable<Holding> GetHoldings()
+        => world.GetHoldings();
 
         /// <summary>
-        /// Gets the name of the resource.
+        /// Gets the region.
         /// </summary>
-        /// <returns>The resource name.</returns>
+        /// <returns>The region.</returns>
+        /// <param name="regionId">Region identifier.</param>
+        public Region GetRegion(string regionId)
+        => GetRegions().FirstOrDefault(r => r.Id == regionId);
+
+        /// <summary>
+        /// Gets the regions.
+        /// </summary>
+        /// <returns>The regions.</returns>
+        public IEnumerable<Region> GetRegions()
+        => world.GetRegions();
+
+        /// <summary>
+        /// Gets the resource.
+        /// </summary>
+        /// <returns>The resource.</returns>
         /// <param name="resourceId">Resource identifier.</param>
-        public string GetResourceName(string resourceId)
-        => world.Resources[resourceId].Name;
+        public Resource GetResource(string resourceId)
+        => GetResources().FirstOrDefault(r => r.Id == resourceId);
 
         /// <summary>
-        /// Gets the factions.
+        /// Gets the resources.
         /// </summary>
-        /// <returns>The factions.</returns>
-        public IEnumerable<Faction> GetFactions()
-        => world.Factions.Values;
+        /// <returns>The resources.</returns>
+        public IEnumerable<Resource> GetResources()
+        => world.GetResources();
+
+        /// <summary>
+        /// Gets the unit.
+        /// </summary>
+        /// <returns>The unit.</returns>
+        /// <param name="unitId">Unit identifier.</param>
+        public Unit GetUnit(string unitId)
+        => GetUnits().FirstOrDefault(u => u.Id == unitId);
+
+        /// <summary>
+        /// Gets the units.
+        /// </summary>
+        /// <returns>The units.</returns>
+        public IEnumerable<Unit> GetUnits()
+        => world.GetUnits();
 
         /// <summary>
         /// Gets the regions of a faction.
@@ -472,7 +511,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The regions.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Region> GetFactionRegions(string factionId)
-        => world.GetFactionRegions(factionId);
+        => GetRegions().Where(r => r.FactionId == factionId);
 
         /// <summary>
         /// Gets the relations of a faction.
@@ -499,26 +538,19 @@ namespace Narivia.GameLogic.GameManagers
         => world.GetRegionHoldings(regionId);
 
         /// <summary>
-        /// Gets the units.
-        /// </summary>
-        /// <returns>The units.</returns>
-        public IEnumerable<Unit> GetUnits()
-        => world.Units.Values;
-
-        /// <summary>
         /// Builds the specified holding type in a region.
         /// </summary>
         /// <param name="regionId">Region identifier.</param>
         /// <param name="holdingType">Holding type.</param>
         public void BuildHolding(string regionId, HoldingType holdingType)
         {
-            Region region = world.Regions[regionId];
+            Region region = GetRegion(regionId);
 
 
             if (RegionHasEmptyHoldingSlots(regionId))
             {
                 world.AddHolding(regionId, holdingType);
-                world.Factions[region.FactionId].Wealth -= HoldingsPrice;
+                GetFaction(region.FactionId).Wealth -= HoldingsPrice;
             }
         }
 
@@ -530,8 +562,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="amount">Amount.</param>
         public void AddUnits(string factionId, string unitId, int amount)
         {
-            world.Armies.Values.FirstOrDefault(a => a.FactionId == factionId &&
-                                                    a.UnitId == unitId).Size += amount;
+            GetArmy(factionId, unitId).Size += amount;
         }
 
         /// <summary>
@@ -542,13 +573,16 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="amount">Amount.</param>
         public void RecruitUnits(string factionId, string unitId, int amount)
         {
-            if (world.Factions[factionId].Wealth < world.Units[unitId].Price * amount)
+            Faction faction = GetFaction(factionId);
+            Unit unit = GetUnit(unitId);
+
+            if (faction.Wealth < unit.Price * amount)
             {
-                amount = world.Factions[factionId].Wealth / world.Units[unitId].Price;
+                amount = faction.Wealth / unit.Price;
             }
 
-            AddUnits(factionId, unitId, amount);
-            world.Factions[factionId].Wealth -= world.Units[unitId].Price * amount;
+            AddUnits(faction.Id, unit.Id, amount);
+            faction.Wealth -= unit.Price * amount;
         }
 
         /// <summary>
@@ -570,11 +604,11 @@ namespace Narivia.GameLogic.GameManagers
 
         void UpdateFactionsAliveStatus()
         {
-            foreach (Faction faction in world.Factions.Values.Where(f => f.Id != "gaia"))
+            foreach (Faction faction in GetFactions().Where(f => f.Id != "gaia"))
             {
                 bool wasAlive = faction.Alive;
 
-                faction.Alive = GetFactionRegionsCount(faction.Id) > 0;
+                faction.Alive = GetFactionRegions(faction.Id).Count() > 0;
 
                 if (wasAlive && !faction.Alive && FactionDestroyed != null)
                 {
@@ -589,12 +623,12 @@ namespace Narivia.GameLogic.GameManagers
 
         void CheckForWinner()
         {
-            if (world.Factions.Values.Count(f => f.Alive) > 1)
+            if (GetFactions().Count(f => f.Alive) > 1)
             {
                 return;
             }
 
-            Faction faction = world.Factions.Values.FirstOrDefault(f => f.Alive);
+            Faction faction = GetFactions().FirstOrDefault(f => f.Alive);
 
             if (FactionWon != null)
             {
@@ -604,7 +638,7 @@ namespace Narivia.GameLogic.GameManagers
 
         BattleResult AttackRegion(string factionId, string regionId)
         {
-            Region region = world.Regions[regionId];
+            Region region = GetRegion(regionId);
             string oldRegionFactionId = region.FactionId;
 
             BattleResult result = attack.AttackRegion(factionId, regionId);
@@ -656,7 +690,9 @@ namespace Narivia.GameLogic.GameManagers
 
         void AiBuild(string factionId)
         {
-            while (GetFactionWealth(factionId) >= HoldingsPrice)
+            Faction faction = GetFaction(factionId);
+
+            while (faction.Wealth >= HoldingsPrice)
             {
                 List<Region> validSovereignRegions = GetFactionRegions(factionId).Where(r => r.State == RegionState.Sovereign &&
                                                                                              RegionHasEmptyHoldingSlots(r.Id)).ToList();
@@ -671,7 +707,7 @@ namespace Narivia.GameLogic.GameManagers
                 BuildHolding(validSovereignRegions.RandomElement().Id, type);
             }
 
-            while (GetFactionWealth(factionId) >= HoldingsPrice)
+            while (faction.Wealth >= HoldingsPrice)
             {
                 List<Region> validOccupiedRegions = GetFactionRegions(factionId).Where(r => r.State == RegionState.Occupied &&
                                                                                              RegionHasEmptyHoldingSlots(r.Id)).ToList();
@@ -689,11 +725,11 @@ namespace Narivia.GameLogic.GameManagers
 
         void AiRecruit(string factionId)
         {
-            int minPrice = world.Units.Values.Min(u => u.Price);
+            int minPrice = GetUnits().Min(u => u.Price);
 
-            while (GetFactionWealth(factionId) >= minPrice)
+            while (GetFaction(factionId).Wealth >= minPrice)
             {
-                string unitId = world.Units.Keys.RandomElement();
+                string unitId = GetUnits().Select(u => u.Id).RandomElement();
 
                 RecruitUnits(factionId, unitId, 1);
             }

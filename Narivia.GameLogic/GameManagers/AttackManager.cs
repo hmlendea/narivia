@@ -52,7 +52,7 @@ namespace Narivia.GameLogic.GameManagers
                                                 .ToList();
 
             // TODO: Do not target factions with good relations
-            Dictionary<string, int> targets = world.Regions.Values
+            Dictionary<string, int> targets = world.GetRegions()
                                                    .Where(r => r.FactionId != factionId &&
                                                                r.FactionId != "gaia" &&
                                                                r.Locked == false)
@@ -61,7 +61,7 @@ namespace Narivia.GameLogic.GameManagers
                                                    .Where(x => regionsOwnedIds.Any(y => world.RegionBordersRegion(x, y)))
                                                    .ToDictionary(x => x, y => 0);
 
-            Parallel.ForEach(world.Regions.Values.Where(r => targets.ContainsKey(r.Id)).ToList(), (region) =>
+            Parallel.ForEach(world.GetRegions().Where(r => targets.ContainsKey(r.Id)).ToList(), (region) =>
             {
                 if (region.SovereignFactionId == factionId)
                 {
@@ -87,7 +87,7 @@ namespace Narivia.GameLogic.GameManagers
                     }
                 });
 
-                Resource regionResource = world.Resources.Values.FirstOrDefault(x => x.Id == region.ResourceId);
+                Resource regionResource = world.GetResources().FirstOrDefault(x => x.Id == region.ResourceId);
 
                 if (regionResource != null)
                 {
@@ -128,17 +128,17 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="regionId">Region identifier.</param>
         public BattleResult AttackRegion(string factionId, string regionId)
         {
+            Region targetRegion = world.GetRegions().FirstOrDefault(r => r.Id == regionId);
+
             if (string.IsNullOrWhiteSpace(regionId) ||
-                world.Regions[regionId].Locked ||
+                targetRegion.Locked ||
                 !world.FactionBordersRegion(factionId, regionId))
             {
                 throw new InvalidTargetRegionException(regionId);
             }
 
-            Region targetRegion = world.Regions[regionId];
-
-            Faction attackerFaction = world.Factions[factionId];
-            Faction defenderFaction = world.Factions[targetRegion.FactionId];
+            Faction attackerFaction = world.GetFactions().FirstOrDefault(f => f.Id == factionId);
+            Faction defenderFaction = world.GetFactions().FirstOrDefault(f => f.Id == targetRegion.FactionId);
 
             if (defenderFaction.Id == attackerFaction.Id ||
                 defenderFaction.Id == "gaia")
@@ -156,8 +156,8 @@ namespace Narivia.GameLogic.GameManagers
                                          .Where(a => a.Size > 0)
                                          .RandomElement();
 
-                Unit attackerUnit = world.Units[attackerArmy.UnitId];
-                Unit defenderUnit = world.Units[defenderArmy.UnitId];
+                Unit attackerUnit = world.GetUnits().FirstOrDefault(u => u.Id == attackerArmy.UnitId);
+                Unit defenderUnit = world.GetUnits().FirstOrDefault(u => u.Id == defenderArmy.UnitId);
 
                 // TODO: Attack and Defence bonuses
 
@@ -180,7 +180,7 @@ namespace Narivia.GameLogic.GameManagers
                 world.GetFactionTroopsCount(defenderFaction.Id))
             {
                 world.TransferRegion(regionId, factionId);
-                world.Regions[regionId].Locked = true;
+                targetRegion.Locked = true;
 
                 return BattleResult.Victory;
             }
