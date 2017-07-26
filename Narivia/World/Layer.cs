@@ -24,7 +24,7 @@ namespace Narivia.WorldMap
         /// Gets or sets the image.
         /// </summary>
         /// <value>The image.</value>
-        public Image Image { get; set; }
+        public Sprite Sprite { get; set; }
 
         Vector2 tileDimensions;
 
@@ -35,7 +35,7 @@ namespace Narivia.WorldMap
         /// </summary>
         public Layer()
         {
-            Image = new Image();
+            Sprite = new Sprite();
 
             tiles = new List<Tile>();
         }
@@ -51,7 +51,7 @@ namespace Narivia.WorldMap
 
             int mapSize = TileMap.GetLength(0);
 
-            Image.LoadContent();
+            Sprite.LoadContent();
 
             for (int y = 0; y < mapSize; y++)
             {
@@ -63,7 +63,7 @@ namespace Narivia.WorldMap
                     }
 
                     int gid = int.Parse(TileMap[x, y]);
-                    int cols = Image.Texture.Width / (int)tileDimensions.X;
+                    int cols = (int)(Sprite.TextureSize.X / tileDimensions.X);
                     int srX = gid % cols;
                     int srY = gid / cols;
 
@@ -95,7 +95,7 @@ namespace Narivia.WorldMap
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            Image.Update(gameTime);
+            Sprite.Update(gameTime);
 
             tiles.ForEach(tile => tile.Update(gameTime));
         }
@@ -117,9 +117,9 @@ namespace Narivia.WorldMap
 
             foreach (Tile tile in tileList)
             {
-                Image.Position = new Vector2(tile.X - camCoordsBegin.X, tile.Y - camCoordsBegin.Y) * tileDimensions;
-                Image.SourceRectangle = tile.SourceRectangle;
-                Image.Draw(spriteBatch);
+                Sprite.Position = new Vector2(tile.X - camCoordsBegin.X, tile.Y - camCoordsBegin.Y) * tileDimensions;
+                Sprite.SourceRectangle = tile.SourceRectangle;
+                Sprite.Draw(spriteBatch);
             }
         }
     }

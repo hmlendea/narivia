@@ -2,9 +2,9 @@
 
 using Microsoft.Xna.Framework;
 
-namespace Narivia.Graphics.ImageEffects
+namespace Narivia.Graphics.SpriteEffects
 {
-    public class AnimationEffect : ImageEffect
+    public class AnimationEffect : CustomSpriteEffect
     {
         public int FrameCounter { get; set; }
 
@@ -19,12 +19,12 @@ namespace Narivia.Graphics.ImageEffects
         {
             get
             {
-                if (Image.Texture == null)
+                if (Sprite.TextureSize == null)
                 {
                     return 0;
                 }
 
-                return Image.Texture.Width / (int)FrameAmount.X;
+                return (int)(Sprite.TextureSize.X / FrameAmount.X);
             }
         }
 
@@ -33,12 +33,12 @@ namespace Narivia.Graphics.ImageEffects
         {
             get
             {
-                if (Image.Texture == null)
+                if (Sprite.TextureSize == null)
                 {
                     return 0;
                 }
 
-                return Image.Texture.Height / (int)FrameAmount.Y;
+                return (int)(Sprite.TextureSize.Y / FrameAmount.Y);
             }
         }
         
@@ -50,7 +50,7 @@ namespace Narivia.Graphics.ImageEffects
             FrameCounter = 0;
         }
         
-        public override void LoadContent(ref Image image)
+        public override void LoadContent(ref Sprite image)
         {
             base.LoadContent(ref image);
         }
@@ -66,7 +66,7 @@ namespace Narivia.Graphics.ImageEffects
 
             Vector2 newFrame = CurrentFrame;
 
-            if (Image.Active)
+            if (Sprite.Active)
             {
                 FrameCounter += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
 
@@ -75,7 +75,7 @@ namespace Narivia.Graphics.ImageEffects
                     FrameCounter = 0;
                     newFrame.X += 1;
 
-                    if (CurrentFrame.X >= Image.Texture.Width / FrameWidth - 1)
+                    if (CurrentFrame.X >= Sprite.TextureSize.X / FrameWidth - 1)
                     {
                         newFrame.X = 0;
                     }
@@ -88,7 +88,7 @@ namespace Narivia.Graphics.ImageEffects
 
             CurrentFrame = newFrame;
 
-            Image.SourceRectangle = new Rectangle(
+            Sprite.SourceRectangle = new Rectangle(
                 (int)CurrentFrame.X * FrameWidth,
                 (int)CurrentFrame.Y * FrameHeight,
                 FrameWidth,

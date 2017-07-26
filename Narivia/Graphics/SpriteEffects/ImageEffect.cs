@@ -4,17 +4,17 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 
-namespace Narivia.Graphics.ImageEffects
+namespace Narivia.Graphics.SpriteEffects
 {
     /// <summary>
     /// Effect.
     /// </summary>
-    public class ImageEffect
+    public class CustomSpriteEffect
     {
-        protected Image Image;
+        protected Sprite Sprite;
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="ImageEffect"/> is active.
+        /// Gets or sets a value indicating whether this <see cref="CustomSpriteEffect"/> is active.
         /// </summary>
         /// <value><c>true</c> if active; otherwise, <c>false</c>.</value>
         public bool Active { get; set; }
@@ -34,9 +34,9 @@ namespace Narivia.Graphics.ImageEffects
         public string Key { get { return Type.ToString().Split('.').Last(); } }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ImageEffect"/> class.
+        /// Initializes a new instance of the <see cref="CustomSpriteEffect"/> class.
         /// </summary>
-        public ImageEffect()
+        public CustomSpriteEffect()
         {
             Active = false;
             Type = GetType();
@@ -45,10 +45,10 @@ namespace Narivia.Graphics.ImageEffects
         /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <param name="image">Image.</param>
-        public virtual void LoadContent(ref Image image)
+        /// <param name="sprite">Sprite.</param>
+        public virtual void LoadContent(ref Sprite sprite)
         {
-            Image = image;
+            Sprite = sprite;
         }
 
         /// <summary>

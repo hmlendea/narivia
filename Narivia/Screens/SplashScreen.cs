@@ -25,19 +25,19 @@ namespace Narivia.Screens
         /// Gets or sets the background.
         /// </summary>
         /// <value>The background.</value>
-        public Image BackgroundImage { get; set; }
+        public Sprite BackgroundImage { get; set; }
 
         /// <summary>
         /// Gets or sets the overlay.
         /// </summary>
         /// <value>The overlay.</value>
-        public Image OverlayImage { get; set; }
+        public Sprite OverlayImage { get; set; }
 
         /// <summary>
         /// Gets or sets the logo.
         /// </summary>
         /// <value>The logo.</value>
-        public Image LogoImage { get; set; }
+        public Sprite LogoImage { get; set; }
 
         public SplashScreen()
         {

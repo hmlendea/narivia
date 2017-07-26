@@ -1,10 +1,9 @@
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.Graphics;
+using Narivia.Graphics.Enumerations;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 

@@ -8,7 +8,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Screens;
-using Narivia.Graphics.ImageEffects;
+using Narivia.Graphics.SpriteEffects;
+using Narivia.Graphics.Enumerations;
 using Narivia.Infrastructure.Extensions;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Helpers;
@@ -16,9 +17,9 @@ using Narivia.Helpers;
 namespace Narivia.Graphics
 {
     /// <summary>
-    /// Image.
+    /// Sprite.
     /// </summary>
-    public class Image
+    public class Sprite
     {
         ContentManager content;
         Vector2 origin;
@@ -30,14 +31,16 @@ namespace Narivia.Graphics
         ZoomEffect zoomEffect;
         AnimationEffect animationEffect;
 
-        readonly Dictionary<string, ImageEffect> effectList;
+        Texture2D texture;
+        Texture2D alphaMask;
 
-        string loadedImagePath;
-        string loadedTransparencyMaskPath;
-        Colour replacedRedColour, replacedGreenColour, replacedBlueColour;
+        readonly Dictionary<string, CustomSpriteEffect> effectList;
+
+        string loadedContentFile;
+        string loadedAlphaMaskFile;
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Image"/> is active.
+        /// Gets or sets a value indicating whether this <see cref="Sprite"/> is active.
         /// </summary>
         /// <value><c>true</c> if active; otherwise, <c>false</c>.</value>
         public bool Active { get; set; }
@@ -97,16 +100,16 @@ namespace Narivia.Graphics
         public string FontName { get; set; }
 
         /// <summary>
-        /// Gets or sets the image path.
+        /// Gets or sets the content file.
         /// </summary>
-        /// <value>The image path.</value>
-        public string ImagePath { get; set; }
+        /// <value>The content file.</value>
+        public string ContentFile { get; set; }
 
         /// <summary>
-        /// Gets or sets the transparency mask path.
+        /// Gets or sets the alpha mask path.
         /// </summary>
-        /// <value>The transparency mask path.</value>
-        public string TransparencyMaskPath { get; set; }
+        /// <value>The alpha mask path.</value>
+        public string AlphaMaskFile { get; set; }
 
         /// <summary>
         /// Gets or sets the position.
@@ -150,18 +153,11 @@ namespace Narivia.Graphics
         public Rectangle SourceRectangle { get; set; }
 
         /// <summary>
-        /// Gets or sets the texture.
+        /// Gets the texture size.
         /// </summary>
-        /// <value>The texture.</value>
+        /// <value>The texture size.</value>
         [XmlIgnore]
-        public Texture2D Texture { get; set; }
-
-        /// <summary>
-        /// Gets or sets the transparency mask.
-        /// </summary>
-        /// <value>The transparency mask.</value>
-        [XmlIgnore]
-        public Texture2D TransparencyMask { get; set; }
+        public Vector2 TextureSize => new Vector2(texture.Width, texture.Height);
 
         /// <summary>
         /// Gets or sets the fill mode.
@@ -216,16 +212,16 @@ namespace Narivia.Graphics
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Image"/> class.
+        /// Initializes a new instance of the <see cref="Sprite"/> class.
         /// </summary>
-        public Image()
+        public Sprite()
         {
             Active = true;
 
-            effectList = new Dictionary<string, ImageEffect>();
+            effectList = new Dictionary<string, CustomSpriteEffect>();
             Effects = string.Empty;
 
-            ImagePath = string.Empty;
+            ContentFile = string.Empty;
             Text = string.Empty;
             FontName = "MenuFont";
 
@@ -252,8 +248,8 @@ namespace Narivia.Graphics
                 Text = string.Empty;
             }
 
-            LoadImage();
-            LoadTransparencyMask();
+            LoadContentFile();
+            LoadAlphaMaskFile();
 
             font = content.Load<SpriteFont>("Fonts/" + FontName);
 
@@ -261,10 +257,10 @@ namespace Narivia.Graphics
             {
                 Vector2 size = Vector2.Zero;
 
-                if (Texture != null)
+                if (texture != null)
                 {
-                    size.X = Texture.Width;
-                    size.Y = Texture.Height;
+                    size.X = texture.Width;
+                    size.Y = texture.Height;
                 }
                 else
                 {
@@ -289,14 +285,14 @@ namespace Narivia.Graphics
 
             ScreenManager.Instance.SpriteBatch.Begin();
 
-            if (Texture != null)
+            if (texture != null)
             {
-                ScreenManager.Instance.SpriteBatch.Draw(Texture, Vector2.Zero, Color.White);
+                ScreenManager.Instance.SpriteBatch.Draw(texture, Vector2.Zero, Color.White);
             }
 
             ScreenManager.Instance.SpriteBatch.End();
 
-            Texture = renderTarget;
+            texture = renderTarget;
 
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
 
@@ -331,10 +327,10 @@ namespace Narivia.Graphics
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            LoadImage();
-            LoadTransparencyMask();
+            LoadContentFile();
+            LoadAlphaMaskFile();
 
-            List<ImageEffect> activeEffects = effectList.Values.Where(effect => effect.Active).ToList();
+            List<CustomSpriteEffect> activeEffects = effectList.Values.Where(effect => effect.Active).ToList();
 
             activeEffects.ForEach(effect => effect.Update(gameTime));
         }
@@ -355,12 +351,12 @@ namespace Narivia.Graphics
             }
 
             // TODO: Do not do this for every Draw call
-            Texture2D textureToDraw = Texture;
+            Texture2D textureToDraw = texture;
 
             // TODO: Find a better way to do this, because this one doesn't keep the mipmaps
-            if (TransparencyMask != null)
+            if (alphaMask != null)
             {
-                textureToDraw = TextureBlend(Texture, TransparencyMask);
+                textureToDraw = TextureBlend(texture, alphaMask);
             }
 
             if (RedReplacement != null)
@@ -383,7 +379,7 @@ namespace Narivia.Graphics
                 spriteBatch.Draw(textureToDraw, Position + origin, SourceRectangle,
                     Tint.ToXnaColor() * Opacity, Rotation,
                     origin, Scale * Zoom,
-                    SpriteEffects.None, 0.0f);
+                    Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0.0f);
             }
             else if (TextureFillMode == TextureFillMode.Tile)
             {
@@ -400,7 +396,7 @@ namespace Narivia.Graphics
                         spriteBatch.Draw(textureToDraw, pos, SourceRectangle,
                             Tint.ToXnaColor() * Opacity, Rotation,
                             origin, 1.0f,
-                            SpriteEffects.None, 0.0f);
+                            Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0.0f);
                     }
                 }
             }
@@ -439,7 +435,7 @@ namespace Narivia.Graphics
         /// </summary>
         /// <param name="effect">Effect.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        void SetEffect<T>(ref T effect) where T : ImageEffect
+        void SetEffect<T>(ref T effect) where T : CustomSpriteEffect
         {
             if (effect == null)
             {
@@ -461,7 +457,7 @@ namespace Narivia.Graphics
         /// </summary>
         public void StoreEffects()
         {
-            List<ImageEffect> activeEffects = effectList.Values.Where(effect => effect.Active).ToList();
+            List<CustomSpriteEffect> activeEffects = effectList.Values.Where(effect => effect.Active).ToList();
             Effects = string.Empty;
 
             activeEffects.ForEach(effect => Effects += effect.Key + ":");
@@ -481,12 +477,12 @@ namespace Narivia.Graphics
             split.ForEach(ActivateEffect);
         }
 
-        public Texture2D ReplaceColour(Texture2D texture, Colour original, Colour replacement, int tolerance)
+        public Texture2D ReplaceColour(Texture2D source, Colour original, Colour replacement, int tolerance)
         {
-            Texture2D newTexture = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
-            Color[] data = new Color[texture.Width * texture.Height];
+            Texture2D newTexture = new Texture2D(source.GraphicsDevice, source.Width, source.Height);
+            Color[] data = new Color[source.Width * source.Height];
 
-            texture.GetData(data);
+            source.GetData(data);
 
             for (int i = 0; i < data.Length; i++)
             {
@@ -539,35 +535,35 @@ namespace Narivia.Graphics
             }
         }
 
-        Texture2D TextureBlend(Texture2D texture, Texture2D mask)
+        Texture2D TextureBlend(Texture2D source, Texture2D mask)
         {
-            Color[] textureBits = new Color[texture.Width * texture.Height];
+            Color[] textureBits = new Color[source.Width * source.Height];
             Color[] maskBits = new Color[mask.Width * mask.Height];
 
-            texture.GetData(textureBits);
+            source.GetData(textureBits);
             mask.GetData(maskBits);
 
             int startX, startY, endX, endY;
 
-            if (mask.Width > texture.Width)
+            if (mask.Width > source.Width)
             {
-                startX = mask.Width - texture.Width;
-                endX = startX + texture.Width;
+                startX = mask.Width - source.Width;
+                endX = startX + source.Width;
             }
             else
             {
-                startX = texture.Width - mask.Width;
+                startX = source.Width - mask.Width;
                 endX = startX + mask.Width;
             }
 
-            if (mask.Height > texture.Height)
+            if (mask.Height > source.Height)
             {
-                startY = mask.Height - texture.Height;
-                endY = startY + texture.Height;
+                startY = mask.Height - source.Height;
+                endY = startY + source.Height;
             }
             else
             {
-                startY = texture.Height - mask.Height;
+                startY = source.Height - mask.Height;
                 endY = startY + mask.Height;
             }
 
@@ -575,7 +571,7 @@ namespace Narivia.Graphics
             {
                 for (int x = startX; x < endX; x++)
                 {
-                    int indexTexture = x - startX + (y - startY) * texture.Width;
+                    int indexTexture = x - startX + (y - startY) * source.Width;
                     int indexMask = x - startX + (y - startY) * mask.Width;
 
                     if (indexTexture == textureBits.Length || indexMask == maskBits.Length)
@@ -590,34 +586,34 @@ namespace Narivia.Graphics
                 }
             }
 
-            Texture2D blendedTexture = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
+            Texture2D blendedTexture = new Texture2D(source.GraphicsDevice, source.Width, source.Height);
             blendedTexture.SetData(textureBits);
 
             return blendedTexture;
         }
 
-        void LoadImage()
+        void LoadContentFile()
         {
-            if (loadedImagePath == ImagePath || string.IsNullOrEmpty(ImagePath))
+            if (loadedContentFile == ContentFile || string.IsNullOrEmpty(ContentFile))
             {
                 return;
             }
 
-            Texture = content.Load<Texture2D>(ImagePath);
+            texture = content.Load<Texture2D>(ContentFile);
 
-            loadedImagePath = ImagePath;
+            loadedContentFile = ContentFile;
         }
 
-        void LoadTransparencyMask()
+        void LoadAlphaMaskFile()
         {
-            if (loadedTransparencyMaskPath == TransparencyMaskPath || string.IsNullOrEmpty(TransparencyMaskPath))
+            if (loadedAlphaMaskFile == AlphaMaskFile || string.IsNullOrEmpty(AlphaMaskFile))
             {
                 return;
             }
 
-            TransparencyMask = content.Load<Texture2D>(TransparencyMaskPath);
+            alphaMask = content.Load<Texture2D>(AlphaMaskFile);
 
-            loadedTransparencyMaskPath = TransparencyMaskPath;
+            loadedAlphaMaskFile = AlphaMaskFile;
         }
     }
 }

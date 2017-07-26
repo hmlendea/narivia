@@ -8,7 +8,7 @@
     <B>192</B>
   </BackgroundColour>
   <BackgroundImage>
-    <ImagePath>SplashScreen/Background</ImagePath>
+    <ContentFile>SplashScreen/Background</ContentFile>
     <RotationEffect>
       <Speed>0.1</Speed>
       <MaximumRotation>0.2</MaximumRotation>
@@ -19,9 +19,9 @@
     </ZoomEffect>
   </BackgroundImage>
   <OverlayImage>
-    <ImagePath>SplashScreen/Overlay</ImagePath>
+    <ContentFile>SplashScreen/Overlay</ContentFile>
   </OverlayImage>
   <LogoImage>
-		<ImagePath>SplashScreen/Logo</ImagePath>
+    <ContentFile>SplashScreen/Logo</ContentFile>
 	</LogoImage>
 </SplashScreen>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ScreenManager>
     <TransitionImage>
-        <ImagePath>ScreenManager/FillImage</ImagePath>
+        <ContentFile>ScreenManager/FillImage</ContentFile>
         <Tint>
           <A>255</A>
           <R>0</R>

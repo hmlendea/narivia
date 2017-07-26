@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Narivia.Graphics.ImageEffects
+namespace Narivia.Graphics.SpriteEffects
 {
     /// <summary>
-    /// Zoom effect.
+    /// Fade effect.
     /// </summary>
-    public class ZoomEffect : ImageEffect
+    public class FadeEffect : CustomSpriteEffect
     {
         /// <summary>
         /// Gets or sets the speed.
@@ -14,41 +14,41 @@ namespace Narivia.Graphics.ImageEffects
         public float Speed { get; set; }
 
         /// <summary>
-        /// Gets or sets the minimum zoom.
+        /// Gets or sets the minimum opacity.
         /// </summary>
-        /// <value>The minimum zoom.</value>
-        public float MinimumZoom { get; set; }
+        /// <value>The minimum opacity.</value>
+        public float MinimumOpacity { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum zoom.
+        /// Gets or sets the maximum opacity.
         /// </summary>
-        /// <value>The maximum zoom.</value>
-        public float MaximumZoom { get; set; }
+        /// <value>The maximum opacity.</value>
+        public float MaximumOpacity { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="ZoomEffect"/> is increasing.
+        /// Gets or sets a value indicating whether this <see cref="FadeEffect"/> is increasing.
         /// </summary>
         /// <value><c>true</c> if increasing; otherwise, <c>false</c>.</value>
         public bool Increasing { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZoomEffect"/> class.
+        /// Initializes a new instance of the <see cref="FadeEffect"/> class.
         /// </summary>
-        public ZoomEffect()
+        public FadeEffect()
         {
-            Speed = 0.5f;
-            MinimumZoom = 0.75f;
-            MaximumZoom = 1.25f;
+            Speed = 1;
+            MinimumOpacity = 0.0f;
+            MaximumOpacity = 1.0f;
             Increasing = false;
         }
 
         /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <param name="image">Image.</param>
-        public override void LoadContent(ref Image image)
+        /// <param name="sprite">Sprite.</param>
+        public override void LoadContent(ref Sprite sprite)
         {
-            base.LoadContent(ref image);
+            base.LoadContent(ref sprite);
         }
 
         /// <summary>
@@ -67,31 +67,31 @@ namespace Narivia.Graphics.ImageEffects
         {
             base.Update(gameTime);
 
-            if (Image.Active)
+            if (Sprite.Active)
             {
                 if (Increasing == false)
                 {
-                    Image.Zoom -= Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    Sprite.Opacity -= Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
                 }
                 else
                 {
-                    Image.Zoom += Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    Sprite.Opacity += Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
-                if (Image.Zoom < MinimumZoom)
+                if (Sprite.Opacity < MinimumOpacity)
                 {
                     Increasing = true;
-                    Image.Zoom = MinimumZoom;
+                    Sprite.Opacity = MinimumOpacity;
                 }
-                else if (Image.Zoom > MaximumZoom)
+                else if (Sprite.Opacity > MaximumOpacity)
                 {
                     Increasing = false;
-                    Image.Zoom = MaximumZoom;
+                    Sprite.Opacity = MaximumOpacity;
                 }
             }
             else
             {
-                Image.Zoom = MaximumZoom;
+                Sprite.Opacity = MaximumOpacity;
             }
         }
     }

@@ -60,9 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphics\ImageEffects\AnimationEffect.cs" />
-    <Compile Include="Graphics\ImageEffects\RotationEffect.cs" />
-    <Compile Include="Graphics\ImageEffects\ZoomEffect.cs" />
+    <Compile Include="Graphics\SpriteEffects\AnimationEffect.cs" />
+    <Compile Include="Graphics\SpriteEffects\RotationEffect.cs" />
+    <Compile Include="Graphics\SpriteEffects\ZoomEffect.cs" />
     <Compile Include="Helpers\FramerateCounter.cs" />
     <Compile Include="Helpers\StringUtils.cs" />
     <Compile Include="Screens\MenuScreen.cs" />
@@ -78,16 +78,16 @@
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
-    <Compile Include="Graphics\Image.cs" />
-    <Compile Include="Graphics\ImageEffects\ImageEffect.cs" />
-    <Compile Include="Graphics\ImageEffects\FadeEffect.cs" />
+    <Compile Include="Graphics\Sprite.cs" />
+    <Compile Include="Graphics\SpriteEffects\ImageEffect.cs" />
+    <Compile Include="Graphics\SpriteEffects\FadeEffect.cs" />
     <Compile Include="Helpers\XmlManager.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Audio\AudioManager.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Graphics\HorizontalAlignment.cs" />
-    <Compile Include="Graphics\VerticalAlignment.cs" />
+    <Compile Include="Graphics\Enumerations\HorizontalAlignment.cs" />
+    <Compile Include="Graphics\Enumerations\VerticalAlignment.cs" />
     <Compile Include="Gui\Camera.cs" />
     <Compile Include="Gui\Cursor.cs" />
     <Compile Include="Gui\GuiElements\GuiButton.cs" />
@@ -100,7 +100,7 @@
     <Compile Include="Gui\GuiElements\GuiWorldmap.cs" />
     <Compile Include="Gui\GuiElements\GuiInfoBar.cs" />
     <Compile Include="Gui\GuiElements\GuiSideBar.cs" />
-    <Compile Include="Graphics\TextureFillMode.cs" />
+    <Compile Include="Graphics\Enumerations\TextureFillMode.cs" />
     <Compile Include="Gui\GuiElements\GuiRegionBar.cs" />
     <Compile Include="Gui\GuiElements\GuiNotificationIndicator.cs" />
     <Compile Include="Gui\GuiElements\GuiNotificationBar.cs" />
@@ -176,9 +176,5 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Gui\" />
-    <Folder Include="Gui\GuiElements\" />
-    <Folder Include="Gui\GuiElements\Enumerations\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

@@ -2,7 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Graphics.ImageEffects;
+using Narivia.Graphics.SpriteEffects;
+using Narivia.Graphics.Enumerations;
 using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Gui.GuiElements
@@ -66,7 +67,7 @@ namespace Narivia.Gui.GuiElements
         /// <value><c>true</c> if the effects are active; otherwise, <c>false</c>.</value>
         public bool EffectsActive { get; set; }
 
-        Image image;
+        Sprite sprite;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuiImage"/> class.
@@ -82,11 +83,11 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            image = new Image();
+            sprite = new Sprite();
 
             SetChildrenProperties();
             
-            image.LoadContent();
+            sprite.LoadContent();
 
             base.LoadContent();
         }
@@ -96,7 +97,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void UnloadContent()
         {
-            image.UnloadContent();
+            sprite.UnloadContent();
 
             base.UnloadContent();
         }
@@ -107,7 +108,7 @@ namespace Narivia.Gui.GuiElements
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            image.Update(gameTime);
+            sprite.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -118,7 +119,7 @@ namespace Narivia.Gui.GuiElements
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            image.Draw(spriteBatch);
+            sprite.Draw(spriteBatch);
 
             base.Draw(spriteBatch);
         }
@@ -128,26 +129,26 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <param name="effect">Effect.</param>
         public void ActivateEffect(string effect)
-        => image.ActivateEffect(effect);
+        => sprite.ActivateEffect(effect);
 
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
 
-            image.TransparencyMaskPath = MaskFile;
-            image.RedReplacement = RedReplacement;
-            image.GreenReplacement = GreenReplacement;
-            image.BlueReplacement = BlueReplacement;
-            image.ImagePath = ContentFile;
-            image.SourceRectangle = SourceRectangle;
-            image.Tint = TintColour;
-            image.Position = Position;
-            image.Scale = Scale;
-            image.TextureFillMode = FillMode;
-            image.FadeEffect = FadeEffect;
-            image.Active = EffectsActive;
+            sprite.AlphaMaskFile = MaskFile;
+            sprite.RedReplacement = RedReplacement;
+            sprite.GreenReplacement = GreenReplacement;
+            sprite.BlueReplacement = BlueReplacement;
+            sprite.ContentFile = ContentFile;
+            sprite.SourceRectangle = SourceRectangle;
+            sprite.Tint = TintColour;
+            sprite.Position = Position;
+            sprite.Scale = Scale;
+            sprite.TextureFillMode = FillMode;
+            sprite.FadeEffect = FadeEffect;
+            sprite.Active = EffectsActive;
 
-            Size = new Vector2(image.ScreenArea.Width, image.ScreenArea.Height);
+            Size = new Vector2(sprite.ScreenArea.Width, sprite.ScreenArea.Height);
         }
     }
 }

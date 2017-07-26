@@ -2,7 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Graphics.ImageEffects;
+using Narivia.Graphics.SpriteEffects;
+using Narivia.Graphics.Enumerations;
 using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Gui.GuiElements
@@ -67,7 +68,7 @@ namespace Narivia.Gui.GuiElements
         public bool EffectsActive { get; set; }
 
         GuiImage backgroundImage;
-        Image textImage;
+        Sprite textSprite;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuiText"/> class.
@@ -93,13 +94,13 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = new Rectangle(0, 0, 1, 1)
             };
 
-            textImage = new Image();
+            textSprite = new Sprite();
             
             Children.Add(backgroundImage);
 
             SetChildrenProperties();
 
-            textImage.LoadContent();
+            textSprite.LoadContent();
 
             base.LoadContent();
         }
@@ -111,7 +112,7 @@ namespace Narivia.Gui.GuiElements
         {
             base.UnloadContent();
 
-            textImage.UnloadContent();
+            textSprite.UnloadContent();
         }
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace Narivia.Gui.GuiElements
         {
             base.Update(gameTime);
 
-            textImage.Update(gameTime);
+            textSprite.Update(gameTime);
         }
 
         /// <summary>
@@ -133,7 +134,7 @@ namespace Narivia.Gui.GuiElements
         {
             base.Draw(spriteBatch);
 
-            textImage.Draw(spriteBatch);
+            textSprite.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -141,7 +142,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <param name="effect">Effect.</param>
         public void ActivateEffect(string effect)
-        => textImage.ActivateEffect(effect);
+        => textSprite.ActivateEffect(effect);
 
         protected override void SetChildrenProperties()
         {
@@ -151,15 +152,15 @@ namespace Narivia.Gui.GuiElements
             backgroundImage.Position = Position;
             backgroundImage.Scale = new Vector2(Size.X + Margins * 2, Size.Y + Margins * 2);
 
-            textImage.Text = Text;
-            textImage.FontName = FontName;
-            textImage.Tint = TextColour;
-            textImage.TextVerticalAlignment = VerticalAlignment;
-            textImage.TextHorizontalAlignment = HorizontalAlignment;
-            textImage.Position = new Vector2(Position.X + Margins, Position.Y + Margins);
-            textImage.SpriteSize = new Vector2(Size.X - Margins * 2, Size.Y - Margins * 2);
-            textImage.FadeEffect = FadeEffect;
-            textImage.Active = EffectsActive;
+            textSprite.Text = Text;
+            textSprite.FontName = FontName;
+            textSprite.Tint = TextColour;
+            textSprite.TextVerticalAlignment = VerticalAlignment;
+            textSprite.TextHorizontalAlignment = HorizontalAlignment;
+            textSprite.Position = new Vector2(Position.X + Margins, Position.Y + Margins);
+            textSprite.SpriteSize = new Vector2(Size.X - Margins * 2, Size.Y - Margins * 2);
+            textSprite.FadeEffect = FadeEffect;
+            textSprite.Active = EffectsActive;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 
-using Narivia.Graphics;
+using Narivia.Graphics.Enumerations;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Events;
 

@@ -34,9 +34,9 @@ namespace Narivia.Gui.GuiElements
         Camera camera;
         Map map;
 
-        Image regionHighlight;
-        Image selectedRegionHighlight;
-        Image factionBorder;
+        Sprite regionHighlight;
+        Sprite selectedRegionHighlight;
+        Sprite factionBorder;
 
         Vector2 mouseCoords;
 
@@ -48,25 +48,25 @@ namespace Narivia.Gui.GuiElements
             camera = new Camera { Size = Size };
             map = new Map { TileDimensions = Vector2.One * GameWindow.TILE_DIMENSIONS };
 
-            regionHighlight = new Image
+            regionHighlight = new Sprite
             {
-                ImagePath = "World/Effects/border",
+                ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS * 3, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
                 Tint = Colour.White,
                 Opacity = 1.0f
             };
 
-            selectedRegionHighlight = new Image
+            selectedRegionHighlight = new Sprite
             {
-                ImagePath = "World/Effects/border",
+                ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS * 3, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
                 Tint = Colour.White,
                 Opacity = 1.0f
             };
 
-            factionBorder = new Image
+            factionBorder = new Sprite
             {
-                ImagePath = "World/Effects/border",
+                ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
                 Tint = Colour.Blue,
                 Opacity = 1.0f

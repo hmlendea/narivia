@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Graphics.ImageEffects;
+using Narivia.Graphics.SpriteEffects;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
@@ -17,50 +17,50 @@ namespace Narivia.Gui
         /// <value>The position.</value>
         public Vector2 Position
         {
-            get { return idleImage.Position; }
+            get { return idleSprite.Position; }
             private set
             {
-                idleImage.Position = value;
-                clickImage.Position = value;
+                idleSprite.Position = value;
+                clickSprite.Position = value;
             }
         }
 
         public MouseButtonState State { get; private set; }
 
-        Image idleImage;
-        Image clickImage;
+        Sprite idleSprite;
+        Sprite clickSprite;
 
         /// <summary>
         /// Loads the content.
         /// </summary>
         public void LoadContent()
         {
-            idleImage = new Image
+            idleSprite = new Sprite
             {
                 Effects = "AnimationEffect",
-                ImagePath = "Cursors/idle",
+                ContentFile = "Cursors/idle",
                 Active = true
             };
-            clickImage = new Image
+            clickSprite = new Sprite
             {
                 Effects = "AnimationEffect",
-                ImagePath = "Cursors/click",
+                ContentFile = "Cursors/click",
                 Active = true
             };
 
-            idleImage.AnimationEffect = new AnimationEffect
+            idleSprite.AnimationEffect = new AnimationEffect
             {
                 FrameAmount = new Vector2(8, 1),
                 SwitchFrame = 150
             };
-            clickImage.AnimationEffect = new AnimationEffect
+            clickSprite.AnimationEffect = new AnimationEffect
             {
                 FrameAmount = new Vector2(8, 1),
                 SwitchFrame = 150
             };
 
-            idleImage.LoadContent();
-            clickImage.LoadContent();
+            idleSprite.LoadContent();
+            clickSprite.LoadContent();
 
             InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
             InputManager.Instance.MouseButtonReleased += InputManager_OnMouseButtonReleased;
@@ -72,8 +72,8 @@ namespace Narivia.Gui
         /// </summary>
         public void UnloadContent()
         {
-            idleImage.UnloadContent();
-            clickImage.UnloadContent();
+            idleSprite.UnloadContent();
+            clickSprite.UnloadContent();
 
             InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
             InputManager.Instance.MouseButtonReleased -= InputManager_OnMouseButtonReleased;
@@ -86,8 +86,8 @@ namespace Narivia.Gui
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            idleImage.Update(gameTime);
-            clickImage.Update(gameTime);
+            idleSprite.Update(gameTime);
+            clickSprite.Update(gameTime);
         }
 
         /// <summary>
@@ -98,11 +98,11 @@ namespace Narivia.Gui
         {
             if (State == MouseButtonState.Pressed)
             {
-                clickImage.Draw(spriteBatch);
+                clickSprite.Draw(spriteBatch);
             }
             else
             {
-                idleImage.Draw(spriteBatch);
+                idleSprite.Draw(spriteBatch);
             }
         }
 

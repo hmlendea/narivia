@@ -1,4 +1,4 @@
-﻿namespace Narivia.Graphics
+﻿namespace Narivia.Graphics.Enumerations
 {
     public enum HorizontalAlignment
     {

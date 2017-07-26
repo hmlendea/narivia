@@ -87,7 +87,7 @@ namespace Narivia.Screens
         /// Gets or sets the image.
         /// </summary>
         /// <value>The image.</value>
-        public Image TransitionImage { get; set; }
+        public Sprite TransitionImage { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ScreenManager"/> class.

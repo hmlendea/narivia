@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Narivia.Graphics.ImageEffects
+namespace Narivia.Graphics.SpriteEffects
 {
     /// <summary>
-    /// Rotation effect.
+    /// Zoom effect.
     /// </summary>
-    public class RotationEffect : ImageEffect
+    public class ZoomEffect : CustomSpriteEffect
     {
         /// <summary>
         /// Gets or sets the speed.
@@ -14,34 +14,41 @@ namespace Narivia.Graphics.ImageEffects
         public float Speed { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum rotation.
+        /// Gets or sets the minimum zoom.
         /// </summary>
-        /// <value>The maximum rotation.</value>
-        public float MaximumRotation { get; set; }
+        /// <value>The minimum zoom.</value>
+        public float MinimumZoom { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="RotationEffect"/> is increasing.
+        /// Gets or sets the maximum zoom.
+        /// </summary>
+        /// <value>The maximum zoom.</value>
+        public float MaximumZoom { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="ZoomEffect"/> is increasing.
         /// </summary>
         /// <value><c>true</c> if increasing; otherwise, <c>false</c>.</value>
         public bool Increasing { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RotationEffect"/> class.
+        /// Initializes a new instance of the <see cref="ZoomEffect"/> class.
         /// </summary>
-        public RotationEffect()
+        public ZoomEffect()
         {
             Speed = 0.5f;
-            MaximumRotation = 1.0f;
+            MinimumZoom = 0.75f;
+            MaximumZoom = 1.25f;
             Increasing = false;
         }
 
         /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <param name="image">Image.</param>
-        public override void LoadContent(ref Image image)
+        /// <param name="sprite">Sprite.</param>
+        public override void LoadContent(ref Sprite sprite)
         {
-            base.LoadContent(ref image);
+            base.LoadContent(ref sprite);
         }
 
         /// <summary>
@@ -60,31 +67,31 @@ namespace Narivia.Graphics.ImageEffects
         {
             base.Update(gameTime);
 
-            if (Image.Active)
+            if (Sprite.Active)
             {
                 if (Increasing == false)
                 {
-                    Image.Rotation -= Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    Sprite.Zoom -= Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
                 }
                 else
                 {
-                    Image.Rotation += Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    Sprite.Zoom += Speed * ((float)gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
-                if (Image.Rotation < -MaximumRotation)
+                if (Sprite.Zoom < MinimumZoom)
                 {
                     Increasing = true;
-                    Image.Rotation = -MaximumRotation;
+                    Sprite.Zoom = MinimumZoom;
                 }
-                else if (Image.Rotation > MaximumRotation)
+                else if (Sprite.Zoom > MaximumZoom)
                 {
                     Increasing = false;
-                    Image.Rotation = MaximumRotation;
+                    Sprite.Zoom = MaximumZoom;
                 }
             }
             else
             {
-                Image.Rotation = MaximumRotation;
+                Sprite.Zoom = MaximumZoom;
             }
         }
     }

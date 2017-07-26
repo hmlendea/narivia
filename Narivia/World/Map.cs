@@ -67,13 +67,13 @@ namespace Narivia.WorldMap
                     continue;
                 }
 
-                Image layerImage = new Image
+                Sprite layerSprite = new Sprite
                 {
-                    ImagePath = "World/Terrain/" + tilesetName
+                    ContentFile = "World/Terrain/" + tilesetName
                 };
                 Layer layer = new Layer
                 {
-                    Image = layerImage,
+                    Sprite = layerSprite,
                     TileMap = new string[tmxMap.Width, tmxMap.Height]
                 };
 
