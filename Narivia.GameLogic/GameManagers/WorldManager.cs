@@ -523,36 +523,16 @@ namespace Narivia.GameLogic.GameManagers
             IRegionRepository regionRepository = new RegionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
             IResourceRepository resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
             IUnitRepository unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
-
-            List<Biome> biomeList = biomeRepository.GetAll().ToDomainModels().ToList();
-            List<Border> borderList = borderRepository.GetAll().ToDomainModels().ToList();
-            List<Culture> cultureList = cultureRepository.GetAll().ToDomainModels().ToList();
-            List<Faction> factionList = factionRepository.GetAll().ToDomainModels().ToList();
-            List<Flag> flagList = flagRepository.GetAll().ToDomainModels().ToList();
-            List<Holding> holdingList = holdingRepository.GetAll().ToDomainModels().ToList();
-            List<Region> regionList = regionRepository.GetAll().ToDomainModels().ToList();
-            List<Resource> resourceList = resourceRepository.GetAll().ToDomainModels().ToList();
-            List<Unit> unitList = unitRepository.GetAll().ToDomainModels().ToList();
-
-            Biomes = new Dictionary<string, Biome>();
-            Borders = new Dictionary<Tuple<string, string>, Border>();
-            Cultures = new Dictionary<string, Culture>();
-            Factions = new Dictionary<string, Faction>();
-            Flags = new Dictionary<string, Flag>();
+            
+            Biomes = biomeRepository.GetAll().ToDictionary(biome => biome.Id, biome => biome.ToDomainModel());
+            Borders = borderRepository.GetAll().ToDictionary(border => new Tuple<string, string>(border.Region1Id, border.Region2Id), border => border.ToDomainModel());
+            Cultures = cultureRepository.GetAll().ToDictionary(culture => culture.Id,  culture => culture.ToDomainModel());
+            Factions = factionRepository.GetAll().ToDictionary(faction => faction.Id, faction => faction.ToDomainModel());
+            Flags = flagRepository.GetAll().ToDictionary(flag => flag.Id, flag => flag.ToDomainModel());
             Holdings = new Dictionary<string, Holding>();
-            Regions = new Dictionary<string, Region>();
-            Resources = new Dictionary<string, Resource>();
-            Units = new Dictionary<string, Unit>();
-
-            biomeList.ForEach(biome => Biomes.Add(biome.Id, biome));
-            borderList.ForEach(border => Borders.Add(new Tuple<string, string>(border.Region1Id, border.Region2Id), border));
-            cultureList.ForEach(culture => Cultures.Add(culture.Id, culture));
-            factionList.ForEach(faction => Factions.Add(faction.Id, faction));
-            flagList.ForEach(flag => Flags.Add(flag.Id, flag));
-            //holdingList.ForEach(holding => Holdings.Add(holding.Id, holding));
-            regionList.ForEach(region => Regions.Add(region.Id, region));
-            resourceList.ForEach(resource => Resources.Add(resource.Id, resource));
-            unitList.ForEach(unit => Units.Add(unit.Id, unit));
+            Regions = regionRepository.GetAll().ToDictionary(region => region.Id, region => region.ToDomainModel());
+            Resources = resourceRepository.GetAll().ToDictionary(resource => resource.Id, resource => resource.ToDomainModel());
+            Units = unitRepository.GetAll().ToDictionary(unit => unit.Id, unit => unit.ToDomainModel());
         }
 
         void LoadMap(string worldId)
