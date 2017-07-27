@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Graphics;
 using Narivia.Gui;
 
-namespace Narivia.WorldMap
+namespace Narivia.Gui.WorldMap
 {
     /// <summary>
     /// Map layer.

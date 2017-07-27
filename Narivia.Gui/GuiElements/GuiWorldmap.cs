@@ -5,10 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
+using Narivia.Gui.WorldMap;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
 using Narivia.Input.Events;
-using Narivia.WorldMap;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -46,12 +47,12 @@ namespace Narivia.Gui.GuiElements
         public override void LoadContent()
         {
             camera = new Camera { Size = Size };
-            map = new Map { TileDimensions = Vector2.One * GameWindow.TILE_DIMENSIONS };
+            map = new Map { TileDimensions = Vector2.One * GameDefines.TILE_DIMENSIONS };
 
             regionHighlight = new Sprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS * 3, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
+                SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS * 3, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
                 Tint = Colour.White,
                 Opacity = 1.0f
             };
@@ -59,7 +60,7 @@ namespace Narivia.Gui.GuiElements
             selectedRegionHighlight = new Sprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS * 3, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
+                SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS * 3, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
                 Tint = Colour.White,
                 Opacity = 1.0f
             };
@@ -67,7 +68,7 @@ namespace Narivia.Gui.GuiElements
             factionBorder = new Sprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS),
+                SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
                 Tint = Colour.Blue,
                 Opacity = 1.0f
             };
@@ -173,7 +174,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public void CentreCameraOnPosition(int x, int y)
         {
-            camera.CentreOnPosition(new Vector2(x * GameWindow.TILE_DIMENSIONS, y * GameWindow.TILE_DIMENSIONS));
+            camera.CentreOnPosition(new Vector2(x * GameDefines.TILE_DIMENSIONS, y * GameDefines.TILE_DIMENSIONS));
         }
 
         void DrawRegionHighlight(SpriteBatch spriteBatch)
@@ -269,29 +270,29 @@ namespace Narivia.Gui.GuiElements
                     if (factionIdN != factionId &&
                         factionIdN != "gaia")
                     {
-                        factionBorder.SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS, 0,
-                                                                           GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS);
+                        factionBorder.SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, 0,
+                                                                      GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdW != factionId &&
                         factionIdW != "gaia")
                     {
-                        factionBorder.SourceRectangle = new Rectangle(0, GameWindow.TILE_DIMENSIONS,
-                                                                           GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS);
+                        factionBorder.SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS,
+                                                                      GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdS != factionId &&
                         factionIdS != "gaia")
                     {
-                        factionBorder.SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS * 2,
-                                                                           GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS);
+                        factionBorder.SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS * 2,
+                                                                      GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdE != factionId &&
                         factionIdE != "gaia")
                     {
-                        factionBorder.SourceRectangle = new Rectangle(GameWindow.TILE_DIMENSIONS * 2, GameWindow.TILE_DIMENSIONS,
-                                                                           GameWindow.TILE_DIMENSIONS, GameWindow.TILE_DIMENSIONS);
+                        factionBorder.SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS * 2, GameDefines.TILE_DIMENSIONS,
+                                                                      GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
                         factionBorder.Draw(spriteBatch);
                     }
                 }

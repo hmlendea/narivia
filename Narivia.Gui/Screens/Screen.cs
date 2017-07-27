@@ -6,11 +6,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Gui;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
 
-namespace Narivia.Screens
+namespace Narivia.Gui.Screens
 {
     /// <summary>
     /// Screen.
@@ -62,7 +61,7 @@ namespace Narivia.Screens
         public Screen()
         {
             Type = GetType();
-            XmlPath = @"Screens/" + Type.ToString().Replace("Narivia.Screens.", "") + ".xml";
+            XmlPath = @"Screens/" + Type.ToString().Replace("Narivia.Gui.Screens.", "") + ".xml";
 
             Notifications = new List<GuiNotificationDialog>();
             Buttons = new List<GuiButton>();

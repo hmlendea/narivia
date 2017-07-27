@@ -11,7 +11,7 @@ using Narivia.Input.Events;
 using Narivia.Gui;
 using Narivia.Gui.GuiElements;
 
-namespace Narivia.Screens
+namespace Narivia.Gui.Screens
 {
     /// <summary>
     /// Menu screen.

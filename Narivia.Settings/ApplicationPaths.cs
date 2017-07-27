@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace Narivia.Infrastructure.Helpers
+namespace Narivia.Settings
 {
     /// <summary>
     /// Application paths.

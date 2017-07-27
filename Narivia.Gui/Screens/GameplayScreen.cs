@@ -16,7 +16,7 @@ using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Models;
 
-namespace Narivia.Screens
+namespace Narivia.Gui.Screens
 {
     /// <summary>
     /// Gameplay screen.

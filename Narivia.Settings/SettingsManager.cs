@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 
-using Narivia.Helpers;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;

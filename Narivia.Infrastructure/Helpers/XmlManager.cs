@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace Narivia.Helpers
+namespace Narivia.Infrastructure.Helpers
 {
     /// <summary>
     /// XML Manager.

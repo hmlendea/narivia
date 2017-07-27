@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Narivia.WorldMap
+namespace Narivia.Gui.WorldMap
 {
     /// <summary>
     /// Map tile.

@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.DataAccess.Resources;
-using Narivia.Helpers;
+using Narivia.Gui.Helpers;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Settings;
 
 namespace Narivia.Gui

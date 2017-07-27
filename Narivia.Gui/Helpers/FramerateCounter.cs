@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Narivia.Helpers
+namespace Narivia.Gui.Helpers
 {
     /// <summary>
     /// Framerate counter.

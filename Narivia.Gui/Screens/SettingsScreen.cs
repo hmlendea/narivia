@@ -1,26 +1,32 @@
-using System;
+﻿using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Narivia.Gui.GuiElements
+using Narivia.Gui.GuiElements;
+using Narivia.Settings;
+
+namespace Narivia.Gui.Screens
 {
     /// <summary>
-    /// Menu action GUI element.
+    /// Settings screen.
     /// </summary>
-    public class GuiMenuAction : GuiMenuItem
+    public class SettingsScreen : MenuScreen
     {
-        /// <summary>
-        /// Gets or sets the action.
-        /// </summary>
-        /// <value>The type of the action.</value>
-        public string ActionId { get; set; }
+        GuiMenuToggle fullScreenToggle;
+        GuiMenuToggle debugModeToggle;
 
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
+            fullScreenToggle = Toggles.FirstOrDefault(t => t.Property == "Fullscreen");
+            debugModeToggle = Toggles.FirstOrDefault(t => t.Property == "DebugMode");
+
+            fullScreenToggle.ToggleState = SettingsManager.Instance.Fullscreen;
+            debugModeToggle.ToggleState = SettingsManager.Instance.DebugMode;
+
             base.LoadContent();
         }
 
@@ -29,6 +35,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void UnloadContent()
         {
+            SettingsManager.Instance.SaveContent();
             base.UnloadContent();
         }
 
@@ -39,32 +46,18 @@ namespace Narivia.Gui.GuiElements
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            SettingsManager.Instance.Fullscreen = fullScreenToggle.ToggleState;
+            SettingsManager.Instance.DebugMode = debugModeToggle.ToggleState;
         }
 
         /// <summary>
         /// Draws the content on the specified spriteBatch.
         /// </summary>
-        /// <returns>The draw.</returns>
+        /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-        }
-
-        /// <summary>
-        /// Fired by the Activated event.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event arguments.</param>
-        protected override void OnActivated(object sender, EventArgs e)
-        {
-            base.OnActivated(sender, e);
-
-            switch (ActionId)
-            {
-                case "Exit":
-                    Program.Game.Exit();
-                    break;
-            }
         }
     }
 }

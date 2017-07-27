@@ -14,11 +14,11 @@ using Narivia.Graphics;
 using Narivia.DataAccess.Repositories;
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Infrastructure.Extensions;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
+using Narivia.Settings;
 
 namespace Narivia.GameLogic.GameManagers
 {

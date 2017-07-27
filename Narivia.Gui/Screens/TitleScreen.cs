@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Narivia.Screens
+namespace Narivia.Gui.Screens
 {
     /// <summary>
     /// Title screen.

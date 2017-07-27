@@ -8,7 +8,7 @@ using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.GuiElements;
 using Narivia.Models;
 
-namespace Narivia.Screens
+namespace Narivia.Gui.Screens
 {
     /// <summary>
     /// New game screen.

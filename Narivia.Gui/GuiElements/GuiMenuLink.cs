@@ -1,6 +1,6 @@
 using System;
 
-using Narivia.Screens;
+using Narivia.Gui.Screens;
 
 namespace Narivia.Gui.GuiElements
 {

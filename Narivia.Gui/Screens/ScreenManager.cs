@@ -3,14 +3,13 @@ using System.IO;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Helpers;
+using Narivia.Infrastructure.Helpers;
 using Narivia.Settings;
 
-namespace Narivia.Screens
+namespace Narivia.Gui.Screens
 {
     /// <summary>
     /// Screen manager.
@@ -54,7 +53,7 @@ namespace Narivia.Screens
         /// <value>The size.</value>
         [XmlIgnore]
         public Vector2 Size { get; private set; }
-        
+
         /// <summary>
         /// Gets or sets the sprite batch.
         /// </summary>
@@ -155,7 +154,7 @@ namespace Narivia.Screens
         /// <param name="screenArgs">Screen arguments.</param>
         public void ChangeScreens(string screenName, string[] screenArgs)
         {
-            newScreen = (Screen)Activator.CreateInstance(Type.GetType("Narivia.Screens." + screenName));
+            newScreen = (Screen)Activator.CreateInstance(Type.GetType("Narivia.Gui.Screens." + screenName));
 
             xmlScreenManager.Type = newScreen.Type;
 

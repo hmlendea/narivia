@@ -1,5 +1,4 @@
 using System;
-using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,39 +6,15 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Menu toggle GUI element.
+    /// Menu action GUI element.
     /// </summary>
-    public class GuiMenuToggle : GuiMenuItem
+    public class GuiMenuAction : GuiMenuItem
     {
         /// <summary>
-        /// Gets or sets the property.
+        /// Gets or sets the action.
         /// </summary>
-        /// <value>The type of the property.</value>
-        public string Property { get; set; }
-
-        /// <summary>
-        /// Gets the display text.
-        /// </summary>
-        /// <value>The display text.</value>
-        public string DisplayText
-        {
-            get
-            {
-                if (ToggleState)
-                {
-                    return Text + " : On";
-                }
-
-                return Text + " : Off";
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the toggle state.
-        /// </summary>
-        /// <value>The type of the toggle state.</value>
-        [XmlIgnore]
-        public bool ToggleState { get; set; }
+        /// <value>The type of the action.</value>
+        public string ActionId { get; set; }
 
         /// <summary>
         /// Loads the content.
@@ -47,7 +22,6 @@ namespace Narivia.Gui.GuiElements
         public override void LoadContent()
         {
             base.LoadContent();
-            text.Text = DisplayText;
         }
 
         /// <summary>
@@ -64,8 +38,6 @@ namespace Narivia.Gui.GuiElements
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            text.Text = DisplayText;
-
             base.Update(gameTime);
         }
 
@@ -87,7 +59,13 @@ namespace Narivia.Gui.GuiElements
         {
             base.OnActivated(sender, e);
 
-            ToggleState = !ToggleState;
+            switch (ActionId)
+            {
+                case "Exit":
+                    // TODO: Close the game somehow...
+                    //Program.Game.Exit();
+                    break;
+            }
         }
     }
 }

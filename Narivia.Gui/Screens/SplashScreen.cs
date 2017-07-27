@@ -8,7 +8,7 @@ using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
 using Narivia.Input.Events;
 
-namespace Narivia.Screens
+namespace Narivia.Gui.Screens
 {
     /// <summary>
     /// Splash screen.

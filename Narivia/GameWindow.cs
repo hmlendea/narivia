@@ -4,11 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.DataAccess.Resources;
 using Narivia.Graphics;
 using Narivia.Gui;
+using Narivia.Gui.Screens;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;
-using Narivia.Screens;
 using Narivia.Settings;
 
 namespace Narivia
@@ -23,11 +23,6 @@ namespace Narivia
 
         readonly FpsIndicator fpsIndicator;
         readonly Cursor cursor;
-
-        /// <summary>
-        /// The tile dimensions.
-        /// </summary>
-        public const int TILE_DIMENSIONS = 16;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GameWindow"/> class.

@@ -2,6 +2,8 @@
 using System;
 using System.IO;
 
+using Narivia.Settings;
+
 #if MONOMAC
 using MonoMac.AppKit;
 using MonoMac.Foundation;
@@ -10,8 +12,6 @@ using MonoMac.Foundation;
 using Foundation;
 using UIKit;
 #endif
-
-using Narivia.Infrastructure.Helpers;
 #endregion
 
 namespace Narivia
