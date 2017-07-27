@@ -114,7 +114,7 @@ namespace Narivia.Resources
 
             if (texture2D == null)
             {
-                texture2D = content.Load<Texture2D>("Interface/missing-texture");
+                texture2D = content.Load<Texture2D>("ScreenManager/missing-texture");
 
                 LogManager.Instance.Warn(LogBuilder.BuildKvpMessage(Operation.ContentFileLoad,
                                                                     OperationStatus.Failure,

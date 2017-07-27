@@ -1182,7 +1182,7 @@
 /processorParam:TextureFormat=Color
 /build:Interface/Flags/Emblems/barbarian-axe.png
 
-#begin Interface/missing-texture.png
+#begin ScreenManager/missing-texture.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1192,5 +1192,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Interface/missing-texture.png
+/build:ScreenManager/missing-texture.png
 
