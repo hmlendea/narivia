@@ -2,9 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-using Microsoft.Xna.Framework;
-
-namespace Narivia.Infrastructure.Logging
+namespace Narivia.Logging
 {
     /// <summary>
     /// Log Manager.
@@ -15,7 +13,7 @@ namespace Narivia.Infrastructure.Logging
         static object syncRoot = new object();
 
         StreamWriter writer;
-        GameTime gameTime;
+        TimeSpan elapsedGameTime;
 
         /// <summary>
         /// Gets the instance.
@@ -39,7 +37,7 @@ namespace Narivia.Infrastructure.Logging
                 return instance;
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the verbosity level.
         /// </summary>
@@ -88,7 +86,7 @@ namespace Narivia.Infrastructure.Logging
             VerbosityLevel = 1;
             TimestampFormat = "yyyy/MM/dd HH:mm:ss.ffffzzz";
 
-            gameTime = new GameTime();
+            elapsedGameTime = new TimeSpan();
         }
 
         /// <summary>
@@ -103,10 +101,10 @@ namespace Narivia.Infrastructure.Logging
         /// <summary>
         /// Update the content.
         /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public void Update(GameTime gameTime)
+        /// <param name="elapsedGameTime">Elapsed game time.</param>
+        public void Update(TimeSpan elapsedGameTime)
         {
-            this.gameTime = gameTime;
+            this.elapsedGameTime = elapsedGameTime;
         }
 
         /// <summary>
@@ -181,7 +179,7 @@ namespace Narivia.Infrastructure.Logging
         /// <param name="message">Text.</param>
         void WriteLine(string message)
         {
-            string logEntry = $"{DateTime.Now.ToString(TimestampFormat)}|{gameTime.ElapsedGameTime}|{message}|";
+            string logEntry = $"{DateTime.Now.ToString(TimestampFormat)}|{elapsedGameTime.TotalMilliseconds}|{message}|";
 
             writer.WriteLine(logEntry);
 

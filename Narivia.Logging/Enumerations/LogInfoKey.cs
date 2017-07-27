@@ -1,4 +1,4 @@
-﻿namespace Narivia.Infrastructure.Logging.Enumerations
+﻿namespace Narivia.Logging.Enumerations
 {
     public enum LogInfoKey
     {

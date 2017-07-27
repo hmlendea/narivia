@@ -5,8 +5,8 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Infrastructure.Logging;
-using Narivia.Infrastructure.Logging.Enumerations;
+using Narivia.Logging;
+using Narivia.Logging.Enumerations;
 
 namespace Narivia.Resources
 {
@@ -68,7 +68,7 @@ namespace Narivia.Resources
         public SoundEffect LoadSoundEffect(string filePath)
         {
             SoundEffect soundEffect;
-            
+
             try
             {
                 soundEffect = content.Load<SoundEffect>(filePath);

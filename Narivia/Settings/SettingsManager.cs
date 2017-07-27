@@ -5,8 +5,8 @@ using Microsoft.Xna.Framework;
 
 using Narivia.Helpers;
 using Narivia.Infrastructure.Helpers;
-using Narivia.Infrastructure.Logging;
-using Narivia.Infrastructure.Logging.Enumerations;
+using Narivia.Logging;
+using Narivia.Logging.Enumerations;
 
 namespace Narivia.Settings
 {

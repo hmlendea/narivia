@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Gui;
 using Narivia.Infrastructure.Helpers;
-using Narivia.Infrastructure.Logging;
-using Narivia.Infrastructure.Logging.Enumerations;
 using Narivia.Input;
+using Narivia.Logging;
+using Narivia.Logging.Enumerations;
 using Narivia.Resources;
 using Narivia.Screens;
 using Narivia.Settings;
@@ -65,12 +65,12 @@ namespace Narivia
 
             LogManager.Instance.LogsDirectory = ApplicationPaths.LogsDirectory;
             LogManager.Instance.LoadContent();
-            
+
             LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStart, OperationStatus.Started));
 
             ResourceManager.Instance.LoadContent(Content, GraphicsDevice);
             SettingsManager.Instance.LoadContent();
-            
+
             ScreenManager.Instance.SpriteBatch = spriteBatch;
             ScreenManager.Instance.LoadContent();
 
@@ -103,7 +103,7 @@ namespace Narivia
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            LogManager.Instance.Update(gameTime);
+            LogManager.Instance.Update(gameTime.ElapsedGameTime);
             SettingsManager.Instance.Update(ref graphics);
             ScreenManager.Instance.Update(gameTime);
 

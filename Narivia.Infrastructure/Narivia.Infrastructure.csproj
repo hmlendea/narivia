@@ -50,11 +50,6 @@
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Helpers\ColourTranslator.cs" />
     <Compile Include="Helpers\FastBitmap.cs" />
-    <Compile Include="Logging\Enumerations\LogInfoKey.cs" />
-    <Compile Include="Logging\Enumerations\Operation.cs" />
-    <Compile Include="Logging\Enumerations\OperationStatus.cs" />
-    <Compile Include="Logging\LogManager.cs" />
-    <Compile Include="Logging\LogBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

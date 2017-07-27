@@ -2,9 +2,9 @@
 using System.Linq;
 
 using Narivia.Infrastructure.Extensions;
-using Narivia.Infrastructure.Logging.Enumerations;
+using Narivia.Logging.Enumerations;
 
-namespace Narivia.Infrastructure.Logging
+namespace Narivia.Logging
 {
     public static class LogBuilder
     {

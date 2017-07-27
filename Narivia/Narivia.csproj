@@ -161,6 +161,10 @@
       <Project>{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}</Project>
       <Name>Narivia.Input</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
+      <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
+      <Name>Narivia.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

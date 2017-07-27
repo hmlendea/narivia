@@ -82,6 +82,10 @@
       <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>
       <Name>Narivia.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
+      <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
+      <Name>Narivia.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

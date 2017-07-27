@@ -2,8 +2,8 @@
 using System.IO;
 using System.Xml.Serialization;
 
-using Narivia.Infrastructure.Logging;
-using Narivia.Infrastructure.Logging.Enumerations;
+using Narivia.Logging;
+using Narivia.Logging.Enumerations;
 
 namespace Narivia.DataAccess
 {
