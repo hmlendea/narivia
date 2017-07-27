@@ -83,10 +83,6 @@
     <Compile Include="Resources\ResourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
-      <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
-      <Name>Narivia.Infrastructure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
       <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
       <Name>Narivia.Logging</Name>
