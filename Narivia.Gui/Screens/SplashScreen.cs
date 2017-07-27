@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
 using Narivia.Input.Events;
 

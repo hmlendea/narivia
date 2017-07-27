@@ -9,8 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using TiledSharp;
 
 using Narivia.Graphics;
-using Narivia.Gui;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Settings;
 
 namespace Narivia.Gui.WorldMap

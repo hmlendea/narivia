@@ -5,7 +5,6 @@ using Narivia.DataAccess.Resources;
 using Narivia.Graphics;
 using Narivia.Gui;
 using Narivia.Gui.Screens;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;

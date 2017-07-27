@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
-using Narivia.Infrastructure.Helpers;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -86,7 +85,7 @@ namespace Narivia.Gui.GuiElements
             sprite = new Sprite();
 
             SetChildrenProperties();
-            
+
             sprite.LoadContent();
 
             base.LoadContent();

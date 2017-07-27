@@ -11,7 +11,6 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
 using Narivia.DataAccess.Exceptions;
 using Narivia.Input.Events;
-using Narivia.Gui;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Models;

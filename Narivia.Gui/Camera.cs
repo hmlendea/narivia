@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
@@ -122,15 +121,6 @@ namespace Narivia.Gui
 
             directionX = 0;
             directionY = 0;
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public void Draw(SpriteBatch spriteBatch)
-        {
-
         }
 
         /// <summary>

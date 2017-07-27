@@ -369,7 +369,7 @@ namespace Narivia.Graphics
                 spriteBatch.Draw(textureToDraw, Position + origin, SourceRectangle,
                     Tint.ToXnaColor() * Opacity, Rotation,
                     origin, Scale * Zoom,
-                    Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0.0f);
+                    SpriteEffects.None, 0.0f);
             }
             else if (TextureFillMode == TextureFillMode.Tile)
             {

@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
 using Narivia.Gui.WorldMap;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
 using Narivia.Input.Events;
 using Narivia.Settings;
@@ -150,7 +149,6 @@ namespace Narivia.Gui.GuiElements
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            camera.Draw(spriteBatch);
             map.Draw(spriteBatch, camera);
 
             DrawRegionHighlight(spriteBatch);

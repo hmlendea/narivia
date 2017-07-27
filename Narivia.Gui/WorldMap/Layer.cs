@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Gui;
 
 namespace Narivia.Gui.WorldMap
 {
@@ -87,7 +86,6 @@ namespace Narivia.Gui.WorldMap
         /// </summary>
         public void UnloadContent()
         {
-            Parallel.ForEach(tiles, t => t.UnloadContent());
         }
 
         /// <summary>
@@ -97,8 +95,6 @@ namespace Narivia.Gui.WorldMap
         public void Update(GameTime gameTime)
         {
             Sprite.Update(gameTime);
-
-            Parallel.ForEach(tiles, t => t.Update(gameTime));
         }
 
         /// <summary>

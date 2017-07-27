@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Narivia.Gui.WorldMap
 {
@@ -37,29 +36,6 @@ namespace Narivia.Gui.WorldMap
             X = x;
             Y = y;
             SourceRectangle = sourceRectangle;
-        }
-
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public void UnloadContent()
-        {
-        }
-
-        /// <summary>
-        /// Update the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public void Update(GameTime gameTime)
-        {
-        }
-
-        /// <summary>
-        /// Draw the content.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public void Draw(SpriteBatch spriteBatch)
-        {
         }
     }
 }

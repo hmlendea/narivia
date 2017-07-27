@@ -1,5 +1,4 @@
-﻿using System;
-namespace Narivia.Settings
+﻿namespace Narivia.Settings
 {
     public static class GameDefines
     {

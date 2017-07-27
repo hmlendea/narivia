@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Narivia.Graphics.Helpers
 {
-    internal static class StringUtils
+    static class StringUtils
     {
         public static string WrapText(SpriteFont font, string text, float maxLineWidth)
         {

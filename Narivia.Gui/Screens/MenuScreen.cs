@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input;
 using Narivia.Input.Events;
-using Narivia.Gui;
 using Narivia.Gui.GuiElements;
 
 namespace Narivia.Gui.Screens
