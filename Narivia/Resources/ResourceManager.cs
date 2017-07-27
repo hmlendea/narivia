@@ -1,8 +1,12 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
+using Narivia.Infrastructure.Logging;
+using Narivia.Infrastructure.Logging.Enumerations;
 
 namespace Narivia.Resources
 {
@@ -64,7 +68,7 @@ namespace Narivia.Resources
         public SoundEffect LoadSoundEffect(string filePath)
         {
             SoundEffect soundEffect;
-
+            
             try
             {
                 soundEffect = content.Load<SoundEffect>(filePath);
@@ -92,7 +96,7 @@ namespace Narivia.Resources
         /// <param name="filePath">The path to the file (without extension).</param>
         public Texture2D LoadTexture2D(string filePath)
         {
-            Texture2D texture2D;
+            Texture2D texture2D = null;
 
             try
             {
@@ -100,7 +104,21 @@ namespace Narivia.Resources
             }
             catch
             {
-                texture2D = Texture2D.FromStream(GraphicsDevice, File.OpenRead(Path.Combine(content.RootDirectory, $"{filePath}.png")));
+                string diskFilePath = Path.Combine(content.RootDirectory, $"{filePath}.png");
+
+                if (File.Exists(diskFilePath))
+                {
+                    texture2D = Texture2D.FromStream(GraphicsDevice, File.OpenRead(diskFilePath));
+                }
+            }
+
+            if (texture2D == null)
+            {
+                texture2D = content.Load<Texture2D>("Interface/missing-texture");
+
+                LogManager.Instance.Warn(LogBuilder.BuildKvpMessage(Operation.ContentFileLoad,
+                                                                    OperationStatus.Failure,
+                                                                    new Dictionary<LogInfoKey, string> { { LogInfoKey.FileName, filePath } }));
             }
 
             return texture2D;

@@ -31,7 +31,7 @@ namespace Narivia.Infrastructure.Logging
         /// <returns>The log message.</returns>
         public static string BuildKvpMessage(Operation operation, OperationStatus status, IDictionary<LogInfoKey, string> logDetails)
         {
-            string message = BuildKvpMessage(operation, status);
+            string message = $"{BuildKvpMessage(operation, status)},";
 
             logDetails.ToList().ForEach(kvp => message += $"{kvp.Key.GetDisplayName()}={kvp.Value},");
 

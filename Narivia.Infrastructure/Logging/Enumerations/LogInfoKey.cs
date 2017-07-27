@@ -2,6 +2,7 @@
 {
     public enum LogInfoKey
     {
+        FileName,
         Message
     }
 }

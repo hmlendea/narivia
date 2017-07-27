@@ -4,6 +4,9 @@ namespace Narivia.Infrastructure.Logging.Enumerations
 {
     public enum Operation
     {
+        [Display(Name = "CONTENT_FILE_LOAD")]
+        ContentFileLoad,
+
         [Display(Name = "GAME_START")]
         GameStart,
 
