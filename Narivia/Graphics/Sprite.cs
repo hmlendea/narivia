@@ -4,15 +4,15 @@ using System.Linq;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Screens;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
+using Narivia.Helpers;
 using Narivia.Infrastructure.Extensions;
 using Narivia.Infrastructure.Helpers;
-using Narivia.Helpers;
+using Narivia.Resources;
 
 namespace Narivia.Graphics
 {
@@ -21,7 +21,6 @@ namespace Narivia.Graphics
     /// </summary>
     public class Sprite
     {
-        ContentManager content;
         Vector2 origin;
         RenderTarget2D renderTarget;
         SpriteFont font;
@@ -241,8 +240,6 @@ namespace Narivia.Graphics
         /// </summary>
         public void LoadContent()
         {
-            content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
-
             if (string.IsNullOrWhiteSpace(Text))
             {
                 Text = string.Empty;
@@ -251,7 +248,7 @@ namespace Narivia.Graphics
             LoadContentFile();
             LoadAlphaMaskFile();
 
-            font = content.Load<SpriteFont>("Fonts/" + FontName);
+            font = ResourceManager.Instance.LoadSpriteFont("Fonts/" + FontName);
 
             if (SpriteSize == Vector2.Zero)
             {
@@ -314,8 +311,6 @@ namespace Narivia.Graphics
         /// </summary>
         public void UnloadContent()
         {
-            content.Unload();
-
             List<string> effectKeys = effectList.Keys.ToList();
 
             effectKeys.ForEach(DeactivateEffect);
@@ -599,7 +594,7 @@ namespace Narivia.Graphics
                 return;
             }
 
-            texture = content.Load<Texture2D>(ContentFile);
+            texture = ResourceManager.Instance.LoadTexture2D(ContentFile);
 
             loadedContentFile = ContentFile;
         }
@@ -611,7 +606,7 @@ namespace Narivia.Graphics
                 return;
             }
 
-            alphaMask = content.Load<Texture2D>(AlphaMaskFile);
+            alphaMask = ResourceManager.Instance.LoadTexture2D(AlphaMaskFile);
 
             loadedAlphaMaskFile = AlphaMaskFile;
         }

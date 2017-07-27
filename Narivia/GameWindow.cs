@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Audio;
-using Narivia.Infrastructure.Helpers;
+using Narivia.Gui;
 using Narivia.Infrastructure.Logging;
 using Narivia.Infrastructure.Logging.Enumerations;
 using Narivia.Input;
-using Narivia.Gui;
+using Narivia.Resources;
 using Narivia.Screens;
 using Narivia.Settings;
 
@@ -67,15 +67,14 @@ namespace Narivia
             
             LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStart, OperationStatus.Started));
 
+            ResourceManager.Instance.LoadContent(Content, GraphicsDevice);
             SettingsManager.Instance.LoadContent();
 
             ScreenManager.Instance.GraphicsDevice = GraphicsDevice;
             ScreenManager.Instance.SpriteBatch = spriteBatch;
-            ScreenManager.Instance.LoadContent(Content);
+            ScreenManager.Instance.LoadContent();
 
-            AudioManager.Instance.LoadContent(Content);
-
-            fpsIndicator.LoadContent(Content);
+            fpsIndicator.LoadContent();
             cursor.LoadContent();
 
             LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStart, OperationStatus.Success));

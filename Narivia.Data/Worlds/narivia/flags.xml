@@ -48,7 +48,7 @@
   <FlagEntity>
     <Id>meuristia_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>dove</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#006353</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>

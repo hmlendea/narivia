@@ -20,11 +20,6 @@ namespace Narivia.Screens
     public class Screen
     {
         /// <summary>
-        /// The content.
-        /// </summary>
-        protected ContentManager content;
-
-        /// <summary>
         /// Gets or sets the xml path.
         /// </summary>
         /// <value>The xml path.</value>
@@ -82,7 +77,6 @@ namespace Narivia.Screens
         /// </summary>
         public virtual void LoadContent()
         {
-            content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
             ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour.ToXnaColor());
 
             GuiManager.Instance.GuiElements.AddRange(Notifications);
@@ -96,8 +90,6 @@ namespace Narivia.Screens
         /// </summary>
         public virtual void UnloadContent()
         {
-            content.Unload();
-
             GuiManager.Instance.UnloadContent();
         }
 

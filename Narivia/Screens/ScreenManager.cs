@@ -49,13 +49,6 @@ namespace Narivia.Screens
         }
 
         /// <summary>
-        /// Gets the content.
-        /// </summary>
-        /// <value>The content.</value>
-        [XmlIgnore]
-        public ContentManager Content { get; private set; }
-
-        /// <summary>
         /// Gets the size.
         /// </summary>
         /// <value>The size.</value>
@@ -106,11 +99,8 @@ namespace Narivia.Screens
         /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <param name="content">Content.</param>
-        public void LoadContent(ContentManager content)
+        public void LoadContent()
         {
-            Content = new ContentManager(content.ServiceProvider, "Content");
-
             currentScreen.LoadContent();
             TransitionImage.LoadContent();
         }

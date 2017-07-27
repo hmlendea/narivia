@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Resources\ResourceManager.cs" />
     <Compile Include="Graphics\CustomSpriteEffects\AnimationEffect.cs" />
     <Compile Include="Graphics\CustomSpriteEffects\RotationEffect.cs" />
     <Compile Include="Graphics\CustomSpriteEffects\ZoomEffect.cs" />

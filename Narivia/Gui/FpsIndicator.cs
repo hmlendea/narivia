@@ -1,10 +1,10 @@
 ﻿using System;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Helpers;
+using Narivia.Resources;
 using Narivia.Settings;
 
 namespace Narivia.Gui
@@ -36,9 +36,9 @@ namespace Narivia.Gui
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public void LoadContent(ContentManager content)
+        public void LoadContent()
         {
-            fpsFont = content.Load<SpriteFont>("Fonts/FrameCounterFont");
+            fpsFont = ResourceManager.Instance.LoadSpriteFont("Fonts/FrameCounterFont");
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
+
+using Narivia.Resources;
 
 namespace Narivia.Audio
 {
@@ -30,22 +31,6 @@ namespace Narivia.Audio
                 return instance;
             }
         }
-
-        /// <summary>
-        /// Gets the content.
-        /// </summary>
-        /// <value>The content.</value>
-        public ContentManager Content { get; private set; }
-
-
-        /// <summary>
-        /// Loads the content.
-        /// </summary>
-        /// <value>The content.</value>
-        public void LoadContent(ContentManager content)
-        {
-            Content = new ContentManager(content.ServiceProvider, "Content");
-        }
         
         /// <summary>
         /// Plays the specified sound.
@@ -53,7 +38,7 @@ namespace Narivia.Audio
         /// <value>Plays the specified sound.</value>
         public void PlaySound(string sound)
         {
-            SoundEffect soundEffect = Content.Load<SoundEffect>("Audio/" + sound);
+            SoundEffect soundEffect = ResourceManager.Instance.LoadSoundEffect("Audio/" + sound);
 
             soundEffect.CreateInstance().Play();
         }
