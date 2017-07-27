@@ -4,8 +4,6 @@ using System.IO;
 
 using Microsoft.Xna.Framework;
 
-using Narivia.Infrastructure.Helpers;
-
 namespace Narivia.Infrastructure.Logging
 {
     /// <summary>
@@ -61,6 +59,12 @@ namespace Narivia.Infrastructure.Logging
         public string TimestampFormat { get; set; }
 
         /// <summary>
+        /// Gets or sets the logs directory path.
+        /// </summary>
+        /// <value>The path to the logs directory.</value>
+        public string LogsDirectory { get; set; }
+
+        /// <summary>
         /// Gets the name of the log file.
         /// </summary>
         /// <value>The log file name.</value>
@@ -70,7 +74,7 @@ namespace Narivia.Infrastructure.Logging
         /// Gets the path to the log file.
         /// </summary>
         /// <value>The log file path.</value>
-        public string LogPath => Path.Combine(ApplicationPaths.LogsDirectory, LogName);
+        public string LogPath => Path.Combine(LogsDirectory, LogName);
 
         /// <summary>
         /// Loads the content.

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Gui;
@@ -11,6 +10,7 @@ using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Infrastructure.Extensions;
 using Narivia.Infrastructure.Helpers;
+using Narivia.Resources;
 
 namespace Narivia.Screens
 {
@@ -77,7 +77,7 @@ namespace Narivia.Screens
         /// </summary>
         public virtual void LoadContent()
         {
-            ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour.ToXnaColor());
+            ResourceManager.Instance.GraphicsDevice.Clear(BackgroundColour.ToXnaColor());
 
             GuiManager.Instance.GuiElements.AddRange(Notifications);
             GuiManager.Instance.GuiElements.AddRange(Buttons);
@@ -108,7 +108,7 @@ namespace Narivia.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            ScreenManager.Instance.GraphicsDevice.Clear(BackgroundColour.ToXnaColor());
+            ResourceManager.Instance.GraphicsDevice.Clear(BackgroundColour.ToXnaColor());
             GuiManager.Instance.Draw(spriteBatch);
         }
 

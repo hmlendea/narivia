@@ -54,14 +54,7 @@ namespace Narivia.Screens
         /// <value>The size.</value>
         [XmlIgnore]
         public Vector2 Size { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the graphics device.
-        /// </summary>
-        /// <value>The graphics device.</value>
-        [XmlIgnore]
-        public GraphicsDevice GraphicsDevice { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the sprite batch.
         /// </summary>

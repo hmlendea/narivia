@@ -274,11 +274,11 @@ namespace Narivia.Graphics
             }
 
             renderTarget = new RenderTarget2D(
-                ScreenManager.Instance.GraphicsDevice,
+                ResourceManager.Instance.GraphicsDevice,
                 (int)SpriteSize.X, (int)SpriteSize.Y);
 
-            ScreenManager.Instance.GraphicsDevice.SetRenderTarget(renderTarget);
-            ScreenManager.Instance.GraphicsDevice.Clear(Color.Transparent);
+            ResourceManager.Instance.GraphicsDevice.SetRenderTarget(renderTarget);
+            ResourceManager.Instance.GraphicsDevice.Clear(Color.Transparent);
 
             ScreenManager.Instance.SpriteBatch.Begin();
 
@@ -291,7 +291,7 @@ namespace Narivia.Graphics
 
             texture = renderTarget;
 
-            ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
+            ResourceManager.Instance.GraphicsDevice.SetRenderTarget(null);
 
             SetEffect(ref fadeEffect);
             SetEffect(ref rotationEffect);
