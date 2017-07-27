@@ -13,6 +13,18 @@ namespace Narivia.Infrastructure.Logging.Enumerations
         [Display(Name = "GAME_STOP")]
         GameStop,
 
+        [Display(Name = "REPOSITORY_LOADING")]
+        RepositoryLoading,
+
+        [Display(Name = "REPOSITORY_SAVING")]
+        RepositorySaving,
+
+        [Display(Name = "SETTINGS_LOADING")]
+        SettingsLoading,
+
+        [Display(Name = "WORLD_INITIALISING")]
+        WorldInitialisation,
+
         [Display(Name = "WORLD_LOADING")]
         WorldLoading
     }

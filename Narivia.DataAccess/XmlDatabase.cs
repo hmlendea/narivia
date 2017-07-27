@@ -2,6 +2,9 @@
 using System.IO;
 using System.Xml.Serialization;
 
+using Narivia.Infrastructure.Logging;
+using Narivia.Infrastructure.Logging.Enumerations;
+
 namespace Narivia.DataAccess
 {
     /// <summary>
@@ -16,7 +19,7 @@ namespace Narivia.DataAccess
         public string FileName { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.XmlDatabase`1"/> class.
+        /// Initializes a new instance of the <see cref="XmlDatabase"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public XmlDatabase(string fileName)
@@ -32,7 +35,14 @@ namespace Narivia.DataAccess
         {
             if (!File.Exists(FileName))
             {
-                return null;
+                LogManager.Instance.Error(LogBuilder.BuildKvpMessage(
+                    Operation.RepositoryLoading,
+                    OperationStatus.Failure,
+                    new Dictionary<LogInfoKey, string>
+                    {
+                        { LogInfoKey.FileName, FileName },
+                        { LogInfoKey.Message, "The repository cannot be accessed" }
+                    }));
             }
 
             XmlSerializer xs = new XmlSerializer(typeof(List<T>));

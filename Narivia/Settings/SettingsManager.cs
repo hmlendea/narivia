@@ -1,9 +1,12 @@
 ﻿using System.IO;
+using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 
 using Narivia.Helpers;
 using Narivia.Infrastructure.Helpers;
+using Narivia.Infrastructure.Logging;
+using Narivia.Infrastructure.Logging.Enumerations;
 
 namespace Narivia.Settings
 {
@@ -72,6 +75,15 @@ namespace Narivia.Settings
         {
             if (!File.Exists(ApplicationPaths.SettingsFile))
             {
+                LogManager.Instance.Warn(LogBuilder.BuildKvpMessage(
+                    Operation.SettingsLoading,
+                    OperationStatus.Failure,
+                    new Dictionary<LogInfoKey, string>
+                    {
+                        { LogInfoKey.FileName, ApplicationPaths.SettingsFile },
+                        { LogInfoKey.Message, "Settings file is missing. Using default settings." }
+                    }));
+
                 SaveContent();
                 return;
             }

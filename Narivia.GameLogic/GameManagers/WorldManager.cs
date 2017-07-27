@@ -14,6 +14,8 @@ using Narivia.DataAccess.Repositories;
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Infrastructure.Extensions;
 using Narivia.Infrastructure.Helpers;
+using Narivia.Infrastructure.Logging;
+using Narivia.Infrastructure.Logging.Enumerations;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 
@@ -161,11 +163,18 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="worldId">World identifier.</param>
         public void LoadWorld(string worldId)
         {
+            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldLoading, OperationStatus.Started));
+
             LoadEntities(worldId);
             LoadMap(worldId);
             LoadBorders();
 
+            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldLoading, OperationStatus.Success));
+            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldInitialisation, OperationStatus.Started));
+
             InitializeEntities();
+
+            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldInitialisation, OperationStatus.Success));
         }
 
         /// <summary>
