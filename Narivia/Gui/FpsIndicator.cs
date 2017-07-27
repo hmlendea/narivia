@@ -3,8 +3,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.DataAccess.Resources;
 using Narivia.Helpers;
-using Narivia.Resources;
 using Narivia.Settings;
 
 namespace Narivia.Gui

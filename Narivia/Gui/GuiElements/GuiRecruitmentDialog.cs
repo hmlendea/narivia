@@ -4,8 +4,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.Graphics;
 using Narivia.Graphics.Enumerations;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Events;
 using Narivia.Models;
 

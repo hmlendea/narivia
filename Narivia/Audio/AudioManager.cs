@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 
-using Narivia.Resources;
+using Narivia.DataAccess.Resources;
 
 namespace Narivia.Audio
 {
@@ -31,7 +31,7 @@ namespace Narivia.Audio
                 return instance;
             }
         }
-        
+
         /// <summary>
         /// Plays the specified sound.
         /// </summary>

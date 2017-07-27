@@ -10,6 +10,7 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.Generators;
 using Narivia.GameLogic.Generators.Interfaces;
 using Narivia.GameLogic.Mapping;
+using Narivia.Graphics;
 using Narivia.DataAccess.Repositories;
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Infrastructure.Extensions;

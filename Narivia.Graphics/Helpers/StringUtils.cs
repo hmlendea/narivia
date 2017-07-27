@@ -3,9 +3,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Narivia.Helpers
+namespace Narivia.Graphics.Helpers
 {
-    public static class StringUtils
+    internal static class StringUtils
     {
         public static string WrapText(SpriteFont font, string text, float maxLineWidth)
         {

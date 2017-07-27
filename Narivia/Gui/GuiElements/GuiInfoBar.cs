@@ -4,8 +4,8 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 
+using Narivia.Graphics;
 using Narivia.Graphics.Enumerations;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Events;
 
 namespace Narivia.Gui.GuiElements
@@ -166,7 +166,7 @@ namespace Narivia.Gui.GuiElements
                 Size = new Vector2(128, 128),
                 Visible = false
             };
-            
+
             Children.Add(background);
 
             Children.Add(regionsIcon);

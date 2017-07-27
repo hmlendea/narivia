@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Narivia.Infrastructure.Helpers
+namespace Narivia.Graphics
 {
     /// <summary>
     /// Colour.

@@ -5,8 +5,8 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.Graphics;
 using Narivia.Graphics.Enumerations;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Models;
 
 namespace Narivia.Gui.GuiElements

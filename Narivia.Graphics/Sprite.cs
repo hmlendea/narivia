@@ -6,13 +6,10 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Screens;
+using Narivia.DataAccess.Resources;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
-using Narivia.Helpers;
-using Narivia.Infrastructure.Extensions;
-using Narivia.Infrastructure.Helpers;
-using Narivia.Resources;
+using Narivia.Graphics.Helpers;
 
 namespace Narivia.Graphics
 {
@@ -274,24 +271,22 @@ namespace Narivia.Graphics
             }
 
             renderTarget = new RenderTarget2D(
-                ResourceManager.Instance.GraphicsDevice,
+                GraphicsManager.Instance.GraphicsDevice,
                 (int)SpriteSize.X, (int)SpriteSize.Y);
 
-            ResourceManager.Instance.GraphicsDevice.SetRenderTarget(renderTarget);
-            ResourceManager.Instance.GraphicsDevice.Clear(Color.Transparent);
-
-            ScreenManager.Instance.SpriteBatch.Begin();
+            GraphicsManager.Instance.GraphicsDevice.SetRenderTarget(renderTarget);
+            GraphicsManager.Instance.GraphicsDevice.Clear(Color.Transparent);
 
             if (texture != null)
             {
-                ScreenManager.Instance.SpriteBatch.Draw(texture, Vector2.Zero, Color.White);
+                GraphicsManager.Instance.SpriteBatch.Begin();
+                GraphicsManager.Instance.SpriteBatch.Draw(texture, Vector2.Zero, Color.White);
+                GraphicsManager.Instance.SpriteBatch.End();
             }
-
-            ScreenManager.Instance.SpriteBatch.End();
 
             texture = renderTarget;
 
-            ResourceManager.Instance.GraphicsDevice.SetRenderTarget(null);
+            GraphicsManager.Instance.GraphicsDevice.SetRenderTarget(null);
 
             SetEffect(ref fadeEffect);
             SetEffect(ref rotationEffect);
@@ -341,7 +336,7 @@ namespace Narivia.Graphics
 
             if (!string.IsNullOrEmpty(Text))
             {
-                DrawString(font, StringUtils.WrapText(font, Text, SpriteSize.X), ScreenArea,
+                DrawString(spriteBatch, font, StringUtils.WrapText(font, Text, SpriteSize.X), ScreenArea,
                            TextHorizontalAlignment, TextVerticalAlignment, Tint * Opacity);
             }
 
@@ -492,7 +487,7 @@ namespace Narivia.Graphics
             return newTexture;
         }
 
-        void DrawString(SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Colour colour)
+        void DrawString(SpriteBatch spriteBatch, SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Colour colour)
         {
             Vector2 textOrigin = Vector2.Zero;
             Vector2 totalSize = font.MeasureString(text);
@@ -524,7 +519,7 @@ namespace Narivia.Graphics
                 textOrigin = new Vector2((int)Math.Round(textOrigin.X),
                                          (int)Math.Round(textOrigin.Y));
 
-                ScreenManager.Instance.SpriteBatch.DrawString(spriteFont, line, Position + textOrigin, colour.ToXnaColor());
+                spriteBatch.DrawString(spriteFont, line, Position + textOrigin, colour.ToXnaColor());
 
                 textOrigin.Y += lineSize.Y;
             }

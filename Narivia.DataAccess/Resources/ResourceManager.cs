@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;
 
-namespace Narivia.Resources
+namespace Narivia.DataAccess.Resources
 {
     /// <summary>
     /// Resource Manager that can load content either from the Content Pipeline or from disk.
@@ -19,6 +19,7 @@ namespace Narivia.Resources
         static object syncRoot = new object();
 
         ContentManager content;
+        GraphicsDevice graphicsDevice { get; set; }
 
         /// <summary>
         /// Gets the instance.
@@ -44,20 +45,14 @@ namespace Narivia.Resources
         }
 
         /// <summary>
-        /// Gets the graphics device.
-        /// </summary>
-        /// <value>The graphics device.</value>
-        public GraphicsDevice GraphicsDevice { get; private set; }
-
-        /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <value>The content.</value>
+        /// <param name="content">Content manager.</param>
+        /// <param name="graphicsDevice">Graphics device.</param>
         public void LoadContent(ContentManager content, GraphicsDevice graphicsDevice)
         {
             this.content = content;
-
-            GraphicsDevice = graphicsDevice;
+            this.graphicsDevice = graphicsDevice;
         }
 
         /// <summary>
@@ -108,7 +103,7 @@ namespace Narivia.Resources
 
                 if (File.Exists(diskFilePath))
                 {
-                    texture2D = Texture2D.FromStream(GraphicsDevice, File.OpenRead(diskFilePath));
+                    texture2D = Texture2D.FromStream(graphicsDevice, File.OpenRead(diskFilePath));
                 }
             }
 

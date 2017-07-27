@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
-namespace Narivia.Infrastructure.Helpers
+namespace Narivia.Graphics
 {
     /// <summary>
     /// Fast Bitmap.

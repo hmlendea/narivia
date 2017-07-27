@@ -2,7 +2,7 @@
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
-using Narivia.Infrastructure.Helpers;
+using Narivia.Graphics;
 using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping

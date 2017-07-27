@@ -3,8 +3,8 @@ using System;
 using Microsoft.Xna.Framework;
 
 using Narivia.Audio;
+using Narivia.Graphics;
 using Narivia.Gui.GuiElements.Enumerations;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Events;
 
 namespace Narivia.Gui.GuiElements

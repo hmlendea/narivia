@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
-using Narivia.Infrastructure.Helpers;
+using Narivia.Graphics;
 using Narivia.Models.Enumerations;
 
 namespace Narivia.Models

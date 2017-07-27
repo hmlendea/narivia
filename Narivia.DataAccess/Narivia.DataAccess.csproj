@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -35,6 +36,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,15 +80,12 @@
     <Compile Include="Exceptions\DuplicateEntityException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\InvalidTargetRegionException.cs" />
+    <Compile Include="Resources\ResourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
       <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
       <Name>Narivia.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Models\Narivia.Models.csproj">
-      <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>
-      <Name>Narivia.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
       <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
@@ -94,6 +95,7 @@
   <ItemGroup />
   <ItemGroup>
     <Folder Include="Exceptions\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 using Narivia.Audio;
+using Narivia.Graphics;
 using Narivia.Gui.GuiElements.Enumerations;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 

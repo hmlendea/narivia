@@ -2,9 +2,7 @@
 
 using Microsoft.Xna.Framework;
 
-using Narivia.Infrastructure.Helpers;
-
-namespace Narivia.Infrastructure.Extensions
+namespace Narivia.Graphics
 {
     /// <summary>
     /// Colour extensions.

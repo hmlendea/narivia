@@ -60,13 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resources\ResourceManager.cs" />
-    <Compile Include="Graphics\CustomSpriteEffects\AnimationEffect.cs" />
-    <Compile Include="Graphics\CustomSpriteEffects\RotationEffect.cs" />
-    <Compile Include="Graphics\CustomSpriteEffects\ZoomEffect.cs" />
     <Compile Include="Gui\FpsIndicator.cs" />
     <Compile Include="Helpers\FramerateCounter.cs" />
-    <Compile Include="Helpers\StringUtils.cs" />
     <Compile Include="Screens\MenuScreen.cs" />
     <Compile Include="Screens\SettingsScreen.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
@@ -80,16 +75,11 @@
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
-    <Compile Include="Graphics\Sprite.cs" />
-    <Compile Include="Graphics\CustomSpriteEffects\CustomSpriteEffect.cs" />
-    <Compile Include="Graphics\CustomSpriteEffects\FadeEffect.cs" />
     <Compile Include="Helpers\XmlManager.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Audio\AudioManager.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Graphics\Enumerations\HorizontalAlignment.cs" />
-    <Compile Include="Graphics\Enumerations\VerticalAlignment.cs" />
     <Compile Include="Gui\Camera.cs" />
     <Compile Include="Gui\Cursor.cs" />
     <Compile Include="Gui\GuiElements\GuiButton.cs" />
@@ -102,7 +92,6 @@
     <Compile Include="Gui\GuiElements\GuiWorldmap.cs" />
     <Compile Include="Gui\GuiElements\GuiInfoBar.cs" />
     <Compile Include="Gui\GuiElements\GuiSideBar.cs" />
-    <Compile Include="Graphics\Enumerations\TextureFillMode.cs" />
     <Compile Include="Gui\GuiElements\GuiRegionBar.cs" />
     <Compile Include="Gui\GuiElements\GuiNotificationIndicator.cs" />
     <Compile Include="Gui\GuiElements\GuiNotificationBar.cs" />
@@ -164,6 +153,10 @@
     <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
       <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
       <Name>Narivia.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Narivia.Graphics\Narivia.Graphics.csproj">
+      <Project>{F291EC71-B1CC-4B6E-8095-CFE380081951}</Project>
+      <Name>Narivia.Graphics</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

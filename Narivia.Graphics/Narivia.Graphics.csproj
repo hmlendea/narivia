@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F291EC71-B1CC-4B6E-8095-CFE380081951}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Narivia.Graphics</RootNamespace>
+    <AssemblyName>Narivia.Graphics</AssemblyName>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Colour.cs" />
+    <Compile Include="ColourTranslator.cs" />
+    <Compile Include="FastBitmap.cs" />
+    <Compile Include="ColourExtensions.cs" />
+    <Compile Include="CustomSpriteEffects\AnimationEffect.cs" />
+    <Compile Include="CustomSpriteEffects\CustomSpriteEffect.cs" />
+    <Compile Include="CustomSpriteEffects\FadeEffect.cs" />
+    <Compile Include="CustomSpriteEffects\RotationEffect.cs" />
+    <Compile Include="CustomSpriteEffects\ZoomEffect.cs" />
+    <Compile Include="Enumerations\HorizontalAlignment.cs" />
+    <Compile Include="Enumerations\TextureFillMode.cs" />
+    <Compile Include="Enumerations\VerticalAlignment.cs" />
+    <Compile Include="Sprite.cs" />
+    <Compile Include="Helpers\StringUtils.cs" />
+    <Compile Include="GraphicsManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomSpriteEffects\" />
+    <Folder Include="Enumerations\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
+      <Project>{1933F8D8-3C88-4329-A209-949F921598CE}</Project>
+      <Name>Narivia.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
-using Narivia.Infrastructure.Helpers;
+using Narivia.Graphics;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 

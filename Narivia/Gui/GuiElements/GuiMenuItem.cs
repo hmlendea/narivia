@@ -5,8 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Audio;
+using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
-using Narivia.Infrastructure.Helpers;
 using Narivia.Input;
 using Narivia.Input.Events;
 
@@ -75,7 +75,7 @@ namespace Narivia.Gui.GuiElements
                 Speed = 2,
                 MinimumOpacity = 0.25f
             };
-            
+
             Children.Add(text);
 
             base.LoadContent();
@@ -102,7 +102,7 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-            
+
             text.Text = Text;
             text.Position = Position;
             text.Size = Size;

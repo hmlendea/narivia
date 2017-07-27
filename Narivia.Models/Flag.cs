@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using Narivia.Infrastructure.Helpers;
+using Narivia.Graphics;
 
 namespace Narivia.Models
 {

@@ -60,9 +60,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
-      <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
-      <Name>Narivia.Infrastructure</Name>
+    <ProjectReference Include="..\Narivia.Graphics\Narivia.Graphics.csproj">
+      <Project>{F291EC71-B1CC-4B6E-8095-CFE380081951}</Project>
+      <Name>Narivia.Graphics</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
