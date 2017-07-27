@@ -37,13 +37,13 @@ namespace Narivia.Gui
         {
             idleSprite = new Sprite
             {
-                Effects = "AnimationEffect",
+                Effects = nameof(AnimationEffect),
                 ContentFile = "Cursors/idle",
                 Active = true
             };
             clickSprite = new Sprite
             {
-                Effects = "AnimationEffect",
+                Effects = nameof(AnimationEffect),
                 ContentFile = "Cursors/click",
                 Active = true
             };

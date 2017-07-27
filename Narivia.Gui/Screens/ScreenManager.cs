@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Settings;
 
@@ -38,7 +39,7 @@ namespace Narivia.Gui.Screens
                         if (instance == null)
                         {
                             XmlManager<ScreenManager> xmlManager = new XmlManager<ScreenManager>();
-                            instance = xmlManager.Load("Screens/ScreenManager.xml");
+                            instance = xmlManager.Load(Path.Combine("Screens", $"{nameof(ScreenManager)}.xml"));
                         }
                     }
                 }
@@ -85,7 +86,7 @@ namespace Narivia.Gui.Screens
             xmlScreenManager = new XmlManager<Screen>();
             xmlScreenManager.Type = currentScreen.Type;
 
-            currentScreen = xmlScreenManager.Load("Screens/SplashScreen.xml");
+            currentScreen = xmlScreenManager.Load(Path.Combine("Screens", $"{nameof(SplashScreen)}.xml"));
         }
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace Narivia.Gui.Screens
         /// <param name="screenArgs">Screen arguments.</param>
         public void ChangeScreens(string screenName, string[] screenArgs)
         {
-            newScreen = (Screen)Activator.CreateInstance(Type.GetType("Narivia.Gui.Screens." + screenName));
+            newScreen = (Screen)Activator.CreateInstance(Type.GetType($"{typeof(Screen).Namespace}.{screenName}"));
 
             xmlScreenManager.Type = newScreen.Type;
 
@@ -165,7 +166,7 @@ namespace Narivia.Gui.Screens
 
             newScreen.ScreenArgs = screenArgs;
 
-            TransitionImage.ActivateEffect("FadeEffect");
+            TransitionImage.ActivateEffect(nameof(FadeEffect));
             TransitionImage.Active = true;
             TransitionImage.FadeEffect.Increasing = true;
             TransitionImage.Opacity = 0.0f;

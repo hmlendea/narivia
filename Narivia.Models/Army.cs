@@ -14,7 +14,7 @@ namespace Narivia.Models
         [Key]
         public string Id
         {
-            get { return FactionId + ":" + UnitId; }
+            get { return $"{FactionId}:{UnitId}"; }
         }
 
         /// <summary>
