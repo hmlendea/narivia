@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Audio;
+using Narivia.Infrastructure.Helpers;
+using Narivia.Infrastructure.Logging;
+using Narivia.Infrastructure.Logging.Enumerations;
 using Narivia.Input;
 using Narivia.Gui;
 using Narivia.Screens;
@@ -60,6 +63,10 @@ namespace Narivia
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            LogManager.Instance.LoadContent();
+            
+            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStart, OperationStatus.Started));
+
             SettingsManager.Instance.LoadContent();
 
             ScreenManager.Instance.GraphicsDevice = GraphicsDevice;
@@ -70,6 +77,8 @@ namespace Narivia
 
             fpsIndicator.LoadContent(Content);
             cursor.LoadContent();
+
+            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStart, OperationStatus.Success));
         }
 
         /// <summary>
@@ -77,10 +86,15 @@ namespace Narivia
         /// </summary>
         protected override void UnloadContent()
         {
+            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStop, OperationStatus.Started));
+
             ScreenManager.Instance.UnloadContent();
 
             fpsIndicator.UnloadContent();
             cursor.UnloadContent();
+
+            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStop, OperationStatus.Success));
+            LogManager.Instance.UnloadContent();
         }
 
         /// <summary>
@@ -90,6 +104,7 @@ namespace Narivia
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            LogManager.Instance.Update(gameTime);
             SettingsManager.Instance.Update(ref graphics);
             ScreenManager.Instance.Update(gameTime);
 

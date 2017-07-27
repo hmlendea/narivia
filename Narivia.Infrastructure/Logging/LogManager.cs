@@ -1,0 +1,200 @@
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+
+using Microsoft.Xna.Framework;
+
+using Narivia.Infrastructure.Helpers;
+
+namespace Narivia.Infrastructure.Logging
+{
+    /// <summary>
+    /// Log Manager.
+    /// </summary>
+    public class LogManager
+    {
+        static volatile LogManager instance;
+        static object syncRoot = new object();
+
+        StreamWriter writer;
+        GameTime gameTime;
+
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>The instance.</value>
+        public static LogManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new LogManager();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the verbosity level.
+        /// </summary>
+        /// <value>The verbosity level.</value>
+        public int VerbosityLevel { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether logging is enabled.
+        /// </summary>
+        /// <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        public bool Enabled { get; set; }
+
+        /// <summary>
+        /// Gets or sets the format of the timestamp.
+        /// </summary>
+        /// <value>The format of the timestamp.</value>
+        public string TimestampFormat { get; set; }
+
+        /// <summary>
+        /// Gets the name of the log file.
+        /// </summary>
+        /// <value>The log file name.</value>
+        public string LogName => $"Log.{DateTime.Now.ToString("yyy-MM-dd")}.log";
+
+        /// <summary>
+        /// Gets the path to the log file.
+        /// </summary>
+        /// <value>The log file path.</value>
+        public string LogPath => Path.Combine(ApplicationPaths.LogsDirectory, LogName);
+
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        public void LoadContent()
+        {
+            // TODO: What if the game keeps running into the next day?
+            writer = new StreamWriter(LogPath, true);
+            writer.AutoFlush = true;
+
+            VerbosityLevel = 1;
+            TimestampFormat = "yyyy/MM/dd HH:mm:ss.ffffzzz";
+
+            gameTime = new GameTime();
+        }
+
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        public void UnloadContent()
+        {
+            writer.Close();
+            writer.Dispose();
+        }
+
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        public void Update(GameTime gameTime)
+        {
+            this.gameTime = gameTime;
+        }
+
+        /// <summary>
+        /// Writes the error.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        public void Error(string message)
+        {
+            WriteLine($"ERROR|{message}");
+        }
+
+        /// <summary>
+        /// Writes the error depending on the verbosity level.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        /// <param name="verbosityLevel">Verbosity level.</param>
+        public void Error(string message, int verbosityLevel)
+        {
+            if (verbosityLevel <= VerbosityLevel)
+            {
+                Error(message);
+            }
+        }
+
+        /// <summary>
+        /// Writes the warning.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        public void Info(string message)
+        {
+            WriteLine($"INFO|{message}");
+        }
+
+        /// <summary>
+        /// Writes the information depending on the verbosity level.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        /// <param name="verbosityLevel">Verbosity level.</param>
+        public void Info(string message, int verbosityLevel)
+        {
+            if (verbosityLevel <= VerbosityLevel)
+            {
+                Warn(message);
+            }
+        }
+
+        /// <summary>
+        /// Writes the information.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        public void Warn(string message)
+        {
+            WriteLine($"Info|{message}");
+        }
+
+        /// <summary>
+        /// Writes the warning depending on the verbosity level.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        /// <param name="verbosityLevel">Verbosity level.</param>
+        public void Warn(string message, int verbosityLevel)
+        {
+            if (verbosityLevel <= VerbosityLevel)
+            {
+                Warn(message);
+            }
+        }
+
+        /// <summary>
+        /// Writes the line.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        void WriteLine(string message)
+        {
+            string logEntry = $"{DateTime.Now.ToString(TimestampFormat)}|{gameTime.ElapsedGameTime}|{message}|";
+
+            writer.WriteLine(logEntry);
+
+            Debug.WriteLine(logEntry);
+        }
+
+        /// <summary>
+        /// Writes the line depending on the verbosity level.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        /// <param name="verbosityLevel">Verbosity level.</param>
+        void WriteLine(string message, int verbosityLevel)
+        {
+            if (verbosityLevel <= VerbosityLevel)
+            {
+                WriteLine(message);
+            }
+        }
+    }
+}

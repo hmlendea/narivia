@@ -30,6 +30,12 @@ namespace Narivia.Infrastructure.Helpers
         public static string CommonAssetsDirectory => Path.Combine(rootDirectory, "CommonAssets");
 
         /// <summary>
+        /// Gets the logs directory path.
+        /// </summary>
+        /// <value>The path to the logs directory.</value>
+        public static string LogsDirectory => Path.Combine(UserDataDirectory, "Logs");
+
+        /// <summary>
         /// Gets the word lists directory.
         /// </summary>
         /// <value>The word lists directory.</value>
