@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using TiledSharp;
 
 using Narivia.Graphics;
+using Narivia.Logging;
+using Narivia.Logging.Enumerations;
 using Narivia.Settings;
 
 namespace Narivia.Gui.WorldMap
@@ -52,19 +54,33 @@ namespace Narivia.Gui.WorldMap
             // TODO: Consider parallelisation
             foreach (TmxLayer tmxLayer in tmxMap.Layers)
             {
-                // Check if the tileset layer property exists
                 if (!tmxLayer.Properties.ContainsKey("tileset"))
                 {
-                    // TODO: Log warning
+                    LogManager.Instance.Warn(LogBuilder.BuildKvpMessage(
+                        Operation.WorldLoadingMap,
+                        OperationStatus.Failure,
+                        new Dictionary<LogInfoKey, string>
+                        {
+                            { LogInfoKey.LayerName, tmxLayer.Name},
+                            { LogInfoKey.Message, "The layer does not contain a 'tileset' property" }
+                        }));
+
                     continue;
                 }
 
                 string tilesetName = tmxLayer.Properties["tileset"];
 
-                // Check if the tileset with the specified name exists among the map tilesets
                 if (tmxMap.Tilesets.All(x => x.Name != tilesetName))
                 {
-                    // TODO: Log warning
+                    LogManager.Instance.Warn(LogBuilder.BuildKvpMessage(
+                        Operation.WorldLoadingMap,
+                        OperationStatus.Failure,
+                        new Dictionary<LogInfoKey, string>
+                        {
+                            { LogInfoKey.TilesetName, tmxLayer.Name},
+                            { LogInfoKey.Message, "The specified tileset does not exist" }
+                        }));
+
                     continue;
                 }
 

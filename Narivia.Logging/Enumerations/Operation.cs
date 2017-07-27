@@ -26,6 +26,12 @@ namespace Narivia.Logging.Enumerations
         WorldInitialisation,
 
         [Display(Name = "WORLD_LOADING")]
-        WorldLoading
+        WorldLoading,
+
+        [Display(Name = "WORLD_LOADING_MAP")]
+        WorldLoadingMap,
+
+        [Display(Name = "WORLD_LOADING_ENTITIES")]
+        WorldLoadingEntities
     }
 }

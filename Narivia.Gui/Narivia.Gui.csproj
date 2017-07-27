@@ -119,6 +119,10 @@
       <Project>{1933F8D8-3C88-4329-A209-949F921598CE}</Project>
       <Name>Narivia.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
+      <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
+      <Name>Narivia.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -3,6 +3,8 @@
     public enum LogInfoKey
     {
         FileName,
-        Message
+        LayerName,
+        Message,
+        TilesetName
     }
 }
