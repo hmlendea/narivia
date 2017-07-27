@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics.Enumerations;
+using Narivia.Infrastructure.Extensions;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Input.Events;
 using Narivia.Models;
@@ -222,7 +223,7 @@ namespace Narivia.Gui.GuiElements
                                                 holdingBackground.Position.Y + (holdingBackground.Scale.Y - holdingImage.SourceRectangle.Height) / 2);
 
             holdingText.Position = holdingBackground.Position;
-            holdingText.Text = holdingTypes[currentHoldingTypeIndex].ToString();
+            holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
             holdingText.TextColour = TextColour;
 
             regionText.Position = new Vector2(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom - regionText.ScreenArea.Height);
