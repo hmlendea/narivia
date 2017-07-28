@@ -117,12 +117,32 @@ namespace Narivia.Logging
         }
 
         /// <summary>
+        /// Writes the error.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        /// <param name="ex">Exception.</param>
+        public void Error(string message, Exception ex)
+        {
+            WriteLine($"ERROR|{message}", ex);
+        }
+
+        /// <summary>
         /// Writes the warning.
         /// </summary>
         /// <param name="message">Text.</param>
         public void Info(string message)
         {
             WriteLine($"INFO|{message}");
+        }
+
+        /// <summary>
+        /// Writes the warning.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        /// <param name="ex">Exception.</param>
+        public void Info(string message, Exception ex)
+        {
+            WriteLine($"INFO|{message}", ex);
         }
 
         /// <summary>
@@ -135,12 +155,37 @@ namespace Narivia.Logging
         }
 
         /// <summary>
+        /// Writes the information.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        /// <param name="ex">Exception.</param>
+        public void Warn(string message, Exception ex)
+        {
+            WriteLine($"Info|{message}", ex);
+        }
+
+        /// <summary>
         /// Writes the line.
         /// </summary>
         /// <param name="message">Text.</param>
         void WriteLine(string message)
         {
             string logEntry = $"{DateTime.Now.ToString(TimestampFormat)}|{elapsedGameTime.TotalMilliseconds}|{message}|";
+
+            writer.WriteLine(logEntry);
+
+            Debug.WriteLine(logEntry);
+        }
+
+        /// <summary>
+        /// Writes the line.
+        /// </summary>
+        /// <param name="message">Text.</param>
+        /// <param name="ex">Exception.</param>
+        void WriteLine(string message, Exception ex)
+        {
+            string processedStackTrace = ex.StackTrace.Replace(Environment.NewLine, "$");
+            string logEntry = $"{DateTime.Now.ToString(TimestampFormat)}|{elapsedGameTime.TotalMilliseconds}|{message}|{processedStackTrace}";
 
             writer.WriteLine(logEntry);
 

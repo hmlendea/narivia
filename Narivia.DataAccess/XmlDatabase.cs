@@ -45,7 +45,6 @@ namespace Narivia.DataAccess
                     entities = (List<T>)xs.Deserialize(sr);
                 }
             }
-            // TODO: Log the stack trace
             catch (Exception ex)
             {
                 LogManager.Instance.Error(LogBuilder.BuildKvpMessage(
@@ -55,7 +54,7 @@ namespace Narivia.DataAccess
                     {
                         { LogInfoKey.FileName, FileName },
                         { LogInfoKey.Message, "The repository cannot be accessed" }
-                    }));
+                    }), ex);
             }
 
             return entities;
@@ -77,7 +76,6 @@ namespace Narivia.DataAccess
                     xs.Serialize(sw, entities);
                 }
             }
-            // TODO: Log the stack trace
             catch (Exception ex)
             {
                 LogManager.Instance.Error(LogBuilder.BuildKvpMessage(
@@ -87,7 +85,7 @@ namespace Narivia.DataAccess
                     {
                         { LogInfoKey.FileName, FileName },
                         { LogInfoKey.Message, "The repository cannot be accessed" }
-                    }));
+                    }), ex););
             }
         }
     }
