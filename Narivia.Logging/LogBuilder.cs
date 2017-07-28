@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using Narivia.Infrastructure.Extensions;
+using Narivia.Common.Extensions;
 using Narivia.Logging.Enumerations;
 
 namespace Narivia.Logging

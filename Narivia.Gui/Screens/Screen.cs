@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Graphics;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
-using Narivia.Infrastructure.Extensions;
+using Narivia.Common.Extensions;
 
 namespace Narivia.Gui.Screens
 {

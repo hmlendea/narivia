@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
-using Narivia.Infrastructure.Helpers;
+using Narivia.Common.Helpers;
 using Narivia.Settings;
 
 namespace Narivia.Gui.Screens

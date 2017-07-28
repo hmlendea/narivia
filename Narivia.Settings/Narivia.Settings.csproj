@@ -48,9 +48,9 @@
       <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
       <Name>Narivia.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
+    <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj">
       <Project>{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}</Project>
-      <Name>Narivia.Infrastructure</Name>
+      <Name>Narivia.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

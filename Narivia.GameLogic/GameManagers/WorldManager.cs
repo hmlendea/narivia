@@ -13,7 +13,7 @@ using Narivia.GameLogic.Mapping;
 using Narivia.Graphics;
 using Narivia.DataAccess.Repositories;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Infrastructure.Extensions;
+using Narivia.Common.Extensions;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;
 using Narivia.Models;

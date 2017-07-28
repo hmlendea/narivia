@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics.Enumerations;
-using Narivia.Infrastructure.Extensions;
+using Narivia.Common.Extensions;
 using Narivia.Input.Events;
 using Narivia.Models;
 using Narivia.Models.Enumerations;

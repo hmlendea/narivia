@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Narivia.DataAccess.Exceptions;
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.Infrastructure.Extensions;
+using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 

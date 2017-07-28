@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia", "Narivia\Narivia.csproj", "{3EE2C5D1-CBB1-445B-98BE-C9254C155F2A}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.DataAccess", "Nariv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Models", "Narivia.Models\Narivia.Models.csproj", "{78502827-88B2-4989-85CF-7ED78AC7CF10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Infrastructure", "Narivia.Infrastructure\Narivia.Infrastructure.csproj", "{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.Common", "Narivia.Common\Narivia.Common.csproj", "{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Narivia.GameLogic", "Narivia.GameLogic\Narivia.GameLogic.csproj", "{3D8AC77C-03A5-470B-B5C3-26E7AFA1C618}"
 EndProject

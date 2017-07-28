@@ -98,9 +98,9 @@
       <Project>{f291ec71-b1cc-4b6e-8095-cfe380081951}</Project>
       <Name>Narivia.Graphics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
+    <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj">
       <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
-      <Name>Narivia.Infrastructure</Name>
+      <Name>Narivia.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Narivia.Input\Narivia.Input.csproj">
       <Project>{9aa1d3bd-bb14-4f0e-855c-5d24ecd0bc4f}</Project>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 using Narivia.Graphics;
-using Narivia.Infrastructure.Helpers;
+using Narivia.Common.Helpers;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;
 
