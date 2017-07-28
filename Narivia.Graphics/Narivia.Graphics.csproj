@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
@@ -37,11 +37,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ColorExtensions.cs" />
+    <Compile Include="Extensions\ColorMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Colour.cs" />
-    <Compile Include="ColourTranslator.cs" />
     <Compile Include="FastBitmap.cs" />
-    <Compile Include="ColourExtensions.cs" />
     <Compile Include="CustomSpriteEffects\AnimationEffect.cs" />
     <Compile Include="CustomSpriteEffects\CustomSpriteEffect.cs" />
     <Compile Include="CustomSpriteEffects\FadeEffect.cs" />
@@ -54,11 +53,7 @@
     <Compile Include="Helpers\StringUtils.cs" />
     <Compile Include="GraphicsManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CustomSpriteEffects\" />
-    <Folder Include="Enumerations\" />
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
       <Project>{1933F8D8-3C88-4329-A209-949F921598CE}</Project>

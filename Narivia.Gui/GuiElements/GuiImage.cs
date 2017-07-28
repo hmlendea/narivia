@@ -28,13 +28,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the tint colour.
         /// </summary>
         /// <value>The tint colour.</value>
-        public Colour TintColour { get; set; }
+        public Color TintColour { get; set; }
 
-        public Colour GreenReplacement { get; set; }
+        public Color GreenReplacement { get; set; }
 
-        public Colour RedReplacement { get; set; }
+        public Color RedReplacement { get; set; }
 
-        public Colour BlueReplacement { get; set; }
+        public Color BlueReplacement { get; set; }
 
         /// <summary>
         /// Gets or sets the source rectangle.
@@ -73,7 +73,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiImage()
         {
-            TintColour = Colour.White;
+            TintColour = Color.White;
             Scale = Vector2.One;
         }
 

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
-using Narivia.Graphics;
-using Narivia.Models;
 using Narivia.Models.Enumerations;
+
+using Region= Narivia.Models.Region;
 
 namespace Narivia.GameLogic.Mapping
 {
@@ -26,7 +27,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = regionEntity.Id,
                 Name = regionEntity.Name,
                 Description = regionEntity.Description,
-                Colour = Colour.FromHexadecimal(regionEntity.ColourHexadecimal),
+                Colour = ColorTranslator.FromHtml(regionEntity.ColourHexadecimal),
                 Type = (RegionType)Enum.Parse(typeof(RegionType), regionEntity.Type),
                 ResourceId = regionEntity.ResourceId,
                 FactionId = regionEntity.FactionId,
@@ -48,7 +49,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = region.Id,
                 Name = region.Name,
                 Description = region.Description,
-                ColourHexadecimal = region.Colour.ToHexadecimal(),
+                ColourHexadecimal = ColorTranslator.ToHtml(region.Colour),
                 Type = region.Type.ToString(),
                 ResourceId = region.ResourceId,
                 FactionId = region.FactionId,

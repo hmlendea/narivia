@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Xml.Serialization;
 
-using Narivia.Graphics;
 using Narivia.Models.Enumerations;
 
 namespace Narivia.Models
@@ -38,7 +38,7 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The colour.</value>
         [XmlIgnore]
-        public Colour Colour { get; set; }
+        public Color Colour { get; set; }
 
         /// <summary>
         /// Gets or sets the type.

@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Audio;
-using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Input;
 using Narivia.Input.Events;
@@ -27,13 +26,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Colour TextColour { get; set; }
+        public Color TextColour { get; set; }
 
         /// <summary>
         /// Gets or sets the selected text colour.
         /// </summary>
         /// <value>The selected text colour.</value>
-        public Colour SelectedTextColour { get; set; }
+        public Color SelectedTextColour { get; set; }
 
         // TODO: Maybe implement my own handler and args
         /// <summary>
@@ -54,12 +53,12 @@ namespace Narivia.Gui.GuiElements
         public bool Selected { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.GUI elements.MenuItem"/> class.
+        /// Initializes a new instance of the <see cref="GuiMenuItem"/> class.
         /// </summary>
         public GuiMenuItem()
         {
-            TextColour = Colour.White;
-            SelectedTextColour = Colour.ChromeYellow;
+            TextColour = Color.White;
+            SelectedTextColour = Color.Gold;
 
             Size = new Vector2(512, 48);
         }

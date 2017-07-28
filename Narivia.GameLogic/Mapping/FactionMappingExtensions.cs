@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
-using Narivia.Graphics;
 using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
@@ -24,7 +24,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = factionEntity.Id,
                 Name = factionEntity.Name,
                 Description = factionEntity.Description,
-                Colour = Colour.FromHexadecimal(factionEntity.ColourHexadecimal),
+                Colour = ColorTranslator.FromHtml(factionEntity.ColourHexadecimal),
                 FlagId = factionEntity.FlagId,
                 CultureId = factionEntity.CultureId
             };
@@ -44,7 +44,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = faction.Id,
                 Name = faction.Name,
                 Description = faction.Description,
-                ColourHexadecimal = faction.Colour.ToHexadecimal(),
+                ColourHexadecimal = ColorTranslator.ToHtml(faction.Colour),
                 FlagId = faction.FlagId,
                 CultureId = faction.CultureId
             };

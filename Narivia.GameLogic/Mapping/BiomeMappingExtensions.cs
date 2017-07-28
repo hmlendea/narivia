@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
-using Narivia.Graphics;
 using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
@@ -24,7 +24,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = biomeEntity.Id,
                 Name = biomeEntity.Name,
                 Description = biomeEntity.Description,
-                Colour = Colour.FromHexadecimal(biomeEntity.ColourHexadecimal)
+                Colour = ColorTranslator.FromHtml(biomeEntity.ColourHexadecimal)
             };
 
             return biome;
@@ -42,7 +42,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = biome.Id,
                 Name = biome.Name,
                 Description = biome.Description,
-                ColourHexadecimal = biome.Colour.ToHexadecimal()
+                ColourHexadecimal = ColorTranslator.ToHtml(biome.Colour)
             };
 
             return biomeEntity;

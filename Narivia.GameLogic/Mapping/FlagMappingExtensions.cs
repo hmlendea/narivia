@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
-using Narivia.Graphics;
 using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
@@ -25,9 +25,9 @@ namespace Narivia.GameLogic.Mapping
                 Background = flagEntity.Background,
                 Emblem = flagEntity.Emblem,
                 Skin = flagEntity.Skin,
-                BackgroundPrimaryColour = Colour.FromHexadecimal(flagEntity.BackgroundPrimaryColourHexadecimal),
-                BackgroundSecondaryColour = Colour.FromHexadecimal(flagEntity.BackgroundSecondaryColourHexadecimal),
-                EmblemColour = Colour.FromHexadecimal(flagEntity.EmblemColourHexadecimal)
+                BackgroundPrimaryColour = ColorTranslator.FromHtml(flagEntity.BackgroundPrimaryColourHexadecimal),
+                BackgroundSecondaryColour = ColorTranslator.FromHtml(flagEntity.BackgroundSecondaryColourHexadecimal),
+                EmblemColour = ColorTranslator.FromHtml(flagEntity.EmblemColourHexadecimal)
             };
 
             return flag;
@@ -46,9 +46,9 @@ namespace Narivia.GameLogic.Mapping
                 Background = flag.Background,
                 Emblem = flag.Emblem,
                 Skin = flag.Skin,
-                BackgroundPrimaryColourHexadecimal = flag.BackgroundPrimaryColour.ToHexadecimal(),
-                BackgroundSecondaryColourHexadecimal = flag.BackgroundSecondaryColour.ToHexadecimal(),
-                EmblemColourHexadecimal = flag.EmblemColour.ToHexadecimal()
+                BackgroundPrimaryColourHexadecimal = ColorTranslator.ToHtml(flag.BackgroundPrimaryColour),
+                BackgroundSecondaryColourHexadecimal = ColorTranslator.ToHtml(flag.BackgroundSecondaryColour),
+                EmblemColourHexadecimal = ColorTranslator.ToHtml(flag.EmblemColour)
             };
 
             return flagEntity;

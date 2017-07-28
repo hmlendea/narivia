@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
@@ -32,6 +32,7 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="TiledSharp">
       <HintPath>..\packages\TiledSharp.0.15\lib\TiledSharp.dll</HintPath>
@@ -80,12 +81,7 @@
     <Compile Include="WorldMap\Map.cs" />
     <Compile Include="WorldMap\Tile.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GuiElements\" />
-    <Folder Include="Screens\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="WorldMap\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Input\Narivia.Input.csproj">
       <Project>{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}</Project>

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
-using Narivia.Graphics;
+using System.Drawing;
 
 namespace Narivia.Models
 {
@@ -42,18 +41,18 @@ namespace Narivia.Models
         /// Gets or sets the background primary colour.
         /// </summary>
         /// <value>The background primary colour.</value>
-        public Colour BackgroundPrimaryColour { get; set; }
+        public Color BackgroundPrimaryColour { get; set; }
 
         /// <summary>
         /// Gets or sets the background secondary colour.
         /// </summary>
         /// <value>The background secondary colour.</value>
-        public Colour BackgroundSecondaryColour { get; set; }
+        public Color BackgroundSecondaryColour { get; set; }
 
         /// <summary>
         /// Gets or sets the emblem colour.
         /// </summary>
         /// <value>The emblem colour.</value>
-        public Colour EmblemColour { get; set; }
+        public Color EmblemColour { get; set; }
     }
 }

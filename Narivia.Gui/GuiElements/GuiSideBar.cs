@@ -3,8 +3,8 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.Graphics;
 using Narivia.Graphics.Enumerations;
+using Narivia.Graphics.Extensions;
 using Narivia.Models;
 
 namespace Narivia.Gui.GuiElements
@@ -31,7 +31,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Colour TextColour { get; set; }
+        public Color TextColour { get; set; }
 
         /// <summary>
         /// Gets the stats button.
@@ -174,9 +174,9 @@ namespace Narivia.Gui.GuiElements
             factionImage.Background = factionFlag.Background;
             factionImage.Emblem = factionFlag.Emblem;
             factionImage.Skin = factionFlag.Skin;
-            factionImage.BackgroundPrimaryColour = factionFlag.BackgroundPrimaryColour;
-            factionImage.BackgroundSecondaryColour = factionFlag.BackgroundSecondaryColour;
-            factionImage.EmblemColour = factionFlag.EmblemColour;
+            factionImage.BackgroundPrimaryColour = factionFlag.BackgroundPrimaryColour.ToXnaColor();
+            factionImage.BackgroundSecondaryColour = factionFlag.BackgroundSecondaryColour.ToXnaColor();
+            factionImage.EmblemColour = factionFlag.EmblemColour.ToXnaColor();
 
             turnText.Text = $"Turn: {game.Turn}";
             turnText.TextColour = TextColour;

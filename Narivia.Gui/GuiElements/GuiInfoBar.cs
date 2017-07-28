@@ -4,7 +4,6 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 
-using Narivia.Graphics;
 using Narivia.Graphics.Enumerations;
 using Narivia.Input.Events;
 
@@ -64,13 +63,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the background colour.
         /// </summary>
         /// <value>The background colour.</value>
-        public Colour BackgroundColour { get; set; }
+        public Color BackgroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Colour TextColour { get; set; }
+        public Color TextColour { get; set; }
 
         /// <summary>
         /// Gets or sets the spacing.
@@ -83,8 +82,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiInfoBar()
         {
-            BackgroundColour = Colour.Black;
-            TextColour = Colour.ChromeYellow;
+            BackgroundColour = Color.Black;
+            TextColour = Color.Gold;
 
             Spacing = 6.0f;
         }

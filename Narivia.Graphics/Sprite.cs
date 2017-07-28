@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.DataAccess.Resources;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
+using Narivia.Graphics.Extensions;
 using Narivia.Graphics.Helpers;
 
 namespace Narivia.Graphics
@@ -45,13 +46,13 @@ namespace Narivia.Graphics
         /// Gets or sets the tint.
         /// </summary>
         /// <value>The tint.</value>
-        public Colour Tint { get; set; }
+        public Color Tint { get; set; }
 
-        public Colour GreenReplacement { get; set; }
+        public Color GreenReplacement { get; set; }
 
-        public Colour RedReplacement { get; set; }
+        public Color RedReplacement { get; set; }
 
-        public Colour BlueReplacement { get; set; }
+        public Color BlueReplacement { get; set; }
 
         /// <summary>
         /// Gets or sets the opacity.
@@ -229,7 +230,7 @@ namespace Narivia.Graphics
             Scale = Vector2.One;
             TextureFillMode = TextureFillMode.Stretch;
 
-            Tint = Colour.White;
+            Tint = Color.White;
         }
 
         /// <summary>
@@ -349,25 +350,25 @@ namespace Narivia.Graphics
                 textureToDraw = TextureBlend(texture, alphaMask);
             }
 
-            if (RedReplacement != null)
+            if (RedReplacement.A == 255)
             {
-                textureToDraw = ReplaceColour(textureToDraw, Colour.Red, RedReplacement, 15);
+                textureToDraw = ReplaceColour(textureToDraw, Color.Red, RedReplacement, 15);
             }
 
-            if (GreenReplacement != null)
+            if (GreenReplacement.A == 255)
             {
-                textureToDraw = ReplaceColour(textureToDraw, Colour.Green, GreenReplacement, 15);
+                textureToDraw = ReplaceColour(textureToDraw, Color.Green, GreenReplacement, 15);
             }
 
-            if (BlueReplacement != null)
+            if (BlueReplacement.A == 255)
             {
-                textureToDraw = ReplaceColour(textureToDraw, Colour.Blue, BlueReplacement, 15);
+                textureToDraw = ReplaceColour(textureToDraw, Color.Blue, BlueReplacement, 15);
             }
 
             if (TextureFillMode == TextureFillMode.Stretch)
             {
                 spriteBatch.Draw(textureToDraw, Position + origin, SourceRectangle,
-                    Tint.ToXnaColor() * Opacity, Rotation,
+                    Tint * Opacity, Rotation,
                     origin, Scale * Zoom,
                     SpriteEffects.None, 0.0f);
             }
@@ -384,7 +385,7 @@ namespace Narivia.Graphics
                                                   Position.Y + origin.Y + y * SourceRectangle.Height);
 
                         spriteBatch.Draw(textureToDraw, pos, SourceRectangle,
-                            Tint.ToXnaColor() * Opacity, Rotation,
+                            Tint * Opacity, Rotation,
                             origin, 1.0f,
                             SpriteEffects.None, 0.0f);
                     }
@@ -467,7 +468,7 @@ namespace Narivia.Graphics
             split.ForEach(ActivateEffect);
         }
 
-        public Texture2D ReplaceColour(Texture2D source, Colour original, Colour replacement, int tolerance)
+        public Texture2D ReplaceColour(Texture2D source, Color original, Color replacement, int tolerance)
         {
             Texture2D newTexture = new Texture2D(source.GraphicsDevice, source.Width, source.Height);
             Color[] data = new Color[source.Width * source.Height];
@@ -476,9 +477,9 @@ namespace Narivia.Graphics
 
             for (int i = 0; i < data.Length; i++)
             {
-                if (data[i].ToNariviaColour().IsSimilarTo(original, tolerance))
+                if (data[i].IsSimilarTo(original, tolerance))
                 {
-                    data[i] = replacement.ToXnaColor();
+                    data[i] = replacement;
                 }
             }
 
@@ -487,7 +488,7 @@ namespace Narivia.Graphics
             return newTexture;
         }
 
-        void DrawString(SpriteBatch spriteBatch, SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Colour colour)
+        void DrawString(SpriteBatch spriteBatch, SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color colour)
         {
             Vector2 textOrigin = Vector2.Zero;
             Vector2 totalSize = font.MeasureString(text);
@@ -519,7 +520,7 @@ namespace Narivia.Graphics
                 textOrigin = new Vector2((int)Math.Round(textOrigin.X),
                                          (int)Math.Round(textOrigin.Y));
 
-                spriteBatch.DrawString(spriteFont, line, Position + textOrigin, colour.ToXnaColor());
+                spriteBatch.DrawString(spriteFont, line, Position + textOrigin, colour);
 
                 textOrigin.Y += lineSize.Y;
             }

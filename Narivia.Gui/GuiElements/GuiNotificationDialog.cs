@@ -3,7 +3,6 @@ using System;
 using Microsoft.Xna.Framework;
 
 using Narivia.Audio;
-using Narivia.Graphics;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Input.Events;
 
@@ -55,7 +54,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the text colour.
         /// </summary>
         /// <value>The text colour.</value>
-        public Colour TextColour { get; set; }
+        public Color TextColour { get; set; }
 
         GuiImage[,] images;
         GuiImage yesButtonImage;
@@ -73,7 +72,7 @@ namespace Narivia.Gui.GuiElements
         {
             Type = NotificationType.Informational;
             Style = NotificationStyle.Big;
-            TextColour = Colour.Black;
+            TextColour = Color.Black;
         }
 
         /// <summary>

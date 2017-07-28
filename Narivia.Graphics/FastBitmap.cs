@@ -172,9 +172,9 @@ namespace Narivia.Graphics
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
         /// <returns>Pixel colour</returns>
-        public Colour GetPixel(int x, int y)
+        public Color GetPixel(int x, int y)
         {
-            Colour colour = new Colour();
+            Color colour = new Color();
             byte a, r, g, b;
             int colorComponentsCount = Depth / 8;
             int index = ((y * Width) + x) * colorComponentsCount;
@@ -191,19 +191,19 @@ namespace Narivia.Graphics
                     g = Pixels[index + 1];
                     r = Pixels[index + 2];
                     a = Pixels[index + 3];
-                    colour = Colour.FromArgb(a, r, g, b);
+                    colour = Color.FromArgb(a, r, g, b);
                     break;
 
                 case 24:
                     b = Pixels[index];
                     g = Pixels[index + 1];
                     r = Pixels[index + 2];
-                    colour = Colour.FromArgb(r, g, b);
+                    colour = Color.FromArgb(r, g, b);
                     break;
 
                 case 8:
                     b = Pixels[index];
-                    colour = Colour.FromArgb(b, b, b);
+                    colour = Color.FromArgb(b, b, b);
                     break;
             }
 
@@ -216,7 +216,7 @@ namespace Narivia.Graphics
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
         /// <param name="colour">Pixel colour</param>
-        public void SetPixel(int x, int y, Colour colour)
+        public void SetPixel(int x, int y, Color colour)
         {
             int colorComponentsCount = Depth / 8;
             int index = ((y * Width) + x) * colorComponentsCount;

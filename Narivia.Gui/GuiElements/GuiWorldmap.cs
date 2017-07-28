@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
+using Narivia.Graphics.Extensions;
 using Narivia.Gui.WorldMap;
 using Narivia.Input;
 using Narivia.Input.Events;
@@ -52,7 +53,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS * 3, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
-                Tint = Colour.White,
+                Tint = Color.White,
                 Opacity = 1.0f
             };
 
@@ -60,7 +61,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS * 3, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
-                Tint = Colour.White,
+                Tint = Color.White,
                 Opacity = 1.0f
             };
 
@@ -68,7 +69,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
-                Tint = Colour.Blue,
+                Tint = Color.Blue,
                 Opacity = 1.0f
             };
 
@@ -204,7 +205,7 @@ namespace Narivia.Gui.GuiElements
 
                     string regionId = game.GetWorldTile(x, y);
                     string factionId = game.FactionIdAtPosition(x, y);
-                    Colour factionColour = game.GetFaction(factionId).Colour;
+                    Color factionColour = game.GetFaction(factionId).Colour.ToXnaColor();
 
                     if (factionId == "gaia")
                     {
@@ -250,7 +251,7 @@ namespace Narivia.Gui.GuiElements
                     }
 
                     string factionId = game.FactionIdAtPosition(x, y);
-                    Colour factionColour = game.GetFaction(factionId).Colour;
+                    Color factionColour = game.GetFaction(factionId).Colour.ToXnaColor();
 
                     if (factionId == "gaia")
                     {

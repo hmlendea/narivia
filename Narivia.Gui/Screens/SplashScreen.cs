@@ -40,7 +40,7 @@ namespace Narivia.Gui.Screens
 
         public SplashScreen()
         {
-            BackgroundColour = Colour.DodgerBlue;
+            BackgroundColour = Color.DodgerBlue;
         }
 
         /// <summary>
@@ -49,6 +49,7 @@ namespace Narivia.Gui.Screens
         public override void LoadContent()
         {
             base.LoadContent();
+
             BackgroundImage.LoadContent();
             OverlayImage.LoadContent();
             LogoImage.LoadContent();
