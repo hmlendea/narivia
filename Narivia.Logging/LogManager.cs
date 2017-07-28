@@ -117,19 +117,6 @@ namespace Narivia.Logging
         }
 
         /// <summary>
-        /// Writes the error depending on the verbosity level.
-        /// </summary>
-        /// <param name="message">Text.</param>
-        /// <param name="verbosityLevel">Verbosity level.</param>
-        public void Error(string message, int verbosityLevel)
-        {
-            if (verbosityLevel <= VerbosityLevel)
-            {
-                Error(message);
-            }
-        }
-
-        /// <summary>
         /// Writes the warning.
         /// </summary>
         /// <param name="message">Text.</param>
@@ -139,38 +126,12 @@ namespace Narivia.Logging
         }
 
         /// <summary>
-        /// Writes the information depending on the verbosity level.
-        /// </summary>
-        /// <param name="message">Text.</param>
-        /// <param name="verbosityLevel">Verbosity level.</param>
-        public void Info(string message, int verbosityLevel)
-        {
-            if (verbosityLevel <= VerbosityLevel)
-            {
-                Warn(message);
-            }
-        }
-
-        /// <summary>
         /// Writes the information.
         /// </summary>
         /// <param name="message">Text.</param>
         public void Warn(string message)
         {
             WriteLine($"Info|{message}");
-        }
-
-        /// <summary>
-        /// Writes the warning depending on the verbosity level.
-        /// </summary>
-        /// <param name="message">Text.</param>
-        /// <param name="verbosityLevel">Verbosity level.</param>
-        public void Warn(string message, int verbosityLevel)
-        {
-            if (verbosityLevel <= VerbosityLevel)
-            {
-                Warn(message);
-            }
         }
 
         /// <summary>
@@ -184,19 +145,6 @@ namespace Narivia.Logging
             writer.WriteLine(logEntry);
 
             Debug.WriteLine(logEntry);
-        }
-
-        /// <summary>
-        /// Writes the line depending on the verbosity level.
-        /// </summary>
-        /// <param name="message">Text.</param>
-        /// <param name="verbosityLevel">Verbosity level.</param>
-        void WriteLine(string message, int verbosityLevel)
-        {
-            if (verbosityLevel <= VerbosityLevel)
-            {
-                WriteLine(message);
-            }
         }
     }
 }
