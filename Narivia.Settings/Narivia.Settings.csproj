@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
@@ -40,6 +40,10 @@
     <Compile Include="GameDefines.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Narivia.Graphics\Narivia.Graphics.csproj">
+      <Project>{f291ec71-b1cc-4b6e-8095-cfe380081951}</Project>
+      <Name>Narivia.Graphics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
       <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
       <Name>Narivia.Logging</Name>

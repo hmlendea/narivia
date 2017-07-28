@@ -85,7 +85,7 @@ namespace Narivia.DataAccess
                     {
                         { LogInfoKey.FileName, FileName },
                         { LogInfoKey.Message, "The repository cannot be accessed" }
-                    }), ex););
+                    }), ex);
             }
         }
     }

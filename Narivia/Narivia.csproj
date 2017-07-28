@@ -77,40 +77,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Narivia.Data\Narivia.Data.csproj">
-      <Project>{2C8EACD9-7F02-4176-A2BE-DBE94B824A8C}</Project>
-      <Name>Narivia.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Input\Narivia.Input.csproj">
-      <Project>{9AA1D3BD-BB14-4F0E-855C-5D24ECD0BC4F}</Project>
-      <Name>Narivia.Input</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
-      <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
-      <Name>Narivia.Logging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Graphics\Narivia.Graphics.csproj">
-      <Project>{F291EC71-B1CC-4B6E-8095-CFE380081951}</Project>
-      <Name>Narivia.Graphics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Gui\Narivia.Gui.csproj">
-      <Project>{2216F9A9-739A-4CBE-9157-D32D7FFC480C}</Project>
-      <Name>Narivia.Gui</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Settings\Narivia.Settings.csproj">
-      <Project>{54ACA0BD-4D04-4765-9055-D84941D80E49}</Project>
-      <Name>Narivia.Settings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
-      <Project>{1933F8D8-3C88-4329-A209-949F921598CE}</Project>
-      <Name>Narivia.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Infrastructure\Narivia.Infrastructure.csproj">
-      <Project>{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}</Project>
-      <Name>Narivia.Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
@@ -123,7 +89,32 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
+      <Project>{1933f8d8-3c88-4329-a209-949f921598ce}</Project>
+      <Name>Narivia.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Narivia.Graphics\Narivia.Graphics.csproj">
+      <Project>{f291ec71-b1cc-4b6e-8095-cfe380081951}</Project>
+      <Name>Narivia.Graphics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Narivia.Gui\Narivia.Gui.csproj">
+      <Project>{2216f9a9-739a-4cbe-9157-d32d7ffc480c}</Project>
+      <Name>Narivia.Gui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Narivia.Input\Narivia.Input.csproj">
+      <Project>{9aa1d3bd-bb14-4f0e-855c-5d24ecd0bc4f}</Project>
+      <Name>Narivia.Input</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
+      <Project>{9026f0ea-95aa-404c-89d8-df82cfbef015}</Project>
+      <Name>Narivia.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Narivia.Settings\Narivia.Settings.csproj">
+      <Project>{54aca0bd-4d04-4765-9055-d84941d80e49}</Project>
+      <Name>Narivia.Settings</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />

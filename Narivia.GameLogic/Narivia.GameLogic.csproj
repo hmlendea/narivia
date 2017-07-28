@@ -91,7 +91,7 @@
       <Name>Narivia.Graphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\Narivia.Settings\Narivia.Settings.csproj">
-      <Project>{54ACA0BD-4D04-4765-9055-D84941D80E49}</Project>
+      <Project>{54aca0bd-4d04-4765-9055-d84941d80e49}</Project>
       <Name>Narivia.Settings</Name>
     </ProjectReference>
   </ItemGroup>

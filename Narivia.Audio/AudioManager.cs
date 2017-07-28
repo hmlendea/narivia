@@ -4,6 +4,9 @@ using Narivia.DataAccess.Resources;
 
 namespace Narivia.Audio
 {
+    /// <summary>
+    /// Audio manager.
+    /// </summary>
     public class AudioManager
     {
         static volatile AudioManager instance;

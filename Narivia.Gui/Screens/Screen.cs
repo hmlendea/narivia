@@ -77,7 +77,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public virtual void LoadContent()
         {
-            GraphicsManager.Instance.GraphicsDevice.Clear(BackgroundColour);
+            GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(BackgroundColour);
 
             GuiManager.Instance.GuiElements.AddRange(Notifications);
             GuiManager.Instance.GuiElements.AddRange(Buttons);
@@ -108,7 +108,7 @@ namespace Narivia.Gui.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            GraphicsManager.Instance.GraphicsDevice.Clear(BackgroundColour);
+            GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(BackgroundColour);
             GuiManager.Instance.Draw(spriteBatch);
         }
 

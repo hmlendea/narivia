@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Narivia.Graphics
 {
@@ -34,10 +35,10 @@ namespace Narivia.Graphics
         }
 
         /// <summary>
-        /// Gets or sets the graphics device.
+        /// Gets or sets the graphics device manager.
         /// </summary>
-        /// <value>The graphics device.</value>
-        public GraphicsDevice GraphicsDevice { get; set; }
+        /// <value>The graphics device manager.</value>
+        public GraphicsDeviceManager Graphics { get; set; }
 
         /// <summary>
         /// Gets or sets the sprite batch.

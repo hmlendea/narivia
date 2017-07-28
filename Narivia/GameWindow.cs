@@ -64,7 +64,7 @@ namespace Narivia
             LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStart, OperationStatus.Started));
 
             GraphicsManager.Instance.SpriteBatch = spriteBatch;
-            GraphicsManager.Instance.GraphicsDevice = GraphicsDevice;
+            GraphicsManager.Instance.Graphics = graphics;
 
             ResourceManager.Instance.LoadContent(Content, GraphicsDevice);
             SettingsManager.Instance.LoadContent();
@@ -102,7 +102,7 @@ namespace Narivia
         protected override void Update(GameTime gameTime)
         {
             LogManager.Instance.Update(gameTime.ElapsedGameTime);
-            SettingsManager.Instance.Update(ref graphics);
+            SettingsManager.Instance.Update();
             ScreenManager.Instance.Update(gameTime);
 
             if (IsActive)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 
+using Narivia.Graphics;
 using Narivia.Infrastructure.Helpers;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;
@@ -41,7 +42,7 @@ namespace Narivia.Settings
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Settings.SettingsManager"/> class.
+        /// Initializes a new instance of the <see cref="SettingsManager"/> class.
         /// </summary>
         public SettingsManager()
         {
@@ -105,27 +106,29 @@ namespace Narivia.Settings
         /// <summary>
         /// Updates the settings.
         /// </summary>
-        public void Update(ref GraphicsDeviceManager graphics)
+        public void Update()
         {
             bool graphicsChanged = false;
 
-            if (graphics.IsFullScreen != Fullscreen)
+            if (GraphicsManager.Instance.Graphics.IsFullScreen != Fullscreen)
             {
-                graphics.IsFullScreen = Fullscreen;
+                GraphicsManager.Instance.Graphics.IsFullScreen = Fullscreen;
+
                 graphicsChanged = true;
             }
 
-            if (graphics.PreferredBackBufferWidth != (int)Resolution.X ||
-                graphics.PreferredBackBufferHeight != (int)Resolution.Y)
+            if (GraphicsManager.Instance.Graphics.PreferredBackBufferWidth != (int)Resolution.X ||
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight != (int)Resolution.Y)
             {
-                graphics.PreferredBackBufferWidth = (int)Resolution.X;
-                graphics.PreferredBackBufferHeight = (int)Resolution.Y;
+                GraphicsManager.Instance.Graphics.PreferredBackBufferWidth = (int)Resolution.X;
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight = (int)Resolution.Y;
+
                 graphicsChanged = true;
             }
 
             if (graphicsChanged)
             {
-                graphics.ApplyChanges();
+                GraphicsManager.Instance.Graphics.ApplyChanges();
             }
         }
     }
