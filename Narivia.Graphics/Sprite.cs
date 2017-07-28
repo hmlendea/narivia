@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
@@ -297,7 +298,7 @@ namespace Narivia.Graphics
             if (!string.IsNullOrEmpty(Effects))
             {
                 List<string> split = Effects.Split(':').ToList();
-
+                
                 split.ForEach(ActivateEffect);
             }
         }
@@ -475,13 +476,13 @@ namespace Narivia.Graphics
 
             source.GetData(data);
 
-            for (int i = 0; i < data.Length; i++)
-            {
-                if (data[i].IsSimilarTo(original, tolerance))
+            Parallel.For(0, data.Length, i =>
                 {
-                    data[i] = replacement;
-                }
-            }
+                    if (data[i].IsSimilarTo(original, tolerance))
+                    {
+                        data[i] = replacement;
+                    }
+                });
 
             newTexture.SetData(data);
 
@@ -503,7 +504,7 @@ namespace Narivia.Graphics
             {
                 textOrigin.Y = bounds.Height - totalSize.Y;
             }
-
+            
             foreach (string line in lines)
             {
                 Vector2 lineSize = font.MeasureString(line);
@@ -558,25 +559,19 @@ namespace Narivia.Graphics
                 endY = startY + mask.Height;
             }
 
-            for (int y = startY; y < endY; y++)
-            {
-                for (int x = startX; x < endX; x++)
-                {
-                    int indexTexture = x - startX + (y - startY) * source.Width;
-                    int indexMask = x - startX + (y - startY) * mask.Width;
-
-                    if (indexTexture == textureBits.Length || indexMask == maskBits.Length)
+            Parallel.For(startY, endY,
+                y => Parallel.For(startX, endX,
+                    x =>
                     {
-                        break;
-                    }
-
-                    textureBits[indexTexture] = Color.FromNonPremultiplied(textureBits[indexTexture].R,
-                                                                           textureBits[indexTexture].G,
-                                                                           textureBits[indexTexture].B,
-                                                                           textureBits[indexTexture].A - 255 + maskBits[indexMask].R);
-                }
-            }
-
+                        int indexTexture = x - startX + (y - startY) * source.Width;
+                        int indexMask = x - startX + (y - startY) * mask.Width;
+                        
+                        textureBits[indexTexture] = Color.FromNonPremultiplied(textureBits[indexTexture].R,
+                                                                               textureBits[indexTexture].G,
+                                                                               textureBits[indexTexture].B,
+                                                                               textureBits[indexTexture].A - 255 + maskBits[indexMask].R);
+                    }));
+            
             Texture2D blendedTexture = new Texture2D(source.GraphicsDevice, source.Width, source.Height);
             blendedTexture.SetData(textureBits);
 
