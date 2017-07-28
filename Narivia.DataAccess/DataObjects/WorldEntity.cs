@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Narivia.DataAccess.DataObjects
 {
@@ -103,7 +104,14 @@ namespace Narivia.DataAccess.DataObjects
         /// <value>The holdings price.</value>
         public int HoldingsPrice { get; set; }
 
+        /// <summary>
+        /// Gets or sets the tiles.
+        /// </summary>
+        /// <value>The tiles.</value>
         [XmlIgnore]
         public WorldTileEntity[,] Tiles { get; set; }
+
+        [XmlIgnore]
+        public IList<WorldGeoLayerEntity> Layers { get; set; }
     }
 }

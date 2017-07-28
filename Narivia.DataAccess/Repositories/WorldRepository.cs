@@ -3,8 +3,11 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+
+using TiledSharp;
 
 using Narivia.Common.Extensions;
 using Narivia.Common.Helpers;
@@ -57,9 +60,12 @@ namespace Narivia.DataAccess.Repositories
 
             worldEntity.Tiles = new WorldTileEntity[worldEntity.Width, worldEntity.Height];
 
-            for (int y = 0; y < worldEntity.Tiles.GetLength(0); y ++)
+            int worldWidth = worldEntity.Tiles.GetLength(0);
+            int worldHeight = worldEntity.Tiles.GetLength(1);
+
+            for (int y = 0; y < worldWidth; y ++)
             {
-                for (int x = 0; x < worldEntity.Tiles.GetLength(1); x++)
+                for (int x = 0; x < worldHeight; x++)
                 {
                     worldEntity.Tiles[x, y] = new WorldTileEntity();
                 }
@@ -86,6 +92,32 @@ namespace Narivia.DataAccess.Repositories
                 Parallel.For(0, worldEntity.Height,
                              y => Parallel.For(0, worldEntity.Width,
                                                x => worldEntity.Tiles[x, y].RegionId = regionColourIds[bmp.GetPixel(x, y)]));
+            }
+
+            TmxMap tmxMap = new TmxMap(Path.Combine(worldsDirectory, id, "world.tmx"));
+
+            worldEntity.Layers = new List<WorldGeoLayerEntity>();
+
+            // TODO: Consider parallelisation
+            foreach (TmxLayer tmxLayer in tmxMap.Layers)
+            {
+                WorldGeoLayerEntity layer = new WorldGeoLayerEntity();
+                layer.Tiles = new int[worldWidth, worldHeight];
+
+                // TODO: Throw an exception for "The layer does not contain a 'tileset' property"
+
+                string tilesetName = tmxLayer.Properties["tileset"];
+
+                // TODO: Throw an exception for "The specified tileset does not exist"
+
+                layer.Tileset = tilesetName;
+
+                TmxTileset tmxTileset = tmxMap.Tilesets[tilesetName];
+
+                Parallel.ForEach(tmxLayer.Tiles.Where(tile => tile.Gid > 0),
+                                 tile => layer.Tiles[tile.X, tile.Y] = (tile.Gid - tmxTileset.FirstGid));
+
+                worldEntity.Layers.Add(layer);
             }
 
             return worldEntity;

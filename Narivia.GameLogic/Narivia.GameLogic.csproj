@@ -47,6 +47,7 @@
     <Compile Include="Mapping\RegionMappingExtensions.cs" />
     <Compile Include="Mapping\ResourceMappingExtensions.cs" />
     <Compile Include="Mapping\UnitMappingExtensions.cs" />
+    <Compile Include="Mapping\WorldGeoLayerMappingExtensions.cs" />
     <Compile Include="Mapping\WorldMappingExtensions.cs" />
     <Compile Include="Mapping\WorldTileMappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

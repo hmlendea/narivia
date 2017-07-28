@@ -35,7 +35,7 @@ namespace Narivia.Gui.WorldMap
         public Vector2 TileDimensions { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.WorldMap.Map"/> class.
+        /// Initializes a new instance of the <see cref="Map"/> class.
         /// </summary>
         public Map()
         {

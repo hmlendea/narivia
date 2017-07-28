@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace Narivia.Models
 {
@@ -122,6 +124,15 @@ namespace Narivia.Models
         /// Gets or sets the tiles.
         /// </summary>
         /// <value>The tiles.</value>
+        [XmlIgnore]
         public WorldTile[,] Tiles { get; set; }
+
+        [XmlIgnore]
+        public IList<WorldGeoLayer> Layers { get; set; }
+
+        public World()
+        {
+            Layers = new List<WorldGeoLayer>();
+        }
     }
 }
