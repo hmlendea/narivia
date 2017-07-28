@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -33,7 +34,19 @@ namespace Narivia.DataAccess
         /// <returns>The entities.</returns>
         public IEnumerable<T> LoadEntities()
         {
-            if (!File.Exists(FileName))
+            XmlSerializer xs = new XmlSerializer(typeof(List<T>));
+            List<T> entities = null;
+
+            try
+            {
+                using (FileStream fs = new FileStream(FileName, FileMode.Open, FileAccess.Read))
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    entities = (List<T>)xs.Deserialize(sr);
+                }
+            }
+            // TODO: Log the stack trace
+            catch (Exception ex)
             {
                 LogManager.Instance.Error(LogBuilder.BuildKvpMessage(
                     Operation.RepositoryLoading,
@@ -45,15 +58,6 @@ namespace Narivia.DataAccess
                     }));
             }
 
-            XmlSerializer xs = new XmlSerializer(typeof(List<T>));
-            List<T> entities;
-
-            using (FileStream fs = new FileStream(FileName, FileMode.Open, FileAccess.Read))
-            using (StreamReader sr = new StreamReader(fs))
-            {
-                entities = (List<T>)xs.Deserialize(sr);
-            }
-
             return entities;
         }
 
@@ -63,12 +67,27 @@ namespace Narivia.DataAccess
         /// <param name="entities">Entities.</param>
         public void SaveEntities(List<T> entities)
         {
-            FileStream fs = new FileStream(FileName, FileMode.Create, FileAccess.Write);
-
-            using (StreamWriter sw = new StreamWriter(fs))
+            try
             {
-                XmlSerializer xs = new XmlSerializer(typeof(List<T>));
-                xs.Serialize(sw, entities);
+                FileStream fs = new FileStream(FileName, FileMode.Create, FileAccess.Write);
+
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    XmlSerializer xs = new XmlSerializer(typeof(List<T>));
+                    xs.Serialize(sw, entities);
+                }
+            }
+            // TODO: Log the stack trace
+            catch (Exception ex)
+            {
+                LogManager.Instance.Error(LogBuilder.BuildKvpMessage(
+                    Operation.RepositorySaving,
+                    OperationStatus.Failure,
+                    new Dictionary<LogInfoKey, string>
+                    {
+                        { LogInfoKey.FileName, FileName },
+                        { LogInfoKey.Message, "The repository cannot be accessed" }
+                    }));
             }
         }
     }
