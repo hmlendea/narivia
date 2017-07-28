@@ -45,10 +45,10 @@ namespace Narivia.GameLogic.GameManagers
         /// Gets or sets the world tiles.
         /// </summary>
         /// <value>The world tiles.</value>
-        public string[,] WorldTiles
+        public WorldTile[,] WorldTiles
         {
-            get { return world.RegionMap; }
-            set { world.RegionMap = value; }
+            get { return world.Tiles; }
+            set { world.Tiles = value; }
         }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="y">The y coordinate.</param>
         public string FactionIdAtPosition(int x, int y)
         {
-            return regions[world.RegionMap[x, y]].FactionId;
+            return regions[world.Tiles[x, y].RegionId].FactionId;
         }
 
         /// <summary>
@@ -324,7 +324,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 for (int x = 0; x < world.Width; x++)
                 {
-                    if (regions[world.RegionMap[x, y]].FactionId != factionId)
+                    if (regions[world.Tiles[x, y].RegionId].FactionId != factionId)
                     {
                         continue;
                     }
@@ -357,7 +357,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 for (int x = 0; x < world.Width; x++)
                 {
-                    if (regions[world.RegionMap[x, y]].FactionId != factionId)
+                    if (regions[world.Tiles[x, y].RegionId].FactionId != factionId)
                     {
                         continue;
                     }
@@ -577,7 +577,7 @@ namespace Narivia.GameLogic.GameManagers
                 for (int y = 0; y < world.Height; y += 5)
                 {
                     List<string> region2IdVisited = new List<string>();
-                    string region1Id = world.RegionMap[x, y];
+                    string region1Id = world.Tiles[x, y].RegionId;
 
                     for (int dx = -2; dx <= 2; dx++)
                     {
@@ -593,7 +593,7 @@ namespace Narivia.GameLogic.GameManagers
                                 continue;
                             }
 
-                            string region2Id = world.RegionMap[x + dx, y + dy];
+                            string region2Id = world.Tiles[x + dx, y + dy].RegionId;
 
                             if (!region2IdVisited.Contains(region2Id) &&
                                 region1Id != region2Id)

@@ -58,6 +58,7 @@
     <Compile Include="Enumerations\ResourceType.cs" />
     <Compile Include="Enumerations\UnitType.cs" />
     <Compile Include="Flag.cs" />
+    <Compile Include="WorldTile.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

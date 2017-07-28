@@ -567,7 +567,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The world tile.</returns>
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
-        public string GetWorldTile(int x, int y)
+        public WorldTile GetWorldTile(int x, int y)
         => world.WorldTiles[x, y];
 
         /// <summary>
@@ -576,7 +576,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
         /// <param name="value">Value.</param>
-        public void SetWorldTile(int x, int y, string value)
+        public void SetWorldTile(int x, int y, WorldTile value)
         => world.WorldTiles[x, y] = value;
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// Gets or sets the world tiles.
         /// </summary>
         /// <value>The world tiles.</value>
-        string[,] WorldTiles { get; set; }
+        WorldTile[,] WorldTiles { get; set; }
 
         /// <summary>
         /// Gets the width of the world.

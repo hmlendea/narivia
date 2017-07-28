@@ -42,6 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataObjects\WorldTileEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArmyRepository.cs" />
     <Compile Include="Repositories\BiomeRepository.cs" />

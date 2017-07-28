@@ -48,6 +48,7 @@
     <Compile Include="Mapping\ResourceMappingExtensions.cs" />
     <Compile Include="Mapping\UnitMappingExtensions.cs" />
     <Compile Include="Mapping\WorldMappingExtensions.cs" />
+    <Compile Include="Mapping\WorldTileMappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameManagers\Interfaces\IGameManager.cs" />
     <Compile Include="GameManagers\GameManager.cs" />

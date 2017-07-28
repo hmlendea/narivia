@@ -118,8 +118,10 @@ namespace Narivia.Models
         [Range(0, int.MaxValue)]
         public int HoldingsPrice { get; set; }
 
-        public string[,] BiomeMap { get; set; }
-
-        public string[,] RegionMap { get; set; }
+        /// <summary>
+        /// Gets or sets the tiles.
+        /// </summary>
+        /// <value>The tiles.</value>
+        public WorldTile[,] Tiles { get; set; }
     }
 }

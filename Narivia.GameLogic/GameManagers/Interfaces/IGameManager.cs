@@ -384,7 +384,7 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The world tile.</returns>
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
-        string GetWorldTile(int x, int y);
+        WorldTile GetWorldTile(int x, int y);
 
         /// <summary>
         /// Gets the unit.
@@ -399,7 +399,7 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
         /// <param name="value">Value.</param>
-        void SetWorldTile(int x, int y, string value);
+        void SetWorldTile(int x, int y, WorldTile value);
 
         /// <summary>
         /// Gets the units.

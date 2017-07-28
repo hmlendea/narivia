@@ -55,8 +55,15 @@ namespace Narivia.DataAccess.Repositories
                 worldEntity = (WorldEntity)xml.Deserialize(reader);
             }
 
-            worldEntity.BiomeMap = new string[worldEntity.Width, worldEntity.Height];
-            worldEntity.RegionMap = new string[worldEntity.Width, worldEntity.Height];
+            worldEntity.Tiles = new WorldTileEntity[worldEntity.Width, worldEntity.Height];
+
+            for (int y = 0; y < worldEntity.Tiles.GetLength(0); y ++)
+            {
+                for (int x = 0; x < worldEntity.Tiles.GetLength(1); x++)
+                {
+                    worldEntity.Tiles[x, y] = new WorldTileEntity();
+                }
+            }
 
             ConcurrentDictionary<Color, string> regionColourIds = new ConcurrentDictionary<Color, string>();
             ConcurrentDictionary<Color, string> biomeColourIds = new ConcurrentDictionary<Color, string>();
@@ -66,19 +73,19 @@ namespace Narivia.DataAccess.Repositories
 
             Parallel.ForEach(biomeRepository.GetAll(), b => biomeColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal), b.Id));
             Parallel.ForEach(regionRepository.GetAll(), r => regionColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal), r.Id));
-
-            using (FastBitmap bmp = new FastBitmap(Path.Combine(worldsDirectory, id, "map.png")))
-            {
-                Parallel.For(0, worldEntity.Height,
-                             y => Parallel.For(0, worldEntity.Width,
-                                               x => worldEntity.RegionMap[x, y] = regionColourIds[bmp.GetPixel(x, y)]));
-            }
             
             using (FastBitmap bmp = new FastBitmap(Path.Combine(worldsDirectory, id, "biomes_map.png")))
             {
                 Parallel.For(0, worldEntity.Height,
                              y => Parallel.For(0, worldEntity.Width,
-                                               x => worldEntity.BiomeMap[x, y] = biomeColourIds[bmp.GetPixel(x, y)]));
+                                               x => worldEntity.Tiles[x, y].RegionId = biomeColourIds[bmp.GetPixel(x, y)]));
+            }
+
+            using (FastBitmap bmp = new FastBitmap(Path.Combine(worldsDirectory, id, "map.png")))
+            {
+                Parallel.For(0, worldEntity.Height,
+                             y => Parallel.For(0, worldEntity.Width,
+                                               x => worldEntity.Tiles[x, y].RegionId = regionColourIds[bmp.GetPixel(x, y)]));
             }
 
             return worldEntity;

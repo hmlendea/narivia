@@ -129,7 +129,7 @@ namespace Narivia.Gui.GuiElements
                 y > 0 && y < game.WorldHeight)
             {
                 // TODO: Handle the Id retrieval properly
-                SelectedRegionId = game.GetWorldTile(x, y);
+                SelectedRegionId = game.GetWorldTile(x, y).RegionId;
 
                 // TODO: Also handle this properly
                 if (game.FactionIdAtPosition(x, y) == "gaia")
@@ -203,7 +203,7 @@ namespace Narivia.Gui.GuiElements
                         continue;
                     }
 
-                    string regionId = game.GetWorldTile(x, y);
+                    string regionId = game.GetWorldTile(x, y).RegionId;
                     string factionId = game.FactionIdAtPosition(x, y);
                     Color factionColour = game.GetFaction(factionId).Colour.ToXnaColor();
 

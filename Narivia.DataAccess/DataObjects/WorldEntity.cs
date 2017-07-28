@@ -104,9 +104,6 @@ namespace Narivia.DataAccess.DataObjects
         public int HoldingsPrice { get; set; }
 
         [XmlIgnore]
-        public string[,] BiomeMap { get; set; }
-
-        [XmlIgnore]
-        public string[,] RegionMap { get; set; }
+        public WorldTileEntity[,] Tiles { get; set; }
     }
 }
