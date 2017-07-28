@@ -4,7 +4,6 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.Generators;
@@ -550,6 +549,7 @@ namespace Narivia.GameLogic.GameManagers
             IRegionRepository regionRepository = new RegionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
             IResourceRepository resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
             IUnitRepository unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
+            IWorldRepository worldRepository = new WorldRepository(ApplicationPaths.WorldsDirectory);
 
             IEnumerable<Biome> biomeList = biomeRepository.GetAll().ToDomainModels();
             IEnumerable<Border> borderList = borderRepository.GetAll().ToDomainModels();
@@ -569,6 +569,7 @@ namespace Narivia.GameLogic.GameManagers
             regions = new ConcurrentDictionary<string, Region>(regionList.ToDictionary(region => region.Id, region => region));
             resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
             units = new ConcurrentDictionary<string, Unit>(unitList.ToDictionary(unit => unit.Id, unit => unit));
+            world = worldRepository.Get(worldId).ToDomainModel();
         }
 
         void LoadMap(string worldId)
@@ -578,14 +579,6 @@ namespace Narivia.GameLogic.GameManagers
 
             ConcurrentDictionary<int, string> regionColourIds = new ConcurrentDictionary<int, string>();
             ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
-
-            XmlSerializer xs = new XmlSerializer(typeof(World));
-
-            using (FileStream fs = new FileStream(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "world.xml"), FileMode.Open, FileAccess.Read))
-            using (StreamReader sr = new StreamReader(fs))
-            {
-                world = (World)xs.Deserialize(sr);
-            }
 
             worldTiles = new string[world.Width, world.Height];
             biomeMap = new string[world.Width, world.Height];

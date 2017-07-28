@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<World xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<WorldEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Id>narivia</Id>
   <Name>Narivia</Name>
   <Description>This is the world of Narivia, featuring two of it's continents</Description>
@@ -31,4 +31,4 @@
     <Min>20</Min>
     <Max>100</Max>
   </DefenderBonus>
-</World>
+</WorldEntity>
