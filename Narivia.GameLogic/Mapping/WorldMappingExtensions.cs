@@ -35,7 +35,9 @@ namespace Narivia.GameLogic.Mapping
                 HoldingSlotsPerFaction = worldEntity.HoldingSlotsPerFaction,
                 StartingWealth = worldEntity.StartingWealth,
                 StartingTroops = worldEntity.StartingTroops,
-                HoldingsPrice = worldEntity.HoldingsPrice
+                HoldingsPrice = worldEntity.HoldingsPrice,
+                BiomeMap = worldEntity.BiomeMap,
+                RegionMap = worldEntity.RegionMap
             };
 
             return world;
@@ -65,7 +67,9 @@ namespace Narivia.GameLogic.Mapping
                 HoldingSlotsPerFaction = world.HoldingSlotsPerFaction,
                 StartingWealth = world.StartingWealth,
                 StartingTroops = world.StartingTroops,
-                HoldingsPrice = world.HoldingsPrice
+                HoldingsPrice = world.HoldingsPrice,
+                BiomeMap = world.BiomeMap,
+                RegionMap = world.RegionMap
             };
 
             return worldEntity;

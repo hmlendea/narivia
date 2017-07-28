@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
@@ -85,6 +86,10 @@
     <Compile Include="Resources\ResourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj">
+      <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
+      <Name>Narivia.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
       <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
       <Name>Narivia.Logging</Name>

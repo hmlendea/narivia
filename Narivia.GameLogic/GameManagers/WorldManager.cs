@@ -5,14 +5,13 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Narivia.Common.Extensions;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.Generators;
 using Narivia.GameLogic.Generators.Interfaces;
 using Narivia.GameLogic.Mapping;
-using Narivia.Graphics;
 using Narivia.DataAccess.Repositories;
 using Narivia.DataAccess.Repositories.Interfaces;
-using Narivia.Common.Extensions;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;
 using Narivia.Models;
@@ -30,20 +29,17 @@ namespace Narivia.GameLogic.GameManagers
 
         World world;
 
-        string[,] worldTiles;
-        string[,] biomeMap;
-
+        ConcurrentDictionary<Tuple<string, string>, Army> armies;
         ConcurrentDictionary<string, Biome> biomes;
+        ConcurrentDictionary<Tuple<string, string>, Border> borders;
         ConcurrentDictionary<string, Culture> cultures;
         ConcurrentDictionary<string, Faction> factions;
         ConcurrentDictionary<string, Flag> flags;
         ConcurrentDictionary<string, Holding> holdings;
         ConcurrentDictionary<string, Region> regions;
+        ConcurrentDictionary<Tuple<string, string>, Relation> relations;
         ConcurrentDictionary<string, Resource> resources;
         ConcurrentDictionary<string, Unit> units;
-        ConcurrentDictionary<Tuple<string, string>, Army> armies;
-        ConcurrentDictionary<Tuple<string, string>, Border> borders;
-        ConcurrentDictionary<Tuple<string, string>, Relation> relations;
 
         /// <summary>
         /// Gets or sets the world tiles.
@@ -51,8 +47,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <value>The world tiles.</value>
         public string[,] WorldTiles
         {
-            get { return worldTiles; }
-            set { worldTiles = value; }
+            get { return world.RegionMap; }
+            set { world.RegionMap = value; }
         }
 
         /// <summary>
@@ -166,8 +162,7 @@ namespace Narivia.GameLogic.GameManagers
             LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldLoading, OperationStatus.Started));
 
             LoadEntities(worldId);
-            LoadMap(worldId);
-            LoadBorders();
+            GenerateBorders();
 
             LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldLoading, OperationStatus.Success));
             LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldInitialisation, OperationStatus.Started));
@@ -244,7 +239,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="y">The y coordinate.</param>
         public string FactionIdAtPosition(int x, int y)
         {
-            return regions[worldTiles[x, y]].FactionId;
+            return regions[world.RegionMap[x, y]].FactionId;
         }
 
         /// <summary>
@@ -329,7 +324,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 for (int x = 0; x < world.Width; x++)
                 {
-                    if (regions[worldTiles[x, y]].FactionId != factionId)
+                    if (regions[world.RegionMap[x, y]].FactionId != factionId)
                     {
                         continue;
                     }
@@ -362,7 +357,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 for (int x = 0; x < world.Width; x++)
                 {
-                    if (regions[worldTiles[x, y]].FactionId != factionId)
+                    if (regions[world.RegionMap[x, y]].FactionId != factionId)
                     {
                         continue;
                     }
@@ -560,6 +555,7 @@ namespace Narivia.GameLogic.GameManagers
             IEnumerable<Resource> resourceList = resourceRepository.GetAll().ToDomainModels();
             IEnumerable<Unit> unitList = unitRepository.GetAll().ToDomainModels();
 
+            armies = new ConcurrentDictionary<Tuple<string, string>, Army>();
             biomes = new ConcurrentDictionary<string, Biome>(biomeList.ToDictionary(biome => biome.Id, biome => biome));
             borders = new ConcurrentDictionary<Tuple<string, string>, Border>(borderList.ToDictionary(border => new Tuple<string, string>(border.Region1Id, border.Region2Id), border => border));
             cultures = new ConcurrentDictionary<string, Culture>(cultureList.ToDictionary(culture => culture.Id, culture => culture));
@@ -567,52 +563,21 @@ namespace Narivia.GameLogic.GameManagers
             flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
             holdings = new ConcurrentDictionary<string, Holding>();
             regions = new ConcurrentDictionary<string, Region>(regionList.ToDictionary(region => region.Id, region => region));
+            relations = new ConcurrentDictionary<Tuple<string, string>, Relation>();
             resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
             units = new ConcurrentDictionary<string, Unit>(unitList.ToDictionary(unit => unit.Id, unit => unit));
             world = worldRepository.Get(worldId).ToDomainModel();
         }
-
-        void LoadMap(string worldId)
-        {
-            armies = new ConcurrentDictionary<Tuple<string, string>, Army>();
-            relations = new ConcurrentDictionary<Tuple<string, string>, Relation>();
-
-            ConcurrentDictionary<int, string> regionColourIds = new ConcurrentDictionary<int, string>();
-            ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
-
-            worldTiles = new string[world.Width, world.Height];
-            biomeMap = new string[world.Width, world.Height];
-
-            // Mapping the colours
-            Parallel.ForEach(regions.Values, r => regionColourIds.AddOrUpdate(r.Colour.ToArgb(), r.Id));
-            Parallel.ForEach(biomes.Values, b => biomeColourIds.AddOrUpdate(b.Colour.ToArgb(), b.Id));
-
-            // Reading the map pixel by pixel
-            using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "map.png")))
-            {
-                Parallel.For(0, world.Height,
-                             y => Parallel.For(0, world.Width,
-                                               x => worldTiles[x, y] = regionColourIds[bmp.GetPixel(x, y).ToArgb()]));
-            }
-
-            // Reading the biome map pixel by pixel
-            using (FastBitmap bmp = new FastBitmap(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes_map.png")))
-            {
-                Parallel.For(0, world.Height,
-                             y => Parallel.For(0, world.Width,
-                                               x => biomeMap[x, y] = biomeColourIds[bmp.GetPixel(x, y).ToArgb()]));
-            }
-        }
-
+        
         // TODO: Parallelise this
-        void LoadBorders()
+        void GenerateBorders()
         {
             for (int x = 0; x < world.Width; x += 5)
             {
                 for (int y = 0; y < world.Height; y += 5)
                 {
                     List<string> region2IdVisited = new List<string>();
-                    string region1Id = worldTiles[x, y];
+                    string region1Id = world.RegionMap[x, y];
 
                     for (int dx = -2; dx <= 2; dx++)
                     {
@@ -628,7 +593,7 @@ namespace Narivia.GameLogic.GameManagers
                                 continue;
                             }
 
-                            string region2Id = worldTiles[x + dx, y + dy];
+                            string region2Id = world.RegionMap[x + dx, y + dy];
 
                             if (!region2IdVisited.Contains(region2Id) &&
                                 region1Id != region2Id)

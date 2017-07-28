@@ -1,4 +1,6 @@
-﻿namespace Narivia.DataAccess.DataObjects
+﻿using System.Xml.Serialization;
+
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// World data entity.
@@ -100,5 +102,11 @@
         /// </summary>
         /// <value>The holdings price.</value>
         public int HoldingsPrice { get; set; }
+
+        [XmlIgnore]
+        public string[,] BiomeMap { get; set; }
+
+        [XmlIgnore]
+        public string[,] RegionMap { get; set; }
     }
 }

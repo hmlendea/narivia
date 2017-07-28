@@ -117,5 +117,9 @@ namespace Narivia.Models
         /// <value>The holdings price.</value>
         [Range(0, int.MaxValue)]
         public int HoldingsPrice { get; set; }
+
+        public string[,] BiomeMap { get; set; }
+
+        public string[,] RegionMap { get; set; }
     }
 }
