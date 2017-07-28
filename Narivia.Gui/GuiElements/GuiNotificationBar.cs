@@ -80,7 +80,7 @@ namespace Narivia.Gui.GuiElements
 
         public void Clear()
         {
-            Children.ForEach(x => x.Destroy());
+            Children.ForEach(x => x.Dispose());
         }
 
         // TODO: Handle this better

@@ -75,7 +75,7 @@ namespace Narivia.Gui.GuiElements
             base.OnClicked(sender, e);
 
             AudioManager.Instance.PlaySound("Interface/click");
-            Destroy();
+            Dispose();
         }
 
         /// <summary>

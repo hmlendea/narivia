@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -14,22 +16,22 @@ namespace Narivia.Gui.GuiElements
     /// <summary>
     /// GUI Element.
     /// </summary>
-    public class GuiElement
+    public class GuiElement : IComponent, IDisposable
     {
         /// <summary>
-        /// Gets the position of this GUI element.
+        /// Gets the position of this <see cref="GuiElement"/>.
         /// </summary>
         /// <value>The position.</value>
         public Vector2 Position { get; set; }
 
         /// <summary>
-        /// Gets the size of this GUI element.
+        /// Gets the size of this <see cref="GuiElement"/>.
         /// </summary>
         /// <value>The size.</value>
         public virtual Vector2 Size { get; set; }
 
         /// <summary>
-        /// Gets the screen area covered by this GUI element.
+        /// Gets the screen area covered by this <see cref="GuiElement"/>.
         /// </summary>
         /// <value>The screen area.</value>
         public Rectangle ScreenArea => new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y);
@@ -41,13 +43,13 @@ namespace Narivia.Gui.GuiElements
         public float Opacity { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:Narivia.GUI elements.GUI element"/> is enabled.
+        /// Gets or sets a value indicating whether this <see cref="GuiElement"/> is enabled.
         /// </summary>
         /// <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
         public bool Enabled { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:Narivia.GUI elements.GUI element"/> is visible.
+        /// Gets or sets a value indicating whether this <see cref="GuiElement"/> is visible.
         /// </summary>
         /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
         public bool Visible { get; set; }
@@ -59,11 +61,45 @@ namespace Narivia.Gui.GuiElements
         public List<GuiElement> Children { get; protected set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:Narivia.GUI elements.GUI element"/> is destroyed.
+        /// Gets or sets a value indicating whether this <see cref="GuiElement"/> is destroyed.
         /// </summary>
         /// <value><c>true</c> if destroyed; otherwise, <c>false</c>.</value>
         [XmlIgnore]
-        public bool Destroyed { get; private set; }
+        public bool IsDisposed { get; private set; }
+
+        [XmlIgnore]
+        public ISite Site { get; set; }
+
+        [XmlIgnore]
+        protected virtual bool CanRaiseEvents => true;
+
+        [XmlIgnore]
+        public IContainer Container
+        {
+            get
+            {
+                if (Site == null)
+                {
+                    return null;
+                }
+
+                return Site.Container;
+            }
+        }
+
+        [XmlIgnore]
+        protected bool DesignMode
+        {
+            get
+            {
+                if (Site == null)
+                {
+                    return false;
+                }
+
+                return Site.DesignMode;
+            }
+        }
 
         /// <summary>
         /// Occurs when clicked.
@@ -76,14 +112,19 @@ namespace Narivia.Gui.GuiElements
         public event MouseEventHandler MouseMoved;
 
         /// <summary>
-        /// Occurs when the mouse entered this GUI element.
+        /// Occurs when the mouse entered this <see cref="GuiElement"/>.
         /// </summary>
         public event MouseEventHandler MouseEntered;
 
         /// <summary>
-        /// Occurs when the mouse left this GUI element.
+        /// Occurs when the mouse left this <see cref="GuiElement"/>.
         /// </summary>
         public event MouseEventHandler MouseLeft;
+
+        /// <summary>
+        /// Occurs when this <see cref="GuiElement"/> was disposed.
+        /// </summary>
+        public event EventHandler Disposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuiElement"/> class.
@@ -97,6 +138,11 @@ namespace Narivia.Gui.GuiElements
             Children = new List<GuiElement>();
         }
 
+        ~GuiElement()
+        {
+            Dispose();
+        }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -106,7 +152,7 @@ namespace Narivia.Gui.GuiElements
 
             Children.ForEach(x => x.LoadContent());
 
-            Destroyed = false;
+            IsDisposed = false;
 
             //InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
             InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
@@ -121,8 +167,6 @@ namespace Narivia.Gui.GuiElements
 
             //InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
             InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
-
-            Destroyed = true;
         }
 
         /// <summary>
@@ -131,7 +175,7 @@ namespace Narivia.Gui.GuiElements
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-            Children.RemoveAll(w => w.Destroyed);
+            Children.RemoveAll(w => w.IsDisposed);
 
             SetChildrenProperties();
 
@@ -171,7 +215,7 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
-        /// Draw the content on the specified spriteBatch.
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -183,13 +227,39 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
-        /// Destroys this GUI element.
+        /// Disposes of this <see cref="GuiElement"/>.
         /// </summary>
-        public virtual void Destroy()
+        public virtual void Dispose()
         {
-            UnloadContent();
+            Dispose(true);
+            GC.SuppressFinalize(this);
 
-            Destroyed = true;
+            Children.ForEach(c => c.Dispose());
+        }
+        
+        /// <summary>
+        /// Disposes of this <see cref="GuiElement"/>.
+        /// </summary>
+        protected void Dispose(bool disposing)
+        {
+            if (!disposing)
+            {
+                return;
+            }
+
+            IsDisposed = true;
+
+            lock (this)
+            {
+                if (Site != null && Site.Container != null)
+                {
+                    Site.Container.Remove(this);
+                }
+
+                UnloadContent();
+                
+                OnDisposed(this, EventArgs.Empty);
+            }
         }
 
         /// <summary>
@@ -214,6 +284,39 @@ namespace Narivia.Gui.GuiElements
         {
         }
 
+        protected virtual object GetService(Type service)
+        {
+            if (Site == null)
+            {
+                return null;
+            }
+
+            return Site.GetService(service);
+        }
+
+        public override string ToString()
+        {
+            if (Site == null)
+            {
+                return GetType().FullName;
+            }
+
+            return $"{Site.Name} [{GetType().FullName}]";
+        }
+
+        /// <summary>
+        /// Fired by the Disposed event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnDisposed(object sender, EventArgs e)
+        {
+            if (Disposed != null)
+            {
+                Disposed(sender, e);
+            }
+        }
+
         /// <summary>
         /// Fired by the Clicked event.
         /// </summary>
@@ -223,7 +326,7 @@ namespace Narivia.Gui.GuiElements
         {
             if (Clicked != null)
             {
-                Clicked(this, e);
+                Clicked(sender, e);
             }
         }
 

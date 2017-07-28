@@ -202,14 +202,14 @@ namespace Narivia.Gui.GuiElements
         {
             AudioManager.Instance.PlaySound("Interface/click");
 
-            Destroy();
+            Dispose();
         }
 
         void noButton_OnClicked(object sender, MouseButtonEventArgs e)
         {
             AudioManager.Instance.PlaySound("Interface/click");
 
-            Destroy();
+            Dispose();
         }
 
         void yesNoButton_OnMouseEntered(object sender, MouseEventArgs e)

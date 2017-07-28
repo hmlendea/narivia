@@ -72,7 +72,7 @@ namespace Narivia.Gui
         /// <param name="gameTime">Game time.</param>
         public virtual void Update(GameTime gameTime)
         {
-            GuiElements.RemoveAll(e => e.Destroyed);
+            GuiElements.RemoveAll(e => e.IsDisposed);
 
             foreach (GuiElement guiElement in GuiElements.Where(e => e.Enabled).Reverse())
             {

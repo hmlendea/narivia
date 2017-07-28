@@ -105,8 +105,8 @@ namespace Narivia.Gui.GuiElements
 
             RegionId = regionId;
 
-            holdingTexts.ForEach(w => w.Destroy());
-            holdingImages.ForEach(w => w.Destroy());
+            holdingTexts.ForEach(w => w.Dispose());
+            holdingImages.ForEach(w => w.Dispose());
             holdingTexts.Clear();
             holdingImages.Clear();
 
