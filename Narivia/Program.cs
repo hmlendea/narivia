@@ -16,13 +16,13 @@ using UIKit;
 
 namespace Narivia
 {
-    #if __IOS__ || __TVOS__
+#if __IOS__ || __TVOS__
     [Register("AppDelegate")]
     class Program : UIApplicationDelegate
     
 #else
     static class Program
-    #endif
+#endif
     {
         public static GameWindow Game { get; private set; }
 
@@ -30,14 +30,14 @@ namespace Narivia
         {
             Game = new GameWindow();
             Game.Run();
-            #if !__IOS__  && !__TVOS__
+#if !__IOS__ && !__TVOS__
             Game.Dispose();
-            #endif
+#endif
         }
 
         internal static void PrepareFiles()
         {
-            if(!Directory.Exists(ApplicationPaths.UserDataDirectory))
+            if (!Directory.Exists(ApplicationPaths.UserDataDirectory))
             {
                 Directory.CreateDirectory(ApplicationPaths.UserDataDirectory);
             }
@@ -46,36 +46,36 @@ namespace Narivia
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        #if !MONOMAC && !__IOS__  && !__TVOS__
+#if !MONOMAC && !__IOS__ && !__TVOS__
         [STAThread]
-        #endif
-        static void Main(string[] args)
+#endif
+        static void Main()
         {
             PrepareFiles();
 
-            #if MONOMAC
+#if MONOMAC
             NSApplication.Init ();
 
             using (var p = new NSAutoreleasePool ()) {
                 NSApplication.SharedApplication.Delegate = new AppDelegate();
                 NSApplication.Main(args);
             }
-            #elif __IOS__ || __TVOS__
+#elif __IOS__ || __TVOS__
             UIApplication.Main(args, null, "AppDelegate");
-            #else
+#else
             RunGame();
-            #endif
+#endif
         }
 
-        #if __IOS__ || __TVOS__
+#if __IOS__ || __TVOS__
         public override void FinishedLaunching(UIApplication app)
         {
             RunGame();
         }
-        #endif
+#endif
     }
 
-    #if MONOMAC
+#if MONOMAC
     class AppDelegate : NSApplicationDelegate
     {
         public override void FinishedLaunching (MonoMac.Foundation.NSObject notification)
@@ -94,6 +94,6 @@ namespace Narivia
             return true;
         }
     }  
-    #endif
+#endif
 }
 

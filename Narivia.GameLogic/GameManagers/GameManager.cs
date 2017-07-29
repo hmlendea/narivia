@@ -49,72 +49,6 @@ namespace Narivia.GameLogic.GameManagers
         public event FactionEventHandler FactionWon;
 
         /// <summary>
-        /// Gets the width of the world.
-        /// </summary>
-        /// <value>The width of the world.</value>
-        public int WorldWidth => world.WorldWidth;
-
-        /// <summary>
-        /// Gets the height of the world.
-        /// </summary>
-        /// <value>The height of the world.</value>
-        public int WorldHeight => world.WorldHeight;
-
-        /// <summary>
-        /// Gets the name of the world.
-        /// </summary>
-        /// <value>The name of the world.</value>
-        public string WorldName => world.WorldName;
-
-        /// <summary>
-        /// Gets the world identifier.
-        /// </summary>
-        /// <value>The world identifier.</value>
-        public string WorldId => world.WorldId;
-
-        /// <summary>
-        /// Gets the base region income.
-        /// </summary>
-        /// <value>The base region income.</value>
-        public int BaseRegionIncome => world.BaseRegionIncome;
-
-        /// <summary>
-        /// Gets the base region recruitment.
-        /// </summary>
-        /// <value>The base region recruitment.</value>
-        public int BaseRegionRecruitment => world.BaseRegionRecruitment;
-
-        /// <summary>
-        /// Gets the base faction recruitment.
-        /// </summary>
-        /// <value>The base faction recruitment.</value>
-        public int BaseFactionRecruitment => world.BaseFactionRecruitment;
-
-        /// <summary>
-        /// Gets the minimum number of troops required to attack.
-        /// </summary>
-        /// <value>The minimum troops to attack.</value>
-        public int MinTroopsPerAttack => world.MinTroopsPerAttack;
-
-        /// <summary>
-        /// Gets the starting wealth.
-        /// </summary>
-        /// <value>The starting wealth.</value>
-        public int StartingWealth => world.StartingWealth;
-
-        /// <summary>
-        /// Gets the starting troops per unit.
-        /// </summary>
-        /// <value>The starting troops per unit.</value>
-        public int StartingTroopsPerUnit => world.StartingTroops;
-
-        /// <summary>
-        /// Gets the price of holdings.
-        /// </summary>
-        /// <value>The holdings price.</value>
-        public int HoldingsPrice => world.HoldingsPrice;
-
-        /// <summary>
         /// Gets the player faction identifier.
         /// </summary>
         /// <value>The player faction identifier.</value>
@@ -167,7 +101,7 @@ namespace Narivia.GameLogic.GameManagers
 
                 string regionId = attack.ChooseRegionToAttack(faction.Id);
 
-                if (GetFactionTroopsAmount(faction.Id) < MinTroopsPerAttack ||
+                if (GetFactionTroopsAmount(faction.Id) < GetWorld().MinTroopsPerAttack ||
                     string.IsNullOrEmpty(regionId))
                 {
                     continue;
@@ -466,7 +400,7 @@ namespace Narivia.GameLogic.GameManagers
 
             List<Holding> holdings = world.GetRegionHoldings(region.Id).ToList();
 
-            int income = BaseRegionIncome;
+            int income = GetWorld().BaseRegionIncome;
 
             income += holdings.Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_INCOME;
             income += holdings.Count(h => h.Type == HoldingType.City) * HOLDING_CITY_INCOME;
@@ -492,7 +426,7 @@ namespace Narivia.GameLogic.GameManagers
 
             List<Holding> holdings = world.GetRegionHoldings(region.Id).ToList();
 
-            int recruitment = BaseRegionRecruitment;
+            int recruitment = GetWorld().BaseRegionRecruitment;
 
             recruitment += holdings.Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_RECRUITMENT;
             recruitment += holdings.Count(h => h.Type == HoldingType.City) * HOLDING_CITY_RECRUITMENT;
@@ -562,29 +496,11 @@ namespace Narivia.GameLogic.GameManagers
         => world.GetUnits();
 
         /// <summary>
-        /// Gets the world geographic layers.
+        /// Gets the world.
         /// </summary>
-        /// <returns>The world geographic layers.</returns>
-        public IEnumerable<WorldGeoLayer> GetWorldGeoLayers()
-        => world.GetWorldGeoLayers();
-
-        /// <summary>
-        /// Gets the world tile.
-        /// </summary>
-        /// <returns>The world tile.</returns>
-        /// <param name="x">The X coordinate.</param>
-        /// <param name="y">The Y coordinate.</param>
-        public WorldTile GetWorldTile(int x, int y)
-        => world.WorldTiles[x, y];
-
-        /// <summary>
-        /// Sets the world tile.
-        /// </summary>
-        /// <param name="x">The X coordinate.</param>
-        /// <param name="y">The Y coordinate.</param>
-        /// <param name="value">Value.</param>
-        public void SetWorldTile(int x, int y, WorldTile value)
-        => world.WorldTiles[x, y] = value;
+        /// <returns>The world.</returns>
+        public World GetWorld()
+        => world.GetWorld();
 
         /// <summary>
         /// Builds the specified holding type in a region.
@@ -599,7 +515,7 @@ namespace Narivia.GameLogic.GameManagers
             if (RegionHasEmptyHoldingSlots(regionId))
             {
                 world.AddHolding(regionId, holdingType);
-                GetFaction(region.FactionId).Wealth -= HoldingsPrice;
+                GetFaction(region.FactionId).Wealth -= GetWorld().HoldingsPrice;
             }
         }
 
@@ -742,7 +658,9 @@ namespace Narivia.GameLogic.GameManagers
         {
             Faction faction = GetFaction(factionId);
 
-            while (faction.Wealth >= HoldingsPrice)
+            // TODO: Reduce all this duplicated code
+
+            while (faction.Wealth >= GetWorld().HoldingsPrice)
             {
                 List<Region> validSovereignRegions = GetFactionRegions(factionId).Where(r => r.State == RegionState.Sovereign &&
                                                                                              RegionHasEmptyHoldingSlots(r.Id)).ToList();
@@ -757,7 +675,7 @@ namespace Narivia.GameLogic.GameManagers
                 BuildHolding(validSovereignRegions.RandomElement().Id, type);
             }
 
-            while (faction.Wealth >= HoldingsPrice)
+            while (faction.Wealth >= GetWorld().HoldingsPrice)
             {
                 List<Region> validOccupiedRegions = GetFactionRegions(factionId).Where(r => r.State == RegionState.Occupied &&
                                                                                              RegionHasEmptyHoldingSlots(r.Id)).ToList();

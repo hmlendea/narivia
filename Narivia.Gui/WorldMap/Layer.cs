@@ -35,7 +35,6 @@ namespace Narivia.Gui.WorldMap
         /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <param name="tileDimensions">Tile dimensions.</param>
         public void LoadContent()
         {
             Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);

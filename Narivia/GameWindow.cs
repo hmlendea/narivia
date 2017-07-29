@@ -17,7 +17,7 @@ namespace Narivia
     /// </summary>
     public class GameWindow : Game
     {
-        GraphicsDeviceManager graphics;
+        readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         readonly FpsIndicator fpsIndicator;

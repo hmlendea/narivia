@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +9,6 @@ using Narivia.Graphics.Extensions;
 using Narivia.Gui.WorldMap;
 using Narivia.Input;
 using Narivia.Input.Events;
-using Narivia.Models;
 using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
@@ -49,8 +46,6 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            List<WorldGeoLayer> worldGeoLayers = game.GetWorldGeoLayers().ToList();
-
             camera = new Camera { Size = Size };
             map = new Map();
 
@@ -82,7 +77,7 @@ namespace Narivia.Gui.GuiElements
             };
 
             camera.LoadContent();
-            map.LoadContent(worldGeoLayers);
+            map.LoadContent(game.GetWorld());
 
             regionHighlight.LoadContent();
             selectedRegionHighlight.LoadContent();
@@ -133,11 +128,11 @@ namespace Narivia.Gui.GuiElements
             int x = (int)mouseGameMapCoords.X;
             int y = (int)mouseGameMapCoords.Y;
 
-            if (x > 0 && x < game.WorldWidth &&
-                y > 0 && y < game.WorldHeight)
+            if (x > 0 && x < game.GetWorld().Width &&
+                y > 0 && y < game.GetWorld().Height)
             {
                 // TODO: Handle the Id retrieval properly
-                SelectedRegionId = game.GetWorldTile(x, y).RegionId;
+                SelectedRegionId = game.GetWorld().Tiles[x, y].RegionId;
 
                 // TODO: Also handle this properly
                 if (game.FactionIdAtPosition(x, y) == "gaia")
@@ -198,20 +193,20 @@ namespace Narivia.Gui.GuiElements
             {
                 for (int i = 0; i < cameraSizeX; i++)
                 {
-                    Vector2 screenCoords = new Vector2((int)(i * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.X % GameDefines.TILE_DIMENSIONS),
-                                                       (int)(j * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.Y % GameDefines.TILE_DIMENSIONS));
+                    Vector2 screenCoords = new Vector2((i * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.X % GameDefines.TILE_DIMENSIONS),
+                                                       (j * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.Y % GameDefines.TILE_DIMENSIONS));
                     Vector2 gameCoords = ScreenToMapCoordinates(screenCoords);
 
                     int x = (int)gameCoords.X;
                     int y = (int)gameCoords.Y;
 
-                    if (x < 0 || x > game.WorldWidth ||
-                        y < 0 || y > game.WorldHeight)
+                    if (x < 0 || x > game.GetWorld().Width ||
+                        y < 0 || y > game.GetWorld().Height)
                     {
                         continue;
                     }
 
-                    string regionId = game.GetWorldTile(x, y).RegionId;
+                    string regionId = game.GetWorld().Tiles[x, y].RegionId;
                     string factionId = game.FactionIdAtPosition(x, y);
                     Color factionColour = game.GetFaction(factionId).Colour.ToXnaColor();
 
@@ -245,15 +240,15 @@ namespace Narivia.Gui.GuiElements
             {
                 for (int i = 0; i < cameraSizeX; i++)
                 {
-                    Vector2 screenCoords = new Vector2((int)(i * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.X % GameDefines.TILE_DIMENSIONS),
-                                                       (int)(j * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.Y % GameDefines.TILE_DIMENSIONS));
+                    Vector2 screenCoords = new Vector2((i * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.X % GameDefines.TILE_DIMENSIONS),
+                                                       (j * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.Y % GameDefines.TILE_DIMENSIONS));
                     Vector2 gameCoords = ScreenToMapCoordinates(screenCoords);
 
                     int x = (int)gameCoords.X;
                     int y = (int)gameCoords.Y;
 
-                    if (x < 0 || x > game.WorldWidth ||
-                        y < 0 || y > game.WorldHeight)
+                    if (x < 0 || x > game.GetWorld().Width ||
+                        y < 0 || y > game.GetWorld().Height)
                     {
                         continue;
                     }

@@ -2,6 +2,9 @@
 
 namespace Narivia.Common.Extensions
 {
+    /// <summary>
+    /// Dictionary extensions.
+    /// </summary>
     public static class DictionaryExtensions
     {
         /// <summary>

@@ -20,7 +20,7 @@ namespace Narivia.DataAccess
         public string FileName { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XmlDatabase"/> class.
+        /// Initializes a new instance of the <see cref="T:XmlDatabase"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public XmlDatabase(string fileName)

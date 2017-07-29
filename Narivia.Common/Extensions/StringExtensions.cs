@@ -2,6 +2,9 @@
 
 namespace Narivia.Common.Extensions
 {
+    /// <summary>
+    /// String extensions.
+    /// </summary>
     public static class StringExtensions
     {
         /// <summary>

@@ -29,7 +29,7 @@ namespace Narivia.Gui.GuiElements
         {
             get
             {
-                return (int)Math.Round(Size.X / tileSize);
+                return (int)Math.Round(Size.X / buttonTileSize);
             }
         }
 
@@ -57,7 +57,7 @@ namespace Narivia.Gui.GuiElements
         /// <value><c>true</c> if hovered; otherwise, <c>false</c>.</value>
         public bool Hovered { get; set; }
 
-        const int tileSize = 32;
+        const int buttonTileSize = 32;
 
         List<GuiImage> images;
         GuiText text;
@@ -84,7 +84,7 @@ namespace Narivia.Gui.GuiElements
                 GuiImage image = new GuiImage
                 {
                     ContentFile = "Interface/button",
-                    SourceRectangle = CalculateSourceRectangle(x, Style)
+                    SourceRectangle = CalculateSourceRectangle(x)
                 };
 
                 images.Add(image);
@@ -143,8 +143,8 @@ namespace Narivia.Gui.GuiElements
 
             for (int i = 0; i < images.Count; i++)
             {
-                images[i].Position = new Vector2(Position.X + i * tileSize, Position.Y);
-                images[i].SourceRectangle = CalculateSourceRectangle(i, Style);
+                images[i].Position = new Vector2(Position.X + i * buttonTileSize, Position.Y);
+                images[i].SourceRectangle = CalculateSourceRectangle(i);
             }
 
             text.Text = Text;
@@ -154,7 +154,7 @@ namespace Narivia.Gui.GuiElements
             text.Size = Size;
         }
 
-        Rectangle CalculateSourceRectangle(int x, ButtonStyle style)
+        Rectangle CalculateSourceRectangle(int x)
         {
             int sx = 1;
             int sy = 0;
@@ -184,7 +184,7 @@ namespace Narivia.Gui.GuiElements
                 sx += 4;
             }
 
-            return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
+            return new Rectangle(sx * buttonTileSize, sy * buttonTileSize, buttonTileSize, buttonTileSize);
         }
     }
 }

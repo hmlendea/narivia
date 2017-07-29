@@ -110,7 +110,7 @@ namespace Narivia.Gui.Screens
 
             string factionName = game.GetFaction(game.PlayerFactionId).Name;
 
-            ShowNotification($"Welcome to {game.WorldName}",
+            ShowNotification($"Welcome to {game.GetWorld().Name}",
                              $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
                              $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!",
                              NotificationType.Informational,
@@ -295,11 +295,11 @@ namespace Narivia.Gui.Screens
                 return;
             }
 
-            if (game.GetFactionTroopsAmount(game.PlayerFactionId) < game.MinTroopsPerAttack)
+            if (game.GetFactionTroopsAmount(game.PlayerFactionId) < game.GetWorld().MinTroopsPerAttack)
             {
                 ShowNotification($"Not enough troops!",
                                  $"Sorry!" + Environment.NewLine + Environment.NewLine +
-                                 $"You do need at least {game.MinTroopsPerAttack} troops to attack any region.",
+                                 $"You do need at least {game.GetWorld().MinTroopsPerAttack} troops to attack any region.",
                                  NotificationType.Informational,
                                  NotificationStyle.Big,
                                  new Vector2(256, 192));

@@ -236,7 +236,7 @@ namespace Narivia.Gui.GuiElements
 
             Children.ForEach(c => c.Dispose());
         }
-        
+
         /// <summary>
         /// Disposes of this <see cref="GuiElement"/>.
         /// </summary>
@@ -257,7 +257,7 @@ namespace Narivia.Gui.GuiElements
                 }
 
                 UnloadContent();
-                
+
                 OnDisposed(this, EventArgs.Empty);
             }
         }

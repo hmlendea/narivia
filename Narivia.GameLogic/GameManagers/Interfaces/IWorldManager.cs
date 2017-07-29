@@ -8,78 +8,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
     public interface IWorldManager
     {
         /// <summary>
-        /// Gets or sets the world tiles.
-        /// </summary>
-        /// <value>The world tiles.</value>
-        WorldTile[,] WorldTiles { get; set; }
-
-        /// <summary>
-        /// Gets the width of the world.
-        /// </summary>
-        /// <value>The width of the world.</value>
-        int WorldWidth { get; }
-
-        /// <summary>
-        /// Gets the height of the world.
-        /// </summary>
-        /// <value>The height of the world.</value>
-        int WorldHeight { get; }
-
-        /// <summary>
-        /// Gets the name of the world.
-        /// </summary>
-        /// <value>The name of the world.</value>
-        string WorldName { get; }
-
-        /// <summary>
-        /// Gets the world identifier.
-        /// </summary>
-        /// <value>The world identifier.</value>
-        string WorldId { get; }
-
-        /// <summary>
-        /// Gets or sets the base region income.
-        /// </summary>
-        /// <value>The base region income.</value>
-        int BaseRegionIncome { get; set; }
-
-        /// <summary>
-        /// Gets or sets the base region recruitment.
-        /// </summary>
-        /// <value>The base region recruitment.</value>
-        int BaseRegionRecruitment { get; set; }
-
-        /// <summary>
-        /// Gets or sets the base faction recruitment.
-        /// </summary>
-        /// <value>The base faction recruitment.</value>
-        int BaseFactionRecruitment { get; set; }
-
-        /// <summary>
-        /// Gets or sets the minimum number of troops required to attack.
-        /// </summary>
-        /// <value>The minimum troops to attack.</value>
-        int MinTroopsPerAttack { get; set; }
-
-        /// <summary>
-        /// Gets or sets the starting wealth.
-        /// </summary>
-        /// <value>The starting wealth.</value>
-        int StartingWealth { get; set; }
-
-        /// <summary>
-        /// Gets or sets the starting troops.
-        /// </summary>
-        /// <value>The starting troops.</value>
-        int StartingTroops { get; set; }
-
-        /// <summary>
-        /// Gets or sets the price of holdings.
-        /// </summary>
-        /// <value>The holdings price.</value>
-        int HoldingsPrice { get; set; }
-
-        /// <summary>
         /// Loads the world.
         /// </summary>
         /// <param name="worldId">World identifier.</param>
@@ -269,10 +197,10 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Unit> GetUnits();
 
         /// <summary>
-        /// Gets the world geographic layers.
+        /// Gets the world.
         /// </summary>
-        /// <returns>The world geographic layers.</returns>
-        IEnumerable<WorldGeoLayer> GetWorldGeoLayers();
+        /// <returns>The world.</returns>
+        World GetWorld();
 
         /// <summary>
         /// Adds the specified holding type in a region.

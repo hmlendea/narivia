@@ -42,110 +42,6 @@ namespace Narivia.GameLogic.GameManagers
         ConcurrentDictionary<string, Unit> units;
 
         /// <summary>
-        /// Gets or sets the world tiles.
-        /// </summary>
-        /// <value>The world tiles.</value>
-        public WorldTile[,] WorldTiles
-        {
-            get { return world.Tiles; }
-            set { world.Tiles = value; }
-        }
-
-        /// <summary>
-        /// Gets the width of the world.
-        /// </summary>
-        /// <value>The width of the world.</value>
-        public int WorldWidth => world.Width;
-
-        /// <summary>
-        /// Gets the height of the world.
-        /// </summary>
-        /// <value>The height of the world.</value>
-        public int WorldHeight => world.Height;
-
-        /// <summary>
-        /// Gets the name of the world.
-        /// </summary>
-        /// <value>The name of the world.</value>
-        public string WorldName => world.Name;
-
-        /// <summary>
-        /// Gets the world identifier.
-        /// </summary>
-        /// <value>The world identifier.</value>
-        public string WorldId => world.Id;
-
-        /// <summary>
-        /// Gets or sets the base region income.
-        /// </summary>
-        /// <value>The base region income.</value>
-        public int BaseRegionIncome
-        {
-            get { return world.BaseRegionIncome; }
-            set { world.BaseRegionIncome = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the base region recruitment.
-        /// </summary>
-        /// <value>The base region recruitment.</value>
-        public int BaseRegionRecruitment
-        {
-            get { return world.BaseRegionRecruitment; }
-            set { world.BaseRegionRecruitment = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the base faction recruitment.
-        /// </summary>
-        /// <value>The base faction recruitment.</value>
-        public int BaseFactionRecruitment
-        {
-            get { return world.BaseFactionRecruitment; }
-            set { world.BaseFactionRecruitment = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the minimum number of troops required to attack.
-        /// </summary>
-        /// <value>The minimum troops to attack.</value>
-        public int MinTroopsPerAttack
-        {
-            get { return world.MinTroopsPerAttack; }
-            set { world.MinTroopsPerAttack = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the starting wealth.
-        /// </summary>
-        /// <value>The starting wealth.</value>
-        public int StartingWealth
-        {
-            get { return world.StartingWealth; }
-            set { world.StartingWealth = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the starting troops.
-        /// </summary>
-        /// <value>The starting troops.</value>
-        public int StartingTroops
-        {
-            get { return world.StartingTroops; }
-            set { world.StartingTroops = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the price of holdings.
-        /// </summary>
-        /// <value>The holdings price.</value>
-        public int HoldingsPrice
-        {
-            get { return world.HoldingsPrice; }
-            set { world.HoldingsPrice = value; }
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="WorldManager"/> class.
         /// </summary>
         public WorldManager()
@@ -483,11 +379,11 @@ namespace Narivia.GameLogic.GameManagers
         => units.Values;
 
         /// <summary>
-        /// Gets the world geographic layers.
+        /// Gets the world.
         /// </summary>
-        /// <returns>The world geographic layers.</returns>
-        public IEnumerable<WorldGeoLayer> GetWorldGeoLayers()
-        => world.Layers;
+        /// <returns>The world.</returns>
+        public World GetWorld()
+        => world;
 
         /// <summary>
         /// Adds the specified holding type in a region.
@@ -648,7 +544,7 @@ namespace Narivia.GameLogic.GameManagers
                 return;
             }
 
-            faction.Wealth = StartingWealth;
+            faction.Wealth = world.StartingWealth;
             faction.Alive = true;
 
             Parallel.ForEach(units.Values,
@@ -659,7 +555,7 @@ namespace Narivia.GameLogic.GameManagers
                 {
                     FactionId = faction.Id,
                     UnitId = unit.Id,
-                    Size = StartingTroops
+                    Size = world.StartingTroops
                 };
 
                 armies.AddOrUpdate(armyKey, army);

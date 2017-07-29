@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Graphics;
 using Narivia.Models;
 
 namespace Narivia.Gui.WorldMap
@@ -32,19 +30,19 @@ namespace Narivia.Gui.WorldMap
         /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <param name="worldName">World name.</param>
-        public void LoadContent(IEnumerable<WorldGeoLayer> worldGeoLayers)
+        /// <param name="world">World.</param>
+        public void LoadContent(World world)
         {
-            foreach (WorldGeoLayer worldGeoLayer in worldGeoLayers)
+            foreach (WorldGeoLayer worldGeoLayer in world.Layers)
             {
                 Layer layer = new Layer
                 {
                     Tileset = worldGeoLayer.Tileset,
-                    TileMap = new string[worldGeoLayer.Width, worldGeoLayer.Height]
+                    TileMap = new string[world.Width, world.Height]
                 };
 
-                Parallel.For(0, worldGeoLayer.Height,
-                             y => Parallel.For(0, worldGeoLayer.Width,
+                Parallel.For(0, world.Height,
+                             y => Parallel.For(0, world.Width,
                                                x =>
                 {
                     int tile = worldGeoLayer.Tiles[x, y];

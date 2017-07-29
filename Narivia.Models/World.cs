@@ -127,6 +127,10 @@ namespace Narivia.Models
         [XmlIgnore]
         public WorldTile[,] Tiles { get; set; }
 
+        /// <summary>
+        /// Gets or sets the geographic layers.
+        /// </summary>
+        /// <value>The grographic layers.</value>
         [XmlIgnore]
         public IList<WorldGeoLayer> Layers { get; set; }
 

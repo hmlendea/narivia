@@ -330,6 +330,8 @@ namespace Narivia.Input
             }
         }
 
+        // TODO: Everything below this is required by a workaround to a problem and should be removed as soon as it is properly fixed
+
         public Vector2 MousePosition => new Vector2(currentMouseState.Position.X, currentMouseState.Position.Y);
         public bool MouseButtonInputHandled { get; set; }
 

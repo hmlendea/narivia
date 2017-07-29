@@ -84,7 +84,7 @@ namespace Narivia.Gui.GuiElements
             };
             unitImage = new GuiImage
             {
-                ContentFile = $"World/Assets/{game.WorldId}/units/{units[currentUnitIndex].Id}",
+                ContentFile = $"World/Assets/{game.GetWorld().Id}/units/{units[currentUnitIndex].Id}",
                 SourceRectangle = new Rectangle(0, 0, 64, 64)
             };
 
@@ -276,7 +276,7 @@ namespace Narivia.Gui.GuiElements
             recruitButton.Position = new Vector2(Position.X + SPACING, Position.Y + Size.Y - recruitButton.Size.Y - SPACING);
             cancelButton.Position = new Vector2(Position.X + Size.X - cancelButton.Size.X - SPACING, Position.Y + Size.Y - recruitButton.Size.Y - SPACING);
 
-            unitImage.ContentFile = $"World/Assets/{game.WorldId}/units/{units[currentUnitIndex].Id}";
+            unitImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/units/{units[currentUnitIndex].Id}";
             unitImage.Position = new Vector2(unitBackground.Position.X + (unitBackground.Scale.X - unitImage.SourceRectangle.Width) / 2,
                                              unitBackground.Position.Y + (unitBackground.Scale.Y - unitImage.SourceRectangle.Height) / 2);
         }

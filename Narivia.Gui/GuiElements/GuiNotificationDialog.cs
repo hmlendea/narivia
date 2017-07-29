@@ -90,7 +90,6 @@ namespace Narivia.Gui.GuiElements
             switch (Style)
             {
                 default:
-                case NotificationStyle.Big:
                     imagePath = "Interface/notification_big";
                     fontName = "NotificationFontBig";
                     break;

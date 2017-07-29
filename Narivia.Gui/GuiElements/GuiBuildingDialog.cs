@@ -82,7 +82,7 @@ namespace Narivia.Gui.GuiElements
             };
             holdingImage = new GuiImage
             {
-                ContentFile = $"World/Assets/{game.WorldId}/holdings/generic"
+                ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic"
             };
 
             holdingText = new GuiText
@@ -231,7 +231,7 @@ namespace Narivia.Gui.GuiElements
             priceIcon.Position = new Vector2(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom + SPACING);
 
             priceText.Position = new Vector2(priceIcon.ScreenArea.Right + SPACING, priceIcon.ScreenArea.Top);
-            priceText.Text = game.HoldingsPrice.ToString();
+            priceText.Text = game.GetWorld().HoldingsPrice.ToString();
             priceText.TextColour = TextColour;
 
             previousHoldingButton.Position = new Vector2(holdingBackground.ScreenArea.Left - previousHoldingButton.ScreenArea.Width - SPACING, holdingBackground.ScreenArea.Top);
@@ -316,7 +316,7 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            if (game.GetFaction(game.PlayerFactionId).Wealth >= game.HoldingsPrice)
+            if (game.GetFaction(game.PlayerFactionId).Wealth >= game.GetWorld().HoldingsPrice)
             {
                 game.BuildHolding(regions[currentRegionIndex].Id, holdingTypes[currentHoldingTypeIndex]);
             }

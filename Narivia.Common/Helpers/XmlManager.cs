@@ -16,7 +16,7 @@ namespace Narivia.Common.Helpers
         public Type Type { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XmlManager"/> class.
+        /// Initializes a new instance of the <see cref="T:XmlManager"/> class.
         /// </summary>
         public XmlManager()
         {

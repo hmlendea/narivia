@@ -16,21 +16,15 @@ namespace Narivia.Graphics.Extensions
         /// <returns>The System Color.</returns>
         /// <param name="source">Source XNA Color.</param>
         public static SystemColor ToSystemColor(this XnaColor source)
-        {
-            if (source == null)
-            {
-                return SystemColor.Empty;
-            }
+        => SystemColor.FromArgb(source.A, source.R, source.G, source.B);
 
-            return SystemColor.FromArgb(source.A, source.R, source.G, source.B);
-        }
-    
         /// <summary>
         /// Convers a System Color into to an XNA Color.
         /// </summary>
         /// <returns>The System Color.</returns>
         /// <param name="source">Source XNA Color.</param>
-        public static XnaColor ToXnaColor(this SystemColor source) => new XnaColor(source.R, source.G, source.B, source.A);
+        public static XnaColor ToXnaColor(this SystemColor source)
+        => new XnaColor(source.R, source.G, source.B, source.A);
 
         /// <summary>
         /// Convers an XNA Color array into to a System Color array.

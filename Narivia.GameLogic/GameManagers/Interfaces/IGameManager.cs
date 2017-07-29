@@ -33,72 +33,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         event FactionEventHandler FactionWon;
 
         /// <summary>
-        /// Gets the width of the world.
-        /// </summary>
-        /// <value>The width of the world.</value>
-        int WorldWidth { get; }
-
-        /// <summary>
-        /// Gets the height of the world.
-        /// </summary>
-        /// <value>The height of the world.</value>
-        int WorldHeight { get; }
-
-        /// <summary>
-        /// Gets the name of the world.
-        /// </summary>
-        /// <value>The name of the world.</value>
-        string WorldName { get; }
-
-        /// <summary>
-        /// Gets the world identifier.
-        /// </summary>
-        /// <value>The world identifier.</value>
-        string WorldId { get; }
-
-        /// <summary>
-        /// Gets the base region income.
-        /// </summary>
-        /// <value>The base region income.</value>
-        int BaseRegionIncome { get; }
-
-        /// <summary>
-        /// Gets the base region recruitment.
-        /// </summary>
-        /// <value>The base region recruitment.</value>
-        int BaseRegionRecruitment { get; }
-
-        /// <summary>
-        /// Gets the base faction recruitment.
-        /// </summary>
-        /// <value>The base faction recruitment.</value>
-        int BaseFactionRecruitment { get; }
-
-        /// <summary>
-        /// Gets the minimum number of troops required to attack.
-        /// </summary>
-        /// <value>The minimum troops to attack.</value>
-        int MinTroopsPerAttack { get; }
-
-        /// <summary>
-        /// Gets the starting wealth.
-        /// </summary>
-        /// <value>The starting wealth.</value>
-        int StartingWealth { get; }
-
-        /// <summary>
-        /// Gets the starting troops per unit.
-        /// </summary>
-        /// <value>The starting troops per unit.</value>
-        int StartingTroopsPerUnit { get; }
-
-        /// <summary>
-        /// Gets the price of holdings.
-        /// </summary>
-        /// <value>The holdings price.</value>
-        int HoldingsPrice { get; }
-
-        /// <summary>
         /// Gets the player faction identifier.
         /// </summary>
         /// <value>The player faction identifier.</value>
@@ -379,18 +313,10 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Resource> GetResources();
 
         /// <summary>
-        /// Gets the world geographic layers.
+        /// Gets the world.
         /// </summary>
-        /// <returns>The world geographic layers.</returns>
-        IEnumerable<WorldGeoLayer> GetWorldGeoLayers();
-
-        /// <summary>
-        /// Gets the world tile.
-        /// </summary>
-        /// <returns>The world tile.</returns>
-        /// <param name="x">The X coordinate.</param>
-        /// <param name="y">The Y coordinate.</param>
-        WorldTile GetWorldTile(int x, int y);
+        /// <returns>The world.</returns>
+        World GetWorld();
 
         /// <summary>
         /// Gets the unit.
@@ -398,14 +324,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The unit.</returns>
         /// <param name="unitId">Unit identifier.</param>
         Unit GetUnit(string unitId);
-
-        /// <summary>
-        /// Sets the world tile.
-        /// </summary>
-        /// <param name="x">The X coordinate.</param>
-        /// <param name="y">The Y coordinate.</param>
-        /// <param name="value">Value.</param>
-        void SetWorldTile(int x, int y, WorldTile value);
 
         /// <summary>
         /// Gets the units.

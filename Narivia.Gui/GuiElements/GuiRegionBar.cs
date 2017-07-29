@@ -118,7 +118,7 @@ namespace Narivia.Gui.GuiElements
             {
                 GuiImage holdingImage = new GuiImage
                 {
-                    ContentFile = $"World/Assets/{game.WorldId}/holdings/generic",
+                    ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic",
                     SourceRectangle = new Rectangle(64 * ((int)holding.Type - 1), 0, 64, 64),
                     Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
                                            Position.Y + Size.Y - 64)
@@ -184,7 +184,7 @@ namespace Narivia.Gui.GuiElements
                 factionImage.EmblemColour = flag.EmblemColour.ToXnaColor();
 
                 resourceImage.Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64);
-                resourceImage.ContentFile = $"World/Assets/{game.WorldId}/resources/{region.ResourceId}_big";
+                resourceImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/resources/{region.ResourceId}_big";
 
                 resourceText.Position = new Vector2(Position.X, Position.Y + 2);
                 resourceText.Size = new Vector2(64 + HOLDING_SPACING_HORIZONTAL * 2, Size.Y - 74);
