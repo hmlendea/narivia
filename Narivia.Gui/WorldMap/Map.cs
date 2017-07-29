@@ -38,20 +38,10 @@ namespace Narivia.Gui.WorldMap
                 Layer layer = new Layer
                 {
                     Tileset = worldGeoLayer.Tileset,
-                    TileMap = new string[world.Width, world.Height]
+                    TileMap = new int[world.Width, world.Height]
                 };
 
-                Parallel.For(0, world.Height,
-                             y => Parallel.For(0, world.Width,
-                                               x =>
-                {
-                    int tile = worldGeoLayer.Tiles[x, y];
-
-                    if (tile > 0)
-                    {
-                        layer.TileMap[x, y] = tile.ToString();
-                    }
-                }));
+                Parallel.For(0, world.Height, y => Parallel.For(0, world.Width, x => layer.TileMap[x, y] = worldGeoLayer.Tiles[x, y]));
 
                 Layers.Add(layer);
 

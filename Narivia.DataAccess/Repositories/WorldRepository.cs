@@ -63,13 +63,7 @@ namespace Narivia.DataAccess.Repositories
             int worldWidth = worldEntity.Tiles.GetLength(0);
             int worldHeight = worldEntity.Tiles.GetLength(1);
 
-            for (int y = 0; y < worldWidth; y++)
-            {
-                for (int x = 0; x < worldHeight; x++)
-                {
-                    worldEntity.Tiles[x, y] = new WorldTileEntity();
-                }
-            }
+            Parallel.For(0, worldHeight, y => Parallel.For(0, worldWidth, x => worldEntity.Tiles[x, y] = new WorldTileEntity()));
 
             ConcurrentDictionary<int, string> regionColourIds = new ConcurrentDictionary<int, string>();
             ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
@@ -102,8 +96,11 @@ namespace Narivia.DataAccess.Repositories
                 }));
             }
 
-            worldEntity.Layers = LoadLayers(id);
+            TmxMap tmxMap = new TmxMap(Path.Combine(worldsDirectory, id, "world.tmx"));
+            ConcurrentBag<WorldGeoLayerEntity> layers = new ConcurrentBag<WorldGeoLayerEntity>();
 
+            worldEntity.Layers = new List<WorldGeoLayerEntity>();
+            Parallel.ForEach(tmxMap.Layers, tmxLayer => worldEntity.Layers.Add(ProcessTmxLayer(tmxMap, tmxLayer)));
 
             return worldEntity;
         }
@@ -148,36 +145,24 @@ namespace Narivia.DataAccess.Repositories
             Directory.Delete(Path.Combine(worldsDirectory, id));
         }
 
-        List<WorldGeoLayerEntity> LoadLayers(string worldId)
+        WorldGeoLayerEntity ProcessTmxLayer(TmxMap tmxMap, TmxLayer tmxLayer)
         {
-            TmxMap tmxMap = new TmxMap(Path.Combine(worldsDirectory, worldId, "world.tmx"));
-            List<WorldGeoLayerEntity> layers = new List<WorldGeoLayerEntity>();
+            // TODO: Throw an exception for "The layer does not contain a 'tileset' property"
+            string tilesetName = tmxLayer.Properties["tileset"];
 
-            // TODO: Consider parallelisation
-            foreach (TmxLayer tmxLayer in tmxMap.Layers)
+            // TODO: Throw an exception for "The specified tileset does not exist"
+            TmxTileset tmxTileset = tmxMap.Tilesets[tilesetName];
+
+            WorldGeoLayerEntity layer = new WorldGeoLayerEntity
             {
-                // TODO: Throw an exception for "The layer does not contain a 'tileset' property"
+                Name = tmxLayer.Name,
+                Tiles = new int[tmxMap.Width, tmxMap.Height],
+                Tileset = tmxTileset.Name
+            };
 
-                string tilesetName = tmxLayer.Properties["tileset"];
+            Parallel.ForEach(tmxLayer.Tiles, tile => layer.Tiles[tile.X, tile.Y] = Math.Max(-1, tile.Gid - tmxTileset.FirstGid));
 
-                // TODO: Throw an exception for "The specified tileset does not exist"
-
-                WorldGeoLayerEntity layer = new WorldGeoLayerEntity
-                {
-                    Name = tmxLayer.Name,
-                    Tiles = new int[tmxMap.Width, tmxMap.Height],
-                    Tileset = tilesetName
-                };
-
-                TmxTileset tmxTileset = tmxMap.Tilesets[tilesetName];
-
-                Parallel.ForEach(tmxLayer.Tiles.Where(tile => tile.Gid > 0),
-                                 tile => layer.Tiles[tile.X, tile.Y] = (tile.Gid - tmxTileset.FirstGid));
-
-                layers.Add(layer);
-            }
-
-            return layers;
+            return layer;
         }
     }
 }

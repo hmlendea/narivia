@@ -20,7 +20,7 @@ namespace Narivia.Gui.WorldMap
         /// Gets or sets the tile map.
         /// </summary>
         /// <value>The tile map.</value>
-        public string[,] TileMap { get; set; }
+        public int[,] TileMap { get; set; }
 
         /// <summary>
         /// Gets or sets the tileset.
@@ -30,15 +30,21 @@ namespace Narivia.Gui.WorldMap
 
         Sprite sprite { get; set; }
 
-        ConcurrentBag<Tile> tiles;
+        List<Tile> tiles;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Layer"/> class.
+        /// </summary>
+        public Layer()
+        {
+            tiles = new List<Tile>();
+        }
 
         /// <summary>
         /// Loads the content.
         /// </summary>
         public void LoadContent()
         {
-            Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
-
             int mapHeight = TileMap.GetLength(0);
             int mapWidth = TileMap.GetLength(1);
 
@@ -47,20 +53,19 @@ namespace Narivia.Gui.WorldMap
                 ContentFile = $"World/Terrain/{Tileset}"
             };
 
-            tiles = new ConcurrentBag<Tile>();
+            ConcurrentBag<Tile> layerTiles = new ConcurrentBag<Tile>();
 
             sprite.LoadContent();
 
-            Parallel.For(0, mapHeight,
-                         y => Parallel.For(0, mapWidth,
-                                           x =>
-            {
-                if (!string.IsNullOrEmpty(TileMap[x, y]))
-                {
-                    int gid = int.Parse(TileMap[x, y]);
-                    int cols = (int)(sprite.TextureSize.X / GameDefines.TILE_DIMENSIONS);
+            int cols = (int)(sprite.TextureSize.X / GameDefines.TILE_DIMENSIONS);
 
-                    sourceRectangle = new Rectangle(
+            Parallel.For(0, mapHeight, y => Parallel.For(0, mapWidth, x =>
+            {
+                if (TileMap[x, y] >= 0)
+                {
+                    int gid = TileMap[x, y];
+
+                    Rectangle sourceRectangle = new Rectangle(
                         gid % cols * GameDefines.TILE_DIMENSIONS,
                         gid / cols * GameDefines.TILE_DIMENSIONS,
                         GameDefines.TILE_DIMENSIONS,
@@ -69,9 +74,11 @@ namespace Narivia.Gui.WorldMap
                     Tile tile = new Tile();
                     tile.LoadContent(x, y, sourceRectangle);
 
-                    tiles.Add(tile);
+                    layerTiles.Add(tile);
                 }
             }));
+
+            tiles.AddRange(layerTiles);
         }
 
         /// <summary>
@@ -79,7 +86,7 @@ namespace Narivia.Gui.WorldMap
         /// </summary>
         public void UnloadContent()
         {
-            tiles = null;
+            tiles.Clear();
             sprite.UnloadContent();
         }
 
