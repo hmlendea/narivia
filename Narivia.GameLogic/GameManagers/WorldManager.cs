@@ -483,6 +483,13 @@ namespace Narivia.GameLogic.GameManagers
         => units.Values;
 
         /// <summary>
+        /// Gets the world geographic layers.
+        /// </summary>
+        /// <returns>The world geographic layers.</returns>
+        public IEnumerable<WorldGeoLayer> GetWorldGeoLayers()
+        => world.Layers;
+
+        /// <summary>
         /// Adds the specified holding type in a region.
         /// </summary>
         /// <param name="regionId">Region identifier.</param>
@@ -568,7 +575,7 @@ namespace Narivia.GameLogic.GameManagers
             units = new ConcurrentDictionary<string, Unit>(unitList.ToDictionary(unit => unit.Id, unit => unit));
             world = worldRepository.Get(worldId).ToDomainModel();
         }
-        
+
         // TODO: Parallelise this
         void GenerateBorders()
         {

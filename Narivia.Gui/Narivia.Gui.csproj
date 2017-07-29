@@ -34,9 +34,6 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
-    <Reference Include="TiledSharp">
-      <HintPath>..\packages\TiledSharp.0.15\lib\TiledSharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,9 +115,6 @@
       <Project>{54aca0bd-4d04-4765-9055-d84941d80e49}</Project>
       <Name>Narivia.Settings</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -562,6 +562,13 @@ namespace Narivia.GameLogic.GameManagers
         => world.GetUnits();
 
         /// <summary>
+        /// Gets the world geographic layers.
+        /// </summary>
+        /// <returns>The world geographic layers.</returns>
+        public IEnumerable<WorldGeoLayer> GetWorldGeoLayers()
+        => world.GetWorldGeoLayers();
+
+        /// <summary>
         /// Gets the world tile.
         /// </summary>
         /// <returns>The world tile.</returns>

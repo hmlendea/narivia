@@ -63,7 +63,7 @@ namespace Narivia.DataAccess.Repositories
             int worldWidth = worldEntity.Tiles.GetLength(0);
             int worldHeight = worldEntity.Tiles.GetLength(1);
 
-            for (int y = 0; y < worldWidth; y ++)
+            for (int y = 0; y < worldWidth; y++)
             {
                 for (int x = 0; x < worldHeight; x++)
                 {
@@ -71,27 +71,35 @@ namespace Narivia.DataAccess.Repositories
                 }
             }
 
-            ConcurrentDictionary<Color, string> regionColourIds = new ConcurrentDictionary<Color, string>();
-            ConcurrentDictionary<Color, string> biomeColourIds = new ConcurrentDictionary<Color, string>();
+            ConcurrentDictionary<int, string> regionColourIds = new ConcurrentDictionary<int, string>();
+            ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
 
             IBiomeRepository biomeRepository = new BiomeRepository(Path.Combine(worldsDirectory, id, "biomes.xml"));
             IRegionRepository regionRepository = new RegionRepository(Path.Combine(worldsDirectory, id, "regions.xml"));
 
-            Parallel.ForEach(biomeRepository.GetAll(), b => biomeColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal), b.Id));
-            Parallel.ForEach(regionRepository.GetAll(), r => regionColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal), r.Id));
-            
+            Parallel.ForEach(biomeRepository.GetAll(), b => biomeColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
+            Parallel.ForEach(regionRepository.GetAll(), r => regionColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));
+
             using (FastBitmap bmp = new FastBitmap(Path.Combine(worldsDirectory, id, "biomes_map.png")))
             {
                 Parallel.For(0, worldEntity.Height,
                              y => Parallel.For(0, worldEntity.Width,
-                                               x => worldEntity.Tiles[x, y].RegionId = biomeColourIds[bmp.GetPixel(x, y)]));
+                                               x =>
+                {
+                    int argb = bmp.GetPixel(x, y).ToArgb();
+                    worldEntity.Tiles[x, y].BiomeId = biomeColourIds[argb];
+                }));
             }
 
             using (FastBitmap bmp = new FastBitmap(Path.Combine(worldsDirectory, id, "map.png")))
             {
                 Parallel.For(0, worldEntity.Height,
                              y => Parallel.For(0, worldEntity.Width,
-                                               x => worldEntity.Tiles[x, y].RegionId = regionColourIds[bmp.GetPixel(x, y)]));
+                                               x =>
+                {
+                    int argb = bmp.GetPixel(x, y).ToArgb();
+                    worldEntity.Tiles[x, y].RegionId = regionColourIds[argb];
+                }));
             }
 
             TmxMap tmxMap = new TmxMap(Path.Combine(worldsDirectory, id, "world.tmx"));
@@ -101,16 +109,19 @@ namespace Narivia.DataAccess.Repositories
             // TODO: Consider parallelisation
             foreach (TmxLayer tmxLayer in tmxMap.Layers)
             {
-                WorldGeoLayerEntity layer = new WorldGeoLayerEntity();
-                layer.Tiles = new int[worldWidth, worldHeight];
-
                 // TODO: Throw an exception for "The layer does not contain a 'tileset' property"
 
                 string tilesetName = tmxLayer.Properties["tileset"];
 
                 // TODO: Throw an exception for "The specified tileset does not exist"
 
-                layer.Tileset = tilesetName;
+                WorldGeoLayerEntity layer = new WorldGeoLayerEntity
+                {
+                    Tiles = new int[worldWidth, worldHeight],
+                    Tileset = tilesetName,
+                    Width = worldWidth,
+                    Height = worldHeight
+                };
 
                 TmxTileset tmxTileset = tmxMap.Tilesets[tilesetName];
 

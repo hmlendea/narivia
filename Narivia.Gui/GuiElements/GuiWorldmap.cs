@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,6 +11,7 @@ using Narivia.Graphics.Extensions;
 using Narivia.Gui.WorldMap;
 using Narivia.Input;
 using Narivia.Input.Events;
+using Narivia.Models;
 using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
@@ -46,13 +49,16 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
+            List<WorldGeoLayer> worldGeoLayers = game.GetWorldGeoLayers().ToList();
+
             camera = new Camera { Size = Size };
-            map = new Map { TileDimensions = Vector2.One * GameDefines.TILE_DIMENSIONS };
+            map = new Map();
 
             regionHighlight = new Sprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS * 3, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
+                SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS * 3,
+                                                GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
                 Tint = Color.White,
                 Opacity = 1.0f
             };
@@ -60,7 +66,8 @@ namespace Narivia.Gui.GuiElements
             selectedRegionHighlight = new Sprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS * 3, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
+                SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS * 3,
+                                                GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
                 Tint = Color.White,
                 Opacity = 1.0f
             };
@@ -68,13 +75,14 @@ namespace Narivia.Gui.GuiElements
             factionBorder = new Sprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
+                SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS,
+                                                GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
                 Tint = Color.Blue,
                 Opacity = 1.0f
             };
 
             camera.LoadContent();
-            map.LoadContent(game.WorldId);
+            map.LoadContent(worldGeoLayers);
 
             regionHighlight.LoadContent();
             selectedRegionHighlight.LoadContent();
@@ -183,15 +191,15 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            int cameraSizeX = (int)(camera.Size.X / map.TileDimensions.X + 2);
-            int cameraSizeY = (int)(camera.Size.Y / map.TileDimensions.Y + 2);
+            int cameraSizeX = (int)(camera.Size.X / GameDefines.TILE_DIMENSIONS + 2);
+            int cameraSizeY = (int)(camera.Size.Y / GameDefines.TILE_DIMENSIONS + 2);
 
             for (int j = 0; j < cameraSizeY; j++)
             {
                 for (int i = 0; i < cameraSizeX; i++)
                 {
-                    Vector2 screenCoords = new Vector2((int)(i * map.TileDimensions.X) - (int)(camera.Position.X % map.TileDimensions.X),
-                                                       (int)(j * map.TileDimensions.Y) - (int)(camera.Position.Y % map.TileDimensions.Y));
+                    Vector2 screenCoords = new Vector2((int)(i * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.X % GameDefines.TILE_DIMENSIONS),
+                                                       (int)(j * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.Y % GameDefines.TILE_DIMENSIONS));
                     Vector2 gameCoords = ScreenToMapCoordinates(screenCoords);
 
                     int x = (int)gameCoords.X;
@@ -230,15 +238,15 @@ namespace Narivia.Gui.GuiElements
 
         void DrawFactionBorders(SpriteBatch spriteBatch)
         {
-            int cameraSizeX = (int)(camera.Size.X / map.TileDimensions.X + 2);
-            int cameraSizeY = (int)(camera.Size.Y / map.TileDimensions.Y + 2);
+            int cameraSizeX = (int)(camera.Size.X / GameDefines.TILE_DIMENSIONS + 2);
+            int cameraSizeY = (int)(camera.Size.Y / GameDefines.TILE_DIMENSIONS + 2);
 
             for (int j = 0; j < cameraSizeY; j++)
             {
                 for (int i = 0; i < cameraSizeX; i++)
                 {
-                    Vector2 screenCoords = new Vector2((int)(i * map.TileDimensions.X) - (int)(camera.Position.X % map.TileDimensions.X),
-                                                       (int)(j * map.TileDimensions.Y) - (int)(camera.Position.Y % map.TileDimensions.Y));
+                    Vector2 screenCoords = new Vector2((int)(i * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.X % GameDefines.TILE_DIMENSIONS),
+                                                       (int)(j * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.Y % GameDefines.TILE_DIMENSIONS));
                     Vector2 gameCoords = ScreenToMapCoordinates(screenCoords);
 
                     int x = (int)gameCoords.X;
@@ -305,8 +313,8 @@ namespace Narivia.Gui.GuiElements
         /// <param name="screenCoords">Screen coordinates.</param>
         Vector2 ScreenToMapCoordinates(Vector2 screenCoords)
         {
-            return new Vector2((int)((camera.Position.X + screenCoords.X) / map.TileDimensions.X),
-                               (int)((camera.Position.Y + screenCoords.Y) / map.TileDimensions.Y));
+            return new Vector2((int)((camera.Position.X + screenCoords.X) / GameDefines.TILE_DIMENSIONS),
+                               (int)((camera.Position.Y + screenCoords.Y) / GameDefines.TILE_DIMENSIONS));
         }
 
         void InputManager_OnMouseMoved(object sender, MouseEventArgs e)

@@ -22,7 +22,9 @@ namespace Narivia.GameLogic.Mapping
             {
                 Name = worldGeoLayerEntity.Name,
                 Tileset = worldGeoLayerEntity.Tileset,
-                Tiles = worldGeoLayerEntity.Tiles
+                Tiles = worldGeoLayerEntity.Tiles,
+                Width = worldGeoLayerEntity.Width,
+                Height = worldGeoLayerEntity.Height
             };
 
             return worldGeoLayer;
@@ -39,7 +41,9 @@ namespace Narivia.GameLogic.Mapping
             {
                 Name = worldGeoLayer.Name,
                 Tileset = worldGeoLayer.Tileset,
-                Tiles = worldGeoLayer.Tiles
+                Tiles = worldGeoLayer.Tiles,
+                Width = worldGeoLayer.Width,
+                Height = worldGeoLayer.Height
             };
 
             return worldGeoLayerEntity;

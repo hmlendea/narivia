@@ -269,6 +269,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Unit> GetUnits();
 
         /// <summary>
+        /// Gets the world geographic layers.
+        /// </summary>
+        /// <returns>The world geographic layers.</returns>
+        IEnumerable<WorldGeoLayer> GetWorldGeoLayers();
+
+        /// <summary>
         /// Adds the specified holding type in a region.
         /// </summary>
         /// <param name="regionId">Region identifier.</param>

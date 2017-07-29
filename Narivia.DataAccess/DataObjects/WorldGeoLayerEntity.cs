@@ -22,5 +22,17 @@
         /// </summary>
         /// <value>The layer tiles.</value>
         public int[,] Tiles { get; set; }
+
+        /// <summary>
+        /// Gets the width.
+        /// </summary>
+        /// <value>The width.</value>
+        public int Width { get; set; }
+
+        /// <summary>
+        /// Gets the height.
+        /// </summary>
+        /// <value>The height.</value>
+        public int Height { get; set; }
     }
 }

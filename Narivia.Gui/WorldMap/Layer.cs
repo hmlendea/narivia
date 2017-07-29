@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Settings;
 
 namespace Narivia.Gui.WorldMap
 {
@@ -26,8 +26,6 @@ namespace Narivia.Gui.WorldMap
         /// <value>The image.</value>
         public Sprite Sprite { get; set; }
 
-        Vector2 tileDimensions;
-
         readonly List<Tile> tiles;
 
         /// <summary>
@@ -44,10 +42,9 @@ namespace Narivia.Gui.WorldMap
         /// Loads the content.
         /// </summary>
         /// <param name="tileDimensions">Tile dimensions.</param>
-        public void LoadContent(Vector2 tileDimensions)
+        public void LoadContent()
         {
             Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
-            this.tileDimensions = tileDimensions;
 
             int mapSize = TileMap.GetLength(0);
 
@@ -63,15 +60,15 @@ namespace Narivia.Gui.WorldMap
                     }
 
                     int gid = int.Parse(TileMap[x, y]);
-                    int cols = (int)(Sprite.TextureSize.X / tileDimensions.X);
+                    int cols = (int)(Sprite.TextureSize.X / GameDefines.TILE_DIMENSIONS);
                     int srX = gid % cols;
                     int srY = gid / cols;
 
                     sourceRectangle = new Rectangle(
-                        srX * (int)tileDimensions.X,
-                        srY * (int)tileDimensions.Y,
-                        (int)tileDimensions.X,
-                        (int)tileDimensions.Y);
+                        srX * GameDefines.TILE_DIMENSIONS,
+                        srY * GameDefines.TILE_DIMENSIONS,
+                        GameDefines.TILE_DIMENSIONS,
+                        GameDefines.TILE_DIMENSIONS);
 
                     Tile tile = new Tile();
                     tile.LoadContent(x, y, sourceRectangle);
@@ -104,17 +101,16 @@ namespace Narivia.Gui.WorldMap
         /// <param name="camera">Camera.</param>
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-            Vector2 camCoordsBegin = camera.Position / tileDimensions;
-            Vector2 camCoordsEnd = camCoordsBegin + camera.Size / tileDimensions;
+            Vector2 camCoordsBegin = camera.Position / GameDefines.TILE_DIMENSIONS;
+            Vector2 camCoordsEnd = camCoordsBegin + camera.Size / GameDefines.TILE_DIMENSIONS;
 
-            List<Tile> tileList = tiles.Where(tile => tile.X >= camCoordsBegin.X - 1 &&
-                                                      tile.Y >= camCoordsBegin.Y - 1 &&
-                                                      tile.X <= camCoordsEnd.X + 1 &&
-                                                      tile.Y <= camCoordsEnd.Y + 1).ToList();
+            List<Tile> tilesToDraw = tiles.Where(tile => tile.X >= camCoordsBegin.X - 1 && tile.X <= camCoordsEnd.X + 1 &&
+                                                         tile.Y >= camCoordsBegin.Y - 1 && tile.Y <= camCoordsEnd.Y + 1).ToList();
 
-            foreach (Tile tile in tileList)
+            foreach (Tile tile in tilesToDraw)
             {
-                Sprite.Position = new Vector2(tile.X - camCoordsBegin.X, tile.Y - camCoordsBegin.Y) * tileDimensions;
+                Sprite.Position = new Vector2((tile.X - camCoordsBegin.X) * GameDefines.TILE_DIMENSIONS,
+                                              (tile.Y - camCoordsBegin.Y) * GameDefines.TILE_DIMENSIONS);
                 Sprite.SourceRectangle = tile.SourceRectangle;
                 Sprite.Draw(spriteBatch);
             }

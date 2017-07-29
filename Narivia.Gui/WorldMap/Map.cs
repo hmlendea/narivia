@@ -1,17 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using TiledSharp;
-
 using Narivia.Graphics;
-using Narivia.Logging;
-using Narivia.Logging.Enumerations;
-using Narivia.Settings;
+using Narivia.Models;
 
 namespace Narivia.Gui.WorldMap
 {
@@ -20,8 +15,6 @@ namespace Narivia.Gui.WorldMap
     /// </summary>
     public class Map
     {
-        TmxMap tmxMap;
-
         /// <summary>
         /// Gets or sets the layers.
         /// </summary>
@@ -29,79 +22,46 @@ namespace Narivia.Gui.WorldMap
         public List<Layer> Layers { get; set; }
 
         /// <summary>
-        /// Gets or sets the tile dimensions.
-        /// </summary>
-        /// <value>The tile dimensions.</value>
-        public Vector2 TileDimensions { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Map"/> class.
         /// </summary>
         public Map()
         {
             Layers = new List<Layer>();
-            TileDimensions = Vector2.Zero;
         }
 
         /// <summary>
         /// Loads the content.
         /// </summary>
         /// <param name="worldName">World name.</param>
-        public void LoadContent(string worldName)
+        public void LoadContent(IEnumerable<WorldGeoLayer> worldGeoLayers)
         {
-            tmxMap = new TmxMap(Path.Combine(ApplicationPaths.WorldsDirectory, worldName, "world.tmx"));
-
-            // TODO: Consider parallelisation
-            foreach (TmxLayer tmxLayer in tmxMap.Layers)
+            foreach (WorldGeoLayer worldGeoLayer in worldGeoLayers)
             {
-                if (!tmxLayer.Properties.ContainsKey("tileset"))
-                {
-                    LogManager.Instance.Warn(LogBuilder.BuildKvpMessage(
-                        Operation.WorldLoadingMap,
-                        OperationStatus.Failure,
-                        new Dictionary<LogInfoKey, string>
-                        {
-                            { LogInfoKey.LayerName, tmxLayer.Name},
-                            { LogInfoKey.Message, "The layer does not contain a 'tileset' property" }
-                        }));
-
-                    continue;
-                }
-
-                string tilesetName = tmxLayer.Properties["tileset"];
-
-                if (tmxMap.Tilesets.All(x => x.Name != tilesetName))
-                {
-                    LogManager.Instance.Warn(LogBuilder.BuildKvpMessage(
-                        Operation.WorldLoadingMap,
-                        OperationStatus.Failure,
-                        new Dictionary<LogInfoKey, string>
-                        {
-                            { LogInfoKey.TilesetName, tmxLayer.Name},
-                            { LogInfoKey.Message, "The specified tileset does not exist" }
-                        }));
-
-                    continue;
-                }
-
                 Sprite layerSprite = new Sprite
                 {
-                    ContentFile = "World/Terrain/" + tilesetName
+                    ContentFile = "World/Terrain/" + worldGeoLayer.Tileset
                 };
                 Layer layer = new Layer
                 {
                     Sprite = layerSprite,
-                    TileMap = new string[tmxMap.Width, tmxMap.Height]
+                    TileMap = new string[worldGeoLayer.Width, worldGeoLayer.Height]
                 };
 
-                TmxTileset tmxTileset = tmxMap.Tilesets[tilesetName];
+                Parallel.For(0, worldGeoLayer.Height,
+                             y => Parallel.For(0, worldGeoLayer.Width,
+                                               x =>
+                {
+                    int tile = worldGeoLayer.Tiles[x, y];
 
-                Parallel.ForEach(tmxLayer.Tiles.Where(tile => tile.Gid > 0),
-                                 tile => layer.TileMap[tile.X, tile.Y] = (tile.Gid - tmxTileset.FirstGid).ToString());
+                    if (tile > 0)
+                    {
+                        layer.TileMap[x, y] = tile.ToString();
+                    }
+                }));
 
                 Layers.Add(layer);
 
-                layer.LoadContent(TileDimensions);
+                layer.LoadContent();
             }
         }
 

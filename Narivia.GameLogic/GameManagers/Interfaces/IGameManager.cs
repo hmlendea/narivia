@@ -379,6 +379,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Resource> GetResources();
 
         /// <summary>
+        /// Gets the world geographic layers.
+        /// </summary>
+        /// <returns>The world geographic layers.</returns>
+        IEnumerable<WorldGeoLayer> GetWorldGeoLayers();
+
+        /// <summary>
         /// Gets the world tile.
         /// </summary>
         /// <returns>The world tile.</returns>
