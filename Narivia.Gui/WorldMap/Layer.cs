@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -21,22 +23,14 @@ namespace Narivia.Gui.WorldMap
         public string[,] TileMap { get; set; }
 
         /// <summary>
-        /// Gets or sets the image.
+        /// Gets or sets the tileset.
         /// </summary>
-        /// <value>The image.</value>
-        public Sprite Sprite { get; set; }
+        /// <value>The tileset.</value>
+        public string Tileset { get; set; }
 
-        readonly List<Tile> tiles;
+        Sprite sprite { get; set; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.WorldMap.Layer"/> class.
-        /// </summary>
-        public Layer()
-        {
-            Sprite = new Sprite();
-
-            tiles = new List<Tile>();
-        }
+        ConcurrentBag<Tile> tiles;
 
         /// <summary>
         /// Loads the content.
@@ -46,27 +40,30 @@ namespace Narivia.Gui.WorldMap
         {
             Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
 
-            int mapSize = TileMap.GetLength(0);
+            int mapHeight = TileMap.GetLength(0);
+            int mapWidth = TileMap.GetLength(1);
 
-            Sprite.LoadContent();
-
-            for (int y = 0; y < mapSize; y++)
+            sprite = new Sprite
             {
-                for (int x = 0; x < mapSize; x++)
-                {
-                    if (string.IsNullOrEmpty(TileMap[x, y]))
-                    {
-                        continue;
-                    }
+                ContentFile = $"World/Terrain/{Tileset}"
+            };
 
+            tiles = new ConcurrentBag<Tile>();
+
+            sprite.LoadContent();
+
+            Parallel.For(0, mapHeight,
+                         y => Parallel.For(0, mapWidth,
+                                           x =>
+            {
+                if (!string.IsNullOrEmpty(TileMap[x, y]))
+                {
                     int gid = int.Parse(TileMap[x, y]);
-                    int cols = (int)(Sprite.TextureSize.X / GameDefines.TILE_DIMENSIONS);
-                    int srX = gid % cols;
-                    int srY = gid / cols;
+                    int cols = (int)(sprite.TextureSize.X / GameDefines.TILE_DIMENSIONS);
 
                     sourceRectangle = new Rectangle(
-                        srX * GameDefines.TILE_DIMENSIONS,
-                        srY * GameDefines.TILE_DIMENSIONS,
+                        gid % cols * GameDefines.TILE_DIMENSIONS,
+                        gid / cols * GameDefines.TILE_DIMENSIONS,
                         GameDefines.TILE_DIMENSIONS,
                         GameDefines.TILE_DIMENSIONS);
 
@@ -75,7 +72,7 @@ namespace Narivia.Gui.WorldMap
 
                     tiles.Add(tile);
                 }
-            }
+            }));
         }
 
         /// <summary>
@@ -83,6 +80,8 @@ namespace Narivia.Gui.WorldMap
         /// </summary>
         public void UnloadContent()
         {
+            tiles = null;
+            sprite.UnloadContent();
         }
 
         /// <summary>
@@ -91,7 +90,7 @@ namespace Narivia.Gui.WorldMap
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
-            Sprite.Update(gameTime);
+            sprite.Update(gameTime);
         }
 
         /// <summary>
@@ -109,10 +108,10 @@ namespace Narivia.Gui.WorldMap
 
             foreach (Tile tile in tilesToDraw)
             {
-                Sprite.Position = new Vector2((tile.X - camCoordsBegin.X) * GameDefines.TILE_DIMENSIONS,
+                sprite.Position = new Vector2((tile.X - camCoordsBegin.X) * GameDefines.TILE_DIMENSIONS,
                                               (tile.Y - camCoordsBegin.Y) * GameDefines.TILE_DIMENSIONS);
-                Sprite.SourceRectangle = tile.SourceRectangle;
-                Sprite.Draw(spriteBatch);
+                sprite.SourceRectangle = tile.SourceRectangle;
+                sprite.Draw(spriteBatch);
             }
         }
     }

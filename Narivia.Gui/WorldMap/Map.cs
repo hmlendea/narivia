@@ -37,13 +37,9 @@ namespace Narivia.Gui.WorldMap
         {
             foreach (WorldGeoLayer worldGeoLayer in worldGeoLayers)
             {
-                Sprite layerSprite = new Sprite
-                {
-                    ContentFile = "World/Terrain/" + worldGeoLayer.Tileset
-                };
                 Layer layer = new Layer
                 {
-                    Sprite = layerSprite,
+                    Tileset = worldGeoLayer.Tileset,
                     TileMap = new string[worldGeoLayer.Width, worldGeoLayer.Height]
                 };
 
