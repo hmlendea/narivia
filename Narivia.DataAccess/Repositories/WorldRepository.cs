@@ -98,9 +98,9 @@ namespace Narivia.DataAccess.Repositories
 
             TmxMap tmxMap = new TmxMap(Path.Combine(worldsDirectory, id, "world.tmx"));
             ConcurrentBag<WorldGeoLayerEntity> layers = new ConcurrentBag<WorldGeoLayerEntity>();
-
-            worldEntity.Layers = new List<WorldGeoLayerEntity>();
-            Parallel.ForEach(tmxMap.Layers, tmxLayer => worldEntity.Layers.Add(ProcessTmxLayer(tmxMap, tmxLayer)));
+            
+            Parallel.ForEach(tmxMap.Layers, tmxLayer => layers.Add(ProcessTmxLayer(tmxMap, tmxLayer)));
+            worldEntity.Layers = layers.OrderBy(l => tmxMap.Layers.IndexOf(tmxMap.Layers.FirstOrDefault(x => x.Name == l.Name))).ToList();
 
             return worldEntity;
         }

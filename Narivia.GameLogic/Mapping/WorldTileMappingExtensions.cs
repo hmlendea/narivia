@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
@@ -79,14 +80,8 @@ namespace Narivia.GameLogic.Mapping
 
             WorldTile[,] worldTiles = new WorldTile[w, h];
 
-            for (int y = 0; y < h; y++)
-            {
-                for (int x = 0; x < w; x++)
-                {
-                    worldTiles[x, y] = worldTileEntities[x, y].ToDomainModel();
-                }
-            }
-            
+            Parallel.For(0, h, y => Parallel.For(0, w,  x => worldTiles[x, y] = worldTileEntities[x, y].ToDomainModel()));
+
             return worldTiles;
         }
 
@@ -102,14 +97,8 @@ namespace Narivia.GameLogic.Mapping
 
             WorldTileEntity[,] worldTileEntities = new WorldTileEntity[w, h];
 
-            for (int y = 0; y < h; y++)
-            {
-                for (int x = 0; x < w; x++)
-                {
-                    worldTileEntities[x, y] = worldTiles[x, y].ToEntity();
-                }
-            }
-
+            Parallel.For(0, h, y => Parallel.For(0, w, x => worldTileEntities[x, y] = worldTiles[x, y].ToEntity()));
+            
             return worldTileEntities;
         }
     }
