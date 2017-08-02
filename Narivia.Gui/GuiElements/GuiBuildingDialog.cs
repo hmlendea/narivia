@@ -87,12 +87,12 @@ namespace Narivia.Gui.GuiElements
 
             holdingText = new GuiText
             {
-                Size = new Vector2(holdingBackground.Scale.X, 18),
+                Size = new Point((int)holdingBackground.Scale.X, 18),
                 FontName = "InfoBarFont"
             };
             regionText = new GuiText
             {
-                Size = new Vector2(holdingBackground.Scale.X, 18),
+                Size = new Point((int)holdingBackground.Scale.X, 18),
                 FontName = "InfoBarFont"
             };
 
@@ -103,7 +103,7 @@ namespace Narivia.Gui.GuiElements
             };
             priceText = new GuiText
             {
-                Size = new Vector2(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
+                Size = new Point(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
@@ -112,37 +112,37 @@ namespace Narivia.Gui.GuiElements
             {
                 Text = "<",
                 TextColour = TextColour,
-                Size = new Vector2(32, 32)
+                Size = new Point(32, 32)
             };
             nextHoldingButton = new GuiButton
             {
                 Text = ">",
                 TextColour = TextColour,
-                Size = new Vector2(32, 32)
+                Size = new Point(32, 32)
             };
             previouseRegionButton = new GuiButton
             {
                 Text = "<",
                 TextColour = TextColour,
-                Size = new Vector2(32, 32)
+                Size = new Point(32, 32)
             };
             nextRegionButton = new GuiButton
             {
                 Text = ">",
                 TextColour = TextColour,
-                Size = new Vector2(32, 32)
+                Size = new Point(32, 32)
             };
             buildButton = new GuiButton
             {
                 Text = "Build",
                 TextColour = TextColour,
-                Size = new Vector2(128, 32)
+                Size = new Point(128, 32)
             };
             cancelButton = new GuiButton
             {
                 Text = "Cancel",
                 TextColour = TextColour,
-                Size = new Vector2(64, 32)
+                Size = new Point(64, 32)
             };
 
             Children.Add(background);
@@ -213,37 +213,38 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Position = Position;
-            background.Scale = Size / 32;
+            background.Scale = Size.ToVector2() / 32;
 
-            holdingBackground.Position = new Vector2(Position.X + (Size.X - holdingBackground.Scale.X) / 2, Position.Y + holdingText.Size.Y + SPACING);
+            holdingBackground.Position = new Point(Position.X + (Size.X - (int)holdingBackground.Scale.X) / 2,
+                                                   Position.Y + holdingText.Size.Y + SPACING);
 
             holdingImage.SourceRectangle = new Rectangle(64 * currentHoldingTypeIndex, 0, 64, 64);
-            holdingImage.Position = new Vector2(holdingBackground.Position.X + (holdingBackground.Scale.X - holdingImage.SourceRectangle.Width) / 2,
-                                                holdingBackground.Position.Y + (holdingBackground.Scale.Y - holdingImage.SourceRectangle.Height) / 2);
+            holdingImage.Position = new Point(holdingBackground.Position.X + ((int)holdingBackground.Scale.X - holdingImage.SourceRectangle.Width) / 2,
+                                                holdingBackground.Position.Y + ((int)holdingBackground.Scale.Y - holdingImage.SourceRectangle.Height) / 2);
 
             holdingText.Position = holdingBackground.Position;
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
             holdingText.TextColour = TextColour;
 
-            regionText.Position = new Vector2(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom - regionText.ScreenArea.Height);
+            regionText.Position = new Point(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom - regionText.ScreenArea.Height);
             regionText.TextColour = TextColour;
 
-            priceIcon.Position = new Vector2(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom + SPACING);
+            priceIcon.Position = new Point(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom + SPACING);
 
-            priceText.Position = new Vector2(priceIcon.ScreenArea.Right + SPACING, priceIcon.ScreenArea.Top);
+            priceText.Position = new Point(priceIcon.ScreenArea.Right + SPACING, priceIcon.ScreenArea.Top);
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
             priceText.TextColour = TextColour;
 
-            previousHoldingButton.Position = new Vector2(holdingBackground.ScreenArea.Left - previousHoldingButton.ScreenArea.Width - SPACING, holdingBackground.ScreenArea.Top);
-            nextHoldingButton.Position = new Vector2(holdingBackground.ScreenArea.Right + SPACING, holdingBackground.ScreenArea.Top);
+            previousHoldingButton.Position = new Point(holdingBackground.ScreenArea.Left - previousHoldingButton.ScreenArea.Width - SPACING, holdingBackground.ScreenArea.Top);
+            nextHoldingButton.Position = new Point(holdingBackground.ScreenArea.Right + SPACING, holdingBackground.ScreenArea.Top);
 
-            previouseRegionButton.Position = new Vector2(holdingBackground.ScreenArea.Left - previouseRegionButton.ScreenArea.Width - SPACING,
+            previouseRegionButton.Position = new Point(holdingBackground.ScreenArea.Left - previouseRegionButton.ScreenArea.Width - SPACING,
                                                          holdingBackground.ScreenArea.Bottom - previouseRegionButton.ScreenArea.Height);
-            nextRegionButton.Position = new Vector2(holdingBackground.ScreenArea.Right + SPACING,
+            nextRegionButton.Position = new Point(holdingBackground.ScreenArea.Right + SPACING,
                                                     holdingBackground.ScreenArea.Bottom - nextRegionButton.ScreenArea.Height);
 
-            buildButton.Position = new Vector2(Position.X + SPACING, Position.Y + Size.Y - buildButton.Size.Y - SPACING);
-            cancelButton.Position = new Vector2(Position.X + Size.X - cancelButton.Size.X - SPACING, Position.Y + Size.Y - buildButton.Size.Y - SPACING);
+            buildButton.Position = new Point(Position.X + SPACING, Position.Y + Size.Y - buildButton.Size.Y - SPACING);
+            cancelButton.Position = new Point(Position.X + Size.X - cancelButton.Size.X - SPACING, Position.Y + Size.Y - buildButton.Size.Y - SPACING);
         }
 
         void SelectHolding(int index)

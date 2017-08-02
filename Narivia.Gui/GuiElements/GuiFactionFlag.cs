@@ -52,7 +52,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiFactionFlag()
         {
-            Size = new Vector2(128, 128);
+            Size = new Point(128, 128);
         }
 
         /// <summary>
@@ -66,11 +66,11 @@ namespace Narivia.Gui.GuiElements
             };
             emblemImage = new GuiImage
             {
-                SourceRectangle = new Rectangle(0, 0, 128, 128)
+                SourceRectangle = backgroundImage.SourceRectangle
             };
             skinImage = new GuiImage
             {
-                SourceRectangle = new Rectangle(0, 0, 128, 128)
+                SourceRectangle = backgroundImage.SourceRectangle
             };
 
             Children.Add(backgroundImage);
@@ -89,20 +89,18 @@ namespace Narivia.Gui.GuiElements
             backgroundImage.RedReplacement = BackgroundPrimaryColour;
             backgroundImage.GreenReplacement = BackgroundSecondaryColour;
             backgroundImage.Position = Position;
-            backgroundImage.Scale = new Vector2(Size.X / backgroundImage.SourceRectangle.Size.X,
-                                                Size.Y / backgroundImage.SourceRectangle.Size.Y);
+            backgroundImage.Scale = new Vector2((float)Size.X / backgroundImage.SourceRectangle.Width,
+                                                (float)Size.Y / backgroundImage.SourceRectangle.Height);
 
             emblemImage.ContentFile = $"Interface/Flags/Emblems/{Emblem}";
-            emblemImage.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
+            emblemImage.MaskFile = backgroundImage.MaskFile;
             emblemImage.TintColour = EmblemColour;
             emblemImage.Position = Position;
-            emblemImage.Scale = new Vector2(Size.X / emblemImage.SourceRectangle.Size.X,
-                                            Size.Y / emblemImage.SourceRectangle.Size.Y);
+            emblemImage.Scale = backgroundImage.Scale;
 
             skinImage.ContentFile = $"Interface/Flags/Skins/{Skin}";
             skinImage.Position = Position;
-            skinImage.Scale = new Vector2(Size.X / skinImage.SourceRectangle.Size.X,
-                                          Size.Y / skinImage.SourceRectangle.Size.Y);
+            skinImage.Scale = backgroundImage.Scale;
         }
     }
 }

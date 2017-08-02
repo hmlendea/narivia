@@ -163,32 +163,28 @@ namespace Narivia.Gui.Screens
 
         void AlignMenuItems()
         {
-            Vector2 dimensions = Vector2.Zero;
+            Point dimensions = Point.Zero;
 
-            Items.ForEach(item => dimensions += new Vector2(item.Size.X + Spacing / 2,
-                                                            item.Size.Y + Spacing / 2));
+            Items.ForEach(item => dimensions += new Point(item.Size.X + Spacing / 2,
+                                                          item.Size.Y + Spacing / 2));
 
-            dimensions = new Vector2(
-                (ScreenManager.Instance.Size.X - dimensions.X) / 2,
-                (ScreenManager.Instance.Size.Y - dimensions.Y) / 2);
+            dimensions = new Point((ScreenManager.Instance.Size.X - dimensions.X) / 2,
+                                   (ScreenManager.Instance.Size.Y - dimensions.Y) / 2);
 
             foreach (GuiMenuItem item in Items)
             {
                 if ("Xx".Contains(Axis))
                 {
-                    item.Position = new Vector2(
-                        dimensions.X,
-                        (ScreenManager.Instance.Size.Y - item.Size.Y) / 2);
+                    item.Position = new Point(dimensions.X,
+                                              (ScreenManager.Instance.Size.Y - item.Size.Y) / 2);
                 }
                 else if ("Yy".Contains(Axis))
                 {
-                    item.Position = new Vector2(
-                        (ScreenManager.Instance.Size.X - item.Size.X) / 2,
-                        dimensions.Y);
+                    item.Position = new Point((ScreenManager.Instance.Size.X - item.Size.X) / 2, dimensions.Y);
                 }
 
-                dimensions += new Vector2(item.Size.X + Spacing / 2,
-                                          item.Size.Y + Spacing / 2);
+                dimensions += new Point(item.Size.X + Spacing / 2,
+                                        item.Size.Y + Spacing / 2);
             }
         }
 

@@ -16,19 +16,19 @@ namespace Narivia.Input.Events
         /// Gets current position of the mouse.
         /// </summary>
         /// <value>The current mouse position.</value>
-        public Vector2 CurrentMousePosition { get; private set; }
+        public Point CurrentMousePosition { get; private set; }
 
         /// <summary>
         /// Gets previous position of the mouse.
         /// </summary>
         /// <value>The previous mouse position.</value>
-        public Vector2 PreviousMousePosition { get; private set; }
+        public Point PreviousMousePosition { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseEventArgs"/> class.
         /// </summary>
         /// <param name="currentMousePosition">Mouse position.</param>
-        public MouseEventArgs(Vector2 currentMousePosition, Vector2 previousMousePosition)
+        public MouseEventArgs(Point currentMousePosition, Point previousMousePosition)
         {
             CurrentMousePosition = currentMousePosition;
             PreviousMousePosition = previousMousePosition;

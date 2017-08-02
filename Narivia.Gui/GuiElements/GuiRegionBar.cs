@@ -64,7 +64,7 @@ namespace Narivia.Gui.GuiElements
 
             regionNameBackground = new GuiImage
             {
-                Size = new Vector2(256, 48),
+                Size = new Point(256, 48),
                 ContentFile = "Interface/region-panel-label",
                 SourceRectangle = new Rectangle(0, 0, 256, 48),
             };
@@ -76,13 +76,13 @@ namespace Narivia.Gui.GuiElements
             };
             regionNameText = new GuiText
             {
-                Size = new Vector2(regionNameBackground.SourceRectangle.Width,
-                                   regionNameBackground.SourceRectangle.Height),
+                Size = new Point(regionNameBackground.SourceRectangle.Width,
+                                 regionNameBackground.SourceRectangle.Height),
                 FontName = "SideBarFont" // TODO: Consider providing a dedicated font
             };
             factionImage = new GuiFactionFlag
             {
-                Size = new Vector2(regionNameBackground.Size.Y, regionNameBackground.Size.Y)
+                Size = new Point(regionNameBackground.Size.Y, regionNameBackground.Size.Y)
             };
 
             resourceImage = new GuiImage
@@ -140,16 +140,16 @@ namespace Narivia.Gui.GuiElements
                 {
                     ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic",
                     SourceRectangle = new Rectangle(64 * ((int)holding.Type - 1), 0, 64, 64),
-                    Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
-                                           Position.Y + Size.Y - 64)
+                    Position = new Point(Position.X + HOLDING_SPACING_HORIZONTAL * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
+                                         Position.Y + Size.Y - 64)
                 };
 
                 GuiText holdingText = new GuiText
                 {
-                    Position = new Vector2(holdingImage.Position.X - HOLDING_SPACING_HORIZONTAL, Position.Y + 2),
+                    Position = new Point(holdingImage.Position.X - HOLDING_SPACING_HORIZONTAL, Position.Y + 2),
                     Text = holding.Name,
-                    Size = new Vector2(holdingImage.SourceRectangle.Width + HOLDING_SPACING_HORIZONTAL * 2,
-                                             Size.Y - holdingImage.SourceRectangle.Height + 10),
+                    Size = new Point(holdingImage.SourceRectangle.Width + HOLDING_SPACING_HORIZONTAL * 2,
+                                     Size.Y - holdingImage.SourceRectangle.Height + 10),
                     FontName = "RegionBarHoldingFont",
                     TextColour = Color.Black,
                     HorizontalAlignment = HorizontalAlignment.Top
@@ -178,19 +178,19 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             background.Position = Position;
-            background.Scale = Size / background.SourceRectangle.Width;
+            background.Scale = Size.ToVector2() / background.SourceRectangle.Width;
 
-            regionNameBackground.Position = new Vector2(Position.X + (Size.X - regionNameText.ScreenArea.Width) / 2,
-                                                        Position.Y - regionNameText.ScreenArea.Height + regionNameBackground.Size.Y * 0.1f);
+            regionNameBackground.Position = new Point(Position.X + (Size.X - regionNameText.ScreenArea.Width) / 2,
+                                                      Position.Y - regionNameText.ScreenArea.Height + (int)(regionNameBackground.Size.Y * 0.1f));
             regionNameBackgroundDecor.Position = regionNameBackground.Position;
             regionNameText.Position = regionNameBackground.Position;
             regionNameText.TextColour = TextColour;
             
             // TODO: Something's really off (pardon the pun) with factionImage's positioning
-            factionImage.Position = new Vector2(regionNameBackground.Position.X - 64, regionNameBackground.Position.Y - 40);
-            resourceImage.Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64);
-            resourceText.Position = new Vector2(Position.X, Position.Y + 2);
-            resourceText.Size = new Vector2(64 + HOLDING_SPACING_HORIZONTAL * 2, Size.Y - 74);
+            factionImage.Position = new Point(regionNameBackground.Position.X - 64, regionNameBackground.Position.Y - 40);
+            resourceImage.Position = new Point(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64);
+            resourceText.Position = new Point(Position.X, Position.Y + 2);
+            resourceText.Size = new Point(64 + HOLDING_SPACING_HORIZONTAL * 2, Size.Y - 74);
 
             if (string.IsNullOrWhiteSpace(RegionId))
             {

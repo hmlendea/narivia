@@ -19,12 +19,6 @@ namespace Narivia.Gui.GuiElements
     public class GuiWorldmap : GuiElement
     {
         /// <summary>
-        /// Gets or sets the size.
-        /// </summary>
-        /// <value>The size.</value>
-        public override Vector2 Size { get; set; }
-
-        /// <summary>
         /// Gets the selected region identifier.
         /// </summary>
         /// <value>The selected region identifier.</value>
@@ -39,7 +33,7 @@ namespace Narivia.Gui.GuiElements
         Sprite selectedRegionHighlight;
         Sprite factionBorder;
 
-        Vector2 mouseCoords;
+        Point mouseCoords;
 
         /// <summary>
         /// Loads the content.
@@ -123,10 +117,10 @@ namespace Narivia.Gui.GuiElements
 
             base.Update(gameTime);
 
-            Vector2 mouseGameMapCoords = ScreenToMapCoordinates(mouseCoords);
+            Point mouseGameMapCoords = ScreenToMapCoordinates(mouseCoords);
 
-            int x = (int)mouseGameMapCoords.X;
-            int y = (int)mouseGameMapCoords.Y;
+            int x = mouseGameMapCoords.X;
+            int y = mouseGameMapCoords.Y;
 
             if (x > 0 && x < game.GetWorld().Width &&
                 y > 0 && y < game.GetWorld().Height)
@@ -176,7 +170,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public void CentreCameraOnPosition(int x, int y)
         {
-            camera.CentreOnPosition(new Vector2(x * GameDefines.TILE_DIMENSIONS, y * GameDefines.TILE_DIMENSIONS));
+            camera.CentreOnPosition(new Point(x * GameDefines.TILE_DIMENSIONS, y * GameDefines.TILE_DIMENSIONS));
         }
 
         void DrawRegionHighlight(SpriteBatch spriteBatch)
@@ -186,16 +180,16 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            int cameraSizeX = (int)(camera.Size.X / GameDefines.TILE_DIMENSIONS + 2);
-            int cameraSizeY = (int)(camera.Size.Y / GameDefines.TILE_DIMENSIONS + 2);
+            int cameraSizeX = camera.Size.X / GameDefines.TILE_DIMENSIONS + 2;
+            int cameraSizeY = camera.Size.Y / GameDefines.TILE_DIMENSIONS + 2;
 
             for (int j = 0; j < cameraSizeY; j++)
             {
                 for (int i = 0; i < cameraSizeX; i++)
                 {
-                    Vector2 screenCoords = new Vector2((i * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.X % GameDefines.TILE_DIMENSIONS),
-                                                       (j * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.Y % GameDefines.TILE_DIMENSIONS));
-                    Vector2 gameCoords = ScreenToMapCoordinates(screenCoords);
+                    Point screenCoords = new Point((i * GameDefines.TILE_DIMENSIONS) - camera.Position.X % GameDefines.TILE_DIMENSIONS,
+                                                   (j * GameDefines.TILE_DIMENSIONS) - camera.Position.Y % GameDefines.TILE_DIMENSIONS);
+                    Point gameCoords = ScreenToMapCoordinates(screenCoords);
 
                     int x = (int)gameCoords.X;
                     int y = (int)gameCoords.Y;
@@ -233,16 +227,16 @@ namespace Narivia.Gui.GuiElements
 
         void DrawFactionBorders(SpriteBatch spriteBatch)
         {
-            int cameraSizeX = (int)(camera.Size.X / GameDefines.TILE_DIMENSIONS + 2);
-            int cameraSizeY = (int)(camera.Size.Y / GameDefines.TILE_DIMENSIONS + 2);
+            int cameraSizeX = camera.Size.X / GameDefines.TILE_DIMENSIONS + 2;
+            int cameraSizeY = camera.Size.Y / GameDefines.TILE_DIMENSIONS + 2;
 
             for (int j = 0; j < cameraSizeY; j++)
             {
                 for (int i = 0; i < cameraSizeX; i++)
                 {
-                    Vector2 screenCoords = new Vector2((i * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.X % GameDefines.TILE_DIMENSIONS),
-                                                       (j * GameDefines.TILE_DIMENSIONS) - (int)(camera.Position.Y % GameDefines.TILE_DIMENSIONS));
-                    Vector2 gameCoords = ScreenToMapCoordinates(screenCoords);
+                    Point screenCoords = new Point((i * GameDefines.TILE_DIMENSIONS) - camera.Position.X % GameDefines.TILE_DIMENSIONS,
+                                                   (j * GameDefines.TILE_DIMENSIONS) - camera.Position.Y % GameDefines.TILE_DIMENSIONS);
+                    Point gameCoords = ScreenToMapCoordinates(screenCoords);
 
                     int x = (int)gameCoords.X;
                     int y = (int)gameCoords.Y;
@@ -306,10 +300,10 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <returns>The map coordinates.</returns>
         /// <param name="screenCoords">Screen coordinates.</param>
-        Vector2 ScreenToMapCoordinates(Vector2 screenCoords)
+        Point ScreenToMapCoordinates(Point screenCoords)
         {
-            return new Vector2((int)((camera.Position.X + screenCoords.X) / GameDefines.TILE_DIMENSIONS),
-                               (int)((camera.Position.Y + screenCoords.Y) / GameDefines.TILE_DIMENSIONS));
+            return new Point((camera.Position.X + screenCoords.X) / GameDefines.TILE_DIMENSIONS,
+                             (camera.Position.Y + screenCoords.Y) / GameDefines.TILE_DIMENSIONS);
         }
 
         void InputManager_OnMouseMoved(object sender, MouseEventArgs e)

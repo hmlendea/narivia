@@ -46,7 +46,7 @@ namespace Narivia.Settings
         /// </summary>
         public SettingsManager()
         {
-            Resolution = new Vector2(1280, 720);
+            Resolution = new Point(1280, 720);
             Fullscreen = false;
         }
 
@@ -54,7 +54,7 @@ namespace Narivia.Settings
         /// Gets or sets the resolution.
         /// </summary>
         /// <value>The resolution.</value>
-        public Vector2 Resolution { get; set; }
+        public Point Resolution { get; set; }
 
         /// <summary>
         /// Gets or sets the fullscreen mode.

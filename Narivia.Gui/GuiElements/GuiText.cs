@@ -156,8 +156,8 @@ namespace Narivia.Gui.GuiElements
             textSprite.Tint = TextColour;
             textSprite.TextVerticalAlignment = VerticalAlignment;
             textSprite.TextHorizontalAlignment = HorizontalAlignment;
-            textSprite.Position = new Vector2(Position.X + Margins, Position.Y + Margins);
-            textSprite.SpriteSize = new Vector2(Size.X - Margins * 2, Size.Y - Margins * 2);
+            textSprite.Position = new Point(Position.X + Margins, Position.Y + Margins);
+            textSprite.SpriteSize = new Point(Size.X - Margins * 2, Size.Y - Margins * 2);
             textSprite.FadeEffect = FadeEffect;
             textSprite.Active = EffectsActive;
         }

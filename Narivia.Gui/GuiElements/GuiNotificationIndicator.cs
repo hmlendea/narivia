@@ -15,7 +15,8 @@ namespace Narivia.Gui.GuiElements
         /// Gets the size.
         /// </summary>
         /// <value>The size.</value>
-        public override Vector2 Size { get { return new Vector2(32, 32); } }
+        public override Point Size
+        => new Point(32, 32);
 
         /// <summary>
         /// Gets or sets the icon.
@@ -54,7 +55,7 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Position = Position;
-            icon.Position = new Vector2(Position.X + 6, Position.Y + 6);
+            icon.Position = new Point(Position.X + 6, Position.Y + 6);
         }
 
         Rectangle CalculateIconSourceRectangle(NotificationIcon notificationIcon)

@@ -13,13 +13,13 @@ namespace Narivia.Gui
         /// Gets or sets the position.
         /// </summary>
         /// <value>The position.</value>
-        public Vector2 Position { get; set; }
+        public Point Position { get; set; }
 
         /// <summary>
         /// Gets or sets the size.
         /// </summary>
         /// <value>The size.</value>
-        public Vector2 Size { get; set; }
+        public Point Size { get; set; }
 
         /// <summary>
         /// Gets or sets the velocity.
@@ -47,7 +47,7 @@ namespace Narivia.Gui
         /// </summary>
         public Camera()
         {
-            Position = Vector2.Zero;
+            Position = Point.Zero;
             Velocity = Vector2.Zero;
             Speed = 800;
             Size = SettingsManager.Instance.Resolution; // TODO: Give it it's proper size once the game HUD is implemented
@@ -105,9 +105,8 @@ namespace Narivia.Gui
 
             Velocity = newVelocity;
 
-            Vector2 newPosition = new Vector2(
-                (int)(Position.X + Velocity.X),
-                (int)(Position.Y + Velocity.Y));
+            Point newPosition = new Point((int)(Position.X + Velocity.X),
+                                          (int)(Position.Y + Velocity.Y));
 
             if (Position != newPosition)
             {
@@ -126,9 +125,9 @@ namespace Narivia.Gui
         /// <summary>
         /// Centres the camera on the position.
         /// </summary>
-        public void CentreOnPosition(Vector2 position)
+        public void CentreOnPosition(Point position)
         {
-            Position = new Vector2(position.X - Size.X / 2, position.Y - Size.Y / 2);
+            Position = new Point(position.X - Size.X / 2, position.Y - Size.Y / 2);
         }
 
         void InputManager_OnKeyboardKeyDown(object sender, KeyboardKeyEventArgs e)

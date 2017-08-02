@@ -113,13 +113,13 @@ namespace Narivia.Graphics
         /// Gets or sets the position.
         /// </summary>
         /// <value>The position.</value>
-        public Vector2 Position { get; set; }
+        public Point Position { get; set; }
 
         /// <summary>
         /// Gets or sets the size.
         /// </summary>
         /// <value>The size.</value>
-        public Vector2 SpriteSize { get; set; }
+        public Point SpriteSize { get; set; }
 
         /// <summary>
         /// Gets or sets the scale.
@@ -223,7 +223,7 @@ namespace Narivia.Graphics
             Text = string.Empty;
             FontName = "MenuFont";
 
-            Position = Vector2.Zero;
+            Position = Point.Zero;
             SourceRectangle = Rectangle.Empty;
 
             Opacity = 1.0f;
@@ -249,9 +249,9 @@ namespace Narivia.Graphics
 
             font = ResourceManager.Instance.LoadSpriteFont("Fonts/" + FontName);
 
-            if (SpriteSize == Vector2.Zero)
+            if (SpriteSize == Point.Zero)
             {
-                Vector2 size = Vector2.Zero;
+                Point size = Point.Zero;
 
                 if (texture != null)
                 {
@@ -260,8 +260,8 @@ namespace Narivia.Graphics
                 }
                 else
                 {
-                    size.X = font.MeasureString(Text).X;
-                    size.Y = font.MeasureString(Text).Y;
+                    size.X = (int)font.MeasureString(Text).X;
+                    size.Y = (int)font.MeasureString(Text).Y;
                 }
 
                 SpriteSize = size;
@@ -368,7 +368,7 @@ namespace Narivia.Graphics
 
             if (TextureFillMode == TextureFillMode.Stretch)
             {
-                spriteBatch.Draw(textureToDraw, Position + origin, SourceRectangle,
+                spriteBatch.Draw(textureToDraw, Position.ToVector2() + origin, SourceRectangle,
                     Tint * Opacity, Rotation,
                     origin, Scale * Zoom,
                     SpriteEffects.None, 0.0f);
@@ -521,7 +521,7 @@ namespace Narivia.Graphics
                 textOrigin = new Vector2((int)Math.Round(textOrigin.X),
                                          (int)Math.Round(textOrigin.Y));
 
-                spriteBatch.DrawString(spriteFont, line, Position + textOrigin, colour);
+                spriteBatch.DrawString(spriteFont, line, Position.ToVector2() + textOrigin, colour);
 
                 textOrigin.Y += lineSize.Y;
             }

@@ -15,7 +15,7 @@ namespace Narivia.Gui
         /// Gets or sets the position.
         /// </summary>
         /// <value>The position.</value>
-        public Vector2 Position
+        public Point Position
         {
             get { return idleSprite.Position; }
             private set

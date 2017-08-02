@@ -120,7 +120,7 @@ namespace Narivia.Gui.Screens
         /// <param name="type">Type.</param>
         /// <param name="style">Style.</param>
         /// <param name="size">Size.</param>
-        public void ShowNotification(string title, string text, NotificationType type, NotificationStyle style, Vector2 size)
+        public void ShowNotification(string title, string text, NotificationType type, NotificationStyle style, Point size)
         {
             GuiNotificationDialog notification = new GuiNotificationDialog
             {
@@ -128,7 +128,8 @@ namespace Narivia.Gui.Screens
                 Text = text,
                 Type = type,
                 Style = style,
-                Position = (ScreenManager.Instance.Size - size) / 2,
+                Position = new Point((ScreenManager.Instance.Size.X - size.X) / 2,
+                                     (ScreenManager.Instance.Size.Y - size.Y) / 2),
                 Size = size
             };
 

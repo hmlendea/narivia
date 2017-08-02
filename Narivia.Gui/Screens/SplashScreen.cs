@@ -114,13 +114,16 @@ namespace Narivia.Gui.Screens
             Vector2 overlayScale = new Vector2(ScreenManager.Instance.Size.X / OverlayImage.SpriteSize.X,
                                                ScreenManager.Instance.Size.Y / OverlayImage.SpriteSize.Y);
 
-            BackgroundImage.Position = (ScreenManager.Instance.Size - BackgroundImage.SpriteSize) / 2;
+            BackgroundImage.Position = new Point((ScreenManager.Instance.Size.X - BackgroundImage.SpriteSize.X) / 2,
+                                                 (ScreenManager.Instance.Size.Y - BackgroundImage.SpriteSize.Y) / 2);
             BackgroundImage.Scale = backgroundScale;
 
-            OverlayImage.Position = (ScreenManager.Instance.Size - OverlayImage.SpriteSize) / 2;
+            OverlayImage.Position = new Point((ScreenManager.Instance.Size.X - OverlayImage.SpriteSize.X) / 2,
+                                              (ScreenManager.Instance.Size.Y - OverlayImage.SpriteSize.Y) / 2);
             OverlayImage.Scale = overlayScale;
 
-            LogoImage.Position = (ScreenManager.Instance.Size - LogoImage.SpriteSize) / 2;
+            LogoImage.Position = new Point((ScreenManager.Instance.Size.X - LogoImage.SpriteSize.X) / 2,
+                                           (ScreenManager.Instance.Size.Y - LogoImage.SpriteSize.Y) / 2);
         }
 
         void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)

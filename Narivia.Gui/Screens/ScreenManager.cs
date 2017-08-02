@@ -53,7 +53,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         /// <value>The size.</value>
         [XmlIgnore]
-        public Vector2 Size { get; private set; }
+        public Point Size { get; private set; }
 
         /// <summary>
         /// Gets or sets the sprite batch.
@@ -122,7 +122,7 @@ namespace Narivia.Gui.Screens
             }
 
             Size = SettingsManager.Instance.Resolution;
-            TransitionImage.Scale = Size;
+            TransitionImage.Scale = Size.ToVector2();
         }
 
         /// <summary>

@@ -29,7 +29,7 @@ namespace Narivia.Gui.GuiElements
         {
             get
             {
-                return (int)Math.Round(Size.X / buttonTileSize);
+                return Size.X / buttonTileSize;
             }
         }
 
@@ -143,7 +143,7 @@ namespace Narivia.Gui.GuiElements
 
             for (int i = 0; i < images.Count; i++)
             {
-                images[i].Position = new Vector2(Position.X + i * buttonTileSize, Position.Y);
+                images[i].Position = new Point(Position.X + i * buttonTileSize, Position.Y);
                 images[i].SourceRectangle = CalculateSourceRectangle(i);
             }
 

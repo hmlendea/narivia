@@ -75,8 +75,8 @@ namespace Narivia.Gui.Screens
                 initialFactionId = ScreenArgs[1];
             }
 
-            recruitmentDialog = new GuiRecruitmentDialog { Size = new Vector2(256, 288) };
-            buildDialog = new GuiBuildingDialog { Size = new Vector2(256, 224) };
+            recruitmentDialog = new GuiRecruitmentDialog { Size = new Point(256, 288) };
+            buildDialog = new GuiBuildingDialog { Size = new Point(256, 224) };
 
             recruitmentDialog.Hide();
             buildDialog.Hide();
@@ -115,7 +115,7 @@ namespace Narivia.Gui.Screens
                              $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!",
                              NotificationType.Informational,
                              NotificationStyle.Big,
-                             new Vector2(256, 256));
+                             new Point(256, 256));
 
             RegionBar.SetRegion(game.GetFactionCapital(game.PlayerFactionId).Id);
 
@@ -144,10 +144,10 @@ namespace Narivia.Gui.Screens
 
             game.GetUnits().ToList().ForEach(u => troops.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
 
-            recruitmentDialog.Position = new Vector2(GameMap.Position.X + (GameMap.Size.X - recruitmentDialog.Size.X) / 2,
-                                                     GameMap.Position.Y + (GameMap.Size.Y - recruitmentDialog.Size.Y) / 2);
-            buildDialog.Position = new Vector2(GameMap.Position.X + (GameMap.Size.X - buildDialog.Size.X) / 2,
-                                               GameMap.Position.Y + (GameMap.Size.Y - buildDialog.Size.Y) / 2);
+            recruitmentDialog.Position = new Point(GameMap.Position.X + (GameMap.Size.X - recruitmentDialog.Size.X) / 2,
+                                                   GameMap.Position.Y + (GameMap.Size.Y - recruitmentDialog.Size.Y) / 2);
+            buildDialog.Position = new Point(GameMap.Position.X + (GameMap.Size.X - buildDialog.Size.X) / 2,
+                                             GameMap.Position.Y + (GameMap.Size.Y - buildDialog.Size.Y) / 2);
 
             InfoBar.Regions = game.GetFactionRegions(game.PlayerFactionId).Count();
             InfoBar.Holdings = game.GetFactionHoldings(game.PlayerFactionId).Count();
@@ -233,19 +233,19 @@ namespace Narivia.Gui.Screens
 
             NotificationBar.AddNotification(NotificationIcon.TurnReport).Clicked += delegate
             {
-                ShowNotification($"Turn {game.Turn} Report", turnBody, NotificationType.Informational, NotificationStyle.Big, new Vector2(256, 224));
+                ShowNotification($"Turn {game.Turn} Report", turnBody, NotificationType.Informational, NotificationStyle.Big, new Point(256, 224));
             };
 
             NotificationBar.AddNotification(NotificationIcon.RecruitmentReport).Clicked += delegate
             {
-                ShowNotification($"Recruitment Report", recruitmentBody, NotificationType.Informational, NotificationStyle.Big, new Vector2(256, 224));
+                ShowNotification($"Recruitment Report", recruitmentBody, NotificationType.Informational, NotificationStyle.Big, new Point(256, 224));
             };
 
             if (!string.IsNullOrWhiteSpace(relationsBody))
             {
                 NotificationBar.AddNotification(NotificationIcon.RelationsReport).Clicked += delegate
                 {
-                    ShowNotification($"Relations Report", relationsBody, NotificationType.Informational, NotificationStyle.Big, new Vector2(256, 196));
+                    ShowNotification($"Relations Report", relationsBody, NotificationType.Informational, NotificationStyle.Big, new Point(256, 196));
                 };
             }
 
@@ -273,7 +273,7 @@ namespace Narivia.Gui.Screens
                              $"Militia Recruitment: {game.GetFactionRecruitment(game.PlayerFactionId)}",
                              NotificationType.Informational,
                              NotificationStyle.Big,
-                             new Vector2(256, 160));
+                             new Point(256, 160));
         }
 
         void SideBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)
@@ -302,7 +302,7 @@ namespace Narivia.Gui.Screens
                                  $"You do need at least {game.GetWorld().MinTroopsPerAttack} troops to attack any region.",
                                  NotificationType.Informational,
                                  NotificationStyle.Big,
-                                 new Vector2(256, 192));
+                                 new Point(256, 192));
 
                 return;
             }
@@ -328,7 +328,7 @@ namespace Narivia.Gui.Screens
                                              $"have managed to break the defence and occupy the region!",
                                              NotificationType.Informational,
                                              NotificationStyle.Big,
-                                             new Vector2(256, 224));
+                                             new Point(256, 224));
                         };
                 }
                 else
@@ -341,7 +341,7 @@ namespace Narivia.Gui.Screens
                                              $"were defeated by the defending forces!",
                                              NotificationType.Informational,
                                              NotificationStyle.Big,
-                                             new Vector2(256, 224));
+                                             new Point(256, 224));
                         };
                 }
             }
@@ -352,7 +352,7 @@ namespace Narivia.Gui.Screens
                                  $"You have chosen an invalid target that cannot be attacked.",
                                  NotificationType.Informational,
                                  NotificationStyle.Big,
-                                 new Vector2(256, 192));
+                                 new Point(256, 192));
             }
         }
 
@@ -371,7 +371,7 @@ namespace Narivia.Gui.Screens
                                          $"who managed to break the defence and occupy it!",
                                          NotificationType.Informational,
                                          NotificationStyle.Big,
-                                         new Vector2(256, 224));
+                                         new Point(256, 224));
                     };
             }
             else
@@ -384,7 +384,7 @@ namespace Narivia.Gui.Screens
                                          $"but our brave troops managed to sucesfully defend it!",
                                          NotificationType.Informational,
                                          NotificationStyle.Big,
-                                         new Vector2(256, 224));
+                                         new Point(256, 224));
                     };
             }
         }
@@ -400,7 +400,7 @@ namespace Narivia.Gui.Screens
                                      $"as {factionName} was destroyed!",
                                      NotificationType.Informational,
                                      NotificationStyle.Big,
-                                     new Vector2(256, 192));
+                                     new Point(256, 192));
                 };
         }
 
@@ -415,7 +415,7 @@ namespace Narivia.Gui.Screens
                                      $"as {factionName} was revived!",
                                      NotificationType.Informational,
                                      NotificationStyle.Big,
-                                     new Vector2(256, 192));
+                                     new Point(256, 192));
                 };
         }
 
@@ -430,7 +430,7 @@ namespace Narivia.Gui.Screens
                                      $"{factionName} has conquered the world and established a new world order!",
                                      NotificationType.Informational,
                                      NotificationStyle.Big,
-                                     new Vector2(256, 192));
+                                     new Point(256, 192));
                 };
         }
     }

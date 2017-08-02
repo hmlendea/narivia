@@ -22,13 +22,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets the position of this <see cref="GuiElement"/>.
         /// </summary>
         /// <value>The position.</value>
-        public Vector2 Position { get; set; }
+        public Point Position { get; set; }
 
         /// <summary>
         /// Gets the size of this <see cref="GuiElement"/>.
         /// </summary>
         /// <value>The size.</value>
-        public virtual Vector2 Size { get; set; }
+        public virtual Point Size { get; set; }
 
         /// <summary>
         /// Gets the screen area covered by this <see cref="GuiElement"/>.
@@ -366,6 +366,18 @@ namespace Narivia.Gui.GuiElements
             if (MouseLeft != null)
             {
                 MouseLeft(this, e);
+            }
+        }
+
+        void NormaliseProperties()
+        {
+            if (Opacity > 1.0f)
+            {
+                Opacity = 1.0f;
+            }
+            else if (Opacity < 0.0f)
+            {
+                Opacity = 0.0f;
             }
         }
 

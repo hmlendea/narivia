@@ -147,7 +147,8 @@ namespace Narivia.Gui.GuiElements
             sprite.FadeEffect = FadeEffect;
             sprite.Active = EffectsActive;
 
-            Size = new Vector2(sprite.ScreenArea.Width, sprite.ScreenArea.Height);
+            Size = new Point(sprite.ScreenArea.Width,
+                             sprite.ScreenArea.Height);
         }
     }
 }

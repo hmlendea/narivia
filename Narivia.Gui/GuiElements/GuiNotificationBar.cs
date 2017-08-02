@@ -67,8 +67,7 @@ namespace Narivia.Gui.GuiElements
         {
             GuiNotificationIndicator notificationButton = new GuiNotificationIndicator
             {
-                Position = new Vector2(Position.X + spacing,
-                                       Position.Y + Size.Y - (Children.Count + 1) * (32 + spacing)),
+                Position = new Point(Position.X + spacing, Position.Y + Size.Y - (Children.Count + 1) * (32 + spacing)),
                 Icon = icon
             };
 
@@ -97,9 +96,8 @@ namespace Narivia.Gui.GuiElements
         {
             for (int i = 0; i < Children.Count; i++)
             {
-                Children[i].Position = new Vector2(
-                    Position.X + spacing,
-                    Position.Y + Size.Y - (i + 1) * (32 + spacing));
+                Children[i].Position = new Point(Position.X + spacing,
+                                                 Position.Y + Size.Y - (i + 1) * (32 + spacing));
             }
         }
     }

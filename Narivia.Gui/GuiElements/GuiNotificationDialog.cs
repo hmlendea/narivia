@@ -29,14 +29,8 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the size of the notification.
         /// </summary>
         /// <value>The size of the notification.</value>
-        public Vector2 NotificationSize
-        {
-            get
-            {
-                return new Vector2((int)Math.Round(Size.X / tileSize),
-                                   (int)Math.Round(Size.Y / tileSize));
-            }
-        }
+        public Point NotificationSize
+        => new Point(Size.X / tileSize, Size.Y / tileSize);
 
         /// <summary>
         /// Gets or sets the title.
@@ -110,7 +104,7 @@ namespace Narivia.Gui.GuiElements
                     images[x, y] = new GuiImage
                     {
                         ContentFile = imagePath,
-                        Position = new Vector2(Position.X + x * tileSize, Position.Y + y * tileSize),
+                        Position = new Point(Position.X + x * tileSize, Position.Y + y * tileSize),
                         SourceRectangle = CalculateSourceRectangle(x, y)
                     };
 
@@ -122,7 +116,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "Interface/notification_controls",
                 SourceRectangle = new Rectangle(0, 0, tileSize, tileSize),
-                Position = new Vector2(Position.X + (NotificationSize.X - 1) * tileSize, Position.Y)
+                Position = new Point(Position.X + (NotificationSize.X - 1) * tileSize, Position.Y)
             };
             yesButtonImage.Clicked += yesButton_OnClicked;
             yesButtonImage.MouseEntered += yesNoButton_OnMouseEntered;
@@ -133,7 +127,7 @@ namespace Narivia.Gui.GuiElements
                 {
                     ContentFile = "Interface/notification_controls",
                     SourceRectangle = new Rectangle(tileSize, 0, tileSize, tileSize),
-                    Position = new Vector2(Position.X, Position.Y)
+                    Position = new Point(Position.X, Position.Y)
                 };
                 noButtonImage.Clicked += noButton_OnClicked;
                 noButtonImage.MouseEntered += yesNoButton_OnMouseEntered;
@@ -154,13 +148,13 @@ namespace Narivia.Gui.GuiElements
 
             title.Text = Title;
             title.TextColour = TextColour;
-            title.Position = new Vector2(Position.X, Position.Y + tileSize);
-            title.Size = new Vector2(NotificationSize.X * tileSize, tileSize);
+            title.Position = new Point(Position.X, Position.Y + tileSize);
+            title.Size = new Point(NotificationSize.X * tileSize, tileSize);
 
             text.Text = Text;
             text.TextColour = TextColour;
-            text.Position = new Vector2(Position.X + tileSize / 2, Position.Y + tileSize * 1.5f);
-            text.Size = new Vector2(Size.X - tileSize, Size.Y - title.Size.Y - tileSize * 1.5f);
+            text.Position = new Point(Position.X + tileSize / 2, Position.Y + (int)(tileSize * 1.5f));
+            text.Size = new Point(Size.X - tileSize, Size.Y - title.Size.Y - (int)(tileSize * 1.5f));
         }
 
         Rectangle CalculateSourceRectangle(int x, int y)

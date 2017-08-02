@@ -75,7 +75,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the spacing.
         /// </summary>
         /// <value>The spacing.</value>
-        public float Spacing { get; set; }
+        public int Spacing { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Narivia.Interface.GUI elements.InfoBar"/> class.
@@ -85,7 +85,7 @@ namespace Narivia.Gui.GuiElements
             BackgroundColour = Color.Black;
             TextColour = Color.Gold;
 
-            Spacing = 6.0f;
+            Spacing = 6;
         }
 
         /// <summary>
@@ -122,47 +122,47 @@ namespace Narivia.Gui.GuiElements
 
             regionsText = new GuiText
             {
-                Size = new Vector2(40, 16),
+                Size = new Point(40, 16),
                 VerticalAlignment = VerticalAlignment.Left
             };
             holdingsText = new GuiText
             {
-                Size = new Vector2(60, 16),
+                Size = new Point(60, 16),
                 VerticalAlignment = VerticalAlignment.Left
             };
             wealthText = new GuiText
             {
-                Size = new Vector2(60, 16),
+                Size = new Point(60, 16),
                 VerticalAlignment = VerticalAlignment.Left
             };
             troopsText = new GuiText
             {
-                Size = new Vector2(60, 16),
+                Size = new Point(60, 16),
                 VerticalAlignment = VerticalAlignment.Left
             };
 
             regionsTooltip = new GuiTooltip
             {
                 Text = "Regions",
-                Size = new Vector2(100, 20),
+                Size = new Point(100, 20),
                 Visible = false
             };
             holdingsTooltip = new GuiTooltip
             {
                 Text = "Holdings",
-                Size = new Vector2(100, 20),
+                Size = new Point(100, 20),
                 Visible = false
             };
             wealthTooltip = new GuiTooltip
             {
                 Text = "Wealth",
-                Size = new Vector2(100, 20),
+                Size = new Point(100, 20),
                 Visible = false
             };
             troopsTooltip = new GuiTooltip
             {
                 Text = "Troops",
-                Size = new Vector2(128, 128),
+                Size = new Point(128, 128),
                 Visible = false
             };
 
@@ -190,19 +190,19 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            regionsIcon.Position = new Vector2(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ScreenArea.Height) / 2);
-            regionsText.Position = new Vector2(regionsIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - regionsText.ScreenArea.Height) / 2);
-            holdingsIcon.Position = new Vector2(regionsText.ScreenArea.Right + Spacing, regionsIcon.Position.Y);
-            holdingsText.Position = new Vector2(holdingsIcon.ScreenArea.Right + Spacing, regionsText.Position.Y);
-            wealthIcon.Position = new Vector2(holdingsText.ScreenArea.Right + Spacing, holdingsIcon.Position.Y);
-            wealthText.Position = new Vector2(wealthIcon.ScreenArea.Right + Spacing, holdingsText.Position.Y);
-            troopsIcon.Position = new Vector2(wealthText.ScreenArea.Right + Spacing, wealthIcon.Position.Y);
-            troopsText.Position = new Vector2(troopsIcon.ScreenArea.Right + Spacing, wealthText.Position.Y);
+            regionsIcon.Position = new Point(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ScreenArea.Height) / 2);
+            regionsText.Position = new Point(regionsIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - regionsText.ScreenArea.Height) / 2);
+            holdingsIcon.Position = new Point(regionsText.ScreenArea.Right + Spacing, regionsIcon.Position.Y);
+            holdingsText.Position = new Point(holdingsIcon.ScreenArea.Right + Spacing, regionsText.Position.Y);
+            wealthIcon.Position = new Point(holdingsText.ScreenArea.Right + Spacing, holdingsIcon.Position.Y);
+            wealthText.Position = new Point(wealthIcon.ScreenArea.Right + Spacing, holdingsText.Position.Y);
+            troopsIcon.Position = new Point(wealthText.ScreenArea.Right + Spacing, wealthIcon.Position.Y);
+            troopsText.Position = new Point(troopsIcon.ScreenArea.Right + Spacing, wealthText.Position.Y);
 
-            regionsTooltip.Position = new Vector2(regionsIcon.Position.X, ScreenArea.Bottom);
-            holdingsTooltip.Position = new Vector2(holdingsIcon.Position.X, ScreenArea.Bottom);
-            wealthTooltip.Position = new Vector2(wealthIcon.Position.X, ScreenArea.Bottom);
-            troopsTooltip.Position = new Vector2(troopsIcon.Position.X, ScreenArea.Bottom);
+            regionsTooltip.Position = new Point(regionsIcon.Position.X, ScreenArea.Bottom);
+            holdingsTooltip.Position = new Point(holdingsIcon.Position.X, ScreenArea.Bottom);
+            wealthTooltip.Position = new Point(wealthIcon.Position.X, ScreenArea.Bottom);
+            troopsTooltip.Position = new Point(troopsIcon.Position.X, ScreenArea.Bottom);
 
             regionsText.Text = Regions.ToString();
             holdingsText.Text = Holdings.ToString();
@@ -223,7 +223,7 @@ namespace Narivia.Gui.GuiElements
             troopsText.TextColour = TextColour;
 
             background.Position = Position;
-            background.Scale = Size;
+            background.Scale = Size.ToVector2();
             background.TintColour = BackgroundColour;
         }
 

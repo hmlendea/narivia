@@ -79,20 +79,20 @@ namespace Narivia.Gui.GuiElements
 
             factionImage = new GuiFactionFlag
             {
-                Size = new Vector2(128, 128)
+                Size = new Point(128, 128)
             };
 
             factionText = new GuiText
             {
                 FontName = "SideBarFont",
-                Size = new Vector2(Size.X * 2 / 3, 48),
+                Size = new Point(Size.X * 2 / 3, 48),
                 VerticalAlignment = VerticalAlignment.Left
             };
 
             turnText = new GuiText
             {
                 FontName = "SideBarFont",
-                Size = new Vector2(Size.X / 3, 48),
+                Size = new Point(Size.X / 3, 48),
                 VerticalAlignment = VerticalAlignment.Right
             };
 
@@ -100,25 +100,25 @@ namespace Narivia.Gui.GuiElements
             {
                 Text = "Stats",
                 TextColour = TextColour,
-                Size = new Vector2(96, 32)
+                Size = new Point(96, 32)
             };
             RecruitButton = new GuiButton
             {
                 Text = "Recruit",
                 TextColour = TextColour,
-                Size = new Vector2(96, 32)
+                Size = new Point(96, 32)
             };
             BuildButton = new GuiButton
             {
                 Text = "Build",
                 TextColour = TextColour,
-                Size = new Vector2(96, 32)
+                Size = new Point(96, 32)
             };
             TurnButton = new GuiButton
             {
                 Text = "End Turn",
                 TextColour = TextColour,
-                Size = new Vector2(224, 32)
+                Size = new Point(224, 32)
             };
 
             Children.Add(background);
@@ -150,21 +150,21 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Position = Position;
-            background.Scale = Size / background.SourceRectangle.Width;
+            background.Scale = Size.ToVector2() / background.SourceRectangle.Width;
 
-            factionText.Position = Position + new Vector2(margins, margins);
-            turnText.Position = Position + new Vector2(Size.X - turnText.ScreenArea.Width - margins, margins);
+            factionText.Position = Position + new Point(margins, margins);
+            turnText.Position = Position + new Point(Size.X - turnText.ScreenArea.Width - margins, margins);
 
-            factionImage.Position = Position + new Vector2((Size.X - factionImage.ScreenArea.Width) / 2, factionText.ScreenArea.Bottom + margins);
+            factionImage.Position = Position + new Point((Size.X - factionImage.ScreenArea.Width) / 2, factionText.ScreenArea.Bottom + margins);
 
-            TurnButton.Position = Position + new Vector2((int)(Size.X - TurnButton.Size.X) / 2,
-                                                         (int)(Size.Y - TurnButton.Size.Y - margins));
-            StatsButton.Position = Position + new Vector2((int)(Size.X - StatsButton.Size.X) / 2,
-                                                          (int)(Size.Y - StatsButton.Size.Y - RecruitButton.Size.Y - margins) / 2);
-            RecruitButton.Position = Position + new Vector2((int)(Size.X - RecruitButton.Size.X - BuildButton.Size.X - margins * 5) / 2,
-                                                            (int)(Size.Y + StatsButton.Size.Y - RecruitButton.Size.Y + margins) / 2);
-            BuildButton.Position = Position + new Vector2((int)(Size.X + RecruitButton.Size.X + margins * 5 - BuildButton.Size.X) / 2,
-                                                          (int)(Size.Y + RecruitButton.Size.Y - BuildButton.Size.Y + margins) / 2);
+            TurnButton.Position = Position + new Point((Size.X - TurnButton.Size.X) / 2,
+                                                       (Size.Y - TurnButton.Size.Y - margins));
+            StatsButton.Position = Position + new Point((Size.X - StatsButton.Size.X) / 2,
+                                                        (Size.Y - StatsButton.Size.Y - RecruitButton.Size.Y - margins) / 2);
+            RecruitButton.Position = Position + new Point((Size.X - RecruitButton.Size.X - BuildButton.Size.X - margins * 5) / 2,
+                                                          (Size.Y + StatsButton.Size.Y - RecruitButton.Size.Y + margins) / 2);
+            BuildButton.Position = Position + new Point((Size.X + RecruitButton.Size.X + margins * 5 - BuildButton.Size.X) / 2,
+                                                        (Size.Y + RecruitButton.Size.Y - BuildButton.Size.Y + margins) / 2);
 
             factionText.Text = game.GetFaction(FactionId).Name;
             factionText.TextColour = TextColour;

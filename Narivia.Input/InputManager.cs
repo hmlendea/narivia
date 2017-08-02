@@ -234,8 +234,8 @@ namespace Narivia.Input
         {
             if (currentMouseState.Position != previousMouseState.Position)
             {
-                this_OnMouseMoved(this, new MouseEventArgs(new Vector2(currentMouseState.Position.X, currentMouseState.Position.Y),
-                                                           new Vector2(previousMouseState.Position.X, previousMouseState.Position.Y)));
+                this_OnMouseMoved(this, new MouseEventArgs(new Point(currentMouseState.Position.X, currentMouseState.Position.Y),
+                                                           new Point(previousMouseState.Position.X, previousMouseState.Position.Y)));
             }
         }
 

@@ -90,7 +90,7 @@ namespace Narivia.Gui.GuiElements
 
             unitText = new GuiText
             {
-                Size = new Vector2(unitBackground.Scale.X, 18),
+                Size = new Point((int)unitBackground.Scale.X, 18),
                 FontName = "InfoBarFont"
             };
 
@@ -117,63 +117,63 @@ namespace Narivia.Gui.GuiElements
 
             healthText = new GuiText
             {
-                Size = new Vector2(healthIcon.SourceRectangle.Width * 2, healthIcon.SourceRectangle.Height),
+                Size = new Point(healthIcon.SourceRectangle.Width * 2, healthIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
             powerText = new GuiText
             {
-                Size = new Vector2(powerIcon.SourceRectangle.Width * 2, powerIcon.SourceRectangle.Height),
+                Size = new Point(powerIcon.SourceRectangle.Width * 2, powerIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
             priceText = new GuiText
             {
-                Size = new Vector2(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
+                Size = new Point(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
             maintenanceText = new GuiText
             {
-                Size = new Vector2(maintenanceIcon.SourceRectangle.Width * 2, maintenanceIcon.SourceRectangle.Height),
+                Size = new Point(maintenanceIcon.SourceRectangle.Width * 2, maintenanceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
             troopsText = new GuiText
             {
-                Size = new Vector2(unitBackground.Scale.Y, 18),
+                Size = new Point((int)unitBackground.Scale.Y, 18),
                 FontName = "InfoBarFont"
             };
 
             nextButton = new GuiButton
             {
                 Text = ">",
-                Size = new Vector2(32, 32)
+                Size = new Point(32, 32)
             };
             previousButton = new GuiButton
             {
                 Text = "<",
-                Size = new Vector2(32, 32)
+                Size = new Point(32, 32)
             };
             plusButton = new GuiButton
             {
                 Text = "+",
-                Size = new Vector2(32, 32)
+                Size = new Point(32, 32)
             };
             minusButton = new GuiButton
             {
                 Text = "-",
-                Size = new Vector2(32, 32)
+                Size = new Point(32, 32)
             };
             recruitButton = new GuiButton
             {
                 Text = "Recruit",
-                Size = new Vector2(128, 32)
+                Size = new Point(128, 32)
             };
             cancelButton = new GuiButton
             {
                 Text = "Cancel",
-                Size = new Vector2(64, 32)
+                Size = new Point(64, 32)
             };
 
             Children.Add(background);
@@ -227,58 +227,59 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Position = Position;
-            background.Scale = Size / 32;
+            background.Scale = new Vector2(Size.X / 32, Size.Y / 32);
 
-            unitBackground.Position = new Vector2(Position.X + (Size.X - unitBackground.Scale.X) / 2, Position.Y + unitText.Size.Y + SPACING);
+            unitBackground.Position = new Point(Position.X + (Size.X - (int)unitBackground.Scale.X) / 2,
+                                                Position.Y + unitText.Size.Y + SPACING);
 
             unitText.Position = unitBackground.Position;
             unitText.Text = units[currentUnitIndex].Name;
             unitText.TextColour = TextColour;
 
-            troopsText.Position = new Vector2(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom - troopsText.ScreenArea.Height);
+            troopsText.Position = new Point(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom - troopsText.ScreenArea.Height);
             troopsText.Text = $"x{troopsAmount}";
             troopsText.TextColour = TextColour;
 
-            healthIcon.Position = new Vector2(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom + SPACING);
-            powerIcon.Position = new Vector2(healthIcon.ScreenArea.Left, healthIcon.ScreenArea.Bottom + SPACING);
-            priceIcon.Position = new Vector2(powerIcon.ScreenArea.Left, powerIcon.ScreenArea.Bottom + SPACING);
-            maintenanceIcon.Position = new Vector2(priceIcon.ScreenArea.Left, priceIcon.ScreenArea.Bottom + SPACING);
+            healthIcon.Position = new Point(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom + SPACING);
+            powerIcon.Position = new Point(healthIcon.ScreenArea.Left, healthIcon.ScreenArea.Bottom + SPACING);
+            priceIcon.Position = new Point(powerIcon.ScreenArea.Left, powerIcon.ScreenArea.Bottom + SPACING);
+            maintenanceIcon.Position = new Point(priceIcon.ScreenArea.Left, priceIcon.ScreenArea.Bottom + SPACING);
 
-            healthText.Position = new Vector2(healthIcon.ScreenArea.Right + SPACING, healthIcon.ScreenArea.Top);
+            healthText.Position = new Point(healthIcon.ScreenArea.Right + SPACING, healthIcon.ScreenArea.Top);
             healthText.Text = units[currentUnitIndex].Health.ToString();
             healthText.TextColour = TextColour;
 
-            powerText.Position = new Vector2(powerIcon.ScreenArea.Right + SPACING, powerIcon.ScreenArea.Top);
+            powerText.Position = new Point(powerIcon.ScreenArea.Right + SPACING, powerIcon.ScreenArea.Top);
             powerText.Text = units[currentUnitIndex].Power.ToString();
             powerText.TextColour = TextColour;
 
-            priceText.Position = new Vector2(priceIcon.ScreenArea.Right + SPACING, priceIcon.ScreenArea.Top);
+            priceText.Position = new Point(priceIcon.ScreenArea.Right + SPACING, priceIcon.ScreenArea.Top);
             priceText.Text = units[currentUnitIndex].Price.ToString();
             priceText.TextColour = TextColour;
 
-            maintenanceText.Position = new Vector2(maintenanceIcon.ScreenArea.Right + SPACING, maintenanceIcon.ScreenArea.Top);
+            maintenanceText.Position = new Point(maintenanceIcon.ScreenArea.Right + SPACING, maintenanceIcon.ScreenArea.Top);
             maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
             maintenanceText.TextColour = TextColour;
 
-            previousButton.Position = new Vector2(unitBackground.ScreenArea.Left - previousButton.ScreenArea.Width - SPACING, unitBackground.ScreenArea.Top);
+            previousButton.Position = new Point(unitBackground.ScreenArea.Left - previousButton.ScreenArea.Width - SPACING, unitBackground.ScreenArea.Top);
             previousButton.TextColour = TextColour;
 
-            nextButton.Position = new Vector2(unitBackground.ScreenArea.Right + SPACING, unitBackground.ScreenArea.Top);
+            nextButton.Position = new Point(unitBackground.ScreenArea.Right + SPACING, unitBackground.ScreenArea.Top);
             nextButton.TextColour = TextColour;
 
-            plusButton.Position = new Vector2(unitBackground.ScreenArea.Right + SPACING, unitBackground.ScreenArea.Bottom - plusButton.ScreenArea.Height);
+            plusButton.Position = new Point(unitBackground.ScreenArea.Right + SPACING, unitBackground.ScreenArea.Bottom - plusButton.ScreenArea.Height);
             plusButton.TextColour = TextColour;
 
-            minusButton.Position = new Vector2(unitBackground.ScreenArea.Left - minusButton.ScreenArea.Width - SPACING, unitBackground.ScreenArea.Bottom - minusButton.ScreenArea.Height);
+            minusButton.Position = new Point(unitBackground.ScreenArea.Left - minusButton.ScreenArea.Width - SPACING, unitBackground.ScreenArea.Bottom - minusButton.ScreenArea.Height);
             minusButton.TextColour = TextColour;
 
             recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
-            recruitButton.Position = new Vector2(Position.X + SPACING, Position.Y + Size.Y - recruitButton.Size.Y - SPACING);
-            cancelButton.Position = new Vector2(Position.X + Size.X - cancelButton.Size.X - SPACING, Position.Y + Size.Y - recruitButton.Size.Y - SPACING);
+            recruitButton.Position = new Point(Position.X + SPACING, Position.Y + Size.Y - recruitButton.Size.Y - SPACING);
+            cancelButton.Position = new Point(Position.X + Size.X - cancelButton.Size.X - SPACING, Position.Y + Size.Y - recruitButton.Size.Y - SPACING);
 
             unitImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/units/{units[currentUnitIndex].Id}";
-            unitImage.Position = new Vector2(unitBackground.Position.X + (unitBackground.Scale.X - unitImage.SourceRectangle.Width) / 2,
-                                             unitBackground.Position.Y + (unitBackground.Scale.Y - unitImage.SourceRectangle.Height) / 2);
+            unitImage.Position = new Point(unitBackground.Position.X + ((int)unitBackground.Scale.X - unitImage.SourceRectangle.Width) / 2,
+                                           unitBackground.Position.Y + ((int)unitBackground.Scale.Y - unitImage.SourceRectangle.Height) / 2);
         }
 
         void SelectUnit(int index)

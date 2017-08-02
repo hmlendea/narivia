@@ -60,7 +60,7 @@ namespace Narivia.Gui.GuiElements
             TextColour = Color.White;
             SelectedTextColour = Color.Gold;
 
-            Size = new Vector2(512, 48);
+            Size = new Point(512, 48);
         }
 
         /// <summary>

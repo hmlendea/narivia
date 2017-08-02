@@ -106,16 +106,18 @@ namespace Narivia.Gui.WorldMap
         /// <param name="camera">Camera.</param>
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-            Vector2 camCoordsBegin = camera.Position / GameDefines.TILE_DIMENSIONS;
-            Vector2 camCoordsEnd = camCoordsBegin + camera.Size / GameDefines.TILE_DIMENSIONS;
+            Point camCoordsBegin = new Point(camera.Position.X / GameDefines.TILE_DIMENSIONS,
+                                             camera.Position.Y / GameDefines.TILE_DIMENSIONS);
+            Point camCoordsEnd = new Point(camCoordsBegin.X + camera.Size.X / GameDefines.TILE_DIMENSIONS,
+                                           camCoordsBegin.Y + camera.Size.Y / GameDefines.TILE_DIMENSIONS);
 
             List<Tile> tilesToDraw = tiles.Where(tile => tile.X >= camCoordsBegin.X - 1 && tile.X <= camCoordsEnd.X + 1 &&
                                                          tile.Y >= camCoordsBegin.Y - 1 && tile.Y <= camCoordsEnd.Y + 1).ToList();
 
             foreach (Tile tile in tilesToDraw)
             {
-                sprite.Position = new Vector2((tile.X - camCoordsBegin.X) * GameDefines.TILE_DIMENSIONS,
-                                              (tile.Y - camCoordsBegin.Y) * GameDefines.TILE_DIMENSIONS);
+                sprite.Position = new Point((tile.X - camCoordsBegin.X) * GameDefines.TILE_DIMENSIONS,
+                                            (tile.Y - camCoordsBegin.Y) * GameDefines.TILE_DIMENSIONS);
                 sprite.SourceRectangle = tile.SourceRectangle;
                 sprite.Draw(spriteBatch);
             }
