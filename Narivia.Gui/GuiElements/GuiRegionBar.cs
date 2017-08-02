@@ -36,6 +36,8 @@ namespace Narivia.Gui.GuiElements
 
         GuiImage background;
 
+        GuiImage regionNameBackground;
+        GuiImage regionNameBackgroundDecor;
         GuiText regionNameText;
         GuiFactionFlag factionImage;
 
@@ -60,12 +62,28 @@ namespace Narivia.Gui.GuiElements
                 FillMode = TextureFillMode.Tile
             };
 
+            regionNameBackground = new GuiImage
+            {
+                Size = new Vector2(256, 48),
+                ContentFile = "Interface/region-panel-label",
+                SourceRectangle = new Rectangle(0, 0, 256, 48),
+            };
+            regionNameBackgroundDecor = new GuiImage
+            {
+                Size = regionNameBackground.Size,
+                ContentFile = regionNameBackground.ContentFile,
+                SourceRectangle = new Rectangle(0, 48, 256, 48)
+            };
             regionNameText = new GuiText
             {
-                Size = new Vector2(240, 32),
+                Size = new Vector2(regionNameBackground.SourceRectangle.Width,
+                                   regionNameBackground.SourceRectangle.Height),
                 FontName = "SideBarFont" // TODO: Consider providing a dedicated font
             };
-            factionImage = new GuiFactionFlag();
+            factionImage = new GuiFactionFlag
+            {
+                Size = new Vector2(regionNameBackground.Size.Y, regionNameBackground.Size.Y)
+            };
 
             resourceImage = new GuiImage
             {
@@ -82,6 +100,8 @@ namespace Narivia.Gui.GuiElements
 
             Children.Add(background);
 
+            Children.Add(regionNameBackground);
+            Children.Add(regionNameBackgroundDecor);
             Children.Add(regionNameText);
             Children.Add(factionImage);
 
@@ -160,36 +180,40 @@ namespace Narivia.Gui.GuiElements
             background.Position = Position;
             background.Scale = Size / background.SourceRectangle.Width;
 
+            regionNameBackground.Position = new Vector2(Position.X + (Size.X - regionNameText.ScreenArea.Width) / 2,
+                                                        Position.Y - regionNameText.ScreenArea.Height + regionNameBackground.Size.Y * 0.1f);
+            regionNameBackgroundDecor.Position = regionNameBackground.Position;
+            regionNameText.Position = regionNameBackground.Position;
             regionNameText.TextColour = TextColour;
-            regionNameText.Position = new Vector2(Position.X + (Size.X - regionNameText.ScreenArea.Width) / 2,
-                                                  Position.Y - regionNameText.ScreenArea.Height);
+            
+            // TODO: Something's really off (pardon the pun) with factionImage's positioning
+            factionImage.Position = new Vector2(regionNameBackground.Position.X - 64, regionNameBackground.Position.Y - 40);
+            resourceImage.Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64);
+            resourceText.Position = new Vector2(Position.X, Position.Y + 2);
+            resourceText.Size = new Vector2(64 + HOLDING_SPACING_HORIZONTAL * 2, Size.Y - 74);
 
-            if (!string.IsNullOrWhiteSpace(RegionId))
+            if (string.IsNullOrWhiteSpace(RegionId))
             {
-                Region region = game.GetRegion(RegionId);
-                Resource resource = game.GetResource(region.ResourceId);
-                Faction faction = game.GetFaction(region.FactionId);
-                Flag flag = game.GetFlag(faction.FlagId);
-
-                regionNameText.Text = region.Name;
-                regionNameText.BackgroundColour = faction.Colour.ToXnaColor();
-
-                factionImage.Position = new Vector2(regionNameText.Position.X - 64, regionNameText.Position.Y - 48);
-                factionImage.Size = new Vector2(regionNameText.Size.Y, regionNameText.Size.Y);
-                factionImage.Background = flag.Background;
-                factionImage.Emblem = flag.Emblem;
-                factionImage.Skin = flag.Skin;
-                factionImage.BackgroundPrimaryColour = flag.BackgroundPrimaryColour.ToXnaColor();
-                factionImage.BackgroundSecondaryColour = flag.BackgroundSecondaryColour.ToXnaColor();
-                factionImage.EmblemColour = flag.EmblemColour.ToXnaColor();
-
-                resourceImage.Position = new Vector2(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64);
-                resourceImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/resources/{region.ResourceId}_big";
-
-                resourceText.Position = new Vector2(Position.X, Position.Y + 2);
-                resourceText.Size = new Vector2(64 + HOLDING_SPACING_HORIZONTAL * 2, Size.Y - 74);
-                resourceText.Text = resource.Name;
+                return;
             }
+
+            Region region = game.GetRegion(RegionId);
+            Resource resource = game.GetResource(region.ResourceId);
+            Faction faction = game.GetFaction(region.FactionId);
+            Flag flag = game.GetFlag(faction.FlagId);
+
+            regionNameBackground.TintColour = faction.Colour.ToXnaColor();
+            regionNameText.Text = region.Name;
+
+            factionImage.Background = flag.Background;
+            factionImage.Emblem = flag.Emblem;
+            factionImage.Skin = flag.Skin;
+            factionImage.BackgroundPrimaryColour = flag.BackgroundPrimaryColour.ToXnaColor();
+            factionImage.BackgroundSecondaryColour = flag.BackgroundSecondaryColour.ToXnaColor();
+            factionImage.EmblemColour = flag.EmblemColour.ToXnaColor();
+
+            resourceImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/resources/{region.ResourceId}_big";
+            resourceText.Text = resource.Name;
         }
     }
 }
