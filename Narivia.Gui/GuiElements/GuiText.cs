@@ -149,7 +149,7 @@ namespace Narivia.Gui.GuiElements
 
             backgroundImage.TintColour = BackgroundColour;
             backgroundImage.Position = Position;
-            backgroundImage.Scale = new Vector2(Size.X + Margins * 2, Size.Y + Margins * 2);
+            backgroundImage.Size = new Point(Size.X + Margins * 2, Size.Y + Margins * 2);
 
             textSprite.Text = Text;
             textSprite.FontName = FontName;

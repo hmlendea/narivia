@@ -375,22 +375,17 @@ namespace Narivia.Graphics
             }
             else if (TextureFillMode == TextureFillMode.Tile)
             {
-                int tilesX = (int)Math.Ceiling((float)ScreenArea.Width / SourceRectangle.Width);
-                int tilesY = (int)Math.Ceiling((float)ScreenArea.Height / SourceRectangle.Height);
+                GraphicsDevice gd = GraphicsManager.Instance.Graphics.GraphicsDevice;
+                
+                Rectangle rec = new Rectangle(0, 0, ScreenArea.Width, ScreenArea.Height);
 
-                for (int y = 0; y < tilesY; y++)
-                {
-                    for (int x = 0; x < tilesX; x++)
-                    {
-                        Vector2 pos = new Vector2(Position.X + origin.X + x * SourceRectangle.Width,
-                                                  Position.Y + origin.Y + y * SourceRectangle.Height);
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
 
-                        spriteBatch.Draw(textureToDraw, pos, SourceRectangle,
-                            Tint * Opacity, Rotation,
-                            origin, 1.0f,
-                            SpriteEffects.None, 0.0f);
-                    }
-                }
+                spriteBatch.Draw(textureToDraw, Position.ToVector2(), rec, Color.White);
+
+                spriteBatch.End();
+                spriteBatch.Begin();
             }
         }
 

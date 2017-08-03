@@ -223,7 +223,7 @@ namespace Narivia.Gui.GuiElements
             troopsText.TextColour = TextColour;
 
             background.Position = Position;
-            background.Scale = Size.ToVector2();
+            background.Size = Size;
             background.TintColour = BackgroundColour;
         }
 

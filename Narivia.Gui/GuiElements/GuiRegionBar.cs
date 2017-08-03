@@ -57,8 +57,7 @@ namespace Narivia.Gui.GuiElements
 
             background = new GuiImage
             {
-                ContentFile = "Interface/backgrounds",
-                SourceRectangle = new Rectangle(32, 0, 32, 32),
+                ContentFile = "Interface/Backgrounds/wool",
                 FillMode = TextureFillMode.Tile
             };
 
@@ -178,7 +177,7 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             background.Position = Position;
-            background.Scale = Size.ToVector2() / background.SourceRectangle.Width;
+            background.Size = Size;
 
             regionNameBackground.Position = new Point(Position.X + (Size.X - regionNameText.ScreenArea.Width) / 2,
                                                       Position.Y - regionNameText.ScreenArea.Height + (int)(regionNameBackground.Size.Y * 0.1f));

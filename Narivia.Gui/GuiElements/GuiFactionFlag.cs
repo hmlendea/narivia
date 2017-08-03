@@ -62,15 +62,15 @@ namespace Narivia.Gui.GuiElements
         {
             backgroundImage = new GuiImage
             {
-                SourceRectangle = new Rectangle(0, 0, 128, 128)
+                SourceRectangle = Rectangle.Empty
             };
             emblemImage = new GuiImage
             {
-                SourceRectangle = backgroundImage.SourceRectangle
+                SourceRectangle = Rectangle.Empty
             };
             skinImage = new GuiImage
             {
-                SourceRectangle = backgroundImage.SourceRectangle
+                SourceRectangle = Rectangle.Empty
             };
 
             Children.Add(backgroundImage);
@@ -89,18 +89,17 @@ namespace Narivia.Gui.GuiElements
             backgroundImage.RedReplacement = BackgroundPrimaryColour;
             backgroundImage.GreenReplacement = BackgroundSecondaryColour;
             backgroundImage.Position = Position;
-            backgroundImage.Scale = new Vector2((float)Size.X / backgroundImage.SourceRectangle.Width,
-                                                (float)Size.Y / backgroundImage.SourceRectangle.Height);
+            backgroundImage.Size = Size;
 
             emblemImage.ContentFile = $"Interface/Flags/Emblems/{Emblem}";
             emblemImage.MaskFile = backgroundImage.MaskFile;
             emblemImage.TintColour = EmblemColour;
             emblemImage.Position = Position;
-            emblemImage.Scale = backgroundImage.Scale;
+            emblemImage.Size = Size;
 
             skinImage.ContentFile = $"Interface/Flags/Skins/{Skin}";
             skinImage.Position = Position;
-            skinImage.Scale = backgroundImage.Scale;
+            skinImage.Size = Size;
         }
     }
 }

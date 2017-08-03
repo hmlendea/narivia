@@ -69,15 +69,14 @@ namespace Narivia.Gui.GuiElements
 
             background = new GuiImage
             {
-                ContentFile = "Interface/backgrounds",
-                SourceRectangle = new Rectangle(0, 0, 32, 32),
+                ContentFile = "Interface/Backgrounds/stone-bricks",
                 FillMode = TextureFillMode.Tile
             };
             holdingBackground = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
                 SourceRectangle = new Rectangle(0, 0, 1, 1),
-                Scale = new Vector2(100, 100),
+                Size = new Point(100, 100),
                 TintColour = Color.Black
             };
             holdingImage = new GuiImage
@@ -87,12 +86,12 @@ namespace Narivia.Gui.GuiElements
 
             holdingText = new GuiText
             {
-                Size = new Point((int)holdingBackground.Scale.X, 18),
+                Size = new Point((int)holdingBackground.Size.X, 18),
                 FontName = "InfoBarFont"
             };
             regionText = new GuiText
             {
-                Size = new Point((int)holdingBackground.Scale.X, 18),
+                Size = new Point((int)holdingBackground.Size.X, 18),
                 FontName = "InfoBarFont"
             };
 
@@ -213,14 +212,14 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Position = Position;
-            background.Scale = Size.ToVector2() / 32;
+            background.Size = Size;
 
-            holdingBackground.Position = new Point(Position.X + (Size.X - (int)holdingBackground.Scale.X) / 2,
+            holdingBackground.Position = new Point(Position.X + (Size.X - (int)holdingBackground.Size.X) / 2,
                                                    Position.Y + holdingText.Size.Y + SPACING);
 
             holdingImage.SourceRectangle = new Rectangle(64 * currentHoldingTypeIndex, 0, 64, 64);
-            holdingImage.Position = new Point(holdingBackground.Position.X + ((int)holdingBackground.Scale.X - holdingImage.SourceRectangle.Width) / 2,
-                                                holdingBackground.Position.Y + ((int)holdingBackground.Scale.Y - holdingImage.SourceRectangle.Height) / 2);
+            holdingImage.Position = new Point(holdingBackground.Position.X + ((int)holdingBackground.Size.X - holdingImage.SourceRectangle.Width) / 2,
+                                                holdingBackground.Position.Y + ((int)holdingBackground.Size.Y - holdingImage.SourceRectangle.Height) / 2);
 
             holdingText.Position = holdingBackground.Position;
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();

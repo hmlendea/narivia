@@ -72,8 +72,7 @@ namespace Narivia.Gui.GuiElements
         {
             background = new GuiImage
             {
-                ContentFile = "Interface/backgrounds",
-                SourceRectangle = new Rectangle(0, 0, 32, 32),
+                ContentFile = "Interface/Backgrounds/stone-bricks",
                 FillMode = TextureFillMode.Tile
             };
 
@@ -150,7 +149,7 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Position = Position;
-            background.Scale = Size.ToVector2() / background.SourceRectangle.Width;
+            background.Size = Size;
 
             factionText.Position = Position + new Point(margins, margins);
             turnText.Position = Position + new Point(Size.X - turnText.ScreenArea.Width - margins, margins);

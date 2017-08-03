@@ -43,12 +43,6 @@ namespace Narivia.Gui.GuiElements
         public Rectangle SourceRectangle { get; set; }
 
         /// <summary>
-        /// Gets or sets the scale.
-        /// </summary>
-        /// <value>The scale.</value>
-        public Vector2 Scale { get; set; }
-
-        /// <summary>
         /// Gets or sets the texture fill mode.
         /// </summary>
         /// <value>The fill mode.</value>
@@ -74,7 +68,7 @@ namespace Narivia.Gui.GuiElements
         public GuiImage()
         {
             TintColour = Color.White;
-            Scale = Vector2.One;
+            Size = Point.Zero;
         }
 
         /// <summary>
@@ -134,6 +128,16 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
+            if (SourceRectangle == Rectangle.Empty)
+            {
+                SourceRectangle = new Rectangle(0, 0, sprite.SpriteSize.X, sprite.SpriteSize.Y);
+            }
+
+            if (Size == Point.Zero)
+            {
+                Size = sprite.SourceRectangle.Size;
+            }
+
             sprite.AlphaMaskFile = MaskFile;
             sprite.RedReplacement = RedReplacement;
             sprite.GreenReplacement = GreenReplacement;
@@ -142,13 +146,15 @@ namespace Narivia.Gui.GuiElements
             sprite.SourceRectangle = SourceRectangle;
             sprite.Tint = TintColour;
             sprite.Position = Position;
-            sprite.Scale = Scale;
             sprite.TextureFillMode = FillMode;
             sprite.FadeEffect = FadeEffect;
             sprite.Active = EffectsActive;
 
-            Size = new Point(sprite.ScreenArea.Width,
-                             sprite.ScreenArea.Height);
+            if (sprite.SourceRectangle != Rectangle.Empty)
+            {
+                sprite.Scale = new Vector2((float)Size.X / sprite.SourceRectangle.Width,
+                                           (float)Size.Y / sprite.SourceRectangle.Height);
+            }
         }
     }
 }
