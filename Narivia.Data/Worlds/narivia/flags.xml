@@ -309,7 +309,7 @@
   <FlagEntity>
     <Id>ingolfsfell_flag</Id>
     <Background>full</Background>
-    <Emblem>barbarian-axe</Emblem>
+    <Emblem>battleaxe</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#9AFF9A</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
