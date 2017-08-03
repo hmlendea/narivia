@@ -38,7 +38,7 @@
   </FlagEntity>
   <FlagEntity>
     <Id>viristia_flag</Id>
-    <Background>full</Background>
+    <Background>sides-rotated</Background>
     <Emblem>crossed-spears</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFD400</BackgroundPrimaryColourHexadecimal>
@@ -56,12 +56,12 @@
   </FlagEntity>
   <FlagEntity>
     <Id>befteria_flag</Id>
-    <Background>full</Background>
+    <Background>quad</Background>
     <Emblem>oak-tree</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#2D7B00</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFF21</EmblemColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#FFFF21</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#8b4513</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ne_quin_arid_flag</Id>
