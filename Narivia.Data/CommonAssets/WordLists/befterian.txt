@@ -1,12 +1,16 @@
 Bafter
 Bagdther
 Batter
+Beckler
 Befter
 Beiler
+Bleimer
 Breder
 Bremer
 Cafter
 Caster
+Cogther
+Cramer
 Darmern
 Dasser
 Ebremer
@@ -15,10 +19,12 @@ Eisler
 Elmter
 Elter
 Erkover
+Feiner
 Gaffer
 Gaghter
 Gebdther
 Geiser
+Gramer
 Greiber
 Grether
 Grofter
@@ -35,6 +41,7 @@ Mangter
 Mernster
 Meskeiler
 Necker
+Peckler
 Peckther
 Plakther
 Pletter
@@ -51,6 +58,8 @@ Speichter
 Stadther
 Taffer
 Tannern
+Teckler
+Tramer
 Trater
 Truffer
 Ulpter
@@ -60,4 +69,3 @@ Vadthen
 Voggel
 Vreder
 Zaffer
-

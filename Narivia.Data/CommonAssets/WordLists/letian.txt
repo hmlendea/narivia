@@ -42,6 +42,7 @@ Starilet
 Stemalet
 Talet
 Trilet
+Tropalet
 Tusilet
 Ursalet
 Vanilet

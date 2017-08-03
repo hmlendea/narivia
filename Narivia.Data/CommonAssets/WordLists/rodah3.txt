@@ -1,5 +1,8 @@
 bat
+bor
 bri
+d
+dab
 dal
 dei
 dh
@@ -9,14 +12,17 @@ don
 dri
 dur
 far
+gad
 gas
 gat
 git
+gor
 gothi
 grim
 gun
 guthi
 han
+lor
 nethi
 nit
 pathi
@@ -25,8 +31,9 @@ tah
 thar
 thi
 thin
+thir
 thol
 thron
+tor
 zad
 zim
-d

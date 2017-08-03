@@ -7,6 +7,7 @@ Auoolfs
 Berjabrek
 Bjarnar
 Bjorfell
+Bjornheim
 Boovarfell
 Botaloekr
 Brunnheim
@@ -30,6 +31,7 @@ Gunnolfr
 Gunnolfsfell
 Haakon
 Hagardalr
+Hakkonfell
 Hauksgrof
 Hofsloekr
 Holmgar

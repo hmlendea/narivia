@@ -2,12 +2,15 @@ Bar
 Con 
 Das 
 Din 
+Dok
 Dol 
+Dov
 For 
 Gah 
 Gal 
 Gem 
 Gud 
+Gul
 Gun 
 Hal 
 Hor 
@@ -20,9 +23,11 @@ Kut
 Lev 
 Mag 
 Mel 
+Mod
 Mok 
 Mun 
 Pog 
+Rad
 Rag 
 Rol 
 Rot 
@@ -33,5 +38,7 @@ Tor
 Yol 
 Zar 
 Zed 
+Zel
+Zog
 Zot 
-
+Zul
