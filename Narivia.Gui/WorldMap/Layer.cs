@@ -116,8 +116,8 @@ namespace Narivia.Gui.WorldMap
 
             foreach (Tile tile in tilesToDraw)
             {
-                sprite.Position = new Point((tile.X - camCoordsBegin.X) * GameDefines.TILE_DIMENSIONS,
-                                            (tile.Y - camCoordsBegin.Y) * GameDefines.TILE_DIMENSIONS);
+                sprite.Position = new Point(tile.X * GameDefines.TILE_DIMENSIONS - camera.Position.X,
+                                            tile.Y * GameDefines.TILE_DIMENSIONS - camera.Position.Y);
                 sprite.SourceRectangle = tile.SourceRectangle;
                 sprite.Draw(spriteBatch);
             }
