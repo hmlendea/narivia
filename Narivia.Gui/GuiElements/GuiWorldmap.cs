@@ -129,7 +129,7 @@ namespace Narivia.Gui.GuiElements
                 SelectedRegionId = game.GetWorld().Tiles[x, y].RegionId;
 
                 // TODO: Also handle this properly
-                if (game.FactionIdAtPosition(x, y) == "gaia")
+                if (game.FactionIdAtPosition(x, y) == GameDefines.GAIA_FACTION)
                 {
                     SelectedRegionId = null;
                 }
@@ -204,7 +204,7 @@ namespace Narivia.Gui.GuiElements
                     string factionId = game.FactionIdAtPosition(x, y);
                     Color factionColour = game.GetFaction(factionId).Colour.ToXnaColor();
 
-                    if (factionId == "gaia")
+                    if (factionId == GameDefines.GAIA_FACTION)
                     {
                         continue;
                     }
@@ -250,7 +250,7 @@ namespace Narivia.Gui.GuiElements
                     string factionId = game.FactionIdAtPosition(x, y);
                     Color factionColour = game.GetFaction(factionId).Colour.ToXnaColor();
 
-                    if (factionId == "gaia")
+                    if (factionId == GameDefines.GAIA_FACTION)
                     {
                         continue;
                     }
@@ -264,28 +264,28 @@ namespace Narivia.Gui.GuiElements
                     factionBorder.Tint = factionColour;
 
                     if (factionIdN != factionId &&
-                        factionIdN != "gaia")
+                        factionIdN != GameDefines.GAIA_FACTION)
                     {
                         factionBorder.SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, 0,
                                                                       GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdW != factionId &&
-                        factionIdW != "gaia")
+                        factionIdW != GameDefines.GAIA_FACTION)
                     {
                         factionBorder.SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS,
                                                                       GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdS != factionId &&
-                        factionIdS != "gaia")
+                        factionIdS != GameDefines.GAIA_FACTION)
                     {
                         factionBorder.SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS * 2,
                                                                       GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdE != factionId &&
-                        factionIdE != "gaia")
+                        factionIdE != GameDefines.GAIA_FACTION)
                     {
                         factionBorder.SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS * 2, GameDefines.TILE_DIMENSIONS,
                                                                       GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);

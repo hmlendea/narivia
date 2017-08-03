@@ -9,6 +9,7 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
+using Narivia.Settings;
 
 namespace Narivia.GameLogic.GameManagers
 {
@@ -141,7 +142,7 @@ namespace Narivia.GameLogic.GameManagers
             Faction defenderFaction = world.GetFactions().FirstOrDefault(f => f.Id == targetRegion.FactionId);
 
             if (defenderFaction.Id == attackerFaction.Id ||
-                defenderFaction.Id == "gaia")
+                defenderFaction.Id == GameDefines.GAIA_FACTION)
             {
                 throw new InvalidTargetRegionException(regionId);
             }

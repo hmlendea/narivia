@@ -538,7 +538,7 @@ namespace Narivia.GameLogic.GameManagers
         {
             Faction faction = factions[factionId];
 
-            if (faction.Id == "gaia")
+            if (faction.Id == GameDefines.GAIA_FACTION)
             {
                 faction.Alive = false;
                 return;
@@ -579,8 +579,8 @@ namespace Narivia.GameLogic.GameManagers
         void InitialiseRelation(string sourceFactionId, string targetFactionId)
         {
             if (sourceFactionId == targetFactionId ||
-                sourceFactionId == "gaia" ||
-                targetFactionId == "gaia")
+                sourceFactionId == GameDefines.GAIA_FACTION ||
+                targetFactionId == GameDefines.GAIA_FACTION)
             {
                 return;
             }

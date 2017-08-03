@@ -67,7 +67,7 @@ namespace Narivia.Gui.Screens
         public override void LoadContent()
         {
             string initialWorldId = "narivia";
-            string initialFactionId = "alpalet";
+            string initialFactionId = "f_alpalet";
 
             if (ScreenArgs != null && ScreenArgs.Length >= 2)
             {

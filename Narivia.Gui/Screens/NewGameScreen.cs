@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.GuiElements;
 using Narivia.Models;
+using Narivia.Settings;
 
 namespace Narivia.Gui.Screens
 {
@@ -29,10 +30,10 @@ namespace Narivia.Gui.Screens
             base.LoadContent();
 
             // TODO: Don't load everything unnecessarily
-            game.NewGame("narivia", "alpalet");
+            game.NewGame("narivia", "f_alpalet");
 
             List<Faction> factions = game.GetFactions()
-                                         .Where(f => f.Id != "gaia")
+                                         .Where(f => f.Id != GameDefines.GAIA_FACTION)
                                          .OrderBy(f => f.Name)
                                          .ToList();
 

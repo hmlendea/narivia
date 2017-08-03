@@ -74,11 +74,11 @@
   </FlagEntity>
   <FlagEntity>
     <Id>fatima_flag</Id>
-    <Background>full</Background>
+    <Background>circle</Background>
     <Emblem>scarab</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFACD5</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#FFFFFF</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>

@@ -10,6 +10,7 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
+using Narivia.Settings;
 
 namespace Narivia.GameLogic.GameManagers
 {
@@ -569,7 +570,7 @@ namespace Narivia.GameLogic.GameManagers
 
         void UpdateFactionsAliveStatus()
         {
-            Parallel.ForEach(GetFactions().Where(f => f.Id != "gaia"),
+            Parallel.ForEach(GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION),
                              faction =>
                              {
                                  bool wasAlive = faction.Alive;
