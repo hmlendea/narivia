@@ -7,7 +7,7 @@
     <ColourHexadecimal>#00A1FF</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>gaia</FactionId>
+    <FactionId>f_gaia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_alpalet</Id>
@@ -16,7 +16,7 @@
     <ColourHexadecimal>#300065</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>alpalet</FactionId>
+    <FactionId>f_alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_larvenna</Id>
@@ -25,7 +25,7 @@
     <ColourHexadecimal>#6124A1</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>alpalet</FactionId>
+    <FactionId>f_alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_vanilet</Id>
@@ -34,7 +34,7 @@
     <ColourHexadecimal>#8F24A1</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>timber</ResourceId>
-    <FactionId>alpalet</FactionId>
+    <FactionId>f_alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_hal_morthi</Id>
@@ -43,7 +43,7 @@
     <ColourHexadecimal>#7B7B7B</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>mah_rodah</FactionId>
+    <FactionId>f_mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_lev_vesti</Id>
@@ -52,7 +52,7 @@
     <ColourHexadecimal>#4A4A4A</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>mah_rodah</FactionId>
+    <FactionId>f_mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gal_fortah</Id>
@@ -61,7 +61,7 @@
     <ColourHexadecimal>#E4E4E4</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>mah_rodah</FactionId>
+    <FactionId>f_mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_caravenna</Id>
@@ -70,7 +70,7 @@
     <ColourHexadecimal>#FF0000</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>whales</ResourceId>
-    <FactionId>caravenna</FactionId>
+    <FactionId>f_caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_galenna</Id>
@@ -79,7 +79,7 @@
     <ColourHexadecimal>#AF2D1D</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>caravenna</FactionId>
+    <FactionId>f_caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_dorenna</Id>
@@ -88,7 +88,7 @@
     <ColourHexadecimal>#FFB9B9</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>caravenna</FactionId>
+    <FactionId>f_caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_viris</Id>
@@ -97,7 +97,7 @@
     <ColourHexadecimal>#FFD400</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>viristia</FactionId>
+    <FactionId>f_viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_veuristia</Id>
@@ -106,7 +106,7 @@
     <ColourHexadecimal>#002BFF</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>viristia</FactionId>
+    <FactionId>f_viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gelistia</Id>
@@ -115,7 +115,7 @@
     <ColourHexadecimal>#AA8D00</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>viristia</FactionId>
+    <FactionId>f_viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_meuristia</Id>
@@ -124,7 +124,7 @@
     <ColourHexadecimal>#006353</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>meuristia</FactionId>
+    <FactionId>f_meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_lakistia</Id>
@@ -133,7 +133,7 @@
     <ColourHexadecimal>#4A5753</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>meuristia</FactionId>
+    <FactionId>f_meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_hudistia</Id>
@@ -142,7 +142,7 @@
     <ColourHexadecimal>#88A098</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>meuristia</FactionId>
+    <FactionId>f_meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_bafter</Id>
@@ -151,7 +151,7 @@
     <ColourHexadecimal>#2D7B00</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>befteria</FactionId>
+    <FactionId>f_befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_carenna</Id>
@@ -160,7 +160,7 @@
     <ColourHexadecimal>#2DE600</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>slaves</ResourceId>
-    <FactionId>befteria</FactionId>
+    <FactionId>f_befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_loapter</Id>
@@ -169,7 +169,7 @@
     <ColourHexadecimal>#D284FF</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>befteria</FactionId>
+    <FactionId>f_befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_al_kharid</Id>
@@ -178,7 +178,7 @@
     <ColourHexadecimal>#D3BA8E</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>camels</ResourceId>
-    <FactionId>ne_quin_arid</FactionId>
+    <FactionId>f_ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_al_nord</Id>
@@ -187,7 +187,7 @@
     <ColourHexadecimal>#D3BA19</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>ne_quin_arid</FactionId>
+    <FactionId>f_ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_rwadda</Id>
@@ -196,7 +196,7 @@
     <ColourHexadecimal>#FFEAAC</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>ne_quin_arid</FactionId>
+    <FactionId>f_ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_cronofat</Id>
@@ -205,7 +205,7 @@
     <ColourHexadecimal>#005322</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>fatima</FactionId>
+    <FactionId>f_fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_oronat</Id>
@@ -214,7 +214,7 @@
     <ColourHexadecimal>#FFACD5</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>fatima</FactionId>
+    <FactionId>f_fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_belefat</Id>
@@ -223,7 +223,7 @@
     <ColourHexadecimal>#D5007B</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>fatima</FactionId>
+    <FactionId>f_fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_optimin</Id>
@@ -232,7 +232,7 @@
     <ColourHexadecimal>#00AB98</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>optimia</FactionId>
+    <FactionId>f_optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_karmin</Id>
@@ -241,7 +241,7 @@
     <ColourHexadecimal>#437753</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>optimia</FactionId>
+    <FactionId>f_optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_fortalet</Id>
@@ -250,7 +250,7 @@
     <ColourHexadecimal>#FF5467</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>optimia</FactionId>
+    <FactionId>f_optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_imperial_city</Id>
@@ -259,7 +259,7 @@
     <ColourHexadecimal>#0072FF</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>impera</FactionId>
+    <FactionId>f_impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_bluma</Id>
@@ -268,7 +268,7 @@
     <ColourHexadecimal>#FF8D00</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>impera</FactionId>
+    <FactionId>f_impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_zama</Id>
@@ -277,7 +277,7 @@
     <ColourHexadecimal>#9E72FF</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>impera</FactionId>
+    <FactionId>f_impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_falnia</Id>
@@ -286,7 +286,7 @@
     <ColourHexadecimal>#58B4FF</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>impimia</FactionId>
+    <FactionId>f_impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_tefimin</Id>
@@ -295,7 +295,7 @@
     <ColourHexadecimal>#D66000</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>impimia</FactionId>
+    <FactionId>f_impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_cugismia</Id>
@@ -304,7 +304,7 @@
     <ColourHexadecimal>#A74B00</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>impimia</FactionId>
+    <FactionId>f_impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_foldai</Id>
@@ -313,7 +313,7 @@
     <ColourHexadecimal>#82004B</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>faladai</FactionId>
+    <FactionId>f_faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_tambar</Id>
@@ -322,7 +322,7 @@
     <ColourHexadecimal>#7DFFB4</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>faladai</FactionId>
+    <FactionId>f_faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_yolkai</Id>
@@ -331,7 +331,7 @@
     <ColourHexadecimal>#FF694D</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>faladai</FactionId>
+    <FactionId>f_faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_xodar</Id>
@@ -340,7 +340,7 @@
     <ColourHexadecimal>#6556FF</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>daria</FactionId>
+    <FactionId>f_daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_crambar</Id>
@@ -349,7 +349,7 @@
     <ColourHexadecimal>#9AA900</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>daria</FactionId>
+    <FactionId>f_daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_quedar</Id>
@@ -358,7 +358,7 @@
     <ColourHexadecimal>#C3EA71</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>whales</ResourceId>
-    <FactionId>daria</FactionId>
+    <FactionId>f_daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_borgilet</Id>
@@ -367,7 +367,7 @@
     <ColourHexadecimal>#D2C3BA</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>alpalet</FactionId>
+    <FactionId>f_alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_lev_esti</Id>
@@ -376,7 +376,7 @@
     <ColourHexadecimal>#442529</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>mah_rodah</FactionId>
+    <FactionId>f_mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_lublija</Id>
@@ -385,7 +385,7 @@
     <ColourHexadecimal>#445400</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>caravenna</FactionId>
+    <FactionId>f_caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_pablistia</Id>
@@ -394,7 +394,7 @@
     <ColourHexadecimal>#92CB7E</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>pearls</ResourceId>
-    <FactionId>viristia</FactionId>
+    <FactionId>f_viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_garlistia</Id>
@@ -403,7 +403,7 @@
     <ColourHexadecimal>#927871</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>meuristia</FactionId>
+    <FactionId>f_meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_mangter</Id>
@@ -412,7 +412,7 @@
     <ColourHexadecimal>#583946</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>befteria</FactionId>
+    <FactionId>f_befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_al_kahhka</Id>
@@ -421,7 +421,7 @@
     <ColourHexadecimal>#89BDC1</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>whales</ResourceId>
-    <FactionId>ne_quin_arid</FactionId>
+    <FactionId>f_ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_yanafat</Id>
@@ -430,7 +430,7 @@
     <ColourHexadecimal>#436336</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>timber</ResourceId>
-    <FactionId>fatima</FactionId>
+    <FactionId>f_fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_blumin</Id>
@@ -439,7 +439,7 @@
     <ColourHexadecimal>#8BC366</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>optimia</FactionId>
+    <FactionId>f_optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_trefla</Id>
@@ -448,7 +448,7 @@
     <ColourHexadecimal>#CB4A87</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>impera</FactionId>
+    <FactionId>f_impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_crama</Id>
@@ -457,7 +457,7 @@
     <ColourHexadecimal>#4C6527</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>impimia</FactionId>
+    <FactionId>f_impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_monkai</Id>
@@ -466,7 +466,7 @@
     <ColourHexadecimal>#835662</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>pearls</ResourceId>
-    <FactionId>faladai</FactionId>
+    <FactionId>f_faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gidar</Id>
@@ -475,7 +475,7 @@
     <ColourHexadecimal>#E38B3C</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>daria</FactionId>
+    <FactionId>f_daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_mindalet</Id>
@@ -484,7 +484,7 @@
     <ColourHexadecimal>#C345B0</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>pearls</ResourceId>
-    <FactionId>alpalet</FactionId>
+    <FactionId>f_alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_mel_rof</Id>
@@ -493,7 +493,7 @@
     <ColourHexadecimal>#CECECE</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>mah_rodah</FactionId>
+    <FactionId>f_mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_marinnia</Id>
@@ -502,7 +502,7 @@
     <ColourHexadecimal>#CE3131</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>caravenna</FactionId>
+    <FactionId>f_caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_cafter</Id>
@@ -511,7 +511,7 @@
     <ColourHexadecimal>#AEA274</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>viristia</FactionId>
+    <FactionId>f_viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_tomistia</Id>
@@ -520,7 +520,7 @@
     <ColourHexadecimal>#A576A5</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>meuristia</FactionId>
+    <FactionId>f_meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_spalter</Id>
@@ -529,7 +529,7 @@
     <ColourHexadecimal>#43BD64</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>befteria</FactionId>
+    <FactionId>f_befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_dabba</Id>
@@ -538,7 +538,7 @@
     <ColourHexadecimal>#F1D87B</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>pearls</ResourceId>
-    <FactionId>ne_quin_arid</FactionId>
+    <FactionId>f_ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_jalafat</Id>
@@ -547,7 +547,7 @@
     <ColourHexadecimal>#B68EAE</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>fatima</FactionId>
+    <FactionId>f_fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gem_ruf</Id>
@@ -556,7 +556,7 @@
     <ColourHexadecimal>#78CE66</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>timber</ResourceId>
-    <FactionId>optimia</FactionId>
+    <FactionId>f_optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_zambar</Id>
@@ -565,7 +565,7 @@
     <ColourHexadecimal>#488C1D</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>impera</FactionId>
+    <FactionId>f_impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_halmia</Id>
@@ -574,7 +574,7 @@
     <ColourHexadecimal>#DD644C</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>impimia</FactionId>
+    <FactionId>f_impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_roldai</Id>
@@ -583,7 +583,7 @@
     <ColourHexadecimal>#64B519</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>timber</ResourceId>
-    <FactionId>faladai</FactionId>
+    <FactionId>f_faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_hirmia</Id>
@@ -592,7 +592,7 @@
     <ColourHexadecimal>#B531CF</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>slaves</ResourceId>
-    <FactionId>daria</FactionId>
+    <FactionId>f_daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_daruz</Id>
@@ -601,7 +601,7 @@
     <ColourHexadecimal>#7EACF8</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>lamiz</FactionId>
+    <FactionId>f_lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_cariz</Id>
@@ -610,7 +610,7 @@
     <ColourHexadecimal>#74C1DD</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>lamiz</FactionId>
+    <FactionId>f_lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_jamaz</Id>
@@ -619,7 +619,7 @@
     <ColourHexadecimal>#9E96F8</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>lamiz</FactionId>
+    <FactionId>f_lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ramiz</Id>
@@ -628,7 +628,7 @@
     <ColourHexadecimal>#9EEBF8</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>lamiz</FactionId>
+    <FactionId>f_lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_splediz</Id>
@@ -637,7 +637,7 @@
     <ColourHexadecimal>#9EC8C4</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>lamiz</FactionId>
+    <FactionId>f_lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_al-hareeq</Id>
@@ -646,7 +646,7 @@
     <ColourHexadecimal>#FFD377</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>whales</ResourceId>
-    <FactionId>sudair</FactionId>
+    <FactionId>f_sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_as_khayek</Id>
@@ -655,7 +655,7 @@
     <ColourHexadecimal>#514831</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>sudair</FactionId>
+    <FactionId>f_sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_as_sulayyil</Id>
@@ -664,7 +664,7 @@
     <ColourHexadecimal>#EBE085</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>sudair</FactionId>
+    <FactionId>f_sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ryadh_al-khabra</Id>
@@ -673,7 +673,7 @@
     <ColourHexadecimal>#EBBC92</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>slaves</ResourceId>
-    <FactionId>sudair</FactionId>
+    <FactionId>f_sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_muzahmyyia</Id>
@@ -682,7 +682,7 @@
     <ColourHexadecimal>#74F532</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>camels</ResourceId>
-    <FactionId>sudair</FactionId>
+    <FactionId>f_sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_al_majma</Id>
@@ -691,7 +691,7 @@
     <ColourHexadecimal>#A8CFA4</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>sudair</FactionId>
+    <FactionId>f_sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_targat</Id>
@@ -700,7 +700,7 @@
     <ColourHexadecimal>#536978</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>targat</FactionId>
+    <FactionId>f_targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_piridesh</Id>
@@ -709,7 +709,7 @@
     <ColourHexadecimal>#646978</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>targat</FactionId>
+    <FactionId>f_targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_esgat</Id>
@@ -718,7 +718,7 @@
     <ColourHexadecimal>#545878</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>targat</FactionId>
+    <FactionId>f_targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ruviz</Id>
@@ -727,7 +727,7 @@
     <ColourHexadecimal>#665878</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>targat</FactionId>
+    <FactionId>f_targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_olgat</Id>
@@ -736,7 +736,7 @@
     <ColourHexadecimal>#495778</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>targat</FactionId>
+    <FactionId>f_targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_antis</Id>
@@ -745,7 +745,7 @@
     <ColourHexadecimal>#FF6565</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>estaton</FactionId>
+    <FactionId>f_estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_uretea</Id>
@@ -754,7 +754,7 @@
     <ColourHexadecimal>#E96B5F</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>estaton</FactionId>
+    <FactionId>f_estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_peronton</Id>
@@ -763,7 +763,7 @@
     <ColourHexadecimal>#D8886B</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>estaton</FactionId>
+    <FactionId>f_estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_urur</Id>
@@ -772,7 +772,7 @@
     <ColourHexadecimal>#D85476</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>estaton</FactionId>
+    <FactionId>f_estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_majundon</Id>
@@ -781,7 +781,7 @@
     <ColourHexadecimal>#CB545E</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>estaton</FactionId>
+    <FactionId>f_estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_muridesh</Id>
@@ -790,7 +790,7 @@
     <ColourHexadecimal>#00F86A</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>deshesda</FactionId>
+    <FactionId>f_deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ortodesh</Id>
@@ -799,7 +799,7 @@
     <ColourHexadecimal>#BC45B6</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>deshesda</FactionId>
+    <FactionId>f_deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_pablidesh</Id>
@@ -808,7 +808,7 @@
     <ColourHexadecimal>#7BABA5</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>deshesda</FactionId>
+    <FactionId>f_deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gargadesh</Id>
@@ -817,7 +817,7 @@
     <ColourHexadecimal>#2EDC3F</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>camels</ResourceId>
-    <FactionId>deshesda</FactionId>
+    <FactionId>f_deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_minidesh</Id>
@@ -826,7 +826,7 @@
     <ColourHexadecimal>#A84DFF</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>deshesda</FactionId>
+    <FactionId>f_deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_caltop</Id>
@@ -835,7 +835,7 @@
     <ColourHexadecimal>#B25B98</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>altop</FactionId>
+    <FactionId>f_altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_anchorion</Id>
@@ -844,7 +844,7 @@
     <ColourHexadecimal>#4D84B9</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>altop</FactionId>
+    <FactionId>f_altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_nortop</Id>
@@ -853,7 +853,7 @@
     <ColourHexadecimal>#9ED45E</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>altop</FactionId>
+    <FactionId>f_altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_faltop</Id>
@@ -862,7 +862,7 @@
     <ColourHexadecimal>#B64D3E</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>altop</FactionId>
+    <FactionId>f_altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_fenedesh</Id>
@@ -871,7 +871,7 @@
     <ColourHexadecimal>#5C9A6D</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>slaves</ResourceId>
-    <FactionId>altop</FactionId>
+    <FactionId>f_altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_praari</Id>
@@ -880,7 +880,7 @@
     <ColourHexadecimal>#A56258</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>timber</ResourceId>
-    <FactionId>aaria</FactionId>
+    <FactionId>f_aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ulgat</Id>
@@ -889,7 +889,7 @@
     <ColourHexadecimal>#48AEAB</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>aaria</FactionId>
+    <FactionId>f_aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_eletaari</Id>
@@ -898,7 +898,7 @@
     <ColourHexadecimal>#D9AFBA</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>aaria</FactionId>
+    <FactionId>f_aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_haari</Id>
@@ -907,7 +907,7 @@
     <ColourHexadecimal>#D98231</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>aaria</FactionId>
+    <FactionId>f_aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_panyrica</Id>
@@ -916,7 +916,7 @@
     <ColourHexadecimal>#7B4989</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>aaria</FactionId>
+    <FactionId>f_aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_taladar</Id>
@@ -925,7 +925,7 @@
     <ColourHexadecimal>#694B7B</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>nordodar</FactionId>
+    <FactionId>f_nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_aradesh</Id>
@@ -934,7 +934,7 @@
     <ColourHexadecimal>#9D9C35</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>nordodar</FactionId>
+    <FactionId>f_nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_tinadar</Id>
@@ -943,7 +943,7 @@
     <ColourHexadecimal>#D445B7</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>nordodar</FactionId>
+    <FactionId>f_nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_polgat</Id>
@@ -952,7 +952,7 @@
     <ColourHexadecimal>#7B9A57</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>nordodar</FactionId>
+    <FactionId>f_nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_saladar</Id>
@@ -961,7 +961,7 @@
     <ColourHexadecimal>#AC2795</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>nordodar</FactionId>
+    <FactionId>f_nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_naryrica</Id>
@@ -970,7 +970,7 @@
     <ColourHexadecimal>#FFA577</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>naryrica</FactionId>
+    <FactionId>f_naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_shayrica</Id>
@@ -979,7 +979,7 @@
     <ColourHexadecimal>#45623E</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>naryrica</FactionId>
+    <FactionId>f_naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_nordyrica</Id>
@@ -988,7 +988,7 @@
     <ColourHexadecimal>#B562D4</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>naryrica</FactionId>
+    <FactionId>f_naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_cenyrica</Id>
@@ -997,7 +997,7 @@
     <ColourHexadecimal>#77625E</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>naryrica</FactionId>
+    <FactionId>f_naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_portyrica</Id>
@@ -1006,7 +1006,7 @@
     <ColourHexadecimal>#4ACBD4</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>naryrica</FactionId>
+    <FactionId>f_naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_calamus</Id>
@@ -1015,7 +1015,7 @@
     <ColourHexadecimal>#70A55F</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>ardamus</FactionId>
+    <FactionId>f_ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_graan</Id>
@@ -1024,7 +1024,7 @@
     <ColourHexadecimal>#A78B9A</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>ardamus</FactionId>
+    <FactionId>f_ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_tulyrica</Id>
@@ -1033,7 +1033,7 @@
     <ColourHexadecimal>#5E2DCF</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>timber</ResourceId>
-    <FactionId>ardamus</FactionId>
+    <FactionId>f_ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_campodar</Id>
@@ -1042,7 +1042,7 @@
     <ColourHexadecimal>#929A4C</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>ardamus</FactionId>
+    <FactionId>f_ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_rendar</Id>
@@ -1051,7 +1051,7 @@
     <ColourHexadecimal>#D24D9E</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>ardamus</FactionId>
+    <FactionId>f_ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ridh</Id>
@@ -1060,7 +1060,7 @@
     <ColourHexadecimal>#8277CE</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>alpalet</FactionId>
+    <FactionId>f_alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gah_medhi</Id>
@@ -1069,7 +1069,7 @@
     <ColourHexadecimal>#8BC640</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>mah_rodah</FactionId>
+    <FactionId>f_mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_forenna</Id>
@@ -1078,7 +1078,7 @@
     <ColourHexadecimal>#DC8F76</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>caravenna</FactionId>
+    <FactionId>f_caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_unistia</Id>
@@ -1087,7 +1087,7 @@
     <ColourHexadecimal>#964899</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>viristia</FactionId>
+    <FactionId>f_viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ortistia</Id>
@@ -1096,7 +1096,7 @@
     <ColourHexadecimal>#45CA5C</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>meuristia</FactionId>
+    <FactionId>f_meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gebdther</Id>
@@ -1105,7 +1105,7 @@
     <ColourHexadecimal>#BA318F</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>befteria</FactionId>
+    <FactionId>f_befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_en_allid</Id>
@@ -1114,7 +1114,7 @@
     <ColourHexadecimal>#69AF71</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>ne_quin_arid</FactionId>
+    <FactionId>f_ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_urzifat</Id>
@@ -1123,7 +1123,7 @@
     <ColourHexadecimal>#C431AB</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>fatima</FactionId>
+    <FactionId>f_fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_optistia</Id>
@@ -1132,7 +1132,7 @@
     <ColourHexadecimal>#6CB643</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>optimia</FactionId>
+    <FactionId>f_optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_turimin</Id>
@@ -1141,7 +1141,7 @@
     <ColourHexadecimal>#CE5096</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>impera</FactionId>
+    <FactionId>f_impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_farzimia</Id>
@@ -1150,7 +1150,7 @@
     <ColourHexadecimal>#77AE2A</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>impimia</FactionId>
+    <FactionId>f_impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_felifat</Id>
@@ -1159,7 +1159,7 @@
     <ColourHexadecimal>#CF5887</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>faladai</FactionId>
+    <FactionId>f_faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gorbar</Id>
@@ -1168,7 +1168,7 @@
     <ColourHexadecimal>#96B549</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>daria</FactionId>
+    <FactionId>f_daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_tamaz</Id>
@@ -1177,7 +1177,7 @@
     <ColourHexadecimal>#45C743</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>lamiz</FactionId>
+    <FactionId>f_lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_hafr_al-batin</Id>
@@ -1186,7 +1186,7 @@
     <ColourHexadecimal>#549E53</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>sudair</FactionId>
+    <FactionId>f_sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_lagat</Id>
@@ -1195,7 +1195,7 @@
     <ColourHexadecimal>#AFAF4A</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>targat</FactionId>
+    <FactionId>f_targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_arion</Id>
@@ -1204,7 +1204,7 @@
     <ColourHexadecimal>#5EC64D</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>estaton</FactionId>
+    <FactionId>f_estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_sopadesh</Id>
@@ -1213,7 +1213,7 @@
     <ColourHexadecimal>#CD8FA5</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>pearls</ResourceId>
-    <FactionId>deshesda</FactionId>
+    <FactionId>f_deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_namtop</Id>
@@ -1222,7 +1222,7 @@
     <ColourHexadecimal>#58B327</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>altop</FactionId>
+    <FactionId>f_altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_taltea</Id>
@@ -1231,7 +1231,7 @@
     <ColourHexadecimal>#D44976</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>aaria</FactionId>
+    <FactionId>f_aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_maldar</Id>
@@ -1240,7 +1240,7 @@
     <ColourHexadecimal>#A49632</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>nordodar</FactionId>
+    <FactionId>f_nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_onyrica</Id>
@@ -1249,7 +1249,7 @@
     <ColourHexadecimal>#D623AE</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>whales</ResourceId>
-    <FactionId>naryrica</FactionId>
+    <FactionId>f_naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_altamus</Id>
@@ -1258,7 +1258,7 @@
     <ColourHexadecimal>#AE459A</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>ardamus</FactionId>
+    <FactionId>f_ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_yuzuki</Id>
@@ -1267,7 +1267,7 @@
     <ColourHexadecimal>#FF00FF</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>ayako</FactionId>
+    <FactionId>f_ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_kaito</Id>
@@ -1276,7 +1276,7 @@
     <ColourHexadecimal>#8E8049</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>ayako</FactionId>
+    <FactionId>f_ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_daiki</Id>
@@ -1285,7 +1285,7 @@
     <ColourHexadecimal>#CFD887</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>ayako</FactionId>
+    <FactionId>f_ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_atsunko</Id>
@@ -1294,7 +1294,7 @@
     <ColourHexadecimal>#877B34</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>slaves</ResourceId>
-    <FactionId>ayako</FactionId>
+    <FactionId>f_ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_takeshi</Id>
@@ -1303,7 +1303,7 @@
     <ColourHexadecimal>#CF4665</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>ayako</FactionId>
+    <FactionId>f_ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_hiraku</Id>
@@ -1312,7 +1312,7 @@
     <ColourHexadecimal>#58A1B6</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>ayako</FactionId>
+    <FactionId>f_ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_sinopa</Id>
@@ -1321,7 +1321,7 @@
     <ColourHexadecimal>#AE8E00</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>timber</ResourceId>
-    <FactionId>abeque</FactionId>
+    <FactionId>f_abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_chowozukayyil</Id>
@@ -1330,7 +1330,7 @@
     <ColourHexadecimal>#DF3464</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>abeque</FactionId>
+    <FactionId>f_abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ayawamat</Id>
@@ -1339,7 +1339,7 @@
     <ColourHexadecimal>#6FB096</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>abeque</FactionId>
+    <FactionId>f_abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_urika</Id>
@@ -1348,7 +1348,7 @@
     <ColourHexadecimal>#A4B0F1</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>abeque</FactionId>
+    <FactionId>f_abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_chowowilawu</Id>
@@ -1357,7 +1357,7 @@
     <ColourHexadecimal>#14CFAE</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>abeque</FactionId>
+    <FactionId>f_abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_soyala</Id>
@@ -1366,7 +1366,7 @@
     <ColourHexadecimal>#6D711F</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>abeque</FactionId>
+    <FactionId>f_abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gastivion</Id>
@@ -1375,7 +1375,7 @@
     <ColourHexadecimal>#948F00</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>amion</FactionId>
+    <FactionId>f_amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_lebzion</Id>
@@ -1384,7 +1384,7 @@
     <ColourHexadecimal>#DC3180</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>amion</FactionId>
+    <FactionId>f_amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_jhkaarion</Id>
@@ -1393,7 +1393,7 @@
     <ColourHexadecimal>#6CBF4D</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>amion</FactionId>
+    <FactionId>f_amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_fambion</Id>
@@ -1402,7 +1402,7 @@
     <ColourHexadecimal>#CD1D8F</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>amion</FactionId>
+    <FactionId>f_amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_lubion</Id>
@@ -1411,7 +1411,7 @@
     <ColourHexadecimal>#8BBC45</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>amion</FactionId>
+    <FactionId>f_amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_keplion</Id>
@@ -1420,7 +1420,7 @@
     <ColourHexadecimal>#F1AC88</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>amion</FactionId>
+    <FactionId>f_amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_sovija</Id>
@@ -1429,7 +1429,7 @@
     <ColourHexadecimal>#B2CC6B</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>sporadja</FactionId>
+    <FactionId>f_sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_manija</Id>
@@ -1438,7 +1438,7 @@
     <ColourHexadecimal>#482EAB</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>sporadja</FactionId>
+    <FactionId>f_sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_tulpa</Id>
@@ -1447,7 +1447,7 @@
     <ColourHexadecimal>#454532</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>bardos</FactionId>
+    <FactionId>f_bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_cropat</Id>
@@ -1456,7 +1456,7 @@
     <ColourHexadecimal>#BD45A8</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>bardos</FactionId>
+    <FactionId>f_bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_nampion</Id>
@@ -1465,7 +1465,7 @@
     <ColourHexadecimal>#482E40</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>sporadja</FactionId>
+    <FactionId>f_sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_spogdija</Id>
@@ -1474,7 +1474,7 @@
     <ColourHexadecimal>#488B95</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>sporadja</FactionId>
+    <FactionId>f_sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_remnija</Id>
@@ -1483,7 +1483,7 @@
     <ColourHexadecimal>#C68B45</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>sporadja</FactionId>
+    <FactionId>f_sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_vulendel</Id>
@@ -1492,7 +1492,7 @@
     <ColourHexadecimal>#C3DF00</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>endel</FactionId>
+    <FactionId>f_endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_novion</Id>
@@ -1501,7 +1501,7 @@
     <ColourHexadecimal>#C3CD87</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>endel</FactionId>
+    <FactionId>f_endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_rondias</Id>
@@ -1510,7 +1510,7 @@
     <ColourHexadecimal>#29CD87</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>endel</FactionId>
+    <FactionId>f_endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_mogodel</Id>
@@ -1519,7 +1519,7 @@
     <ColourHexadecimal>#293787</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>endel</FactionId>
+    <FactionId>f_endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_virdel</Id>
@@ -1528,7 +1528,7 @@
     <ColourHexadecimal>#9B6536</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>endel</FactionId>
+    <FactionId>f_endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_pentop</Id>
@@ -1537,7 +1537,7 @@
     <ColourHexadecimal>#62279D</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>endel</FactionId>
+    <FactionId>f_endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_viz</Id>
@@ -1546,7 +1546,7 @@
     <ColourHexadecimal>#FFA400</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>whales</ResourceId>
-    <FactionId>consus</FactionId>
+    <FactionId>f_consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_melifor</Id>
@@ -1555,7 +1555,7 @@
     <ColourHexadecimal>#FF3197</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>consus</FactionId>
+    <FactionId>f_consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_rennen</Id>
@@ -1564,7 +1564,7 @@
     <ColourHexadecimal>#6D9A49</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>consus</FactionId>
+    <FactionId>f_consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_utisia</Id>
@@ -1573,7 +1573,7 @@
     <ColourHexadecimal>#C4497E</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>consus</FactionId>
+    <FactionId>f_consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_prodha</Id>
@@ -1582,7 +1582,7 @@
     <ColourHexadecimal>#7E8F2B</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>consus</FactionId>
+    <FactionId>f_consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ur</Id>
@@ -1591,7 +1591,7 @@
     <ColourHexadecimal>#3C3489</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>consus</FactionId>
+    <FactionId>f_consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_urskaal</Id>
@@ -1600,7 +1600,7 @@
     <ColourHexadecimal>#C3EBFF</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>jhgrothaar</FactionId>
+    <FactionId>f_jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_grothar</Id>
@@ -1609,7 +1609,7 @@
     <ColourHexadecimal>#845542</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>jhgrothaar</FactionId>
+    <FactionId>f_jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_jhkaar</Id>
@@ -1618,7 +1618,7 @@
     <ColourHexadecimal>#84927B</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>jhgrothaar</FactionId>
+    <FactionId>f_jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gramdaar</Id>
@@ -1627,7 +1627,7 @@
     <ColourHexadecimal>#54489A</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>jhgrothaar</FactionId>
+    <FactionId>f_jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_yngaar</Id>
@@ -1636,7 +1636,7 @@
     <ColourHexadecimal>#AB823E</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>jhgrothaar</FactionId>
+    <FactionId>f_jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_skaal</Id>
@@ -1645,7 +1645,7 @@
     <ColourHexadecimal>#4D4262</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>jhgrothaar</FactionId>
+    <FactionId>f_jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_actene</Id>
@@ -1654,7 +1654,7 @@
     <ColourHexadecimal>#C3BA00</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>antene</FactionId>
+    <FactionId>f_antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_agopias</Id>
@@ -1663,7 +1663,7 @@
     <ColourHexadecimal>#5C5FB9</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>antene</FactionId>
+    <FactionId>f_antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_thanus</Id>
@@ -1672,7 +1672,7 @@
     <ColourHexadecimal>#B06958</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>antene</FactionId>
+    <FactionId>f_antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_miretova</Id>
@@ -1681,7 +1681,7 @@
     <ColourHexadecimal>#496976</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>antene</FactionId>
+    <FactionId>f_antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_zenasya</Id>
@@ -1690,7 +1690,7 @@
     <ColourHexadecimal>#822749</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>antene</FactionId>
+    <FactionId>f_antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_coralas</Id>
@@ -1699,7 +1699,7 @@
     <ColourHexadecimal>#82B5AF</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>antene</FactionId>
+    <FactionId>f_antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_bovac</Id>
@@ -1708,7 +1708,7 @@
     <ColourHexadecimal>#653E1C</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>bardos</FactionId>
+    <FactionId>f_bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gram</Id>
@@ -1717,7 +1717,7 @@
     <ColourHexadecimal>#228280</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>bardos</FactionId>
+    <FactionId>f_bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_bolder</Id>
@@ -1726,7 +1726,7 @@
     <ColourHexadecimal>#D48223</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>bardos</FactionId>
+    <FactionId>f_bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_biram</Id>
@@ -1735,7 +1735,7 @@
     <ColourHexadecimal>#D4D5AE</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>bardos</FactionId>
+    <FactionId>f_bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_sponilet</Id>
@@ -1744,7 +1744,7 @@
     <ColourHexadecimal>#BD6455</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>alpalet</FactionId>
+    <FactionId>f_alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_rabistia</Id>
@@ -1753,7 +1753,7 @@
     <ColourHexadecimal>#5FC88B</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>slaves</ResourceId>
-    <FactionId>mah_rodah</FactionId>
+    <FactionId>f_mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_malpija</Id>
@@ -1762,7 +1762,7 @@
     <ColourHexadecimal>#CE37A7</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>slaves</ResourceId>
-    <FactionId>caravenna</FactionId>
+    <FactionId>f_caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_falistia</Id>
@@ -1771,7 +1771,7 @@
     <ColourHexadecimal>#CECD49</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>viristia</FactionId>
+    <FactionId>f_viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_tulistia</Id>
@@ -1780,7 +1780,7 @@
     <ColourHexadecimal>#277442</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>meuristia</FactionId>
+    <FactionId>f_meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ulpter</Id>
@@ -1789,7 +1789,7 @@
     <ColourHexadecimal>#27BA9D</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>befteria</FactionId>
+    <FactionId>f_befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_kadda</Id>
@@ -1798,7 +1798,7 @@
     <ColourHexadecimal>#A57662</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>ne_quin_arid</FactionId>
+    <FactionId>f_ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_arcifat</Id>
@@ -1807,7 +1807,7 @@
     <ColourHexadecimal>#ACEA4A</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>fatima</FactionId>
+    <FactionId>f_fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_barmin</Id>
@@ -1816,7 +1816,7 @@
     <ColourHexadecimal>#663180</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>optimia</FactionId>
+    <FactionId>f_optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_urza</Id>
@@ -1825,7 +1825,7 @@
     <ColourHexadecimal>#31B614</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>grapes</ResourceId>
-    <FactionId>impera</FactionId>
+    <FactionId>f_impera</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_garmia</Id>
@@ -1834,7 +1834,7 @@
     <ColourHexadecimal>#BA3455</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>impimia</FactionId>
+    <FactionId>f_impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ankai</Id>
@@ -1843,7 +1843,7 @@
     <ColourHexadecimal>#BA9618</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>pearls</ResourceId>
-    <FactionId>faladai</FactionId>
+    <FactionId>f_faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_caldar</Id>
@@ -1852,7 +1852,7 @@
     <ColourHexadecimal>#644CBF</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>daria</FactionId>
+    <FactionId>f_daria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_vabuz</Id>
@@ -1861,7 +1861,7 @@
     <ColourHexadecimal>#C4B95C</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wheat</ResourceId>
-    <FactionId>lamiz</FactionId>
+    <FactionId>f_lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gatea</Id>
@@ -1870,7 +1870,7 @@
     <ColourHexadecimal>#6DA549</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>targat</FactionId>
+    <FactionId>f_targat</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_albas</Id>
@@ -1879,7 +1879,7 @@
     <ColourHexadecimal>#CECEC7</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>estaton</FactionId>
+    <FactionId>f_estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ongladesh</Id>
@@ -1888,7 +1888,7 @@
     <ColourHexadecimal>#CF5757</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>deshesda</FactionId>
+    <FactionId>f_deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_jiftop</Id>
@@ -1897,7 +1897,7 @@
     <ColourHexadecimal>#85CDAE</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>altop</FactionId>
+    <FactionId>f_altop</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ranaari</Id>
@@ -1906,7 +1906,7 @@
     <ColourHexadecimal>#3E3969</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>aaria</FactionId>
+    <FactionId>f_aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_galdar</Id>
@@ -1915,7 +1915,7 @@
     <ColourHexadecimal>#E29E20</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>nordodar</FactionId>
+    <FactionId>f_nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_tonyrica</Id>
@@ -1924,7 +1924,7 @@
     <ColourHexadecimal>#5A2D69</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>naryrica</FactionId>
+    <FactionId>f_naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_eleamus</Id>
@@ -1933,7 +1933,7 @@
     <ColourHexadecimal>#DC4D24</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>ardamus</FactionId>
+    <FactionId>f_ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_hotaka</Id>
@@ -1942,7 +1942,7 @@
     <ColourHexadecimal>#5CAC00</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>ayako</FactionId>
+    <FactionId>f_ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_hinto</Id>
@@ -1951,7 +1951,7 @@
     <ColourHexadecimal>#C41992</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>pearls</ResourceId>
-    <FactionId>abeque</FactionId>
+    <FactionId>f_abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_bertimion</Id>
@@ -1960,7 +1960,7 @@
     <ColourHexadecimal>#49A092</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>amion</FactionId>
+    <FactionId>f_amion</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_novodaja</Id>
@@ -1969,7 +1969,7 @@
     <ColourHexadecimal>#BFE71B</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>sporadja</FactionId>
+    <FactionId>f_sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_voldel</Id>
@@ -1978,7 +1978,7 @@
     <ColourHexadecimal>#842780</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>slaves</ResourceId>
-    <FactionId>endel</FactionId>
+    <FactionId>f_endel</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_salen</Id>
@@ -1987,7 +1987,7 @@
     <ColourHexadecimal>#1BCE1B</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>consus</FactionId>
+    <FactionId>f_consus</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_grahitaar</Id>
@@ -1996,7 +1996,7 @@
     <ColourHexadecimal>#318764</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>jhgrothaar</FactionId>
+    <FactionId>f_jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_ordum</Id>
@@ -2005,7 +2005,7 @@
     <ColourHexadecimal>#158E85</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>antene</FactionId>
+    <FactionId>f_antene</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_grugen</Id>
@@ -2014,7 +2014,7 @@
     <ColourHexadecimal>#154626</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>timber</ResourceId>
-    <FactionId>bardos</FactionId>
+    <FactionId>f_bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_brynjolfr</Id>
@@ -2023,7 +2023,7 @@
     <ColourHexadecimal>#FFFFFF</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>whales</ResourceId>
-    <FactionId>gammeland</FactionId>
+    <FactionId>f_gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_hylfjoord</Id>
@@ -2032,7 +2032,7 @@
     <ColourHexadecimal>#5CC676</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>gammeland</FactionId>
+    <FactionId>f_gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_jonheim</Id>
@@ -2041,7 +2041,7 @@
     <ColourHexadecimal>#AE2ED6</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>gammeland</FactionId>
+    <FactionId>f_gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_haakon</Id>
@@ -2050,7 +2050,7 @@
     <ColourHexadecimal>#7BE0BF</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>gammeland</FactionId>
+    <FactionId>f_gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_yngling</Id>
@@ -2059,7 +2059,7 @@
     <ColourHexadecimal>#BF7769</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>whales</ResourceId>
-    <FactionId>gammeland</FactionId>
+    <FactionId>f_gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_forstaag</Id>
@@ -2068,7 +2068,7 @@
     <ColourHexadecimal>#6442CD</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>gammeland</FactionId>
+    <FactionId>f_gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_hrisskar</Id>
@@ -2077,7 +2077,7 @@
     <ColourHexadecimal>#C73151</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>gammeland</FactionId>
+    <FactionId>f_gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_danija</Id>
@@ -2086,7 +2086,7 @@
     <ColourHexadecimal>#9248A7</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>sporadja</FactionId>
+    <FactionId>f_sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_manarfell</Id>
@@ -2095,7 +2095,7 @@
     <ColourHexadecimal>#9AFF9A</ColourHexadecimal>
     <Type>Capital</Type>
     <ResourceId>wild_animals</ResourceId>
-    <FactionId>ingolfsfell</FactionId>
+    <FactionId>f_ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_mjorfell</Id>
@@ -2104,7 +2104,7 @@
     <ColourHexadecimal>#387884</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>iron</ResourceId>
-    <FactionId>ingolfsfell</FactionId>
+    <FactionId>f_ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_bjorfell</Id>
@@ -2113,7 +2113,7 @@
     <ColourHexadecimal>#9AD64D</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>whales</ResourceId>
-    <FactionId>ingolfsfell</FactionId>
+    <FactionId>f_ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_meoalfell</Id>
@@ -2122,7 +2122,7 @@
     <ColourHexadecimal>#D430B5</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>ingolfsfell</FactionId>
+    <FactionId>f_ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_gunnolfsfell</Id>
@@ -2131,7 +2131,7 @@
     <ColourHexadecimal>#71D440</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>gold</ResourceId>
-    <FactionId>ingolfsfell</FactionId>
+    <FactionId>f_ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_jorundarfell</Id>
@@ -2140,7 +2140,7 @@
     <ColourHexadecimal>#B6782B</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>silver</ResourceId>
-    <FactionId>ingolfsfell</FactionId>
+    <FactionId>f_ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_veritas</Id>
@@ -2149,7 +2149,7 @@
     <ColourHexadecimal>#801FD9</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>horses</ResourceId>
-    <FactionId>ingolfsfell</FactionId>
+    <FactionId>f_ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
     <Id>r_wilderness</Id>
@@ -2158,6 +2158,6 @@
     <ColourHexadecimal>#000000</ColourHexadecimal>
     <Type>Province</Type>
     <ResourceId>fish</ResourceId>
-    <FactionId>gaia</FactionId>
+    <FactionId>f_gaia</FactionId>
   </RegionEntity>
 </ArrayOfRegionEntity>
