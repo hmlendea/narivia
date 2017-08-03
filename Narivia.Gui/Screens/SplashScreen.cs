@@ -38,6 +38,9 @@ namespace Narivia.Gui.Screens
         /// <value>The logo.</value>
         public Sprite LogoImage { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SplashScreen"/> class.
+        /// </summary>
         public SplashScreen()
         {
             BackgroundColour = Color.DodgerBlue;

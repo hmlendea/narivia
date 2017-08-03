@@ -90,7 +90,7 @@ namespace Narivia.Gui.GuiElements
             backgroundImage = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
-                FillMode = TextureFillMode.Tile,
+                FillMode = TextureFillMode.Tile
             };
 
             textSprite = new Sprite();

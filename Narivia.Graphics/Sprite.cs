@@ -358,7 +358,7 @@ namespace Narivia.Graphics
 
             if (GreenReplacement.A == 255)
             {
-                textureToDraw = ReplaceColour(textureToDraw, Color.Green, GreenReplacement, 15);
+                textureToDraw = ReplaceColour(textureToDraw, Color.Lime, GreenReplacement, 15);
             }
 
             if (BlueReplacement.A == 255)
@@ -379,6 +379,7 @@ namespace Narivia.Graphics
                 
                 Rectangle rec = new Rectangle(0, 0, ScreenArea.Width, ScreenArea.Height);
 
+                // TODO: Is it ok to End and Begin again? Does it affect performance?
                 spriteBatch.End();
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
 
