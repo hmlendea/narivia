@@ -368,7 +368,7 @@ namespace Narivia.Graphics
 
             if (TextureFillMode == TextureFillMode.Stretch)
             {
-                spriteBatch.Draw(textureToDraw, Position.ToVector2() + origin, SourceRectangle,
+                spriteBatch.Draw(textureToDraw, new Vector2(Position.X + ScreenArea.Width / 2, Position.Y + ScreenArea.Height / 2), SourceRectangle,
                     Tint * Opacity, Rotation,
                     origin, Scale * Zoom,
                     SpriteEffects.None, 0.0f);
@@ -382,7 +382,7 @@ namespace Narivia.Graphics
                 spriteBatch.End();
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
 
-                spriteBatch.Draw(textureToDraw, Position.ToVector2(), rec, Color.White);
+                spriteBatch.Draw(textureToDraw, Position.ToVector2(), rec, Tint * Opacity);
 
                 spriteBatch.End();
                 spriteBatch.Begin();

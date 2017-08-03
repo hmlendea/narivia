@@ -77,7 +77,7 @@ namespace Narivia.Gui.GuiElements
             unitBackground = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
-                SourceRectangle = new Rectangle(0, 0, 1, 1),
+                FillMode = TextureFillMode.Tile,
                 Size = new Point(100, 100),
                 TintColour = Color.Black
             };

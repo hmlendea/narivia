@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
+using Narivia.Graphics.Enumerations;
 using Narivia.Common.Helpers;
 using Narivia.Settings;
 
@@ -94,6 +95,8 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public void LoadContent()
         {
+            TransitionImage.TextureFillMode = TextureFillMode.Tile;
+
             currentScreen.LoadContent();
             TransitionImage.LoadContent();
         }

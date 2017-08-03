@@ -96,7 +96,7 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
-                SourceRectangle = new Rectangle(0, 0, 1, 1)
+                FillMode = TextureFillMode.Tile
             };
 
             regionsIcon = new GuiImage
@@ -190,6 +190,10 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
+            background.Position = Position;
+            background.Size = Size;
+            background.TintColour = BackgroundColour;
+
             regionsIcon.Position = new Point(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ScreenArea.Height) / 2);
             regionsText.Position = new Point(regionsIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - regionsText.ScreenArea.Height) / 2);
             holdingsIcon.Position = new Point(regionsText.ScreenArea.Right + Spacing, regionsIcon.Position.Y);
@@ -221,10 +225,6 @@ namespace Narivia.Gui.GuiElements
             holdingsText.TextColour = TextColour;
             wealthText.TextColour = TextColour;
             troopsText.TextColour = TextColour;
-
-            background.Position = Position;
-            background.Size = Size;
-            background.TintColour = BackgroundColour;
         }
 
         /// <summary>

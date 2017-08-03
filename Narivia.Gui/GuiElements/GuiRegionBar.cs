@@ -185,8 +185,7 @@ namespace Narivia.Gui.GuiElements
             regionNameText.Position = regionNameBackground.Position;
             regionNameText.TextColour = TextColour;
             
-            // TODO: Something's really off (pardon the pun) with factionImage's positioning
-            factionImage.Position = new Point(regionNameBackground.Position.X - 64, regionNameBackground.Position.Y - 40);
+            factionImage.Position = new Point(regionNameBackground.Position.X - factionImage.ScreenArea.Width / 2, regionNameBackground.Position.Y);
             resourceImage.Position = new Point(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64);
             resourceText.Position = new Point(Position.X, Position.Y + 2);
             resourceText.Size = new Point(64 + HOLDING_SPACING_HORIZONTAL * 2, Size.Y - 74);

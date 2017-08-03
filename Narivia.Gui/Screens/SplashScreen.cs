@@ -107,21 +107,13 @@ namespace Narivia.Gui.Screens
 
         void AlignItems()
         {
-            Vector2 backgroundScale = Vector2.One *
-                Math.Max(ScreenManager.Instance.Size.X, ScreenManager.Instance.Size.Y) /
-                Math.Max(BackgroundImage.SpriteSize.X, BackgroundImage.SpriteSize.Y);
-
-            Vector2 overlayScale = new Vector2(ScreenManager.Instance.Size.X / OverlayImage.SpriteSize.X,
+            BackgroundImage.Scale = Vector2.One * Math.Max(ScreenManager.Instance.Size.X, ScreenManager.Instance.Size.Y) /
+                                                  Math.Max(BackgroundImage.SpriteSize.X, BackgroundImage.SpriteSize.Y);
+            OverlayImage.Scale = new Vector2(ScreenManager.Instance.Size.X / OverlayImage.SpriteSize.X,
                                                ScreenManager.Instance.Size.Y / OverlayImage.SpriteSize.Y);
 
-            BackgroundImage.Position = new Point((ScreenManager.Instance.Size.X - BackgroundImage.SpriteSize.X) / 2,
-                                                 (ScreenManager.Instance.Size.Y - BackgroundImage.SpriteSize.Y) / 2);
-            BackgroundImage.Scale = backgroundScale;
-
-            OverlayImage.Position = new Point((ScreenManager.Instance.Size.X - OverlayImage.SpriteSize.X) / 2,
-                                              (ScreenManager.Instance.Size.Y - OverlayImage.SpriteSize.Y) / 2);
-            OverlayImage.Scale = overlayScale;
-
+            BackgroundImage.Position = new Point((ScreenManager.Instance.Size.X - BackgroundImage.ScreenArea.Width) / 2,
+                                                 (ScreenManager.Instance.Size.Y - BackgroundImage.ScreenArea.Height) / 2);
             LogoImage.Position = new Point((ScreenManager.Instance.Size.X - LogoImage.SpriteSize.X) / 2,
                                            (ScreenManager.Instance.Size.Y - LogoImage.SpriteSize.Y) / 2);
         }
