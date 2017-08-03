@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfFactionEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <FactionEntity>
-    <Id>gaia</Id>
+    <Id>f_gaia</Id>
     <Name>Gaia</Name>
     <Description>Good old mother nature!</Description>
     <ColourHexadecimal>#00A1FF</ColourHexadecimal>
@@ -9,7 +9,7 @@
 	<CultureId>0</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>alpalet</Id>
+    <Id>f_alpalet</Id>
     <Name>Alpalet</Name>
     <Description>Very proud people, the first to separate from the Rodah Migration.
 
@@ -21,7 +21,7 @@ They are expansionists and consider themselves the true owners of whole Western 
 	<CultureId>letian</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>mah_rodah</Id>
+    <Id>f_mah_rodah</Id>
     <Name>Mah Rodah</Name>
     <Description>The second ever CultureId of mankind, the original Rodah Migrators and original inhabitants of the Northern Bank.
 
@@ -33,7 +33,7 @@ They have very powerfull defences wich were build at the end of the First Era to
 	<CultureId>rodah</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>caravenna</Id>
+    <Id>f_caravenna</Id>
     <Name>Caravenna</Name>
     <Description>They look very honest and peacefull merchants but in reality they are very sly and cunning.
 
@@ -47,7 +47,7 @@ They are the master traders of Western Narivia and once were the leaders of the 
 	<CultureId>rennan</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>viristia</Id>
+    <Id>f_viristia</Id>
     <Name>Viristia</Name>
     <Description>Very proud and powerfull people.
 
@@ -64,7 +64,7 @@ They are very powerfull in both Attack and Defence and their objective is to reu
 	<CultureId>istian</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>meuristia</Id>
+    <Id>f_meuristia</Id>
     <Name>Meuristia</Name>
     <Description>Also known as "Southern Istians".
 
@@ -76,7 +76,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>istian</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>befteria</Id>
+    <Id>f_befteria</Id>
     <Name>Befteria</Name>
     <Description />
     <ColourHexadecimal>#2D7B00</ColourHexadecimal>
@@ -84,7 +84,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>befterian</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>ne_quin_arid</Id>
+    <Id>f_ne_quin_arid</Id>
     <Name>Ne Quin Arid</Name>
     <Description />
     <ColourHexadecimal>#D3BA8E</ColourHexadecimal>
@@ -92,7 +92,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>fatima</Id>
+    <Id>f_fatima</Id>
     <Name>Fatima</Name>
     <Description />
     <ColourHexadecimal>#FFACD5</ColourHexadecimal>
@@ -100,7 +100,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>optimia</Id>
+    <Id>f_optimia</Id>
     <Name>Optimia</Name>
     <Description />
     <ColourHexadecimal>#00AB98</ColourHexadecimal>
@@ -108,7 +108,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>blumiac</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>impera</Id>
+    <Id>f_impera</Id>
     <Name>Impera</Name>
     <Description />
     <ColourHexadecimal>#0072FF</ColourHexadecimal>
@@ -116,7 +116,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>blumiac</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>impimia</Id>
+    <Id>f_impimia</Id>
     <Name>Impimia</Name>
     <Description />
     <ColourHexadecimal>#A74B00</ColourHexadecimal>
@@ -124,7 +124,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>blumiac</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>faladai</Id>
+    <Id>f_faladai</Id>
     <Name>Faladai</Name>
     <Description />
     <ColourHexadecimal>#82004B</ColourHexadecimal>
@@ -132,7 +132,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>daria</Id>
+    <Id>f_daria</Id>
     <Name>Daria</Name>
     <Description />
     <ColourHexadecimal>#6556FF</ColourHexadecimal>
@@ -140,7 +140,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>blumiac</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>lamiz</Id>
+    <Id>f_lamiz</Id>
     <Name>Lamiz</Name>
     <Description />
     <ColourHexadecimal>#7EACF8</ColourHexadecimal>
@@ -148,7 +148,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>iztop</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>sudair</Id>
+    <Id>f_sudair</Id>
     <Name>Sudair</Name>
     <Description />
     <ColourHexadecimal>#FFD377</ColourHexadecimal>
@@ -156,7 +156,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>targat</Id>
+    <Id>f_targat</Id>
     <Name>Targat</Name>
     <Description />
     <ColourHexadecimal>#536978</ColourHexadecimal>
@@ -164,7 +164,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>nordic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>estaton</Id>
+    <Id>f_estaton</Id>
     <Name>Estaton</Name>
     <Description />
     <ColourHexadecimal>#FF6565</ColourHexadecimal>
@@ -172,7 +172,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>sudic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>deshesda</Id>
+    <Id>f_deshesda</Id>
     <Name>Deshesda</Name>
     <Description />
     <ColourHexadecimal>#00F86A</ColourHexadecimal>
@@ -180,7 +180,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>shesan</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>altop</Id>
+    <Id>f_altop</Id>
     <Name>Altop</Name>
     <Description />
     <ColourHexadecimal>#B25B98</ColourHexadecimal>
@@ -188,7 +188,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>iztop</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>aaria</Id>
+    <Id>f_aaria</Id>
     <Name>Aaria</Name>
     <Description />
     <ColourHexadecimal>#A56258</ColourHexadecimal>
@@ -196,7 +196,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>rural</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>nordodar</Id>
+    <Id>f_nordodar</Id>
     <Name>Nordodar</Name>
     <Description />
     <ColourHexadecimal>#694B7B</ColourHexadecimal>
@@ -204,7 +204,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>rural</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>naryrica</Id>
+    <Id>f_naryrica</Id>
     <Name>Naryrica</Name>
     <Description />
     <ColourHexadecimal>#FFA577</ColourHexadecimal>
@@ -212,7 +212,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>naryrican</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>ardamus</Id>
+    <Id>f_ardamus</Id>
     <Name>Ardamus</Name>
     <Description />
     <ColourHexadecimal>#70A55F</ColourHexadecimal>
@@ -220,7 +220,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>rural</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>ayako</Id>
+    <Id>f_ayako</Id>
     <Name>Ayako</Name>
     <Description />
     <ColourHexadecimal>#FF00FF</ColourHexadecimal>
@@ -228,7 +228,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>ayakan</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>abeque</Id>
+    <Id>f_abeque</Id>
     <Name>Abeque</Name>
     <Description />
     <ColourHexadecimal>#AE8E00</ColourHexadecimal>
@@ -236,7 +236,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>chowo</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>amion</Id>
+    <Id>f_amion</Id>
     <Name>Amion</Name>
     <Description />
     <ColourHexadecimal>#948F00</ColourHexadecimal>
@@ -244,7 +244,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>amionic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>sporadja</Id>
+    <Id>f_sporadja</Id>
     <Name>Sporadja</Name>
     <Description />
     <ColourHexadecimal>#B2CC6B</ColourHexadecimal>
@@ -252,7 +252,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>sporic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>endel</Id>
+    <Id>f_endel</Id>
     <Name>Endel</Name>
     <Description />
     <ColourHexadecimal>#C3DF00</ColourHexadecimal>
@@ -260,7 +260,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>barbarian</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>consus</Id>
+    <Id>f_consus</Id>
     <Name>Consus</Name>
     <Description />
     <ColourHexadecimal>#FFA400</ColourHexadecimal>
@@ -268,7 +268,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>amionic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>jhgrothaar</Id>
+    <Id>f_jhgrothaar</Id>
     <Name>Jhgrothaar</Name>
     <Description />
     <ColourHexadecimal>#C3EBFF</ColourHexadecimal>
@@ -276,7 +276,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>nordic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>antene</Id>
+    <Id>f_antene</Id>
     <Name>Antene</Name>
     <Description />
     <ColourHexadecimal>#C3BA00</ColourHexadecimal>
@@ -284,7 +284,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>nordic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>bardos</Id>
+    <Id>f_bardos</Id>
     <Name>Bardos</Name>
     <Description />
     <ColourHexadecimal>#653E1C</ColourHexadecimal>
@@ -292,7 +292,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>barbarian</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>gammeland</Id>
+    <Id>f_gammeland</Id>
     <Name>Gammeland</Name>
     <Description />
     <ColourHexadecimal>#FFFFFF</ColourHexadecimal>
@@ -300,7 +300,7 @@ They are specialized in defence and never give up without a fight.</Description>
 	<CultureId>nordic</CultureId>
   </FactionEntity>
   <FactionEntity>
-    <Id>ingolfsfell</Id>
+    <Id>f_ingolfsfell</Id>
     <Name>Ingolfsfell</Name>
     <Description />
     <ColourHexadecimal>#9AFF9A</ColourHexadecimal>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfRegionEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <RegionEntity>
-    <Id>water</Id>
+    <Id>r_water</Id>
     <Name>Water</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#00A1FF</ColourHexadecimal>
@@ -10,7 +10,7 @@
     <FactionId>gaia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>alpalet</Id>
+    <Id>r_alpalet</Id>
     <Name>Alpalet</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#300065</ColourHexadecimal>
@@ -19,7 +19,7 @@
     <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>larvenna</Id>
+    <Id>r_larvenna</Id>
     <Name>Larvenna</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6124A1</ColourHexadecimal>
@@ -28,7 +28,7 @@
     <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>vanilet</Id>
+    <Id>r_vanilet</Id>
     <Name>Vanilet</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8F24A1</ColourHexadecimal>
@@ -37,7 +37,7 @@
     <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>hal_morthi</Id>
+    <Id>r_hal_morthi</Id>
     <Name>Hal Morthi</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7B7B7B</ColourHexadecimal>
@@ -46,7 +46,7 @@
     <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>lev_vesti</Id>
+    <Id>r_lev_vesti</Id>
     <Name>Lev Vesti</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4A4A4A</ColourHexadecimal>
@@ -55,7 +55,7 @@
     <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gal_fortah</Id>
+    <Id>r_gal_fortah</Id>
     <Name>Gal Fortah</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#E4E4E4</ColourHexadecimal>
@@ -64,7 +64,7 @@
     <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>caravenna</Id>
+    <Id>r_caravenna</Id>
     <Name>Caravenna</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF0000</ColourHexadecimal>
@@ -73,7 +73,7 @@
     <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>galenna</Id>
+    <Id>r_galenna</Id>
     <Name>Galenna</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AF2D1D</ColourHexadecimal>
@@ -82,7 +82,7 @@
     <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>dorenna</Id>
+    <Id>r_dorenna</Id>
     <Name>Dorenna</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFB9B9</ColourHexadecimal>
@@ -91,7 +91,7 @@
     <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>viris</Id>
+    <Id>r_viris</Id>
     <Name>Viris</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFD400</ColourHexadecimal>
@@ -100,7 +100,7 @@
     <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>veuristia</Id>
+    <Id>r_veuristia</Id>
     <Name>Veuristia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#002BFF</ColourHexadecimal>
@@ -109,7 +109,7 @@
     <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gelistia</Id>
+    <Id>r_gelistia</Id>
     <Name>Gelistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AA8D00</ColourHexadecimal>
@@ -118,7 +118,7 @@
     <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>meuristia</Id>
+    <Id>r_meuristia</Id>
     <Name>Meuristia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#006353</ColourHexadecimal>
@@ -127,7 +127,7 @@
     <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>lakistia</Id>
+    <Id>r_lakistia</Id>
     <Name>Lakistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4A5753</ColourHexadecimal>
@@ -136,7 +136,7 @@
     <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>hudistia</Id>
+    <Id>r_hudistia</Id>
     <Name>Hudistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#88A098</ColourHexadecimal>
@@ -145,7 +145,7 @@
     <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>bafter</Id>
+    <Id>r_bafter</Id>
     <Name>Bafter</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#2D7B00</ColourHexadecimal>
@@ -154,7 +154,7 @@
     <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>carenna</Id>
+    <Id>r_carenna</Id>
     <Name>Carenna</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#2DE600</ColourHexadecimal>
@@ -163,7 +163,7 @@
     <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>loapter</Id>
+    <Id>r_loapter</Id>
     <Name>Loapter</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D284FF</ColourHexadecimal>
@@ -172,7 +172,7 @@
     <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>al_kharid</Id>
+    <Id>r_al_kharid</Id>
     <Name>Al Kharid</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D3BA8E</ColourHexadecimal>
@@ -181,7 +181,7 @@
     <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>al_nord</Id>
+    <Id>r_al_nord</Id>
     <Name>Al Nord</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D3BA19</ColourHexadecimal>
@@ -190,7 +190,7 @@
     <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>rwadda</Id>
+    <Id>r_rwadda</Id>
     <Name>Rwadda</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFEAAC</ColourHexadecimal>
@@ -199,7 +199,7 @@
     <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>cronofat</Id>
+    <Id>r_cronofat</Id>
     <Name>Cronofat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#005322</ColourHexadecimal>
@@ -208,7 +208,7 @@
     <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>oronat</Id>
+    <Id>r_oronat</Id>
     <Name>Oronat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFACD5</ColourHexadecimal>
@@ -217,7 +217,7 @@
     <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>belefat</Id>
+    <Id>r_belefat</Id>
     <Name>Belefat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D5007B</ColourHexadecimal>
@@ -226,7 +226,7 @@
     <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>optimin</Id>
+    <Id>r_optimin</Id>
     <Name>Optimin</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#00AB98</ColourHexadecimal>
@@ -235,7 +235,7 @@
     <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>karmin</Id>
+    <Id>r_karmin</Id>
     <Name>Karmin</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#437753</ColourHexadecimal>
@@ -244,7 +244,7 @@
     <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>fortalet</Id>
+    <Id>r_fortalet</Id>
     <Name>Fortalet</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF5467</ColourHexadecimal>
@@ -253,7 +253,7 @@
     <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>imperial_city</Id>
+    <Id>r_imperial_city</Id>
     <Name>Imperial City</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#0072FF</ColourHexadecimal>
@@ -262,7 +262,7 @@
     <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>bluma</Id>
+    <Id>r_bluma</Id>
     <Name>Bluma</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF8D00</ColourHexadecimal>
@@ -271,7 +271,7 @@
     <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>zama</Id>
+    <Id>r_zama</Id>
     <Name>Zama</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9E72FF</ColourHexadecimal>
@@ -280,7 +280,7 @@
     <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>falnia</Id>
+    <Id>r_falnia</Id>
     <Name>Falnia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#58B4FF</ColourHexadecimal>
@@ -289,7 +289,7 @@
     <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>tefimin</Id>
+    <Id>r_tefimin</Id>
     <Name>Tefimin</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D66000</ColourHexadecimal>
@@ -298,7 +298,7 @@
     <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>cugismia</Id>
+    <Id>r_cugismia</Id>
     <Name>Cugismia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A74B00</ColourHexadecimal>
@@ -307,7 +307,7 @@
     <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>foldai</Id>
+    <Id>r_foldai</Id>
     <Name>Foldai</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#82004B</ColourHexadecimal>
@@ -316,7 +316,7 @@
     <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>tambar</Id>
+    <Id>r_tambar</Id>
     <Name>Tambar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7DFFB4</ColourHexadecimal>
@@ -325,7 +325,7 @@
     <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>yolkai</Id>
+    <Id>r_yolkai</Id>
     <Name>Yolkai</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF694D</ColourHexadecimal>
@@ -334,7 +334,7 @@
     <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>xodar</Id>
+    <Id>r_xodar</Id>
     <Name>Xodar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6556FF</ColourHexadecimal>
@@ -343,7 +343,7 @@
     <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>crambar</Id>
+    <Id>r_crambar</Id>
     <Name>Crambar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9AA900</ColourHexadecimal>
@@ -352,7 +352,7 @@
     <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>quedar</Id>
+    <Id>r_quedar</Id>
     <Name>Quedar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3EA71</ColourHexadecimal>
@@ -361,7 +361,7 @@
     <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>borgilet</Id>
+    <Id>r_borgilet</Id>
     <Name>Borgilet</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D2C3BA</ColourHexadecimal>
@@ -370,7 +370,7 @@
     <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>lev_esti</Id>
+    <Id>r_lev_esti</Id>
     <Name>Lev Esti</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#442529</ColourHexadecimal>
@@ -379,7 +379,7 @@
     <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>lublija</Id>
+    <Id>r_lublija</Id>
     <Name>Lublija</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#445400</ColourHexadecimal>
@@ -388,7 +388,7 @@
     <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>pablistia</Id>
+    <Id>r_pablistia</Id>
     <Name>Pablistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#92CB7E</ColourHexadecimal>
@@ -397,7 +397,7 @@
     <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>garlistia</Id>
+    <Id>r_garlistia</Id>
     <Name>Garlistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#927871</ColourHexadecimal>
@@ -406,7 +406,7 @@
     <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>mangter</Id>
+    <Id>r_mangter</Id>
     <Name>Mangter</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#583946</ColourHexadecimal>
@@ -415,7 +415,7 @@
     <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>al_kahhka</Id>
+    <Id>r_al_kahhka</Id>
     <Name>Al Kahhka</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#89BDC1</ColourHexadecimal>
@@ -424,7 +424,7 @@
     <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>yanafat</Id>
+    <Id>r_yanafat</Id>
     <Name>Yanafat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#436336</ColourHexadecimal>
@@ -433,7 +433,7 @@
     <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>blumin</Id>
+    <Id>r_blumin</Id>
     <Name>Blumin</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8BC366</ColourHexadecimal>
@@ -442,7 +442,7 @@
     <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>trefla</Id>
+    <Id>r_trefla</Id>
     <Name>Trefla</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CB4A87</ColourHexadecimal>
@@ -451,7 +451,7 @@
     <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>crama</Id>
+    <Id>r_crama</Id>
     <Name>Crama</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4C6527</ColourHexadecimal>
@@ -460,7 +460,7 @@
     <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>monkai</Id>
+    <Id>r_monkai</Id>
     <Name>Monkai</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#835662</ColourHexadecimal>
@@ -469,7 +469,7 @@
     <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gidar</Id>
+    <Id>r_gidar</Id>
     <Name>Gidar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#E38B3C</ColourHexadecimal>
@@ -478,7 +478,7 @@
     <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>mindalet</Id>
+    <Id>r_mindalet</Id>
     <Name>Mindalet</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C345B0</ColourHexadecimal>
@@ -487,7 +487,7 @@
     <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>mel_rof</Id>
+    <Id>r_mel_rof</Id>
     <Name>Mel Rof</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CECECE</ColourHexadecimal>
@@ -496,7 +496,7 @@
     <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>marinnia</Id>
+    <Id>r_marinnia</Id>
     <Name>Marinnia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CE3131</ColourHexadecimal>
@@ -505,7 +505,7 @@
     <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>cafter</Id>
+    <Id>r_cafter</Id>
     <Name>Cafter</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AEA274</ColourHexadecimal>
@@ -514,7 +514,7 @@
     <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>tomistia</Id>
+    <Id>r_tomistia</Id>
     <Name>Tomistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A576A5</ColourHexadecimal>
@@ -523,7 +523,7 @@
     <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>spalter</Id>
+    <Id>r_spalter</Id>
     <Name>Spalter</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#43BD64</ColourHexadecimal>
@@ -532,7 +532,7 @@
     <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>dabba</Id>
+    <Id>r_dabba</Id>
     <Name>Dabba</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#F1D87B</ColourHexadecimal>
@@ -541,7 +541,7 @@
     <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>jalafat</Id>
+    <Id>r_jalafat</Id>
     <Name>Jalafat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B68EAE</ColourHexadecimal>
@@ -550,7 +550,7 @@
     <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gem_ruf</Id>
+    <Id>r_gem_ruf</Id>
     <Name>Gem Ruf</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#78CE66</ColourHexadecimal>
@@ -559,7 +559,7 @@
     <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>zambar</Id>
+    <Id>r_zambar</Id>
     <Name>Zambar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#488C1D</ColourHexadecimal>
@@ -568,7 +568,7 @@
     <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>halmia</Id>
+    <Id>r_halmia</Id>
     <Name>Halmia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DD644C</ColourHexadecimal>
@@ -577,7 +577,7 @@
     <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>roldai</Id>
+    <Id>r_roldai</Id>
     <Name>Roldai</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#64B519</ColourHexadecimal>
@@ -586,7 +586,7 @@
     <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>hirmia</Id>
+    <Id>r_hirmia</Id>
     <Name>Hirmia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B531CF</ColourHexadecimal>
@@ -595,7 +595,7 @@
     <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>daruz</Id>
+    <Id>r_daruz</Id>
     <Name>Daruz</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7EACF8</ColourHexadecimal>
@@ -604,7 +604,7 @@
     <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>cariz</Id>
+    <Id>r_cariz</Id>
     <Name>Cariz</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#74C1DD</ColourHexadecimal>
@@ -613,7 +613,7 @@
     <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>jamaz</Id>
+    <Id>r_jamaz</Id>
     <Name>Jamaz</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9E96F8</ColourHexadecimal>
@@ -622,7 +622,7 @@
     <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ramiz</Id>
+    <Id>r_ramiz</Id>
     <Name>Ramiz</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9EEBF8</ColourHexadecimal>
@@ -631,7 +631,7 @@
     <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>splediz</Id>
+    <Id>r_splediz</Id>
     <Name>Splediz</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9EC8C4</ColourHexadecimal>
@@ -640,7 +640,7 @@
     <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>al-hareeq</Id>
+    <Id>r_al-hareeq</Id>
     <Name>Al-Hareeq</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFD377</ColourHexadecimal>
@@ -649,7 +649,7 @@
     <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>as_khayek</Id>
+    <Id>r_as_khayek</Id>
     <Name>As Khayek</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#514831</ColourHexadecimal>
@@ -658,7 +658,7 @@
     <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>as_sulayyil</Id>
+    <Id>r_as_sulayyil</Id>
     <Name>As Sulayyil</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#EBE085</ColourHexadecimal>
@@ -667,7 +667,7 @@
     <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ryadh_al-khabra</Id>
+    <Id>r_ryadh_al-khabra</Id>
     <Name>Ryadh Al-Khabra</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#EBBC92</ColourHexadecimal>
@@ -676,7 +676,7 @@
     <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>muzahmyyia</Id>
+    <Id>r_muzahmyyia</Id>
     <Name>Muzahmyyia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#74F532</ColourHexadecimal>
@@ -685,7 +685,7 @@
     <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>al_majma</Id>
+    <Id>r_al_majma</Id>
     <Name>Al Majma</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A8CFA4</ColourHexadecimal>
@@ -694,7 +694,7 @@
     <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>targat</Id>
+    <Id>r_targat</Id>
     <Name>Targat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#536978</ColourHexadecimal>
@@ -703,7 +703,7 @@
     <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>piridesh</Id>
+    <Id>r_piridesh</Id>
     <Name>Piridesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#646978</ColourHexadecimal>
@@ -712,7 +712,7 @@
     <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>esgat</Id>
+    <Id>r_esgat</Id>
     <Name>Esgat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#545878</ColourHexadecimal>
@@ -721,7 +721,7 @@
     <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ruviz</Id>
+    <Id>r_ruviz</Id>
     <Name>Ruviz</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#665878</ColourHexadecimal>
@@ -730,7 +730,7 @@
     <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>olgat</Id>
+    <Id>r_olgat</Id>
     <Name>Olgat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#495778</ColourHexadecimal>
@@ -739,7 +739,7 @@
     <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>antis</Id>
+    <Id>r_antis</Id>
     <Name>Antis</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF6565</ColourHexadecimal>
@@ -748,7 +748,7 @@
     <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>uretea</Id>
+    <Id>r_uretea</Id>
     <Name>Uretea</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#E96B5F</ColourHexadecimal>
@@ -757,7 +757,7 @@
     <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>peronton</Id>
+    <Id>r_peronton</Id>
     <Name>Peronton</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D8886B</ColourHexadecimal>
@@ -766,7 +766,7 @@
     <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>urur</Id>
+    <Id>r_urur</Id>
     <Name>Urur</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D85476</ColourHexadecimal>
@@ -775,7 +775,7 @@
     <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>majundon</Id>
+    <Id>r_majundon</Id>
     <Name>Majundon</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CB545E</ColourHexadecimal>
@@ -784,7 +784,7 @@
     <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>muridesh</Id>
+    <Id>r_muridesh</Id>
     <Name>Muridesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#00F86A</ColourHexadecimal>
@@ -793,7 +793,7 @@
     <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ortodesh</Id>
+    <Id>r_ortodesh</Id>
     <Name>Ortodesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BC45B6</ColourHexadecimal>
@@ -802,7 +802,7 @@
     <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>pablidesh</Id>
+    <Id>r_pablidesh</Id>
     <Name>Pablidesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7BABA5</ColourHexadecimal>
@@ -811,7 +811,7 @@
     <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gargadesh</Id>
+    <Id>r_gargadesh</Id>
     <Name>Gargadesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#2EDC3F</ColourHexadecimal>
@@ -820,7 +820,7 @@
     <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>minidesh</Id>
+    <Id>r_minidesh</Id>
     <Name>Minidesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A84DFF</ColourHexadecimal>
@@ -829,7 +829,7 @@
     <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>caltop</Id>
+    <Id>r_caltop</Id>
     <Name>Caltop</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B25B98</ColourHexadecimal>
@@ -838,7 +838,7 @@
     <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>anchorion</Id>
+    <Id>r_anchorion</Id>
     <Name>Anchorion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4D84B9</ColourHexadecimal>
@@ -847,7 +847,7 @@
     <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>nortop</Id>
+    <Id>r_nortop</Id>
     <Name>Nortop</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9ED45E</ColourHexadecimal>
@@ -856,7 +856,7 @@
     <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>faltop</Id>
+    <Id>r_faltop</Id>
     <Name>Faltop</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B64D3E</ColourHexadecimal>
@@ -865,7 +865,7 @@
     <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>fenedesh</Id>
+    <Id>r_fenedesh</Id>
     <Name>Fenedesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5C9A6D</ColourHexadecimal>
@@ -874,7 +874,7 @@
     <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>praari</Id>
+    <Id>r_praari</Id>
     <Name>Praari</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A56258</ColourHexadecimal>
@@ -883,7 +883,7 @@
     <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ulgat</Id>
+    <Id>r_ulgat</Id>
     <Name>Ulgat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#48AEAB</ColourHexadecimal>
@@ -892,7 +892,7 @@
     <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>eletaari</Id>
+    <Id>r_eletaari</Id>
     <Name>Eletaari</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D9AFBA</ColourHexadecimal>
@@ -901,7 +901,7 @@
     <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>haari</Id>
+    <Id>r_haari</Id>
     <Name>Haari</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D98231</ColourHexadecimal>
@@ -910,7 +910,7 @@
     <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>panyrica</Id>
+    <Id>r_panyrica</Id>
     <Name>Panyrica</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7B4989</ColourHexadecimal>
@@ -919,7 +919,7 @@
     <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>taladar</Id>
+    <Id>r_taladar</Id>
     <Name>Taladar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#694B7B</ColourHexadecimal>
@@ -928,7 +928,7 @@
     <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>aradesh</Id>
+    <Id>r_aradesh</Id>
     <Name>Aradesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9D9C35</ColourHexadecimal>
@@ -937,7 +937,7 @@
     <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>tinadar</Id>
+    <Id>r_tinadar</Id>
     <Name>Tinadar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D445B7</ColourHexadecimal>
@@ -946,7 +946,7 @@
     <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>polgat</Id>
+    <Id>r_polgat</Id>
     <Name>Polgat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7B9A57</ColourHexadecimal>
@@ -955,7 +955,7 @@
     <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>saladar</Id>
+    <Id>r_saladar</Id>
     <Name>Saladar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AC2795</ColourHexadecimal>
@@ -964,7 +964,7 @@
     <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>naryrica</Id>
+    <Id>r_naryrica</Id>
     <Name>Naryrica</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFA577</ColourHexadecimal>
@@ -973,7 +973,7 @@
     <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>shayrica</Id>
+    <Id>r_shayrica</Id>
     <Name>Shayrica</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#45623E</ColourHexadecimal>
@@ -982,7 +982,7 @@
     <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>nordyrica</Id>
+    <Id>r_nordyrica</Id>
     <Name>Nordyrica</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B562D4</ColourHexadecimal>
@@ -991,7 +991,7 @@
     <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>cenyrica</Id>
+    <Id>r_cenyrica</Id>
     <Name>Cenyrica</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#77625E</ColourHexadecimal>
@@ -1000,7 +1000,7 @@
     <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>portyrica</Id>
+    <Id>r_portyrica</Id>
     <Name>Portyrica</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4ACBD4</ColourHexadecimal>
@@ -1009,7 +1009,7 @@
     <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>calamus</Id>
+    <Id>r_calamus</Id>
     <Name>Calamus</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#70A55F</ColourHexadecimal>
@@ -1018,7 +1018,7 @@
     <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>graan</Id>
+    <Id>r_graan</Id>
     <Name>Graan</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A78B9A</ColourHexadecimal>
@@ -1027,7 +1027,7 @@
     <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>tulyrica</Id>
+    <Id>r_tulyrica</Id>
     <Name>Tulyrica</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5E2DCF</ColourHexadecimal>
@@ -1036,7 +1036,7 @@
     <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>campodar</Id>
+    <Id>r_campodar</Id>
     <Name>Campodar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#929A4C</ColourHexadecimal>
@@ -1045,7 +1045,7 @@
     <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>rendar</Id>
+    <Id>r_rendar</Id>
     <Name>Rendar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D24D9E</ColourHexadecimal>
@@ -1054,7 +1054,7 @@
     <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ridh</Id>
+    <Id>r_ridh</Id>
     <Name>Ridh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8277CE</ColourHexadecimal>
@@ -1063,7 +1063,7 @@
     <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gah_medhi</Id>
+    <Id>r_gah_medhi</Id>
     <Name>Gah Medhi</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8BC640</ColourHexadecimal>
@@ -1072,7 +1072,7 @@
     <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>forenna</Id>
+    <Id>r_forenna</Id>
     <Name>Forenna</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DC8F76</ColourHexadecimal>
@@ -1081,7 +1081,7 @@
     <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>unistia</Id>
+    <Id>r_unistia</Id>
     <Name>Unistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#964899</ColourHexadecimal>
@@ -1090,7 +1090,7 @@
     <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ortistia</Id>
+    <Id>r_ortistia</Id>
     <Name>Ortistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#45CA5C</ColourHexadecimal>
@@ -1099,7 +1099,7 @@
     <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gebdther</Id>
+    <Id>r_gebdther</Id>
     <Name>Gebdther</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BA318F</ColourHexadecimal>
@@ -1108,7 +1108,7 @@
     <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>en_allid</Id>
+    <Id>r_en_allid</Id>
     <Name>En Allid</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#69AF71</ColourHexadecimal>
@@ -1117,7 +1117,7 @@
     <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>urzifat</Id>
+    <Id>r_urzifat</Id>
     <Name>Urzifat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C431AB</ColourHexadecimal>
@@ -1126,7 +1126,7 @@
     <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>optistia</Id>
+    <Id>r_optistia</Id>
     <Name>Optistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6CB643</ColourHexadecimal>
@@ -1135,7 +1135,7 @@
     <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>turimin</Id>
+    <Id>r_turimin</Id>
     <Name>Turimin</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CE5096</ColourHexadecimal>
@@ -1144,7 +1144,7 @@
     <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>farzimia</Id>
+    <Id>r_farzimia</Id>
     <Name>Farzimia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#77AE2A</ColourHexadecimal>
@@ -1153,7 +1153,7 @@
     <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>felifat</Id>
+    <Id>r_felifat</Id>
     <Name>Felifat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CF5887</ColourHexadecimal>
@@ -1162,7 +1162,7 @@
     <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gorbar</Id>
+    <Id>r_gorbar</Id>
     <Name>Gorbar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#96B549</ColourHexadecimal>
@@ -1171,7 +1171,7 @@
     <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>tamaz</Id>
+    <Id>r_tamaz</Id>
     <Name>Tamaz</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#45C743</ColourHexadecimal>
@@ -1180,7 +1180,7 @@
     <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>hafr_al-batin</Id>
+    <Id>r_hafr_al-batin</Id>
     <Name>Hafr Al-Batin</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#549E53</ColourHexadecimal>
@@ -1189,7 +1189,7 @@
     <FactionId>sudair</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>lagat</Id>
+    <Id>r_lagat</Id>
     <Name>Lagat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AFAF4A</ColourHexadecimal>
@@ -1198,7 +1198,7 @@
     <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>arion</Id>
+    <Id>r_arion</Id>
     <Name>Arion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5EC64D</ColourHexadecimal>
@@ -1207,7 +1207,7 @@
     <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>sopadesh</Id>
+    <Id>r_sopadesh</Id>
     <Name>Sopadesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CD8FA5</ColourHexadecimal>
@@ -1216,7 +1216,7 @@
     <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>namtop</Id>
+    <Id>r_namtop</Id>
     <Name>Namtop</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#58B327</ColourHexadecimal>
@@ -1225,7 +1225,7 @@
     <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>taltea</Id>
+    <Id>r_taltea</Id>
     <Name>Taltea</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D44976</ColourHexadecimal>
@@ -1234,7 +1234,7 @@
     <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>maldar</Id>
+    <Id>r_maldar</Id>
     <Name>Maldar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A49632</ColourHexadecimal>
@@ -1243,7 +1243,7 @@
     <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>onyrica</Id>
+    <Id>r_onyrica</Id>
     <Name>Onyrica</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D623AE</ColourHexadecimal>
@@ -1252,7 +1252,7 @@
     <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>altamus</Id>
+    <Id>r_altamus</Id>
     <Name>Altamus</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AE459A</ColourHexadecimal>
@@ -1261,7 +1261,7 @@
     <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>yuzuki</Id>
+    <Id>r_yuzuki</Id>
     <Name>Yuzuki</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF00FF</ColourHexadecimal>
@@ -1270,7 +1270,7 @@
     <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>kaito</Id>
+    <Id>r_kaito</Id>
     <Name>Kaito</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8E8049</ColourHexadecimal>
@@ -1279,7 +1279,7 @@
     <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>daiki</Id>
+    <Id>r_daiki</Id>
     <Name>Daiki</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CFD887</ColourHexadecimal>
@@ -1288,7 +1288,7 @@
     <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>atsunko</Id>
+    <Id>r_atsunko</Id>
     <Name>Atsunko</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#877B34</ColourHexadecimal>
@@ -1297,7 +1297,7 @@
     <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>takeshi</Id>
+    <Id>r_takeshi</Id>
     <Name>Takeshi</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CF4665</ColourHexadecimal>
@@ -1306,7 +1306,7 @@
     <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>hiraku</Id>
+    <Id>r_hiraku</Id>
     <Name>Hiraku</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#58A1B6</ColourHexadecimal>
@@ -1315,7 +1315,7 @@
     <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>sinopa</Id>
+    <Id>r_sinopa</Id>
     <Name>Sinopa</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AE8E00</ColourHexadecimal>
@@ -1324,7 +1324,7 @@
     <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>chowozukayyil</Id>
+    <Id>r_chowozukayyil</Id>
     <Name>Chowozukayyil</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DF3464</ColourHexadecimal>
@@ -1333,7 +1333,7 @@
     <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ayawamat</Id>
+    <Id>r_ayawamat</Id>
     <Name>Ayawamat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6FB096</ColourHexadecimal>
@@ -1342,7 +1342,7 @@
     <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>urika</Id>
+    <Id>r_urika</Id>
     <Name>Urika</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A4B0F1</ColourHexadecimal>
@@ -1351,7 +1351,7 @@
     <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>chowowilawu</Id>
+    <Id>r_chowowilawu</Id>
     <Name>Chowowilawu</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#14CFAE</ColourHexadecimal>
@@ -1360,7 +1360,7 @@
     <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>soyala</Id>
+    <Id>r_soyala</Id>
     <Name>Soyala</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6D711F</ColourHexadecimal>
@@ -1369,7 +1369,7 @@
     <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gastivion</Id>
+    <Id>r_gastivion</Id>
     <Name>Gastivion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#948F00</ColourHexadecimal>
@@ -1378,7 +1378,7 @@
     <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>lebzion</Id>
+    <Id>r_lebzion</Id>
     <Name>Lebzion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DC3180</ColourHexadecimal>
@@ -1387,7 +1387,7 @@
     <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>jhkaarion</Id>
+    <Id>r_jhkaarion</Id>
     <Name>Jhkaarion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6CBF4D</ColourHexadecimal>
@@ -1396,7 +1396,7 @@
     <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>fambion</Id>
+    <Id>r_fambion</Id>
     <Name>Fambion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CD1D8F</ColourHexadecimal>
@@ -1405,7 +1405,7 @@
     <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>lubion</Id>
+    <Id>r_lubion</Id>
     <Name>Lubion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#8BBC45</ColourHexadecimal>
@@ -1414,7 +1414,7 @@
     <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>keplion</Id>
+    <Id>r_keplion</Id>
     <Name>Keplion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#F1AC88</ColourHexadecimal>
@@ -1423,7 +1423,7 @@
     <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>sovija</Id>
+    <Id>r_sovija</Id>
     <Name>Sovija</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B2CC6B</ColourHexadecimal>
@@ -1432,7 +1432,7 @@
     <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>manija</Id>
+    <Id>r_manija</Id>
     <Name>Manija</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#482EAB</ColourHexadecimal>
@@ -1441,7 +1441,7 @@
     <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>tulpa</Id>
+    <Id>r_tulpa</Id>
     <Name>Tulpa</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#454532</ColourHexadecimal>
@@ -1450,7 +1450,7 @@
     <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>cropat</Id>
+    <Id>r_cropat</Id>
     <Name>Cropat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BD45A8</ColourHexadecimal>
@@ -1459,7 +1459,7 @@
     <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>nampion</Id>
+    <Id>r_nampion</Id>
     <Name>Nampion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#482E40</ColourHexadecimal>
@@ -1468,7 +1468,7 @@
     <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>spogdija</Id>
+    <Id>r_spogdija</Id>
     <Name>Spogdija</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#488B95</ColourHexadecimal>
@@ -1477,7 +1477,7 @@
     <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>remnija</Id>
+    <Id>r_remnija</Id>
     <Name>Remnija</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C68B45</ColourHexadecimal>
@@ -1486,7 +1486,7 @@
     <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>vulendel</Id>
+    <Id>r_vulendel</Id>
     <Name>Vulendel</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3DF00</ColourHexadecimal>
@@ -1495,7 +1495,7 @@
     <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>novion</Id>
+    <Id>r_novion</Id>
     <Name>Novion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3CD87</ColourHexadecimal>
@@ -1504,7 +1504,7 @@
     <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>rondias</Id>
+    <Id>r_rondias</Id>
     <Name>Rondias</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#29CD87</ColourHexadecimal>
@@ -1513,7 +1513,7 @@
     <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>mogodel</Id>
+    <Id>r_mogodel</Id>
     <Name>Mogodel</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#293787</ColourHexadecimal>
@@ -1522,7 +1522,7 @@
     <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>virdel</Id>
+    <Id>r_virdel</Id>
     <Name>Virdel</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9B6536</ColourHexadecimal>
@@ -1531,7 +1531,7 @@
     <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>pentop</Id>
+    <Id>r_pentop</Id>
     <Name>Pentop</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#62279D</ColourHexadecimal>
@@ -1540,7 +1540,7 @@
     <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>viz</Id>
+    <Id>r_viz</Id>
     <Name>Viz</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFA400</ColourHexadecimal>
@@ -1549,7 +1549,7 @@
     <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>melifor</Id>
+    <Id>r_melifor</Id>
     <Name>Melifor</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FF3197</ColourHexadecimal>
@@ -1558,7 +1558,7 @@
     <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>rennen</Id>
+    <Id>r_rennen</Id>
     <Name>Rennen</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6D9A49</ColourHexadecimal>
@@ -1567,7 +1567,7 @@
     <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>utisia</Id>
+    <Id>r_utisia</Id>
     <Name>Utisia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C4497E</ColourHexadecimal>
@@ -1576,7 +1576,7 @@
     <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>prodha</Id>
+    <Id>r_prodha</Id>
     <Name>Prodha</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7E8F2B</ColourHexadecimal>
@@ -1585,7 +1585,7 @@
     <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ur</Id>
+    <Id>r_ur</Id>
     <Name>Ur</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#3C3489</ColourHexadecimal>
@@ -1594,7 +1594,7 @@
     <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>urskaal</Id>
+    <Id>r_urskaal</Id>
     <Name>Urskaal</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3EBFF</ColourHexadecimal>
@@ -1603,7 +1603,7 @@
     <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>grothar</Id>
+    <Id>r_grothar</Id>
     <Name>Grothar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#845542</ColourHexadecimal>
@@ -1612,7 +1612,7 @@
     <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>jhkaar</Id>
+    <Id>r_jhkaar</Id>
     <Name>Jhkaar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#84927B</ColourHexadecimal>
@@ -1621,7 +1621,7 @@
     <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gramdaar</Id>
+    <Id>r_gramdaar</Id>
     <Name>Gramdaar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#54489A</ColourHexadecimal>
@@ -1630,7 +1630,7 @@
     <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>yngaar</Id>
+    <Id>r_yngaar</Id>
     <Name>Yngaar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AB823E</ColourHexadecimal>
@@ -1639,7 +1639,7 @@
     <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>skaal</Id>
+    <Id>r_skaal</Id>
     <Name>Skaal</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#4D4262</ColourHexadecimal>
@@ -1648,7 +1648,7 @@
     <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>actene</Id>
+    <Id>r_actene</Id>
     <Name>Actene</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C3BA00</ColourHexadecimal>
@@ -1657,7 +1657,7 @@
     <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>agopias</Id>
+    <Id>r_agopias</Id>
     <Name>Agopias</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5C5FB9</ColourHexadecimal>
@@ -1666,7 +1666,7 @@
     <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>thanus</Id>
+    <Id>r_thanus</Id>
     <Name>Thanus</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B06958</ColourHexadecimal>
@@ -1675,7 +1675,7 @@
     <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>miretova</Id>
+    <Id>r_miretova</Id>
     <Name>Miretova</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#496976</ColourHexadecimal>
@@ -1684,7 +1684,7 @@
     <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>zenasya</Id>
+    <Id>r_zenasya</Id>
     <Name>Zenasya</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#822749</ColourHexadecimal>
@@ -1693,7 +1693,7 @@
     <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>coralas</Id>
+    <Id>r_coralas</Id>
     <Name>Coralas</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#82B5AF</ColourHexadecimal>
@@ -1702,7 +1702,7 @@
     <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>bovac</Id>
+    <Id>r_bovac</Id>
     <Name>Bovac</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#653E1C</ColourHexadecimal>
@@ -1711,7 +1711,7 @@
     <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gram</Id>
+    <Id>r_gram</Id>
     <Name>Gram</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#228280</ColourHexadecimal>
@@ -1720,7 +1720,7 @@
     <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>bolder</Id>
+    <Id>r_bolder</Id>
     <Name>Bolder</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D48223</ColourHexadecimal>
@@ -1729,7 +1729,7 @@
     <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>biram</Id>
+    <Id>r_biram</Id>
     <Name>Biram</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D4D5AE</ColourHexadecimal>
@@ -1738,7 +1738,7 @@
     <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>sponilet</Id>
+    <Id>r_sponilet</Id>
     <Name>Sponilet</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BD6455</ColourHexadecimal>
@@ -1747,7 +1747,7 @@
     <FactionId>alpalet</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>rabistia</Id>
+    <Id>r_rabistia</Id>
     <Name>Rabistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5FC88B</ColourHexadecimal>
@@ -1756,7 +1756,7 @@
     <FactionId>mah_rodah</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>malpija</Id>
+    <Id>r_malpija</Id>
     <Name>Malpija</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CE37A7</ColourHexadecimal>
@@ -1765,7 +1765,7 @@
     <FactionId>caravenna</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>falistia</Id>
+    <Id>r_falistia</Id>
     <Name>Falistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CECD49</ColourHexadecimal>
@@ -1774,7 +1774,7 @@
     <FactionId>viristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>tulistia</Id>
+    <Id>r_tulistia</Id>
     <Name>Tulistia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#277442</ColourHexadecimal>
@@ -1783,7 +1783,7 @@
     <FactionId>meuristia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ulpter</Id>
+    <Id>r_ulpter</Id>
     <Name>Ulpter</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#27BA9D</ColourHexadecimal>
@@ -1792,7 +1792,7 @@
     <FactionId>befteria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>kadda</Id>
+    <Id>r_kadda</Id>
     <Name>Kadda</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#A57662</ColourHexadecimal>
@@ -1801,7 +1801,7 @@
     <FactionId>ne_quin_arid</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>arcifat</Id>
+    <Id>r_arcifat</Id>
     <Name>Arcifat</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#ACEA4A</ColourHexadecimal>
@@ -1810,7 +1810,7 @@
     <FactionId>fatima</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>barmin</Id>
+    <Id>r_barmin</Id>
     <Name>Barmin</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#663180</ColourHexadecimal>
@@ -1819,7 +1819,7 @@
     <FactionId>optimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>urza</Id>
+    <Id>r_urza</Id>
     <Name>Urza</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#31B614</ColourHexadecimal>
@@ -1828,7 +1828,7 @@
     <FactionId>impera</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>garmia</Id>
+    <Id>r_garmia</Id>
     <Name>Garmia</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BA3455</ColourHexadecimal>
@@ -1837,7 +1837,7 @@
     <FactionId>impimia</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ankai</Id>
+    <Id>r_ankai</Id>
     <Name>Ankai</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BA9618</ColourHexadecimal>
@@ -1846,7 +1846,7 @@
     <FactionId>faladai</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>caldar</Id>
+    <Id>r_caldar</Id>
     <Name>Caldar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#644CBF</ColourHexadecimal>
@@ -1855,7 +1855,7 @@
     <FactionId>daria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>vabuz</Id>
+    <Id>r_vabuz</Id>
     <Name>Vabuz</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C4B95C</ColourHexadecimal>
@@ -1864,7 +1864,7 @@
     <FactionId>lamiz</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gatea</Id>
+    <Id>r_gatea</Id>
     <Name>Gatea</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6DA549</ColourHexadecimal>
@@ -1873,7 +1873,7 @@
     <FactionId>targat</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>albas</Id>
+    <Id>r_albas</Id>
     <Name>Albas</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CECEC7</ColourHexadecimal>
@@ -1882,7 +1882,7 @@
     <FactionId>estaton</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ongladesh</Id>
+    <Id>r_ongladesh</Id>
     <Name>Ongladesh</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#CF5757</ColourHexadecimal>
@@ -1891,7 +1891,7 @@
     <FactionId>deshesda</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>jiftop</Id>
+    <Id>r_jiftop</Id>
     <Name>Jiftop</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#85CDAE</ColourHexadecimal>
@@ -1900,7 +1900,7 @@
     <FactionId>altop</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ranaari</Id>
+    <Id>r_ranaari</Id>
     <Name>Ranaari</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#3E3969</ColourHexadecimal>
@@ -1909,7 +1909,7 @@
     <FactionId>aaria</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>galdar</Id>
+    <Id>r_galdar</Id>
     <Name>Galdar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#E29E20</ColourHexadecimal>
@@ -1918,7 +1918,7 @@
     <FactionId>nordodar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>tonyrica</Id>
+    <Id>r_tonyrica</Id>
     <Name>Tonyrica</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5A2D69</ColourHexadecimal>
@@ -1927,7 +1927,7 @@
     <FactionId>naryrica</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>eleamus</Id>
+    <Id>r_eleamus</Id>
     <Name>Eleamus</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#DC4D24</ColourHexadecimal>
@@ -1936,7 +1936,7 @@
     <FactionId>ardamus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>hotaka</Id>
+    <Id>r_hotaka</Id>
     <Name>Hotaka</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5CAC00</ColourHexadecimal>
@@ -1945,7 +1945,7 @@
     <FactionId>ayako</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>hinto</Id>
+    <Id>r_hinto</Id>
     <Name>Hinto</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C41992</ColourHexadecimal>
@@ -1954,7 +1954,7 @@
     <FactionId>abeque</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>bertimion</Id>
+    <Id>r_bertimion</Id>
     <Name>Bertimion</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#49A092</ColourHexadecimal>
@@ -1963,7 +1963,7 @@
     <FactionId>amion</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>novodaja</Id>
+    <Id>r_novodaja</Id>
     <Name>Novodaja</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BFE71B</ColourHexadecimal>
@@ -1972,7 +1972,7 @@
     <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>voldel</Id>
+    <Id>r_voldel</Id>
     <Name>Voldel</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#842780</ColourHexadecimal>
@@ -1981,7 +1981,7 @@
     <FactionId>endel</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>salen</Id>
+    <Id>r_salen</Id>
     <Name>Salen</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#1BCE1B</ColourHexadecimal>
@@ -1990,7 +1990,7 @@
     <FactionId>consus</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>grahitaar</Id>
+    <Id>r_grahitaar</Id>
     <Name>Grahitaar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#318764</ColourHexadecimal>
@@ -1999,7 +1999,7 @@
     <FactionId>jhgrothaar</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>ordum</Id>
+    <Id>r_ordum</Id>
     <Name>Ordum</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#158E85</ColourHexadecimal>
@@ -2008,7 +2008,7 @@
     <FactionId>antene</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>grugen</Id>
+    <Id>r_grugen</Id>
     <Name>Grugen</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#154626</ColourHexadecimal>
@@ -2017,7 +2017,7 @@
     <FactionId>bardos</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>brynjolfr</Id>
+    <Id>r_brynjolfr</Id>
     <Name>Brynjolfr</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#FFFFFF</ColourHexadecimal>
@@ -2026,7 +2026,7 @@
     <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>hylfjoord</Id>
+    <Id>r_hylfjoord</Id>
     <Name>Hylfjoord</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#5CC676</ColourHexadecimal>
@@ -2035,7 +2035,7 @@
     <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>jonheim</Id>
+    <Id>r_jonheim</Id>
     <Name>Jonheim</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#AE2ED6</ColourHexadecimal>
@@ -2044,7 +2044,7 @@
     <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>haakon</Id>
+    <Id>r_haakon</Id>
     <Name>Haakon</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#7BE0BF</ColourHexadecimal>
@@ -2053,7 +2053,7 @@
     <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>yngling</Id>
+    <Id>r_yngling</Id>
     <Name>Yngling</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#BF7769</ColourHexadecimal>
@@ -2062,7 +2062,7 @@
     <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>forstaag</Id>
+    <Id>r_forstaag</Id>
     <Name>Forstaag</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#6442CD</ColourHexadecimal>
@@ -2071,7 +2071,7 @@
     <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>hrisskar</Id>
+    <Id>r_hrisskar</Id>
     <Name>Hrisskar</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#C73151</ColourHexadecimal>
@@ -2080,7 +2080,7 @@
     <FactionId>gammeland</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>danija</Id>
+    <Id>r_danija</Id>
     <Name>Danija</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9248A7</ColourHexadecimal>
@@ -2089,7 +2089,7 @@
     <FactionId>sporadja</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>manarfell</Id>
+    <Id>r_manarfell</Id>
     <Name>Manarfell</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9AFF9A</ColourHexadecimal>
@@ -2098,7 +2098,7 @@
     <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>mjorfell</Id>
+    <Id>r_mjorfell</Id>
     <Name>Mjorfell</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#387884</ColourHexadecimal>
@@ -2107,7 +2107,7 @@
     <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>bjorfell</Id>
+    <Id>r_bjorfell</Id>
     <Name>Bjorfell</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#9AD64D</ColourHexadecimal>
@@ -2116,7 +2116,7 @@
     <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>meoalfell</Id>
+    <Id>r_meoalfell</Id>
     <Name>Meoalfell</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#D430B5</ColourHexadecimal>
@@ -2125,7 +2125,7 @@
     <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>gunnolfsfell</Id>
+    <Id>r_gunnolfsfell</Id>
     <Name>Gunnolfsfell</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#71D440</ColourHexadecimal>
@@ -2134,7 +2134,7 @@
     <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>jorundarfell</Id>
+    <Id>r_jorundarfell</Id>
     <Name>Jorundarfell</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#B6782B</ColourHexadecimal>
@@ -2143,7 +2143,7 @@
     <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>veritas</Id>
+    <Id>r_veritas</Id>
     <Name>Veritas</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#801FD9</ColourHexadecimal>
@@ -2152,7 +2152,7 @@
     <FactionId>ingolfsfell</FactionId>
   </RegionEntity>
   <RegionEntity>
-    <Id>wilderness</Id>
+    <Id>r_wilderness</Id>
     <Name>Wilderness</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#000000</ColourHexadecimal>
