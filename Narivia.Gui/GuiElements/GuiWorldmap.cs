@@ -191,8 +191,8 @@ namespace Narivia.Gui.GuiElements
                                                    (j * GameDefines.TILE_DIMENSIONS) - camera.Position.Y % GameDefines.TILE_DIMENSIONS);
                     Point gameCoords = ScreenToMapCoordinates(screenCoords);
 
-                    int x = (int)gameCoords.X;
-                    int y = (int)gameCoords.Y;
+                    int x = gameCoords.X;
+                    int y = gameCoords.Y;
 
                     if (x < 0 || x > game.GetWorld().Width ||
                         y < 0 || y > game.GetWorld().Height)
@@ -238,8 +238,8 @@ namespace Narivia.Gui.GuiElements
                                                    (j * GameDefines.TILE_DIMENSIONS) - camera.Position.Y % GameDefines.TILE_DIMENSIONS);
                     Point gameCoords = ScreenToMapCoordinates(screenCoords);
 
-                    int x = (int)gameCoords.X;
-                    int y = (int)gameCoords.Y;
+                    int x = gameCoords.X;
+                    int y = gameCoords.Y;
 
                     if (x < 0 || x > game.GetWorld().Width ||
                         y < 0 || y > game.GetWorld().Height)

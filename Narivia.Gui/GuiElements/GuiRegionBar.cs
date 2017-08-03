@@ -65,7 +65,7 @@ namespace Narivia.Gui.GuiElements
             {
                 Size = new Point(256, 48),
                 ContentFile = "Interface/region-panel-label",
-                SourceRectangle = new Rectangle(0, 0, 256, 48),
+                SourceRectangle = new Rectangle(0, 0, 256, 48)
             };
             regionNameBackgroundDecor = new GuiImage
             {
@@ -184,7 +184,7 @@ namespace Narivia.Gui.GuiElements
             regionNameBackgroundDecor.Position = regionNameBackground.Position;
             regionNameText.Position = regionNameBackground.Position;
             regionNameText.TextColour = TextColour;
-            
+
             factionImage.Position = new Point(regionNameBackground.Position.X - factionImage.ScreenArea.Width / 2, regionNameBackground.Position.Y);
             resourceImage.Position = new Point(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64);
             resourceText.Position = new Point(Position.X, Position.Y + 2);

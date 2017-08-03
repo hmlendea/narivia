@@ -86,12 +86,12 @@ namespace Narivia.Gui.GuiElements
 
             holdingText = new GuiText
             {
-                Size = new Point((int)holdingBackground.Size.X, 18),
+                Size = new Point(holdingBackground.Size.X, 18),
                 FontName = "InfoBarFont"
             };
             regionText = new GuiText
             {
-                Size = new Point((int)holdingBackground.Size.X, 18),
+                Size = new Point(holdingBackground.Size.X, 18),
                 FontName = "InfoBarFont"
             };
 
@@ -214,12 +214,12 @@ namespace Narivia.Gui.GuiElements
             background.Position = Position;
             background.Size = Size;
 
-            holdingBackground.Position = new Point(Position.X + (Size.X - (int)holdingBackground.Size.X) / 2,
+            holdingBackground.Position = new Point(Position.X + (Size.X - holdingBackground.Size.X) / 2,
                                                    Position.Y + holdingText.Size.Y + SPACING);
 
             holdingImage.SourceRectangle = new Rectangle(64 * currentHoldingTypeIndex, 0, 64, 64);
-            holdingImage.Position = new Point(holdingBackground.Position.X + ((int)holdingBackground.Size.X - holdingImage.SourceRectangle.Width) / 2,
-                                                holdingBackground.Position.Y + ((int)holdingBackground.Size.Y - holdingImage.SourceRectangle.Height) / 2);
+            holdingImage.Position = new Point(holdingBackground.Position.X + (holdingBackground.Size.X - holdingImage.SourceRectangle.Width) / 2,
+                                              holdingBackground.Position.Y + (holdingBackground.Size.Y - holdingImage.SourceRectangle.Height) / 2);
 
             holdingText.Position = holdingBackground.Position;
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
@@ -238,9 +238,9 @@ namespace Narivia.Gui.GuiElements
             nextHoldingButton.Position = new Point(holdingBackground.ScreenArea.Right + SPACING, holdingBackground.ScreenArea.Top);
 
             previouseRegionButton.Position = new Point(holdingBackground.ScreenArea.Left - previouseRegionButton.ScreenArea.Width - SPACING,
-                                                         holdingBackground.ScreenArea.Bottom - previouseRegionButton.ScreenArea.Height);
+                                                       holdingBackground.ScreenArea.Bottom - previouseRegionButton.ScreenArea.Height);
             nextRegionButton.Position = new Point(holdingBackground.ScreenArea.Right + SPACING,
-                                                    holdingBackground.ScreenArea.Bottom - nextRegionButton.ScreenArea.Height);
+                                                  holdingBackground.ScreenArea.Bottom - nextRegionButton.ScreenArea.Height);
 
             buildButton.Position = new Point(Position.X + SPACING, Position.Y + Size.Y - buildButton.Size.Y - SPACING);
             cancelButton.Position = new Point(Position.X + Size.X - cancelButton.Size.X - SPACING, Position.Y + Size.Y - buildButton.Size.Y - SPACING);

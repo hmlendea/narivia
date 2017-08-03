@@ -30,7 +30,7 @@ namespace Narivia.Gui.WorldMap
 
         Sprite sprite { get; set; }
 
-        List<Tile> tiles;
+        readonly List<Tile> tiles;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Layer"/> class.

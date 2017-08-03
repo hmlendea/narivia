@@ -136,8 +136,8 @@ namespace Narivia.Graphics
             get
             {
                 return new Rectangle(
-                    (int)(Position.X),
-                    (int)(Position.Y),
+                    Position.X,
+                    Position.Y,
                     (int)(SourceRectangle.Width * Scale.X),
                     (int)(SourceRectangle.Height * Scale.Y));
             }
@@ -269,12 +269,12 @@ namespace Narivia.Graphics
 
             if (SourceRectangle == Rectangle.Empty)
             {
-                SourceRectangle = new Rectangle(0, 0, (int)SpriteSize.X, (int)SpriteSize.Y);
+                SourceRectangle = new Rectangle(0, 0, SpriteSize.X, SpriteSize.Y);
             }
 
             renderTarget = new RenderTarget2D(
                 GraphicsManager.Instance.Graphics.GraphicsDevice,
-                (int)SpriteSize.X, (int)SpriteSize.Y);
+                SpriteSize.X, SpriteSize.Y);
 
             GraphicsManager.Instance.Graphics.GraphicsDevice.SetRenderTarget(renderTarget);
             GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(Color.Transparent);
@@ -298,7 +298,7 @@ namespace Narivia.Graphics
             if (!string.IsNullOrEmpty(Effects))
             {
                 List<string> split = Effects.Split(':').ToList();
-                
+
                 split.ForEach(ActivateEffect);
             }
         }
@@ -376,7 +376,7 @@ namespace Narivia.Graphics
             else if (TextureFillMode == TextureFillMode.Tile)
             {
                 GraphicsDevice gd = GraphicsManager.Instance.Graphics.GraphicsDevice;
-                
+
                 Rectangle rec = new Rectangle(0, 0, ScreenArea.Width, ScreenArea.Height);
 
                 // TODO: Is it ok to End and Begin again? Does it affect performance?
@@ -500,7 +500,7 @@ namespace Narivia.Graphics
             {
                 textOrigin.Y = bounds.Height - totalSize.Y;
             }
-            
+
             foreach (string line in lines)
             {
                 Vector2 lineSize = font.MeasureString(line);
@@ -561,13 +561,13 @@ namespace Narivia.Graphics
                     {
                         int indexTexture = x - startX + (y - startY) * source.Width;
                         int indexMask = x - startX + (y - startY) * mask.Width;
-                        
+
                         textureBits[indexTexture] = Color.FromNonPremultiplied(textureBits[indexTexture].R,
                                                                                textureBits[indexTexture].G,
                                                                                textureBits[indexTexture].B,
                                                                                textureBits[indexTexture].A - 255 + maskBits[indexMask].R);
                     }));
-            
+
             Texture2D blendedTexture = new Texture2D(source.GraphicsDevice, source.Width, source.Height);
             blendedTexture.SetData(textureBits);
 

@@ -34,7 +34,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets the screen area covered by this <see cref="GuiElement"/>.
         /// </summary>
         /// <value>The screen area.</value>
-        public Rectangle ScreenArea => new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y);
+        public Rectangle ScreenArea => new Rectangle(Position.X, Position.Y, Size.X, Size.Y);
 
         /// <summary>
         /// Gets or sets the opacity.

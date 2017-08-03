@@ -43,8 +43,8 @@ namespace Narivia
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Size.X;
-            graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Size.Y;
+            graphics.PreferredBackBufferWidth = ScreenManager.Instance.Size.X;
+            graphics.PreferredBackBufferHeight = ScreenManager.Instance.Size.Y;
             graphics.ApplyChanges();
 
             base.Initialize();

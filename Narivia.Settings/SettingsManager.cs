@@ -117,11 +117,11 @@ namespace Narivia.Settings
                 graphicsChanged = true;
             }
 
-            if (GraphicsManager.Instance.Graphics.PreferredBackBufferWidth != (int)Resolution.X ||
-                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight != (int)Resolution.Y)
+            if (GraphicsManager.Instance.Graphics.PreferredBackBufferWidth != Resolution.X ||
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight != Resolution.Y)
             {
-                GraphicsManager.Instance.Graphics.PreferredBackBufferWidth = (int)Resolution.X;
-                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight = (int)Resolution.Y;
+                GraphicsManager.Instance.Graphics.PreferredBackBufferWidth = Resolution.X;
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight = Resolution.Y;
 
                 graphicsChanged = true;
             }

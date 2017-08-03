@@ -89,7 +89,7 @@ namespace Narivia.Gui.GuiElements
 
             unitText = new GuiText
             {
-                Size = new Point((int)unitBackground.Size.X, 18),
+                Size = new Point(unitBackground.Size.X, 18),
                 FontName = "InfoBarFont"
             };
 
@@ -140,7 +140,7 @@ namespace Narivia.Gui.GuiElements
             };
             troopsText = new GuiText
             {
-                Size = new Point((int)unitBackground.Size.Y, 18),
+                Size = new Point(unitBackground.Size.Y, 18),
                 FontName = "InfoBarFont"
             };
 
@@ -228,7 +228,7 @@ namespace Narivia.Gui.GuiElements
             background.Position = Position;
             background.Size = Size;
 
-            unitBackground.Position = new Point(Position.X + (Size.X - (int)unitBackground.Size.X) / 2,
+            unitBackground.Position = new Point(Position.X + (Size.X - unitBackground.Size.X) / 2,
                                                 Position.Y + unitText.Size.Y + SPACING);
 
             unitText.Position = unitBackground.Position;
@@ -277,8 +277,8 @@ namespace Narivia.Gui.GuiElements
             cancelButton.Position = new Point(Position.X + Size.X - cancelButton.Size.X - SPACING, Position.Y + Size.Y - recruitButton.Size.Y - SPACING);
 
             unitImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/units/{units[currentUnitIndex].Id}";
-            unitImage.Position = new Point(unitBackground.Position.X + ((int)unitBackground.Size.X - unitImage.SourceRectangle.Width) / 2,
-                                           unitBackground.Position.Y + ((int)unitBackground.Size.Y - unitImage.SourceRectangle.Height) / 2);
+            unitImage.Position = new Point(unitBackground.Position.X + (unitBackground.Size.X - unitImage.SourceRectangle.Width) / 2,
+                                           unitBackground.Position.Y + (unitBackground.Size.Y - unitImage.SourceRectangle.Height) / 2);
         }
 
         void SelectUnit(int index)

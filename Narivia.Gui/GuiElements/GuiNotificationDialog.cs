@@ -1,5 +1,3 @@
-using System;
-
 using Microsoft.Xna.Framework;
 
 using Narivia.Audio;
@@ -76,7 +74,7 @@ namespace Narivia.Gui.GuiElements
         {
             string imagePath, fontName;
 
-            images = new GuiImage[(int)NotificationSize.X, (int)NotificationSize.Y];
+            images = new GuiImage[NotificationSize.X, NotificationSize.Y];
 
             title = new GuiText();
             text = new GuiText();
@@ -162,7 +160,7 @@ namespace Narivia.Gui.GuiElements
             int sx = 1;
             int sy = 1;
 
-            if ((int)NotificationSize.X == 1)
+            if (NotificationSize.X == 1)
             {
                 sx = 3;
             }
@@ -170,12 +168,12 @@ namespace Narivia.Gui.GuiElements
             {
                 sx = 0;
             }
-            else if (x == (int)NotificationSize.X - 1)
+            else if (x == NotificationSize.X - 1)
             {
                 sx = 2;
             }
 
-            if ((int)NotificationSize.Y == 1)
+            if (NotificationSize.Y == 1)
             {
                 sy = 3;
             }
@@ -183,7 +181,7 @@ namespace Narivia.Gui.GuiElements
             {
                 sy = 0;
             }
-            else if (y == (int)NotificationSize.Y - 1)
+            else if (y == NotificationSize.Y - 1)
             {
                 sy = 2;
             }
