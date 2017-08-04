@@ -119,11 +119,11 @@
   </FlagEntity>
   <FlagEntity>
     <Id>daria_flag</Id>
-    <Background>full</Background>
+    <Background>half-diagonal</Background>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#6556FF</BackgroundPrimaryColourHexadecimal>
-     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+     <BackgroundSecondaryColourHexadecimal>#FF4144</BackgroundSecondaryColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
@@ -300,11 +300,11 @@
   <FlagEntity>
     <Id>gammeland_flag</Id>
     <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Emblem>horned_skull</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFFFFF</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ingolfsfell_flag</Id>
