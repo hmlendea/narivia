@@ -12,6 +12,7 @@ using TiledSharp;
 using Narivia.Common.Extensions;
 using Narivia.Common.Helpers;
 using Narivia.DataAccess.DataObjects;
+using Narivia.DataAccess.Exceptions;
 using Narivia.DataAccess.Repositories.Interfaces;
 
 namespace Narivia.DataAccess.Repositories
@@ -159,10 +160,14 @@ namespace Narivia.DataAccess.Repositories
 
         WorldGeoLayerEntity ProcessTmxLayer(TmxMap tmxMap, TmxLayer tmxLayer)
         {
-            // TODO: Throw an exception for "The layer does not contain a 'tileset' property"
             string tilesetName = tmxLayer.Properties["tileset"];
 
-            // TODO: Throw an exception for "The specified tileset does not exist"
+            if (string.IsNullOrWhiteSpace(tilesetName) ||
+                tmxMap.Tilesets.ToList().FindIndex(t => t.Name == tilesetName) < 0)
+            {
+                throw new InvalidEntityFieldException(nameof(WorldGeoLayerEntity.Tileset), tmxLayer.Name, nameof(WorldGeoLayerEntity));
+            }
+
             TmxTileset tmxTileset = tmxMap.Tilesets[tilesetName];
 
             WorldGeoLayerEntity layer = new WorldGeoLayerEntity
