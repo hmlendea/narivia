@@ -155,12 +155,12 @@
   </FlagEntity>
   <FlagEntity>
     <Id>estaton_flag</Id>
-    <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Background>circle</Background>
+    <Emblem>greek-sphinx</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#FF6565</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+    <BackgroundPrimaryColourHexadecimal>#FFFFFF</BackgroundPrimaryColourHexadecimal>
+    <BackgroundSecondaryColourHexadecimal>#FF6565</BackgroundSecondaryColourHexadecimal>
+	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>deshesda_flag</Id>
@@ -200,12 +200,12 @@
   </FlagEntity>
   <FlagEntity>
     <Id>naryrica_flag</Id>
-    <Background>full</Background>
-    <Emblem>freedom_dove</Emblem>
+    <Background>circle</Background>
+    <Emblem>anubis</Emblem>
     <Skin>buckler</Skin>
     <BackgroundPrimaryColourHexadecimal>#FFA577</BackgroundPrimaryColourHexadecimal>
     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ardamus_flag</Id>
