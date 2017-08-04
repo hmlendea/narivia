@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 using Narivia.Models.Enumerations;
 
@@ -7,7 +8,7 @@ namespace Narivia.Models
     /// <summary>
     /// Culture domain model.
     /// </summary>
-    public class Culture
+    public class Culture : IEquatable<Culture>
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -49,5 +50,58 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The place name generator schema.</value>
         public string PlaceNameSchema { get; set; }
+
+        public bool Equals(Culture other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return string.Equals(Id, other.Id) &&
+                   string.Equals(Name, other.Name) &&
+                   string.Equals(Description, other.Description) &&
+                   string.Equals(TextureSet, other.TextureSet) &&
+                   Equals(PlaceNameGenerator, other.PlaceNameGenerator) &&
+                   string.Equals(PlaceNameSchema, other.PlaceNameSchema);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((Culture)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((Id != null ? Id.GetHashCode() : 0) * 397) ^
+                       (Name != null ? Name.GetHashCode() : 0) ^
+                       (Description != null ? Description.GetHashCode() : 0) ^
+                       (TextureSet != null ? TextureSet.GetHashCode() : 0) ^
+                       PlaceNameGenerator.GetHashCode() ^
+                       (PlaceNameSchema != null ? PlaceNameSchema.GetHashCode() : 0);
+            }
+        }
     }
 }

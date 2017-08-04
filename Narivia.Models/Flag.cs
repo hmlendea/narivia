@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
 namespace Narivia.Models
@@ -6,7 +7,7 @@ namespace Narivia.Models
     /// <summary>
     /// Faction flag.
     /// </summary>
-    public class Flag
+    public class Flag : IEquatable<Flag>
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -54,5 +55,60 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The emblem colour.</value>
         public Color EmblemColour { get; set; }
+
+        public bool Equals(Flag other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return string.Equals(Id, other.Id) &&
+                   string.Equals(Background, other.Background) &&
+                   string.Equals(Emblem, other.Emblem) &&
+                   string.Equals(Skin, other.Skin) &&
+                   Equals(BackgroundPrimaryColour, other.BackgroundPrimaryColour) &&
+                   Equals(BackgroundSecondaryColour, other.BackgroundSecondaryColour) &&
+                   Equals(EmblemColour, other.EmblemColour);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((Flag)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((Id != null ? Id.GetHashCode() : 0) * 397) ^
+                       (Background != null ? Background.GetHashCode() : 0) ^
+                       (Emblem != null ? Emblem.GetHashCode() : 0) ^
+                       (Skin != null ? Skin.GetHashCode() : 0) ^
+                       (BackgroundPrimaryColour != null ? BackgroundPrimaryColour.GetHashCode() : 0) ^
+                       (BackgroundSecondaryColour != null ? BackgroundSecondaryColour.GetHashCode() : 0) ^
+                       (EmblemColour != null ? EmblemColour.GetHashCode() : 0);
+            }
+        }
     }
 }

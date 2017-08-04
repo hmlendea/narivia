@@ -76,8 +76,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="region2Id">Second region identifier.</param>
         public bool RegionBordersRegion(string region1Id, string region2Id)
         {
-            return borders.Values.Any(x => (x.Region1Id == region1Id && x.Region2Id == region2Id) ||
-                                           (x.Region1Id == region2Id && x.Region2Id == region1Id));
+            return borders.Values.Any(x => (x.SourceRegionId == region1Id && x.TargetRegionId == region2Id) ||
+                                           (x.SourceRegionId == region2Id && x.TargetRegionId == region1Id));
         }
 
         /// <summary>
@@ -460,7 +460,7 @@ namespace Narivia.GameLogic.GameManagers
 
             armies = new ConcurrentDictionary<Tuple<string, string>, Army>();
             biomes = new ConcurrentDictionary<string, Biome>(biomeList.ToDictionary(biome => biome.Id, biome => biome));
-            borders = new ConcurrentDictionary<Tuple<string, string>, Border>(borderList.ToDictionary(border => new Tuple<string, string>(border.Region1Id, border.Region2Id), border => border));
+            borders = new ConcurrentDictionary<Tuple<string, string>, Border>(borderList.ToDictionary(border => new Tuple<string, string>(border.SourceRegionId, border.TargetRegionId), border => border));
             cultures = new ConcurrentDictionary<string, Culture>(cultureList.ToDictionary(culture => culture.Id, culture => culture));
             factions = new ConcurrentDictionary<string, Faction>(factionList.ToDictionary(faction => faction.Id, faction => faction));
             flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
@@ -520,8 +520,8 @@ namespace Narivia.GameLogic.GameManagers
             Tuple<string, string> borderKey = new Tuple<string, string>(region1Id, region2Id);
             Border border = new Border
             {
-                Region1Id = region1Id,
-                Region2Id = region2Id
+                SourceRegionId = region1Id,
+                TargetRegionId = region2Id
             };
 
             borders.AddOrUpdate(borderKey, border);

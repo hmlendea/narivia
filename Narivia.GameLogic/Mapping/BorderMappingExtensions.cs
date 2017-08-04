@@ -20,8 +20,8 @@ namespace Narivia.GameLogic.Mapping
         {
             Border border = new Border
             {
-                Region1Id = borderEntity.Region1Id,
-                Region2Id = borderEntity.Region2Id
+                SourceRegionId = borderEntity.Region1Id,
+                TargetRegionId = borderEntity.Region2Id
             };
 
             return border;
@@ -36,8 +36,8 @@ namespace Narivia.GameLogic.Mapping
         {
             BorderEntity borderEntity = new BorderEntity
             {
-                Region1Id = border.Region1Id,
-                Region2Id = border.Region2Id
+                Region1Id = border.SourceRegionId,
+                Region2Id = border.TargetRegionId
             };
 
             return borderEntity;

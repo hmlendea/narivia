@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 using Narivia.Models.Enumerations;
 
@@ -64,5 +65,62 @@ namespace Narivia.Models
         /// <value>The maintenance.</value>
         [Range(0, int.MaxValue)]
         public int Maintenance { get; set; }
+
+        public bool Equals(Unit other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return string.Equals(Id, other.Id) &&
+                   string.Equals(Name, other.Name) &&
+                   string.Equals(Description, other.Description) &&
+                   Equals(Type, other.Type) &&
+                   Equals(Power, other.Power) &&
+                   Equals(Health, other.Health) &&
+                   Equals(Price, other.Price) &&
+                   Equals(Maintenance, other.Maintenance);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((Unit)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((Id != null ? Id.GetHashCode() : 0) * 397) ^
+                       (Name != null ? Name.GetHashCode() : 0) ^
+                       (Description != null ? Description.GetHashCode() : 0) ^
+                       Type.GetHashCode() ^
+                       Power.GetHashCode() ^
+                       Health.GetHashCode() ^
+                       Price.GetHashCode() ^
+                       Maintenance.GetHashCode();
+            }
+        }
     }
 }

@@ -32,13 +32,6 @@ namespace Narivia.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the colour.
-        /// </summary>
-        /// <value>The colour.</value>
-        [XmlIgnore]
-        public Color Colour { get; set; }
-
-        /// <summary>
         /// Gets or sets the flag identifier.
         /// </summary>
         /// <value>The flag identifier.</value>
@@ -53,6 +46,13 @@ namespace Narivia.Models
         public string CultureId { get; set; }
 
         /// <summary>
+        /// Gets or sets the colour.
+        /// </summary>
+        /// <value>The colour.</value>
+        [XmlIgnore]
+        public Color Colour { get; set; }
+
+        /// <summary>
         /// Gets or sets the wealth.
         /// </summary>
         /// <value>The wealth.</value>
@@ -64,5 +64,62 @@ namespace Narivia.Models
         /// </summary>
         /// <value><c>true</c> if alive; otherwise, <c>false</c>.</value>
         public bool Alive { get; set; }
+
+        public bool Equals(Faction other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return string.Equals(Id, other.Id) &&
+                   string.Equals(Name, other.Name) &&
+                   string.Equals(Description, other.Description) &&
+                   string.Equals(FlagId, other.FlagId) &&
+                   string.Equals(CultureId, other.CultureId) &&
+                   Equals(Colour, other.Colour) &&
+                   Equals(Wealth, other.Wealth) &&
+                   Equals(Alive, other.Alive);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((Faction)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((Id != null ? Id.GetHashCode() : 0) * 397) ^
+                       (Name != null ? Name.GetHashCode() : 0) ^
+                       (Description != null ? Description.GetHashCode() : 0) ^
+                       (FlagId != null ? FlagId.GetHashCode() : 0) ^
+                       (CultureId != null ? CultureId.GetHashCode() : 0) ^
+                       (Colour != null ? Colour.GetHashCode() : 0) ^
+                       Wealth.GetHashCode() ^
+                       Alive.GetHashCode();
+            }
+        }
     }
 }

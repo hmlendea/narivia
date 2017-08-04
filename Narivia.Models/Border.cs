@@ -1,34 +1,77 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Narivia.Models
 {
     /// <summary>
     /// Border domain model.
     /// </summary>
-    public class Border
+    public class Border : IEquatable<Border>
     {
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
         [Key]
-        public string Id
+        public string Id => $"{SourceRegionId}:{TargetRegionId}";
+
+        /// <summary>
+        /// Gets the source region identifier.
+        /// </summary>
+        /// <value>The source region identifier.</value>
+        [StringLength(40, MinimumLength = 3)]
+        public string SourceRegionId { get; set; }
+
+        /// <summary>
+        /// Gets the target region identifier.
+        /// </summary>
+        /// <value>The target region identifier.</value>
+        [StringLength(40, MinimumLength = 3)]
+        public string TargetRegionId { get; set; }
+
+        public bool Equals(Border other)
         {
-            get { return Region1Id + ":" + Region2Id; }
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return string.Equals(SourceRegionId, other.SourceRegionId) &&
+                   string.Equals(TargetRegionId, other.TargetRegionId);
         }
 
-        /// <summary>
-        /// Gets the first region identifier.
-        /// </summary>
-        /// <value>The first region identifier.</value>
-        [StringLength(40, MinimumLength = 3)]
-        public string Region1Id { get; set; }
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
 
-        /// <summary>
-        /// Gets the second region identifier.
-        /// </summary>
-        /// <value>The second region identifier.</value>
-        [StringLength(40, MinimumLength = 3)]
-        public string Region2Id { get; set; }
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((Border)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((SourceRegionId != null ? SourceRegionId.GetHashCode() : 0) * 397) ^
+                       (TargetRegionId != null ? TargetRegionId.GetHashCode() : 0);
+            }
+        }
     }
 }

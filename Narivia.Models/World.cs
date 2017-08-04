@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
@@ -7,7 +8,7 @@ namespace Narivia.Models
     /// <summary>
     /// World domain model.
     /// </summary>
-    public class World
+    public class World : IEquatable<World>
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -137,6 +138,83 @@ namespace Narivia.Models
         public World()
         {
             Layers = new List<WorldGeoLayer>();
+        }
+
+        public bool Equals(World other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return string.Equals(Id, other.Id) &&
+                   string.Equals(Name, other.Name) &&
+                   string.Equals(Description, other.Description) &&
+                   string.Equals(Author, other.Author) &&
+                   string.Equals(ResourcePack, other.ResourcePack) &&
+                   string.Equals(Version, other.Version) &&
+                   Equals(Width, other.Width) &&
+                   Equals(Height, other.Height) &&
+                   Equals(BaseRegionIncome, other.BaseRegionIncome) &&
+                   Equals(BaseRegionRecruitment, other.BaseRegionRecruitment) &&
+                   Equals(BaseFactionRecruitment, other.BaseFactionRecruitment) &&
+                   Equals(MinTroopsPerAttack, other.MinTroopsPerAttack) &&
+                   Equals(HoldingSlotsPerFaction, other.HoldingSlotsPerFaction) &&
+                   Equals(StartingWealth, other.StartingWealth) &&
+                   Equals(StartingTroops, other.StartingTroops) &&
+                   Equals(HoldingsPrice, other.HoldingsPrice) &&
+                   Equals(Tiles, other.Tiles) &&
+                   Equals(Layers, other.Layers);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((World)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((Id != null ? Id.GetHashCode() : 0) * 397) ^
+                       (Name != null ? Name.GetHashCode() : 0) ^
+                       (Description != null ? Description.GetHashCode() : 0) ^
+                       (Author != null ? Author.GetHashCode() : 0) ^
+                       (ResourcePack != null ? ResourcePack.GetHashCode() : 0) ^
+                       (Version != null ? Version.GetHashCode() : 0) ^
+                       Width.GetHashCode() ^
+                       Height.GetHashCode() ^
+                       BaseRegionIncome.GetHashCode() ^
+                       BaseRegionRecruitment.GetHashCode() ^
+                       BaseFactionRecruitment.GetHashCode() ^
+                       MinTroopsPerAttack.GetHashCode() ^
+                       HoldingSlotsPerFaction.GetHashCode() ^
+                       StartingWealth.GetHashCode() ^
+                       StartingTroops.GetHashCode() ^
+                       HoldingsPrice.GetHashCode() ^
+                       (Tiles != null ? Tiles.GetHashCode() : 0) ^
+                       (Layers != null ? Layers.GetHashCode() : 0);
+            }
         }
     }
 }

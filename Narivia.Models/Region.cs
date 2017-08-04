@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Xml.Serialization;
 
@@ -9,7 +10,7 @@ namespace Narivia.Models
     /// <summary>
     /// Region domain model.
     /// </summary>
-    public class Region
+    public class Region : IEquatable<Region>
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -34,45 +35,6 @@ namespace Narivia.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the colour.
-        /// </summary>
-        /// <value>The colour.</value>
-        [XmlIgnore]
-        public Color Colour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type.
-        /// </summary>
-        /// <value>The type.</value>
-        [XmlIgnore]
-        public RegionType Type { get; set; }
-
-        /// <summary>
-        /// Gets the state.
-        /// </summary>
-        /// <value>The state.</value>
-        [XmlIgnore]
-        public RegionState State
-        {
-            get
-            {
-                if (FactionId == SovereignFactionId)
-                    return RegionState.Sovereign;
-
-                return RegionState.Occupied;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Region"/> is locked.
-        /// A region is normally locked as soon as it is conquered, and is unlocked when the turn has passed.
-        /// This is done in order to prevent the same region from being conquered multiple times in one turn.
-        /// </summary>
-        /// <value><c>true</c> if locked; otherwise, <c>false</c>.</value>
-        [XmlIgnore]
-        public bool Locked { get; set; }
-
-        /// <summary>
         /// Gets or sets the resource identifier.
         /// </summary>
         /// <value>The resource identifier.</value>
@@ -92,5 +54,105 @@ namespace Narivia.Models
         /// <value>The sovereign faction identifier.</value>
         [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string SovereignFactionId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the colour.
+        /// </summary>
+        /// <value>The colour.</value>
+        [XmlIgnore]
+        public Color Colour { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Region"/> is locked.
+        /// A region is normally locked as soon as it is conquered, and is unlocked when the turn has passed.
+        /// This is done in order to prevent the same region from being conquered multiple times in one turn.
+        /// </summary>
+        /// <value><c>true</c> if locked; otherwise, <c>false</c>.</value>
+        [XmlIgnore]
+        public bool Locked { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>The type.</value>
+        [XmlIgnore]
+        public RegionType Type { get; set; }
+
+        /// <summary>
+        /// Gets the state.
+        /// </summary>
+        /// <value>The state.</value>
+        [XmlIgnore]
+        public RegionState State
+        {
+            get
+            {
+                if (FactionId == SovereignFactionId)
+                {
+                    return RegionState.Sovereign;
+                }
+
+                return RegionState.Occupied;
+            }
+        }
+
+        public bool Equals(Region other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return string.Equals(Id, other.Id) &&
+                   string.Equals(Name, other.Name) &&
+                   string.Equals(Description, other.Description) &&
+                   string.Equals(ResourceId, other.ResourceId) &&
+                   string.Equals(FactionId, other.FactionId) &&
+                   string.Equals(SovereignFactionId, other.SovereignFactionId) &&
+                   Equals(Colour, other.Colour) &&
+                   Equals(Locked, other.Locked) &&
+                   Equals(Type, other.Type);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((Region)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((Id != null ? Id.GetHashCode() : 0) * 397) ^
+                       (Name != null ? Name.GetHashCode() : 0) ^
+                       (Description != null ? Description.GetHashCode() : 0) ^
+                       (ResourceId != null ? ResourceId.GetHashCode() : 0) ^
+                       (FactionId != null ? FactionId.GetHashCode() : 0) ^
+                       (SovereignFactionId != null ? SovereignFactionId.GetHashCode() : 0) ^
+                       (Colour != null ? Colour.GetHashCode() : 0) ^
+                       Locked.GetHashCode() ^
+                       Type.GetHashCode();
+            }
+        }
     }
 }
