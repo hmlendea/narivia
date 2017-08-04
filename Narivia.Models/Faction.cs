@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Xml.Serialization;
 
@@ -7,7 +8,7 @@ namespace Narivia.Models
     /// <summary>
     /// Faction domain model.
     /// </summary>
-    public class Faction
+    public class Faction : IEquatable<Faction>
     {
         /// <summary>
         /// Gets or sets the identifier.

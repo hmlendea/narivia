@@ -8,7 +8,7 @@ namespace Narivia.Models
     /// <summary>
     /// Unit domain model.
     /// </summary>
-    public class Unit
+    public class Unit : IEquatable<Unit>
     {
         /// <summary>
         /// Gets or sets the identifier.
