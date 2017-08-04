@@ -55,7 +55,7 @@ namespace Narivia.GameLogic.GameManagers
             // TODO: Do not target factions with good relations
             Dictionary<string, int> targets = world.GetRegions()
                                                    .Where(r => r.FactionId != factionId &&
-                                                               r.FactionId != "gaia" &&
+                                                               r.FactionId != GameDefines.GAIA_FACTION &&
                                                                r.Locked == false)
                                                    .Select(x => x.Id)
                                                    .Except(regionsOwnedIds)
