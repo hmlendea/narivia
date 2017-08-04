@@ -18,6 +18,8 @@ namespace Narivia.Gui.Screens
     /// </summary>
     public class Screen
     {
+        public string Id { get; set; }
+
         /// <summary>
         /// Gets or sets the xml path.
         /// </summary>
@@ -63,6 +65,7 @@ namespace Narivia.Gui.Screens
         public Screen()
         {
             Type = GetType();
+            Id = Guid.NewGuid().ToString();
 
             XmlPath = Path.Combine("Screens", $"{Type.GetTypeNameWithoutNamespace()}.xml");
 

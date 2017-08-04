@@ -18,6 +18,8 @@ namespace Narivia.Gui.GuiElements
     /// </summary>
     public class GuiElement : IComponent, IDisposable
     {
+        public string Id { get; set; }
+        
         /// <summary>
         /// Gets the position of this <see cref="GuiElement"/>.
         /// </summary>
@@ -134,6 +136,8 @@ namespace Narivia.Gui.GuiElements
             Enabled = true;
             Visible = true;
             Opacity = 1.0f;
+
+            Id = Guid.NewGuid().ToString();
 
             Children = new List<GuiElement>();
         }
