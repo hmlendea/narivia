@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Narivia.Audio;
 using Narivia.Input.Events;
 using Narivia.Gui.GuiElements.Enumerations;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -15,8 +16,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets the size.
         /// </summary>
         /// <value>The size.</value>
-        public override Point Size
-        => new Point(32, 32);
+        public override Point Size => new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
 
         /// <summary>
         /// Gets or sets the icon.
@@ -35,7 +35,8 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/notification_small",
-                SourceRectangle = new Rectangle(96, 96, 32, 32)
+                SourceRectangle = new Rectangle(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE * 3,
+                                                GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
 
             icon = new GuiImage

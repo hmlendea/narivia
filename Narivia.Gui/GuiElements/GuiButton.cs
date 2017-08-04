@@ -6,6 +6,7 @@ using Narivia.Audio;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -28,7 +29,7 @@ namespace Narivia.Gui.GuiElements
         {
             get
             {
-                return Size.X / buttonTileSize;
+                return Size.X / GameDefines.GUI_TILE_SIZE;
             }
         }
 
@@ -55,8 +56,6 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <value><c>true</c> if hovered; otherwise, <c>false</c>.</value>
         public bool Hovered { get; set; }
-
-        const int buttonTileSize = 32;
 
         List<GuiImage> images;
         GuiText text;
@@ -142,7 +141,7 @@ namespace Narivia.Gui.GuiElements
 
             for (int i = 0; i < images.Count; i++)
             {
-                images[i].Position = new Point(Position.X + i * buttonTileSize, Position.Y);
+                images[i].Position = new Point(Position.X + i * GameDefines.GUI_TILE_SIZE, Position.Y);
                 images[i].SourceRectangle = CalculateSourceRectangle(i, Style);
             }
 
@@ -187,8 +186,8 @@ namespace Narivia.Gui.GuiElements
                 sx += 4;
             }
 
-            return new Rectangle(sx * buttonTileSize, sy * buttonTileSize,
-                                 buttonTileSize, buttonTileSize);
+            return new Rectangle(sx * GameDefines.GUI_TILE_SIZE, sy * GameDefines.GUI_TILE_SIZE,
+                                 GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
         }
     }
 }

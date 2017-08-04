@@ -3,9 +3,14 @@
     public static class GameDefines
     {
         /// <summary>
-        /// The tile dimensions.
+        /// The map tile size.
         /// </summary>
-        public const int TILE_DIMENSIONS = 16;
+        public const int MAP_TILE_SIZE = 16;
+
+        /// <summary>
+        /// The GUI tile size.
+        /// </summary>
+        public const int GUI_TILE_SIZE = 32;
 
         /// <summary>
         /// Mother Nature's faction.

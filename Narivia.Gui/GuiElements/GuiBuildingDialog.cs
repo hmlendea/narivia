@@ -10,6 +10,7 @@ using Narivia.Common.Extensions;
 using Narivia.Input.Events;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -111,37 +112,37 @@ namespace Narivia.Gui.GuiElements
             {
                 Text = "<",
                 TextColour = TextColour,
-                Size = new Point(32, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             nextHoldingButton = new GuiButton
             {
                 Text = ">",
                 TextColour = TextColour,
-                Size = new Point(32, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             previouseRegionButton = new GuiButton
             {
                 Text = "<",
                 TextColour = TextColour,
-                Size = new Point(32, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             nextRegionButton = new GuiButton
             {
                 Text = ">",
                 TextColour = TextColour,
-                Size = new Point(32, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             buildButton = new GuiButton
             {
                 Text = "Build",
                 TextColour = TextColour,
-                Size = new Point(128, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE * 4, GameDefines.GUI_TILE_SIZE)
             };
             cancelButton = new GuiButton
             {
                 Text = "Cancel",
                 TextColour = TextColour,
-                Size = new Point(64, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE * 2, GameDefines.GUI_TILE_SIZE)
             };
 
             Children.Add(background);

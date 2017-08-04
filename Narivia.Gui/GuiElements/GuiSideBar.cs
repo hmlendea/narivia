@@ -7,6 +7,7 @@ using Narivia.Graphics.Enumerations;
 using Narivia.Graphics.Extensions;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Models;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -100,25 +101,25 @@ namespace Narivia.Gui.GuiElements
             {
                 Text = "Stats",
                 TextColour = TextColour,
-                Size = new Point(96, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
             };
             RecruitButton = new GuiButton
             {
                 Text = "Recruit",
                 TextColour = TextColour,
-                Size = new Point(96, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
             };
             BuildButton = new GuiButton
             {
                 Text = "Build",
                 TextColour = TextColour,
-                Size = new Point(96, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
             };
             TurnButton = new GuiButton
             {
                 Text = "End Turn",
                 TextColour = TextColour,
-                Size = new Point(224, 32),
+                Size = new Point(GameDefines.GUI_TILE_SIZE * 7, GameDefines.GUI_TILE_SIZE),
                 Style = ButtonStyle.Metal
             };
 

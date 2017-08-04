@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Narivia.Audio;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Input.Events;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -28,7 +29,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <value>The size of the notification.</value>
         public Point NotificationSize
-        => new Point(Size.X / tileSize, Size.Y / tileSize);
+        => new Point(Size.X / GameDefines.GUI_TILE_SIZE,
+                     Size.Y / GameDefines.GUI_TILE_SIZE);
 
         /// <summary>
         /// Gets or sets the title.
@@ -54,8 +56,6 @@ namespace Narivia.Gui.GuiElements
 
         GuiText title;
         GuiText text;
-
-        const int tileSize = 32;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuiNotificationDialog"/> class.
@@ -102,7 +102,8 @@ namespace Narivia.Gui.GuiElements
                     images[x, y] = new GuiImage
                     {
                         ContentFile = imagePath,
-                        Position = new Point(Position.X + x * tileSize, Position.Y + y * tileSize),
+                        Position = new Point(Position.X + x * GameDefines.GUI_TILE_SIZE,
+                                             Position.Y + y * GameDefines.GUI_TILE_SIZE),
                         SourceRectangle = CalculateSourceRectangle(x, y)
                     };
 
@@ -113,8 +114,8 @@ namespace Narivia.Gui.GuiElements
             yesButtonImage = new GuiImage
             {
                 ContentFile = "Interface/notification_controls",
-                SourceRectangle = new Rectangle(0, 0, tileSize, tileSize),
-                Position = new Point(Position.X + (NotificationSize.X - 1) * tileSize, Position.Y)
+                SourceRectangle = new Rectangle(0, 0, GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
+                Position = new Point(Position.X + (NotificationSize.X - 1) * GameDefines.GUI_TILE_SIZE, Position.Y)
             };
             yesButtonImage.Clicked += yesButton_OnClicked;
             yesButtonImage.MouseEntered += yesNoButton_OnMouseEntered;
@@ -124,7 +125,8 @@ namespace Narivia.Gui.GuiElements
                 noButtonImage = new GuiImage
                 {
                     ContentFile = "Interface/notification_controls",
-                    SourceRectangle = new Rectangle(tileSize, 0, tileSize, tileSize),
+                    SourceRectangle = new Rectangle(GameDefines.GUI_TILE_SIZE, 0,
+                                                    GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
                     Position = new Point(Position.X, Position.Y)
                 };
                 noButtonImage.Clicked += noButton_OnClicked;
@@ -146,13 +148,15 @@ namespace Narivia.Gui.GuiElements
 
             title.Text = Title;
             title.TextColour = TextColour;
-            title.Position = new Point(Position.X, Position.Y + tileSize);
-            title.Size = new Point(NotificationSize.X * tileSize, tileSize);
+            title.Position = new Point(Position.X, Position.Y + GameDefines.GUI_TILE_SIZE);
+            title.Size = new Point(NotificationSize.X * GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
 
             text.Text = Text;
             text.TextColour = TextColour;
-            text.Position = new Point(Position.X + tileSize / 2, Position.Y + (int)(tileSize * 1.5f));
-            text.Size = new Point(Size.X - tileSize, Size.Y - title.Size.Y - (int)(tileSize * 1.5f));
+            text.Position = new Point(Position.X + GameDefines.GUI_TILE_SIZE / 2,
+                                      Position.Y + (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
+            text.Size = new Point(Size.X - GameDefines.GUI_TILE_SIZE,
+                                  Size.Y - title.Size.Y - (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
         }
 
         Rectangle CalculateSourceRectangle(int x, int y)
@@ -186,7 +190,8 @@ namespace Narivia.Gui.GuiElements
                 sy = 2;
             }
 
-            return new Rectangle(sx * tileSize, sy * tileSize, tileSize, tileSize);
+            return new Rectangle(sx * GameDefines.GUI_TILE_SIZE, sy * GameDefines.GUI_TILE_SIZE,
+                                 GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
         }
 
         void yesButton_OnClicked(object sender, MouseButtonEventArgs e)

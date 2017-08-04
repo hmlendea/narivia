@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Gui.GuiElements.Enumerations;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -67,7 +68,7 @@ namespace Narivia.Gui.GuiElements
         {
             GuiNotificationIndicator notificationButton = new GuiNotificationIndicator
             {
-                Position = new Point(Position.X + spacing, Position.Y + Size.Y - (Children.Count + 1) * (32 + spacing)),
+                Position = new Point(Position.X + spacing, Position.Y + Size.Y - (Children.Count + 1) * (GameDefines.GUI_TILE_SIZE + spacing)),
                 Icon = icon
             };
 
@@ -97,7 +98,7 @@ namespace Narivia.Gui.GuiElements
             for (int i = 0; i < Children.Count; i++)
             {
                 Children[i].Position = new Point(Position.X + spacing,
-                                                 Position.Y + Size.Y - (i + 1) * (32 + spacing));
+                                                 Position.Y + Size.Y - (i + 1) * (GameDefines.GUI_TILE_SIZE + spacing));
             }
         }
     }

@@ -46,8 +46,8 @@ namespace Narivia.Gui.GuiElements
             regionHighlight = new Sprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS * 3,
-                                                GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
+                SourceRectangle = new Rectangle(GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE * 3,
+                                                GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE),
                 Tint = Color.White,
                 Opacity = 1.0f
             };
@@ -55,8 +55,8 @@ namespace Narivia.Gui.GuiElements
             selectedRegionHighlight = new Sprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS * 3,
-                                                GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
+                SourceRectangle = new Rectangle(0, GameDefines.MAP_TILE_SIZE * 3,
+                                                GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE),
                 Tint = Color.White,
                 Opacity = 1.0f
             };
@@ -64,8 +64,8 @@ namespace Narivia.Gui.GuiElements
             factionBorder = new Sprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS,
-                                                GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS),
+                SourceRectangle = new Rectangle(0, GameDefines.MAP_TILE_SIZE,
+                                                GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE),
                 Tint = Color.Blue,
                 Opacity = 1.0f
             };
@@ -170,7 +170,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public void CentreCameraOnPosition(int x, int y)
         {
-            camera.CentreOnPosition(new Point(x * GameDefines.TILE_DIMENSIONS, y * GameDefines.TILE_DIMENSIONS));
+            camera.CentreOnPosition(new Point(x * GameDefines.MAP_TILE_SIZE, y * GameDefines.MAP_TILE_SIZE));
         }
 
         void DrawRegionHighlight(SpriteBatch spriteBatch)
@@ -180,15 +180,15 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            int cameraSizeX = camera.Size.X / GameDefines.TILE_DIMENSIONS + 2;
-            int cameraSizeY = camera.Size.Y / GameDefines.TILE_DIMENSIONS + 2;
+            int cameraSizeX = camera.Size.X / GameDefines.MAP_TILE_SIZE + 2;
+            int cameraSizeY = camera.Size.Y / GameDefines.MAP_TILE_SIZE + 2;
 
             for (int j = 0; j < cameraSizeY; j++)
             {
                 for (int i = 0; i < cameraSizeX; i++)
                 {
-                    Point screenCoords = new Point((i * GameDefines.TILE_DIMENSIONS) - camera.Position.X % GameDefines.TILE_DIMENSIONS,
-                                                   (j * GameDefines.TILE_DIMENSIONS) - camera.Position.Y % GameDefines.TILE_DIMENSIONS);
+                    Point screenCoords = new Point((i * GameDefines.MAP_TILE_SIZE) - camera.Position.X % GameDefines.MAP_TILE_SIZE,
+                                                   (j * GameDefines.MAP_TILE_SIZE) - camera.Position.Y % GameDefines.MAP_TILE_SIZE);
                     Point gameCoords = ScreenToMapCoordinates(screenCoords);
 
                     int x = gameCoords.X;
@@ -227,15 +227,15 @@ namespace Narivia.Gui.GuiElements
 
         void DrawFactionBorders(SpriteBatch spriteBatch)
         {
-            int cameraSizeX = camera.Size.X / GameDefines.TILE_DIMENSIONS + 2;
-            int cameraSizeY = camera.Size.Y / GameDefines.TILE_DIMENSIONS + 2;
+            int cameraSizeX = camera.Size.X / GameDefines.MAP_TILE_SIZE + 2;
+            int cameraSizeY = camera.Size.Y / GameDefines.MAP_TILE_SIZE + 2;
 
             for (int j = 0; j < cameraSizeY; j++)
             {
                 for (int i = 0; i < cameraSizeX; i++)
                 {
-                    Point screenCoords = new Point((i * GameDefines.TILE_DIMENSIONS) - camera.Position.X % GameDefines.TILE_DIMENSIONS,
-                                                   (j * GameDefines.TILE_DIMENSIONS) - camera.Position.Y % GameDefines.TILE_DIMENSIONS);
+                    Point screenCoords = new Point((i * GameDefines.MAP_TILE_SIZE) - camera.Position.X % GameDefines.MAP_TILE_SIZE,
+                                                   (j * GameDefines.MAP_TILE_SIZE) - camera.Position.Y % GameDefines.MAP_TILE_SIZE);
                     Point gameCoords = ScreenToMapCoordinates(screenCoords);
 
                     int x = gameCoords.X;
@@ -266,29 +266,29 @@ namespace Narivia.Gui.GuiElements
                     if (factionIdN != factionId &&
                         factionIdN != GameDefines.GAIA_FACTION)
                     {
-                        factionBorder.SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, 0,
-                                                                      GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
+                        factionBorder.SourceRectangle = new Rectangle(GameDefines.MAP_TILE_SIZE, 0,
+                                                                      GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdW != factionId &&
                         factionIdW != GameDefines.GAIA_FACTION)
                     {
-                        factionBorder.SourceRectangle = new Rectangle(0, GameDefines.TILE_DIMENSIONS,
-                                                                      GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
+                        factionBorder.SourceRectangle = new Rectangle(0, GameDefines.MAP_TILE_SIZE,
+                                                                      GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdS != factionId &&
                         factionIdS != GameDefines.GAIA_FACTION)
                     {
-                        factionBorder.SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS * 2,
-                                                                      GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
+                        factionBorder.SourceRectangle = new Rectangle(GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE * 2,
+                                                                      GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdE != factionId &&
                         factionIdE != GameDefines.GAIA_FACTION)
                     {
-                        factionBorder.SourceRectangle = new Rectangle(GameDefines.TILE_DIMENSIONS * 2, GameDefines.TILE_DIMENSIONS,
-                                                                      GameDefines.TILE_DIMENSIONS, GameDefines.TILE_DIMENSIONS);
+                        factionBorder.SourceRectangle = new Rectangle(GameDefines.MAP_TILE_SIZE * 2, GameDefines.MAP_TILE_SIZE,
+                                                                      GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE);
                         factionBorder.Draw(spriteBatch);
                     }
                 }
@@ -302,8 +302,8 @@ namespace Narivia.Gui.GuiElements
         /// <param name="screenCoords">Screen coordinates.</param>
         Point ScreenToMapCoordinates(Point screenCoords)
         {
-            return new Point((camera.Position.X + screenCoords.X) / GameDefines.TILE_DIMENSIONS,
-                             (camera.Position.Y + screenCoords.Y) / GameDefines.TILE_DIMENSIONS);
+            return new Point((camera.Position.X + screenCoords.X) / GameDefines.MAP_TILE_SIZE,
+                             (camera.Position.Y + screenCoords.Y) / GameDefines.MAP_TILE_SIZE);
         }
 
         void InputManager_OnMouseMoved(object sender, MouseEventArgs e)

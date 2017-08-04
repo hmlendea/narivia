@@ -7,6 +7,7 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics.Enumerations;
 using Narivia.Input.Events;
 using Narivia.Models;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -147,32 +148,32 @@ namespace Narivia.Gui.GuiElements
             nextButton = new GuiButton
             {
                 Text = ">",
-                Size = new Point(32, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             previousButton = new GuiButton
             {
                 Text = "<",
-                Size = new Point(32, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             plusButton = new GuiButton
             {
                 Text = "+",
-                Size = new Point(32, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             minusButton = new GuiButton
             {
                 Text = "-",
-                Size = new Point(32, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             recruitButton = new GuiButton
             {
                 Text = "Recruit",
-                Size = new Point(128, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE * 4, GameDefines.GUI_TILE_SIZE)
             };
             cancelButton = new GuiButton
             {
                 Text = "Cancel",
-                Size = new Point(64, 32)
+                Size = new Point(GameDefines.GUI_TILE_SIZE * 2, GameDefines.GUI_TILE_SIZE)
             };
 
             Children.Add(background);
