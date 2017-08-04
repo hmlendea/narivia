@@ -58,50 +58,9 @@ namespace Narivia.DataAccess.Repositories
                 worldEntity = (WorldEntity)xml.Deserialize(reader);
             }
 
-            worldEntity.Tiles = new WorldTileEntity[worldEntity.Width, worldEntity.Height];
-
-            int worldWidth = worldEntity.Tiles.GetLength(0);
-            int worldHeight = worldEntity.Tiles.GetLength(1);
-
-            Parallel.For(0, worldHeight, y => Parallel.For(0, worldWidth, x => worldEntity.Tiles[x, y] = new WorldTileEntity()));
-
-            ConcurrentDictionary<int, string> regionColourIds = new ConcurrentDictionary<int, string>();
-            ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
-
-            IBiomeRepository biomeRepository = new BiomeRepository(Path.Combine(worldsDirectory, id, "biomes.xml"));
-            IRegionRepository regionRepository = new RegionRepository(Path.Combine(worldsDirectory, id, "regions.xml"));
-
-            Parallel.ForEach(biomeRepository.GetAll(), b => biomeColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
-            Parallel.ForEach(regionRepository.GetAll(), r => regionColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));
-
-            using (FastBitmap bmp = new FastBitmap(Path.Combine(worldsDirectory, id, "biomes_map.png")))
-            {
-                Parallel.For(0, worldEntity.Height,
-                             y => Parallel.For(0, worldEntity.Width,
-                                               x =>
-                {
-                    int argb = bmp.GetPixel(x, y).ToArgb();
-                    worldEntity.Tiles[x, y].BiomeId = biomeColourIds[argb];
-                }));
-            }
-
-            using (FastBitmap bmp = new FastBitmap(Path.Combine(worldsDirectory, id, "map.png")))
-            {
-                Parallel.For(0, worldEntity.Height,
-                             y => Parallel.For(0, worldEntity.Width,
-                                               x =>
-                {
-                    int argb = bmp.GetPixel(x, y).ToArgb();
-                    worldEntity.Tiles[x, y].RegionId = regionColourIds[argb];
-                }));
-            }
-
-            TmxMap tmxMap = new TmxMap(Path.Combine(worldsDirectory, id, "world.tmx"));
-            ConcurrentBag<WorldGeoLayerEntity> layers = new ConcurrentBag<WorldGeoLayerEntity>();
+            worldEntity.Tiles = LoadWorldTiles(id);
+            worldEntity.Layers = LoadWorldGeoLayers(id);
             
-            Parallel.ForEach(tmxMap.Layers, tmxLayer => layers.Add(ProcessTmxLayer(tmxMap, tmxLayer)));
-            worldEntity.Layers = layers.OrderBy(l => tmxMap.Layers.IndexOf(tmxMap.Layers.FirstOrDefault(x => x.Name == l.Name))).ToList();
-
             return worldEntity;
         }
 
@@ -143,6 +102,59 @@ namespace Narivia.DataAccess.Repositories
         public void Remove(string id)
         {
             Directory.Delete(Path.Combine(worldsDirectory, id));
+        }
+
+        WorldTileEntity[,] LoadWorldTiles(string worldId)
+        {
+            ConcurrentDictionary<int, string> regionColourIds = new ConcurrentDictionary<int, string>();
+            ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
+
+            IBiomeRepository biomeRepository = new BiomeRepository(Path.Combine(worldsDirectory, worldId, "biomes.xml"));
+            IRegionRepository regionRepository = new RegionRepository(Path.Combine(worldsDirectory, worldId, "regions.xml"));
+
+            Parallel.ForEach(biomeRepository.GetAll(), b => biomeColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
+            Parallel.ForEach(regionRepository.GetAll(), r => regionColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));
+
+            FastBitmap biomeBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "biomes_map.png"));
+            FastBitmap regionBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "map.png"));
+
+            Point worldSize = new Point(Math.Max(biomeBitmap.Width, regionBitmap.Width),
+                                        Math.Max(biomeBitmap.Height, regionBitmap.Height));
+
+            WorldTileEntity[,] tiles = new WorldTileEntity[regionBitmap.Width, regionBitmap.Height];
+
+            Parallel.For(0, worldSize.Y, y => Parallel.For(0, worldSize.X, x => tiles[x, y] = new WorldTileEntity()));
+
+            biomeBitmap.LockBits();
+            regionBitmap.LockBits();
+
+            Parallel.For(0, biomeBitmap.Height, y => Parallel.For(0, biomeBitmap.Width, x =>
+            {
+                int argb = biomeBitmap.GetPixel(x, y).ToArgb();
+                tiles[x, y].BiomeId = biomeColourIds[argb];
+            }));
+            
+            Parallel.For(0, regionBitmap.Height, y => Parallel.For(0, regionBitmap.Width, x =>
+            {
+                int argb = regionBitmap.GetPixel(x, y).ToArgb();
+                tiles[x, y].RegionId = regionColourIds[argb];
+            }));
+            
+            biomeBitmap.Dispose();
+            regionBitmap.Dispose();
+
+            return tiles;
+        }
+
+        List<WorldGeoLayerEntity> LoadWorldGeoLayers(string worldId)
+        {
+            TmxMap tmxMap = new TmxMap(Path.Combine(worldsDirectory, worldId, "world.tmx"));
+            ConcurrentBag<WorldGeoLayerEntity> layers = new ConcurrentBag<WorldGeoLayerEntity>();
+
+            Parallel.ForEach(tmxMap.Layers, tmxLayer => layers.Add(ProcessTmxLayer(tmxMap, tmxLayer)));
+
+            return layers.OrderBy(l => tmxMap.Layers.IndexOf(tmxMap.Layers.FirstOrDefault(x => x.Name == l.Name)))
+                         .ToList();
         }
 
         WorldGeoLayerEntity ProcessTmxLayer(TmxMap tmxMap, TmxLayer tmxLayer)
