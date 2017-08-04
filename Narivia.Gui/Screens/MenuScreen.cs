@@ -18,12 +18,6 @@ namespace Narivia.Gui.Screens
     public class MenuScreen : Screen
     {
         /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public string Id { get; set; }
-
-        /// <summary>
         /// Gets or sets the axis.
         /// </summary>
         /// <value>The axis.</value>

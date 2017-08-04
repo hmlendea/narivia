@@ -83,7 +83,7 @@ namespace Narivia.Gui.GuiElements
                 GuiImage image = new GuiImage
                 {
                     ContentFile = "Interface/button",
-                    SourceRectangle = CalculateSourceRectangle(x)
+                    SourceRectangle = CalculateSourceRectangle(x, Style)
                 };
 
                 images.Add(image);
@@ -143,7 +143,7 @@ namespace Narivia.Gui.GuiElements
             for (int i = 0; i < images.Count; i++)
             {
                 images[i].Position = new Point(Position.X + i * buttonTileSize, Position.Y);
-                images[i].SourceRectangle = CalculateSourceRectangle(i);
+                images[i].SourceRectangle = CalculateSourceRectangle(i, Style);
             }
 
             text.Text = Text;
@@ -153,7 +153,7 @@ namespace Narivia.Gui.GuiElements
             text.Size = Size;
         }
 
-        Rectangle CalculateSourceRectangle(int x)
+        Rectangle CalculateSourceRectangle(int x, ButtonStyle style)
         {
             int sx = 1;
             int sy = 0;
@@ -171,10 +171,14 @@ namespace Narivia.Gui.GuiElements
                 sx = 2;
             }
 
-            switch (Style)
+            switch (style)
             {
                 default:
                     sy = 0;
+                    break;
+
+                case ButtonStyle.Metal:
+                    sy = 1;
                     break;
             }
 
@@ -183,7 +187,8 @@ namespace Narivia.Gui.GuiElements
                 sx += 4;
             }
 
-            return new Rectangle(sx * buttonTileSize, sy * buttonTileSize, buttonTileSize, buttonTileSize);
+            return new Rectangle(sx * buttonTileSize, sy * buttonTileSize,
+                                 buttonTileSize, buttonTileSize);
         }
     }
 }

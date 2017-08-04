@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics.Enumerations;
 using Narivia.Graphics.Extensions;
+using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Models;
 
 namespace Narivia.Gui.GuiElements
@@ -117,7 +118,8 @@ namespace Narivia.Gui.GuiElements
             {
                 Text = "End Turn",
                 TextColour = TextColour,
-                Size = new Point(224, 32)
+                Size = new Point(224, 32),
+                Style = ButtonStyle.Metal
             };
 
             Children.Add(background);
