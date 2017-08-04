@@ -18,16 +18,12 @@ namespace Narivia.Gui.GuiElements
         public string RegionId { get; private set; }
 
         IGameManager game;
-
-        int spacing;
-
+        
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
-            spacing = 4;
-
             base.LoadContent();
         }
 
@@ -68,7 +64,8 @@ namespace Narivia.Gui.GuiElements
         {
             GuiNotificationIndicator notificationButton = new GuiNotificationIndicator
             {
-                Position = new Point(Position.X + spacing, Position.Y + Size.Y - (Children.Count + 1) * (GameDefines.GUI_TILE_SIZE + spacing)),
+                Position = new Point(Position.X + GameDefines.GUI_SPACING,
+                                     Position.Y + Size.Y - (Children.Count + 1) * (GameDefines.GUI_TILE_SIZE + GameDefines.GUI_SPACING)),
                 Icon = icon
             };
 
@@ -97,8 +94,8 @@ namespace Narivia.Gui.GuiElements
         {
             for (int i = 0; i < Children.Count; i++)
             {
-                Children[i].Position = new Point(Position.X + spacing,
-                                                 Position.Y + Size.Y - (i + 1) * (GameDefines.GUI_TILE_SIZE + spacing));
+                Children[i].Position = new Point(Position.X + GameDefines.GUI_SPACING,
+                                                 Position.Y + Size.Y - (i + 1) * (GameDefines.GUI_TILE_SIZE + GameDefines.GUI_SPACING));
             }
         }
     }

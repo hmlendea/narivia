@@ -8,17 +8,15 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics.Enumerations;
 using Narivia.Graphics.Extensions;
 using Narivia.Models;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
-    // TODO: Requires more refactoring and cleaning
     /// <summary>
     /// Region bar GUI element.
     /// </summary>
     public class GuiRegionBar : GuiElement
     {
-        const int HOLDING_SPACING_HORIZONTAL = 5;
-
         /// <summary>
         /// Gets the region identifier.
         /// </summary>
@@ -139,15 +137,15 @@ namespace Narivia.Gui.GuiElements
                 {
                     ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic",
                     SourceRectangle = new Rectangle(64 * ((int)holding.Type - 1), 0, 64, 64),
-                    Position = new Point(Position.X + HOLDING_SPACING_HORIZONTAL * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
+                    Position = new Point(Position.X + GameDefines.GUI_SPACING * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
                                          Position.Y + Size.Y - 64)
                 };
 
                 GuiText holdingText = new GuiText
                 {
-                    Position = new Point(holdingImage.Position.X - HOLDING_SPACING_HORIZONTAL, Position.Y + 2),
+                    Position = new Point(holdingImage.Position.X - GameDefines.GUI_SPACING, Position.Y + 2),
                     Text = holding.Name,
-                    Size = new Point(holdingImage.SourceRectangle.Width + HOLDING_SPACING_HORIZONTAL * 2,
+                    Size = new Point(holdingImage.SourceRectangle.Width + GameDefines.GUI_SPACING * 2,
                                      Size.Y - holdingImage.SourceRectangle.Height + 10),
                     FontName = "RegionBarHoldingFont",
                     TextColour = Color.Black,
@@ -186,9 +184,9 @@ namespace Narivia.Gui.GuiElements
             regionNameText.TextColour = TextColour;
 
             factionImage.Position = new Point(regionNameBackground.Position.X - factionImage.ScreenArea.Width / 2, regionNameBackground.Position.Y);
-            resourceImage.Position = new Point(Position.X + HOLDING_SPACING_HORIZONTAL, Position.Y + Size.Y - 64);
+            resourceImage.Position = new Point(Position.X + GameDefines.GUI_SPACING, Position.Y + Size.Y - 64);
             resourceText.Position = new Point(Position.X, Position.Y + 2);
-            resourceText.Size = new Point(64 + HOLDING_SPACING_HORIZONTAL * 2, Size.Y - 74);
+            resourceText.Size = new Point(64 + GameDefines.GUI_SPACING * 2, Size.Y - 74);
 
             if (string.IsNullOrWhiteSpace(RegionId))
             {

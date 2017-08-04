@@ -51,8 +51,6 @@ namespace Narivia.Gui.GuiElements
         int currentHoldingTypeIndex;
         int currentRegionIndex;
 
-        const int SPACING = 8;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GuiBuildingDialog"/> class.
         /// </summary>
@@ -216,7 +214,7 @@ namespace Narivia.Gui.GuiElements
             background.Size = Size;
 
             holdingBackground.Position = new Point(Position.X + (Size.X - holdingBackground.Size.X) / 2,
-                                                   Position.Y + holdingText.Size.Y + SPACING);
+                                                   Position.Y + holdingText.Size.Y + GameDefines.GUI_SPACING);
 
             holdingImage.SourceRectangle = new Rectangle(64 * currentHoldingTypeIndex, 0, 64, 64);
             holdingImage.Position = new Point(holdingBackground.Position.X + (holdingBackground.Size.X - holdingImage.SourceRectangle.Width) / 2,
@@ -229,22 +227,26 @@ namespace Narivia.Gui.GuiElements
             regionText.Position = new Point(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom - regionText.ScreenArea.Height);
             regionText.TextColour = TextColour;
 
-            priceIcon.Position = new Point(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom + SPACING);
+            priceIcon.Position = new Point(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom + GameDefines.GUI_SPACING);
 
-            priceText.Position = new Point(priceIcon.ScreenArea.Right + SPACING, priceIcon.ScreenArea.Top);
+            priceText.Position = new Point(priceIcon.ScreenArea.Right + GameDefines.GUI_SPACING, priceIcon.ScreenArea.Top);
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
             priceText.TextColour = TextColour;
 
-            previousHoldingButton.Position = new Point(holdingBackground.ScreenArea.Left - previousHoldingButton.ScreenArea.Width - SPACING, holdingBackground.ScreenArea.Top);
-            nextHoldingButton.Position = new Point(holdingBackground.ScreenArea.Right + SPACING, holdingBackground.ScreenArea.Top);
+            previousHoldingButton.Position = new Point(holdingBackground.ScreenArea.Left - previousHoldingButton.ScreenArea.Width - GameDefines.GUI_SPACING,
+                                                       holdingBackground.ScreenArea.Top);
+            nextHoldingButton.Position = new Point(holdingBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
+                                                   holdingBackground.ScreenArea.Top);
 
-            previouseRegionButton.Position = new Point(holdingBackground.ScreenArea.Left - previouseRegionButton.ScreenArea.Width - SPACING,
+            previouseRegionButton.Position = new Point(holdingBackground.ScreenArea.Left - previouseRegionButton.ScreenArea.Width - GameDefines.GUI_SPACING,
                                                        holdingBackground.ScreenArea.Bottom - previouseRegionButton.ScreenArea.Height);
-            nextRegionButton.Position = new Point(holdingBackground.ScreenArea.Right + SPACING,
+            nextRegionButton.Position = new Point(holdingBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
                                                   holdingBackground.ScreenArea.Bottom - nextRegionButton.ScreenArea.Height);
 
-            buildButton.Position = new Point(Position.X + SPACING, Position.Y + Size.Y - buildButton.Size.Y - SPACING);
-            cancelButton.Position = new Point(Position.X + Size.X - cancelButton.Size.X - SPACING, Position.Y + Size.Y - buildButton.Size.Y - SPACING);
+            buildButton.Position = new Point(Position.X + GameDefines.GUI_SPACING,
+                                             Position.Y + Size.Y - buildButton.Size.Y - GameDefines.GUI_SPACING);
+            cancelButton.Position = new Point(Position.X + Size.X - cancelButton.Size.X - GameDefines.GUI_SPACING,
+                                              Position.Y + Size.Y - buildButton.Size.Y - GameDefines.GUI_SPACING);
         }
 
         void SelectHolding(int index)

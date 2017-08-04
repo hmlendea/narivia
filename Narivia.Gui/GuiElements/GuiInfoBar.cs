@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 
 using Narivia.Graphics.Enumerations;
 using Narivia.Input.Events;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -85,7 +86,7 @@ namespace Narivia.Gui.GuiElements
             BackgroundColour = Color.Black;
             TextColour = Color.Gold;
 
-            Spacing = 6;
+            Spacing = GameDefines.GUI_SPACING;
         }
 
         /// <summary>

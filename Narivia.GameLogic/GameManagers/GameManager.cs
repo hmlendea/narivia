@@ -570,22 +570,21 @@ namespace Narivia.GameLogic.GameManagers
 
         void UpdateFactionsAliveStatus()
         {
-            Parallel.ForEach(GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION),
-                             faction =>
-                             {
-                                 bool wasAlive = faction.Alive;
+            Parallel.ForEach(GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION), faction =>
+            {
+                bool wasAlive = faction.Alive;
 
-                                 faction.Alive = GetFactionRegions(faction.Id).Count() > 0;
+                faction.Alive = GetFactionRegions(faction.Id).Count() > 0;
 
-                                 if (wasAlive && !faction.Alive && FactionDestroyed != null)
-                                 {
-                                     FactionDestroyed(this, new FactionEventArgs(faction.Id));
-                                 }
-                                 else if (!wasAlive && faction.Alive && FactionRevived != null)
-                                 {
-                                     FactionRevived(this, new FactionEventArgs(faction.Id));
-                                 }
-                             });
+                if (wasAlive && !faction.Alive && FactionDestroyed != null)
+                {
+                    FactionDestroyed(this, new FactionEventArgs(faction.Id));
+                }
+                else if (!wasAlive && faction.Alive && FactionRevived != null)
+                {
+                    FactionRevived(this, new FactionEventArgs(faction.Id));
+                }
+            });
         }
 
         void CheckForWinner()

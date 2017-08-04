@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Narivia.Input;
 using Narivia.Input.Events;
 using Narivia.Gui.GuiElements;
+using Narivia.Settings;
 
 namespace Narivia.Gui.Screens
 {
@@ -82,7 +83,7 @@ namespace Narivia.Gui.Screens
             Id = string.Empty;
             ItemNumber = 0;
             Axis = "Y";
-            Spacing = 30;
+            Spacing = GameDefines.GUI_SPACING * 4;
 
             Links = new List<GuiMenuLink>();
             Toggles = new List<GuiMenuToggle>();

@@ -98,22 +98,10 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="faction2Id">Second faction identifier.</param>
         public bool FactionBordersFaction(string faction1Id, string faction2Id)
         {
-            List<Region> faction1Regions = regions.Values.Where(x => x.FactionId == faction1Id).ToList();
-            List<Region> faction2Regions = regions.Values.Where(x => x.FactionId == faction2Id).ToList();
-
-            // TODO: Optimise this!!!
-            foreach (Region region1 in faction1Regions)
-            {
-                foreach (Region region2 in faction2Regions)
-                {
-                    if (RegionBordersRegion(region1.Id, region2.Id))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+            List<Region> faction1Regions = GetFactionRegions(faction1Id).ToList();
+            List<Region> faction2Regions = GetFactionRegions(faction2Id).ToList();
+            
+            return faction1Regions.Any(r1 => faction2Regions.Any(r2 => RegionBordersRegion(r1.Id, r2.Id)));
         }
 
         /// <summary>
