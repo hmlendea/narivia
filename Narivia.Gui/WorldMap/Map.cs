@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -38,7 +39,9 @@ namespace Narivia.Gui.WorldMap
                 Layer layer = new Layer
                 {
                     Tileset = worldGeoLayer.Tileset,
-                    TileMap = worldGeoLayer.Tiles
+                    TileMap = worldGeoLayer.Tiles,
+                    Opacity = worldGeoLayer.Opacity,
+                    Visible = worldGeoLayer.Visible
                 };
                 
                 Layers.Add(layer);
@@ -72,7 +75,9 @@ namespace Narivia.Gui.WorldMap
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
             // The order in which the layers are drawn is very important
-            Layers.ForEach(layer => layer.Draw(spriteBatch, camera));
+            Layers.Where(layer => layer.Visible)
+                  .ToList()
+                  .ForEach(layer => layer.Draw(spriteBatch, camera));
         }
     }
 }

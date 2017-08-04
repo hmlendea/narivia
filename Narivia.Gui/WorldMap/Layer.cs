@@ -28,6 +28,18 @@ namespace Narivia.Gui.WorldMap
         /// <value>The tileset.</value>
         public string Tileset { get; set; }
 
+        /// <summary>
+        /// Gets or sets the layer opacity.
+        /// </summary>
+        /// <value>The layer opacity.</value>
+        public float Opacity { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Layer"/> is visible.
+        /// </summary>
+        /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
+        public bool Visible { get; set; }
+
         Sprite sprite { get; set; }
 
         readonly List<Tile> tiles;
@@ -50,7 +62,8 @@ namespace Narivia.Gui.WorldMap
 
             sprite = new Sprite
             {
-                ContentFile = $"World/Terrain/{Tileset}"
+                ContentFile = $"World/Terrain/{Tileset}",
+                Opacity = Opacity
             };
 
             ConcurrentBag<Tile> layerTiles = new ConcurrentBag<Tile>();

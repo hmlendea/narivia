@@ -169,7 +169,9 @@ namespace Narivia.DataAccess.Repositories
             {
                 Name = tmxLayer.Name,
                 Tiles = new int[tmxMap.Width, tmxMap.Height],
-                Tileset = tmxTileset.Name
+                Tileset = tmxTileset.Name,
+                Opacity = (float)tmxLayer.Opacity,
+                Visible = tmxLayer.Visible
             };
 
             Parallel.ForEach(tmxLayer.Tiles, tile => layer.Tiles[tile.X, tile.Y] = Math.Max(-1, tile.Gid - tmxTileset.FirstGid));
