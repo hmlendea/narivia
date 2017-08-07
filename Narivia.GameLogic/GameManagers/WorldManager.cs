@@ -177,10 +177,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction troops amount.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionTroopsAmount(string factionId)
-        {
-            return armies.Values.Where(a => a.FactionId == factionId)
-                                .Sum(a => a.Size);
-        }
+        => armies.Values.Where(a => a.FactionId == factionId)
+                        .Sum(a => a.Size);
 
         /// <summary>
         /// Gets the faction capital.
@@ -188,11 +186,9 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>Region.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public Region GetFactionCapital(string factionId)
-        {
-            return regions.Values.FirstOrDefault(r => r.FactionId == factionId &&
-                                                      r.SovereignFactionId == factionId &&
-                                                      r.Type == RegionType.Capital);
-        }
+        => regions.Values.FirstOrDefault(r => r.FactionId == factionId &&
+                                              r.SovereignFactionId == factionId &&
+                                              r.Type == RegionType.Capital);
 
         /// <summary>
         /// Gets or sets the X map coordinate of the centre of the faction territoriy.
@@ -261,26 +257,12 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Gets the relation between two factions.
-        /// </summary>
-        /// <returns>The faction relation.</returns>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        public int GetFactionRelation(string sourceFactionId, string targetFactionId)
-        {
-            return relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
-                                                        r.TargetFactionId == targetFactionId).Value;
-        }
-
-        /// <summary>
         /// Gets the armies of a faction.
         /// </summary>
         /// <returns>The armies.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Army> GetFactionArmies(string factionId)
-        {
-            return armies.Values.Where(a => a.FactionId == factionId);
-        }
+        => armies.Values.Where(a => a.FactionId == factionId);
 
         /// <summary>
         /// Gets the holdings of a faction.
@@ -288,10 +270,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The holdings.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Holding> GetFactionHoldings(string factionId)
-        {
-            return holdings.Values.Where(h => h.Type != HoldingType.Empty &&
-                                              regions[h.RegionId].FactionId == factionId);
-        }
+        => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
+                                      regions[h.RegionId].FactionId == factionId);
 
         /// <summary>
         /// Gets the regions of a faction.
@@ -299,9 +279,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The regions.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Region> GetFactionRegions(string factionId)
-        {
-            return regions.Values.Where(r => r.FactionId == factionId);
-        }
+        => regions.Values.Where(r => r.FactionId == factionId);
 
         /// <summary>
         /// Gets the relations of a faction.
@@ -309,10 +287,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The relations of a faction.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Relation> GetFactionRelations(string factionId)
-        {
-            return relations.Values.Where(r => r.SourceFactionId == factionId &&
-                                               r.SourceFactionId != r.TargetFactionId);
-        }
+        => relations.Values.Where(r => r.SourceFactionId == factionId &&
+                                       r.SourceFactionId != r.TargetFactionId);
 
         /// <summary>
         /// Gets the flags.
@@ -341,9 +317,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The holdings.</returns>
         /// <param name="regionId">Region identifier.</param>
         public IEnumerable<Holding> GetRegionHoldings(string regionId)
-        => holdings.Values
-                   .Where(h => h.Type != HoldingType.Empty &&
-                               h.RegionId == regionId);
+        => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
+                                      h.RegionId == regionId);
 
         /// <summary>
         /// Gets the relations.
@@ -616,7 +591,7 @@ namespace Narivia.GameLogic.GameManagers
 
             while (holdingSlotsLeft > 0)
             {
-                Region region = ownedRegions.RandomElement();
+                Region region = ownedRegions.GetRandomElement();
                 Holding holding = GenerateHolding(nameGenerator, region.Id);
 
                 holding.Description = string.Empty;

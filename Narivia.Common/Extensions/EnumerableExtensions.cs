@@ -45,14 +45,7 @@ namespace Narivia.Common.Extensions
                 return true;
             }
 
-            ICollection<T> collection = enumerable as ICollection<T>;
-
-            if (collection != null)
-            {
-                return collection.Count < 1;
-            }
-
-            return !enumerable.Any();
+            return enumerable.Count() < 1;
         }
 
         /// <summary>
@@ -60,13 +53,11 @@ namespace Narivia.Common.Extensions
         /// </summary>
         /// <returns>The element.</returns>
         /// <param name="enumerable">Enumerable.</param>
-        public static T RandomElement<T>(this IEnumerable<T> enumerable)
+        public static T GetRandomElement<T>(this IEnumerable<T> enumerable)
         {
-            int count = enumerable.Count();
-
-            if (count == 0)
+            if (enumerable.IsNullOrEmpty())
             {
-                return default(T);
+                throw new NullReferenceException();
             }
 
             if (random == null)
@@ -74,7 +65,7 @@ namespace Narivia.Common.Extensions
                 random = new Random();
             }
 
-            return enumerable.ElementAt(random.Next(count));
+            return enumerable.ElementAt(random.Next(enumerable.Count()));
         }
     }
 }

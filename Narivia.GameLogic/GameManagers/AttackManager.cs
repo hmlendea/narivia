@@ -105,7 +105,9 @@ namespace Narivia.GameLogic.GameManagers
                 }
 
                 targets[region.Id] += regionsOwnedIds.Count(x => world.RegionBordersRegion(x, region.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
-                targets[region.Id] -= world.GetFactionRelation(factionId, region.FactionId);
+                targets[region.Id] -= world.GetFactionRelations(factionId)
+                                           .FirstOrDefault(r => r.TargetFactionId == region.FactionId)
+                                           .Value;
 
                 // TODO: Maybe add a random importance to each region in order to reduce predictibility a little
             });
@@ -152,10 +154,10 @@ namespace Narivia.GameLogic.GameManagers
             {
                 Army attackerArmy = world.GetFactionArmies(attackerFaction.Id)
                                          .Where(a => a.Size > 0)
-                                         .RandomElement();
+                                         .GetRandomElement();
                 Army defenderArmy = world.GetFactionArmies(defenderFaction.Id)
                                          .Where(a => a.Size > 0)
-                                         .RandomElement();
+                                         .GetRandomElement();
 
                 Unit attackerUnit = world.GetUnits().FirstOrDefault(u => u.Id == attackerArmy.UnitId);
                 Unit defenderUnit = world.GetUnits().FirstOrDefault(u => u.Id == defenderArmy.UnitId);

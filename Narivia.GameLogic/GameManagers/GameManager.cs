@@ -87,7 +87,7 @@ namespace Narivia.GameLogic.GameManagers
 
             attack = new AttackManager(world);
 
-            Faction faction = GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION).RandomElement();
+            Faction faction = GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION).GetRandomElement();
 
             InitializeGame(faction.Id);
         }
@@ -686,9 +686,9 @@ namespace Narivia.GameLogic.GameManagers
                     break;
                 }
 
-                HoldingType type = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).RandomElement();
+                HoldingType type = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).GetRandomElement();
 
-                BuildHolding(validSovereignRegions.RandomElement().Id, type);
+                BuildHolding(validSovereignRegions.GetRandomElement().Id, type);
             }
 
             while (faction.Wealth >= GetWorld().HoldingsPrice)
@@ -701,9 +701,9 @@ namespace Narivia.GameLogic.GameManagers
                     break;
                 }
 
-                HoldingType type = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).RandomElement();
+                HoldingType type = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).GetRandomElement();
 
-                BuildHolding(validOccupiedRegions.RandomElement().Id, type);
+                BuildHolding(validOccupiedRegions.GetRandomElement().Id, type);
             }
         }
 
@@ -713,7 +713,7 @@ namespace Narivia.GameLogic.GameManagers
 
             while (GetFaction(factionId).Wealth >= minPrice)
             {
-                string unitId = GetUnits().Select(u => u.Id).RandomElement();
+                string unitId = GetUnits().Select(u => u.Id).GetRandomElement();
 
                 RecruitUnits(factionId, unitId, 1);
             }

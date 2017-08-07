@@ -40,18 +40,10 @@ namespace Narivia.Gui.Screens
         public Color BackgroundColour { get; set; }
 
         /// <summary>
-        /// Gets or sets the notification GUI elements.
+        /// Gets or sets the background colour.
         /// </summary>
-        /// <value>The notifications.</value>
-        [XmlElement("Notification")]
-        public List<GuiNotificationDialog> Notifications { get; set; }
-
-        /// <summary>
-        /// Gets or sets the button GUI elements.
-        /// </summary>
-        /// <value>The buttons.</value>
-        [XmlElement("Button")]
-        public List<GuiButton> Buttons { get; set; }
+        /// <value>The background colour.</value>
+        public Color ForegroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the screen arguments.
@@ -67,11 +59,8 @@ namespace Narivia.Gui.Screens
             Type = GetType();
             Id = Guid.NewGuid().ToString();
 
-            XmlPath = Path.Combine("Screens", $"{Type.GetTypeNameWithoutNamespace()}.xml");
-
-            Notifications = new List<GuiNotificationDialog>();
-            Buttons = new List<GuiButton>();
-
+            XmlPath = Path.Combine("Screens", $"{Type.Name}.xml");
+            
             BackgroundColour = Color.Black;
         }
 
@@ -81,10 +70,7 @@ namespace Narivia.Gui.Screens
         public virtual void LoadContent()
         {
             GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(BackgroundColour);
-
-            GuiManager.Instance.GuiElements.AddRange(Notifications);
-            GuiManager.Instance.GuiElements.AddRange(Buttons);
-
+            
             GuiManager.Instance.LoadContent();
         }
 

@@ -84,10 +84,12 @@ namespace Narivia.Gui.Screens
             Size = SettingsManager.Instance.Resolution;
             currentScreen = new SplashScreen();
 
-            xmlScreenManager = new XmlManager<Screen>();
-            xmlScreenManager.Type = currentScreen.Type;
+            xmlScreenManager = new XmlManager<Screen>()
+            {
+                Type = currentScreen.Type
+            };
 
-            currentScreen = xmlScreenManager.Load(Path.Combine("Screens", $"{nameof(SplashScreen)}.xml"));
+            currentScreen = xmlScreenManager.Load(currentScreen.XmlPath);
         }
 
         /// <summary>

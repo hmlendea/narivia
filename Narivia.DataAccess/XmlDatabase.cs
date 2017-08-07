@@ -35,14 +35,14 @@ namespace Narivia.DataAccess
         public IEnumerable<T> LoadEntities()
         {
             XmlSerializer xs = new XmlSerializer(typeof(List<T>));
-            List<T> entities = null;
+            IEnumerable<T> entities = null;
 
             try
             {
                 using (FileStream fs = new FileStream(FileName, FileMode.Open, FileAccess.Read))
                 using (StreamReader sr = new StreamReader(fs))
                 {
-                    entities = (List<T>)xs.Deserialize(sr);
+                    entities = (IEnumerable<T>)xs.Deserialize(sr);
                 }
             }
             catch (Exception ex)
@@ -64,7 +64,7 @@ namespace Narivia.DataAccess
         /// Saves the entities.
         /// </summary>
         /// <param name="entities">Entities.</param>
-        public void SaveEntities(List<T> entities)
+        public void SaveEntities(IEnumerable<T> entities)
         {
             try
             {
