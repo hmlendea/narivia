@@ -40,10 +40,10 @@ namespace Narivia.Gui.GuiElements
         GuiText priceText;
         GuiText maintenanceText;
 
-        GuiButton previousButton;
-        GuiButton nextButton;
-        GuiButton plusButton;
-        GuiButton minusButton;
+        GuiButton previousUnitButton;
+        GuiButton nextUnitButton;
+        GuiButton addUnitButton;
+        GuiButton substractUnitButton;
 
         GuiButton recruitButton;
         GuiButton cancelButton;
@@ -143,22 +143,22 @@ namespace Narivia.Gui.GuiElements
                 FontName = "InfoBarFont"
             };
 
-            nextButton = new GuiButton
+            nextUnitButton = new GuiButton
             {
                 Text = ">",
                 Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
-            previousButton = new GuiButton
+            previousUnitButton = new GuiButton
             {
                 Text = "<",
                 Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
-            plusButton = new GuiButton
+            addUnitButton = new GuiButton
             {
                 Text = "+",
                 Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
-            minusButton = new GuiButton
+            substractUnitButton = new GuiButton
             {
                 Text = "-",
                 Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
@@ -191,23 +191,23 @@ namespace Narivia.Gui.GuiElements
             Children.Add(priceText);
             Children.Add(maintenanceText);
 
-            Children.Add(nextButton);
-            Children.Add(previousButton);
-            Children.Add(plusButton);
-            Children.Add(minusButton);
+            Children.Add(nextUnitButton);
+            Children.Add(previousUnitButton);
+            Children.Add(addUnitButton);
+            Children.Add(substractUnitButton);
             Children.Add(recruitButton);
             Children.Add(cancelButton);
 
             base.LoadContent();
 
-            previousButton.Clicked += previousButton_OnClicked;
-            nextButton.Clicked += nextButton_OnClicked;
+            previousUnitButton.Clicked += OnPreviousUnitButtonClicked;
+            nextUnitButton.Clicked += OnNextUnitButtonClicked;
 
-            plusButton.Clicked += plusButton_OnClicked;
-            minusButton.Clicked += minus_OnClicked;
+            addUnitButton.Clicked += OnAddUnitButtonClicked;
+            substractUnitButton.Clicked += OnSusbstractUnitButtonClicked;
 
-            recruitButton.Clicked += recruitButton_OnClicked;
-            cancelButton.Clicked += cancelButton_OnClicked;
+            recruitButton.Clicked += OnRecruitButtonClick;
+            cancelButton.Clicked += OnCancelButtonClick;
         }
 
         // TODO: Handle this better
@@ -267,21 +267,21 @@ namespace Narivia.Gui.GuiElements
             maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
             maintenanceText.TextColour = TextColour;
 
-            previousButton.Position = new Point(unitBackground.ScreenArea.Left - previousButton.ScreenArea.Width - GameDefines.GUI_SPACING,
+            previousUnitButton.Position = new Point(unitBackground.ScreenArea.Left - previousUnitButton.ScreenArea.Width - GameDefines.GUI_SPACING,
+                                                    unitBackground.ScreenArea.Top);
+            previousUnitButton.TextColour = TextColour;
+
+            nextUnitButton.Position = new Point(unitBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
                                                 unitBackground.ScreenArea.Top);
-            previousButton.TextColour = TextColour;
+            nextUnitButton.TextColour = TextColour;
 
-            nextButton.Position = new Point(unitBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                            unitBackground.ScreenArea.Top);
-            nextButton.TextColour = TextColour;
+            addUnitButton.Position = new Point(unitBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
+                                               unitBackground.ScreenArea.Bottom - addUnitButton.ScreenArea.Height);
+            addUnitButton.TextColour = TextColour;
 
-            plusButton.Position = new Point(unitBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                            unitBackground.ScreenArea.Bottom - plusButton.ScreenArea.Height);
-            plusButton.TextColour = TextColour;
-
-            minusButton.Position = new Point(unitBackground.ScreenArea.Left - minusButton.ScreenArea.Width - GameDefines.GUI_SPACING,
-                                             unitBackground.ScreenArea.Bottom - minusButton.ScreenArea.Height);
-            minusButton.TextColour = TextColour;
+            substractUnitButton.Position = new Point(unitBackground.ScreenArea.Left - substractUnitButton.ScreenArea.Width - GameDefines.GUI_SPACING,
+                                                     unitBackground.ScreenArea.Bottom - substractUnitButton.ScreenArea.Height);
+            substractUnitButton.TextColour = TextColour;
 
             recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
             recruitButton.Position = new Point(Position.X + GameDefines.GUI_SPACING,
@@ -326,36 +326,36 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
-        void previousButton_OnClicked(object sender, MouseButtonEventArgs e)
-        {
-            SelectUnit(currentUnitIndex - 1);
-        }
-
-        void nextButton_OnClicked(object sender, MouseButtonEventArgs e)
-        {
-            SelectUnit(currentUnitIndex + 1);
-        }
-
-        void plusButton_OnClicked(object sender, MouseButtonEventArgs e)
-        {
-            AddTroops(1);
-        }
-
-        void minus_OnClicked(object sender, MouseButtonEventArgs e)
-        {
-            AddTroops(-1);
-        }
-
-        void recruitButton_OnClicked(object sender, MouseButtonEventArgs e)
-        {
-            game.RecruitUnits(game.PlayerFactionId, units[currentUnitIndex].Id, troopsAmount);
-        }
-
-        void cancelButton_OnClicked(object sender, MouseButtonEventArgs e)
+        void OnCancelButtonClick(object sender, MouseButtonEventArgs e)
         {
             Hide();
             SelectUnit(0);
             troopsAmount = 0;
+        }
+
+        void OnRecruitButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            game.RecruitUnits(game.PlayerFactionId, units[currentUnitIndex].Id, troopsAmount);
+        }
+
+        void OnAddUnitButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            AddTroops(1);
+        }
+
+        void OnSusbstractUnitButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            AddTroops(-1);
+        }
+
+        void OnPreviousUnitButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            SelectUnit(currentUnitIndex - 1);
+        }
+
+        void OnNextUnitButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            SelectUnit(currentUnitIndex + 1);
         }
     }
 }

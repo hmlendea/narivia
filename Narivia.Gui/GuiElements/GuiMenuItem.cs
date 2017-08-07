@@ -81,9 +81,7 @@ namespace Narivia.Gui.GuiElements
 
             text.ActivateEffect("FadeEffect");
 
-            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
-            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
+            InputManager.Instance.KeyboardKeyPressed += OnKeyboardKeyPressed;
         }
 
         /// <summary>
@@ -93,9 +91,7 @@ namespace Narivia.Gui.GuiElements
         {
             base.UnloadContent();
 
-            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
-            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
+            InputManager.Instance.KeyboardKeyPressed -= OnKeyboardKeyPressed;
         }
 
         protected override void SetChildrenProperties()
@@ -118,6 +114,21 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
+        protected override void OnClicked(object sender, MouseButtonEventArgs e)
+        {
+            base.OnClicked(sender, e);
+
+            OnActivated(this, null);
+        }
+
+        protected override void OnMouseEntered(object sender, MouseEventArgs e)
+        {
+            base.OnMouseEntered(sender, e);
+
+            AudioManager.Instance.PlaySound("Interface/select");
+            Selected = true;
+        }
+
         /// <summary>
         /// Fired by the Activated event.
         /// </summary>
@@ -125,32 +136,12 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnActivated(object sender, EventArgs e)
         {
-            if (Activated != null)
-            {
-                Activated(this, null);
-            }
+            Activated?.Invoke(this, null);
 
             AudioManager.Instance.PlaySound("Interface/click");
         }
 
-        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
-        {
-            if (ScreenArea.Contains(e.MousePosition))
-            {
-                OnActivated(this, null);
-            }
-        }
-
-        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
-        {
-            if (ScreenArea.Contains(e.CurrentMousePosition) && !ScreenArea.Contains(e.PreviousMousePosition))
-            {
-                AudioManager.Instance.PlaySound("Interface/select");
-                Selected = true;
-            }
-        }
-
-        void InputManager_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
+        protected virtual void OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
         {
             if (Selected && e.Key == Keys.Enter || e.Key == Keys.E)
             {

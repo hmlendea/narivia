@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
@@ -23,9 +24,9 @@ namespace Narivia.Gui.GuiElements
         public List<string> Values { get; set; }
 
         /// <summary>
-        /// Gets the index of the selected value.
+        /// Gets the selected index.
         /// </summary>
-        /// <value>The index of the selected value.</value>
+        /// <value>The selected index.</value>
         [XmlIgnore]
         public int SelectedIndex { get; set; }
 
@@ -47,6 +48,18 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
+        /// <summary>
+        /// Occurs when the selected index was changed.
+        /// </summary>
+        public event EventHandler SelectedIndexChanged;
+
+        /// <summary>
+        /// Occurs when the selected value was changed.
+        /// </summary>
+        public event EventHandler SelectedValueChanged;
+        
+        int lastSelectedIndex;
+        string lastSelectedValue;
         string originalText;
 
         /// <summary>
@@ -70,9 +83,11 @@ namespace Narivia.Gui.GuiElements
                 SelectedIndex = 0;
             }
 
-            originalText = Text;
+            lastSelectedIndex = SelectedIndex;
+            lastSelectedValue = SelectedValue;
 
-            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
+            originalText = Text;
+            
             InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
         }
 
@@ -82,8 +97,7 @@ namespace Narivia.Gui.GuiElements
         public override void UnloadContent()
         {
             base.UnloadContent();
-
-            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
+            
             InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
         }
 
@@ -100,7 +114,7 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            if (SelectedIndex > Values.Count - 1)
+            if (SelectedIndex >= Values.Count)
             {
                 SelectedIndex = 0;
             }
@@ -110,6 +124,19 @@ namespace Narivia.Gui.GuiElements
             }
 
             Text += $" : {SelectedValue}";
+
+            if (SelectedIndex != lastSelectedIndex)
+            {
+                OnSelectedIndexChanged(this, null);
+            }
+
+            if (SelectedValue != lastSelectedValue)
+            {
+                OnSelectedValueChanged(this, null);
+            }
+
+            lastSelectedIndex = SelectedIndex;
+            lastSelectedValue = SelectedValue;
 
             base.Update(gameTime);
         }
@@ -123,8 +150,10 @@ namespace Narivia.Gui.GuiElements
             base.Draw(spriteBatch);
         }
 
-        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        protected override void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
+            base.OnMouseButtonPressed(sender, e);
+
             if (!ScreenArea.Contains(e.MousePosition))
             {
                 return;
@@ -141,12 +170,37 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
+        /// Fired by the SelectedIndexChanged event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedIndexChanged?.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// Fired by the SelectedValueChanged event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnSelectedValueChanged(object sender, EventArgs e)
+        {
+            SelectedValueChanged?.Invoke(sender, e);
+        }
+
+        /// <summary>
         /// Fires when a keyboard key was pressed.
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
         void InputManager_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
         {
+            if (!Selected || !Enabled || !Visible)
+            {
+                return;
+            }
+
             if (e.Key == Keys.Right || e.Key == Keys.D)
             {
                 SelectedIndex += 1;

@@ -7,7 +7,6 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
 using Narivia.Graphics.Extensions;
 using Narivia.Gui.WorldMap;
-using Narivia.Input;
 using Narivia.Input.Events;
 using Narivia.Settings;
 
@@ -78,8 +77,6 @@ namespace Narivia.Gui.GuiElements
             factionBorder.LoadContent();
 
             base.LoadContent();
-
-            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -95,8 +92,6 @@ namespace Narivia.Gui.GuiElements
             factionBorder.UnloadContent();
 
             base.UnloadContent();
-
-            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -306,8 +301,10 @@ namespace Narivia.Gui.GuiElements
                              (camera.Position.Y + screenCoords.Y) / GameDefines.MAP_TILE_SIZE);
         }
 
-        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        protected override void OnMouseMoved(object sender, MouseEventArgs e)
         {
+            base.OnMouseMoved(sender, e);
+
             mouseCoords = e.CurrentMousePosition;
         }
     }

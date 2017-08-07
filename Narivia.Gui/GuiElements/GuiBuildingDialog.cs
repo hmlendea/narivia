@@ -166,14 +166,14 @@ namespace Narivia.Gui.GuiElements
             SelectHolding(0);
             SelectRegion(0);
 
-            previousHoldingButton.Clicked += previousHoldingButton_OnClicked;
-            nextHoldingButton.Clicked += nextHoldingButton_OnClicked;
+            previousHoldingButton.Clicked += OnPreviousHoldingButtonClicked;
+            nextHoldingButton.Clicked += OnNextHoldingButtonClicked;
 
-            previouseRegionButton.Clicked += previousRegionButton_OnClicked;
-            nextRegionButton.Clicked += nextRegionButton_OnClicked;
+            previouseRegionButton.Clicked += OnPreviousRegionButtonClicked;
+            nextRegionButton.Clicked += OnNextRegionButtonClicked;
 
-            buildButton.Clicked += buildButton_OnClicked;
-            cancelButton.Clicked += cancelButton_OnClicked;
+            buildButton.Clicked += OnBuildButtonClicked;
+            cancelButton.Clicked += OnCancelButtonClicked;
         }
 
         /// <summary>
@@ -290,27 +290,7 @@ namespace Narivia.Gui.GuiElements
             regionText.Text = regions[currentRegionIndex].Name;
         }
 
-        void previousHoldingButton_OnClicked(object sender, MouseButtonEventArgs e)
-        {
-            SelectHolding(currentHoldingTypeIndex - 1);
-        }
-
-        void nextHoldingButton_OnClicked(object sender, MouseButtonEventArgs e)
-        {
-            SelectHolding(currentHoldingTypeIndex + 1);
-        }
-
-        void previousRegionButton_OnClicked(object sender, MouseButtonEventArgs e)
-        {
-            SelectRegion(currentRegionIndex - 1);
-        }
-
-        void nextRegionButton_OnClicked(object sender, MouseButtonEventArgs e)
-        {
-            SelectRegion(currentRegionIndex + 1);
-        }
-
-        void buildButton_OnClicked(object sender, MouseButtonEventArgs e)
+        void OnBuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
             if (regions.Count == 0)
             {
@@ -325,12 +305,32 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
-        void cancelButton_OnClicked(object sender, MouseButtonEventArgs e)
+        void OnCancelButtonClicked(object sender, MouseButtonEventArgs e)
         {
             Hide();
             SelectHolding(0);
 
             currentRegionIndex = 0;
+        }
+
+        void OnPreviousHoldingButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            SelectHolding(currentHoldingTypeIndex - 1);
+        }
+
+        void OnPreviousRegionButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            SelectRegion(currentRegionIndex - 1);
+        }
+
+        void OnNextHoldingButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            SelectHolding(currentHoldingTypeIndex + 1);
+        }
+
+        void OnNextRegionButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            SelectRegion(currentRegionIndex + 1);
         }
     }
 }

@@ -117,8 +117,8 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = new Rectangle(0, 0, GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
                 Position = new Point(Position.X + (NotificationSize.X - 1) * GameDefines.GUI_TILE_SIZE, Position.Y)
             };
-            yesButtonImage.Clicked += yesButton_OnClicked;
-            yesButtonImage.MouseEntered += yesNoButton_OnMouseEntered;
+            yesButtonImage.Clicked += OnYesButtonClicked;
+            yesButtonImage.MouseEntered += OnYesNoButtonEntered;
 
             if (Type == NotificationType.Interogative)
             {
@@ -129,8 +129,8 @@ namespace Narivia.Gui.GuiElements
                                                     GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
                     Position = new Point(Position.X, Position.Y)
                 };
-                noButtonImage.Clicked += noButton_OnClicked;
-                noButtonImage.MouseEntered += yesNoButton_OnMouseEntered;
+                noButtonImage.Clicked += OnNoButtonClicked;
+                noButtonImage.MouseEntered += OnYesNoButtonEntered;
 
                 Children.Add(noButtonImage);
             }
@@ -194,21 +194,21 @@ namespace Narivia.Gui.GuiElements
                                  GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
         }
 
-        void yesButton_OnClicked(object sender, MouseButtonEventArgs e)
+        void OnYesButtonClicked(object sender, MouseButtonEventArgs e)
         {
             AudioManager.Instance.PlaySound("Interface/click");
 
             Dispose();
         }
 
-        void noButton_OnClicked(object sender, MouseButtonEventArgs e)
+        void OnNoButtonClicked(object sender, MouseButtonEventArgs e)
         {
             AudioManager.Instance.PlaySound("Interface/click");
 
             Dispose();
         }
 
-        void yesNoButton_OnMouseEntered(object sender, MouseEventArgs e)
+        void OnYesNoButtonEntered(object sender, MouseEventArgs e)
         {
             AudioManager.Instance.PlaySound("Interface/select");
         }

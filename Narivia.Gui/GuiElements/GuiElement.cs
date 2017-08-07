@@ -109,9 +109,14 @@ namespace Narivia.Gui.GuiElements
         public event MouseButtonEventHandler Clicked;
 
         /// <summary>
-        /// Occurs when the mouse moved.
+        /// Occurs when this <see cref="GuiElement"/> was disposed.
         /// </summary>
-        public event MouseEventHandler MouseMoved;
+        public event EventHandler Disposed;
+
+        /// <summary>
+        /// Occurs when a mouse button was pressed on this <see cref="GuiElement"/>.
+        /// </summary>
+        public event MouseButtonEventHandler MouseButtonPressed;
 
         /// <summary>
         /// Occurs when the mouse entered this <see cref="GuiElement"/>.
@@ -124,9 +129,22 @@ namespace Narivia.Gui.GuiElements
         public event MouseEventHandler MouseLeft;
 
         /// <summary>
-        /// Occurs when this <see cref="GuiElement"/> was disposed.
+        /// Occurs when the mouse moved.
         /// </summary>
-        public event EventHandler Disposed;
+        public event MouseEventHandler MouseMoved;
+
+        /// <summary>
+        /// Occurs when the Position property value changes.
+        /// </summary>
+        public event EventHandler PositionChanged;
+
+        /// <summary>
+        /// Occurs when the Size property value changes.
+        /// </summary>
+        public event EventHandler SizeChanged;
+
+        Point oldPosition;
+        Point oldSize;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuiElement"/> class.
@@ -159,7 +177,10 @@ namespace Narivia.Gui.GuiElements
             IsDisposed = false;
 
             //InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
+            InputManager.Instance.MouseButtonPressed += OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved += OnMouseEntered;
+            InputManager.Instance.MouseMoved += OnMouseMoved;
+            InputManager.Instance.MouseMoved += OnMouseLeft;
         }
 
         /// <summary>
@@ -170,7 +191,10 @@ namespace Narivia.Gui.GuiElements
             Children.ForEach(x => x.UnloadContent());
 
             //InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
+            InputManager.Instance.MouseButtonPressed -= OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved -= OnMouseEntered;
+            InputManager.Instance.MouseMoved -= OnMouseLeft;
+            InputManager.Instance.MouseMoved -= OnMouseMoved;
         }
 
         /// <summary>
@@ -183,6 +207,9 @@ namespace Narivia.Gui.GuiElements
 
             SetChildrenProperties();
 
+            OnPositionChanged(this, null);
+            OnSizeChanged(this, null);
+            
             foreach (GuiElement guiElement in Children.Where(w => w.Enabled))
             {
                 guiElement.Update(gameTime);
@@ -198,13 +225,11 @@ namespace Narivia.Gui.GuiElements
 
             if (Enabled && Visible && ScreenArea.Contains(mousePos) &&
                 !InputManager.Instance.MouseButtonInputHandled &&
-                InputManager.Instance.IsLeftMouseButtonClicked() &&
-                Clicked != null)
+                InputManager.Instance.IsLeftMouseButtonClicked())
             {
                 MouseButtonEventArgs e = new MouseButtonEventArgs(MouseButton.LeftButton, MouseButtonState.Pressed, mousePos);
 
-                InputManager_OnMouseButtonPressed(this, e);
-                InputManager.Instance.MouseButtonInputHandled = true;
+                OnClicked(this, e);
             }
 
             foreach (GuiElement child in Children)
@@ -286,6 +311,8 @@ namespace Narivia.Gui.GuiElements
 
         protected virtual void SetChildrenProperties()
         {
+            oldPosition = Position;
+            oldSize = Size;
         }
 
         protected virtual object GetService(Type service)
@@ -309,41 +336,52 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
-        /// Fired by the Disposed event.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event arguments.</param>
-        protected virtual void OnDisposed(object sender, EventArgs e)
-        {
-            if (Disposed != null)
-            {
-                Disposed(sender, e);
-            }
-        }
-
-        /// <summary>
         /// Fired by the Clicked event.
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
         protected virtual void OnClicked(object sender, MouseButtonEventArgs e)
         {
-            if (Clicked != null)
+            if (!Enabled || !Visible)
             {
-                Clicked(sender, e);
+                return;
+            }
+
+            if (ScreenArea.Contains(e.MousePosition))
+            {
+                if (Clicked != null)
+                {
+                    Clicked?.Invoke(sender, e);
+                    InputManager.Instance.MouseButtonInputHandled = true;
+                }
             }
         }
 
         /// <summary>
-        /// Fired by the MouseMoved event.
+        /// Fired by the Disposed event.
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        protected virtual void OnMouseMoved(object sender, MouseEventArgs e)
+        protected virtual void OnDisposed(object sender, EventArgs e)
         {
-            if (MouseMoved != null)
+            Disposed?.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// Fired by the MouseClick event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (!Enabled || !Visible)
             {
-                MouseMoved(this, e);
+                return;
+            }
+
+            if (ScreenArea.Contains(e.MousePosition))
+            {
+                MouseButtonPressed?.Invoke(this, e);
             }
         }
 
@@ -354,9 +392,15 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnMouseEntered(object sender, MouseEventArgs e)
         {
-            if (MouseEntered != null)
+            if (!Enabled || !Visible)
             {
-                MouseEntered(this, e);
+                return;
+            }
+
+            if (ScreenArea.Contains(e.CurrentMousePosition) &&
+                !ScreenArea.Contains(e.PreviousMousePosition))
+            {
+                MouseEntered?.Invoke(this, e);
             }
         }
 
@@ -367,9 +411,69 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnMouseLeft(object sender, MouseEventArgs e)
         {
-            if (MouseLeft != null)
+            if (!Enabled || !Visible)
             {
-                MouseLeft(this, e);
+                return;
+            }
+
+            if (!ScreenArea.Contains(e.CurrentMousePosition) &&
+                ScreenArea.Contains(e.PreviousMousePosition))
+            {
+                MouseLeft?.Invoke(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Fired by the MouseMoved event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            if (!Enabled || !Visible)
+            {
+                return;
+            }
+
+            if (ScreenArea.Contains(e.CurrentMousePosition) &&
+                ScreenArea.Contains(e.PreviousMousePosition) &&
+                e.CurrentMousePosition != e.PreviousMousePosition)
+            {
+                MouseMoved?.Invoke(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Raised by the PositionChanged event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnPositionChanged(object sender, EventArgs e)
+        {
+            if (!Enabled || !Visible)
+            {
+                return;
+            }
+            if (oldPosition != Position)
+            {
+                PositionChanged?.Invoke(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Raised by the SizeChanged event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnSizeChanged(object sender, EventArgs e)
+        {
+            if (!Enabled || !Visible)
+            {
+                return;
+            }
+            if (oldSize != Size)
+            {
+                SizeChanged?.Invoke(this, e);
             }
         }
 
@@ -382,42 +486,6 @@ namespace Narivia.Gui.GuiElements
             else if (Opacity < 0.0f)
             {
                 Opacity = 0.0f;
-            }
-        }
-
-        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
-        {
-            if (!Enabled || !Visible)
-            {
-                return;
-            }
-
-            if (ScreenArea.Contains(e.MousePosition))
-            {
-                OnClicked(this, e);
-            }
-        }
-
-        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
-        {
-            if (!Enabled || !Visible)
-            {
-                return;
-            }
-
-            if (ScreenArea.Contains(e.CurrentMousePosition) ||
-                ScreenArea.Contains(e.PreviousMousePosition))
-            {
-                OnMouseMoved(this, e);
-
-                if (!ScreenArea.Contains(e.PreviousMousePosition))
-                {
-                    OnMouseEntered(this, e);
-                }
-                else if (!ScreenArea.Contains(e.CurrentMousePosition))
-                {
-                    OnMouseLeft(this, e);
-                }
             }
         }
     }

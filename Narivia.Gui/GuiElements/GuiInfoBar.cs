@@ -17,6 +17,8 @@ namespace Narivia.Gui.GuiElements
     {
         GuiImage background;
 
+        // TODO: Create a GUI Element that contains both the icon and the text
+
         GuiImage regionsIcon;
         GuiImage holdingsIcon;
         GuiImage wealthIcon;
@@ -184,7 +186,52 @@ namespace Narivia.Gui.GuiElements
             Children.Add(wealthTooltip);
             Children.Add(troopsTooltip);
 
+            holdingsIcon.MouseEntered += OnHoldingsMouseEntered;
+            holdingsText.MouseEntered += OnHoldingsMouseEntered;
+            holdingsIcon.MouseLeft += OnHoldingsMouseLeft;
+            holdingsText.MouseLeft += OnHoldingsMouseLeft;
+
+            regionsIcon.MouseEntered += OnRegionsMouseEntered;
+            regionsText.MouseEntered += OnRegionsMouseEntered;
+            regionsIcon.MouseLeft += OnRegionsMouseLeft;
+            regionsText.MouseLeft += OnRegionsMouseLeft;
+
+            troopsIcon.MouseEntered += OnTroopsMouseEntered;
+            troopsText.MouseEntered += OnTroopsMouseEntered;
+            troopsIcon.MouseLeft += OnTroopsMouseLeft;
+            troopsText.MouseLeft += OnTroopsMouseLeft;
+
+            wealthIcon.MouseEntered += OnWealthMouseEntered;
+            wealthText.MouseEntered += OnWealthMouseEntered;
+            wealthIcon.MouseLeft += OnWealthMouseLeft;
+            wealthText.MouseLeft += OnWealthMouseLeft;
+
             base.LoadContent();
+        }
+
+        public override void UnloadContent()
+        {
+            base.UnloadContent();
+            
+            holdingsIcon.MouseEntered -= OnHoldingsMouseEntered;
+            holdingsText.MouseEntered -= OnHoldingsMouseEntered;
+            holdingsIcon.MouseLeft -= OnHoldingsMouseLeft;
+            holdingsText.MouseLeft -= OnHoldingsMouseLeft;
+
+            regionsIcon.MouseEntered -= OnRegionsMouseEntered;
+            regionsText.MouseEntered -= OnRegionsMouseEntered;
+            regionsIcon.MouseLeft -= OnRegionsMouseLeft;
+            regionsText.MouseLeft -= OnRegionsMouseLeft;
+
+            troopsIcon.MouseEntered -= OnTroopsMouseEntered;
+            troopsText.MouseEntered -= OnTroopsMouseEntered;
+            troopsIcon.MouseLeft -= OnTroopsMouseLeft;
+            troopsText.MouseLeft -= OnTroopsMouseLeft;
+
+            wealthIcon.MouseEntered -= OnWealthMouseEntered;
+            wealthText.MouseEntered -= OnWealthMouseEntered;
+            wealthIcon.MouseLeft -= OnWealthMouseLeft;
+            wealthText.MouseLeft -= OnWealthMouseLeft;
         }
 
         protected override void SetChildrenProperties()
@@ -228,54 +275,44 @@ namespace Narivia.Gui.GuiElements
             troopsText.TextColour = TextColour;
         }
 
-        /// <summary>
-        /// Fired by the MouseMoved event.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event arguments.</param>
-        protected override void OnMouseMoved(object sender, MouseEventArgs e)
+        void OnHoldingsMouseEntered(object sender, MouseEventArgs e)
         {
-            base.OnMouseMoved(sender, e);
+            holdingsTooltip.Show();
+        }
 
-            if (regionsIcon.ScreenArea.Contains(e.CurrentMousePosition) ||
-                regionsText.ScreenArea.Contains(e.CurrentMousePosition))
-            {
-                regionsTooltip.Visible = true;
-            }
-            else
-            {
-                regionsTooltip.Visible = false;
-            }
+        void OnHoldingsMouseLeft(object sender, MouseEventArgs e)
+        {
+            holdingsTooltip.Hide();
+        }
 
-            if (holdingsIcon.ScreenArea.Contains(e.CurrentMousePosition) ||
-                holdingsText.ScreenArea.Contains(e.CurrentMousePosition))
-            {
-                holdingsTooltip.Visible = true;
-            }
-            else
-            {
-                holdingsTooltip.Visible = false;
-            }
+        void OnRegionsMouseEntered(object sender, MouseEventArgs e)
+        {
+            regionsTooltip.Show();
+        }
 
-            if (wealthIcon.ScreenArea.Contains(e.CurrentMousePosition) ||
-                wealthText.ScreenArea.Contains(e.CurrentMousePosition))
-            {
-                wealthTooltip.Visible = true;
-            }
-            else
-            {
-                wealthTooltip.Visible = false;
-            }
+        void OnRegionsMouseLeft(object sender, MouseEventArgs e)
+        {
+            regionsTooltip.Hide();
+        }
 
-            if (troopsIcon.ScreenArea.Contains(e.CurrentMousePosition) ||
-                troopsText.ScreenArea.Contains(e.CurrentMousePosition))
-            {
-                troopsTooltip.Visible = true;
-            }
-            else
-            {
-                troopsTooltip.Visible = false;
-            }
+        void OnTroopsMouseEntered(object sender, MouseEventArgs e)
+        {
+            troopsTooltip.Show();
+        }
+
+        void OnTroopsMouseLeft(object sender, MouseEventArgs e)
+        {
+            troopsTooltip.Hide();
+        }
+
+        void OnWealthMouseEntered(object sender, MouseEventArgs e)
+        {
+            wealthTooltip.Show();
+        }
+
+        void OnWealthMouseLeft(object sender, MouseEventArgs e)
+        {
+            wealthTooltip.Hide();
         }
     }
 }
