@@ -25,37 +25,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the size of the button.
         /// </summary>
         /// <value>The size of the button.</value>
-        public int ButtonSize
-        {
-            get
-            {
-                return Size.X / GameDefines.GUI_TILE_SIZE;
-            }
-        }
-
+        public int ButtonSize => Size.X / GameDefines.GUI_TILE_SIZE;
+        
         /// <summary>
         /// Gets or sets the text.
         /// </summary>
         /// <value>The text.</value>
         public string Text { get; set; }
-
-        /// <summary>
-        /// Gets or sets the text colour.
-        /// </summary>
-        /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the font.
-        /// </summary>
-        /// <value>The name of the font.</value>
-        public string FontName { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="GuiButton"/> is hovered.
-        /// </summary>
-        /// <value><c>true</c> if hovered; otherwise, <c>false</c>.</value>
-        public bool Hovered { get; set; }
 
         List<GuiImage> images;
         GuiText text;
@@ -66,7 +42,6 @@ namespace Narivia.Gui.GuiElements
         public GuiButton()
         {
             FontName = "ButtonFont";
-            TextColour = Color.Gold;
         }
 
         /// <summary>
@@ -94,6 +69,23 @@ namespace Narivia.Gui.GuiElements
             base.LoadContent();
         }
 
+        protected override void SetChildrenProperties()
+        {
+            base.SetChildrenProperties();
+
+            for (int i = 0; i < images.Count; i++)
+            {
+                images[i].Position = new Point(Position.X + i * GameDefines.GUI_TILE_SIZE, Position.Y);
+                images[i].SourceRectangle = CalculateSourceRectangle(i, Style);
+            }
+
+            text.Text = Text;
+            text.ForegroundColour = ForegroundColour;
+            text.FontName = FontName;
+            text.Position = Position;
+            text.Size = Size;
+        }
+
         /// <summary>
         /// Fired by the Clicked event.
         /// </summary>
@@ -103,7 +95,7 @@ namespace Narivia.Gui.GuiElements
         {
             base.OnClicked(sender, e);
 
-            if (!ScreenArea.Contains(e.MousePosition) || e.Button != MouseButton.LeftButton)
+            if (e.Button != MouseButton.LeftButton)
             {
                 return;
             }
@@ -116,40 +108,11 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        protected override void OnMouseMoved(object sender, MouseEventArgs e)
+        protected override void OnMouseEntered(object sender, MouseEventArgs e)
         {
             base.OnMouseMoved(sender, e);
 
-            if (ScreenArea.Contains(e.CurrentMousePosition))
-            {
-                Hovered = true;
-
-                if (!ScreenArea.Contains(e.PreviousMousePosition))
-                {
-                    AudioManager.Instance.PlaySound("Interface/select");
-                }
-            }
-            else
-            {
-                Hovered = false;
-            }
-        }
-
-        protected override void SetChildrenProperties()
-        {
-            base.SetChildrenProperties();
-
-            for (int i = 0; i < images.Count; i++)
-            {
-                images[i].Position = new Point(Position.X + i * GameDefines.GUI_TILE_SIZE, Position.Y);
-                images[i].SourceRectangle = CalculateSourceRectangle(i, Style);
-            }
-
-            text.Text = Text;
-            text.TextColour = TextColour;
-            text.FontName = FontName;
-            text.Position = Position;
-            text.Size = Size;
+            AudioManager.Instance.PlaySound("Interface/select");
         }
 
         Rectangle CalculateSourceRectangle(int x, ButtonStyle style)

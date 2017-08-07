@@ -63,31 +63,17 @@ namespace Narivia.Gui.GuiElements
         public Dictionary<string, int> Troops { get; set; }
 
         /// <summary>
-        /// Gets or sets the background colour.
-        /// </summary>
-        /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the text colour.
-        /// </summary>
-        /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
-
-        /// <summary>
         /// Gets or sets the spacing.
         /// </summary>
         /// <value>The spacing.</value>
         public int Spacing { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Interface.GUI elements.InfoBar"/> class.
+        /// Initializes a new instance of the <see cref="InfoBar"/> class.
         /// </summary>
         public GuiInfoBar()
         {
             BackgroundColour = Color.Black;
-            TextColour = Color.Gold;
-
             Spacing = GameDefines.GUI_SPACING;
         }
 
@@ -269,10 +255,10 @@ namespace Narivia.Gui.GuiElements
                 Troops.ToList().ForEach(t => troopsTooltip.Text += $"{t.Key}: {t.Value}\n");
             }
 
-            regionsText.TextColour = TextColour;
-            holdingsText.TextColour = TextColour;
-            wealthText.TextColour = TextColour;
-            troopsText.TextColour = TextColour;
+            regionsText.ForegroundColour = ForegroundColour;
+            holdingsText.ForegroundColour = ForegroundColour;
+            wealthText.ForegroundColour = ForegroundColour;
+            troopsText.ForegroundColour = ForegroundColour;
         }
 
         void OnHoldingsMouseEntered(object sender, MouseEventArgs e)

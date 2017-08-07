@@ -21,13 +21,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <value>The text.</value>
         public string Text { get; set; }
-
-        /// <summary>
-        /// Gets or sets the text colour.
-        /// </summary>
-        /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the selected text colour.
         /// </summary>
@@ -57,7 +51,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiMenuItem()
         {
-            TextColour = Color.White;
+            ForegroundColour = Color.White;
             SelectedTextColour = Color.Gold;
 
             Size = new Point(512, 48);
@@ -105,12 +99,12 @@ namespace Narivia.Gui.GuiElements
             if (Selected)
             {
                 text.EffectsActive = true;
-                text.TextColour = SelectedTextColour;
+                text.ForegroundColour = SelectedTextColour;
             }
             else
             {
                 text.EffectsActive = false;
-                text.TextColour = TextColour;
+                text.ForegroundColour = ForegroundColour;
             }
         }
 

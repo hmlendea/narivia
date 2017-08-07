@@ -24,12 +24,6 @@ namespace Narivia.Gui.GuiElements
         [XmlIgnore]
         public string RegionId { get; private set; }
 
-        /// <summary>
-        /// Gets or sets the text colour.
-        /// </summary>
-        /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
-
         IGameManager game;
 
         GuiImage background;
@@ -89,7 +83,7 @@ namespace Narivia.Gui.GuiElements
             resourceText = new GuiText
             {
                 FontName = "RegionBarHoldingFont",
-                TextColour = Color.Black,
+                ForegroundColour = Color.Black,
                 HorizontalAlignment = HorizontalAlignment.Top
             };
 
@@ -148,7 +142,7 @@ namespace Narivia.Gui.GuiElements
                     Size = new Point(holdingImage.SourceRectangle.Width + GameDefines.GUI_SPACING * 2,
                                      Size.Y - holdingImage.SourceRectangle.Height + 10),
                     FontName = "RegionBarHoldingFont",
-                    TextColour = Color.Black,
+                    ForegroundColour = Color.Black,
                     HorizontalAlignment = HorizontalAlignment.Top
                 };
 
@@ -181,7 +175,7 @@ namespace Narivia.Gui.GuiElements
                                                       Position.Y - regionNameText.ScreenArea.Height + (int)(regionNameBackground.Size.Y * 0.1f));
             regionNameBackgroundDecor.Position = regionNameBackground.Position;
             regionNameText.Position = regionNameBackground.Position;
-            regionNameText.TextColour = TextColour;
+            regionNameText.ForegroundColour = ForegroundColour;
 
             factionImage.Position = new Point(regionNameBackground.Position.X - factionImage.ScreenArea.Width / 2, regionNameBackground.Position.Y);
             resourceImage.Position = new Point(Position.X + GameDefines.GUI_SPACING, Position.Y + Size.Y - 64);

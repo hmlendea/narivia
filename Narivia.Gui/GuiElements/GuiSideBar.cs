@@ -30,12 +30,6 @@ namespace Narivia.Gui.GuiElements
         public string FactionId { get; set; }
 
         /// <summary>
-        /// Gets or sets the text colour.
-        /// </summary>
-        /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
-
-        /// <summary>
         /// Gets the stats button.
         /// </summary>
         /// <value>The stats button.</value>
@@ -100,25 +94,25 @@ namespace Narivia.Gui.GuiElements
             StatsButton = new GuiButton
             {
                 Text = "Stats",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
             };
             RecruitButton = new GuiButton
             {
                 Text = "Recruit",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
             };
             BuildButton = new GuiButton
             {
                 Text = "Build",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
             };
             TurnButton = new GuiButton
             {
                 Text = "End Turn",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE * 7, GameDefines.GUI_TILE_SIZE),
                 Style = ButtonStyle.Metal
             };
@@ -169,7 +163,7 @@ namespace Narivia.Gui.GuiElements
                                                         (Size.Y + RecruitButton.Size.Y - BuildButton.Size.Y + margins) / 2);
 
             factionText.Text = game.GetFaction(FactionId).Name;
-            factionText.TextColour = TextColour;
+            factionText.ForegroundColour = ForegroundColour;
 
             Flag factionFlag = game.GetFactionFlag(FactionId);
 
@@ -181,7 +175,7 @@ namespace Narivia.Gui.GuiElements
             factionImage.EmblemColour = factionFlag.EmblemColour.ToXnaColor();
 
             turnText.Text = $"Turn: {game.Turn}";
-            turnText.TextColour = TextColour;
+            turnText.ForegroundColour = ForegroundColour;
         }
     }
 }

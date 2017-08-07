@@ -19,24 +19,6 @@ namespace Narivia.Gui.GuiElements
         public string Text { get; set; }
 
         /// <summary>
-        /// Gets or sets the text colour.
-        /// </summary>
-        /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the background colour.
-        /// </summary>
-        /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the font.
-        /// </summary>
-        /// <value>The name of the font.</value>
-        public string FontName { get; set; }
-
-        /// <summary>
         /// Gets or sets the vertical alignment of the text.
         /// </summary>
         /// <value>The vertical alignment.</value>
@@ -75,7 +57,7 @@ namespace Narivia.Gui.GuiElements
         public GuiText()
         {
             FontName = "ButtonFont";
-            TextColour = Color.Gold;
+            ForegroundColour = Color.Gold;
             BackgroundColour = Color.Transparent;
 
             VerticalAlignment = VerticalAlignment.Center;
@@ -153,7 +135,7 @@ namespace Narivia.Gui.GuiElements
 
             textSprite.Text = Text;
             textSprite.FontName = FontName;
-            textSprite.Tint = TextColour;
+            textSprite.Tint = ForegroundColour;
             textSprite.TextVerticalAlignment = VerticalAlignment;
             textSprite.TextHorizontalAlignment = HorizontalAlignment;
             textSprite.Position = new Point(Position.X + Margins, Position.Y + Margins);

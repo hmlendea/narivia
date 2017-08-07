@@ -42,7 +42,40 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the opacity.
         /// </summary>
         /// <value>The opacity.</value>
-        public float Opacity { get; set; }
+        public float Opacity
+        {
+            get
+            {
+                return _opacity;
+            }
+            set
+            {
+                if (value > 1.0f)
+                {
+                    _opacity = 1.0f;
+                }
+                else if (value < 0.0f)
+                {
+                    _opacity = 0.0f;
+                }
+                else
+                {
+                    _opacity = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the background colour.
+        /// </summary>
+        /// <value>The background colour.</value>
+        public Color BackgroundColour { get; set; }
+
+        /// <summary>
+        /// Gets or sets the foreground colour.
+        /// </summary>
+        /// <value>The foreground colour.</value>
+        public Color ForegroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="GuiElement"/> is enabled.
@@ -55,6 +88,18 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
         public bool Visible { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="GuiElement"/> is hovered.
+        /// </summary>
+        /// <value><c>true</c> if hovered; otherwise, <c>false</c>.</value>
+        public bool Hovered { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the font.
+        /// </summary>
+        /// <value>The name of the font.</value>
+        public string FontName { get; set; }
 
         /// <summary>
         /// Gets or sets the children GUI elements.
@@ -143,8 +188,9 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public event EventHandler SizeChanged;
 
-        Point oldPosition;
-        Point oldSize;
+        Point _oldPosition;
+        Point _oldSize;
+        float _opacity;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuiElement"/> class.
@@ -154,6 +200,9 @@ namespace Narivia.Gui.GuiElements
             Enabled = true;
             Visible = true;
             Opacity = 1.0f;
+
+            BackgroundColour = Color.DarkRed;
+            ForegroundColour = Color.Gold;
 
             Id = Guid.NewGuid().ToString();
 
@@ -177,10 +226,8 @@ namespace Narivia.Gui.GuiElements
             IsDisposed = false;
 
             //InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseButtonPressed += OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved += OnMouseEntered;
-            InputManager.Instance.MouseMoved += OnMouseMoved;
-            InputManager.Instance.MouseMoved += OnMouseLeft;
+            InputManager.Instance.MouseButtonPressed += OnInputManagerMouseButtonPressed;
+            InputManager.Instance.MouseMoved += OnInputManagerMouseMoved;
         }
 
         /// <summary>
@@ -191,10 +238,8 @@ namespace Narivia.Gui.GuiElements
             Children.ForEach(x => x.UnloadContent());
 
             //InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseButtonPressed -= OnMouseButtonPressed;
-            InputManager.Instance.MouseMoved -= OnMouseEntered;
-            InputManager.Instance.MouseMoved -= OnMouseLeft;
-            InputManager.Instance.MouseMoved -= OnMouseMoved;
+            InputManager.Instance.MouseButtonPressed -= OnInputManagerMouseButtonPressed;
+            InputManager.Instance.MouseMoved -= OnInputManagerMouseMoved;
         }
 
         /// <summary>
@@ -204,6 +249,16 @@ namespace Narivia.Gui.GuiElements
         public virtual void Update(GameTime gameTime)
         {
             Children.RemoveAll(w => w.IsDisposed);
+
+            if (_oldPosition != Position)
+            {
+                OnPositionChanged(this, null);
+            }
+
+            if (_oldSize != Size)
+            {
+                OnSizeChanged(this, null);
+            }
 
             SetChildrenProperties();
 
@@ -311,8 +366,8 @@ namespace Narivia.Gui.GuiElements
 
         protected virtual void SetChildrenProperties()
         {
-            oldPosition = Position;
-            oldSize = Size;
+            _oldPosition = Position;
+            _oldSize = Size;
         }
 
         protected virtual object GetService(Type service)
@@ -342,19 +397,8 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnClicked(object sender, MouseButtonEventArgs e)
         {
-            if (!Enabled || !Visible)
-            {
-                return;
-            }
-
-            if (ScreenArea.Contains(e.MousePosition))
-            {
-                if (Clicked != null)
-                {
-                    Clicked?.Invoke(sender, e);
-                    InputManager.Instance.MouseButtonInputHandled = true;
-                }
-            }
+            Clicked?.Invoke(sender, e);
+            InputManager.Instance.MouseButtonInputHandled = true;
         }
 
         /// <summary>
@@ -374,15 +418,7 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
-            if (!Enabled || !Visible)
-            {
-                return;
-            }
-
-            if (ScreenArea.Contains(e.MousePosition))
-            {
-                MouseButtonPressed?.Invoke(this, e);
-            }
+            MouseButtonPressed?.Invoke(this, e);
         }
 
         /// <summary>
@@ -392,16 +428,8 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnMouseEntered(object sender, MouseEventArgs e)
         {
-            if (!Enabled || !Visible)
-            {
-                return;
-            }
-
-            if (ScreenArea.Contains(e.CurrentMousePosition) &&
-                !ScreenArea.Contains(e.PreviousMousePosition))
-            {
-                MouseEntered?.Invoke(this, e);
-            }
+            MouseEntered?.Invoke(this, e);
+            Hovered = true;
         }
 
         /// <summary>
@@ -411,16 +439,8 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnMouseLeft(object sender, MouseEventArgs e)
         {
-            if (!Enabled || !Visible)
-            {
-                return;
-            }
-
-            if (!ScreenArea.Contains(e.CurrentMousePosition) &&
-                ScreenArea.Contains(e.PreviousMousePosition))
-            {
-                MouseLeft?.Invoke(this, e);
-            }
+            MouseLeft?.Invoke(this, e);
+            Hovered = false;
         }
 
         /// <summary>
@@ -430,17 +450,8 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnMouseMoved(object sender, MouseEventArgs e)
         {
-            if (!Enabled || !Visible)
-            {
-                return;
-            }
-
-            if (ScreenArea.Contains(e.CurrentMousePosition) &&
-                ScreenArea.Contains(e.PreviousMousePosition) &&
-                e.CurrentMousePosition != e.PreviousMousePosition)
-            {
-                MouseMoved?.Invoke(this, e);
-            }
+            MouseMoved?.Invoke(this, e);
+            Hovered = true;
         }
 
         /// <summary>
@@ -450,14 +461,7 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnPositionChanged(object sender, EventArgs e)
         {
-            if (!Enabled || !Visible)
-            {
-                return;
-            }
-            if (oldPosition != Position)
-            {
-                PositionChanged?.Invoke(this, e);
-            }
+            PositionChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -467,25 +471,59 @@ namespace Narivia.Gui.GuiElements
         /// <param name="e">Event arguments.</param>
         protected virtual void OnSizeChanged(object sender, EventArgs e)
         {
+            SizeChanged?.Invoke(this, e);
+        }
+        
+        void OnInputManagerMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
             if (!Enabled || !Visible)
             {
                 return;
             }
-            if (oldSize != Size)
+
+            if (!ScreenArea.Contains(e.MousePosition))
             {
-                SizeChanged?.Invoke(this, e);
+                return;
+            }
+
+            OnMouseButtonPressed(sender, e);
+
+            if (e.Button == MouseButton.LeftButton)
+            {
+                OnClicked(sender, e);
             }
         }
 
-        void NormaliseProperties()
+        void OnInputManagerMouseMoved(object sender, MouseEventArgs e)
         {
-            if (Opacity > 1.0f)
+            if (!Enabled || !Visible)
             {
-                Opacity = 1.0f;
+                return;
             }
-            else if (Opacity < 0.0f)
+
+            if (e.CurrentMousePosition == e.PreviousMousePosition)
             {
-                Opacity = 0.0f;
+                return;
+            }
+
+            if (!ScreenArea.Contains(e.CurrentMousePosition) &&
+                !ScreenArea.Contains(e.PreviousMousePosition))
+            {
+                return;
+            }
+
+            OnMouseMoved(sender, e);
+
+            if (ScreenArea.Contains(e.CurrentMousePosition) &&
+                !ScreenArea.Contains(e.PreviousMousePosition))
+            {
+                OnMouseEntered(sender, e);
+            }
+
+            if (!ScreenArea.Contains(e.CurrentMousePosition) &&
+                ScreenArea.Contains(e.PreviousMousePosition))
+            {
+                OnMouseLeft(sender, e);
             }
         }
     }

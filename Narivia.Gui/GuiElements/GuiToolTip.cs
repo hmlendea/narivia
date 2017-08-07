@@ -13,18 +13,6 @@ namespace Narivia.Gui.GuiElements
         /// <value>The text.</value>
         public string Text { get; set; }
 
-        /// <summary>
-        /// Gets or sets the background colour.
-        /// </summary>
-        /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the text colour.
-        /// </summary>
-        /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
-
         GuiText text;
 
         /// <summary>
@@ -32,8 +20,6 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiTooltip()
         {
-            BackgroundColour = Color.DarkRed;
-            TextColour = Color.Gold;
             Visible = false;
         }
 
@@ -58,7 +44,7 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             text.Text = Text;
-            text.TextColour = TextColour;
+            text.ForegroundColour = ForegroundColour;
             text.BackgroundColour = BackgroundColour;
             text.Position = Position;
             text.Size = Size;

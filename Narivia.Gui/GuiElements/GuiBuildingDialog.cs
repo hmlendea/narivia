@@ -19,12 +19,6 @@ namespace Narivia.Gui.GuiElements
     /// </summary>
     public class GuiBuildingDialog : GuiElement
     {
-        /// <summary>
-        /// Gets or sets the text colour.
-        /// </summary>
-        /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
-
         IGameManager game;
 
         GuiImage background;
@@ -50,14 +44,6 @@ namespace Narivia.Gui.GuiElements
 
         int currentHoldingTypeIndex;
         int currentRegionIndex;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GuiBuildingDialog"/> class.
-        /// </summary>
-        public GuiBuildingDialog()
-        {
-            TextColour = Color.Gold;
-        }
 
         /// <summary>
         /// Loads the content.
@@ -109,37 +95,37 @@ namespace Narivia.Gui.GuiElements
             previousHoldingButton = new GuiButton
             {
                 Text = "<",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             nextHoldingButton = new GuiButton
             {
                 Text = ">",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             previouseRegionButton = new GuiButton
             {
                 Text = "<",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             nextRegionButton = new GuiButton
             {
                 Text = ">",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             buildButton = new GuiButton
             {
                 Text = "Build",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE * 4, GameDefines.GUI_TILE_SIZE)
             };
             cancelButton = new GuiButton
             {
                 Text = "Cancel",
-                TextColour = TextColour,
+                ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE * 2, GameDefines.GUI_TILE_SIZE)
             };
 
@@ -222,16 +208,16 @@ namespace Narivia.Gui.GuiElements
 
             holdingText.Position = holdingBackground.Position;
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
-            holdingText.TextColour = TextColour;
+            holdingText.ForegroundColour = ForegroundColour;
 
             regionText.Position = new Point(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom - regionText.ScreenArea.Height);
-            regionText.TextColour = TextColour;
+            regionText.ForegroundColour = ForegroundColour;
 
             priceIcon.Position = new Point(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom + GameDefines.GUI_SPACING);
 
             priceText.Position = new Point(priceIcon.ScreenArea.Right + GameDefines.GUI_SPACING, priceIcon.ScreenArea.Top);
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
-            priceText.TextColour = TextColour;
+            priceText.ForegroundColour = ForegroundColour;
 
             previousHoldingButton.Position = new Point(holdingBackground.ScreenArea.Left - previousHoldingButton.ScreenArea.Width - GameDefines.GUI_SPACING,
                                                        holdingBackground.ScreenArea.Top);

@@ -44,11 +44,6 @@ namespace Narivia.Gui.GuiElements
         /// <value>The text.</value>
         public string Text { get; set; }
 
-        /// <summary>
-        /// Gets or sets the text colour.
-        /// </summary>
-        /// <value>The text colour.</value>
-        public Color TextColour { get; set; }
 
         GuiImage[,] images;
         GuiImage yesButtonImage;
@@ -64,7 +59,7 @@ namespace Narivia.Gui.GuiElements
         {
             Type = NotificationType.Informational;
             Style = NotificationStyle.Big;
-            TextColour = Color.Black;
+            ForegroundColour = Color.Black;
         }
 
         /// <summary>
@@ -147,12 +142,12 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             title.Text = Title;
-            title.TextColour = TextColour;
+            title.ForegroundColour = ForegroundColour;
             title.Position = new Point(Position.X, Position.Y + GameDefines.GUI_TILE_SIZE);
             title.Size = new Point(NotificationSize.X * GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
 
             text.Text = Text;
-            text.TextColour = TextColour;
+            text.ForegroundColour = ForegroundColour;
             text.Position = new Point(Position.X + GameDefines.GUI_TILE_SIZE / 2,
                                       Position.Y + (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
             text.Size = new Point(Size.X - GameDefines.GUI_TILE_SIZE,
