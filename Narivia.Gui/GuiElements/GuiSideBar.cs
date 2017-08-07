@@ -114,7 +114,7 @@ namespace Narivia.Gui.GuiElements
                 Text = "End Turn",
                 ForegroundColour = ForegroundColour,
                 Size = new Point(GameDefines.GUI_TILE_SIZE * 7, GameDefines.GUI_TILE_SIZE),
-                Style = ButtonStyle.Metal
+                Style = ButtonStyle.Narivian
             };
 
             Children.Add(background);

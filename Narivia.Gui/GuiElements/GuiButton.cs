@@ -142,6 +142,10 @@ namespace Narivia.Gui.GuiElements
                 case ButtonStyle.Metal:
                     sy = 1;
                     break;
+
+                case ButtonStyle.Narivian:
+                    sy = 2;
+                    break;
             }
 
             if (Hovered)

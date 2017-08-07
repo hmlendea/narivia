@@ -6,6 +6,7 @@
     public enum ButtonStyle
     {
         Wooden,
-        Metal
+        Metal,
+        Narivian
     }
 }
