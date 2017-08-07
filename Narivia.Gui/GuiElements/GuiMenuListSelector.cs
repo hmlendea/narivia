@@ -87,18 +87,6 @@ namespace Narivia.Gui.GuiElements
             lastSelectedValue = SelectedValue;
 
             originalText = Text;
-            
-            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
-        }
-
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-            
-            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
         }
 
         /// <summary>
@@ -141,13 +129,18 @@ namespace Narivia.Gui.GuiElements
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
+        protected override void RegisterEvents()
         {
-            base.Draw(spriteBatch);
+            base.RegisterEvents();
+
+            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
+        }
+
+        protected override void UnregisterEvents()
+        {
+            base.UnregisterEvents();
+
+            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
         }
 
         protected override void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)

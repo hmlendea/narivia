@@ -149,6 +149,11 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
+        /// Occurs when the BackgroundColour property was changed.
+        /// </summary>
+        public event EventHandler BackgroundColourChanged;
+
+        /// <summary>
         /// Occurs when clicked.
         /// </summary>
         public event MouseButtonEventHandler Clicked;
@@ -158,6 +163,11 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public event EventHandler Disposed;
 
+        /// <summary>
+        /// Occurs when the ForegroundColour property was changed.
+        /// </summary>
+        public event EventHandler ForegroundColourChanged;
+        
         /// <summary>
         /// Occurs when a mouse button was pressed on this <see cref="GuiElement"/>.
         /// </summary>
@@ -188,6 +198,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public event EventHandler SizeChanged;
 
+        Color _oldBackgroundColour;
+        Color _oldForegroundColour;
         Point _oldPosition;
         Point _oldSize;
         float _opacity;
@@ -224,10 +236,6 @@ namespace Narivia.Gui.GuiElements
             Children.ForEach(x => x.LoadContent());
 
             IsDisposed = false;
-
-            //InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseButtonPressed += OnInputManagerMouseButtonPressed;
-            InputManager.Instance.MouseMoved += OnInputManagerMouseMoved;
         }
 
         /// <summary>
@@ -236,10 +244,6 @@ namespace Narivia.Gui.GuiElements
         public virtual void UnloadContent()
         {
             Children.ForEach(x => x.UnloadContent());
-
-            //InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
-            InputManager.Instance.MouseButtonPressed -= OnInputManagerMouseButtonPressed;
-            InputManager.Instance.MouseMoved -= OnInputManagerMouseMoved;
         }
 
         /// <summary>
@@ -250,16 +254,7 @@ namespace Narivia.Gui.GuiElements
         {
             Children.RemoveAll(w => w.IsDisposed);
 
-            if (_oldPosition != Position)
-            {
-                OnPositionChanged(this, null);
-            }
-
-            if (_oldSize != Size)
-            {
-                OnSizeChanged(this, null);
-            }
-
+            RaiseEvents();
             SetChildrenProperties();
 
             OnPositionChanged(this, null);
@@ -364,8 +359,46 @@ namespace Narivia.Gui.GuiElements
             Visible = false;
         }
 
+        protected virtual void RegisterEvents()
+        {
+            InputManager.Instance.MouseButtonPressed += OnInputManagerMouseButtonPressed;
+            InputManager.Instance.MouseMoved += OnInputManagerMouseMoved;
+        }
+
+        protected virtual void UnregisterEvents()
+        {
+            InputManager.Instance.MouseButtonPressed -= OnInputManagerMouseButtonPressed;
+            InputManager.Instance.MouseMoved -= OnInputManagerMouseMoved;
+        }
+
+        protected virtual void RaiseEvents()
+        {
+            if (_oldBackgroundColour != BackgroundColour)
+            {
+                OnBackgroundColourChanged(this, null);
+            }
+
+            if (_oldForegroundColour != ForegroundColour)
+            {
+                OnForegroundColourChanged(this, null);
+            }
+
+            if (_oldPosition != Position)
+            {
+                OnPositionChanged(this, null);
+            }
+
+            if (_oldSize != Size)
+            {
+                OnSizeChanged(this, null);
+            }
+        }
+
         protected virtual void SetChildrenProperties()
         {
+            _oldBackgroundColour = BackgroundColour;
+            _oldForegroundColour = ForegroundColour;
+
             _oldPosition = Position;
             _oldSize = Size;
         }
@@ -391,6 +424,16 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
+        /// Raised by the BackgroundColourChanged event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnBackgroundColourChanged(object sender, EventArgs e)
+        {
+            BackgroundColourChanged?.Invoke(sender, e);
+        }
+        
+        /// <summary>
         /// Fired by the Clicked event.
         /// </summary>
         /// <param name="sender">Sender object.</param>
@@ -409,6 +452,16 @@ namespace Narivia.Gui.GuiElements
         protected virtual void OnDisposed(object sender, EventArgs e)
         {
             Disposed?.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// Raised by the ForegroundColourChanged event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnForegroundColourChanged(object sender, EventArgs e)
+        {
+            ForegroundColourChanged?.Invoke(sender, e);
         }
 
         /// <summary>

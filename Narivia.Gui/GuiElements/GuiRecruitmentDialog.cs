@@ -184,15 +184,6 @@ namespace Narivia.Gui.GuiElements
             Children.Add(cancelButton);
 
             base.LoadContent();
-
-            previousUnitButton.Clicked += OnPreviousUnitButtonClicked;
-            nextUnitButton.Clicked += OnNextUnitButtonClicked;
-
-            addUnitButton.Clicked += OnAddUnitButtonClicked;
-            substractUnitButton.Clicked += OnSusbstractUnitButtonClicked;
-
-            recruitButton.Clicked += OnRecruitButtonClick;
-            cancelButton.Clicked += OnCancelButtonClick;
         }
 
         // TODO: Handle this better
@@ -203,6 +194,30 @@ namespace Narivia.Gui.GuiElements
         public void AssociateGameManager(ref IGameManager game)
         {
             this.game = game;
+        }
+
+        protected override void RegisterEvents()
+        {
+            base.RegisterEvents();
+
+            addUnitButton.Clicked += OnAddUnitButtonClicked;
+            cancelButton.Clicked += OnCancelButtonClick;
+            nextUnitButton.Clicked += OnNextUnitButtonClicked;
+            previousUnitButton.Clicked += OnPreviousUnitButtonClicked;
+            recruitButton.Clicked += OnRecruitButtonClick;
+            substractUnitButton.Clicked += OnSusbstractUnitButtonClicked;
+        }
+
+        protected override void UnregisterEvents()
+        {
+            base.UnregisterEvents();
+
+            addUnitButton.Clicked -= OnAddUnitButtonClicked;
+            cancelButton.Clicked -= OnCancelButtonClick;
+            nextUnitButton.Clicked -= OnNextUnitButtonClicked;
+            previousUnitButton.Clicked -= OnPreviousUnitButtonClicked;
+            recruitButton.Clicked -= OnRecruitButtonClick;
+            substractUnitButton.Clicked -= OnSusbstractUnitButtonClicked;
         }
 
         protected override void SetChildrenProperties()

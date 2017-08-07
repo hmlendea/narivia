@@ -74,16 +74,18 @@ namespace Narivia.Gui.GuiElements
             base.LoadContent();
 
             text.ActivateEffect("FadeEffect");
+        }
+
+        protected override void RegisterEvents()
+        {
+            base.RegisterEvents();
 
             InputManager.Instance.KeyboardKeyPressed += OnKeyboardKeyPressed;
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
+        protected override void UnregisterEvents()
         {
-            base.UnloadContent();
+            base.UnregisterEvents();
 
             InputManager.Instance.KeyboardKeyPressed -= OnKeyboardKeyPressed;
         }

@@ -113,8 +113,6 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = new Rectangle(0, 0, GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
                 Position = new Point(Position.X + (NotificationSize.X - 1) * GameDefines.GUI_TILE_SIZE, Position.Y)
             };
-            yesButtonImage.Clicked += OnYesButtonClicked;
-            yesButtonImage.MouseEntered += OnYesNoButtonEntered;
 
             if (Type == NotificationType.Interogative)
             {
@@ -125,8 +123,6 @@ namespace Narivia.Gui.GuiElements
                                                     GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
                     Position = new Point(Position.X, Position.Y)
                 };
-                noButtonImage.Clicked += OnNoButtonClicked;
-                noButtonImage.MouseEntered += OnYesNoButtonEntered;
 
                 Children.Add(noButtonImage);
             }
@@ -136,6 +132,20 @@ namespace Narivia.Gui.GuiElements
             Children.Add(yesButtonImage);
 
             base.LoadContent();
+        }
+
+        protected override void RegisterEvents()
+        {
+            base.RegisterEvents();
+
+            yesButtonImage.Clicked += OnYesButtonClicked;
+            yesButtonImage.MouseEntered += OnYesNoButtonEntered;
+
+            if (noButtonImage != null)
+            {
+                noButtonImage.Clicked += OnNoButtonClicked;
+                noButtonImage.MouseEntered += OnYesNoButtonEntered;
+            }
         }
 
         protected override void SetChildrenProperties()

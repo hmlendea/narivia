@@ -15,41 +15,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <value>The type of the action.</value>
         public string ActionId { get; set; }
-
-        /// <summary>
-        /// Loads the content.
-        /// </summary>
-        public override void LoadContent()
-        {
-            base.LoadContent();
-        }
-
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
-
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <returns>The draw.</returns>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
-
+        
         /// <summary>
         /// Fired by the Activated event.
         /// </summary>

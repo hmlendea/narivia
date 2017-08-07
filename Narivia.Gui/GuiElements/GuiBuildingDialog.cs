@@ -144,15 +144,6 @@ namespace Narivia.Gui.GuiElements
             UpdateRegionList();
             SelectHolding(0);
             SelectRegion(0);
-
-            previousHoldingButton.Clicked += OnPreviousHoldingButtonClicked;
-            nextHoldingButton.Clicked += OnNextHoldingButtonClicked;
-
-            previouseRegionButton.Clicked += OnPreviousRegionButtonClicked;
-            nextRegionButton.Clicked += OnNextRegionButtonClicked;
-
-            buildButton.Clicked += OnBuildButtonClicked;
-            cancelButton.Clicked += OnCancelButtonClicked;
         }
 
         /// <summary>
@@ -183,6 +174,30 @@ namespace Narivia.Gui.GuiElements
         {
             regions = game.GetFactionRegions(game.PlayerFactionId).Where(r => game.RegionHasEmptyHoldingSlots(r.Id)).ToList();
             SelectRegion(currentRegionIndex);
+        }
+
+        protected override void RegisterEvents()
+        {
+            base.RegisterEvents();
+
+            buildButton.Clicked += OnBuildButtonClicked;
+            cancelButton.Clicked += OnCancelButtonClicked;
+            nextHoldingButton.Clicked += OnNextHoldingButtonClicked;
+            nextRegionButton.Clicked += OnNextRegionButtonClicked;
+            previousHoldingButton.Clicked += OnPreviousHoldingButtonClicked;
+            previouseRegionButton.Clicked += OnPreviousRegionButtonClicked;
+        }
+
+        protected override void UnregisterEvents()
+        {
+            base.UnregisterEvents();
+
+            buildButton.Clicked -= OnBuildButtonClicked;
+            cancelButton.Clicked -= OnCancelButtonClicked;
+            nextHoldingButton.Clicked -= OnNextHoldingButtonClicked;
+            nextRegionButton.Clicked -= OnNextRegionButtonClicked;
+            previousHoldingButton.Clicked -= OnPreviousHoldingButtonClicked;
+            previouseRegionButton.Clicked -= OnPreviousRegionButtonClicked;
         }
 
         protected override void SetChildrenProperties()
