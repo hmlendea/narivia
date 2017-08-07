@@ -15,12 +15,12 @@
 			<G>0</G>
 			<B>0</B>
 		</BackgroundColour>
-		<TextColour>
+		<ForegroundColour>
 			<A>255</A>
 			<R>255</R>
 			<G>215</G>
 			<B>0</B>
-		</TextColour>
+		</ForegroundColour>
 	</InfoBar>
 	<GameMap>
 		<Position>
@@ -41,12 +41,12 @@
 			<X>280</X>
 			<Y>720</Y>
 		</Size>
-		<TextColour>
+    <ForegroundColour>
 			<A>255</A>
 			<R>255</R>
 			<G>215</G>
 			<B>0</B>
-		</TextColour>
+		</ForegroundColour>
 	</SideBar>
 	<NotificationBar>
 		<Position>
@@ -67,11 +67,11 @@
 			<X>1000</X>
 			<Y>80</Y>
 		</Size>
-		<TextColour>
+    <ForegroundColour>
 			<A>255</A>
 			<R>255</R>
 			<G>215</G>
 			<B>0</B>
-		</TextColour>
+		</ForegroundColour>
 	</RegionBar>
 </GameplayScreen>
