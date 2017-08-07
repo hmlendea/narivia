@@ -5,6 +5,9 @@
 		<Text>Start</Text>
 		<LinkId>GameplayScreen</LinkId>
 	</Link>
+  <ListSelector>
+    <Text>World</Text>
+  </ListSelector>
 	<ListSelector>
 		<Text>Faction</Text>
 	</ListSelector>

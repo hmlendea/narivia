@@ -77,6 +77,22 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
+        /// Starts a new game as a random faction.
+        /// </summary>
+        /// <param name="worldId">World identifier.</param>
+        public void NewGame(string worldId)
+        {
+            world = new WorldManager();
+            world.LoadWorld(worldId);
+
+            attack = new AttackManager(world);
+
+            Faction faction = GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION).RandomElement();
+
+            InitializeGame(faction.Id);
+        }
+
+        /// <summary>
         /// Advances the game by one turn.
         /// </summary>
         public void NextTurn()

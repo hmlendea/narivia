@@ -6,10 +6,11 @@ using Narivia.Models;
 
 namespace Narivia.GameLogic.Mapping
 {
+    // TODO: Remove the public modifier!!!
     /// <summary>
     /// World mapping extensions for converting between entities and domain models.
     /// </summary>
-    static class WorldMappingExtensions
+    public static class WorldMappingExtensions
     {
         /// <summary>
         /// Converts the entity into a domain model.
@@ -75,12 +76,13 @@ namespace Narivia.GameLogic.Mapping
             return worldEntity;
         }
 
+        // TODO: Turn this back to internal!!!
         /// <summary>
         /// Converts the entities into domain models.
         /// </summary>
         /// <returns>The domain models.</returns>
         /// <param name="worldEntities">World entities.</param>
-        internal static IEnumerable<World> ToDomainModels(this IEnumerable<WorldEntity> worldEntities)
+        public static IEnumerable<World> ToDomainModels(this IEnumerable<WorldEntity> worldEntities)
         {
             IEnumerable<World> worlds = worldEntities.Select(worldEntity => worldEntity.ToDomainModel());
 

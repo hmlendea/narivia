@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.DataAccess.Repositories;
 using Narivia.GameLogic.GameManagers;
+using Narivia.GameLogic.Mapping;
 using Narivia.Gui.GuiElements;
 using Narivia.Models;
 using Narivia.Settings;
@@ -16,12 +19,13 @@ namespace Narivia.Gui.Screens
     /// </summary>
     public class NewGameScreen : MenuScreen
     {
-        GameManager game = new GameManager();
-        GuiMenuListSelector factionSelector;
         GuiMenuLink startLink;
+        GuiMenuListSelector worldSelector;
+        GuiMenuListSelector factionSelector;
 
-        string selectedFactionName;
-
+        GameManager game = new GameManager();
+        List<World> worlds;
+        
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -29,20 +33,22 @@ namespace Narivia.Gui.Screens
         {
             base.LoadContent();
 
-            // TODO: Don't load everything unnecessarily
-            game.NewGame("narivia", "f_alpalet");
-
-            List<Faction> factions = game.GetFactions()
-                                         .Where(f => f.Id != GameDefines.GAIA_FACTION)
-                                         .OrderBy(f => f.Name)
-                                         .ToList();
-
             // TODO: Identify and retrieve the items properly
+            worldSelector = ListSelectors.FirstOrDefault(x => x.Text == "World");
             factionSelector = ListSelectors.FirstOrDefault(x => x.Text == "Faction");
             startLink = Links.FirstOrDefault(x => x.Text == "Start");
 
-            factionSelector.Values.AddRange(factions.Select(f => f.Name));
-            factionSelector.SelectedIndex = 0;
+            worldSelector.SelectedIndexChanged += OnWorldSelectorSelectedIndexChanged;
+            factionSelector.SelectedIndexChanged += OnFactionSelectorSelectedIndexChanged;
+
+            // TODO: Do not access the repository directly from here
+            WorldRepository worldRepository = new WorldRepository(ApplicationPaths.WorldsDirectory);
+
+            // TODO: Don't load everything unnecessarily
+            worlds = worldRepository.GetAll().ToDomainModels().ToList();
+
+            worldSelector.Values.AddRange(worlds.Select(f => f.Name));
+            worldSelector.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -60,15 +66,6 @@ namespace Narivia.Gui.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (selectedFactionName != factionSelector.SelectedValue)
-            {
-                selectedFactionName = factionSelector.SelectedValue;
-
-                string factionId = game.GetFactions().FirstOrDefault(f => f.Name == selectedFactionName).Id;
-
-                startLink.LinkArgs = $"narivia {factionId}";
-            }
         }
 
         /// <summary>
@@ -78,6 +75,26 @@ namespace Narivia.Gui.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+        }
+
+        void OnWorldSelectorSelectedIndexChanged(object sender, EventArgs e)
+        {
+            game.NewGame(worlds[worldSelector.SelectedIndex].Id);
+
+            List<Faction> factions = game.GetFactions()
+                                         .Where(f => f.Id != GameDefines.GAIA_FACTION)
+                                         .OrderBy(f => f.Name)
+                                         .ToList();
+
+            factionSelector.Values.AddRange(factions.Select(f => f.Name));
+            factionSelector.SelectedIndex = 0;
+        }
+
+        void OnFactionSelectorSelectedIndexChanged(object sender, EventArgs e)
+        {
+            string factionId = game.GetFactions().ToList()[factionSelector.SelectedIndex].Id;
+
+            startLink.LinkArgs = $"narivia {factionId}";
         }
     }
 }
