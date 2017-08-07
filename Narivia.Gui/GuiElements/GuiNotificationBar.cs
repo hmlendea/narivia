@@ -1,7 +1,6 @@
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Gui.GuiElements.Enumerations;
@@ -18,42 +17,6 @@ namespace Narivia.Gui.GuiElements
         public string RegionId { get; private set; }
 
         IGameManager game;
-        
-        /// <summary>
-        /// Loads the content.
-        /// </summary>
-        public override void LoadContent()
-        {
-            base.LoadContent();
-        }
-
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
-
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
-        {
-            AlignItems();
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
 
         // TODO: Handle this better
         /// <summary>
@@ -79,7 +42,7 @@ namespace Narivia.Gui.GuiElements
         {
             Children.ForEach(x => x.Dispose());
         }
-
+        
         // TODO: Handle this better
         /// <summary>
         /// Associates the game manager.
@@ -90,8 +53,10 @@ namespace Narivia.Gui.GuiElements
             this.game = game;
         }
 
-        void AlignItems()
+        protected override void SetChildrenProperties()
         {
+            base.SetChildrenProperties();
+
             for (int i = 0; i < Children.Count; i++)
             {
                 Children[i].Position = new Point(Position.X + GameDefines.GUI_SPACING,

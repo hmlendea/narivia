@@ -15,15 +15,7 @@ namespace Narivia.Gui
         /// Gets or sets the position.
         /// </summary>
         /// <value>The position.</value>
-        public Point Position
-        {
-            get { return idleSprite.Position; }
-            private set
-            {
-                idleSprite.Position = value;
-                clickSprite.Position = value;
-            }
-        }
+        public Point Position { get; set; }
 
         public MouseButtonState State { get; private set; }
 
@@ -59,6 +51,8 @@ namespace Narivia.Gui
                 SwitchFrame = 150
             };
 
+            SetChildrenProperites();
+            
             idleSprite.LoadContent();
             clickSprite.LoadContent();
 
@@ -86,6 +80,8 @@ namespace Narivia.Gui
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime)
         {
+            SetChildrenProperites();
+
             idleSprite.Update(gameTime);
             clickSprite.Update(gameTime);
         }
@@ -104,6 +100,12 @@ namespace Narivia.Gui
             {
                 idleSprite.Draw(spriteBatch);
             }
+        }
+
+        void SetChildrenProperites()
+        {
+            idleSprite.Position = Position;
+            clickSprite.Position = Position;
         }
 
         void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)

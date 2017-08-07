@@ -15,7 +15,7 @@ namespace Narivia.DataAccess.Repositories
         readonly XmlDatabase<BorderEntity> xmlDatabase;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.BorderRepository"/> class.
+        /// Initializes a new instance of the <see cref="BorderRepository"/> class.
         /// </summary>
         public BorderRepository(string fileName)
         {

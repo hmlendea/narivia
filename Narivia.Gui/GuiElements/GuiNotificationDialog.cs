@@ -7,6 +7,7 @@ using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
+    // TODO: Requires refactoring
     /// <summary>
     /// Notification GUI element.
     /// </summary>
