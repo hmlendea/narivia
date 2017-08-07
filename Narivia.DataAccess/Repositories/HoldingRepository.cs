@@ -15,7 +15,7 @@ namespace Narivia.DataAccess.Repositories
         readonly XmlDatabase<HoldingEntity> xmlDatabase;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.HoldingRepository"/> class.
+        /// Initializes a new instance of the <see cref="HoldingRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public HoldingRepository(string fileName)

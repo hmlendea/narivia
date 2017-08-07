@@ -19,7 +19,7 @@ namespace Narivia.DataAccess.Repositories
         readonly Dictionary<Tuple<string, string>, ArmyEntity> armyEntitiesStore;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.ArmyRepository"/> class.
+        /// Initializes a new instance of the <see cref="ArmyRepository"/> class.
         /// </summary>
         public ArmyRepository()
         {

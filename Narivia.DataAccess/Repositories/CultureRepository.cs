@@ -15,7 +15,7 @@ namespace Narivia.DataAccess.Repositories
         readonly XmlDatabase<CultureEntity> xmlDatabase;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.CultureRepository"/> class.
+        /// Initializes a new instance of the <see cref="CultureRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public CultureRepository(string fileName)

@@ -15,7 +15,7 @@ namespace Narivia.DataAccess.Repositories
         readonly XmlDatabase<UnitEntity> xmlDatabase;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.UnitRepository"/> class.
+        /// Initializes a new instance of the <see cref="UnitRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public UnitRepository(string fileName)

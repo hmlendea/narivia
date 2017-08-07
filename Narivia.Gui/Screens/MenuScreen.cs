@@ -76,7 +76,7 @@ namespace Narivia.Gui.Screens
         public int ItemNumber { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Screens.Screen"/> class.
+        /// Initializes a new instance of the <see cref="Screen"/> class.
         /// </summary>
         public MenuScreen()
         {

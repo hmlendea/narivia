@@ -15,7 +15,7 @@ namespace Narivia.DataAccess.Repositories
         readonly XmlDatabase<RegionEntity> xmlDatabase;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.RegionRepository"/> class.
+        /// Initializes a new instance of the <see cref="RegionRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public RegionRepository(string fileName)

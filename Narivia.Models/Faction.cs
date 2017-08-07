@@ -61,7 +61,7 @@ namespace Narivia.Models
         public int Wealth { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:Narivia.Models.Faction"/> is alive.
+        /// Gets or sets a value indicating whether this <see cref="Faction"/> is alive.
         /// </summary>
         /// <value><c>true</c> if alive; otherwise, <c>false</c>.</value>
         public bool Alive { get; set; }

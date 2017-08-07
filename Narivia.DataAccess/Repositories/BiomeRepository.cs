@@ -15,7 +15,7 @@ namespace Narivia.DataAccess.Repositories
         readonly XmlDatabase<BiomeEntity> xmlDatabase;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.BiomeRepository"/> class.
+        /// Initializes a new instance of the <see cref="BiomeRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public BiomeRepository(string fileName)

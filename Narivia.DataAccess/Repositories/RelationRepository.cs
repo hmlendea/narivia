@@ -19,7 +19,7 @@ namespace Narivia.DataAccess.Repositories
         readonly Dictionary<Tuple<string, string>, RelationEntity> relationEntitiesStore;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.BorderRepository"/> class.
+        /// Initializes a new instance of the <see cref="BorderRepository"/> class.
         /// </summary>
         public RelationRepository()
         {

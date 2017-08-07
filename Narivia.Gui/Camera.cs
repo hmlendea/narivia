@@ -34,7 +34,7 @@ namespace Narivia.Gui
         public float Speed { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:Narivia.Entities.Camera"/>'s position has changed since it's last update.
+        /// Gets or sets a value indicating whether this <see cref="Camera"/>'s position has changed since it's last update.
         /// </summary>
         /// <value><c>true</c> if moved; otherwise, <c>false</c>.</value>
         public bool JustMoved { get; set; }
@@ -43,7 +43,7 @@ namespace Narivia.Gui
         int directionX;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.Entities.Camera"/> class.
+        /// Initializes a new instance of the <see cref="Camera"/> class.
         /// </summary>
         public Camera()
         {

@@ -15,7 +15,7 @@ namespace Narivia.DataAccess.Repositories
         readonly XmlDatabase<FactionEntity> xmlDatabase;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Narivia.DataAccess.Repositories.FactionRepository"/> class.
+        /// Initializes a new instance of the <see cref="FactionRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
         public FactionRepository(string fileName)
