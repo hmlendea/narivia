@@ -85,11 +85,13 @@ namespace Narivia.DataAccess.Repositories
                 throw new EntityNotFoundException(flagEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
             }
 
-            flagEntityToUpdate.Background = flagEntity.Background;
+            flagEntityToUpdate.Layer1 = flagEntity.Layer1;
+            flagEntityToUpdate.Layer2 = flagEntity.Layer2;
             flagEntityToUpdate.Emblem = flagEntity.Emblem;
             flagEntityToUpdate.Skin = flagEntity.Skin;
-            flagEntityToUpdate.BackgroundPrimaryColourHexadecimal = flagEntity.BackgroundPrimaryColourHexadecimal;
-            flagEntityToUpdate.BackgroundSecondaryColourHexadecimal = flagEntity.BackgroundSecondaryColourHexadecimal;
+            flagEntityToUpdate.BackgroundColourHexadecimal = flagEntity.BackgroundColourHexadecimal;
+            flagEntityToUpdate.Layer1ColourHexadecimal = flagEntity.Layer1ColourHexadecimal;
+            flagEntityToUpdate.Layer2ColourHexadecimal = flagEntity.Layer2ColourHexadecimal;
             flagEntityToUpdate.EmblemColourHexadecimal = flagEntity.EmblemColourHexadecimal;
 
             xmlDatabase.SaveEntities(flagEntities);

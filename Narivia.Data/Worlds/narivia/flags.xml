@@ -2,317 +2,387 @@
 <ArrayOfFlagEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <FlagEntity>
     <Id>gaia_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#00A1FF</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#00A1FF</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>alpalet_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>divergence</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#300065</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#300065</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>mah_rodah_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>thor-hammer</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#7B7B7B</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#7B7B7B</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>caravenna_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>horse-head</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#B10000</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#B10000</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>viristia_flag</Id>
-    <Background>sides-rotated</Background>
+    <Layer1>stripe-thin-top</Layer1>
+	<Layer2>stripe-thin-bottom</Layer2>
     <Emblem>crossed-spears</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#FFD400</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#FFD400</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>meuristia_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#006353</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#006353</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>befteria_flag</Id>
-    <Background>quad</Background>
+    <Layer1>quad</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>oak-tree</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#2D7B00</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#FFFF21</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#2D7B00</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#FFFF21</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#8b4513</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ne_quin_arid_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#D3BA8E</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#D3BA8E</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>fatima_flag</Id>
-    <Background>circle</Background>
+    <Layer1>circle</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>scarab</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#FFACD5</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#FFFFFF</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#FFACD5</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#FFFFFF</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>optimia_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>virtual-marker</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#00AB98</BackgroundPrimaryColourHexadecimal>
-     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#00AB98</BackgroundColourHexadecimal>
+     <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>impera_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>eagle</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#0072FF</BackgroundPrimaryColourHexadecimal>
-     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#0072FF</BackgroundColourHexadecimal>
+     <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>impimia_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#A74B00</BackgroundPrimaryColourHexadecimal>
-     <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#A74B00</BackgroundColourHexadecimal>
+     <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>faladai_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#82004B</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#82004B</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>daria_flag</Id>
-    <Background>half-diagonal</Background>
+    <Layer1>half-diagonalSE</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#6556FF</BackgroundPrimaryColourHexadecimal>
-     <BackgroundSecondaryColourHexadecimal>#FF4144</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#6556FF</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#FF4144</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>lamiz_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#7EACF8</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#7EACF8</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>sudair_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#FFD377</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#FFD377</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>targat_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>wolf-howl</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#536978</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#536978</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#F4E2A0</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>estaton_flag</Id>
-    <Background>circle</Background>
+    <Layer1>circle</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>greek-sphinx</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#FFFFFF</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#FF6565</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#FFFFFF</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#FF6565</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>deshesda_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#00F86A</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#00F86A</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>altop_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#B25B98</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#B25B98</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>aaria_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#A56258</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#A56258</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>nordodar_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#694B7B</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#694B7B</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>naryrica_flag</Id>
-    <Background>circle</Background>
+    <Layer1>circle</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>anubis</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#FFA577</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#FFA577</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ardamus_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>stag-head</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#70A55F</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#70A55F</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ayako_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>star-shuriken</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#FF00FF</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#FF00FF</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>abeque_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#AE8E00</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#AE8E00</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>amion_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>spartan-helmet</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#948F00</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#948F00</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>sporadja_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#B2CC6B</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#B2CC6B</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>endel_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#C3DF00</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#C3DF00</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>consus_flag</Id>
-    <Background>full</Background>
+    <Layer1>stripe-diagonalNE</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>bull-head</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#FFA400</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#FFA400</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#FF0000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>jhgrothaar_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>viking-helmet</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#C3EBFF</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#C3EBFF</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>antene_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>triple-beak</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#C3BA00</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#C3BA00</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>bardos_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>crossed-axes</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#653E1C</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#653E1C</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>gammeland_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>horned_skull</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#FFFFFF</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#FFFFFF</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>ingolfsfell_flag</Id>
-    <Background>full</Background>
+    <Layer1>none</Layer1>
+	<Layer2>none</Layer2>
     <Emblem>battleaxe</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundPrimaryColourHexadecimal>#9AFF9A</BackgroundPrimaryColourHexadecimal>
-    <BackgroundSecondaryColourHexadecimal>#000000</BackgroundSecondaryColourHexadecimal>
+    <BackgroundColourHexadecimal>#9AFF9A</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
 </ArrayOfFlagEntity>

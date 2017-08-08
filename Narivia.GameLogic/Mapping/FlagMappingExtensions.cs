@@ -22,11 +22,13 @@ namespace Narivia.GameLogic.Mapping
             Flag flag = new Flag
             {
                 Id = flagEntity.Id,
-                Background = flagEntity.Background,
+                Layer1 = flagEntity.Layer1,
+                Layer2 = flagEntity.Layer2,
                 Emblem = flagEntity.Emblem,
                 Skin = flagEntity.Skin,
-                BackgroundPrimaryColour = ColorTranslator.FromHtml(flagEntity.BackgroundPrimaryColourHexadecimal),
-                BackgroundSecondaryColour = ColorTranslator.FromHtml(flagEntity.BackgroundSecondaryColourHexadecimal),
+                BackgroundColour = ColorTranslator.FromHtml(flagEntity.BackgroundColourHexadecimal),
+                Layer1Colour = ColorTranslator.FromHtml(flagEntity.Layer1ColourHexadecimal),
+                Layer2Colour = ColorTranslator.FromHtml(flagEntity.Layer2ColourHexadecimal),
                 EmblemColour = ColorTranslator.FromHtml(flagEntity.EmblemColourHexadecimal)
             };
 
@@ -43,11 +45,13 @@ namespace Narivia.GameLogic.Mapping
             FlagEntity flagEntity = new FlagEntity
             {
                 Id = flag.Id,
-                Background = flag.Background,
+                Layer1 = flag.Layer1,
+                Layer2 = flag.Layer2,
                 Emblem = flag.Emblem,
                 Skin = flag.Skin,
-                BackgroundPrimaryColourHexadecimal = ColorTranslator.ToHtml(flag.BackgroundPrimaryColour),
-                BackgroundSecondaryColourHexadecimal = ColorTranslator.ToHtml(flag.BackgroundSecondaryColour),
+                BackgroundColourHexadecimal = ColorTranslator.ToHtml(flag.BackgroundColour),
+                Layer1ColourHexadecimal = ColorTranslator.ToHtml(flag.Layer1Colour),
+                Layer2ColourHexadecimal = ColorTranslator.ToHtml(flag.Layer2Colour),
                 EmblemColourHexadecimal = ColorTranslator.ToHtml(flag.EmblemColour)
             };
 

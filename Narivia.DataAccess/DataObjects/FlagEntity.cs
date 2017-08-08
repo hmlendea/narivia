@@ -12,10 +12,16 @@
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the background.
+        /// Gets or sets the first layer.
         /// </summary>
-        /// <value>The background.</value>
-        public string Background { get; set; }
+        /// <value>The first layer.</value>
+        public string Layer1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the second layer.
+        /// </summary>
+        /// <value>The second layer.</value>
+        public string Layer2 { get; set; }
 
         /// <summary>
         /// Gets or sets the emblem.
@@ -30,16 +36,22 @@
         public string Skin { get; set; }
 
         /// <summary>
-        /// Gets or sets the background primary colour in hexadecimal.
+        /// Gets or sets the background colour in hexadecimal.
         /// </summary>
-        /// <value>The background primary colour in hexadecimal.</value>
-        public string BackgroundPrimaryColourHexadecimal { get; set; }
+        /// <value>The background colour in hexadecimal.</value>
+        public string BackgroundColourHexadecimal { get; set; }
 
         /// <summary>
-        /// Gets or sets the background secondary colour in hexadecimal.
+        /// Gets or sets the first layer's colour in hexadecimal.
         /// </summary>
-        /// <value>The background secondary colour in hexadecimal.</value>
-        public string BackgroundSecondaryColourHexadecimal { get; set; }
+        /// <value>The first layer's colour in hexadecimal.</value>
+        public string Layer1ColourHexadecimal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the second layer's colour in hexadecimal.
+        /// </summary>
+        /// <value>The second layer's colour in hexadecimal.</value>
+        public string Layer2ColourHexadecimal { get; set; }
 
         /// <summary>
         /// Gets or sets the emblem colour in hexadecimal.

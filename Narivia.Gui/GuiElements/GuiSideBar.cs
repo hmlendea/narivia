@@ -167,11 +167,13 @@ namespace Narivia.Gui.GuiElements
 
             Flag factionFlag = game.GetFactionFlag(FactionId);
 
-            factionImage.Background = factionFlag.Background;
+            factionImage.Layer1 = factionFlag.Layer1;
+            factionImage.Layer2 = factionFlag.Layer2;
             factionImage.Emblem = factionFlag.Emblem;
             factionImage.Skin = factionFlag.Skin;
-            factionImage.BackgroundPrimaryColour = factionFlag.BackgroundPrimaryColour.ToXnaColor();
-            factionImage.BackgroundSecondaryColour = factionFlag.BackgroundSecondaryColour.ToXnaColor();
+            factionImage.BackgroundColour = factionFlag.BackgroundColour.ToXnaColor();
+            factionImage.Layer1Colour = factionFlag.Layer1Colour.ToXnaColor();
+            factionImage.Layer2Colour = factionFlag.Layer2Colour.ToXnaColor();
             factionImage.EmblemColour = factionFlag.EmblemColour.ToXnaColor();
 
             turnText.Text = $"Turn: {game.Turn}";

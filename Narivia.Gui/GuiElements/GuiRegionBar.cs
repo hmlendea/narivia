@@ -31,7 +31,7 @@ namespace Narivia.Gui.GuiElements
         GuiImage regionNameBackground;
         GuiImage regionNameBackgroundDecor;
         GuiText regionNameText;
-        GuiFactionFlag factionImage;
+        GuiFactionFlag factionFlag;
 
         GuiImage resourceImage;
         GuiText resourceText;
@@ -72,7 +72,7 @@ namespace Narivia.Gui.GuiElements
                                  regionNameBackground.SourceRectangle.Height),
                 TextOutline = true
             };
-            factionImage = new GuiFactionFlag
+            factionFlag = new GuiFactionFlag
             {
                 Size = new Point(regionNameBackground.Size.Y, regionNameBackground.Size.Y)
             };
@@ -95,7 +95,7 @@ namespace Narivia.Gui.GuiElements
             Children.Add(regionNameBackground);
             Children.Add(regionNameBackgroundDecor);
             Children.Add(regionNameText);
-            Children.Add(factionImage);
+            Children.Add(factionFlag);
 
             Children.Add(resourceImage);
             Children.Add(resourceText);
@@ -178,7 +178,7 @@ namespace Narivia.Gui.GuiElements
             regionNameText.Position = regionNameBackground.Position;
             regionNameText.ForegroundColour = ForegroundColour;
 
-            factionImage.Position = new Point(regionNameBackground.Position.X - factionImage.ClientRectangle.Width / 2, regionNameBackground.Position.Y);
+            factionFlag.Position = new Point(regionNameBackground.Position.X - factionFlag.ClientRectangle.Width / 2, regionNameBackground.Position.Y);
             resourceImage.Position = new Point(Position.X + GameDefines.GUI_SPACING, Position.Y + Size.Y - 64);
             resourceText.Position = new Point(Position.X, Position.Y + 2);
             resourceText.Size = new Point(64 + GameDefines.GUI_SPACING * 2, Size.Y - 74);
@@ -196,12 +196,14 @@ namespace Narivia.Gui.GuiElements
             regionNameBackground.TintColour = faction.Colour.ToXnaColor();
             regionNameText.Text = region.Name;
 
-            factionImage.Background = flag.Background;
-            factionImage.Emblem = flag.Emblem;
-            factionImage.Skin = flag.Skin;
-            factionImage.BackgroundPrimaryColour = flag.BackgroundPrimaryColour.ToXnaColor();
-            factionImage.BackgroundSecondaryColour = flag.BackgroundSecondaryColour.ToXnaColor();
-            factionImage.EmblemColour = flag.EmblemColour.ToXnaColor();
+            factionFlag.Layer1 = flag.Layer1;
+            factionFlag.Layer2 = flag.Layer2;
+            factionFlag.Emblem = flag.Emblem;
+            factionFlag.Skin = flag.Skin;
+            factionFlag.BackgroundColour = flag.BackgroundColour.ToXnaColor();
+            factionFlag.Layer1Colour = flag.Layer1Colour.ToXnaColor();
+            factionFlag.Layer2Colour = flag.Layer2Colour.ToXnaColor();
+            factionFlag.EmblemColour = flag.EmblemColour.ToXnaColor();
 
             resourceImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/resources/{region.ResourceId}_big";
             resourceText.Text = resource.Name;

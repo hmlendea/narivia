@@ -8,10 +8,16 @@ namespace Narivia.Gui.GuiElements
     public class GuiFactionFlag : GuiElement
     {
         /// <summary>
-        /// Gets or sets the background.
+        /// Gets or sets the first layer.
         /// </summary>
-        /// <value>The background.</value>
-        public string Background { get; set; }
+        /// <value>The first layer.</value>
+        public string Layer1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the second layer.
+        /// </summary>
+        /// <value>The second layer.</value>
+        public string Layer2 { get; set; }
 
         /// <summary>
         /// Gets or sets the emblem.
@@ -26,16 +32,16 @@ namespace Narivia.Gui.GuiElements
         public string Skin { get; set; }
 
         /// <summary>
-        /// Gets or sets the background primary colour.
+        /// Gets or sets the first layer's colour.
         /// </summary>
-        /// <value>The background primary colour.</value>
-        public Color BackgroundPrimaryColour { get; set; }
+        /// <value>The first layer's colour.</value>
+        public Color Layer1Colour { get; set; }
 
         /// <summary>
-        /// Gets or sets the background secondary colour.
+        /// Gets or sets the second layer's colour.
         /// </summary>
-        /// <value>The background secondary colour.</value>
-        public Color BackgroundSecondaryColour { get; set; }
+        /// <value>The second layer's colour.</value>
+        public Color Layer2Colour { get; set; }
 
         /// <summary>
         /// Gets or sets the emblem colour.
@@ -44,6 +50,8 @@ namespace Narivia.Gui.GuiElements
         public Color EmblemColour { get; set; }
 
         GuiImage backgroundImage;
+        GuiImage layer1Image;
+        GuiImage layer2Image;
         GuiImage emblemImage;
         GuiImage skinImage;
 
@@ -64,6 +72,14 @@ namespace Narivia.Gui.GuiElements
             {
                 SourceRectangle = Rectangle.Empty
             };
+            layer1Image = new GuiImage
+            {
+                SourceRectangle = Rectangle.Empty
+            };
+            layer2Image = new GuiImage
+            {
+                SourceRectangle = Rectangle.Empty
+            };
             emblemImage = new GuiImage
             {
                 SourceRectangle = Rectangle.Empty
@@ -74,6 +90,8 @@ namespace Narivia.Gui.GuiElements
             };
 
             Children.Add(backgroundImage);
+            Children.Add(layer1Image);
+            Children.Add(layer2Image);
             Children.Add(emblemImage);
             Children.Add(skinImage);
 
@@ -84,12 +102,23 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            backgroundImage.ContentFile = $"Interface/Flags/Backgrounds/{Background}";
+            backgroundImage.ContentFile = $"Interface/Flags/Skins/{Skin}_mask";
             backgroundImage.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
-            backgroundImage.RedReplacement = BackgroundPrimaryColour;
-            backgroundImage.GreenReplacement = BackgroundSecondaryColour;
+            backgroundImage.TintColour = BackgroundColour;
             backgroundImage.Position = Position;
             backgroundImage.Size = Size;
+
+            layer1Image.ContentFile = $"Interface/Flags/Layers/{Layer1}";
+            layer1Image.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
+            layer1Image.TintColour = Layer1Colour;
+            layer1Image.Position = Position;
+            layer1Image.Size = Size;
+
+            layer2Image.ContentFile = $"Interface/Flags/Layers/{Layer2}";
+            layer2Image.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
+            layer2Image.TintColour = Layer2Colour;
+            layer2Image.Position = Position;
+            layer2Image.Size = Size;
 
             emblemImage.ContentFile = $"Interface/Flags/Emblems/{Emblem}";
             emblemImage.MaskFile = backgroundImage.MaskFile;
