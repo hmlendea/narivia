@@ -79,6 +79,9 @@ namespace Narivia.Graphics
         /// <value>The text.</value>
         public string Text { get; set; }
 
+        // TODO: Make this a number (Outline size)
+        public bool TextOutline { get; set; }
+
         /// <summary>
         /// Gets or sets the text horizontal alignment.
         /// </summary>
@@ -517,8 +520,23 @@ namespace Narivia.Graphics
                 textOrigin = new Vector2((int)Math.Round(textOrigin.X),
                                          (int)Math.Round(textOrigin.Y));
 
-                spriteBatch.DrawString(spriteFont, line, Position.ToVector2() + textOrigin, colour);
+                if (TextOutline)
+                {
+                    for (int dx = -1; dx <= 1; dx++)
+                    {
+                        for (int dy = -1; dy <= 1; dy++)
+                        {
+                            Vector2 pos = new Vector2(Position.X + dx + textOrigin.X,
+                                                      Position.Y + dy + textOrigin.Y);
 
+                            // TODO: Do not hardcode the outline colour
+                            spriteBatch.DrawString(spriteFont, line, pos, Color.Black);
+                        }
+                    }
+                }
+
+                spriteBatch.DrawString(spriteFont, line, Position.ToVector2() + textOrigin, colour);
+                
                 textOrigin.Y += lineSize.Y;
             }
         }

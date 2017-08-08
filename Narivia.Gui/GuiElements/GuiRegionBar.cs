@@ -67,9 +67,10 @@ namespace Narivia.Gui.GuiElements
             };
             regionNameText = new GuiText
             {
+                FontName = "SideBarFont", // TODO: Consider providing a dedicated font
                 Size = new Point(regionNameBackground.SourceRectangle.Width,
                                  regionNameBackground.SourceRectangle.Height),
-                FontName = "SideBarFont" // TODO: Consider providing a dedicated font
+                TextOutline = true
             };
             factionImage = new GuiFactionFlag
             {

@@ -18,6 +18,8 @@ namespace Narivia.Gui.GuiElements
         /// <value>The text.</value>
         public string Text { get; set; }
 
+        public bool TextOutline { get; set; }
+
         /// <summary>
         /// Gets or sets the vertical alignment of the text.
         /// </summary>
@@ -138,6 +140,7 @@ namespace Narivia.Gui.GuiElements
             textSprite.Tint = ForegroundColour;
             textSprite.TextVerticalAlignment = VerticalAlignment;
             textSprite.TextHorizontalAlignment = HorizontalAlignment;
+            textSprite.TextOutline = TextOutline;
             textSprite.Position = new Point(Position.X + Margins, Position.Y + Margins);
             textSprite.SpriteSize = new Point(Size.X - Margins * 2, Size.Y - Margins * 2);
             textSprite.FadeEffect = FadeEffect;
