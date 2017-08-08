@@ -19,15 +19,10 @@ namespace Narivia.Gui.GuiElements
 
         // TODO: Create a GUI Element that contains both the icon and the text
 
-        GuiImage regionsIcon;
-        GuiImage holdingsIcon;
-        GuiImage wealthIcon;
-        GuiImage troopsIcon;
-
-        GuiText regionsText;
-        GuiText holdingsText;
-        GuiText wealthText;
-        GuiText troopsText;
+        GuiInfoBarItem regionsItem;
+        GuiInfoBarItem holdingsItem;
+        GuiInfoBarItem wealthItem;
+        GuiInfoBarItem troopsItem;
 
         GuiTooltip regionsTooltip;
         GuiTooltip holdingsTooltip;
@@ -88,46 +83,25 @@ namespace Narivia.Gui.GuiElements
                 TextureLayout = TextureLayout.Tile
             };
 
-            regionsIcon = new GuiImage
+            regionsItem = new GuiInfoBarItem
             {
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(0, 0, 16, 16)
             };
-            holdingsIcon = new GuiImage
+            holdingsItem = new GuiInfoBarItem
             {
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(48, 0, 16, 16)
             };
-            wealthIcon = new GuiImage
+            wealthItem = new GuiInfoBarItem
             {
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(16, 0, 16, 16)
             };
-            troopsIcon = new GuiImage
+            troopsItem = new GuiInfoBarItem
             {
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle(32, 0, 16, 16)
-            };
-
-            regionsText = new GuiText
-            {
-                Size = new Point(40, 16),
-                VerticalAlignment = VerticalAlignment.Left
-            };
-            holdingsText = new GuiText
-            {
-                Size = new Point(60, 16),
-                VerticalAlignment = VerticalAlignment.Left
-            };
-            wealthText = new GuiText
-            {
-                Size = new Point(60, 16),
-                VerticalAlignment = VerticalAlignment.Left
-            };
-            troopsText = new GuiText
-            {
-                Size = new Point(60, 16),
-                VerticalAlignment = VerticalAlignment.Left
             };
 
             regionsTooltip = new GuiTooltip
@@ -157,40 +131,27 @@ namespace Narivia.Gui.GuiElements
 
             Children.Add(background);
 
-            Children.Add(regionsIcon);
-            Children.Add(holdingsIcon);
-            Children.Add(wealthIcon);
-            Children.Add(troopsIcon);
-
-            Children.Add(regionsText);
-            Children.Add(holdingsText);
-            Children.Add(wealthText);
-            Children.Add(troopsText);
-
+            Children.Add(regionsItem);
+            Children.Add(holdingsItem);
+            Children.Add(wealthItem);
+            Children.Add(troopsItem);
+            
             Children.Add(regionsTooltip);
             Children.Add(holdingsTooltip);
             Children.Add(wealthTooltip);
             Children.Add(troopsTooltip);
 
-            holdingsIcon.MouseEntered += OnHoldingsMouseEntered;
-            holdingsText.MouseEntered += OnHoldingsMouseEntered;
-            holdingsIcon.MouseLeft += OnHoldingsMouseLeft;
-            holdingsText.MouseLeft += OnHoldingsMouseLeft;
+            holdingsItem.MouseEntered += OnHoldingsMouseEntered;
+            holdingsItem.MouseLeft += OnHoldingsMouseLeft;
 
-            regionsIcon.MouseEntered += OnRegionsMouseEntered;
-            regionsText.MouseEntered += OnRegionsMouseEntered;
-            regionsIcon.MouseLeft += OnRegionsMouseLeft;
-            regionsText.MouseLeft += OnRegionsMouseLeft;
+            regionsItem.MouseEntered += OnRegionsMouseEntered;
+            regionsItem.MouseLeft += OnRegionsMouseLeft;
 
-            troopsIcon.MouseEntered += OnTroopsMouseEntered;
-            troopsText.MouseEntered += OnTroopsMouseEntered;
-            troopsIcon.MouseLeft += OnTroopsMouseLeft;
-            troopsText.MouseLeft += OnTroopsMouseLeft;
+            troopsItem.MouseEntered += OnTroopsMouseEntered;
+            troopsItem.MouseLeft += OnTroopsMouseLeft;
 
-            wealthIcon.MouseEntered += OnWealthMouseEntered;
-            wealthText.MouseEntered += OnWealthMouseEntered;
-            wealthIcon.MouseLeft += OnWealthMouseLeft;
-            wealthText.MouseLeft += OnWealthMouseLeft;
+            wealthItem.MouseEntered += OnWealthMouseEntered;
+            wealthItem.MouseLeft += OnWealthMouseLeft;
 
             base.LoadContent();
         }
@@ -198,26 +159,18 @@ namespace Narivia.Gui.GuiElements
         public override void UnloadContent()
         {
             base.UnloadContent();
-            
-            holdingsIcon.MouseEntered -= OnHoldingsMouseEntered;
-            holdingsText.MouseEntered -= OnHoldingsMouseEntered;
-            holdingsIcon.MouseLeft -= OnHoldingsMouseLeft;
-            holdingsText.MouseLeft -= OnHoldingsMouseLeft;
 
-            regionsIcon.MouseEntered -= OnRegionsMouseEntered;
-            regionsText.MouseEntered -= OnRegionsMouseEntered;
-            regionsIcon.MouseLeft -= OnRegionsMouseLeft;
-            regionsText.MouseLeft -= OnRegionsMouseLeft;
+            holdingsItem.MouseEntered -= OnHoldingsMouseEntered;
+            holdingsItem.MouseLeft -= OnHoldingsMouseLeft;
 
-            troopsIcon.MouseEntered -= OnTroopsMouseEntered;
-            troopsText.MouseEntered -= OnTroopsMouseEntered;
-            troopsIcon.MouseLeft -= OnTroopsMouseLeft;
-            troopsText.MouseLeft -= OnTroopsMouseLeft;
+            regionsItem.MouseEntered -= OnRegionsMouseEntered;
+            regionsItem.MouseLeft -= OnRegionsMouseLeft;
 
-            wealthIcon.MouseEntered -= OnWealthMouseEntered;
-            wealthText.MouseEntered -= OnWealthMouseEntered;
-            wealthIcon.MouseLeft -= OnWealthMouseLeft;
-            wealthText.MouseLeft -= OnWealthMouseLeft;
+            troopsItem.MouseEntered -= OnTroopsMouseEntered;
+            troopsItem.MouseLeft -= OnTroopsMouseLeft;
+
+            wealthItem.MouseEntered -= OnWealthMouseEntered;
+            wealthItem.MouseLeft -= OnWealthMouseLeft;
         }
 
         protected override void SetChildrenProperties()
@@ -228,37 +181,38 @@ namespace Narivia.Gui.GuiElements
             background.Size = Size;
             background.TintColour = BackgroundColour;
 
-            regionsIcon.Position = new Point(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ClientRectangle.Height) / 2);
-            regionsText.Position = new Point(regionsIcon.ClientRectangle.Right + Spacing, Position.Y + (Size.Y - regionsText.ClientRectangle.Height) / 2);
-            holdingsIcon.Position = new Point(regionsText.ClientRectangle.Right + Spacing, regionsIcon.Position.Y);
-            holdingsText.Position = new Point(holdingsIcon.ClientRectangle.Right + Spacing, regionsText.Position.Y);
-            wealthIcon.Position = new Point(holdingsText.ClientRectangle.Right + Spacing, holdingsIcon.Position.Y);
-            wealthText.Position = new Point(wealthIcon.ClientRectangle.Right + Spacing, holdingsText.Position.Y);
-            troopsIcon.Position = new Point(wealthText.ClientRectangle.Right + Spacing, wealthIcon.Position.Y);
-            troopsText.Position = new Point(troopsIcon.ClientRectangle.Right + Spacing, wealthText.Position.Y);
+            regionsItem.ForegroundColour = ForegroundColour;
+            regionsItem.Position = new Point(Position.X + Spacing, Position.Y + (Size.Y - regionsItem.ClientRectangle.Height) / 2);
+            regionsItem.Size = new Point((Size.X - Spacing * 3) / 4, 16);
+            regionsItem.Text = Regions.ToString();
 
-            regionsTooltip.Position = new Point(regionsIcon.Position.X, ClientRectangle.Bottom);
-            holdingsTooltip.Position = new Point(holdingsIcon.Position.X, ClientRectangle.Bottom);
-            wealthTooltip.Position = new Point(wealthIcon.Position.X, ClientRectangle.Bottom);
-            troopsTooltip.Position = new Point(troopsIcon.Position.X, ClientRectangle.Bottom);
+            holdingsItem.ForegroundColour = ForegroundColour;
+            holdingsItem.Position = new Point(regionsItem.ClientRectangle.Right + Spacing, regionsItem.Position.Y);
+            holdingsItem.Size = new Point((Size.X - Spacing * 3) / 4, 16);
+            holdingsItem.Text = Holdings.ToString();
 
-            regionsText.Text = Regions.ToString();
-            holdingsText.Text = Holdings.ToString();
-            wealthText.Text = Wealth.ToString();
-            troopsText.Text = "0";
+            wealthItem.ForegroundColour = ForegroundColour;
+            wealthItem.Position = new Point(holdingsItem.ClientRectangle.Right + Spacing, holdingsItem.Position.Y);
+            wealthItem.Size = new Point((Size.X - Spacing * 3) / 4, 16);
+            wealthItem.Text = Wealth.ToString();
 
+            troopsItem.ForegroundColour = ForegroundColour;
+            troopsItem.Position = new Point(wealthItem.ClientRectangle.Right + Spacing, wealthItem.Position.Y);
+            troopsItem.Size = new Point((Size.X - Spacing * 3) / 4, 16);
+            troopsItem.Text = "0";
+
+            regionsTooltip.Position = new Point(regionsItem.Position.X, ClientRectangle.Bottom);
+            holdingsTooltip.Position = new Point(holdingsItem.Position.X, ClientRectangle.Bottom);
+            wealthTooltip.Position = new Point(wealthItem.Position.X, ClientRectangle.Bottom);
+            troopsTooltip.Position = new Point(troopsItem.Position.X, ClientRectangle.Bottom);
+            
             troopsTooltip.Text = string.Empty;
 
             if (Troops != null && Troops.Count > 0)
             {
-                troopsText.Text = Troops.Values.Sum().ToString();
+                troopsItem.Text = Troops.Values.Sum().ToString();
                 Troops.ToList().ForEach(t => troopsTooltip.Text += $"{t.Key}: {t.Value}\n");
             }
-
-            regionsText.ForegroundColour = ForegroundColour;
-            holdingsText.ForegroundColour = ForegroundColour;
-            wealthText.ForegroundColour = ForegroundColour;
-            troopsText.ForegroundColour = ForegroundColour;
         }
 
         void OnHoldingsMouseEntered(object sender, MouseEventArgs e)

@@ -133,14 +133,14 @@ namespace Narivia.Gui.GuiElements
                 Size = sprite.SourceRectangle.Size;
             }
 
+            sprite.Active = EffectsActive;
             sprite.AlphaMaskFile = MaskFile;
             sprite.ContentFile = ContentFile;
-            sprite.SourceRectangle = SourceRectangle;
-            sprite.Tint = TintColour;
-            sprite.Position = Position;
-            sprite.TextureLayout = TextureLayout;
             sprite.FadeEffect = FadeEffect;
-            sprite.Active = EffectsActive;
+            sprite.Position = Position;
+            sprite.SourceRectangle = SourceRectangle;
+            sprite.TextureLayout = TextureLayout;
+            sprite.Tint = TintColour;
 
             if (sprite.SourceRectangle != Rectangle.Empty)
             {

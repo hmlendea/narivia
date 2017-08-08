@@ -118,7 +118,6 @@ namespace Narivia.Gui.GuiElements
         Rectangle CalculateSourceRectangle(int x, ButtonStyle style)
         {
             int sx = 1;
-            int sy = 0;
 
             if (ButtonSize == 1)
             {
@@ -133,27 +132,12 @@ namespace Narivia.Gui.GuiElements
                 sx = 2;
             }
 
-            switch (style)
-            {
-                default:
-                    sy = 0;
-                    break;
-
-                case ButtonStyle.Metal:
-                    sy = 1;
-                    break;
-
-                case ButtonStyle.Narivian:
-                    sy = 2;
-                    break;
-            }
-
             if (Hovered)
             {
                 sx += 4;
             }
 
-            return new Rectangle(sx * GameDefines.GUI_TILE_SIZE, sy * GameDefines.GUI_TILE_SIZE,
+            return new Rectangle(sx * GameDefines.GUI_TILE_SIZE, (int)style * GameDefines.GUI_TILE_SIZE,
                                  GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
         }
     }

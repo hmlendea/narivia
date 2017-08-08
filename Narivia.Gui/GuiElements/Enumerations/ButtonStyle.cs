@@ -5,8 +5,8 @@
     /// </summary>
     public enum ButtonStyle
     {
-        Wooden,
-        Metal,
-        Narivian
+        Metal = 1,
+        Narivian = 2,
+        Wooden = 0
     }
 }

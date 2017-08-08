@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GuiElements\GuiInfoBarItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GuiElements\Enumerations\ButtonStyle.cs" />
     <Compile Include="GuiElements\Enumerations\NotificationIcon.cs" />
