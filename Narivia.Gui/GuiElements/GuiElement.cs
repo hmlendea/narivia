@@ -269,9 +269,9 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public virtual void UnloadContent()
         {
-            Children.ForEach(x => x.UnloadContent());
-
             UnregisterEvents();
+
+            Children.ForEach(x => x.UnloadContent());
         }
 
         /// <summary>
@@ -284,9 +284,6 @@ namespace Narivia.Gui.GuiElements
 
             RaiseEvents();
             SetChildrenProperties();
-
-            OnPositionChanged(this, null);
-            OnSizeChanged(this, null);
             
             foreach (GuiElement guiElement in Children.Where(w => w.Enabled))
             {

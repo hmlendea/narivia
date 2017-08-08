@@ -69,6 +69,7 @@ namespace Narivia.Gui.GuiElements
         {
             TintColour = Color.White;
             Size = Point.Zero;
+            TextureLayout = TextureLayout.Stretch;
         }
 
         /// <summary>
