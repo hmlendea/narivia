@@ -49,12 +49,6 @@ namespace Narivia.Graphics
         /// <value>The tint.</value>
         public Color Tint { get; set; }
 
-        public Color GreenReplacement { get; set; }
-
-        public Color RedReplacement { get; set; }
-
-        public Color BlueReplacement { get; set; }
-
         /// <summary>
         /// Gets or sets the opacity.
         /// </summary>
@@ -353,22 +347,7 @@ namespace Narivia.Graphics
             {
                 textureToDraw = TextureBlend(texture, alphaMask);
             }
-
-            if (RedReplacement.A == 255)
-            {
-                textureToDraw = ReplaceColour(textureToDraw, Color.Red, RedReplacement, 15);
-            }
-
-            if (GreenReplacement.A == 255)
-            {
-                textureToDraw = ReplaceColour(textureToDraw, Color.Lime, GreenReplacement, 15);
-            }
-
-            if (BlueReplacement.A == 255)
-            {
-                textureToDraw = ReplaceColour(textureToDraw, Color.Blue, BlueReplacement, 15);
-            }
-
+            
             if (TextureLayout == TextureLayout.Stretch)
             {
                 spriteBatch.Draw(textureToDraw, new Vector2(Position.X + ClientRectangle.Width / 2, Position.Y + ClientRectangle.Height / 2), SourceRectangle,
@@ -467,27 +446,7 @@ namespace Narivia.Graphics
             effectKeys.ForEach(DeactivateEffect);
             split.ForEach(ActivateEffect);
         }
-
-        public Texture2D ReplaceColour(Texture2D source, Color original, Color replacement, int tolerance)
-        {
-            Texture2D newTexture = new Texture2D(source.GraphicsDevice, source.Width, source.Height);
-            Color[] data = new Color[source.Width * source.Height];
-
-            source.GetData(data);
-
-            Parallel.For(0, data.Length, i =>
-                {
-                    if (data[i].IsSimilarTo(original, tolerance))
-                    {
-                        data[i] = replacement;
-                    }
-                });
-
-            newTexture.SetData(data);
-
-            return newTexture;
-        }
-
+        
         void DrawString(SpriteBatch spriteBatch, SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color colour)
         {
             Vector2 textOrigin = Vector2.Zero;

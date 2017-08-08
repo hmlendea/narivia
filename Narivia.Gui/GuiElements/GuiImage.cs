@@ -30,12 +30,6 @@ namespace Narivia.Gui.GuiElements
         /// <value>The tint colour.</value>
         public Color TintColour { get; set; }
 
-        public Color GreenReplacement { get; set; }
-
-        public Color RedReplacement { get; set; }
-
-        public Color BlueReplacement { get; set; }
-
         /// <summary>
         /// Gets or sets the source rectangle.
         /// </summary>
@@ -140,9 +134,6 @@ namespace Narivia.Gui.GuiElements
             }
 
             sprite.AlphaMaskFile = MaskFile;
-            sprite.RedReplacement = RedReplacement;
-            sprite.GreenReplacement = GreenReplacement;
-            sprite.BlueReplacement = BlueReplacement;
             sprite.ContentFile = ContentFile;
             sprite.SourceRectangle = SourceRectangle;
             sprite.Tint = TintColour;
