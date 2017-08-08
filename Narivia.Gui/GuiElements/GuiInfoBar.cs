@@ -85,7 +85,7 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
-                FillMode = TextureFillMode.Tile
+                FillMode = TextureLayout.Tile
             };
 
             regionsIcon = new GuiImage
@@ -228,19 +228,19 @@ namespace Narivia.Gui.GuiElements
             background.Size = Size;
             background.TintColour = BackgroundColour;
 
-            regionsIcon.Position = new Point(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ScreenArea.Height) / 2);
-            regionsText.Position = new Point(regionsIcon.ScreenArea.Right + Spacing, Position.Y + (Size.Y - regionsText.ScreenArea.Height) / 2);
-            holdingsIcon.Position = new Point(regionsText.ScreenArea.Right + Spacing, regionsIcon.Position.Y);
-            holdingsText.Position = new Point(holdingsIcon.ScreenArea.Right + Spacing, regionsText.Position.Y);
-            wealthIcon.Position = new Point(holdingsText.ScreenArea.Right + Spacing, holdingsIcon.Position.Y);
-            wealthText.Position = new Point(wealthIcon.ScreenArea.Right + Spacing, holdingsText.Position.Y);
-            troopsIcon.Position = new Point(wealthText.ScreenArea.Right + Spacing, wealthIcon.Position.Y);
-            troopsText.Position = new Point(troopsIcon.ScreenArea.Right + Spacing, wealthText.Position.Y);
+            regionsIcon.Position = new Point(Position.X + Spacing, Position.Y + (Size.Y - regionsIcon.ClientRectangle.Height) / 2);
+            regionsText.Position = new Point(regionsIcon.ClientRectangle.Right + Spacing, Position.Y + (Size.Y - regionsText.ClientRectangle.Height) / 2);
+            holdingsIcon.Position = new Point(regionsText.ClientRectangle.Right + Spacing, regionsIcon.Position.Y);
+            holdingsText.Position = new Point(holdingsIcon.ClientRectangle.Right + Spacing, regionsText.Position.Y);
+            wealthIcon.Position = new Point(holdingsText.ClientRectangle.Right + Spacing, holdingsIcon.Position.Y);
+            wealthText.Position = new Point(wealthIcon.ClientRectangle.Right + Spacing, holdingsText.Position.Y);
+            troopsIcon.Position = new Point(wealthText.ClientRectangle.Right + Spacing, wealthIcon.Position.Y);
+            troopsText.Position = new Point(troopsIcon.ClientRectangle.Right + Spacing, wealthText.Position.Y);
 
-            regionsTooltip.Position = new Point(regionsIcon.Position.X, ScreenArea.Bottom);
-            holdingsTooltip.Position = new Point(holdingsIcon.Position.X, ScreenArea.Bottom);
-            wealthTooltip.Position = new Point(wealthIcon.Position.X, ScreenArea.Bottom);
-            troopsTooltip.Position = new Point(troopsIcon.Position.X, ScreenArea.Bottom);
+            regionsTooltip.Position = new Point(regionsIcon.Position.X, ClientRectangle.Bottom);
+            holdingsTooltip.Position = new Point(holdingsIcon.Position.X, ClientRectangle.Bottom);
+            wealthTooltip.Position = new Point(wealthIcon.Position.X, ClientRectangle.Bottom);
+            troopsTooltip.Position = new Point(troopsIcon.Position.X, ClientRectangle.Bottom);
 
             regionsText.Text = Regions.ToString();
             holdingsText.Text = Holdings.ToString();

@@ -46,7 +46,7 @@
     <Compile Include="CustomSpriteEffects\RotationEffect.cs" />
     <Compile Include="CustomSpriteEffects\ZoomEffect.cs" />
     <Compile Include="Enumerations\HorizontalAlignment.cs" />
-    <Compile Include="Enumerations\TextureFillMode.cs" />
+    <Compile Include="Enumerations\TextureLayout.cs" />
     <Compile Include="Enumerations\VerticalAlignment.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Helpers\StringUtils.cs" />

@@ -40,13 +40,6 @@ namespace Narivia.Gui.GuiElements
         protected GuiText text;
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="GuiMenuItem"/> is selected.
-        /// </summary>
-        /// <value><c>true</c> if selected; otherwise, <c>false</c>.</value>
-        [XmlIgnore]
-        public bool Selected { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="GuiMenuItem"/> class.
         /// </summary>
         public GuiMenuItem()
@@ -76,20 +69,6 @@ namespace Narivia.Gui.GuiElements
             text.ActivateEffect("FadeEffect");
         }
 
-        protected override void RegisterEvents()
-        {
-            base.RegisterEvents();
-
-            InputManager.Instance.KeyboardKeyPressed += OnKeyboardKeyPressed;
-        }
-
-        protected override void UnregisterEvents()
-        {
-            base.UnregisterEvents();
-
-            InputManager.Instance.KeyboardKeyPressed -= OnKeyboardKeyPressed;
-        }
-
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
@@ -98,7 +77,7 @@ namespace Narivia.Gui.GuiElements
             text.Position = Position;
             text.Size = Size;
 
-            if (Selected)
+            if (InputFocus)
             {
                 text.EffectsActive = true;
                 text.ForegroundColour = SelectedTextColour;
@@ -117,12 +96,22 @@ namespace Narivia.Gui.GuiElements
             OnActivated(this, null);
         }
 
+        protected override void OnKeyPressed(object sender, KeyboardKeyEventArgs e)
+        {
+            base.OnKeyPressed(sender, e);
+
+            if (e.Key == Keys.Enter || e.Key == Keys.E)
+            {
+                OnActivated(this, null);
+            }
+        }
+
         protected override void OnMouseEntered(object sender, MouseEventArgs e)
         {
             base.OnMouseEntered(sender, e);
 
             AudioManager.Instance.PlaySound("Interface/select");
-            Selected = true;
+            GuiManager.Instance.FocusElement(this);
         }
 
         /// <summary>
@@ -135,14 +124,6 @@ namespace Narivia.Gui.GuiElements
             Activated?.Invoke(this, null);
 
             AudioManager.Instance.PlaySound("Interface/click");
-        }
-
-        protected virtual void OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
-        {
-            if (Selected && e.Key == Keys.Enter || e.Key == Keys.E)
-            {
-                OnActivated(this, null);
-            }
         }
     }
 }

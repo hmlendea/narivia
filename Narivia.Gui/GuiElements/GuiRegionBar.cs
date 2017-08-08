@@ -50,7 +50,7 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/Backgrounds/wool",
-                FillMode = TextureFillMode.Tile
+                FillMode = TextureLayout.Tile
             };
 
             regionNameBackground = new GuiImage
@@ -171,13 +171,13 @@ namespace Narivia.Gui.GuiElements
             background.Position = Position;
             background.Size = Size;
 
-            regionNameBackground.Position = new Point(Position.X + (Size.X - regionNameText.ScreenArea.Width) / 2,
-                                                      Position.Y - regionNameText.ScreenArea.Height + (int)(regionNameBackground.Size.Y * 0.1f));
+            regionNameBackground.Position = new Point(Position.X + (Size.X - regionNameText.ClientRectangle.Width) / 2,
+                                                      Position.Y - regionNameText.ClientRectangle.Height + (int)(regionNameBackground.Size.Y * 0.1f));
             regionNameBackgroundDecor.Position = regionNameBackground.Position;
             regionNameText.Position = regionNameBackground.Position;
             regionNameText.ForegroundColour = ForegroundColour;
 
-            factionImage.Position = new Point(regionNameBackground.Position.X - factionImage.ScreenArea.Width / 2, regionNameBackground.Position.Y);
+            factionImage.Position = new Point(regionNameBackground.Position.X - factionImage.ClientRectangle.Width / 2, regionNameBackground.Position.Y);
             resourceImage.Position = new Point(Position.X + GameDefines.GUI_SPACING, Position.Y + Size.Y - 64);
             resourceText.Position = new Point(Position.X, Position.Y + 2);
             resourceText.Size = new Point(64 + GameDefines.GUI_SPACING * 2, Size.Y - 74);

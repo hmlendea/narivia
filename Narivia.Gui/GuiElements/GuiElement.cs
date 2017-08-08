@@ -36,7 +36,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets the screen area covered by this <see cref="GuiElement"/>.
         /// </summary>
         /// <value>The screen area.</value>
-        public Rectangle ScreenArea => new Rectangle(Position.X, Position.Y, Size.X, Size.Y);
+        public Rectangle ClientRectangle => new Rectangle(Position.X, Position.Y, Size.X, Size.Y);
 
         /// <summary>
         /// Gets or sets the opacity.
@@ -93,7 +93,15 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets a value indicating whether this <see cref="GuiElement"/> is hovered.
         /// </summary>
         /// <value><c>true</c> if hovered; otherwise, <c>false</c>.</value>
+        [XmlIgnore]
         public bool Hovered { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="GuiElement"/> has input focus.
+        /// </summary>
+        /// <value><c>true</c> if it has input focus; otherwise, <c>false</c>.</value>
+        [XmlIgnore]
+        public bool InputFocus { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the font.
@@ -105,6 +113,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the children GUI elements.
         /// </summary>
         /// <value>The children.</value>
+        [XmlIgnore]
         public List<GuiElement> Children { get; protected set; }
 
         /// <summary>
@@ -167,7 +176,22 @@ namespace Narivia.Gui.GuiElements
         /// Occurs when the ForegroundColour property was changed.
         /// </summary>
         public event EventHandler ForegroundColourChanged;
-        
+
+        /// <summary>
+        /// Occurs when the a kew is down while this <see cref="GuiElement"/> has input focus.
+        /// </summary>
+        public event KeyboardKeyEventHandler KeyDown;
+
+        /// <summary>
+        /// Occurs when the a kew is pressed while this <see cref="GuiElement"/> has input focus.
+        /// </summary>
+        public event KeyboardKeyEventHandler KeyPressed;
+
+        /// <summary>
+        /// Occurs when the a kew is released while this <see cref="GuiElement"/> has input focus.
+        /// </summary>
+        public event KeyboardKeyEventHandler KeyReleased;
+
         /// <summary>
         /// Occurs when a mouse button was pressed on this <see cref="GuiElement"/>.
         /// </summary>
@@ -235,6 +259,8 @@ namespace Narivia.Gui.GuiElements
 
             Children.ForEach(x => x.LoadContent());
 
+            RegisterEvents();
+
             IsDisposed = false;
         }
 
@@ -244,6 +270,8 @@ namespace Narivia.Gui.GuiElements
         public virtual void UnloadContent()
         {
             Children.ForEach(x => x.UnloadContent());
+
+            UnregisterEvents();
         }
 
         /// <summary>
@@ -263,33 +291,6 @@ namespace Narivia.Gui.GuiElements
             foreach (GuiElement guiElement in Children.Where(w => w.Enabled))
             {
                 guiElement.Update(gameTime);
-            }
-        }
-
-        /// <summary>
-        /// Handles the input.
-        /// </summary>
-        public void HandleInput()
-        {
-            Vector2 mousePos = InputManager.Instance.MousePosition;
-
-            if (Enabled && Visible && ScreenArea.Contains(mousePos) &&
-                !InputManager.Instance.MouseButtonInputHandled &&
-                InputManager.Instance.IsLeftMouseButtonClicked())
-            {
-                MouseButtonEventArgs e = new MouseButtonEventArgs(MouseButton.LeftButton, MouseButtonState.Pressed, mousePos);
-
-                OnClicked(this, e);
-            }
-
-            foreach (GuiElement child in Children)
-            {
-                if (InputManager.Instance.MouseButtonInputHandled)
-                {
-                    break;
-                }
-
-                child.HandleInput();
             }
         }
 
@@ -361,18 +362,31 @@ namespace Narivia.Gui.GuiElements
 
         protected virtual void RegisterEvents()
         {
+            InputManager.Instance.KeyboardKeyDown += OnInputManagerKeyboardKeyDown;
+            InputManager.Instance.KeyboardKeyPressed += OnInputManagerKeyboardKeyPressed;
+            InputManager.Instance.KeyboardKeyReleased += OnInputManagerKeyboardKeyReleased;
+
             InputManager.Instance.MouseButtonPressed += OnInputManagerMouseButtonPressed;
             InputManager.Instance.MouseMoved += OnInputManagerMouseMoved;
         }
 
         protected virtual void UnregisterEvents()
         {
+            InputManager.Instance.KeyboardKeyDown -= OnInputManagerKeyboardKeyDown;
+            InputManager.Instance.KeyboardKeyPressed -= OnInputManagerKeyboardKeyPressed;
+            InputManager.Instance.KeyboardKeyReleased -= OnInputManagerKeyboardKeyReleased;
+
             InputManager.Instance.MouseButtonPressed -= OnInputManagerMouseButtonPressed;
             InputManager.Instance.MouseMoved -= OnInputManagerMouseMoved;
         }
 
         protected virtual void RaiseEvents()
         {
+            if (!CanRaiseEvents)
+            {
+                return;
+            }
+
             if (_oldBackgroundColour != BackgroundColour)
             {
                 OnBackgroundColourChanged(this, null);
@@ -424,6 +438,34 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
+        /// Handles the input.
+        /// </summary>
+        public void HandleInput()
+        {
+            Vector2 mousePos = InputManager.Instance.MousePosition;
+
+            if (Enabled && Visible && ClientRectangle.Contains(mousePos) &&
+                !InputManager.Instance.MouseButtonInputHandled &&
+                InputManager.Instance.IsLeftMouseButtonClicked())
+            {
+                MouseButtonEventArgs e = new MouseButtonEventArgs(MouseButton.LeftButton, MouseButtonState.Pressed, mousePos);
+
+                GuiManager.Instance.FocusElement(this);
+                OnClicked(this, e);
+            }
+
+            foreach (GuiElement child in Children)
+            {
+                if (InputManager.Instance.MouseButtonInputHandled)
+                {
+                    break;
+                }
+
+                child.HandleInput();
+            }
+        }
+
+        /// <summary>
         /// Raised by the BackgroundColourChanged event.
         /// </summary>
         /// <param name="sender">Sender object.</param>
@@ -462,6 +504,36 @@ namespace Narivia.Gui.GuiElements
         protected virtual void OnForegroundColourChanged(object sender, EventArgs e)
         {
             ForegroundColourChanged?.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// Raised by the KeyDown event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnKeyDown(object sender, KeyboardKeyEventArgs e)
+        {
+            KeyDown?.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// Raised by the KeyPressed event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnKeyPressed(object sender, KeyboardKeyEventArgs e)
+        {
+            KeyPressed?.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// Raised by the KeyReleased event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected virtual void OnKeyReleased(object sender, KeyboardKeyEventArgs e)
+        {
+            KeyReleased?.Invoke(sender, e);
         }
 
         /// <summary>
@@ -526,15 +598,48 @@ namespace Narivia.Gui.GuiElements
         {
             SizeChanged?.Invoke(this, e);
         }
-        
-        void OnInputManagerMouseButtonPressed(object sender, MouseButtonEventArgs e)
+
+        void OnInputManagerKeyboardKeyDown(object sender, KeyboardKeyEventArgs e)
         {
-            if (!Enabled || !Visible)
+            if (!Enabled || !Visible ||
+                !CanRaiseEvents || !InputFocus)
+            {
+                return;
+            }
+            
+            OnKeyDown(sender, e);
+        }
+
+        void OnInputManagerKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
+        {
+            if (!Enabled || !Visible ||
+                !CanRaiseEvents || !InputFocus)
             {
                 return;
             }
 
-            if (!ScreenArea.Contains(e.MousePosition))
+            OnKeyPressed(sender, e);
+        }
+
+        void OnInputManagerKeyboardKeyReleased(object sender, KeyboardKeyEventArgs e)
+        {
+            if (!Enabled || !Visible ||
+                !CanRaiseEvents || !InputFocus)
+            {
+                return;
+            }
+
+            OnKeyReleased(sender, e);
+        }
+
+        void OnInputManagerMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            if (!Enabled || !Visible || !CanRaiseEvents)
+            {
+                return;
+            }
+
+            if (!ClientRectangle.Contains(e.MousePosition))
             {
                 return;
             }
@@ -549,7 +654,7 @@ namespace Narivia.Gui.GuiElements
 
         void OnInputManagerMouseMoved(object sender, MouseEventArgs e)
         {
-            if (!Enabled || !Visible)
+            if (!Enabled || !Visible || !CanRaiseEvents)
             {
                 return;
             }
@@ -559,22 +664,22 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            if (!ScreenArea.Contains(e.CurrentMousePosition) &&
-                !ScreenArea.Contains(e.PreviousMousePosition))
+            if (!ClientRectangle.Contains(e.CurrentMousePosition) &&
+                !ClientRectangle.Contains(e.PreviousMousePosition))
             {
                 return;
             }
 
             OnMouseMoved(sender, e);
 
-            if (ScreenArea.Contains(e.CurrentMousePosition) &&
-                !ScreenArea.Contains(e.PreviousMousePosition))
+            if (ClientRectangle.Contains(e.CurrentMousePosition) &&
+                !ClientRectangle.Contains(e.PreviousMousePosition))
             {
                 OnMouseEntered(sender, e);
             }
 
-            if (!ScreenArea.Contains(e.CurrentMousePosition) &&
-                ScreenArea.Contains(e.PreviousMousePosition))
+            if (!ClientRectangle.Contains(e.CurrentMousePosition) &&
+                ClientRectangle.Contains(e.PreviousMousePosition))
             {
                 OnMouseLeft(sender, e);
             }

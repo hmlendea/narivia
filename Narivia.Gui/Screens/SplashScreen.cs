@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
-using Narivia.Input;
 using Narivia.Input.Events;
 
 namespace Narivia.Gui.Screens
@@ -60,9 +59,6 @@ namespace Narivia.Gui.Screens
             AlignItems();
             BackgroundImage.ActivateEffect("RotationEffect");
             BackgroundImage.ActivateEffect("ZoomEffect");
-
-            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
-            InputManager.Instance.MouseButtonPressed += InputManager_OnMouseButtonPressed;
         }
 
         /// <summary>
@@ -71,12 +67,10 @@ namespace Narivia.Gui.Screens
         public override void UnloadContent()
         {
             base.UnloadContent();
+
             BackgroundImage.UnloadContent();
             OverlayImage.UnloadContent();
             LogoImage.UnloadContent();
-
-            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
-            InputManager.Instance.MouseButtonPressed -= InputManager_OnMouseButtonPressed;
         }
 
         /// <summary>
@@ -115,19 +109,23 @@ namespace Narivia.Gui.Screens
             OverlayImage.Scale = new Vector2(ScreenManager.Instance.Size.X / OverlayImage.SpriteSize.X,
                                                ScreenManager.Instance.Size.Y / OverlayImage.SpriteSize.Y);
 
-            BackgroundImage.Position = new Point((ScreenManager.Instance.Size.X - BackgroundImage.ScreenArea.Width) / 2,
-                                                 (ScreenManager.Instance.Size.Y - BackgroundImage.ScreenArea.Height) / 2);
+            BackgroundImage.Position = new Point((ScreenManager.Instance.Size.X - BackgroundImage.ClientRectangle.Width) / 2,
+                                                 (ScreenManager.Instance.Size.Y - BackgroundImage.ClientRectangle.Height) / 2);
             LogoImage.Position = new Point((ScreenManager.Instance.Size.X - LogoImage.SpriteSize.X) / 2,
                                            (ScreenManager.Instance.Size.Y - LogoImage.SpriteSize.Y) / 2);
         }
 
-        void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        protected override void OnKeyPressed(object sender, KeyboardKeyEventArgs e)
         {
+            base.OnKeyPressed(sender, e);
+
             ScreenManager.Instance.ChangeScreens("TitleScreen");
         }
 
-        void InputManager_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
+        protected override void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
+            base.OnMouseButtonPressed(sender, e);
+
             ScreenManager.Instance.ChangeScreens("TitleScreen");
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -9,7 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Graphics;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
-using Narivia.Common.Extensions;
+using Narivia.Input;
+using Narivia.Input.Events;
 
 namespace Narivia.Gui.Screens
 {
@@ -52,6 +52,21 @@ namespace Narivia.Gui.Screens
         public string[] ScreenArgs { get; set; }
 
         /// <summary>
+        /// Occurs when the a kew is pressed while this <see cref="Screen"/> has input focus.
+        /// </summary>
+        public event KeyboardKeyEventHandler KeyPressed;
+
+        /// <summary>
+        /// Occurs when a mouse button is pressed.
+        /// </summary>
+        public event MouseButtonEventHandler MouseButtonPressed;
+
+        /// <summary>
+        /// Occurs when the mouse moved.
+        /// </summary>
+        public event MouseEventHandler MouseMoved;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Screen"/> class.
         /// </summary>
         public Screen()
@@ -72,6 +87,8 @@ namespace Narivia.Gui.Screens
             GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(BackgroundColour);
             
             GuiManager.Instance.LoadContent();
+
+            RegisterEvents();
         }
 
         /// <summary>
@@ -80,6 +97,8 @@ namespace Narivia.Gui.Screens
         public virtual void UnloadContent()
         {
             GuiManager.Instance.UnloadContent();
+
+            UnregisterEvents();
         }
 
         /// <summary>
@@ -125,6 +144,37 @@ namespace Narivia.Gui.Screens
             notification.LoadContent();
 
             GuiManager.Instance.GuiElements.Add(notification);
+        }
+
+        protected virtual void RegisterEvents()
+        {
+            InputManager.Instance.KeyboardKeyPressed += OnKeyPressed;
+
+            InputManager.Instance.MouseButtonPressed += OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved += OnMouseMoved;
+        }
+
+        protected virtual void UnregisterEvents()
+        {
+            InputManager.Instance.KeyboardKeyPressed -= OnKeyPressed;
+
+            InputManager.Instance.MouseButtonPressed -= OnMouseButtonPressed;
+            InputManager.Instance.MouseMoved -= OnMouseMoved;
+        }
+
+        protected virtual void OnKeyPressed(object sender, KeyboardKeyEventArgs e)
+        {
+            KeyPressed?.Invoke(sender, e);
+        }
+
+        protected virtual void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            MouseButtonPressed?.Invoke(sender, e);
+        }
+
+        protected virtual void OnMouseMoved(object sender, MouseEventArgs e)
+        {
+            MouseMoved?.Invoke(sender, e);
         }
     }
 }

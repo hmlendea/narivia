@@ -129,25 +129,28 @@ namespace Narivia.Gui.GuiElements
             base.Update(gameTime);
         }
 
-        protected override void RegisterEvents()
+        /// <summary>
+        /// Fires when a keyboard key was pressed.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        protected override void OnKeyPressed(object sender, KeyboardKeyEventArgs e)
         {
-            base.RegisterEvents();
-
-            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
-        }
-
-        protected override void UnregisterEvents()
-        {
-            base.UnregisterEvents();
-
-            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
+            if (e.Key == Keys.Right || e.Key == Keys.D)
+            {
+                SelectedIndex += 1;
+            }
+            else if (e.Key == Keys.Left || e.Key == Keys.A)
+            {
+                SelectedIndex -= 1;
+            }
         }
 
         protected override void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
             base.OnMouseButtonPressed(sender, e);
 
-            if (!ScreenArea.Contains(e.MousePosition))
+            if (!ClientRectangle.Contains(e.MousePosition))
             {
                 return;
             }
@@ -180,28 +183,6 @@ namespace Narivia.Gui.GuiElements
         protected virtual void OnSelectedValueChanged(object sender, EventArgs e)
         {
             SelectedValueChanged?.Invoke(sender, e);
-        }
-
-        /// <summary>
-        /// Fires when a keyboard key was pressed.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event arguments.</param>
-        void InputManager_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
-        {
-            if (!Selected || !Enabled || !Visible)
-            {
-                return;
-            }
-
-            if (e.Key == Keys.Right || e.Key == Keys.D)
-            {
-                SelectedIndex += 1;
-            }
-            else if (e.Key == Keys.Left || e.Key == Keys.A)
-            {
-                SelectedIndex -= 1;
-            }
         }
     }
 }

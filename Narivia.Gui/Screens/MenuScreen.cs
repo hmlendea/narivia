@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Narivia.Input;
 using Narivia.Input.Events;
 using Narivia.Gui.GuiElements;
 using Narivia.Settings;
@@ -104,20 +103,6 @@ namespace Narivia.Gui.Screens
             base.LoadContent();
 
             AlignMenuItems();
-
-            InputManager.Instance.KeyboardKeyPressed += InputManager_OnKeyboardKeyPressed;
-            InputManager.Instance.MouseMoved += InputManager_OnMouseMoved;
-        }
-
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-
-            InputManager.Instance.KeyboardKeyPressed -= InputManager_OnKeyboardKeyPressed;
-            InputManager.Instance.MouseMoved -= InputManager_OnMouseMoved;
         }
 
         /// <summary>
@@ -136,12 +121,9 @@ namespace Narivia.Gui.Screens
             {
                 newSelectedItemIndex = Items.Count - 1;
             }
-
-            for (int i = 0; i < Items.Count; i++)
-            {
-                Items[i].Selected = (i == newSelectedItemIndex);
-            }
-
+            
+            GuiManager.Instance.FocusElement(Items[newSelectedItemIndex]);
+            
             ItemNumber = newSelectedItemIndex;
 
             base.Update(gameTime);
@@ -183,19 +165,23 @@ namespace Narivia.Gui.Screens
             }
         }
 
-        void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
+        protected override void OnMouseMoved(object sender, MouseEventArgs e)
         {
+            base.OnMouseMoved(sender, e);
+
             for (int i = 0; i < Items.Count; i++)
             {
-                if (Items[i].ScreenArea.Contains(e.CurrentMousePosition))
+                if (Items[i].ClientRectangle.Contains(e.CurrentMousePosition))
                 {
                     ItemNumber = i;
                 }
             }
         }
 
-        void InputManager_OnKeyboardKeyPressed(object sender, KeyboardKeyEventArgs e)
+        protected override void OnKeyPressed(object sender, KeyboardKeyEventArgs e)
         {
+            base.OnKeyPressed(sender, e);
+
             if ("Yy".Contains(Axis))
             {
                 if (e.Key == Keys.W || e.Key == Keys.Up)

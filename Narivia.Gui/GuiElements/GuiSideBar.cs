@@ -69,7 +69,7 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/Backgrounds/stone-bricks",
-                FillMode = TextureFillMode.Tile
+                FillMode = TextureLayout.Tile
             };
 
             factionImage = new GuiFactionFlag
@@ -149,9 +149,9 @@ namespace Narivia.Gui.GuiElements
             background.Size = Size;
 
             factionText.Position = Position + new Point(margins, margins);
-            turnText.Position = Position + new Point(Size.X - turnText.ScreenArea.Width - margins, margins);
+            turnText.Position = Position + new Point(Size.X - turnText.ClientRectangle.Width - margins, margins);
 
-            factionImage.Position = Position + new Point((Size.X - factionImage.ScreenArea.Width) / 2, factionText.ScreenArea.Bottom + margins);
+            factionImage.Position = Position + new Point((Size.X - factionImage.ClientRectangle.Width) / 2, factionText.ClientRectangle.Bottom + margins);
 
             TurnButton.Position = Position + new Point((Size.X - TurnButton.Size.X) / 2,
                                                        (Size.Y - TurnButton.Size.Y - margins));

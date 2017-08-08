@@ -103,5 +103,16 @@ namespace Narivia.Gui
                 guiElement.Draw(spriteBatch);
             }
         }
+
+        public void FocusElement(string id)
+        {
+            GuiElements.ForEach(e => e.InputFocus = false);
+            GuiElements.FirstOrDefault(e => e.Id == id).InputFocus = true;
+        }
+
+        public void FocusElement(GuiElement element)
+        {
+            FocusElement(element.Id);
+        }
     }
 }

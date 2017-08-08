@@ -57,12 +57,12 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/Backgrounds/stone-bricks",
-                FillMode = TextureFillMode.Tile
+                FillMode = TextureLayout.Tile
             };
             unitBackground = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
-                FillMode = TextureFillMode.Tile,
+                FillMode = TextureLayout.Tile,
                 Size = new Point(100, 100)
             };
             unitImage = new GuiImage
@@ -235,54 +235,54 @@ namespace Narivia.Gui.GuiElements
             unitText.Text = units[currentUnitIndex].Name;
             unitText.ForegroundColour = ForegroundColour;
 
-            troopsText.Position = new Point(unitBackground.ScreenArea.Left, unitBackground.ScreenArea.Bottom - troopsText.ScreenArea.Height);
+            troopsText.Position = new Point(unitBackground.ClientRectangle.Left, unitBackground.ClientRectangle.Bottom - troopsText.ClientRectangle.Height);
             troopsText.Text = $"x{troopsAmount}";
             troopsText.ForegroundColour = ForegroundColour;
 
-            healthIcon.Position = new Point(unitBackground.ScreenArea.Left,
-                                            unitBackground.ScreenArea.Bottom + GameDefines.GUI_SPACING);
-            powerIcon.Position = new Point(healthIcon.ScreenArea.Left,
-                                           healthIcon.ScreenArea.Bottom + GameDefines.GUI_SPACING);
-            priceIcon.Position = new Point(powerIcon.ScreenArea.Left,
-                                           powerIcon.ScreenArea.Bottom + GameDefines.GUI_SPACING);
-            maintenanceIcon.Position = new Point(priceIcon.ScreenArea.Left,
-                                                 priceIcon.ScreenArea.Bottom + GameDefines.GUI_SPACING);
+            healthIcon.Position = new Point(unitBackground.ClientRectangle.Left,
+                                            unitBackground.ClientRectangle.Bottom + GameDefines.GUI_SPACING);
+            powerIcon.Position = new Point(healthIcon.ClientRectangle.Left,
+                                           healthIcon.ClientRectangle.Bottom + GameDefines.GUI_SPACING);
+            priceIcon.Position = new Point(powerIcon.ClientRectangle.Left,
+                                           powerIcon.ClientRectangle.Bottom + GameDefines.GUI_SPACING);
+            maintenanceIcon.Position = new Point(priceIcon.ClientRectangle.Left,
+                                                 priceIcon.ClientRectangle.Bottom + GameDefines.GUI_SPACING);
 
             healthText.ForegroundColour = ForegroundColour;
-            healthText.Position = new Point(healthIcon.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                            healthIcon.ScreenArea.Top);
+            healthText.Position = new Point(healthIcon.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                            healthIcon.ClientRectangle.Top);
             healthText.Text = units[currentUnitIndex].Health.ToString();
 
             powerText.ForegroundColour = ForegroundColour;
-            powerText.Position = new Point(powerIcon.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                           powerIcon.ScreenArea.Top);
+            powerText.Position = new Point(powerIcon.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                           powerIcon.ClientRectangle.Top);
             powerText.Text = units[currentUnitIndex].Power.ToString();
 
             priceText.ForegroundColour = ForegroundColour;
-            priceText.Position = new Point(priceIcon.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                           priceIcon.ScreenArea.Top);
+            priceText.Position = new Point(priceIcon.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                           priceIcon.ClientRectangle.Top);
             priceText.Text = units[currentUnitIndex].Price.ToString();
 
             maintenanceText.ForegroundColour = ForegroundColour;
-            maintenanceText.Position = new Point(maintenanceIcon.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                                 maintenanceIcon.ScreenArea.Top);
+            maintenanceText.Position = new Point(maintenanceIcon.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                                 maintenanceIcon.ClientRectangle.Top);
             maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
 
             previousUnitButton.ForegroundColour = ForegroundColour;
-            previousUnitButton.Position = new Point(unitBackground.ScreenArea.Left - previousUnitButton.ScreenArea.Width - GameDefines.GUI_SPACING,
-                                                    unitBackground.ScreenArea.Top);
+            previousUnitButton.Position = new Point(unitBackground.ClientRectangle.Left - previousUnitButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
+                                                    unitBackground.ClientRectangle.Top);
 
             nextUnitButton.ForegroundColour = ForegroundColour;
-            nextUnitButton.Position = new Point(unitBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                                unitBackground.ScreenArea.Top);
+            nextUnitButton.Position = new Point(unitBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                                unitBackground.ClientRectangle.Top);
 
             addUnitButton.ForegroundColour = ForegroundColour;
-            addUnitButton.Position = new Point(unitBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                               unitBackground.ScreenArea.Bottom - addUnitButton.ScreenArea.Height);
+            addUnitButton.Position = new Point(unitBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                               unitBackground.ClientRectangle.Bottom - addUnitButton.ClientRectangle.Height);
 
             substractUnitButton.ForegroundColour = ForegroundColour;
-            substractUnitButton.Position = new Point(unitBackground.ScreenArea.Left - substractUnitButton.ScreenArea.Width - GameDefines.GUI_SPACING,
-                                                     unitBackground.ScreenArea.Bottom - substractUnitButton.ScreenArea.Height);
+            substractUnitButton.Position = new Point(unitBackground.ClientRectangle.Left - substractUnitButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
+                                                     unitBackground.ClientRectangle.Bottom - substractUnitButton.ClientRectangle.Height);
 
             recruitButton.ForegroundColour = ForegroundColour;
             recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";

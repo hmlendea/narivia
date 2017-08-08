@@ -46,7 +46,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the texture fill mode.
         /// </summary>
         /// <value>The fill mode.</value>
-        public TextureFillMode FillMode { get; set; }
+        public TextureLayout FillMode { get; set; }
 
         /// <summary>
         /// Gets or sets the fade effect.

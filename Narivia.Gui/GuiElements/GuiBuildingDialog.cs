@@ -55,12 +55,12 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/Backgrounds/stone-bricks",
-                FillMode = TextureFillMode.Tile
+                FillMode = TextureLayout.Tile
             };
             holdingBackground = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
-                FillMode = TextureFillMode.Tile,
+                FillMode = TextureLayout.Tile,
                 Size = new Point(100, 100)
             };
             holdingImage = new GuiImage
@@ -220,29 +220,29 @@ namespace Narivia.Gui.GuiElements
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
 
             regionText.ForegroundColour = ForegroundColour;
-            regionText.Position = new Point(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom - regionText.ScreenArea.Height);
+            regionText.Position = new Point(holdingBackground.ClientRectangle.Left, holdingBackground.ClientRectangle.Bottom - regionText.ClientRectangle.Height);
 
-            priceIcon.Position = new Point(holdingBackground.ScreenArea.Left, holdingBackground.ScreenArea.Bottom + GameDefines.GUI_SPACING);
+            priceIcon.Position = new Point(holdingBackground.ClientRectangle.Left, holdingBackground.ClientRectangle.Bottom + GameDefines.GUI_SPACING);
 
             priceText.ForegroundColour = ForegroundColour;
-            priceText.Position = new Point(priceIcon.ScreenArea.Right + GameDefines.GUI_SPACING, priceIcon.ScreenArea.Top);
+            priceText.Position = new Point(priceIcon.ClientRectangle.Right + GameDefines.GUI_SPACING, priceIcon.ClientRectangle.Top);
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
 
             previousHoldingButton.ForegroundColour = ForegroundColour;
-            previousHoldingButton.Position = new Point(holdingBackground.ScreenArea.Left - previousHoldingButton.ScreenArea.Width - GameDefines.GUI_SPACING,
-                                                       holdingBackground.ScreenArea.Top);
+            previousHoldingButton.Position = new Point(holdingBackground.ClientRectangle.Left - previousHoldingButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
+                                                       holdingBackground.ClientRectangle.Top);
 
             nextHoldingButton.ForegroundColour = ForegroundColour;
-            nextHoldingButton.Position = new Point(holdingBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                                   holdingBackground.ScreenArea.Top);
+            nextHoldingButton.Position = new Point(holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                                   holdingBackground.ClientRectangle.Top);
 
             previouseRegionButton.ForegroundColour = ForegroundColour;
-            previouseRegionButton.Position = new Point(holdingBackground.ScreenArea.Left - previouseRegionButton.ScreenArea.Width - GameDefines.GUI_SPACING,
-                                                       holdingBackground.ScreenArea.Bottom - previouseRegionButton.ScreenArea.Height);
+            previouseRegionButton.Position = new Point(holdingBackground.ClientRectangle.Left - previouseRegionButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
+                                                       holdingBackground.ClientRectangle.Bottom - previouseRegionButton.ClientRectangle.Height);
 
             nextRegionButton.ForegroundColour = ForegroundColour;
-            nextRegionButton.Position = new Point(holdingBackground.ScreenArea.Right + GameDefines.GUI_SPACING,
-                                                  holdingBackground.ScreenArea.Bottom - nextRegionButton.ScreenArea.Height);
+            nextRegionButton.Position = new Point(holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                                  holdingBackground.ClientRectangle.Bottom - nextRegionButton.ClientRectangle.Height);
 
             buildButton.ForegroundColour = ForegroundColour;
             buildButton.Position = new Point(Position.X + GameDefines.GUI_SPACING,

@@ -126,12 +126,19 @@ namespace Narivia.Graphics
         /// </summary>
         /// <value>The scale.</value>
         public Vector2 Scale { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the source rectangle.
+        /// </summary>
+        /// <value>The source rectangle.</value>
+        [XmlIgnore]
+        public Rectangle SourceRectangle { get; set; }
 
         /// <summary>
         /// Gets the covered screen area.
         /// </summary>
         /// <value>The covered screen area.</value>
-        public Rectangle ScreenArea
+        public Rectangle ClientRectangle
         {
             get
             {
@@ -144,13 +151,6 @@ namespace Narivia.Graphics
         }
 
         /// <summary>
-        /// Gets or sets the source rectangle.
-        /// </summary>
-        /// <value>The source rectangle.</value>
-        [XmlIgnore]
-        public Rectangle SourceRectangle { get; set; }
-
-        /// <summary>
         /// Gets the texture size.
         /// </summary>
         /// <value>The texture size.</value>
@@ -161,7 +161,7 @@ namespace Narivia.Graphics
         /// Gets or sets the fill mode.
         /// </summary>
         /// <value>The fill mode.</value>
-        public TextureFillMode TextureFillMode { get; set; }
+        public TextureLayout TextureFillMode { get; set; }
 
         /// <summary>
         /// Gets or sets the effects.
@@ -229,7 +229,7 @@ namespace Narivia.Graphics
             Opacity = 1.0f;
             Zoom = 1.0f;
             Scale = Vector2.One;
-            TextureFillMode = TextureFillMode.Stretch;
+            TextureFillMode = TextureLayout.Stretch;
 
             Tint = Color.White;
         }
@@ -338,7 +338,7 @@ namespace Narivia.Graphics
 
             if (!string.IsNullOrEmpty(Text))
             {
-                DrawString(spriteBatch, font, StringUtils.WrapText(font, Text, SpriteSize.X), ScreenArea,
+                DrawString(spriteBatch, font, StringUtils.WrapText(font, Text, SpriteSize.X), ClientRectangle,
                            TextHorizontalAlignment, TextVerticalAlignment, Tint * Opacity);
             }
 
@@ -366,18 +366,18 @@ namespace Narivia.Graphics
                 textureToDraw = ReplaceColour(textureToDraw, Color.Blue, BlueReplacement, 15);
             }
 
-            if (TextureFillMode == TextureFillMode.Stretch)
+            if (TextureFillMode == TextureLayout.Stretch)
             {
-                spriteBatch.Draw(textureToDraw, new Vector2(Position.X + ScreenArea.Width / 2, Position.Y + ScreenArea.Height / 2), SourceRectangle,
+                spriteBatch.Draw(textureToDraw, new Vector2(Position.X + ClientRectangle.Width / 2, Position.Y + ClientRectangle.Height / 2), SourceRectangle,
                     Tint * Opacity, Rotation,
                     origin, Scale * Zoom,
                     SpriteEffects.None, 0.0f);
             }
-            else if (TextureFillMode == TextureFillMode.Tile)
+            else if (TextureFillMode == TextureLayout.Tile)
             {
                 GraphicsDevice gd = GraphicsManager.Instance.Graphics.GraphicsDevice;
 
-                Rectangle rec = new Rectangle(0, 0, ScreenArea.Width, ScreenArea.Height);
+                Rectangle rec = new Rectangle(0, 0, ClientRectangle.Width, ClientRectangle.Height);
 
                 // TODO: Is it ok to End and Begin again? Does it affect performance?
                 spriteBatch.End();
