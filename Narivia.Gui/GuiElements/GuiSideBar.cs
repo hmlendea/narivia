@@ -69,7 +69,7 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/Backgrounds/stone-bricks",
-                FillMode = TextureLayout.Tile
+                TextureLayout = TextureLayout.Tile
             };
 
             factionImage = new GuiFactionFlag

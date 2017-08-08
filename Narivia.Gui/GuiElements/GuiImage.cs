@@ -46,7 +46,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the texture fill mode.
         /// </summary>
         /// <value>The fill mode.</value>
-        public TextureLayout FillMode { get; set; }
+        public TextureLayout TextureLayout { get; set; }
 
         /// <summary>
         /// Gets or sets the fade effect.
@@ -146,7 +146,7 @@ namespace Narivia.Gui.GuiElements
             sprite.SourceRectangle = SourceRectangle;
             sprite.Tint = TintColour;
             sprite.Position = Position;
-            sprite.TextureFillMode = FillMode;
+            sprite.TextureLayout = TextureLayout;
             sprite.FadeEffect = FadeEffect;
             sprite.Active = EffectsActive;
 

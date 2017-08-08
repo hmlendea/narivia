@@ -6,27 +6,27 @@
     public enum TextureLayout
     {
         /// <summary>
-        /// The image is centered within the client rectangle.
+        /// The texture is centered within the client rectangle.
         /// </summary>
         Centre,
 
         /// <summary>
-        /// The image is left-aligned at the top across the client rectangle.
+        /// The texture is left-aligned at the top across the client rectangle.
         /// </summary>
         None,
 
         /// <summary>
-        /// The image is streched across the client rectangle.
+        /// The texture is streched across the client rectangle.
         /// </summary>
         Stretch,
 
         /// <summary>
-        /// The image is tiled across the client rectangle.
+        /// The texture is tiled across the client rectangle.
         /// </summary>
         Tile,
 
         /// <summary>
-        /// The image is enlarged within the client rectangle.
+        /// The texture is enlarged within the client rectangle.
         /// </summary>
         Zoom
     }

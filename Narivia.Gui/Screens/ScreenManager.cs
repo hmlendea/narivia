@@ -97,7 +97,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public void LoadContent()
         {
-            TransitionImage.TextureFillMode = TextureLayout.Tile;
+            TransitionImage.TextureLayout = TextureLayout.Tile;
 
             currentScreen.LoadContent();
             TransitionImage.LoadContent();

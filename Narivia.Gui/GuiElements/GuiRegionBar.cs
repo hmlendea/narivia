@@ -50,7 +50,7 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/Backgrounds/wool",
-                FillMode = TextureLayout.Tile
+                TextureLayout = TextureLayout.Tile
             };
 
             regionNameBackground = new GuiImage

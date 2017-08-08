@@ -55,12 +55,12 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/Backgrounds/stone-bricks",
-                FillMode = TextureLayout.Tile
+                TextureLayout = TextureLayout.Tile
             };
             holdingBackground = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
-                FillMode = TextureLayout.Tile,
+                TextureLayout = TextureLayout.Tile,
                 Size = new Point(100, 100)
             };
             holdingImage = new GuiImage

@@ -85,7 +85,7 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
-                FillMode = TextureLayout.Tile
+                TextureLayout = TextureLayout.Tile
             };
 
             regionsIcon = new GuiImage
