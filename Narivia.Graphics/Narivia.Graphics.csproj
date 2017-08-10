@@ -41,9 +41,11 @@
     <Compile Include="ColourTranslator.cs" />
     <Compile Include="Extensions\ColourExtensions.cs" />
     <Compile Include="Geometry\Mapping\PointMappingExtensions.cs" />
+    <Compile Include="Geometry\Mapping\ScaleMappingExtensions.cs" />
     <Compile Include="Geometry\Mapping\SizeMappingExtensions.cs" />
     <Compile Include="Geometry\Point2D.cs" />
     <Compile Include="Geometry\Rectangle2D.cs" />
+    <Compile Include="Geometry\Scale2D.cs" />
     <Compile Include="Geometry\Size2D.cs" />
     <Compile Include="Mapping\ColourMappingExtensions.cs" />
     <Compile Include="Geometry\Mapping\RectangleMappingExtensions.cs" />

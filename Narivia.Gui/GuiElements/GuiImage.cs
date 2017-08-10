@@ -147,7 +147,7 @@ namespace Narivia.Gui.GuiElements
 
             if (!sprite.SourceRectangle.IsEmpty)
             {
-                sprite.Scale = new Vector2((float)Size.Width / sprite.SourceRectangle.Width,
+                sprite.Scale = new Scale2D((float)Size.Width / sprite.SourceRectangle.Width,
                                            (float)Size.Height / sprite.SourceRectangle.Height);
             }
         }

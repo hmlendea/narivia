@@ -124,7 +124,7 @@ namespace Narivia.Graphics
         /// Gets or sets the scale.
         /// </summary>
         /// <value>The scale.</value>
-        public Vector2 Scale { get; set; }
+        public Scale2D Scale { get; set; }
         
         /// <summary>
         /// Gets or sets the source rectangle.
@@ -144,8 +144,8 @@ namespace Narivia.Graphics
                 return new Rectangle2D(
                     Location.X,
                     Location.Y,
-                    (int)(SourceRectangle.Width * Scale.X),
-                    (int)(SourceRectangle.Height * Scale.Y));
+                    (int)(SourceRectangle.Width * Scale.Horizontal),
+                    (int)(SourceRectangle.Height * Scale.Vertical));
             }
         }
 
@@ -227,7 +227,7 @@ namespace Narivia.Graphics
 
             Opacity = 1.0f;
             Zoom = 1.0f;
-            Scale = Vector2.One;
+            Scale = Scale2D.One;
             TextureLayout = TextureLayout.Stretch;
 
             Tint = Colour.White;
@@ -354,7 +354,7 @@ namespace Narivia.Graphics
             {
                 spriteBatch.Draw(textureToDraw, new Vector2(Location.X + ClientRectangle.Width / 2, Location.Y + ClientRectangle.Height / 2), SourceRectangle.ToXnaRectangle(),
                     Tint.ToXnaColor() * Opacity, Rotation,
-                    origin, Scale * Zoom,
+                    origin, Scale.ToXnaVector2() * Zoom,
                     SpriteEffects.None, 0.0f);
             }
             else if (TextureLayout == TextureLayout.Tile)

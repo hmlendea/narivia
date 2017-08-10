@@ -128,7 +128,7 @@ namespace Narivia.Gui.Screens
             }
 
             Size = SettingsManager.Instance.Resolution;
-            TransitionImage.Scale = new Vector2(Size.Width, Size.Height);
+            TransitionImage.Scale = new Scale2D(Size);
         }
 
         /// <summary>

@@ -106,10 +106,12 @@ namespace Narivia.Gui.Screens
 
         void AlignItems()
         {
-            BackgroundImage.Scale = Vector2.One * Math.Max(ScreenManager.Instance.Size.Width, ScreenManager.Instance.Size.Height) /
-                                                  Math.Max(BackgroundImage.SpriteSize.Width, BackgroundImage.SpriteSize.Height);
-            OverlayImage.Scale = new Vector2(ScreenManager.Instance.Size.Width / OverlayImage.SpriteSize.Width,
-                                               ScreenManager.Instance.Size.Height / OverlayImage.SpriteSize.Height);
+            float bgScale = Math.Max(ScreenManager.Instance.Size.Width, ScreenManager.Instance.Size.Height) /
+                            Math.Max(BackgroundImage.SpriteSize.Width, BackgroundImage.SpriteSize.Height);
+
+            BackgroundImage.Scale = new Scale2D(bgScale, bgScale);
+            OverlayImage.Scale = new Scale2D(ScreenManager.Instance.Size.Width / OverlayImage.SpriteSize.Width,
+                                             ScreenManager.Instance.Size.Height / OverlayImage.SpriteSize.Height);
 
             BackgroundImage.Location = new Point2D((ScreenManager.Instance.Size.Width - BackgroundImage.ClientRectangle.Width) / 2,
                                                    (ScreenManager.Instance.Size.Height - BackgroundImage.ClientRectangle.Height) / 2);
