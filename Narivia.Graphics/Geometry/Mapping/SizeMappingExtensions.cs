@@ -7,10 +7,10 @@ namespace Narivia.Graphics.Geometry.Mapping
     {
         // >>> TO NARIVIA
 
-        public static Size2D ToPoint2D(this SystemSize source)
+        public static Size2D ToSize2D(this SystemSize source)
         => new Size2D(source.Width, source.Height);
 
-        public static Size2D ToPoint2D(this XnaPoint source)
+        public static Size2D ToSize2D(this XnaPoint source)
         => new Size2D(source.X, source.Y);
 
         // >>> TO SYSTEM
