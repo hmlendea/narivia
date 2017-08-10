@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.Graphics;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
@@ -21,22 +24,22 @@ namespace Narivia.Gui.GuiElements
         public string Id { get; set; }
         
         /// <summary>
-        /// Gets the position of this <see cref="GuiElement"/>.
+        /// Gets the location of this <see cref="GuiElement"/>.
         /// </summary>
-        /// <value>The position.</value>
-        public Point Position { get; set; }
+        /// <value>The location.</value>
+        public Point2D Location { get; set; }
 
         /// <summary>
         /// Gets the size of this <see cref="GuiElement"/>.
         /// </summary>
         /// <value>The size.</value>
-        public virtual Point Size { get; set; }
+        public Size2D Size { get; set; }
 
         /// <summary>
         /// Gets the screen area covered by this <see cref="GuiElement"/>.
         /// </summary>
         /// <value>The screen area.</value>
-        public Rectangle ClientRectangle => new Rectangle(Position.X, Position.Y, Size.X, Size.Y);
+        public Rectangle2D ClientRectangle => new Rectangle2D(Location, Size);
 
         /// <summary>
         /// Gets or sets the opacity.
@@ -69,13 +72,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the background colour.
         /// </summary>
         /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
+        public Colour BackgroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the foreground colour.
         /// </summary>
         /// <value>The foreground colour.</value>
-        public Color ForegroundColour { get; set; }
+        public Colour ForegroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="GuiElement"/> is enabled.
@@ -213,19 +216,19 @@ namespace Narivia.Gui.GuiElements
         public event MouseEventHandler MouseMoved;
 
         /// <summary>
-        /// Occurs when the Position property value changes.
+        /// Occurs when the Location property value changes.
         /// </summary>
-        public event EventHandler PositionChanged;
+        public event EventHandler LocationChanged;
 
         /// <summary>
         /// Occurs when the Size property value changes.
         /// </summary>
         public event EventHandler SizeChanged;
 
-        Color _oldBackgroundColour;
-        Color _oldForegroundColour;
-        Point _oldPosition;
-        Point _oldSize;
+        Colour _oldBackgroundColour;
+        Colour _oldForegroundColour;
+        Point2D _oldLocation;
+        Size2D _oldSize;
         float _opacity;
 
         /// <summary>
@@ -237,8 +240,8 @@ namespace Narivia.Gui.GuiElements
             Visible = true;
             Opacity = 1.0f;
 
-            BackgroundColour = Color.DarkRed;
-            ForegroundColour = Color.Gold;
+            BackgroundColour = Colour.DarkRed;
+            ForegroundColour = Colour.Gold;
 
             Id = Guid.NewGuid().ToString();
 
@@ -394,9 +397,9 @@ namespace Narivia.Gui.GuiElements
                 OnForegroundColourChanged(this, null);
             }
 
-            if (_oldPosition != Position)
+            if (_oldLocation != Location)
             {
-                OnPositionChanged(this, null);
+                OnLocationChanged(this, null);
             }
 
             if (_oldSize != Size)
@@ -410,7 +413,7 @@ namespace Narivia.Gui.GuiElements
             _oldBackgroundColour = BackgroundColour;
             _oldForegroundColour = ForegroundColour;
 
-            _oldPosition = Position;
+            _oldLocation = Location;
             _oldSize = Size;
         }
 
@@ -439,13 +442,13 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public void HandleInput()
         {
-            Vector2 mousePos = InputManager.Instance.MousePosition;
-
-            if (Enabled && Visible && ClientRectangle.Contains(mousePos) &&
+            if (Enabled && Visible && ClientRectangle.Contains(InputManager.Instance.MouseLocation.ToPoint2D()) &&
                 !InputManager.Instance.MouseButtonInputHandled &&
                 InputManager.Instance.IsLeftMouseButtonClicked())
             {
-                MouseButtonEventArgs e = new MouseButtonEventArgs(MouseButton.LeftButton, MouseButtonState.Pressed, mousePos);
+                MouseButtonEventArgs e = new MouseButtonEventArgs(MouseButton.LeftButton,
+                                                                  MouseButtonState.Pressed,
+                                                                  InputManager.Instance.MouseLocation);
 
                 GuiManager.Instance.FocusElement(this);
                 OnClicked(this, e);
@@ -577,13 +580,13 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
-        /// Raised by the PositionChanged event.
+        /// Raised by the LocationChanged event.
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        protected virtual void OnPositionChanged(object sender, EventArgs e)
+        protected virtual void OnLocationChanged(object sender, EventArgs e)
         {
-            PositionChanged?.Invoke(this, e);
+            LocationChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -636,7 +639,7 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            if (!ClientRectangle.Contains(e.MousePosition))
+            if (!ClientRectangle.Contains(e.Location.ToPoint2D()))
             {
                 return;
             }
@@ -656,27 +659,27 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            if (e.CurrentMousePosition == e.PreviousMousePosition)
+            if (e.Location == e.PreviousLocation)
             {
                 return;
             }
 
-            if (!ClientRectangle.Contains(e.CurrentMousePosition) &&
-                !ClientRectangle.Contains(e.PreviousMousePosition))
+            if (!ClientRectangle.Contains(e.Location.ToPoint2D()) &&
+                !ClientRectangle.Contains(e.PreviousLocation.ToPoint2D()))
             {
                 return;
             }
 
             OnMouseMoved(sender, e);
 
-            if (ClientRectangle.Contains(e.CurrentMousePosition) &&
-                !ClientRectangle.Contains(e.PreviousMousePosition))
+            if (ClientRectangle.Contains(e.Location.ToPoint2D()) &&
+                !ClientRectangle.Contains(e.PreviousLocation.ToPoint2D()))
             {
                 OnMouseEntered(sender, e);
             }
 
-            if (!ClientRectangle.Contains(e.CurrentMousePosition) &&
-                ClientRectangle.Contains(e.PreviousMousePosition))
+            if (!ClientRectangle.Contains(e.Location.ToPoint2D()) &&
+                ClientRectangle.Contains(e.PreviousLocation.ToPoint2D()))
             {
                 OnMouseLeft(sender, e);
             }

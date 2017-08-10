@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Input;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
@@ -12,10 +14,10 @@ namespace Narivia.Gui
     public class Cursor
     {
         /// <summary>
-        /// Gets or sets the position.
+        /// Gets or sets the location.
         /// </summary>
-        /// <value>The position.</value>
-        public Point Position { get; set; }
+        /// <value>The location.</value>
+        public Point2D Location { get; set; }
 
         public MouseButtonState State { get; private set; }
 
@@ -42,12 +44,12 @@ namespace Narivia.Gui
 
             idleSprite.AnimationEffect = new AnimationEffect
             {
-                FrameAmount = new Vector2(8, 1),
+                FrameAmount = new Point2D(8, 1).ToXnaPoint(),
                 SwitchFrame = 150
             };
             clickSprite.AnimationEffect = new AnimationEffect
             {
-                FrameAmount = new Vector2(8, 1),
+                FrameAmount = new Point2D(8, 1).ToXnaPoint(),
                 SwitchFrame = 150
             };
 
@@ -104,8 +106,8 @@ namespace Narivia.Gui
 
         void SetChildrenProperites()
         {
-            idleSprite.Position = Position;
-            clickSprite.Position = Position;
+            idleSprite.Location = Location.ToXnaPoint();
+            clickSprite.Location = Location.ToXnaPoint();
         }
 
         void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
@@ -126,7 +128,7 @@ namespace Narivia.Gui
 
         void InputManager_OnMouseMoved(object sender, MouseEventArgs e)
         {
-            Position = e.CurrentMousePosition;
+            Location = e.Location.ToPoint2D();
         }
     }
 }

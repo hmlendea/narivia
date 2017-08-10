@@ -1,7 +1,6 @@
-using Microsoft.Xna.Framework;
-
 using Narivia.Audio;
 using Narivia.Input.Events;
+using Narivia.Graphics.Geometry;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Settings;
 
@@ -12,12 +11,6 @@ namespace Narivia.Gui.GuiElements
     /// </summary>
     public class GuiNotificationIndicator : GuiElement
     {
-        /// <summary>
-        /// Gets the size.
-        /// </summary>
-        /// <value>The size.</value>
-        public override Point Size => new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
-
         /// <summary>
         /// Gets or sets the icon.
         /// </summary>
@@ -35,8 +28,8 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/notification_small",
-                SourceRectangle = new Rectangle(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE * 3,
-                                                GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                SourceRectangle = new Rectangle2D(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE * 3,
+                                                  GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
 
             icon = new GuiImage
@@ -55,16 +48,16 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            background.Position = Position;
-            icon.Position = new Point(Position.X + 6, Position.Y + 6);
+            background.Location = Location;
+            icon.Location = new Point2D(Location.X + 6, Location.Y + 6);
         }
 
-        Rectangle CalculateIconSourceRectangle(NotificationIcon notificationIcon)
+        Rectangle2D CalculateIconSourceRectangle(NotificationIcon notificationIcon)
         {
-            return new Rectangle((int)notificationIcon % 8 * 20,
-                                 (int)notificationIcon / 8 * 20,
-                                 20,
-                                 20);
+            return new Rectangle2D((int)notificationIcon % 8 * 20,
+                                   (int)notificationIcon / 8 * 20,
+                                   20,
+                                   20);
         }
 
         /// <summary>

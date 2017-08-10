@@ -171,13 +171,13 @@ namespace Narivia.GameLogic.GameManagers
         => world.FactionBordersRegion(factionId, regionId);
 
         /// <summary>
-        /// Returns the faction identifier at the given position.
+        /// Returns the faction identifier at the given location.
         /// </summary>
         /// <returns>The faction identifier.</returns>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
-        public string FactionIdAtPosition(int x, int y)
-        => world.FactionIdAtPosition(x, y);
+        public string FactionIdAtLocation(int x, int y)
+        => world.FactionIdAtLocation(x, y);
 
         /// <summary>
         /// Transfers the specified region to the specified faction.

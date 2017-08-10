@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics.Enumerations;
+using Narivia.Graphics.Geometry;
 using Narivia.Common.Extensions;
 using Narivia.Input.Events;
 using Narivia.Models;
@@ -61,7 +62,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "ScreenManager/FillImage",
                 TextureLayout = TextureLayout.Tile,
-                Size = new Point(100, 100)
+                Size = new Size2D(100, 100)
             };
             holdingImage = new GuiImage
             {
@@ -70,23 +71,24 @@ namespace Narivia.Gui.GuiElements
 
             holdingText = new GuiText
             {
-                Size = new Point(holdingBackground.Size.X, 18),
+                Size = new Size2D(holdingBackground.Size.Width, 18),
                 FontName = "InfoBarFont"
             };
             regionText = new GuiText
             {
-                Size = new Point(holdingBackground.Size.X, 18),
+                Size = new Size2D(holdingBackground.Size.Height, 18),
                 FontName = "InfoBarFont"
             };
 
             priceIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle(16, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(16, 0, 16, 16)
             };
             priceText = new GuiText
             {
-                Size = new Point(priceIcon.SourceRectangle.Width * 2, priceIcon.SourceRectangle.Height),
+                Size = new Size2D(priceIcon.SourceRectangle.Width * 2,
+                                  priceIcon.SourceRectangle.Height),
                 FontName = "InfoBarFont",
                 VerticalAlignment = VerticalAlignment.Left
             };
@@ -94,32 +96,32 @@ namespace Narivia.Gui.GuiElements
             previousHoldingButton = new GuiButton
             {
                 Text = "<",
-                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             nextHoldingButton = new GuiButton
             {
                 Text = ">",
-                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             previouseRegionButton = new GuiButton
             {
                 Text = "<",
-                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             nextRegionButton = new GuiButton
             {
                 Text = ">",
-                Size = new Point(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
             buildButton = new GuiButton
             {
                 Text = "Build",
-                Size = new Point(GameDefines.GUI_TILE_SIZE * 4, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 4, GameDefines.GUI_TILE_SIZE)
             };
             cancelButton = new GuiButton
             {
                 Text = "Cancel",
-                Size = new Point(GameDefines.GUI_TILE_SIZE * 2, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 2, GameDefines.GUI_TILE_SIZE)
             };
 
             Children.Add(background);
@@ -204,53 +206,55 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            background.Position = Position;
+            background.Location = Location;
             background.Size = Size;
 
-            holdingBackground.Position = new Point(Position.X + (Size.X - holdingBackground.Size.X) / 2,
-                                                   Position.Y + holdingText.Size.Y + GameDefines.GUI_SPACING);
+            holdingBackground.Location = new Point2D(Location.X + (Size.Width - holdingBackground.Size.Width) / 2,
+                                                   Location.Y + holdingText.Size.Height + GameDefines.GUI_SPACING);
             holdingBackground.TintColour = BackgroundColour;
 
-            holdingImage.Position = new Point(holdingBackground.Position.X + (holdingBackground.Size.X - holdingImage.SourceRectangle.Width) / 2,
-                                              holdingBackground.Position.Y + (holdingBackground.Size.Y - holdingImage.SourceRectangle.Height) / 2);
-            holdingImage.SourceRectangle = new Rectangle(64 * currentHoldingTypeIndex, 0, 64, 64);
+            holdingImage.Location = new Point2D(holdingBackground.Location.X + (holdingBackground.Size.Width - holdingImage.SourceRectangle.Width) / 2,
+                                              holdingBackground.Location.Y + (holdingBackground.Size.Height - holdingImage.SourceRectangle.Height) / 2);
+            holdingImage.SourceRectangle = new Rectangle2D(64 * currentHoldingTypeIndex, 0, 64, 64);
 
             holdingText.ForegroundColour = ForegroundColour;
-            holdingText.Position = holdingBackground.Position;
+            holdingText.Location = holdingBackground.Location;
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
 
             regionText.ForegroundColour = ForegroundColour;
-            regionText.Position = new Point(holdingBackground.ClientRectangle.Left, holdingBackground.ClientRectangle.Bottom - regionText.ClientRectangle.Height);
+            regionText.Location = new Point2D(holdingBackground.ClientRectangle.Left,
+                                              holdingBackground.ClientRectangle.Bottom - regionText.ClientRectangle.Height);
 
-            priceIcon.Position = new Point(holdingBackground.ClientRectangle.Left, holdingBackground.ClientRectangle.Bottom + GameDefines.GUI_SPACING);
+            priceIcon.Location = new Point2D(holdingBackground.ClientRectangle.Left,
+                                             holdingBackground.ClientRectangle.Bottom + GameDefines.GUI_SPACING);
 
             priceText.ForegroundColour = ForegroundColour;
-            priceText.Position = new Point(priceIcon.ClientRectangle.Right + GameDefines.GUI_SPACING, priceIcon.ClientRectangle.Top);
+            priceText.Location = new Point2D(priceIcon.ClientRectangle.Right + GameDefines.GUI_SPACING, priceIcon.ClientRectangle.Top);
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
 
             previousHoldingButton.ForegroundColour = ForegroundColour;
-            previousHoldingButton.Position = new Point(holdingBackground.ClientRectangle.Left - previousHoldingButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
-                                                       holdingBackground.ClientRectangle.Top);
+            previousHoldingButton.Location = new Point2D(holdingBackground.ClientRectangle.Left - previousHoldingButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
+                                                         holdingBackground.ClientRectangle.Top);
 
             nextHoldingButton.ForegroundColour = ForegroundColour;
-            nextHoldingButton.Position = new Point(holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
-                                                   holdingBackground.ClientRectangle.Top);
+            nextHoldingButton.Location = new Point2D(holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                                     holdingBackground.ClientRectangle.Top);
 
             previouseRegionButton.ForegroundColour = ForegroundColour;
-            previouseRegionButton.Position = new Point(holdingBackground.ClientRectangle.Left - previouseRegionButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
-                                                       holdingBackground.ClientRectangle.Bottom - previouseRegionButton.ClientRectangle.Height);
+            previouseRegionButton.Location = new Point2D(holdingBackground.ClientRectangle.Left - previouseRegionButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
+                                                         holdingBackground.ClientRectangle.Bottom - previouseRegionButton.ClientRectangle.Height);
 
             nextRegionButton.ForegroundColour = ForegroundColour;
-            nextRegionButton.Position = new Point(holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
-                                                  holdingBackground.ClientRectangle.Bottom - nextRegionButton.ClientRectangle.Height);
+            nextRegionButton.Location = new Point2D(holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                                    holdingBackground.ClientRectangle.Bottom - nextRegionButton.ClientRectangle.Height);
 
             buildButton.ForegroundColour = ForegroundColour;
-            buildButton.Position = new Point(Position.X + GameDefines.GUI_SPACING,
-                                             Position.Y + Size.Y - buildButton.Size.Y - GameDefines.GUI_SPACING);
+            buildButton.Location = new Point2D(Location.X + GameDefines.GUI_SPACING,
+                                               Location.Y + Size.Height - buildButton.Size.Height - GameDefines.GUI_SPACING);
 
             cancelButton.ForegroundColour = ForegroundColour;
-            cancelButton.Position = new Point(Position.X + Size.X - cancelButton.Size.X - GameDefines.GUI_SPACING,
-                                              Position.Y + Size.Y - buildButton.Size.Y - GameDefines.GUI_SPACING);
+            cancelButton.Location = new Point2D(Location.X + Size.Width - cancelButton.Size.Width - GameDefines.GUI_SPACING,
+                                                Location.Y + Size.Height - buildButton.Size.Height - GameDefines.GUI_SPACING);
         }
 
         void SelectHolding(int index)

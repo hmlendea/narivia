@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Narivia.Input;
+using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 
@@ -150,7 +149,7 @@ namespace Narivia.Gui.GuiElements
         {
             base.OnMouseButtonPressed(sender, e);
 
-            if (!ClientRectangle.Contains(e.MousePosition))
+            if (!ClientRectangle.Contains(e.Location.ToPoint2D()))
             {
                 return;
             }

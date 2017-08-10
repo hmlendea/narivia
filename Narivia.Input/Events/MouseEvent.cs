@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Drawing;
 
 namespace Narivia.Input.Events
 {
@@ -13,25 +13,25 @@ namespace Narivia.Input.Events
     public class MouseEventArgs
     {
         /// <summary>
-        /// Gets current position of the mouse.
+        /// Gets current location of the mouse.
         /// </summary>
-        /// <value>The current mouse position.</value>
-        public Point CurrentMousePosition { get; private set; }
+        /// <value>The current mouse location.</value>
+        public Point Location { get; private set; }
 
         /// <summary>
-        /// Gets previous position of the mouse.
+        /// Gets previous location of the mouse.
         /// </summary>
-        /// <value>The previous mouse position.</value>
-        public Point PreviousMousePosition { get; private set; }
+        /// <value>The previous mouse location.</value>
+        public Point PreviousLocation { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseEventArgs"/> class.
         /// </summary>
-        /// <param name="currentMousePosition">Mouse position.</param>
-        public MouseEventArgs(Point currentMousePosition, Point previousMousePosition)
+        /// <param name="location">Mouse location.</param>
+        public MouseEventArgs(Point location, Point previousLocation)
         {
-            CurrentMousePosition = currentMousePosition;
-            PreviousMousePosition = previousMousePosition;
+            Location = location;
+            PreviousLocation = previousLocation;
         }
     }
 }

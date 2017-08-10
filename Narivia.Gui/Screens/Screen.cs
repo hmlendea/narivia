@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Mapping;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Input;
@@ -37,13 +39,13 @@ namespace Narivia.Gui.Screens
         /// Gets or sets the background colour.
         /// </summary>
         /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
+        public Colour BackgroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the background colour.
         /// </summary>
         /// <value>The background colour.</value>
-        public Color ForegroundColour { get; set; }
+        public Colour ForegroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the screen arguments.
@@ -76,7 +78,7 @@ namespace Narivia.Gui.Screens
 
             XmlPath = Path.Combine("Screens", $"{Type.Name}.xml");
             
-            BackgroundColour = Color.Black;
+            BackgroundColour = Colour.Black;
         }
 
         /// <summary>
@@ -84,7 +86,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public virtual void LoadContent()
         {
-            GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(BackgroundColour);
+            GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(BackgroundColour.ToXnaColor());
             
             GuiManager.Instance.LoadContent();
 
@@ -116,7 +118,7 @@ namespace Narivia.Gui.Screens
         /// <param name="spriteBatch">Sprite batch.</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(BackgroundColour);
+            GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(BackgroundColour.ToXnaColor());
             GuiManager.Instance.Draw(spriteBatch);
         }
 
@@ -128,7 +130,7 @@ namespace Narivia.Gui.Screens
         /// <param name="type">Type.</param>
         /// <param name="style">Style.</param>
         /// <param name="size">Size.</param>
-        public void ShowNotification(string title, string text, NotificationType type, NotificationStyle style, Point size)
+        public void ShowNotification(string title, string text, NotificationType type, NotificationStyle style, Size2D size)
         {
             GuiNotificationDialog notification = new GuiNotificationDialog
             {
@@ -136,8 +138,8 @@ namespace Narivia.Gui.Screens
                 Text = text,
                 Type = type,
                 Style = style,
-                Position = new Point((ScreenManager.Instance.Size.X - size.X) / 2,
-                                     (ScreenManager.Instance.Size.Y - size.Y) / 2),
+                Location = new Point2D((ScreenManager.Instance.Size.Width - size.Width) / 2,
+                                       (ScreenManager.Instance.Size.Height - size.Height) / 2),
                 Size = size
             };
 

@@ -8,7 +8,7 @@ namespace Narivia.Graphics.Extensions
     /// <summary>
     /// Colour extensions.
     /// </summary>
-    public static class ColorExtensions
+    public static class ColourExtensions
     {
         /// <summary>
         /// Checks wether the current colour is similar to another.

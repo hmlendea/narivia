@@ -116,12 +116,12 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Returns the faction identifier at the given position.
+        /// Returns the faction identifier at the given location.
         /// </summary>
         /// <returns>The faction identifier.</returns>
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
-        public string FactionIdAtPosition(int x, int y)
+        public string FactionIdAtLocation(int x, int y)
         {
             return regions[world.Tiles[x, y].RegionId].FactionId;
         }

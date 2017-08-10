@@ -46,7 +46,7 @@ namespace Narivia.Gui.GuiElements
             text.Text = Text;
             text.ForegroundColour = ForegroundColour;
             text.BackgroundColour = BackgroundColour;
-            text.Position = Position;
+            text.Location = Location;
             text.Size = Size;
         }
     }

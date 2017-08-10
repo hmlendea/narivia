@@ -1,11 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
-
-using Microsoft.Xna.Framework;
-
-using Narivia.Graphics.Enumerations;
-using Narivia.Input.Events;
+﻿using Narivia.Graphics.Enumerations;
+using Narivia.Graphics.Geometry;
 using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
@@ -28,7 +22,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the source rectangle.
         /// </summary>
         /// <value>The source rectangle.</value>
-        public Rectangle SourceRectangle { get; set; }
+        public Rectangle2D SourceRectangle { get; set; }
 
         /// <summary>
         /// Gets or sets the spacing.
@@ -73,13 +67,13 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             icon.ContentFile = ContentFile;
-            icon.Position = Position;
-            icon.Size = new Point(Size.Y, Size.Y);
+            icon.Location = Location;
+            icon.Size = new Size2D(Size.Height, Size.Height);
             icon.SourceRectangle = SourceRectangle;
 
             text.Text = Text;
-            text.Position = new Point(icon.ClientRectangle.Right + Spacing, Position.Y);
-            text.Size = new Point(Size.X - Size.Y - Spacing, Size.Y);
+            text.Location = new Point2D(icon.ClientRectangle.Right + Spacing, Location.Y);
+            text.Size = new Size2D(Size.Width - Size.Height - Spacing, Size.Height);
         }
     }
 }

@@ -25,13 +25,13 @@ namespace Narivia.Graphics.CustomSpriteEffects
         /// Gets or sets the current frame.
         /// </summary>
         /// <value>The current frame.</value>
-        public Vector2 CurrentFrame { get; set; }
+        public Point CurrentFrame { get; set; }
 
         /// <summary>
         /// Gets or sets the frame amount.
         /// </summary>
         /// <value>The frame amount.</value>
-        public Vector2 FrameAmount { get; set; }
+        public Point FrameAmount { get; set; }
 
         /// <summary>
         /// Gets the width of the frame.
@@ -52,8 +52,8 @@ namespace Narivia.Graphics.CustomSpriteEffects
         /// </summary>
         public AnimationEffect()
         {
-            FrameAmount = Vector2.Zero;
-            CurrentFrame = Vector2.Zero;
+            FrameAmount = Point.Zero;
+            CurrentFrame = Point.Zero;
             SwitchFrame = 100;
             FrameCounter = 0;
         }
@@ -83,7 +83,7 @@ namespace Narivia.Graphics.CustomSpriteEffects
         {
             base.Update(gameTime);
 
-            Vector2 newFrame = CurrentFrame;
+            Point newFrame = CurrentFrame;
 
             if (Sprite.Active)
             {
@@ -108,8 +108,8 @@ namespace Narivia.Graphics.CustomSpriteEffects
             CurrentFrame = newFrame;
 
             Sprite.SourceRectangle = new Rectangle(
-                (int)CurrentFrame.X * FrameWidth,
-                (int)CurrentFrame.Y * FrameHeight,
+                CurrentFrame.X * FrameWidth,
+                CurrentFrame.Y * FrameHeight,
                 FrameWidth,
                 FrameHeight);
         }

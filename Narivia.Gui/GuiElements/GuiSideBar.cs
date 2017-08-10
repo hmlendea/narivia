@@ -1,10 +1,10 @@
 using System.Xml.Serialization;
 
-using Microsoft.Xna.Framework;
-
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics.Enumerations;
-using Narivia.Graphics.Extensions;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Geometry.Mapping;
+using Narivia.Graphics.Mapping;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Models;
 using Narivia.Settings;
@@ -74,20 +74,20 @@ namespace Narivia.Gui.GuiElements
 
             factionImage = new GuiFactionFlag
             {
-                Size = new Point(128, 128)
+                Size = new Size2D(128, 128)
             };
 
             factionText = new GuiText
             {
                 FontName = "SideBarFont",
-                Size = new Point(Size.X * 2 / 3, 48),
+                Size = new Size2D(Size.Width * 2 / 3, 48),
                 VerticalAlignment = VerticalAlignment.Left
             };
 
             turnText = new GuiText
             {
                 FontName = "SideBarFont",
-                Size = new Point(Size.X / 3, 48),
+                Size = new Size2D(Size.Width / 3, 48),
                 VerticalAlignment = VerticalAlignment.Right
             };
 
@@ -95,25 +95,25 @@ namespace Narivia.Gui.GuiElements
             {
                 Text = "Stats",
                 ForegroundColour = ForegroundColour,
-                Size = new Point(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
             };
             RecruitButton = new GuiButton
             {
                 Text = "Recruit",
                 ForegroundColour = ForegroundColour,
-                Size = new Point(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
             };
             BuildButton = new GuiButton
             {
                 Text = "Build",
                 ForegroundColour = ForegroundColour,
-                Size = new Point(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
             };
             TurnButton = new GuiButton
             {
                 Text = "End Turn",
                 ForegroundColour = ForegroundColour,
-                Size = new Point(GameDefines.GUI_TILE_SIZE * 7, GameDefines.GUI_TILE_SIZE),
+                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 7, GameDefines.GUI_TILE_SIZE),
                 Style = ButtonStyle.Narivian
             };
 
@@ -145,22 +145,24 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            background.Position = Position;
+            background.Location = Location;
             background.Size = Size;
 
-            factionText.Position = Position + new Point(margins, margins);
-            turnText.Position = Position + new Point(Size.X - turnText.ClientRectangle.Width - margins, margins);
+            factionText.Location = new Point2D(Location.X + margins, Location.Y + margins);
+            turnText.Location = new Point2D(Location.X + Size.Width - turnText.ClientRectangle.Width - margins,
+                                            Location.Y + margins);
 
-            factionImage.Position = Position + new Point((Size.X - factionImage.ClientRectangle.Width) / 2, factionText.ClientRectangle.Bottom + margins);
+            factionImage.Location = new Point2D(Location.X + (Size.Width - factionImage.ClientRectangle.Width) / 2,
+                                                Location.Y + factionText.ClientRectangle.Bottom + margins);
 
-            TurnButton.Position = Position + new Point((Size.X - TurnButton.Size.X) / 2,
-                                                       (Size.Y - TurnButton.Size.Y - margins));
-            StatsButton.Position = Position + new Point((Size.X - StatsButton.Size.X) / 2,
-                                                        (Size.Y - StatsButton.Size.Y - RecruitButton.Size.Y - margins) / 2);
-            RecruitButton.Position = Position + new Point((Size.X - RecruitButton.Size.X - BuildButton.Size.X - margins * 5) / 2,
-                                                          (Size.Y + StatsButton.Size.Y - RecruitButton.Size.Y + margins) / 2);
-            BuildButton.Position = Position + new Point((Size.X + RecruitButton.Size.X + margins * 5 - BuildButton.Size.X) / 2,
-                                                        (Size.Y + RecruitButton.Size.Y - BuildButton.Size.Y + margins) / 2);
+            TurnButton.Location = new Point2D(Location.X + (Size.Width - TurnButton.Size.Width) / 2,
+                                              Location.Y + (Size.Height - TurnButton.Size.Height - margins));
+            StatsButton.Location = new Point2D(Location.X + (Size.Width - StatsButton.Size.Width) / 2,
+                                               Location.Y + (Size.Height - StatsButton.Size.Height - RecruitButton.Size.Height - margins) / 2);
+            RecruitButton.Location = new Point2D(Location.X + (Size.Width - RecruitButton.Size.Width - BuildButton.Size.Width - margins * 5) / 2,
+                                                 Location.Y + (Size.Height + StatsButton.Size.Height - RecruitButton.Size.Height + margins) / 2);
+            BuildButton.Location = new Point2D(Location.X + (Size.Width + RecruitButton.Size.Width + margins * 5 - BuildButton.Size.Width) / 2,
+                                               Location.Y + (Size.Height + RecruitButton.Size.Height - BuildButton.Size.Height + margins) / 2);
 
             factionText.Text = game.GetFaction(FactionId).Name;
             factionText.ForegroundColour = ForegroundColour;
@@ -171,10 +173,10 @@ namespace Narivia.Gui.GuiElements
             factionImage.Layer2 = factionFlag.Layer2;
             factionImage.Emblem = factionFlag.Emblem;
             factionImage.Skin = factionFlag.Skin;
-            factionImage.BackgroundColour = factionFlag.BackgroundColour.ToXnaColor();
-            factionImage.Layer1Colour = factionFlag.Layer1Colour.ToXnaColor();
-            factionImage.Layer2Colour = factionFlag.Layer2Colour.ToXnaColor();
-            factionImage.EmblemColour = factionFlag.EmblemColour.ToXnaColor();
+            factionImage.BackgroundColour = factionFlag.BackgroundColour.ToColour();
+            factionImage.Layer1Colour = factionFlag.Layer1Colour.ToColour();
+            factionImage.Layer2Colour = factionFlag.Layer2Colour.ToColour();
+            factionImage.EmblemColour = factionFlag.EmblemColour.ToColour();
 
             turnText.Text = $"Turn: {game.Turn}";
             turnText.ForegroundColour = ForegroundColour;

@@ -1,9 +1,8 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-
 using Narivia.Graphics;
+using Narivia.Graphics.Geometry;
 using Narivia.Common.Helpers;
 using Narivia.Logging;
 using Narivia.Logging.Enumerations;
@@ -42,19 +41,10 @@ namespace Narivia.Settings
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SettingsManager"/> class.
-        /// </summary>
-        public SettingsManager()
-        {
-            Resolution = new Point(1280, 720);
-            Fullscreen = false;
-        }
-
-        /// <summary>
         /// Gets or sets the resolution.
         /// </summary>
         /// <value>The resolution.</value>
-        public Point Resolution { get; set; }
+        public Size2D Resolution { get; set; }
 
         /// <summary>
         /// Gets or sets the fullscreen mode.
@@ -67,6 +57,15 @@ namespace Narivia.Settings
         /// </summary>
         /// <value>The debug mode.</value>
         public bool DebugMode { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SettingsManager"/> class.
+        /// </summary>
+        public SettingsManager()
+        {
+            Resolution = new Size2D(1280, 720);
+            Fullscreen = false;
+        }
 
         /// <summary>
         /// Loads the settings.
@@ -117,11 +116,11 @@ namespace Narivia.Settings
                 graphicsChanged = true;
             }
 
-            if (GraphicsManager.Instance.Graphics.PreferredBackBufferWidth != Resolution.X ||
-                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight != Resolution.Y)
+            if (GraphicsManager.Instance.Graphics.PreferredBackBufferWidth != Resolution.Width ||
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight != Resolution.Height)
             {
-                GraphicsManager.Instance.Graphics.PreferredBackBufferWidth = Resolution.X;
-                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight = Resolution.Y;
+                GraphicsManager.Instance.Graphics.PreferredBackBufferWidth = Resolution.Width;
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight = Resolution.Height;
 
                 graphicsChanged = true;
             }

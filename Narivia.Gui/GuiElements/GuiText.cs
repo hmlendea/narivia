@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Geometry.Mapping;
+using Narivia.Graphics.Mapping;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -59,8 +62,8 @@ namespace Narivia.Gui.GuiElements
         public GuiText()
         {
             FontName = "ButtonFont";
-            ForegroundColour = Color.Gold;
-            BackgroundColour = Color.Transparent;
+            ForegroundColour = Colour.Gold;
+            BackgroundColour = Colour.Transparent;
 
             VerticalAlignment = VerticalAlignment.Center;
             HorizontalAlignment = HorizontalAlignment.Center;
@@ -132,17 +135,20 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             backgroundImage.TintColour = BackgroundColour;
-            backgroundImage.Position = Position;
-            backgroundImage.Size = new Point(Size.X + Margins * 2, Size.Y + Margins * 2);
+            backgroundImage.Location = Location;
+            backgroundImage.Size = new Size2D(Size.Width + Margins * 2,
+                                              Size.Height + Margins * 2);
 
             textSprite.Text = Text;
             textSprite.FontName = FontName;
-            textSprite.Tint = ForegroundColour;
+            textSprite.Tint = ForegroundColour.ToXnaColor();
             textSprite.TextVerticalAlignment = VerticalAlignment;
             textSprite.TextHorizontalAlignment = HorizontalAlignment;
             textSprite.TextOutline = TextOutline;
-            textSprite.Position = new Point(Position.X + Margins, Position.Y + Margins);
-            textSprite.SpriteSize = new Point(Size.X - Margins * 2, Size.Y - Margins * 2);
+            textSprite.Location = new Point2D(Location.X + Margins,
+                                              Location.Y + Margins).ToXnaPoint();
+            textSprite.SpriteSize = new Point2D(Size.Width - Margins * 2,
+                                                Size.Height - Margins * 2).ToXnaPoint();
             textSprite.FadeEffect = FadeEffect;
             textSprite.Active = EffectsActive;
         }

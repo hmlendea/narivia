@@ -1,12 +1,11 @@
 using System;
-using System.Xml.Serialization;
 
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Audio;
+using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
-using Narivia.Input;
+using Narivia.Graphics.Geometry;
 using Narivia.Input.Events;
 
 namespace Narivia.Gui.GuiElements
@@ -26,7 +25,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the selected text colour.
         /// </summary>
         /// <value>The selected text colour.</value>
-        public Color SelectedTextColour { get; set; }
+        public Colour SelectedTextColour { get; set; }
 
         // TODO: Maybe implement my own handler and args
         /// <summary>
@@ -44,10 +43,10 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiMenuItem()
         {
-            ForegroundColour = Color.White;
-            SelectedTextColour = Color.Gold;
+            ForegroundColour = Colour.White;
+            SelectedTextColour = Colour.Gold;
 
-            Size = new Point(512, 48);
+            Size = new Size2D(512, 48);
         }
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             text.Text = Text;
-            text.Position = Position;
+            text.Location = Location;
             text.Size = Size;
 
             if (InputFocus)

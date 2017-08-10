@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Geometry.Mapping;
+using Narivia.Graphics.Mapping;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -28,13 +31,13 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the tint colour.
         /// </summary>
         /// <value>The tint colour.</value>
-        public Color TintColour { get; set; }
+        public Colour TintColour { get; set; }
 
         /// <summary>
         /// Gets or sets the source rectangle.
         /// </summary>
         /// <value>The source rectangle.</value>
-        public Rectangle SourceRectangle { get; set; }
+        public Rectangle2D SourceRectangle { get; set; }
 
         /// <summary>
         /// Gets or sets the texture fill mode.
@@ -61,8 +64,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiImage()
         {
-            TintColour = Color.White;
-            Size = Point.Zero;
+            TintColour = Colour.White;
+            Size = Size2D.Empty;
             TextureLayout = TextureLayout.Stretch;
         }
 
@@ -123,29 +126,29 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            if (SourceRectangle == Rectangle.Empty)
+            if (SourceRectangle == Rectangle2D.Empty)
             {
-                SourceRectangle = new Rectangle(0, 0, sprite.SpriteSize.X, sprite.SpriteSize.Y);
+                SourceRectangle = new Rectangle2D(0, 0, sprite.SpriteSize.X, sprite.SpriteSize.Y);
             }
 
-            if (Size == Point.Zero)
+            if (Size == Size2D.Empty)
             {
-                Size = sprite.SourceRectangle.Size;
+                Size = sprite.SourceRectangle.Size.ToSize2D();
             }
 
             sprite.Active = EffectsActive;
             sprite.AlphaMaskFile = MaskFile;
             sprite.ContentFile = ContentFile;
             sprite.FadeEffect = FadeEffect;
-            sprite.Position = Position;
-            sprite.SourceRectangle = SourceRectangle;
+            sprite.Location = Location.ToXnaPoint();
+            sprite.SourceRectangle = SourceRectangle.ToXnaRectangle();
             sprite.TextureLayout = TextureLayout;
-            sprite.Tint = TintColour;
+            sprite.Tint = TintColour.ToXnaColor();
 
-            if (sprite.SourceRectangle != Rectangle.Empty)
+            if (!sprite.SourceRectangle.IsEmpty)
             {
-                sprite.Scale = new Vector2((float)Size.X / sprite.SourceRectangle.Width,
-                                           (float)Size.Y / sprite.SourceRectangle.Height);
+                sprite.Scale = new Vector2((float)Size.Width / sprite.SourceRectangle.Width,
+                                           (float)Size.Height / sprite.SourceRectangle.Height);
             }
         }
     }

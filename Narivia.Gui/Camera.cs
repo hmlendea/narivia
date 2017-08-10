@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
+using Narivia.Graphics.Geometry;
 using Narivia.Input;
 using Narivia.Input.Events;
 using Narivia.Settings;
@@ -10,16 +11,16 @@ namespace Narivia.Gui
     public class Camera
     {
         /// <summary>
-        /// Gets or sets the position.
+        /// Gets or sets the location.
         /// </summary>
-        /// <value>The position.</value>
-        public Point Position { get; set; }
+        /// <value>The location.</value>
+        public Point2D Location { get; set; }
 
         /// <summary>
         /// Gets or sets the size.
         /// </summary>
         /// <value>The size.</value>
-        public Point Size { get; set; }
+        public Size2D Size { get; set; }
 
         /// <summary>
         /// Gets or sets the velocity.
@@ -34,7 +35,7 @@ namespace Narivia.Gui
         public float Speed { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Camera"/>'s position has changed since it's last update.
+        /// Gets or sets a value indicating whether this <see cref="Camera"/>'s location has changed since it's last update.
         /// </summary>
         /// <value><c>true</c> if moved; otherwise, <c>false</c>.</value>
         public bool JustMoved { get; set; }
@@ -47,7 +48,7 @@ namespace Narivia.Gui
         /// </summary>
         public Camera()
         {
-            Position = Point.Zero;
+            Location = Point2D.Empty;
             Velocity = Vector2.Zero;
             Speed = 800;
             Size = SettingsManager.Instance.Resolution; // TODO: Give it it's proper size once the game HUD is implemented
@@ -105,12 +106,12 @@ namespace Narivia.Gui
 
             Velocity = newVelocity;
 
-            Point newPosition = new Point((int)(Position.X + Velocity.X),
-                                          (int)(Position.Y + Velocity.Y));
+            Point2D newLocation = new Point2D((int)(Location.X + Velocity.X),
+                                              (int)(Location.Y + Velocity.Y));
 
-            if (Position != newPosition)
+            if (Location != newLocation)
             {
-                Position = newPosition;
+                Location = newLocation;
                 JustMoved = true;
             }
             else
@@ -123,11 +124,11 @@ namespace Narivia.Gui
         }
 
         /// <summary>
-        /// Centres the camera on the position.
+        /// Centres the camera on the specified location.
         /// </summary>
-        public void CentreOnPosition(Point position)
+        public void CentreOnLocation(Point2D location)
         {
-            Position = new Point(position.X - Size.X / 2, position.Y - Size.Y / 2);
+            Location = new Point2D(location.X - Size.Width / 2, location.Y - Size.Height / 2);
         }
 
         void InputManager_OnKeyboardKeyDown(object sender, KeyboardKeyEventArgs e)

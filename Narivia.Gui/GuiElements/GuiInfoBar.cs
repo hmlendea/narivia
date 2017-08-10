@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-using Microsoft.Xna.Framework;
-
+using Narivia.Graphics;
 using Narivia.Graphics.Enumerations;
+using Narivia.Graphics.Geometry;
 using Narivia.Input.Events;
 using Narivia.Settings;
 
@@ -68,7 +68,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiInfoBar()
         {
-            BackgroundColour = Color.Black;
+            BackgroundColour = Colour.Black;
             Spacing = GameDefines.GUI_SPACING;
         }
 
@@ -86,46 +86,46 @@ namespace Narivia.Gui.GuiElements
             regionsItem = new GuiInfoBarItem
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle(0, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(0, 0, 16, 16)
             };
             holdingsItem = new GuiInfoBarItem
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle(48, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(48, 0, 16, 16)
             };
             wealthItem = new GuiInfoBarItem
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle(16, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(16, 0, 16, 16)
             };
             troopsItem = new GuiInfoBarItem
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle(32, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(32, 0, 16, 16)
             };
 
             regionsTooltip = new GuiTooltip
             {
                 Text = "Regions",
-                Size = new Point(100, 20),
+                Size = new Size2D(100, 20),
                 Visible = false
             };
             holdingsTooltip = new GuiTooltip
             {
                 Text = "Holdings",
-                Size = new Point(100, 20),
+                Size = new Size2D(100, 20),
                 Visible = false
             };
             wealthTooltip = new GuiTooltip
             {
                 Text = "Wealth",
-                Size = new Point(100, 20),
+                Size = new Size2D(100, 20),
                 Visible = false
             };
             troopsTooltip = new GuiTooltip
             {
                 Text = "Troops",
-                Size = new Point(128, 128),
+                Size = new Size2D(128, 128),
                 Visible = false
             };
 
@@ -177,34 +177,34 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            background.Position = Position;
+            background.Location = Location;
             background.Size = Size;
             background.TintColour = BackgroundColour;
 
             regionsItem.ForegroundColour = ForegroundColour;
-            regionsItem.Position = new Point(Position.X + Spacing, Position.Y + (Size.Y - regionsItem.ClientRectangle.Height) / 2);
-            regionsItem.Size = new Point((Size.X - Spacing * 3) / 4, 16);
+            regionsItem.Location = new Point2D(Location.X + Spacing, Location.Y + (Size.Height - regionsItem.ClientRectangle.Height) / 2);
+            regionsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             regionsItem.Text = Regions.ToString();
 
             holdingsItem.ForegroundColour = ForegroundColour;
-            holdingsItem.Position = new Point(regionsItem.ClientRectangle.Right + Spacing, regionsItem.Position.Y);
-            holdingsItem.Size = new Point((Size.X - Spacing * 3) / 4, 16);
+            holdingsItem.Location = new Point2D(regionsItem.ClientRectangle.Right + Spacing, regionsItem.Location.Y);
+            holdingsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             holdingsItem.Text = Holdings.ToString();
 
             wealthItem.ForegroundColour = ForegroundColour;
-            wealthItem.Position = new Point(holdingsItem.ClientRectangle.Right + Spacing, holdingsItem.Position.Y);
-            wealthItem.Size = new Point((Size.X - Spacing * 3) / 4, 16);
+            wealthItem.Location = new Point2D(holdingsItem.ClientRectangle.Right + Spacing, holdingsItem.Location.Y);
+            wealthItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             wealthItem.Text = Wealth.ToString();
 
             troopsItem.ForegroundColour = ForegroundColour;
-            troopsItem.Position = new Point(wealthItem.ClientRectangle.Right + Spacing, wealthItem.Position.Y);
-            troopsItem.Size = new Point((Size.X - Spacing * 3) / 4, 16);
+            troopsItem.Location = new Point2D(wealthItem.ClientRectangle.Right + Spacing, wealthItem.Location.Y);
+            troopsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             troopsItem.Text = "0";
 
-            regionsTooltip.Position = new Point(regionsItem.Position.X, ClientRectangle.Bottom);
-            holdingsTooltip.Position = new Point(holdingsItem.Position.X, ClientRectangle.Bottom);
-            wealthTooltip.Position = new Point(wealthItem.Position.X, ClientRectangle.Bottom);
-            troopsTooltip.Position = new Point(troopsItem.Position.X, ClientRectangle.Bottom);
+            regionsTooltip.Location = new Point2D(regionsItem.Location.X, ClientRectangle.Bottom);
+            holdingsTooltip.Location = new Point2D(holdingsItem.Location.X, ClientRectangle.Bottom);
+            wealthTooltip.Location = new Point2D(wealthItem.Location.X, ClientRectangle.Bottom);
+            troopsTooltip.Location = new Point2D(troopsItem.Location.X, ClientRectangle.Bottom);
             
             troopsTooltip.Text = string.Empty;
 

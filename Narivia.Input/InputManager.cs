@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Drawing;
 
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input.Enumerations;
@@ -150,8 +150,8 @@ namespace Narivia.Input
             {
                 this_OnMouseButtonPressed(this, new MouseButtonEventArgs(MouseButton.LeftButton,
                                                                          MouseButtonState.Pressed,
-                                                                         new Vector2(currentMouseState.Position.X,
-                                                                                     currentMouseState.Position.Y)));
+                                                                         new Point(currentMouseState.Position.X,
+                                                                                   currentMouseState.Position.Y)));
             }
 
             if (currentMouseState.RightButton == ButtonState.Pressed &&
@@ -159,8 +159,8 @@ namespace Narivia.Input
             {
                 this_OnMouseButtonPressed(this, new MouseButtonEventArgs(MouseButton.RightButton,
                                                                          MouseButtonState.Pressed,
-                                                                         new Vector2(currentMouseState.Position.X,
-                                                                                     currentMouseState.Position.Y)));
+                                                                         new Point(currentMouseState.Position.X,
+                                                                                   currentMouseState.Position.Y)));
             }
 
             if (currentMouseState.MiddleButton == ButtonState.Pressed &&
@@ -168,8 +168,8 @@ namespace Narivia.Input
             {
                 this_OnMouseButtonPressed(this, new MouseButtonEventArgs(MouseButton.MiddleButton,
                                                                          MouseButtonState.Pressed,
-                                                                         new Vector2(currentMouseState.Position.X,
-                                                                                     currentMouseState.Position.Y)));
+                                                                         new Point(currentMouseState.Position.X,
+                                                                                   currentMouseState.Position.Y)));
             }
         }
 
@@ -180,8 +180,8 @@ namespace Narivia.Input
             {
                 this_OnMouseButtonReleased(this, new MouseButtonEventArgs(MouseButton.LeftButton,
                                                                           MouseButtonState.Released,
-                                                                          new Vector2(currentMouseState.Position.X,
-                                                                                      currentMouseState.Position.Y)));
+                                                                          new Point(currentMouseState.Position.X,
+                                                                                    currentMouseState.Position.Y)));
             }
 
             if (currentMouseState.RightButton == ButtonState.Released &&
@@ -189,8 +189,8 @@ namespace Narivia.Input
             {
                 this_OnMouseButtonReleased(this, new MouseButtonEventArgs(MouseButton.RightButton,
                                                                           MouseButtonState.Released,
-                                                                          new Vector2(currentMouseState.Position.X,
-                                                                                      currentMouseState.Position.Y)));
+                                                                          new Point(currentMouseState.Position.X,
+                                                                                    currentMouseState.Position.Y)));
             }
 
             if (currentMouseState.MiddleButton == ButtonState.Released &&
@@ -198,8 +198,8 @@ namespace Narivia.Input
             {
                 this_OnMouseButtonReleased(this, new MouseButtonEventArgs(MouseButton.MiddleButton,
                                                                           MouseButtonState.Released,
-                                                                          new Vector2(currentMouseState.Position.X,
-                                                                                      currentMouseState.Position.Y)));
+                                                                          new Point(currentMouseState.Position.X,
+                                                                                    currentMouseState.Position.Y)));
             }
         }
 
@@ -209,24 +209,24 @@ namespace Narivia.Input
             {
                 this_OnMouseButtonDown(this, new MouseButtonEventArgs(MouseButton.LeftButton,
                                                                       MouseButtonState.Down,
-                                                                      new Vector2(currentMouseState.Position.X,
-                                                                                  currentMouseState.Position.Y)));
+                                                                      new Point(currentMouseState.Position.X,
+                                                                                currentMouseState.Position.Y)));
             }
 
             if (currentMouseState.RightButton == ButtonState.Pressed)
             {
                 this_OnMouseButtonDown(this, new MouseButtonEventArgs(MouseButton.RightButton,
                                                                       MouseButtonState.Down,
-                                                                      new Vector2(currentMouseState.Position.X,
-                                                                                  currentMouseState.Position.Y)));
+                                                                      new Point(currentMouseState.Position.X,
+                                                                                currentMouseState.Position.Y)));
             }
 
             if (currentMouseState.MiddleButton == ButtonState.Pressed)
             {
                 this_OnMouseButtonDown(this, new MouseButtonEventArgs(MouseButton.MiddleButton,
                                                                       MouseButtonState.Down,
-                                                                      new Vector2(currentMouseState.Position.X,
-                                                                                  currentMouseState.Position.Y)));
+                                                                      new Point(currentMouseState.Position.X,
+                                                                                currentMouseState.Position.Y)));
             }
         }
 
@@ -332,7 +332,7 @@ namespace Narivia.Input
 
         // TODO: Everything below this is required by a workaround to a problem and should be removed as soon as it is properly fixed
 
-        public Vector2 MousePosition => new Vector2(currentMouseState.Position.X, currentMouseState.Position.Y);
+        public Point MouseLocation => new Point(currentMouseState.Position.X, currentMouseState.Position.Y);
         public bool MouseButtonInputHandled { get; set; }
 
         public bool IsLeftMouseButtonClicked()

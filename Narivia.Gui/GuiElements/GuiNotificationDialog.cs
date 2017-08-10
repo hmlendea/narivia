@@ -1,6 +1,6 @@
-using Microsoft.Xna.Framework;
-
 using Narivia.Audio;
+using Narivia.Graphics;
+using Narivia.Graphics.Geometry;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Input.Events;
 using Narivia.Settings;
@@ -29,9 +29,9 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the size of the notification.
         /// </summary>
         /// <value>The size of the notification.</value>
-        public Point NotificationSize
-        => new Point(Size.X / GameDefines.GUI_TILE_SIZE,
-                     Size.Y / GameDefines.GUI_TILE_SIZE);
+        public Size2D NotificationSize
+        => new Size2D(Size.Width / GameDefines.GUI_TILE_SIZE,
+                      Size.Height / GameDefines.GUI_TILE_SIZE);
 
         /// <summary>
         /// Gets or sets the title.
@@ -60,7 +60,7 @@ namespace Narivia.Gui.GuiElements
         {
             Type = NotificationType.Informational;
             Style = NotificationStyle.Big;
-            ForegroundColour = Color.Black;
+            ForegroundColour = Colour.Black;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Narivia.Gui.GuiElements
         {
             string imagePath, fontName;
 
-            images = new GuiImage[NotificationSize.X, NotificationSize.Y];
+            images = new GuiImage[NotificationSize.Width, NotificationSize.Height];
 
             title = new GuiText();
             text = new GuiText();
@@ -91,15 +91,15 @@ namespace Narivia.Gui.GuiElements
             title.FontName = "NotificationTitleFontBig";
             text.FontName = fontName;
 
-            for (int y = 0; y < NotificationSize.Y; y++)
+            for (int y = 0; y < NotificationSize.Height; y++)
             {
-                for (int x = 0; x < NotificationSize.X; x++)
+                for (int x = 0; x < NotificationSize.Width; x++)
                 {
                     images[x, y] = new GuiImage
                     {
                         ContentFile = imagePath,
-                        Position = new Point(Position.X + x * GameDefines.GUI_TILE_SIZE,
-                                             Position.Y + y * GameDefines.GUI_TILE_SIZE),
+                        Location = new Point2D(Location.X + x * GameDefines.GUI_TILE_SIZE,
+                                               Location.Y + y * GameDefines.GUI_TILE_SIZE),
                         SourceRectangle = CalculateSourceRectangle(x, y)
                     };
 
@@ -110,8 +110,8 @@ namespace Narivia.Gui.GuiElements
             yesButtonImage = new GuiImage
             {
                 ContentFile = "Interface/notification_controls",
-                SourceRectangle = new Rectangle(0, 0, GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
-                Position = new Point(Position.X + (NotificationSize.X - 1) * GameDefines.GUI_TILE_SIZE, Position.Y)
+                SourceRectangle = new Rectangle2D(0, 0, GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
+                Location = new Point2D(Location.X + (NotificationSize.Width - 1) * GameDefines.GUI_TILE_SIZE, Location.Y)
             };
 
             if (Type == NotificationType.Interogative)
@@ -119,9 +119,9 @@ namespace Narivia.Gui.GuiElements
                 noButtonImage = new GuiImage
                 {
                     ContentFile = "Interface/notification_controls",
-                    SourceRectangle = new Rectangle(GameDefines.GUI_TILE_SIZE, 0,
-                                                    GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
-                    Position = new Point(Position.X, Position.Y)
+                    SourceRectangle = new Rectangle2D(GameDefines.GUI_TILE_SIZE, 0,
+                                                      GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
+                    Location = new Point2D(Location.X, Location.Y)
                 };
 
                 Children.Add(noButtonImage);
@@ -154,23 +154,23 @@ namespace Narivia.Gui.GuiElements
 
             title.Text = Title;
             title.ForegroundColour = ForegroundColour;
-            title.Position = new Point(Position.X, Position.Y + GameDefines.GUI_TILE_SIZE);
-            title.Size = new Point(NotificationSize.X * GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
+            title.Location = new Point2D(Location.X, Location.Y + GameDefines.GUI_TILE_SIZE);
+            title.Size = new Size2D(NotificationSize.Width * GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
 
             text.Text = Text;
             text.ForegroundColour = ForegroundColour;
-            text.Position = new Point(Position.X + GameDefines.GUI_TILE_SIZE / 2,
-                                      Position.Y + (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
-            text.Size = new Point(Size.X - GameDefines.GUI_TILE_SIZE,
-                                  Size.Y - title.Size.Y - (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
+            text.Location = new Point2D(Location.X + GameDefines.GUI_TILE_SIZE / 2,
+                                        Location.Y + (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
+            text.Size = new Size2D(Size.Width - GameDefines.GUI_TILE_SIZE,
+                                   Size.Height - title.Size.Height - (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
         }
 
-        Rectangle CalculateSourceRectangle(int x, int y)
+        Rectangle2D CalculateSourceRectangle(int x, int y)
         {
             int sx = 1;
             int sy = 1;
 
-            if (NotificationSize.X == 1)
+            if (NotificationSize.Width == 1)
             {
                 sx = 3;
             }
@@ -178,12 +178,12 @@ namespace Narivia.Gui.GuiElements
             {
                 sx = 0;
             }
-            else if (x == NotificationSize.X - 1)
+            else if (x == NotificationSize.Width - 1)
             {
                 sx = 2;
             }
 
-            if (NotificationSize.Y == 1)
+            if (NotificationSize.Height == 1)
             {
                 sy = 3;
             }
@@ -191,13 +191,13 @@ namespace Narivia.Gui.GuiElements
             {
                 sy = 0;
             }
-            else if (y == NotificationSize.Y - 1)
+            else if (y == NotificationSize.Height - 1)
             {
                 sy = 2;
             }
 
-            return new Rectangle(sx * GameDefines.GUI_TILE_SIZE, sy * GameDefines.GUI_TILE_SIZE,
-                                 GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
+            return new Rectangle2D(sx * GameDefines.GUI_TILE_SIZE, sy * GameDefines.GUI_TILE_SIZE,
+                                   GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
         }
 
         void OnYesButtonClicked(object sender, MouseButtonEventArgs e)

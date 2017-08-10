@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-
 using Narivia.Audio;
+using Narivia.Graphics.Geometry;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
@@ -25,7 +24,7 @@ namespace Narivia.Gui.GuiElements
         /// Gets or sets the size of the button.
         /// </summary>
         /// <value>The size of the button.</value>
-        public int ButtonSize => Size.X / GameDefines.GUI_TILE_SIZE;
+        public int ButtonSize => Size.Width / GameDefines.GUI_TILE_SIZE;
         
         /// <summary>
         /// Gets or sets the text.
@@ -75,14 +74,14 @@ namespace Narivia.Gui.GuiElements
 
             for (int i = 0; i < images.Count; i++)
             {
-                images[i].Position = new Point(Position.X + i * GameDefines.GUI_TILE_SIZE, Position.Y);
+                images[i].Location = new Point2D(Location.X + i * GameDefines.GUI_TILE_SIZE, Location.Y);
                 images[i].SourceRectangle = CalculateSourceRectangle(i, Style);
             }
 
             text.Text = Text;
             text.ForegroundColour = ForegroundColour;
             text.FontName = FontName;
-            text.Position = Position;
+            text.Location = Location;
             text.Size = Size;
         }
 
@@ -115,7 +114,7 @@ namespace Narivia.Gui.GuiElements
             AudioManager.Instance.PlaySound("Interface/select");
         }
 
-        Rectangle CalculateSourceRectangle(int x, ButtonStyle style)
+        Rectangle2D CalculateSourceRectangle(int x, ButtonStyle style)
         {
             int sx = 1;
 
@@ -137,8 +136,8 @@ namespace Narivia.Gui.GuiElements
                 sx += 4;
             }
 
-            return new Rectangle(sx * GameDefines.GUI_TILE_SIZE, (int)style * GameDefines.GUI_TILE_SIZE,
-                                 GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
+            return new Rectangle2D(sx * GameDefines.GUI_TILE_SIZE, (int)style * GameDefines.GUI_TILE_SIZE,
+                                   GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
         }
     }
 }

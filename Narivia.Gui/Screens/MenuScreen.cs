@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Narivia.Input.Events;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Gui.GuiElements;
 using Narivia.Settings;
 
@@ -140,28 +142,27 @@ namespace Narivia.Gui.Screens
 
         void AlignMenuItems()
         {
-            Point dimensions = Point.Zero;
+            Size2D dimensions = Size2D.Empty;
 
-            Items.ForEach(item => dimensions += new Point(item.Size.X + Spacing / 2,
-                                                          item.Size.Y + Spacing / 2));
+            Items.ForEach(item => dimensions += new Size2D(item.Size.Width + Spacing / 2,
+                                                           item.Size.Height + Spacing / 2));
 
-            dimensions = new Point((ScreenManager.Instance.Size.X - dimensions.X) / 2,
-                                   (ScreenManager.Instance.Size.Y - dimensions.Y) / 2);
+            dimensions = new Size2D((ScreenManager.Instance.Size.Width - dimensions.Width) / 2,
+                                    (ScreenManager.Instance.Size.Height - dimensions.Height) / 2);
 
             foreach (GuiMenuItem item in Items)
             {
                 if ("Xx".Contains(Axis))
                 {
-                    item.Position = new Point(dimensions.X,
-                                              (ScreenManager.Instance.Size.Y - item.Size.Y) / 2);
+                    item.Location = new Point2D(dimensions.Width, (ScreenManager.Instance.Size.Height - item.Size.Height) / 2);
                 }
                 else if ("Yy".Contains(Axis))
                 {
-                    item.Position = new Point((ScreenManager.Instance.Size.X - item.Size.X) / 2, dimensions.Y);
+                    item.Location = new Point2D((ScreenManager.Instance.Size.Width - item.Size.Width) / 2, dimensions.Height);
                 }
 
-                dimensions += new Point(item.Size.X + Spacing / 2,
-                                        item.Size.Y + Spacing / 2);
+                dimensions += new Size2D(item.Size.Width + Spacing / 2,
+                                         item.Size.Height + Spacing / 2);
             }
         }
 
@@ -171,7 +172,7 @@ namespace Narivia.Gui.Screens
 
             for (int i = 0; i < Items.Count; i++)
             {
-                if (Items[i].ClientRectangle.Contains(e.CurrentMousePosition))
+                if (Items[i].ClientRectangle.Contains(e.Location.ToPoint2D()))
                 {
                     ItemNumber = i;
                 }

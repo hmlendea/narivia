@@ -20,17 +20,17 @@ namespace Narivia.Gui
         string fpsString;
 
         /// <summary>
-        /// Gets or sets the position.
+        /// Gets or sets the location.
         /// </summary>
-        /// <value>The position.</value>
-        public Vector2 Position { get; set; }
+        /// <value>The location.</value>
+        public Vector2 Location { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FpsIndicator"/> class.
         /// </summary>
         public FpsIndicator()
         {
-            Position = Vector2.Zero;
+            Location = Vector2.Zero;
         }
 
         /// <summary>

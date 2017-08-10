@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.DataAccess.Resources;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
-using Narivia.Graphics.Extensions;
 using Narivia.Graphics.Helpers;
 
 namespace Narivia.Graphics
@@ -107,10 +106,10 @@ namespace Narivia.Graphics
         public string AlphaMaskFile { get; set; }
 
         /// <summary>
-        /// Gets or sets the position.
+        /// Gets or sets the location.
         /// </summary>
-        /// <value>The position.</value>
-        public Point Position { get; set; }
+        /// <value>The location.</value>
+        public Point Location { get; set; }
 
         /// <summary>
         /// Gets or sets the size.
@@ -140,8 +139,8 @@ namespace Narivia.Graphics
             get
             {
                 return new Rectangle(
-                    Position.X,
-                    Position.Y,
+                    Location.X,
+                    Location.Y,
                     (int)(SourceRectangle.Width * Scale.X),
                     (int)(SourceRectangle.Height * Scale.Y));
             }
@@ -220,7 +219,7 @@ namespace Narivia.Graphics
             Text = string.Empty;
             FontName = "MenuFont";
 
-            Position = Point.Zero;
+            Location = Point.Zero;
             SourceRectangle = Rectangle.Empty;
 
             Opacity = 1.0f;
@@ -350,7 +349,7 @@ namespace Narivia.Graphics
             
             if (TextureLayout == TextureLayout.Stretch)
             {
-                spriteBatch.Draw(textureToDraw, new Vector2(Position.X + ClientRectangle.Width / 2, Position.Y + ClientRectangle.Height / 2), SourceRectangle,
+                spriteBatch.Draw(textureToDraw, new Vector2(Location.X + ClientRectangle.Width / 2, Location.Y + ClientRectangle.Height / 2), SourceRectangle,
                     Tint * Opacity, Rotation,
                     origin, Scale * Zoom,
                     SpriteEffects.None, 0.0f);
@@ -365,7 +364,7 @@ namespace Narivia.Graphics
                 spriteBatch.End();
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
 
-                spriteBatch.Draw(textureToDraw, Position.ToVector2(), rec, Tint * Opacity);
+                spriteBatch.Draw(textureToDraw, Location.ToVector2(), rec, Tint * Opacity);
 
                 spriteBatch.End();
                 spriteBatch.Begin();
@@ -485,8 +484,8 @@ namespace Narivia.Graphics
                     {
                         for (int dy = -1; dy <= 1; dy++)
                         {
-                            Vector2 pos = new Vector2(Position.X + dx + textOrigin.X,
-                                                      Position.Y + dy + textOrigin.Y);
+                            Vector2 pos = new Vector2(Location.X + dx + textOrigin.X,
+                                                      Location.Y + dy + textOrigin.Y);
 
                             // TODO: Do not hardcode the outline colour
                             spriteBatch.DrawString(spriteFont, line, pos, Color.Black);
@@ -494,7 +493,7 @@ namespace Narivia.Graphics
                     }
                 }
 
-                spriteBatch.DrawString(spriteFont, line, Position.ToVector2() + textOrigin, colour);
+                spriteBatch.DrawString(spriteFont, line, Location.ToVector2() + textOrigin, colour);
                 
                 textOrigin.Y += lineSize.Y;
             }

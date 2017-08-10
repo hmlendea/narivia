@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <GameplayScreen>
 	<InfoBar>
-		<Position>
+		<Location>
 			<X>0</X>
 			<Y>0</Y>
-		</Position>
+		</Location>
 		<Size>
-			<X>1000</X>
-			<Y>20</Y>
+			<Width>1000</Width>
+			<Height>20</Height>
 		</Size>
 		<BackgroundColour>
 			<A>255</A>
@@ -23,24 +23,24 @@
 		</ForegroundColour>
 	</InfoBar>
 	<GameMap>
-		<Position>
-			<X>0</X>
-			<Y>20</Y>
-		</Position>
-		<Size>
-			<X>1000</X>
-			<Y>640</Y>
-		</Size>
-	</GameMap>
+    <Location>
+      <X>0</X>
+      <Y>20</Y>
+    </Location>
+    <Size>
+      <Width>1000</Width>
+      <Height>640</Height>
+    </Size>
+  </GameMap>
 	<SideBar>
-		<Position>
+    <Location>
 			<X>1000</X>
 			<Y>0</Y>
-		</Position>
+		</Location>
 		<Size>
-			<X>280</X>
-			<Y>720</Y>
-		</Size>
+			<Width>280</Width>
+      <Height>720</Height>
+    </Size>
     <ForegroundColour>
 			<A>255</A>
 			<R>255</R>
@@ -49,23 +49,23 @@
 		</ForegroundColour>
 	</SideBar>
 	<NotificationBar>
-		<Position>
+    <Location>
 			<X>0</X>
 			<Y>20</Y>
-		</Position>
+		</Location>
 		<Size>
-			<X>40</X>
-			<Y>610</Y>
+			<Width>40</Width>
+			<Height>610</Height>
 		</Size>
 	</NotificationBar>
 	<RegionBar>
-		<Position>
+    <Location>
 			<X>0</X>
 			<Y>640</Y>
-		</Position>
+		</Location>
 		<Size>
-			<X>1000</X>
-			<Y>80</Y>
+			<Width>1000</Width>
+			<Height>80</Height>
 		</Size>
     <ForegroundColour>
 			<A>255</A>

@@ -37,8 +37,14 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\ColorExtensions.cs" />
-    <Compile Include="Extensions\ColorMapping.cs" />
+    <Compile Include="Colour.cs" />
+    <Compile Include="ColourTranslator.cs" />
+    <Compile Include="Extensions\ColourExtensions.cs" />
+    <Compile Include="Geometry\Point2D.cs" />
+    <Compile Include="Geometry\Rectangle2D.cs" />
+    <Compile Include="Geometry\Size2D.cs" />
+    <Compile Include="Mapping\ColourMappingExtensions.cs" />
+    <Compile Include="Geometry\Mapping\GeometryMappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomSpriteEffects\AnimationEffect.cs" />
     <Compile Include="CustomSpriteEffects\CustomSpriteEffect.cs" />

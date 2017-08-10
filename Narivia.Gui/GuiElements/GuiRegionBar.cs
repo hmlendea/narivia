@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-using Microsoft.Xna.Framework;
-
 using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.Graphics;
 using Narivia.Graphics.Enumerations;
-using Narivia.Graphics.Extensions;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Mapping;
 using Narivia.Models;
 using Narivia.Settings;
+
+using Region = Narivia.Models.Region;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -55,36 +57,37 @@ namespace Narivia.Gui.GuiElements
 
             regionNameBackground = new GuiImage
             {
-                Size = new Point(256, 48),
+                Size = new Size2D(256, 48),
                 ContentFile = "Interface/region-panel-label",
-                SourceRectangle = new Rectangle(0, 0, 256, 48)
+                SourceRectangle = new Rectangle2D(0, 0, 256, 48)
             };
             regionNameBackgroundDecor = new GuiImage
             {
                 Size = regionNameBackground.Size,
                 ContentFile = regionNameBackground.ContentFile,
-                SourceRectangle = new Rectangle(0, 48, 256, 48)
+                SourceRectangle = new Rectangle2D(0, 48, 256, 48)
             };
             regionNameText = new GuiText
             {
                 FontName = "SideBarFont", // TODO: Consider providing a dedicated font
-                Size = new Point(regionNameBackground.SourceRectangle.Width,
-                                 regionNameBackground.SourceRectangle.Height),
+                Size = new Size2D(regionNameBackground.SourceRectangle.Width,
+                                  regionNameBackground.SourceRectangle.Height),
                 TextOutline = true
             };
             factionFlag = new GuiFactionFlag
             {
-                Size = new Point(regionNameBackground.Size.Y, regionNameBackground.Size.Y)
+                Size = new Size2D(regionNameBackground.Size.Height,
+                                  regionNameBackground.Size.Height)
             };
 
             resourceImage = new GuiImage
             {
-                SourceRectangle = new Rectangle(0, 0, 64, 64)
+                SourceRectangle = new Rectangle2D(0, 0, 64, 64)
             };
             resourceText = new GuiText
             {
                 FontName = "RegionBarHoldingFont",
-                ForegroundColour = Color.Black,
+                ForegroundColour = Colour.Black,
                 HorizontalAlignment = HorizontalAlignment.Top
             };
 
@@ -131,19 +134,19 @@ namespace Narivia.Gui.GuiElements
                 GuiImage holdingImage = new GuiImage
                 {
                     ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic",
-                    SourceRectangle = new Rectangle(64 * ((int)holding.Type - 1), 0, 64, 64),
-                    Position = new Point(Position.X + GameDefines.GUI_SPACING * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
-                                         Position.Y + Size.Y - 64)
+                    SourceRectangle = new Rectangle2D(64 * ((int)holding.Type - 1), 0, 64, 64),
+                    Location = new Point2D(Location.X + GameDefines.GUI_SPACING * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
+                                           Location.Y + Size.Height - 64)
                 };
 
                 GuiText holdingText = new GuiText
                 {
-                    Position = new Point(holdingImage.Position.X - GameDefines.GUI_SPACING, Position.Y + 2),
+                    Location = new Point2D(holdingImage.Location.X - GameDefines.GUI_SPACING, Location.Y + 2),
                     Text = holding.Name,
-                    Size = new Point(holdingImage.SourceRectangle.Width + GameDefines.GUI_SPACING * 2,
-                                     Size.Y - holdingImage.SourceRectangle.Height + 10),
+                    Size = new Size2D(holdingImage.SourceRectangle.Width + GameDefines.GUI_SPACING * 2,
+                                      Size.Height - holdingImage.SourceRectangle.Height + 10),
                     FontName = "RegionBarHoldingFont",
-                    ForegroundColour = Color.Black,
+                    ForegroundColour = Colour.Black,
                     HorizontalAlignment = HorizontalAlignment.Top
                 };
 
@@ -169,19 +172,22 @@ namespace Narivia.Gui.GuiElements
 
         protected override void SetChildrenProperties()
         {
-            background.Position = Position;
+            background.Location = Location;
             background.Size = Size;
 
-            regionNameBackground.Position = new Point(Position.X + (Size.X - regionNameText.ClientRectangle.Width) / 2,
-                                                      Position.Y - regionNameText.ClientRectangle.Height + (int)(regionNameBackground.Size.Y * 0.1f));
-            regionNameBackgroundDecor.Position = regionNameBackground.Position;
-            regionNameText.Position = regionNameBackground.Position;
+            regionNameBackground.Location = new Point2D(Location.X + (Size.Width - regionNameText.ClientRectangle.Width) / 2,
+                                                        Location.Y - regionNameText.ClientRectangle.Height + (int)(regionNameBackground.Size.Height * 0.1f));
+            regionNameBackgroundDecor.Location = regionNameBackground.Location;
+            regionNameText.Location = regionNameBackground.Location;
             regionNameText.ForegroundColour = ForegroundColour;
 
-            factionFlag.Position = new Point(regionNameBackground.Position.X - factionFlag.ClientRectangle.Width / 2, regionNameBackground.Position.Y);
-            resourceImage.Position = new Point(Position.X + GameDefines.GUI_SPACING, Position.Y + Size.Y - 64);
-            resourceText.Position = new Point(Position.X, Position.Y + 2);
-            resourceText.Size = new Point(64 + GameDefines.GUI_SPACING * 2, Size.Y - 74);
+            factionFlag.Location = new Point2D(regionNameBackground.Location.X - factionFlag.ClientRectangle.Width / 2,
+                                               regionNameBackground.Location.Y);
+            resourceImage.Location = new Point2D(Location.X + GameDefines.GUI_SPACING,
+                                                 Location.Y + Size.Height - 64);
+            resourceText.Location = new Point2D(Location.X, Location.Y + 2);
+            resourceText.Size = new Size2D(64 + GameDefines.GUI_SPACING * 2,
+                                           Size.Height - 74);
 
             if (string.IsNullOrWhiteSpace(RegionId))
             {
@@ -193,17 +199,17 @@ namespace Narivia.Gui.GuiElements
             Faction faction = game.GetFaction(region.FactionId);
             Flag flag = game.GetFlag(faction.FlagId);
 
-            regionNameBackground.TintColour = faction.Colour.ToXnaColor();
+            regionNameBackground.TintColour = faction.Colour.ToColour();
             regionNameText.Text = region.Name;
 
             factionFlag.Layer1 = flag.Layer1;
             factionFlag.Layer2 = flag.Layer2;
             factionFlag.Emblem = flag.Emblem;
             factionFlag.Skin = flag.Skin;
-            factionFlag.BackgroundColour = flag.BackgroundColour.ToXnaColor();
-            factionFlag.Layer1Colour = flag.Layer1Colour.ToXnaColor();
-            factionFlag.Layer2Colour = flag.Layer2Colour.ToXnaColor();
-            factionFlag.EmblemColour = flag.EmblemColour.ToXnaColor();
+            factionFlag.BackgroundColour = flag.BackgroundColour.ToColour();
+            factionFlag.Layer1Colour = flag.Layer1Colour.ToColour();
+            factionFlag.Layer2Colour = flag.Layer2Colour.ToColour();
+            factionFlag.EmblemColour = flag.EmblemColour.ToColour();
 
             resourceImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/resources/{region.ResourceId}_big";
             resourceText.Text = resource.Name;

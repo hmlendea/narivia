@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Input.Events;
 
 namespace Narivia.Gui.Screens
@@ -42,7 +44,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public SplashScreen()
         {
-            BackgroundColour = Color.DodgerBlue;
+            BackgroundColour = Colour.DodgerBlue;
         }
 
         /// <summary>
@@ -104,15 +106,15 @@ namespace Narivia.Gui.Screens
 
         void AlignItems()
         {
-            BackgroundImage.Scale = Vector2.One * Math.Max(ScreenManager.Instance.Size.X, ScreenManager.Instance.Size.Y) /
+            BackgroundImage.Scale = Vector2.One * Math.Max(ScreenManager.Instance.Size.Width, ScreenManager.Instance.Size.Height) /
                                                   Math.Max(BackgroundImage.SpriteSize.X, BackgroundImage.SpriteSize.Y);
-            OverlayImage.Scale = new Vector2(ScreenManager.Instance.Size.X / OverlayImage.SpriteSize.X,
-                                               ScreenManager.Instance.Size.Y / OverlayImage.SpriteSize.Y);
+            OverlayImage.Scale = new Vector2(ScreenManager.Instance.Size.Width / OverlayImage.SpriteSize.X,
+                                               ScreenManager.Instance.Size.Height / OverlayImage.SpriteSize.Y);
 
-            BackgroundImage.Position = new Point((ScreenManager.Instance.Size.X - BackgroundImage.ClientRectangle.Width) / 2,
-                                                 (ScreenManager.Instance.Size.Y - BackgroundImage.ClientRectangle.Height) / 2);
-            LogoImage.Position = new Point((ScreenManager.Instance.Size.X - LogoImage.SpriteSize.X) / 2,
-                                           (ScreenManager.Instance.Size.Y - LogoImage.SpriteSize.Y) / 2);
+            BackgroundImage.Location = new Point2D((ScreenManager.Instance.Size.Width - BackgroundImage.ClientRectangle.Width) / 2,
+                                                   (ScreenManager.Instance.Size.Height - BackgroundImage.ClientRectangle.Height) / 2).ToXnaPoint();
+            LogoImage.Location = new Point2D((ScreenManager.Instance.Size.Width - LogoImage.SpriteSize.X) / 2,
+                                             (ScreenManager.Instance.Size.Height - LogoImage.SpriteSize.Y) / 2).ToXnaPoint();
         }
 
         protected override void OnKeyPressed(object sender, KeyboardKeyEventArgs e)

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
+using Narivia.Graphics.Geometry;
 using Narivia.Graphics.Enumerations;
 using Narivia.Common.Helpers;
 using Narivia.Settings;
@@ -54,7 +55,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         /// <value>The size.</value>
         [XmlIgnore]
-        public Point Size { get; private set; }
+        public Size2D Size { get; private set; }
 
         /// <summary>
         /// Gets or sets the sprite batch.
@@ -127,7 +128,7 @@ namespace Narivia.Gui.Screens
             }
 
             Size = SettingsManager.Instance.Resolution;
-            TransitionImage.Scale = Size.ToVector2();
+            TransitionImage.Scale = new Vector2(Size.Width, Size.Height);
         }
 
         /// <summary>

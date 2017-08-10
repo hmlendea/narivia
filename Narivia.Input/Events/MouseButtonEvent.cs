@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Drawing;
 
 using Narivia.Input.Enumerations;
 
@@ -27,22 +27,22 @@ namespace Narivia.Input.Events
         public MouseButtonState ButtonState { get; private set; }
 
         /// <summary>
-        /// Gets position of the mouse.
+        /// Gets location of the mouse.
         /// </summary>
-        /// <value>The mouse position.</value>
-        public Vector2 MousePosition { get; private set; }
+        /// <value>The mouse location.</value>
+        public Point Location { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MouseButtonEventArgs"/> class.
         /// </summary>
         /// <param name="button">Button.</param>
         /// <param name="buttonState">Button state.</param>
-        /// <param name="mousePosition">Mouse position.</param>
-        public MouseButtonEventArgs(MouseButton button, MouseButtonState buttonState, Vector2 mousePosition)
+        /// <param name="location">Mouse location.</param>
+        public MouseButtonEventArgs(MouseButton button, MouseButtonState buttonState, Point location)
         {
             Button = button;
             ButtonState = buttonState;
-            MousePosition = mousePosition;
+            Location = location;
         }
     }
 }
