@@ -141,14 +141,14 @@ namespace Narivia.Gui.GuiElements
 
             textSprite.Text = Text;
             textSprite.FontName = FontName;
-            textSprite.Tint = ForegroundColour.ToXnaColor();
+            textSprite.Tint = ForegroundColour;
             textSprite.TextVerticalAlignment = VerticalAlignment;
             textSprite.TextHorizontalAlignment = HorizontalAlignment;
             textSprite.TextOutline = TextOutline;
             textSprite.Location = new Point2D(Location.X + Margins,
-                                              Location.Y + Margins).ToXnaPoint();
-            textSprite.SpriteSize = new Point2D(Size.Width - Margins * 2,
-                                                Size.Height - Margins * 2).ToXnaPoint();
+                                              Location.Y + Margins);
+            textSprite.SpriteSize = new Size2D(Size.Width - Margins * 2,
+                                               Size.Height - Margins * 2);
             textSprite.FadeEffect = FadeEffect;
             textSprite.Active = EffectsActive;
         }

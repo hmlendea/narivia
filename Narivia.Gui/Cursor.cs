@@ -106,8 +106,8 @@ namespace Narivia.Gui
 
         void SetChildrenProperites()
         {
-            idleSprite.Location = Location.ToXnaPoint();
-            clickSprite.Location = Location.ToXnaPoint();
+            idleSprite.Location = Location;
+            clickSprite.Location = Location;
         }
 
         void InputManager_OnMouseButtonPressed(object sender, MouseButtonEventArgs e)

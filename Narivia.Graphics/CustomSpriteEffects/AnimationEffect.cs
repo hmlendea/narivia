@@ -2,6 +2,8 @@
 
 using Microsoft.Xna.Framework;
 
+using Narivia.Graphics.Geometry;
+
 namespace Narivia.Graphics.CustomSpriteEffects
 {
     /// <summary>
@@ -38,14 +40,8 @@ namespace Narivia.Graphics.CustomSpriteEffects
         /// </summary>
         /// <value>The width of the frame.</value>
         [XmlIgnore]
-        public int FrameWidth => (int)(Sprite.TextureSize.X / FrameAmount.X);
-
-        /// <summary>
-        /// Gets the height of the frame.
-        /// </summary>
-        /// <value>The height of the frame.</value>
-        [XmlIgnore]
-        public int FrameHeight => (int)(Sprite.TextureSize.Y / FrameAmount.Y);
+        public Size2D FrameSize => new Size2D(Sprite.TextureSize.Width / FrameAmount.X,
+                                              Sprite.TextureSize.Height / FrameAmount.Y);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AnimationEffect"/> class.
@@ -94,7 +90,7 @@ namespace Narivia.Graphics.CustomSpriteEffects
                     FrameCounter = 0;
                     newFrame.X += 1;
 
-                    if (CurrentFrame.X >= Sprite.TextureSize.X / FrameWidth - 1)
+                    if (CurrentFrame.X >= Sprite.TextureSize.Width / FrameSize.Width - 1)
                     {
                         newFrame.X = 0;
                     }
@@ -107,11 +103,11 @@ namespace Narivia.Graphics.CustomSpriteEffects
 
             CurrentFrame = newFrame;
 
-            Sprite.SourceRectangle = new Rectangle(
-                CurrentFrame.X * FrameWidth,
-                CurrentFrame.Y * FrameHeight,
-                FrameWidth,
-                FrameHeight);
+            Sprite.SourceRectangle = new Rectangle2D(
+                CurrentFrame.X * FrameSize.Width,
+                CurrentFrame.Y * FrameSize.Height,
+                FrameSize.Width,
+                FrameSize.Height);
         }
     }
 }

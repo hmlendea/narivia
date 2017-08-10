@@ -107,14 +107,14 @@ namespace Narivia.Gui.Screens
         void AlignItems()
         {
             BackgroundImage.Scale = Vector2.One * Math.Max(ScreenManager.Instance.Size.Width, ScreenManager.Instance.Size.Height) /
-                                                  Math.Max(BackgroundImage.SpriteSize.X, BackgroundImage.SpriteSize.Y);
-            OverlayImage.Scale = new Vector2(ScreenManager.Instance.Size.Width / OverlayImage.SpriteSize.X,
-                                               ScreenManager.Instance.Size.Height / OverlayImage.SpriteSize.Y);
+                                                  Math.Max(BackgroundImage.SpriteSize.Width, BackgroundImage.SpriteSize.Height);
+            OverlayImage.Scale = new Vector2(ScreenManager.Instance.Size.Width / OverlayImage.SpriteSize.Width,
+                                               ScreenManager.Instance.Size.Height / OverlayImage.SpriteSize.Height);
 
             BackgroundImage.Location = new Point2D((ScreenManager.Instance.Size.Width - BackgroundImage.ClientRectangle.Width) / 2,
-                                                   (ScreenManager.Instance.Size.Height - BackgroundImage.ClientRectangle.Height) / 2).ToXnaPoint();
-            LogoImage.Location = new Point2D((ScreenManager.Instance.Size.Width - LogoImage.SpriteSize.X) / 2,
-                                             (ScreenManager.Instance.Size.Height - LogoImage.SpriteSize.Y) / 2).ToXnaPoint();
+                                                   (ScreenManager.Instance.Size.Height - BackgroundImage.ClientRectangle.Height) / 2);
+            LogoImage.Location = new Point2D((ScreenManager.Instance.Size.Width - LogoImage.SpriteSize.Width) / 2,
+                                             (ScreenManager.Instance.Size.Height - LogoImage.SpriteSize.Height) / 2);
         }
 
         protected override void OnKeyPressed(object sender, KeyboardKeyEventArgs e)

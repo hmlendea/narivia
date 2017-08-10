@@ -10,7 +10,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Narivia.DataAccess.Resources;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Graphics.Helpers;
+using Narivia.Graphics.Mapping;
 
 namespace Narivia.Graphics
 {
@@ -46,7 +49,7 @@ namespace Narivia.Graphics
         /// Gets or sets the tint.
         /// </summary>
         /// <value>The tint.</value>
-        public Color Tint { get; set; }
+        public Colour Tint { get; set; }
 
         /// <summary>
         /// Gets or sets the opacity.
@@ -109,13 +112,13 @@ namespace Narivia.Graphics
         /// Gets or sets the location.
         /// </summary>
         /// <value>The location.</value>
-        public Point Location { get; set; }
+        public Point2D Location { get; set; }
 
         /// <summary>
         /// Gets or sets the size.
         /// </summary>
         /// <value>The size.</value>
-        public Point SpriteSize { get; set; }
+        public Size2D SpriteSize { get; set; }
 
         /// <summary>
         /// Gets or sets the scale.
@@ -128,17 +131,17 @@ namespace Narivia.Graphics
         /// </summary>
         /// <value>The source rectangle.</value>
         [XmlIgnore]
-        public Rectangle SourceRectangle { get; set; }
+        public Rectangle2D SourceRectangle { get; set; }
 
         /// <summary>
         /// Gets the covered screen area.
         /// </summary>
         /// <value>The covered screen area.</value>
-        public Rectangle ClientRectangle
+        public Rectangle2D ClientRectangle
         {
             get
             {
-                return new Rectangle(
+                return new Rectangle2D(
                     Location.X,
                     Location.Y,
                     (int)(SourceRectangle.Width * Scale.X),
@@ -151,7 +154,7 @@ namespace Narivia.Graphics
         /// </summary>
         /// <value>The texture size.</value>
         [XmlIgnore]
-        public Vector2 TextureSize => new Vector2(texture.Width, texture.Height);
+        public Size2D TextureSize => new Size2D(texture.Width, texture.Height);
 
         /// <summary>
         /// Gets or sets the fill mode.
@@ -219,15 +222,15 @@ namespace Narivia.Graphics
             Text = string.Empty;
             FontName = "MenuFont";
 
-            Location = Point.Zero;
-            SourceRectangle = Rectangle.Empty;
+            Location = Point2D.Empty;
+            SourceRectangle = Rectangle2D.Empty;
 
             Opacity = 1.0f;
             Zoom = 1.0f;
             Scale = Vector2.One;
             TextureLayout = TextureLayout.Stretch;
 
-            Tint = Color.White;
+            Tint = Colour.White;
         }
 
         /// <summary>
@@ -245,32 +248,32 @@ namespace Narivia.Graphics
 
             font = ResourceManager.Instance.LoadSpriteFont("Fonts/" + FontName);
 
-            if (SpriteSize == Point.Zero)
+            if (SpriteSize == Size2D.Empty)
             {
-                Point size = Point.Zero;
+                Size2D size = Size2D.Empty;
 
                 if (texture != null)
                 {
-                    size.X = texture.Width;
-                    size.Y = texture.Height;
+                    size.Width = texture.Width;
+                    size.Height = texture.Height;
                 }
                 else
                 {
-                    size.X = (int)font.MeasureString(Text).X;
-                    size.Y = (int)font.MeasureString(Text).Y;
+                    size.Width = (int)font.MeasureString(Text).X;
+                    size.Height = (int)font.MeasureString(Text).Y;
                 }
 
                 SpriteSize = size;
             }
 
-            if (SourceRectangle == Rectangle.Empty)
+            if (SourceRectangle == Rectangle2D.Empty)
             {
-                SourceRectangle = new Rectangle(0, 0, SpriteSize.X, SpriteSize.Y);
+                SourceRectangle = new Rectangle2D(Point2D.Empty, SpriteSize);
             }
 
             renderTarget = new RenderTarget2D(
                 GraphicsManager.Instance.Graphics.GraphicsDevice,
-                SpriteSize.X, SpriteSize.Y);
+                SpriteSize.Width, SpriteSize.Height);
 
             GraphicsManager.Instance.Graphics.GraphicsDevice.SetRenderTarget(renderTarget);
             GraphicsManager.Instance.Graphics.GraphicsDevice.Clear(Color.Transparent);
@@ -334,8 +337,8 @@ namespace Narivia.Graphics
 
             if (!string.IsNullOrEmpty(Text))
             {
-                DrawString(spriteBatch, font, StringUtils.WrapText(font, Text, SpriteSize.X), ClientRectangle,
-                           TextHorizontalAlignment, TextVerticalAlignment, Tint * Opacity);
+                DrawString(spriteBatch, font, StringUtils.WrapText(font, Text, SpriteSize.Width), ClientRectangle.ToXnaRectangle(),
+                           TextHorizontalAlignment, TextVerticalAlignment, Tint.ToXnaColor() * Opacity);
             }
 
             // TODO: Do not do this for every Draw call
@@ -349,8 +352,8 @@ namespace Narivia.Graphics
             
             if (TextureLayout == TextureLayout.Stretch)
             {
-                spriteBatch.Draw(textureToDraw, new Vector2(Location.X + ClientRectangle.Width / 2, Location.Y + ClientRectangle.Height / 2), SourceRectangle,
-                    Tint * Opacity, Rotation,
+                spriteBatch.Draw(textureToDraw, new Vector2(Location.X + ClientRectangle.Width / 2, Location.Y + ClientRectangle.Height / 2), SourceRectangle.ToXnaRectangle(),
+                    Tint.ToXnaColor() * Opacity, Rotation,
                     origin, Scale * Zoom,
                     SpriteEffects.None, 0.0f);
             }
@@ -364,7 +367,7 @@ namespace Narivia.Graphics
                 spriteBatch.End();
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
 
-                spriteBatch.Draw(textureToDraw, Location.ToVector2(), rec, Tint * Opacity);
+                spriteBatch.Draw(textureToDraw, new Vector2(Location.X, Location.Y), rec, Tint.ToXnaColor() * Opacity);
 
                 spriteBatch.End();
                 spriteBatch.Begin();
@@ -493,7 +496,7 @@ namespace Narivia.Graphics
                     }
                 }
 
-                spriteBatch.DrawString(spriteFont, line, Location.ToVector2() + textOrigin, colour);
+                spriteBatch.DrawString(spriteFont, line, new Vector2(Location.X, Location.Y) + textOrigin, colour);
                 
                 textOrigin.Y += lineSize.Y;
             }

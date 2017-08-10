@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Narivia.Graphics;
+using Narivia.Graphics.Geometry;
+using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Settings;
 
 namespace Narivia.Gui.WorldMap
@@ -70,7 +72,7 @@ namespace Narivia.Gui.WorldMap
 
             sprite.LoadContent();
 
-            int cols = (int)(sprite.TextureSize.X / GameDefines.MAP_TILE_SIZE);
+            int cols = (int)(sprite.TextureSize.Width / GameDefines.MAP_TILE_SIZE);
 
             Parallel.For(0, mapHeight, y => Parallel.For(0, mapWidth, x =>
             {
@@ -129,9 +131,9 @@ namespace Narivia.Gui.WorldMap
 
             foreach (Tile tile in tilesToDraw)
             {
-                sprite.Location = new Point(tile.X * GameDefines.MAP_TILE_SIZE - camera.Location.X,
-                                            tile.Y * GameDefines.MAP_TILE_SIZE - camera.Location.Y);
-                sprite.SourceRectangle = tile.SourceRectangle;
+                sprite.Location = new Point2D(tile.X * GameDefines.MAP_TILE_SIZE - camera.Location.X,
+                                              tile.Y * GameDefines.MAP_TILE_SIZE - camera.Location.Y);
+                sprite.SourceRectangle = tile.SourceRectangle.ToRectangle2D();
                 sprite.Draw(spriteBatch);
             }
         }

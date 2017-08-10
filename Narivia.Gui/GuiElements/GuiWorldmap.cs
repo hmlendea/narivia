@@ -48,8 +48,8 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle2D(GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE * 3,
-                                                  GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE).ToXnaRectangle(),
-                Tint = Colour.White.ToXnaColor(),
+                                                  GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE),
+                Tint = Colour.White,
                 Opacity = 1.0f
             };
 
@@ -57,8 +57,8 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle2D(0, GameDefines.MAP_TILE_SIZE * 3,
-                                                  GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE).ToXnaRectangle(),
-                Tint = Colour.White.ToXnaColor(),
+                                                  GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE),
+                Tint = Colour.White,
                 Opacity = 1.0f
             };
 
@@ -66,8 +66,8 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle2D(0, GameDefines.MAP_TILE_SIZE,
-                                                  GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE).ToXnaRectangle(),
-                Tint = Colour.Blue.ToXnaColor(),
+                                                  GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE),
+                Tint = Colour.Blue,
                 Opacity = 1.0f
             };
 
@@ -208,14 +208,14 @@ namespace Narivia.Gui.GuiElements
 
                     if (SelectedRegionId == regionId)
                     {
-                        selectedRegionHighlight.Location = screenCoords.ToXnaPoint();
-                        selectedRegionHighlight.Tint = factionColour.ToXnaColor();
+                        selectedRegionHighlight.Location = screenCoords;
+                        selectedRegionHighlight.Tint = factionColour;
                         selectedRegionHighlight.Draw(spriteBatch);
                     }
                     else
                     {
-                        regionHighlight.Location = screenCoords.ToXnaPoint();
-                        regionHighlight.Tint = factionColour.ToXnaColor();
+                        regionHighlight.Location = screenCoords;
+                        regionHighlight.Tint = factionColour;
                         regionHighlight.Draw(spriteBatch);
                     }
                 }
@@ -257,35 +257,37 @@ namespace Narivia.Gui.GuiElements
                     string factionIdS = game.FactionIdAtLocation(x, y + 1);
                     string factionIdE = game.FactionIdAtLocation(x + 1, y);
 
-                    factionBorder.Location = screenCoords.ToXnaPoint();
-                    factionBorder.Tint = factionColour.ToXnaColor();
+                    factionBorder.Location = screenCoords;
+                    factionBorder.Tint = factionColour;
+
+                    // TODO: Optimise the below IFs
 
                     if (factionIdN != factionId &&
                         factionIdN != GameDefines.GAIA_FACTION)
                     {
                         factionBorder.SourceRectangle = new Rectangle2D(GameDefines.MAP_TILE_SIZE, 0,
-                                                                        GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE).ToXnaRectangle();
+                                                                        GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdW != factionId &&
                         factionIdW != GameDefines.GAIA_FACTION)
                     {
                         factionBorder.SourceRectangle = new Rectangle2D(0, GameDefines.MAP_TILE_SIZE,
-                                                                        GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE).ToXnaRectangle();
+                                                                        GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdS != factionId &&
                         factionIdS != GameDefines.GAIA_FACTION)
                     {
                         factionBorder.SourceRectangle = new Rectangle2D(GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE * 2,
-                                                                        GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE).ToXnaRectangle();
+                                                                        GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE);
                         factionBorder.Draw(spriteBatch);
                     }
                     if (factionIdE != factionId &&
                         factionIdE != GameDefines.GAIA_FACTION)
                     {
                         factionBorder.SourceRectangle = new Rectangle2D(GameDefines.MAP_TILE_SIZE * 2, GameDefines.MAP_TILE_SIZE,
-                                                                        GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE).ToXnaRectangle();
+                                                                        GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE);
                         factionBorder.Draw(spriteBatch);
                     }
                 }

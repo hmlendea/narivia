@@ -128,22 +128,22 @@ namespace Narivia.Gui.GuiElements
 
             if (SourceRectangle == Rectangle2D.Empty)
             {
-                SourceRectangle = new Rectangle2D(0, 0, sprite.SpriteSize.X, sprite.SpriteSize.Y);
+                SourceRectangle = new Rectangle2D(Point2D.Empty, sprite.SpriteSize);
             }
 
             if (Size == Size2D.Empty)
             {
-                Size = sprite.SourceRectangle.Size.ToSize2D();
+                Size = sprite.SourceRectangle.Size;
             }
 
             sprite.Active = EffectsActive;
             sprite.AlphaMaskFile = MaskFile;
             sprite.ContentFile = ContentFile;
             sprite.FadeEffect = FadeEffect;
-            sprite.Location = Location.ToXnaPoint();
-            sprite.SourceRectangle = SourceRectangle.ToXnaRectangle();
+            sprite.Location = Location;
+            sprite.SourceRectangle = SourceRectangle;
             sprite.TextureLayout = TextureLayout;
-            sprite.Tint = TintColour.ToXnaColor();
+            sprite.Tint = TintColour;
 
             if (!sprite.SourceRectangle.IsEmpty)
             {
