@@ -3,7 +3,7 @@
     public enum HorizontalAlignment
     {
         Top,
-        Center,
+        Centre,
         Bottom
     }
 }

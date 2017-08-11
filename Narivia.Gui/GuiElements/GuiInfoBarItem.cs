@@ -52,7 +52,7 @@ namespace Narivia.Gui.GuiElements
             icon = new GuiImage();
             text = new GuiText
             {
-                HorizontalAlignment = HorizontalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Centre,
                 VerticalAlignment = VerticalAlignment.Left
             };
 

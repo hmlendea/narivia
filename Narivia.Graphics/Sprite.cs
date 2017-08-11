@@ -22,8 +22,6 @@ namespace Narivia.Graphics
     /// </summary>
     public class Sprite
     {
-        Vector2 origin;
-        RenderTarget2D renderTarget;
         SpriteFont font;
 
         FadeEffect fadeEffect;
@@ -76,6 +74,10 @@ namespace Narivia.Graphics
         public string Text { get; set; }
 
         // TODO: Make this a number (Outline size)
+        /// <summary>
+        /// Gets or sets a value indicating whether the text of the <see cref="Sprite"/> will be outlined.
+        /// </summary>
+        /// <value><c>true</c> if the text is outlined; otherwise, <c>false</c>.</value>
         public bool TextOutline { get; set; }
 
         /// <summary>
@@ -125,7 +127,7 @@ namespace Narivia.Graphics
         /// </summary>
         /// <value>The scale.</value>
         public Scale2D Scale { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the source rectangle.
         /// </summary>
@@ -271,7 +273,7 @@ namespace Narivia.Graphics
                 SourceRectangle = new Rectangle2D(Point2D.Empty, SpriteSize);
             }
 
-            renderTarget = new RenderTarget2D(
+            RenderTarget2D renderTarget = new RenderTarget2D(
                 GraphicsManager.Instance.Graphics.GraphicsDevice,
                 SpriteSize.Width, SpriteSize.Height);
 
@@ -332,8 +334,8 @@ namespace Narivia.Graphics
         /// <param name="spriteBatch">Sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            origin = new Vector2(SourceRectangle.Width / 2,
-                                 SourceRectangle.Height / 2);
+            Vector2 origin = new Vector2(SourceRectangle.Width / 2,
+                                         SourceRectangle.Height / 2);
 
             if (!string.IsNullOrEmpty(Text))
             {
@@ -349,7 +351,7 @@ namespace Narivia.Graphics
             {
                 textureToDraw = TextureBlend(texture, alphaMask);
             }
-            
+
             if (TextureLayout == TextureLayout.Stretch)
             {
                 spriteBatch.Draw(textureToDraw, new Vector2(Location.X + ClientRectangle.Width / 2, Location.Y + ClientRectangle.Height / 2), SourceRectangle.ToXnaRectangle(),
@@ -448,7 +450,7 @@ namespace Narivia.Graphics
             effectKeys.ForEach(DeactivateEffect);
             split.ForEach(ActivateEffect);
         }
-        
+
         void DrawString(SpriteBatch spriteBatch, SpriteFont spriteFont, string text, Rectangle bounds, HorizontalAlignment hAlign, VerticalAlignment vAlign, Color colour)
         {
             Vector2 textOrigin = Vector2.Zero;
@@ -456,7 +458,7 @@ namespace Narivia.Graphics
 
             string[] lines = text.Split('\n');
 
-            if (hAlign == HorizontalAlignment.Center)
+            if (hAlign == HorizontalAlignment.Centre)
             {
                 textOrigin.Y = bounds.Height / 2 - totalSize.Y / 2;
             }
@@ -497,7 +499,7 @@ namespace Narivia.Graphics
                 }
 
                 spriteBatch.DrawString(spriteFont, line, new Vector2(Location.X, Location.Y) + textOrigin, colour);
-                
+
                 textOrigin.Y += lineSize.Y;
             }
         }
@@ -534,18 +536,16 @@ namespace Narivia.Graphics
                 endY = startY + mask.Height;
             }
 
-            Parallel.For(startY, endY,
-                y => Parallel.For(startX, endX,
-                    x =>
-                    {
-                        int indexTexture = x - startX + (y - startY) * source.Width;
-                        int indexMask = x - startX + (y - startY) * mask.Width;
+            Parallel.For(startY, endY, y => Parallel.For(startX, endX, x =>
+            {
+                int indexTexture = x - startX + (y - startY) * source.Width;
+                int indexMask = x - startX + (y - startY) * mask.Width;
 
-                        textureBits[indexTexture] = Color.FromNonPremultiplied(textureBits[indexTexture].R,
-                                                                               textureBits[indexTexture].G,
-                                                                               textureBits[indexTexture].B,
-                                                                               textureBits[indexTexture].A - 255 + maskBits[indexMask].R);
-                    }));
+                textureBits[indexTexture] = Color.FromNonPremultiplied(textureBits[indexTexture].R,
+                                                                       textureBits[indexTexture].G,
+                                                                       textureBits[indexTexture].B,
+                                                                       textureBits[indexTexture].A - 255 + maskBits[indexMask].R);
+            }));
 
             Texture2D blendedTexture = new Texture2D(source.GraphicsDevice, source.Width, source.Height);
             blendedTexture.SetData(textureBits);
