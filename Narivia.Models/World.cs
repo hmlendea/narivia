@@ -135,11 +135,20 @@ namespace Narivia.Models
         [XmlIgnore]
         public IList<WorldGeoLayer> Layers { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="World"/> class.
+        /// </summary>
         public World()
         {
             Layers = new List<WorldGeoLayer>();
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="World"/> is equal to the current <see cref="World"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="World"/> to compare with the current <see cref="World"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="World"/> is equal to the current
+        /// <see cref="World"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(World other)
         {
             if (ReferenceEquals(null, other))
@@ -172,6 +181,12 @@ namespace Narivia.Models
                    Equals(Layers, other.Layers);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="World"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="World"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="World"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -192,6 +207,11 @@ namespace Narivia.Models
             return Equals((World)obj);
         }
 
+        /// <summary>
+        /// Serves as a hash function for a <see cref="World"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             unchecked

@@ -66,6 +66,12 @@ namespace Narivia.Models
         /// <value><c>true</c> if alive; otherwise, <c>false</c>.</value>
         public bool Alive { get; set; }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="Faction"/> is equal to the current <see cref="Faction"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="Faction"/> to compare with the current <see cref="Faction"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="Faction"/> is equal to the current
+        /// <see cref="Faction"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(Faction other)
         {
             if (ReferenceEquals(null, other))
@@ -88,6 +94,12 @@ namespace Narivia.Models
                    Equals(Alive, other.Alive);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Faction"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Faction"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="Faction"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -108,6 +120,11 @@ namespace Narivia.Models
             return Equals((Faction)obj);
         }
 
+        /// <summary>
+        /// Serves as a hash function for a <see cref="Faction"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             unchecked
@@ -117,7 +134,7 @@ namespace Narivia.Models
                        (Description != null ? Description.GetHashCode() : 0) ^
                        (FlagId != null ? FlagId.GetHashCode() : 0) ^
                        (CultureId != null ? CultureId.GetHashCode() : 0) ^
-                       (Colour != null ? Colour.GetHashCode() : 0) ^
+                       Colour.GetHashCode() ^
                        Wealth.GetHashCode() ^
                        Alive.GetHashCode();
             }

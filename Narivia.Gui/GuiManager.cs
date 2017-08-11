@@ -9,6 +9,9 @@ using Narivia.Input;
 
 namespace Narivia.Gui
 {
+    /// <summary>
+    /// GUI manager.
+    /// </summary>
     public class GuiManager
     {
         static volatile GuiManager instance;
@@ -104,12 +107,20 @@ namespace Narivia.Gui
             }
         }
 
+        /// <summary>
+        /// Focuses the input on the element with the specified identifier.
+        /// </summary>
+        /// <param name="id">Element identifier.</param>
         public void FocusElement(string id)
         {
             GuiElements.ForEach(e => e.InputFocus = false);
             GuiElements.FirstOrDefault(e => e.Id == id).InputFocus = true;
         }
 
+        /// <summary>
+        /// Focuses the input on the specified element.
+        /// </summary>
+        /// <param name="element">Element.</param>
         public void FocusElement(GuiElement element)
         {
             FocusElement(element.Id);

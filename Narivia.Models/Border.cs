@@ -29,6 +29,12 @@ namespace Narivia.Models
         [StringLength(40, MinimumLength = 3)]
         public string TargetRegionId { get; set; }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="Border"/> is equal to the current <see cref="Border"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="Border"/> to compare with the current <see cref="Border"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="Border"/> is equal to the current
+        /// <see cref="Border"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(Border other)
         {
             if (ReferenceEquals(null, other))
@@ -45,6 +51,12 @@ namespace Narivia.Models
                    string.Equals(TargetRegionId, other.TargetRegionId);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Border"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Border"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="Border"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -65,6 +77,11 @@ namespace Narivia.Models
             return Equals((Border)obj);
         }
 
+        /// <summary>
+        /// Serves as a hash function for a <see cref="Border"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             unchecked

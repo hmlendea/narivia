@@ -40,6 +40,12 @@ namespace Narivia.Models
         /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
         public bool Visible { get; set; }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="WorldGeoLayer"/> is equal to the current <see cref="WorldGeoLayer"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="WorldGeoLayer"/> to compare with the current <see cref="WorldGeoLayer"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="WorldGeoLayer"/> is equal to the current
+        /// <see cref="WorldGeoLayer"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(WorldGeoLayer other)
         {
             if (ReferenceEquals(null, other))
@@ -59,6 +65,12 @@ namespace Narivia.Models
                    Equals(Visible, other.Visible);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="WorldGeoLayer"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="WorldGeoLayer"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="WorldGeoLayer"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -79,6 +91,11 @@ namespace Narivia.Models
             return Equals((WorldGeoLayer)obj);
         }
 
+        /// <summary>
+        /// Serves as a hash function for a <see cref="WorldGeoLayer"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             unchecked

@@ -1,5 +1,8 @@
 ﻿namespace Narivia.DataAccess.DataObjects
 {
+    /// <summary>
+    /// World tile entity.
+    /// </summary>
     public class WorldTileEntity
     {
         /// <summary>

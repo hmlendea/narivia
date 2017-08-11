@@ -6,6 +6,9 @@ using Narivia.Logging.Enumerations;
 
 namespace Narivia.Logging
 {
+    /// <summary>
+    /// Log message builder.
+    /// </summary>
     public static class LogBuilder
     {
         /// <summary>

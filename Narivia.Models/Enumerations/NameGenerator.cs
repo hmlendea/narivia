@@ -1,5 +1,8 @@
 ﻿namespace Narivia.Models.Enumerations
 {
+    /// <summary>
+    /// Name generator enumeration.
+    /// </summary>
     public enum NameGenerator
     {
         /// <summary>

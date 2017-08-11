@@ -1,5 +1,8 @@
 ﻿namespace Narivia.Models.Enumerations
 {
+    /// <summary>
+    /// Unit type enumeration.
+    /// </summary>
     public enum UnitType
     {
         /// <summary>

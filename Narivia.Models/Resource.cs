@@ -45,6 +45,12 @@ namespace Narivia.Models
         [Range(0, 100)]
         public int Output { get; set; }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="Resource"/> is equal to the current <see cref="Resource"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="Resource"/> to compare with the current <see cref="Resource"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="Resource"/> is equal to the current
+        /// <see cref="Resource"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(Resource other)
         {
             if (ReferenceEquals(null, other))
@@ -64,6 +70,12 @@ namespace Narivia.Models
                    Equals(Output, other.Output);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Resource"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Resource"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="Resource"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -84,6 +96,11 @@ namespace Narivia.Models
             return Equals((Resource)obj);
         }
 
+        /// <summary>
+        /// Serves as a hash function for a <see cref="Resource"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             unchecked

@@ -1,5 +1,8 @@
 ﻿namespace Narivia.Models.Enumerations
 {
+    /// <summary>
+    /// Region state enumeration.
+    /// </summary>
     public enum RegionState
     {
         /// <summary>

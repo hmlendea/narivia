@@ -1,5 +1,8 @@
 ﻿namespace Narivia.Models.Enumerations
 {
+    /// <summary>
+    /// Resource type enumeration.
+    /// </summary>
     public enum ResourceType
     {
         /// <summary>

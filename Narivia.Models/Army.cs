@@ -36,6 +36,12 @@ namespace Narivia.Models
         [Range(0, int.MaxValue)]
         public int Size { get; set; }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="Army"/> is equal to the current <see cref="Army"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="Army"/> to compare with the current <see cref="Army"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref=Army"/> is equal to the current
+        /// <see cref="Army"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(Army other)
         {
             if (ReferenceEquals(null, other))
@@ -53,6 +59,12 @@ namespace Narivia.Models
                    Equals(Size, other.Size);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Army"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Army"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="Army"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -73,6 +85,11 @@ namespace Narivia.Models
             return Equals((Army)obj);
         }
 
+        /// <summary>
+        /// Serves as a hash function for a <see cref="Army"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             unchecked

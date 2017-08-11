@@ -7,6 +7,13 @@ namespace Narivia.Graphics.Helpers
 {
     static class StringUtils
     {
+        /// <summary>
+        /// Wraps the text on multiple lines.
+        /// </summary>
+        /// <returns>The text.</returns>
+        /// <param name="font">Font.</param>
+        /// <param name="text">Text.</param>
+        /// <param name="maxLineWidth">Maximum line width.</param>
         public static string WrapText(SpriteFont font, string text, float maxLineWidth)
         {
             if (font.MeasureString(text).X <= maxLineWidth)

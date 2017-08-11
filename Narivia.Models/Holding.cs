@@ -45,6 +45,12 @@ namespace Narivia.Models
         /// <value>The type.</value>
         public HoldingType Type { get; set; }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="Holding"/> is equal to the current <see cref="Holding"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="Holding"/> to compare with the current <see cref="Holding"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="Holding"/> is equal to the current
+        /// <see cref="Holding"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(Holding other)
         {
             if (ReferenceEquals(null, other))
@@ -64,6 +70,12 @@ namespace Narivia.Models
                    Equals(Type, other.Type);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Holding"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Holding"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="Holding"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -84,6 +96,11 @@ namespace Narivia.Models
             return Equals((Holding)obj);
         }
 
+        /// <summary>
+        /// Serves as a hash function for a <see cref="Holding"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             unchecked

@@ -1,5 +1,8 @@
 ﻿namespace Narivia.Models.Enumerations
 {
+    /// <summary>
+    /// Region type enumeration.
+    /// </summary>
     public enum RegionType
     {
         /// <summary>

@@ -96,6 +96,12 @@ namespace Narivia.Models
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="Region"/> is equal to the current <see cref="Region"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="Region"/> to compare with the current <see cref="Region"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="Region"/> is equal to the current
+        /// <see cref="Region"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(Region other)
         {
             if (ReferenceEquals(null, other))
@@ -119,6 +125,12 @@ namespace Narivia.Models
                    Equals(Type, other.Type);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Region"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Region"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="Region"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -139,6 +151,11 @@ namespace Narivia.Models
             return Equals((Region)obj);
         }
 
+        /// <summary>
+        /// Serves as a hash function for a <see cref="Region"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             unchecked

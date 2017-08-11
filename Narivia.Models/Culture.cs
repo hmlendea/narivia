@@ -51,6 +51,12 @@ namespace Narivia.Models
         /// <value>The place name generator schema.</value>
         public string PlaceNameSchema { get; set; }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="Culture"/> is equal to the current <see cref="Culture"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="Culture"/> to compare with the current <see cref="Culture"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="Culture"/> is equal to the current
+        /// <see cref="Culture"/>; otherwise, <c>false</c>.</returns>
         public bool Equals(Culture other)
         {
             if (ReferenceEquals(null, other))
@@ -71,6 +77,12 @@ namespace Narivia.Models
                    string.Equals(PlaceNameSchema, other.PlaceNameSchema);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Culture"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Culture"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
+        /// <see cref="Culture"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -91,6 +103,11 @@ namespace Narivia.Models
             return Equals((Culture)obj);
         }
 
+        /// <summary>
+        /// Serves as a hash function for a <see cref="Culture"/> object.
+        /// </summary>
+        /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
+        /// hash table.</returns>
         public override int GetHashCode()
         {
             unchecked
