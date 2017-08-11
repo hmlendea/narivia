@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Narivia.DataAccess.DataObjects;
 
@@ -16,12 +16,12 @@ namespace Narivia.DataAccess.Repositories.Interfaces
         void Add(BorderEntity borderEntity);
 
         /// <summary>
-        /// Get the border with the specified region identifiers.
+        /// Get the border with the specified province identifiers.
         /// </summary>
         /// <returns>The border.</returns>
-        /// <param name="region1Id">First region identifier.</param>
-        /// <param name="region2Id">Second region identifier.</param>
-        BorderEntity Get(string region1Id, string region2Id);
+        /// <param name="province1Id">First province identifier.</param>
+        /// <param name="province2Id">Second province identifier.</param>
+        BorderEntity Get(string province1Id, string province2Id);
 
         /// <summary>
         /// Gets all the borders.
@@ -30,10 +30,10 @@ namespace Narivia.DataAccess.Repositories.Interfaces
         IEnumerable<BorderEntity> GetAll();
 
         /// <summary>
-        /// Removes the border with the specified region identifiers.
+        /// Removes the border with the specified province identifiers.
         /// </summary>
-        /// <param name="region1Id">First region identifier.</param>
-        /// <param name="region2Id">Second region identifier.</param>
-        void Remove(string region1Id, string region2Id);
+        /// <param name="province1Id">First province identifier.</param>
+        /// <param name="province2Id">Second province identifier.</param>
+        void Remove(string province1Id, string province2Id);
     }
 }

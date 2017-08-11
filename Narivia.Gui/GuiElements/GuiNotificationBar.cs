@@ -13,7 +13,7 @@ namespace Narivia.Gui.GuiElements
     public class GuiNotificationBar : GuiElement
     {
         [XmlIgnore]
-        public string RegionId { get; private set; }
+        public string ProvinceId { get; private set; }
 
         IGameManager game;
 

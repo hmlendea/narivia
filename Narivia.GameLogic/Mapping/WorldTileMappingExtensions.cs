@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 
@@ -22,7 +22,7 @@ namespace Narivia.GameLogic.Mapping
             WorldTile worldTile = new WorldTile
             {
                 BiomeId = worldTileEntity.BiomeId,
-                RegionId = worldTileEntity.RegionId
+                ProvinceId = worldTileEntity.ProvinceId
             };
 
             return worldTile;
@@ -38,7 +38,7 @@ namespace Narivia.GameLogic.Mapping
             WorldTileEntity worldEntity = new WorldTileEntity
             {
                 BiomeId = worldTile.BiomeId,
-                RegionId = worldTile.RegionId
+                ProvinceId = worldTile.ProvinceId
             };
 
             return worldEntity;

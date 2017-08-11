@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
@@ -66,18 +66,18 @@ namespace Narivia.Models
         public int Height { get; set; }
 
         /// <summary>
-        /// Gets or sets the base region income.
+        /// Gets or sets the base province income.
         /// </summary>
-        /// <value>The base region income.</value>
+        /// <value>The base province income.</value>
         [Range(0, int.MaxValue)]
-        public int BaseRegionIncome { get; set; }
+        public int BaseProvinceIncome { get; set; }
 
         /// <summary>
-        /// Gets or sets the base region recruitment.
+        /// Gets or sets the base province recruitment.
         /// </summary>
-        /// <value>The base region recruitment.</value>
+        /// <value>The base province recruitment.</value>
         [Range(0, int.MaxValue)]
-        public int BaseRegionRecruitment { get; set; }
+        public int BaseProvinceRecruitment { get; set; }
 
         /// <summary>
         /// Gets or sets the base faction recruitment.
@@ -169,8 +169,8 @@ namespace Narivia.Models
                    string.Equals(Version, other.Version) &&
                    Equals(Width, other.Width) &&
                    Equals(Height, other.Height) &&
-                   Equals(BaseRegionIncome, other.BaseRegionIncome) &&
-                   Equals(BaseRegionRecruitment, other.BaseRegionRecruitment) &&
+                   Equals(BaseProvinceIncome, other.BaseProvinceIncome) &&
+                   Equals(BaseProvinceRecruitment, other.BaseProvinceRecruitment) &&
                    Equals(BaseFactionRecruitment, other.BaseFactionRecruitment) &&
                    Equals(MinTroopsPerAttack, other.MinTroopsPerAttack) &&
                    Equals(HoldingSlotsPerFaction, other.HoldingSlotsPerFaction) &&
@@ -224,8 +224,8 @@ namespace Narivia.Models
                        (Version != null ? Version.GetHashCode() : 0) ^
                        Width.GetHashCode() ^
                        Height.GetHashCode() ^
-                       BaseRegionIncome.GetHashCode() ^
-                       BaseRegionRecruitment.GetHashCode() ^
+                       BaseProvinceIncome.GetHashCode() ^
+                       BaseProvinceRecruitment.GetHashCode() ^
                        BaseFactionRecruitment.GetHashCode() ^
                        MinTroopsPerAttack.GetHashCode() ^
                        HoldingSlotsPerFaction.GetHashCode() ^

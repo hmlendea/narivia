@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Narivia.Models;
 using Narivia.Models.Enumerations;
@@ -14,35 +14,35 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         void LoadWorld(string worldId);
 
         /// <summary>
-        /// Checks wether the specified regions share a border.
+        /// Checks wether the specified provinces share a border.
         /// </summary>
-        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
-        /// <param name="region1Id">First region identifier.</param>
-        /// <param name="region2Id">Second region identifier.</param>
-        bool RegionBordersRegion(string region1Id, string region2Id);
+        /// <returns><c>true</c>, if the specified provinces share a border, <c>false</c> otherwise.</returns>
+        /// <param name="province1Id">First province identifier.</param>
+        /// <param name="province2Id">Second province identifier.</param>
+        bool ProvinceBordersProvince(string province1Id, string province2Id);
 
         /// <summary>
-        /// Checks wether a region has empty holding slots.
+        /// Checks wether a province has empty holding slots.
         /// </summary>
-        /// <returns><c>true</c>, if the region has empty holding slots, <c>false</c> otherwise.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        bool RegionHasEmptyHoldingSlots(string regionId);
+        /// <returns><c>true</c>, if the province has empty holding slots, <c>false</c> otherwise.</returns>
+        /// <param name="provinceId">Province identifier.</param>
+        bool ProvinceHasEmptyHoldingSlots(string provinceId);
 
         /// <summary>
-        /// Checks wether the specified regions share a border.
+        /// Checks wether the specified provinces share a border.
         /// </summary>
-        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if the specified provinces share a border, <c>false</c> otherwise.</returns>
         /// <param name="faction1Id">First faction identifier.</param>
         /// <param name="faction2Id">Second faction identifier.</param>
         bool FactionBordersFaction(string faction1Id, string faction2Id);
 
         /// <summary>
-        /// Checks wether the specified faction shares a border with the specified region.
+        /// Checks wether the specified faction shares a border with the specified province.
         /// </summary>
-        /// <returns><c>true</c>, if the faction share a border with that region, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if the faction share a border with that province, <c>false</c> otherwise.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        /// <param name="regionId">Region identifier.</param>
-        bool FactionBordersRegion(string factionId, string regionId);
+        /// <param name="provinceId">Province identifier.</param>
+        bool FactionBordersProvince(string factionId, string provinceId);
 
         /// <summary>
         /// Returns the faction identifier at the given location.
@@ -53,11 +53,11 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         string FactionIdAtLocation(int x, int y);
 
         /// <summary>
-        /// Transfers the specified region to the specified faction.
+        /// Transfers the specified province to the specified faction.
         /// </summary>
-        /// <param name="regionId">Region identifier.</param>
+        /// <param name="provinceId">Province identifier.</param>
         /// <param name="factionId">Faction identifier.</param>
-        void TransferRegion(string regionId, string factionId);
+        void TransferProvince(string provinceId, string factionId);
 
         /// <summary>
         /// Gets the armies.
@@ -99,9 +99,9 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <summary>
         /// Gets the faction capital.
         /// </summary>
-        /// <returns>Region.</returns>
+        /// <returns>Province.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        Region GetFactionCapital(string factionId);
+        Province GetFactionCapital(string factionId);
 
         /// <summary>
         /// Gets or sets the X map coordinate of the centre of the faction territoriy.
@@ -132,11 +132,11 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Holding> GetFactionHoldings(string factionId);
 
         /// <summary>
-        /// Gets the regions of a faction.
+        /// Gets the provinces of a faction.
         /// </summary>
-        /// <returns>The regions.</returns>
+        /// <returns>The provinces.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        IEnumerable<Region> GetFactionRegions(string factionId);
+        IEnumerable<Province> GetFactionProvinces(string factionId);
 
         /// <summary>
         /// Gets the relations of a faction.
@@ -158,17 +158,17 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Holding> GetHoldings();
 
         /// <summary>
-        /// Gets the regions.
+        /// Gets the provinces.
         /// </summary>
-        /// <returns>The regions.</returns>
-        IEnumerable<Region> GetRegions();
+        /// <returns>The provinces.</returns>
+        IEnumerable<Province> GetProvinces();
 
         /// <summary>
-        /// Gets the region holdings.
+        /// Gets the province holdings.
         /// </summary>
-        /// <returns>The region holdings.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        IEnumerable<Holding> GetRegionHoldings(string regionId);
+        /// <returns>The province holdings.</returns>
+        /// <param name="provinceId">Province identifier.</param>
+        IEnumerable<Holding> GetProvinceHoldings(string provinceId);
 
         /// <summary>
         /// Gets the relations.
@@ -195,11 +195,11 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         World GetWorld();
 
         /// <summary>
-        /// Adds the specified holding type in a region.
+        /// Adds the specified holding type in a province.
         /// </summary>
-        /// <param name="regionId">Region identifier.</param>
+        /// <param name="provinceId">Province identifier.</param>
         /// <param name="holdingType">Holding type.</param>
-        void AddHolding(string regionId, HoldingType holdingType);
+        void AddHolding(string provinceId, HoldingType holdingType);
 
         /// <summary>
         /// Changes the relations between two factions.

@@ -436,12 +436,12 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/SideBarFont.spritefont
 
-#begin Fonts/RegionBarHoldingFont.spritefont
+#begin Fonts/ProvinceBarHoldingFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/RegionBarHoldingFont.spritefont
+/build:Fonts/ProvinceBarHoldingFont.spritefont
 
 #begin Fonts/ToolTipFont.spritefont
 /importer:FontDescriptionImporter
@@ -1158,7 +1158,7 @@
 /processorParam:TextureFormat=Color
 /build:ScreenManager/missing-texture.png
 
-#begin Interface/region-panel-label.png
+#begin Interface/province-panel-label.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1168,7 +1168,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Interface/region-panel-label.png
+/build:Interface/province-panel-label.png
 
 #begin Interface/Flags/Emblems/battleaxe.png
 /importer:TextureImporter

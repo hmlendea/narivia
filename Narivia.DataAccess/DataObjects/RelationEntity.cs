@@ -1,4 +1,4 @@
-﻿namespace Narivia.DataAccess.DataObjects
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// Relation data entity.
@@ -12,9 +12,9 @@
         public string SourceFactionId { get; set; }
 
         /// <summary>
-        /// Gets the target region identifier.
+        /// Gets the target province identifier.
         /// </summary>
-        /// <value>The target region identifier.</value>
+        /// <value>The target province identifier.</value>
         public string TargetFactionId { get; set; }
 
         /// <summary>

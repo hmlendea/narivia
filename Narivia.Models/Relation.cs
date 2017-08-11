@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Narivia.Models
@@ -23,9 +23,9 @@ namespace Narivia.Models
         public string SourceFactionId { get; set; }
 
         /// <summary>
-        /// Gets the target region identifier.
+        /// Gets the target province identifier.
         /// </summary>
-        /// <value>The target region identifier.</value>
+        /// <value>The target province identifier.</value>
         [StringLength(40, MinimumLength = 3)]
         public string TargetFactionId { get; set; }
 

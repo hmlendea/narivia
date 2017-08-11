@@ -1,4 +1,4 @@
-﻿namespace Narivia.DataAccess.DataObjects
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// World tile entity.
@@ -6,10 +6,10 @@
     public class WorldTileEntity
     {
         /// <summary>
-        /// Gets or sets the region identifier.
+        /// Gets or sets the province identifier.
         /// </summary>
-        /// <value>The region identifier.</value>
-        public string RegionId { get; set; }
+        /// <value>The province identifier.</value>
+        public string ProvinceId { get; set; }
 
         /// <summary>
         /// Gets the biome identifier.

@@ -1,9 +1,9 @@
-﻿namespace Narivia.DataAccess.DataObjects
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
-    /// Region data entity.
+    /// Province data entity.
     /// </summary>
-    public class RegionEntity
+    public class ProvinceEntity
     {
         /// <summary>
         /// Gets or sets the identifier.

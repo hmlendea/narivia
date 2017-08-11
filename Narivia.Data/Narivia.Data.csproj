@@ -61,7 +61,7 @@
     <None Include="Worlds\narivia\map.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Worlds\narivia\regions.xml">
+    <None Include="Worlds\narivia\provinces.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Worlds\narivia\resources.xml">

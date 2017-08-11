@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
@@ -93,7 +93,7 @@ namespace Narivia.DataAccess.Repositories
                 xml.Serialize(writer, worldEntity);
             }
 
-            // TODO: Save the RegionMap and BiomeMap as well
+            // TODO: Save the ProvinceMap and BiomeMap as well
         }
 
         /// <summary>
@@ -107,27 +107,27 @@ namespace Narivia.DataAccess.Repositories
 
         WorldTileEntity[,] LoadWorldTiles(string worldId)
         {
-            ConcurrentDictionary<int, string> regionColourIds = new ConcurrentDictionary<int, string>();
+            ConcurrentDictionary<int, string> provinceColourIds = new ConcurrentDictionary<int, string>();
             ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
 
             IBiomeRepository biomeRepository = new BiomeRepository(Path.Combine(worldsDirectory, worldId, "biomes.xml"));
-            IRegionRepository regionRepository = new RegionRepository(Path.Combine(worldsDirectory, worldId, "regions.xml"));
+            IProvinceRepository provinceRepository = new ProvinceRepository(Path.Combine(worldsDirectory, worldId, "provinces.xml"));
 
             Parallel.ForEach(biomeRepository.GetAll(), b => biomeColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
-            Parallel.ForEach(regionRepository.GetAll(), r => regionColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));
+            Parallel.ForEach(provinceRepository.GetAll(), r => provinceColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));
 
             FastBitmap biomeBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "biomes_map.png"));
-            FastBitmap regionBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "map.png"));
+            FastBitmap provinceBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "map.png"));
 
-            Point worldSize = new Point(Math.Max(biomeBitmap.Width, regionBitmap.Width),
-                                        Math.Max(biomeBitmap.Height, regionBitmap.Height));
+            Point worldSize = new Point(Math.Max(biomeBitmap.Width, provinceBitmap.Width),
+                                        Math.Max(biomeBitmap.Height, provinceBitmap.Height));
 
-            WorldTileEntity[,] tiles = new WorldTileEntity[regionBitmap.Width, regionBitmap.Height];
+            WorldTileEntity[,] tiles = new WorldTileEntity[provinceBitmap.Width, provinceBitmap.Height];
 
             Parallel.For(0, worldSize.Y, y => Parallel.For(0, worldSize.X, x => tiles[x, y] = new WorldTileEntity()));
 
             biomeBitmap.LockBits();
-            regionBitmap.LockBits();
+            provinceBitmap.LockBits();
 
             Parallel.For(0, biomeBitmap.Height, y => Parallel.For(0, biomeBitmap.Width, x =>
             {
@@ -135,14 +135,14 @@ namespace Narivia.DataAccess.Repositories
                 tiles[x, y].BiomeId = biomeColourIds[argb];
             }));
             
-            Parallel.For(0, regionBitmap.Height, y => Parallel.For(0, regionBitmap.Width, x =>
+            Parallel.For(0, provinceBitmap.Height, y => Parallel.For(0, provinceBitmap.Width, x =>
             {
-                int argb = regionBitmap.GetPixel(x, y).ToArgb();
-                tiles[x, y].RegionId = regionColourIds[argb];
+                int argb = provinceBitmap.GetPixel(x, y).ToArgb();
+                tiles[x, y].ProvinceId = provinceColourIds[argb];
             }));
             
             biomeBitmap.Dispose();
-            regionBitmap.Dispose();
+            provinceBitmap.Dispose();
 
             return tiles;
         }

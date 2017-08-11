@@ -57,7 +57,7 @@
     <Compile Include="GuiElements\GuiNotificationDialog.cs" />
     <Compile Include="GuiElements\GuiNotificationIndicator.cs" />
     <Compile Include="GuiElements\GuiRecruitmentDialog.cs" />
-    <Compile Include="GuiElements\GuiRegionBar.cs" />
+    <Compile Include="GuiElements\GuiProvinceBar.cs" />
     <Compile Include="GuiElements\GuiSideBar.cs" />
     <Compile Include="GuiElements\GuiText.cs" />
     <Compile Include="GuiElements\GuiToolTip.cs" />

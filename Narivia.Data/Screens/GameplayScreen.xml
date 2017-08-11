@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <GameplayScreen>
 	<InfoBar>
 		<Location>
@@ -58,7 +58,7 @@
 			<Height>610</Height>
 		</Size>
 	</NotificationBar>
-	<RegionBar>
+	<ProvinceBar>
     <Location>
 			<X>0</X>
 			<Y>640</Y>
@@ -73,5 +73,5 @@
 			<G>215</G>
 			<B>0</B>
 		</ForegroundColour>
-	</RegionBar>
+	</ProvinceBar>
 </GameplayScreen>

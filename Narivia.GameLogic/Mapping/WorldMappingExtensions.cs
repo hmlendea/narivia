@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
@@ -29,8 +29,8 @@ namespace Narivia.GameLogic.Mapping
                 Version = worldEntity.Version,
                 Width = worldEntity.Width,
                 Height = worldEntity.Height,
-                BaseRegionIncome = worldEntity.BaseRegionIncome,
-                BaseRegionRecruitment = worldEntity.BaseRegionRecruitment,
+                BaseProvinceIncome = worldEntity.BaseProvinceIncome,
+                BaseProvinceRecruitment = worldEntity.BaseProvinceRecruitment,
                 BaseFactionRecruitment = worldEntity.BaseFactionRecruitment,
                 MinTroopsPerAttack = worldEntity.MinTroopsPerAttack,
                 HoldingSlotsPerFaction = worldEntity.HoldingSlotsPerFaction,
@@ -61,8 +61,8 @@ namespace Narivia.GameLogic.Mapping
                 Version = world.Version,
                 Width = world.Width,
                 Height = world.Height,
-                BaseRegionIncome = world.BaseRegionIncome,
-                BaseRegionRecruitment = world.BaseRegionRecruitment,
+                BaseProvinceIncome = world.BaseProvinceIncome,
+                BaseProvinceRecruitment = world.BaseProvinceRecruitment,
                 BaseFactionRecruitment = world.BaseFactionRecruitment,
                 MinTroopsPerAttack = world.MinTroopsPerAttack,
                 HoldingSlotsPerFaction = world.HoldingSlotsPerFaction,

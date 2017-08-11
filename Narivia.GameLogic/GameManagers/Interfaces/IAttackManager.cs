@@ -1,21 +1,21 @@
-﻿using Narivia.GameLogic.Enumerations;
+using Narivia.GameLogic.Enumerations;
 
 namespace Narivia.GameLogic.GameManagers.Interfaces
 {
     public interface IAttackManager
     {
         /// <summary>
-        /// Chooses the region to attack.
+        /// Chooses the province to attack.
         /// </summary>
-        /// <returns>The region to attack.</returns>
+        /// <returns>The province to attack.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        string ChooseRegionToAttack(string factionId);
+        string ChooseProvinceToAttack(string factionId);
 
         /// <summary>
-        /// Attacks the region.
+        /// Attacks the province.
         /// </summary>
         /// <param name="factionId">Faction identifier.</param>
-        /// <param name="regionId">Region identifier.</param>
-        BattleResult AttackRegion(string factionId, string regionId);
+        /// <param name="provinceId">Province identifier.</param>
+        BattleResult AttackProvince(string factionId, string provinceId);
     }
 }

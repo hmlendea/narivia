@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Narivia.Models
@@ -16,9 +16,9 @@ namespace Narivia.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the region identifier.
+        /// Gets or sets the province identifier.
         /// </summary>
-        /// <value>The region identifier.</value>
+        /// <value>The province identifier.</value>
         [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string Tileset { get; set; }
 

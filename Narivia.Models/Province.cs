@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Xml.Serialization;
@@ -8,9 +8,9 @@ using Narivia.Models.Enumerations;
 namespace Narivia.Models
 {
     /// <summary>
-    /// Region domain model.
+    /// Province domain model.
     /// </summary>
-    public class Region : IEquatable<Region>
+    public class Province : IEquatable<Province>
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -63,9 +63,9 @@ namespace Narivia.Models
         public Color Colour { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Region"/> is locked.
-        /// A region is normally locked as soon as it is conquered, and is unlocked when the turn has passed.
-        /// This is done in order to prevent the same region from being conquered multiple times in one turn.
+        /// Gets or sets a value indicating whether this <see cref="Province"/> is locked.
+        /// A province is normally locked as soon as it is conquered, and is unlocked when the turn has passed.
+        /// This is done in order to prevent the same province from being conquered multiple times in one turn.
         /// </summary>
         /// <value><c>true</c> if locked; otherwise, <c>false</c>.</value>
         [XmlIgnore]
@@ -76,33 +76,33 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The type.</value>
         [XmlIgnore]
-        public RegionType Type { get; set; }
+        public ProvinceType Type { get; set; }
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         /// <value>The state.</value>
         [XmlIgnore]
-        public RegionState State
+        public ProvinceState State
         {
             get
             {
                 if (FactionId == SovereignFactionId)
                 {
-                    return RegionState.Sovereign;
+                    return ProvinceState.Sovereign;
                 }
 
-                return RegionState.Occupied;
+                return ProvinceState.Occupied;
             }
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="Region"/> is equal to the current <see cref="Region"/>.
+        /// Determines whether the specified <see cref="Province"/> is equal to the current <see cref="Province"/>.
         /// </summary>
-        /// <param name="other">The <see cref="Region"/> to compare with the current <see cref="Region"/>.</param>
-        /// <returns><c>true</c> if the specified <see cref="Region"/> is equal to the current
-        /// <see cref="Region"/>; otherwise, <c>false</c>.</returns>
-        public bool Equals(Region other)
+        /// <param name="other">The <see cref="Province"/> to compare with the current <see cref="Province"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="Province"/> is equal to the current
+        /// <see cref="Province"/>; otherwise, <c>false</c>.</returns>
+        public bool Equals(Province other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -126,11 +126,11 @@ namespace Narivia.Models
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Region"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Province"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Region"/>.</param>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Province"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
-        /// <see cref="Region"/>; otherwise, <c>false</c>.</returns>
+        /// <see cref="Province"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -148,11 +148,11 @@ namespace Narivia.Models
                 return false;
             }
 
-            return Equals((Region)obj);
+            return Equals((Province)obj);
         }
 
         /// <summary>
-        /// Serves as a hash function for a <see cref="Region"/> object.
+        /// Serves as a hash function for a <see cref="Province"/> object.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
         /// hash table.</returns>

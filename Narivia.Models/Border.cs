@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Narivia.Models
@@ -13,21 +13,21 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The identifier.</value>
         [Key]
-        public string Id => $"{SourceRegionId}:{TargetRegionId}";
+        public string Id => $"{SourceProvinceId}:{TargetProvinceId}";
 
         /// <summary>
-        /// Gets the source region identifier.
+        /// Gets the source province identifier.
         /// </summary>
-        /// <value>The source region identifier.</value>
+        /// <value>The source province identifier.</value>
         [StringLength(40, MinimumLength = 3)]
-        public string SourceRegionId { get; set; }
+        public string SourceProvinceId { get; set; }
 
         /// <summary>
-        /// Gets the target region identifier.
+        /// Gets the target province identifier.
         /// </summary>
-        /// <value>The target region identifier.</value>
+        /// <value>The target province identifier.</value>
         [StringLength(40, MinimumLength = 3)]
-        public string TargetRegionId { get; set; }
+        public string TargetProvinceId { get; set; }
 
         /// <summary>
         /// Determines whether the specified <see cref="Border"/> is equal to the current <see cref="Border"/>.
@@ -47,8 +47,8 @@ namespace Narivia.Models
                 return true;
             }
 
-            return string.Equals(SourceRegionId, other.SourceRegionId) &&
-                   string.Equals(TargetRegionId, other.TargetRegionId);
+            return string.Equals(SourceProvinceId, other.SourceProvinceId) &&
+                   string.Equals(TargetProvinceId, other.TargetProvinceId);
         }
 
         /// <summary>
@@ -86,8 +86,8 @@ namespace Narivia.Models
         {
             unchecked
             {
-                return ((SourceRegionId != null ? SourceRegionId.GetHashCode() : 0) * 397) ^
-                       (TargetRegionId != null ? TargetRegionId.GetHashCode() : 0);
+                return ((SourceProvinceId != null ? SourceProvinceId.GetHashCode() : 0) * 397) ^
+                       (TargetProvinceId != null ? TargetProvinceId.GetHashCode() : 0);
             }
         }
     }

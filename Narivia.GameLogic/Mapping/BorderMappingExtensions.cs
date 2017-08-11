@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 using Narivia.DataAccess.DataObjects;
@@ -20,8 +20,8 @@ namespace Narivia.GameLogic.Mapping
         {
             Border border = new Border
             {
-                SourceRegionId = borderEntity.Region1Id,
-                TargetRegionId = borderEntity.Region2Id
+                SourceProvinceId = borderEntity.Province1Id,
+                TargetProvinceId = borderEntity.Province2Id
             };
 
             return border;
@@ -36,8 +36,8 @@ namespace Narivia.GameLogic.Mapping
         {
             BorderEntity borderEntity = new BorderEntity
             {
-                Region1Id = border.SourceRegionId,
-                Region2Id = border.TargetRegionId
+                Province1Id = border.SourceProvinceId,
+                Province2Id = border.TargetProvinceId
             };
 
             return borderEntity;

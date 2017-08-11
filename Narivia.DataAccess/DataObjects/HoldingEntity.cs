@@ -1,4 +1,4 @@
-﻿namespace Narivia.DataAccess.DataObjects
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// Holding data entity.
@@ -30,9 +30,9 @@
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or sets the identifier of the region to which this holding belongs to.
+        /// Gets or sets the identifier of the province to which this holding belongs to.
         /// </summary>
-        /// <value>The region identifier.</value>
-        public string RegionId { get; set; }
+        /// <value>The province identifier.</value>
+        public string ProvinceId { get; set; }
     }
 }

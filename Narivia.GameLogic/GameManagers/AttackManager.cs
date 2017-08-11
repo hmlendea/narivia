@@ -42,74 +42,74 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Chooses the region to attack.
+        /// Chooses the province to attack.
         /// </summary>
-        /// <returns>The region to attack.</returns>
+        /// <returns>The province to attack.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public string ChooseRegionToAttack(string factionId)
+        public string ChooseProvinceToAttack(string factionId)
         {
-            List<string> regionsOwnedIds = world.GetFactionRegions(factionId)
+            List<string> provincesOwnedIds = world.GetFactionProvinces(factionId)
                                                 .Select(x => x.Id)
                                                 .ToList();
 
             // TODO: Do not target factions with good relations
-            Dictionary<string, int> targets = world.GetRegions()
+            Dictionary<string, int> targets = world.GetProvinces()
                                                    .Where(r => r.FactionId != factionId &&
                                                                r.FactionId != GameDefines.GAIA_FACTION &&
                                                                r.Locked == false)
                                                    .Select(x => x.Id)
-                                                   .Except(regionsOwnedIds)
-                                                   .Where(x => regionsOwnedIds.Any(y => world.RegionBordersRegion(x, y)))
+                                                   .Except(provincesOwnedIds)
+                                                   .Where(x => provincesOwnedIds.Any(y => world.ProvinceBordersProvince(x, y)))
                                                    .ToDictionary(x => x, y => 0);
 
-            Parallel.ForEach(world.GetRegions().Where(r => targets.ContainsKey(r.Id)).ToList(), (region) =>
+            Parallel.ForEach(world.GetProvinces().Where(r => targets.ContainsKey(r.Id)).ToList(), (province) =>
             {
-                if (region.SovereignFactionId == factionId)
+                if (province.SovereignFactionId == factionId)
                 {
-                    targets[region.Id] += BLITZKRIEG_SOVEREIGNTY_IMPORTANCE;
+                    targets[province.Id] += BLITZKRIEG_SOVEREIGNTY_IMPORTANCE;
                 }
 
 
-                Parallel.ForEach(world.GetRegionHoldings(region.Id), (holding) =>
+                Parallel.ForEach(world.GetProvinceHoldings(province.Id), (holding) =>
                 {
                     switch (holding.Type)
                     {
                         case HoldingType.Castle:
-                            targets[region.Id] += BLITZKRIEG_HOLDING_CASTLE_IMPORTANCE;
+                            targets[province.Id] += BLITZKRIEG_HOLDING_CASTLE_IMPORTANCE;
                             break;
 
                         case HoldingType.City:
-                            targets[region.Id] += BLITZKRIEG_HOLDING_CITY_IMPORTANCE;
+                            targets[province.Id] += BLITZKRIEG_HOLDING_CITY_IMPORTANCE;
                             break;
 
                         case HoldingType.Temple:
-                            targets[region.Id] += BLITZKRIEG_HOLDING_TEMPLE_IMPORTANCE;
+                            targets[province.Id] += BLITZKRIEG_HOLDING_TEMPLE_IMPORTANCE;
                             break;
                     }
                 });
 
-                Resource regionResource = world.GetResources().FirstOrDefault(x => x.Id == region.ResourceId);
+                Resource provinceResource = world.GetResources().FirstOrDefault(x => x.Id == province.ResourceId);
 
-                if (regionResource != null)
+                if (provinceResource != null)
                 {
-                    switch (regionResource.Type)
+                    switch (provinceResource.Type)
                     {
                         case ResourceType.Military:
-                            targets[region.Id] += BLITZKRIEG_RESOURCE_MILITARY_IMPORTANCE;
+                            targets[province.Id] += BLITZKRIEG_RESOURCE_MILITARY_IMPORTANCE;
                             break;
 
                         case ResourceType.Economy:
-                            targets[region.Id] += BLITZKRIEG_RESOURCE_ECONOMY_IMPORTANCE;
+                            targets[province.Id] += BLITZKRIEG_RESOURCE_ECONOMY_IMPORTANCE;
                             break;
                     }
                 }
 
-                targets[region.Id] += regionsOwnedIds.Count(x => world.RegionBordersRegion(x, region.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
-                targets[region.Id] -= world.GetFactionRelations(factionId)
-                                           .FirstOrDefault(r => r.TargetFactionId == region.FactionId)
+                targets[province.Id] += provincesOwnedIds.Count(x => world.ProvinceBordersProvince(x, province.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
+                targets[province.Id] -= world.GetFactionRelations(factionId)
+                                           .FirstOrDefault(r => r.TargetFactionId == province.FactionId)
                                            .Value;
 
-                // TODO: Maybe add a random importance to each region in order to reduce predictibility a little
+                // TODO: Maybe add a random importance to each province in order to reduce predictibility a little
             });
 
             if (targets.Count == 0)
@@ -119,34 +119,34 @@ namespace Narivia.GameLogic.GameManagers
 
             int maxScore = targets.Max(x => x.Value);
             List<string> topTargets = targets.Keys.Where(x => targets[x] == maxScore).ToList();
-            string regionId = topTargets[random.Next(0, topTargets.Count())];
+            string provinceId = topTargets[random.Next(0, topTargets.Count())];
 
-            return regionId;
+            return provinceId;
         }
 
         /// <summary>
-        /// Attacks the region.
+        /// Attacks the province.
         /// </summary>
         /// <param name="factionId">Faction identifier.</param>
-        /// <param name="regionId">Region identifier.</param>
-        public BattleResult AttackRegion(string factionId, string regionId)
+        /// <param name="provinceId">Province identifier.</param>
+        public BattleResult AttackProvince(string factionId, string provinceId)
         {
-            Region targetRegion = world.GetRegions().FirstOrDefault(r => r.Id == regionId);
+            Province targetProvince = world.GetProvinces().FirstOrDefault(r => r.Id == provinceId);
 
-            if (string.IsNullOrWhiteSpace(regionId) ||
-                targetRegion.Locked ||
-                !world.FactionBordersRegion(factionId, regionId))
+            if (string.IsNullOrWhiteSpace(provinceId) ||
+                targetProvince.Locked ||
+                !world.FactionBordersProvince(factionId, provinceId))
             {
-                throw new InvalidTargetRegionException(regionId);
+                throw new InvalidTargetProvinceException(provinceId);
             }
 
             Faction attackerFaction = world.GetFactions().FirstOrDefault(f => f.Id == factionId);
-            Faction defenderFaction = world.GetFactions().FirstOrDefault(f => f.Id == targetRegion.FactionId);
+            Faction defenderFaction = world.GetFactions().FirstOrDefault(f => f.Id == targetProvince.FactionId);
 
             if (defenderFaction.Id == attackerFaction.Id ||
                 defenderFaction.Id == GameDefines.GAIA_FACTION)
             {
-                throw new InvalidTargetRegionException(regionId);
+                throw new InvalidTargetProvinceException(provinceId);
             }
 
             while (world.GetFactionTroopsAmount(attackerFaction.Id) > 0 &&
@@ -177,13 +177,13 @@ namespace Narivia.GameLogic.GameManagers
             }
 
             // TODO: In the GameDomainService I should change the realations based on wether the
-            // region was sovereign or not
+            // province was sovereign or not
 
             if (world.GetFactionTroopsAmount(attackerFaction.Id) >
                 world.GetFactionTroopsAmount(defenderFaction.Id))
             {
-                world.TransferRegion(regionId, factionId);
-                targetRegion.Locked = true;
+                world.TransferProvince(provinceId, factionId);
+                targetProvince.Locked = true;
 
                 return BattleResult.Victory;
             }

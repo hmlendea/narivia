@@ -1,4 +1,4 @@
-﻿namespace Narivia.Gui.GuiElements.Enumerations
+namespace Narivia.Gui.GuiElements.Enumerations
 {
     /// <summary>
     /// Notification icon.
@@ -31,19 +31,19 @@
         FactionRevived = 4,
 
         /// <summary>
-        /// 5 - Icon for battles where the player lost a region.
+        /// 5 - Icon for battles where the player lost a province.
         /// </summary>
-        RegionLost = 5,
+        ProvinceLost = 5,
 
         /// <summary>
-        /// 6 - Icon for battles where the player defended a region.
+        /// 6 - Icon for battles where the player defended a province.
         /// </summary>
-        RegionDefended = 6,
+        ProvinceDefended = 6,
 
         /// <summary>
-        /// 7 - Icon for when a player region was liberated.
+        /// 7 - Icon for when a player province was liberated.
         /// </summary>
-        RegionLiberated = 7,
+        ProvinceLiberated = 7,
 
         /// <summary>
         /// 8 - Icon for turn reports.

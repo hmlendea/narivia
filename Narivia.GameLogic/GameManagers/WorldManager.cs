@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.IO;
@@ -36,7 +36,7 @@ namespace Narivia.GameLogic.GameManagers
         ConcurrentDictionary<string, Faction> factions;
         ConcurrentDictionary<string, Flag> flags;
         ConcurrentDictionary<string, Holding> holdings;
-        ConcurrentDictionary<string, Region> regions;
+        ConcurrentDictionary<string, Province> provinces;
         ConcurrentDictionary<Tuple<string, string>, Relation> relations;
         ConcurrentDictionary<string, Resource> resources;
         ConcurrentDictionary<string, Unit> units;
@@ -69,50 +69,50 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Checks wether the specified regions share a border.
+        /// Checks wether the specified provinces share a border.
         /// </summary>
-        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
-        /// <param name="region1Id">First region identifier.</param>
-        /// <param name="region2Id">Second region identifier.</param>
-        public bool RegionBordersRegion(string region1Id, string region2Id)
+        /// <returns><c>true</c>, if the specified provinces share a border, <c>false</c> otherwise.</returns>
+        /// <param name="province1Id">First province identifier.</param>
+        /// <param name="province2Id">Second province identifier.</param>
+        public bool ProvinceBordersProvince(string province1Id, string province2Id)
         {
-            return borders.Values.Any(x => (x.SourceRegionId == region1Id && x.TargetRegionId == region2Id) ||
-                                           (x.SourceRegionId == region2Id && x.TargetRegionId == region1Id));
+            return borders.Values.Any(x => (x.SourceProvinceId == province1Id && x.TargetProvinceId == province2Id) ||
+                                           (x.SourceProvinceId == province2Id && x.TargetProvinceId == province1Id));
         }
 
         /// <summary>
-        /// Checks wether a region has empty holding slots.
+        /// Checks wether a province has empty holding slots.
         /// </summary>
-        /// <returns><c>true</c>, if the region has empty holding slots, <c>false</c> otherwise.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        public bool RegionHasEmptyHoldingSlots(string regionId)
+        /// <returns><c>true</c>, if the province has empty holding slots, <c>false</c> otherwise.</returns>
+        /// <param name="provinceId">Province identifier.</param>
+        public bool ProvinceHasEmptyHoldingSlots(string provinceId)
         {
-            return holdings.Values.Count(h => h.RegionId == regionId && h.Type == HoldingType.Empty) > 0;
+            return holdings.Values.Count(h => h.ProvinceId == provinceId && h.Type == HoldingType.Empty) > 0;
         }
 
         /// <summary>
-        /// Checks wether the specified regions share a border.
+        /// Checks wether the specified provinces share a border.
         /// </summary>
-        /// <returns><c>true</c>, if the specified regions share a border, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if the specified provinces share a border, <c>false</c> otherwise.</returns>
         /// <param name="faction1Id">First faction identifier.</param>
         /// <param name="faction2Id">Second faction identifier.</param>
         public bool FactionBordersFaction(string faction1Id, string faction2Id)
         {
-            List<Region> faction1Regions = GetFactionRegions(faction1Id).ToList();
-            List<Region> faction2Regions = GetFactionRegions(faction2Id).ToList();
+            List<Province> faction1Provinces = GetFactionProvinces(faction1Id).ToList();
+            List<Province> faction2Provinces = GetFactionProvinces(faction2Id).ToList();
             
-            return faction1Regions.Any(r1 => faction2Regions.Any(r2 => RegionBordersRegion(r1.Id, r2.Id)));
+            return faction1Provinces.Any(r1 => faction2Provinces.Any(r2 => ProvinceBordersProvince(r1.Id, r2.Id)));
         }
 
         /// <summary>
-        /// Checks wether the specified faction shares a border with the specified region.
+        /// Checks wether the specified faction shares a border with the specified province.
         /// </summary>
-        /// <returns><c>true</c>, if the faction share a border with that region, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c>, if the faction share a border with that province, <c>false</c> otherwise.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        /// <param name="regionId">Region identifier.</param>
-        public bool FactionBordersRegion(string factionId, string regionId)
+        /// <param name="provinceId">Province identifier.</param>
+        public bool FactionBordersProvince(string factionId, string provinceId)
         {
-            return GetFactionRegions(factionId).Any(r => RegionBordersRegion(r.Id, regionId));
+            return GetFactionProvinces(factionId).Any(r => ProvinceBordersProvince(r.Id, provinceId));
         }
 
         /// <summary>
@@ -123,17 +123,17 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="y">The y coordinate.</param>
         public string FactionIdAtLocation(int x, int y)
         {
-            return regions[world.Tiles[x, y].RegionId].FactionId;
+            return provinces[world.Tiles[x, y].ProvinceId].FactionId;
         }
 
         /// <summary>
-        /// Transfers the specified region to the specified faction.
+        /// Transfers the specified province to the specified faction.
         /// </summary>
-        /// <param name="regionId">Region identifier.</param>
+        /// <param name="provinceId">Province identifier.</param>
         /// <param name="factionId">Faction identifier.</param>
-        public void TransferRegion(string regionId, string factionId)
+        public void TransferProvince(string provinceId, string factionId)
         {
-            regions[regionId].FactionId = factionId;
+            provinces[provinceId].FactionId = factionId;
         }
 
         /// <summary>
@@ -183,12 +183,12 @@ namespace Narivia.GameLogic.GameManagers
         /// <summary>
         /// Gets the faction capital.
         /// </summary>
-        /// <returns>Region.</returns>
+        /// <returns>Province.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public Region GetFactionCapital(string factionId)
-        => regions.Values.FirstOrDefault(r => r.FactionId == factionId &&
+        public Province GetFactionCapital(string factionId)
+        => provinces.Values.FirstOrDefault(r => r.FactionId == factionId &&
                                               r.SovereignFactionId == factionId &&
-                                              r.Type == RegionType.Capital);
+                                              r.Type == ProvinceType.Capital);
 
         /// <summary>
         /// Gets or sets the X map coordinate of the centre of the faction territoriy.
@@ -204,7 +204,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 for (int x = 0; x < world.Width; x++)
                 {
-                    if (regions[world.Tiles[x, y].RegionId].FactionId != factionId)
+                    if (provinces[world.Tiles[x, y].ProvinceId].FactionId != factionId)
                     {
                         continue;
                     }
@@ -237,7 +237,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 for (int x = 0; x < world.Width; x++)
                 {
-                    if (regions[world.Tiles[x, y].RegionId].FactionId != factionId)
+                    if (provinces[world.Tiles[x, y].ProvinceId].FactionId != factionId)
                     {
                         continue;
                     }
@@ -271,15 +271,15 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Holding> GetFactionHoldings(string factionId)
         => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
-                                      regions[h.RegionId].FactionId == factionId);
+                                      provinces[h.ProvinceId].FactionId == factionId);
 
         /// <summary>
-        /// Gets the regions of a faction.
+        /// Gets the provinces of a faction.
         /// </summary>
-        /// <returns>The regions.</returns>
+        /// <returns>The provinces.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public IEnumerable<Region> GetFactionRegions(string factionId)
-        => regions.Values.Where(r => r.FactionId == factionId);
+        public IEnumerable<Province> GetFactionProvinces(string factionId)
+        => provinces.Values.Where(r => r.FactionId == factionId);
 
         /// <summary>
         /// Gets the relations of a faction.
@@ -305,20 +305,20 @@ namespace Narivia.GameLogic.GameManagers
         => holdings.Values;
 
         /// <summary>
-        /// Gets the regions.
+        /// Gets the provinces.
         /// </summary>
-        /// <returns>The regions.</returns>
-        public IEnumerable<Region> GetRegions()
-        => regions.Values;
+        /// <returns>The provinces.</returns>
+        public IEnumerable<Province> GetProvinces()
+        => provinces.Values;
 
         /// <summary>
-        /// Gets the holdings of a region.
+        /// Gets the holdings of a province.
         /// </summary>
         /// <returns>The holdings.</returns>
-        /// <param name="regionId">Region identifier.</param>
-        public IEnumerable<Holding> GetRegionHoldings(string regionId)
+        /// <param name="provinceId">Province identifier.</param>
+        public IEnumerable<Holding> GetProvinceHoldings(string provinceId)
         => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
-                                      h.RegionId == regionId);
+                                      h.ProvinceId == provinceId);
 
         /// <summary>
         /// Gets the relations.
@@ -349,13 +349,13 @@ namespace Narivia.GameLogic.GameManagers
         => world;
 
         /// <summary>
-        /// Adds the specified holding type in a region.
+        /// Adds the specified holding type in a province.
         /// </summary>
-        /// <param name="regionId">Region identifier.</param>
+        /// <param name="provinceId">Province identifier.</param>
         /// <param name="holdingType">Holding type.</param>
-        public void AddHolding(string regionId, HoldingType holdingType)
+        public void AddHolding(string provinceId, HoldingType holdingType)
         {
-            Holding emptySlot = holdings.Values.FirstOrDefault(h => h.RegionId == regionId &&
+            Holding emptySlot = holdings.Values.FirstOrDefault(h => h.ProvinceId == provinceId &&
                                                                     h.Type == HoldingType.Empty);
 
             if (emptySlot != null)
@@ -407,7 +407,7 @@ namespace Narivia.GameLogic.GameManagers
             IFactionRepository factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
             IFlagRepository flagRepository = new FlagRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "flags.xml"));
             IHoldingRepository holdingRepository = new HoldingRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
-            IRegionRepository regionRepository = new RegionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "regions.xml"));
+            IProvinceRepository provinceRepository = new ProvinceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "provinces.xml"));
             IResourceRepository resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
             IUnitRepository unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
             IWorldRepository worldRepository = new WorldRepository(ApplicationPaths.WorldsDirectory);
@@ -417,18 +417,18 @@ namespace Narivia.GameLogic.GameManagers
             IEnumerable<Culture> cultureList = cultureRepository.GetAll().ToDomainModels();
             IEnumerable<Faction> factionList = factionRepository.GetAll().ToDomainModels();
             IEnumerable<Flag> flagList = flagRepository.GetAll().ToDomainModels();
-            IEnumerable<Region> regionList = regionRepository.GetAll().ToDomainModels();
+            IEnumerable<Province> provinceList = provinceRepository.GetAll().ToDomainModels();
             IEnumerable<Resource> resourceList = resourceRepository.GetAll().ToDomainModels();
             IEnumerable<Unit> unitList = unitRepository.GetAll().ToDomainModels();
 
             armies = new ConcurrentDictionary<Tuple<string, string>, Army>();
             biomes = new ConcurrentDictionary<string, Biome>(biomeList.ToDictionary(biome => biome.Id, biome => biome));
-            borders = new ConcurrentDictionary<Tuple<string, string>, Border>(borderList.ToDictionary(border => new Tuple<string, string>(border.SourceRegionId, border.TargetRegionId), border => border));
+            borders = new ConcurrentDictionary<Tuple<string, string>, Border>(borderList.ToDictionary(border => new Tuple<string, string>(border.SourceProvinceId, border.TargetProvinceId), border => border));
             cultures = new ConcurrentDictionary<string, Culture>(cultureList.ToDictionary(culture => culture.Id, culture => culture));
             factions = new ConcurrentDictionary<string, Faction>(factionList.ToDictionary(faction => faction.Id, faction => faction));
             flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
             holdings = new ConcurrentDictionary<string, Holding>();
-            regions = new ConcurrentDictionary<string, Region>(regionList.ToDictionary(region => region.Id, region => region));
+            provinces = new ConcurrentDictionary<string, Province>(provinceList.ToDictionary(province => province.Id, province => province));
             relations = new ConcurrentDictionary<Tuple<string, string>, Relation>();
             resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
             units = new ConcurrentDictionary<string, Unit>(unitList.ToDictionary(unit => unit.Id, unit => unit));
@@ -442,8 +442,8 @@ namespace Narivia.GameLogic.GameManagers
             {
                 for (int y = 0; y < world.Height; y += 5)
                 {
-                    List<string> region2IdVisited = new List<string>();
-                    string region1Id = world.Tiles[x, y].RegionId;
+                    List<string> province2IdVisited = new List<string>();
+                    string province1Id = world.Tiles[x, y].ProvinceId;
 
                     for (int dx = -2; dx <= 2; dx++)
                     {
@@ -459,13 +459,13 @@ namespace Narivia.GameLogic.GameManagers
                                 continue;
                             }
 
-                            string region2Id = world.Tiles[x + dx, y + dy].RegionId;
+                            string province2Id = world.Tiles[x + dx, y + dy].ProvinceId;
 
-                            if (!region2IdVisited.Contains(region2Id) &&
-                                region1Id != region2Id)
+                            if (!province2IdVisited.Contains(province2Id) &&
+                                province1Id != province2Id)
                             {
-                                SetBorder(region1Id, region2Id);
-                                region2IdVisited.Add(region2Id);
+                                SetBorder(province1Id, province2Id);
+                                province2IdVisited.Add(province2Id);
                             }
                         }
                     }
@@ -473,18 +473,18 @@ namespace Narivia.GameLogic.GameManagers
             }
         }
 
-        void SetBorder(string region1Id, string region2Id)
+        void SetBorder(string province1Id, string province2Id)
         {
-            if (RegionBordersRegion(region1Id, region2Id))
+            if (ProvinceBordersProvince(province1Id, province2Id))
             {
                 return;
             }
 
-            Tuple<string, string> borderKey = new Tuple<string, string>(region1Id, region2Id);
+            Tuple<string, string> borderKey = new Tuple<string, string>(province1Id, province2Id);
             Border border = new Border
             {
-                SourceRegionId = region1Id,
-                TargetRegionId = region2Id
+                SourceProvinceId = province1Id,
+                TargetProvinceId = province2Id
             };
 
             borders.AddOrUpdate(borderKey, border);
@@ -493,7 +493,7 @@ namespace Narivia.GameLogic.GameManagers
         void InitializeEntities()
         {
             // Order is important
-            regions.Values.ToList().ForEach(r => InitialiseRegion(r.Id));
+            provinces.Values.ToList().ForEach(r => InitialiseProvince(r.Id));
             factions.Values.ToList().ForEach(f => InitialiseFaction(f.Id));
         }
 
@@ -529,13 +529,13 @@ namespace Narivia.GameLogic.GameManagers
             GenerateHoldings(faction.Id);
         }
 
-        void InitialiseRegion(string regionId)
+        void InitialiseProvince(string provinceId)
         {
-            Region region = regions[regionId];
+            Province province = provinces[provinceId];
 
-            if (string.IsNullOrWhiteSpace(region.SovereignFactionId))
+            if (string.IsNullOrWhiteSpace(province.SovereignFactionId))
             {
-                region.SovereignFactionId = region.FactionId;
+                province.SovereignFactionId = province.FactionId;
             }
         }
 
@@ -563,24 +563,24 @@ namespace Narivia.GameLogic.GameManagers
         void GenerateHoldings(string factionId)
         {
             Faction faction = factions[factionId];
-            Region capitalRegion = GetFactionCapital(faction.Id);
+            Province capitalProvince = GetFactionCapital(faction.Id);
 
             int holdingSlotsLeft = world.HoldingSlotsPerFaction;
 
             INameGenerator nameGenerator = CreateNameGenerator(faction.CultureId);
             nameGenerator.ExcludedStrings.AddRange(factions.Values.Select(f => f.Name));
             nameGenerator.ExcludedStrings.AddRange(holdings.Values.Select(h => h.Name));
-            nameGenerator.ExcludedStrings.AddRange(regions.Values.Select(r => r.Name));
+            nameGenerator.ExcludedStrings.AddRange(provinces.Values.Select(r => r.Name));
 
-            List<Region> ownedRegions = GetFactionRegions(faction.Id).ToList();
+            List<Province> ownedProvinces = GetFactionProvinces(faction.Id).ToList();
 
-            foreach (Region region in ownedRegions)
+            foreach (Province province in ownedProvinces)
             {
-                Holding holding = GenerateHolding(nameGenerator, region.Id);
+                Holding holding = GenerateHolding(nameGenerator, province.Id);
 
-                if (region.Id == capitalRegion.Id)
+                if (province.Id == capitalProvince.Id)
                 {
-                    holding.Name = region.Name;
+                    holding.Name = province.Name;
                     holding.Description = $"The government seat castle of {faction.Name}";
                     holding.Type = HoldingType.Castle;
                 }
@@ -591,8 +591,8 @@ namespace Narivia.GameLogic.GameManagers
 
             while (holdingSlotsLeft > 0)
             {
-                Region region = ownedRegions.GetRandomElement();
-                Holding holding = GenerateHolding(nameGenerator, region.Id);
+                Province province = ownedProvinces.GetRandomElement();
+                Holding holding = GenerateHolding(nameGenerator, province.Id);
 
                 holding.Description = string.Empty;
                 holding.Type = HoldingType.Empty;
@@ -633,9 +633,9 @@ namespace Narivia.GameLogic.GameManagers
             return nameGenerator;
         }
 
-        Holding GenerateHolding(INameGenerator generator, string regionId)
+        Holding GenerateHolding(INameGenerator generator, string provinceId)
         {
-            Region region = regions[regionId];
+            Province province = provinces[provinceId];
             Array holdingTypes = Enum.GetValues(typeof(HoldingType));
 
             HoldingType holdingType = (HoldingType)holdingTypes.GetValue(random.Next(1, holdingTypes.Length));
@@ -644,7 +644,7 @@ namespace Narivia.GameLogic.GameManagers
             Holding holding = new Holding
             {
                 Id = $"h_{name.Replace(" ", "_").ToLower()}",
-                RegionId = region.Id,
+                ProvinceId = province.Id,
                 Name = name,
                 Description = $"The {name} {holdingType.ToString().ToLower()}", // TODO: Better description
                 Type = holdingType
@@ -653,7 +653,7 @@ namespace Narivia.GameLogic.GameManagers
             // TODO: Make sure this never happens and then remove this workaround
             while (holdings.Values.Any(h => h.Id == holding.Id))
             {
-                return GenerateHolding(generator, region.Id);
+                return GenerateHolding(generator, province.Id);
             }
 
             return holding;

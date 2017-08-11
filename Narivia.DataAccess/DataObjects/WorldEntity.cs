@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Narivia.DataAccess.DataObjects
@@ -57,16 +57,16 @@ namespace Narivia.DataAccess.DataObjects
         public int Height { get; set; }
 
         /// <summary>
-        /// Gets or sets the base region income.
+        /// Gets or sets the base province income.
         /// </summary>
-        /// <value>The base region income.</value>
-        public int BaseRegionIncome { get; set; }
+        /// <value>The base province income.</value>
+        public int BaseProvinceIncome { get; set; }
 
         /// <summary>
-        /// Gets or sets the base region recruitment.
+        /// Gets or sets the base province recruitment.
         /// </summary>
-        /// <value>The base region recruitment.</value>
-        public int BaseRegionRecruitment { get; set; }
+        /// <value>The base province recruitment.</value>
+        public int BaseProvinceRecruitment { get; set; }
 
         /// <summary>
         /// Gets or sets the base faction recruitment.

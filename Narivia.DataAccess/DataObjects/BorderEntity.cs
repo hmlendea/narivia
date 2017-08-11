@@ -1,4 +1,4 @@
-﻿namespace Narivia.DataAccess.DataObjects
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// Border data entity.
@@ -6,15 +6,15 @@
     public class BorderEntity
     {
         /// <summary>
-        /// Gets the first region identifier.
+        /// Gets the first province identifier.
         /// </summary>
-        /// <value>The first region identifier.</value>
-        public string Region1Id { get; set; }
+        /// <value>The first province identifier.</value>
+        public string Province1Id { get; set; }
 
         /// <summary>
-        /// Gets the second region identifier.
+        /// Gets the second province identifier.
         /// </summary>
-        /// <value>The second region identifier.</value>
-        public string Region2Id { get; set; }
+        /// <value>The second province identifier.</value>
+        public string Province2Id { get; set; }
     }
 }

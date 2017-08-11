@@ -19,22 +19,22 @@ namespace Narivia.Gui.GuiElements
 
         // TODO: Create a GUI Element that contains both the icon and the text
 
-        GuiInfoBarItem regionsItem;
+        GuiInfoBarItem provincesItem;
         GuiInfoBarItem holdingsItem;
         GuiInfoBarItem wealthItem;
         GuiInfoBarItem troopsItem;
 
-        GuiTooltip regionsTooltip;
+        GuiTooltip provincesTooltip;
         GuiTooltip holdingsTooltip;
         GuiTooltip wealthTooltip;
         GuiTooltip troopsTooltip;
 
         /// <summary>
-        /// Gets or sets the regions count.
+        /// Gets or sets the provinces count.
         /// </summary>
-        /// <value>The regions count.</value>
+        /// <value>The provinces count.</value>
         [XmlIgnore]
-        public int Regions { get; set; }
+        public int Provinces { get; set; }
 
         /// <summary>
         /// Gets or sets the holdings count.
@@ -83,7 +83,7 @@ namespace Narivia.Gui.GuiElements
                 TextureLayout = TextureLayout.Tile
             };
 
-            regionsItem = new GuiInfoBarItem
+            provincesItem = new GuiInfoBarItem
             {
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle2D(0, 0, 16, 16)
@@ -104,9 +104,9 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = new Rectangle2D(32, 0, 16, 16)
             };
 
-            regionsTooltip = new GuiTooltip
+            provincesTooltip = new GuiTooltip
             {
-                Text = "Regions",
+                Text = "Provinces",
                 Size = new Size2D(100, 20),
                 Visible = false
             };
@@ -131,12 +131,12 @@ namespace Narivia.Gui.GuiElements
 
             Children.Add(background);
 
-            Children.Add(regionsItem);
+            Children.Add(provincesItem);
             Children.Add(holdingsItem);
             Children.Add(wealthItem);
             Children.Add(troopsItem);
             
-            Children.Add(regionsTooltip);
+            Children.Add(provincesTooltip);
             Children.Add(holdingsTooltip);
             Children.Add(wealthTooltip);
             Children.Add(troopsTooltip);
@@ -144,8 +144,8 @@ namespace Narivia.Gui.GuiElements
             holdingsItem.MouseEntered += OnHoldingsMouseEntered;
             holdingsItem.MouseLeft += OnHoldingsMouseLeft;
 
-            regionsItem.MouseEntered += OnRegionsMouseEntered;
-            regionsItem.MouseLeft += OnRegionsMouseLeft;
+            provincesItem.MouseEntered += OnProvincesMouseEntered;
+            provincesItem.MouseLeft += OnProvincesMouseLeft;
 
             troopsItem.MouseEntered += OnTroopsMouseEntered;
             troopsItem.MouseLeft += OnTroopsMouseLeft;
@@ -163,8 +163,8 @@ namespace Narivia.Gui.GuiElements
             holdingsItem.MouseEntered -= OnHoldingsMouseEntered;
             holdingsItem.MouseLeft -= OnHoldingsMouseLeft;
 
-            regionsItem.MouseEntered -= OnRegionsMouseEntered;
-            regionsItem.MouseLeft -= OnRegionsMouseLeft;
+            provincesItem.MouseEntered -= OnProvincesMouseEntered;
+            provincesItem.MouseLeft -= OnProvincesMouseLeft;
 
             troopsItem.MouseEntered -= OnTroopsMouseEntered;
             troopsItem.MouseLeft -= OnTroopsMouseLeft;
@@ -181,13 +181,13 @@ namespace Narivia.Gui.GuiElements
             background.Size = Size;
             background.TintColour = BackgroundColour;
 
-            regionsItem.ForegroundColour = ForegroundColour;
-            regionsItem.Location = new Point2D(Location.X + Spacing, Location.Y + (Size.Height - regionsItem.ClientRectangle.Height) / 2);
-            regionsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
-            regionsItem.Text = Regions.ToString();
+            provincesItem.ForegroundColour = ForegroundColour;
+            provincesItem.Location = new Point2D(Location.X + Spacing, Location.Y + (Size.Height - provincesItem.ClientRectangle.Height) / 2);
+            provincesItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
+            provincesItem.Text = Provinces.ToString();
 
             holdingsItem.ForegroundColour = ForegroundColour;
-            holdingsItem.Location = new Point2D(regionsItem.ClientRectangle.Right + Spacing, regionsItem.Location.Y);
+            holdingsItem.Location = new Point2D(provincesItem.ClientRectangle.Right + Spacing, provincesItem.Location.Y);
             holdingsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             holdingsItem.Text = Holdings.ToString();
 
@@ -201,7 +201,7 @@ namespace Narivia.Gui.GuiElements
             troopsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             troopsItem.Text = "0";
 
-            regionsTooltip.Location = new Point2D(regionsItem.Location.X, ClientRectangle.Bottom);
+            provincesTooltip.Location = new Point2D(provincesItem.Location.X, ClientRectangle.Bottom);
             holdingsTooltip.Location = new Point2D(holdingsItem.Location.X, ClientRectangle.Bottom);
             wealthTooltip.Location = new Point2D(wealthItem.Location.X, ClientRectangle.Bottom);
             troopsTooltip.Location = new Point2D(troopsItem.Location.X, ClientRectangle.Bottom);
@@ -225,14 +225,14 @@ namespace Narivia.Gui.GuiElements
             holdingsTooltip.Hide();
         }
 
-        void OnRegionsMouseEntered(object sender, MouseEventArgs e)
+        void OnProvincesMouseEntered(object sender, MouseEventArgs e)
         {
-            regionsTooltip.Show();
+            provincesTooltip.Show();
         }
 
-        void OnRegionsMouseLeft(object sender, MouseEventArgs e)
+        void OnProvincesMouseLeft(object sender, MouseEventArgs e)
         {
-            regionsTooltip.Hide();
+            provincesTooltip.Hide();
         }
 
         void OnTroopsMouseEntered(object sender, MouseEventArgs e)

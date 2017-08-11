@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Narivia.Models
@@ -6,11 +6,11 @@ namespace Narivia.Models
     public class WorldTile : IEquatable<WorldTile>
     {
         /// <summary>
-        /// Gets or sets the region identifier.
+        /// Gets or sets the province identifier.
         /// </summary>
-        /// <value>The region identifier.</value>
+        /// <value>The province identifier.</value>
         [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
-        public string RegionId { get; set; }
+        public string ProvinceId { get; set; }
 
         /// <summary>
         /// Gets the biome identifier.
@@ -37,7 +37,7 @@ namespace Narivia.Models
                 return true;
             }
 
-            return string.Equals(RegionId, other.RegionId) &&
+            return string.Equals(ProvinceId, other.ProvinceId) &&
                    string.Equals(BiomeId, other.BiomeId);
         }
 
@@ -76,7 +76,7 @@ namespace Narivia.Models
         {
             unchecked
             {
-                return ((RegionId != null ? RegionId.GetHashCode() : 0) * 397) ^
+                return ((ProvinceId != null ? ProvinceId.GetHashCode() : 0) * 397) ^
                        (BiomeId != null ? BiomeId.GetHashCode() : 0);
             }
         }

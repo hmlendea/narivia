@@ -44,7 +44,7 @@
     <Compile Include="Mapping\CultureMappingExtensions.cs" />
     <Compile Include="Mapping\FactionMappingExtensions.cs" />
     <Compile Include="Mapping\HoldingMappingExtensions.cs" />
-    <Compile Include="Mapping\RegionMappingExtensions.cs" />
+    <Compile Include="Mapping\ProvinceMappingExtensions.cs" />
     <Compile Include="Mapping\ResourceMappingExtensions.cs" />
     <Compile Include="Mapping\UnitMappingExtensions.cs" />
     <Compile Include="Mapping\WorldGeoLayerMappingExtensions.cs" />

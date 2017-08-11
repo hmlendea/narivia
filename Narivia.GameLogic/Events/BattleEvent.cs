@@ -1,4 +1,4 @@
-﻿using Narivia.GameLogic.Enumerations;
+using Narivia.GameLogic.Enumerations;
 
 namespace Narivia.GameLogic.Events
 {
@@ -13,9 +13,9 @@ namespace Narivia.GameLogic.Events
     public class BattleEventArgs
     {
         /// <summary>
-        /// The region identifier.
+        /// The province identifier.
         /// </summary>
-        public string RegionId { get; private set; }
+        public string ProvinceId { get; private set; }
 
         /// <summary>
         /// The attacker faction identifier.
@@ -30,12 +30,12 @@ namespace Narivia.GameLogic.Events
         /// <summary>
         /// Initializes a new instance of the <see cref="BattleEventArgs"/> class.
         /// </summary>
-        /// <param name="regionId">Region identifier.</param>
+        /// <param name="provinceId">Province identifier.</param>
         /// <param name="attackerFactionId">Attacker faction identifier.</param>
         /// <param name="battleResult">Battle result.</param>
-        public BattleEventArgs(string regionId, string attackerFactionId, BattleResult battleResult)
+        public BattleEventArgs(string provinceId, string attackerFactionId, BattleResult battleResult)
         {
-            RegionId = regionId;
+            ProvinceId = provinceId;
             AttackerFactionId = attackerFactionId;
             BattleResult = battleResult;
         }

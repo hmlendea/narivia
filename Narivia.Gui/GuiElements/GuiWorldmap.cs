@@ -1,4 +1,4 @@
-﻿using System.Xml.Serialization;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,18 +20,18 @@ namespace Narivia.Gui.GuiElements
     public class GuiWorldmap : GuiElement
     {
         /// <summary>
-        /// Gets the selected region identifier.
+        /// Gets the selected province identifier.
         /// </summary>
-        /// <value>The selected region identifier.</value>
+        /// <value>The selected province identifier.</value>
         [XmlIgnore]
-        public string SelectedRegionId { get; private set; }
+        public string SelectedProvinceId { get; private set; }
 
         IGameManager game;
         Camera camera;
         Map map;
 
-        Sprite regionHighlight;
-        Sprite selectedRegionHighlight;
+        Sprite provinceHighlight;
+        Sprite selectedProvinceHighlight;
         Sprite factionBorder;
 
         Point2D mouseCoords;
@@ -44,7 +44,7 @@ namespace Narivia.Gui.GuiElements
             camera = new Camera { Size = Size };
             map = new Map();
 
-            regionHighlight = new Sprite
+            provinceHighlight = new Sprite
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle2D(GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE * 3,
@@ -53,7 +53,7 @@ namespace Narivia.Gui.GuiElements
                 Opacity = 1.0f
             };
 
-            selectedRegionHighlight = new Sprite
+            selectedProvinceHighlight = new Sprite
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle2D(0, GameDefines.MAP_TILE_SIZE * 3,
@@ -74,8 +74,8 @@ namespace Narivia.Gui.GuiElements
             camera.LoadContent();
             map.LoadContent(game.GetWorld());
 
-            regionHighlight.LoadContent();
-            selectedRegionHighlight.LoadContent();
+            provinceHighlight.LoadContent();
+            selectedProvinceHighlight.LoadContent();
             factionBorder.LoadContent();
 
             base.LoadContent();
@@ -89,8 +89,8 @@ namespace Narivia.Gui.GuiElements
             camera.UnloadContent();
             map.UnloadContent();
 
-            regionHighlight.UnloadContent();
-            selectedRegionHighlight.UnloadContent();
+            provinceHighlight.UnloadContent();
+            selectedProvinceHighlight.UnloadContent();
             factionBorder.UnloadContent();
 
             base.UnloadContent();
@@ -108,8 +108,8 @@ namespace Narivia.Gui.GuiElements
             camera.Update(gameTime);
             map.Update(gameTime);
 
-            regionHighlight.Update(gameTime);
-            selectedRegionHighlight.Update(gameTime);
+            provinceHighlight.Update(gameTime);
+            selectedProvinceHighlight.Update(gameTime);
             factionBorder.Update(gameTime);
 
             base.Update(gameTime);
@@ -123,17 +123,17 @@ namespace Narivia.Gui.GuiElements
                 y > 0 && y < game.GetWorld().Height)
             {
                 // TODO: Handle the Id retrieval properly
-                SelectedRegionId = game.GetWorld().Tiles[x, y].RegionId;
+                SelectedProvinceId = game.GetWorld().Tiles[x, y].ProvinceId;
 
                 // TODO: Also handle this properly
                 if (game.FactionIdAtLocation(x, y) == GameDefines.GAIA_FACTION)
                 {
-                    SelectedRegionId = null;
+                    SelectedProvinceId = null;
                 }
             }
             else
             {
-                SelectedRegionId = null;
+                SelectedProvinceId = null;
             }
         }
 
@@ -146,7 +146,7 @@ namespace Narivia.Gui.GuiElements
         {
             map.Draw(spriteBatch, camera);
 
-            DrawRegionHighlight(spriteBatch);
+            DrawProvinceHighlight(spriteBatch);
             DrawFactionBorders(spriteBatch);
 
             base.Draw(spriteBatch);
@@ -170,9 +170,9 @@ namespace Narivia.Gui.GuiElements
             camera.CentreOnLocation(new Point2D(x * GameDefines.MAP_TILE_SIZE, y * GameDefines.MAP_TILE_SIZE));
         }
 
-        void DrawRegionHighlight(SpriteBatch spriteBatch)
+        void DrawProvinceHighlight(SpriteBatch spriteBatch)
         {
-            if (string.IsNullOrEmpty(SelectedRegionId))
+            if (string.IsNullOrEmpty(SelectedProvinceId))
             {
                 return;
             }
@@ -197,7 +197,7 @@ namespace Narivia.Gui.GuiElements
                         continue;
                     }
 
-                    string regionId = game.GetWorld().Tiles[x, y].RegionId;
+                    string provinceId = game.GetWorld().Tiles[x, y].ProvinceId;
                     string factionId = game.FactionIdAtLocation(x, y);
                     Colour factionColour = game.GetFaction(factionId).Colour.ToColour();
 
@@ -206,17 +206,17 @@ namespace Narivia.Gui.GuiElements
                         continue;
                     }
 
-                    if (SelectedRegionId == regionId)
+                    if (SelectedProvinceId == provinceId)
                     {
-                        selectedRegionHighlight.Location = screenCoords;
-                        selectedRegionHighlight.Tint = factionColour;
-                        selectedRegionHighlight.Draw(spriteBatch);
+                        selectedProvinceHighlight.Location = screenCoords;
+                        selectedProvinceHighlight.Tint = factionColour;
+                        selectedProvinceHighlight.Draw(spriteBatch);
                     }
                     else
                     {
-                        regionHighlight.Location = screenCoords;
-                        regionHighlight.Tint = factionColour;
-                        regionHighlight.Draw(spriteBatch);
+                        provinceHighlight.Location = screenCoords;
+                        provinceHighlight.Tint = factionColour;
+                        provinceHighlight.Draw(spriteBatch);
                     }
                 }
             }

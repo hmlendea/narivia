@@ -8,8 +8,8 @@
   <Author>Mlendea Horatiu</Author>
   <Width>640</Width>
   <Height>640</Height>
-  <BaseRegionIncome>20</BaseRegionIncome>
-  <BaseRegionRecruitment>5</BaseRegionRecruitment>
+  <BaseProvinceIncome>20</BaseProvinceIncome>
+  <BaseProvinceRecruitment>5</BaseProvinceRecruitment>
   <BaseFactionIncome>50</BaseFactionIncome>
   <BaseFactionRecruitment>50</BaseFactionRecruitment>
   <MinTroopsPerAttack>200</MinTroopsPerAttack>

@@ -1,4 +1,4 @@
-﻿namespace Narivia.DataAccess.DataObjects
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// World georaphic layer.
@@ -12,9 +12,9 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the region identifier.
+        /// Gets or sets the province identifier.
         /// </summary>
-        /// <value>The region identifier.</value>
+        /// <value>The province identifier.</value>
         public string Tileset { get; set; }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,7 +26,7 @@ namespace Narivia.GameLogic.Mapping
                 Name = holdingEntity.Name,
                 Description = holdingEntity.Description,
                 Type = (HoldingType)Enum.Parse(typeof(HoldingType), holdingEntity.Type),
-                RegionId = holdingEntity.RegionId
+                ProvinceId = holdingEntity.ProvinceId
             };
 
             return holding;
@@ -45,7 +45,7 @@ namespace Narivia.GameLogic.Mapping
                 Name = holding.Name,
                 Description = holding.Description,
                 Type = holding.Type.ToString(),
-                RegionId = holding.RegionId
+                ProvinceId = holding.ProvinceId
             };
 
             return holdingEntity;

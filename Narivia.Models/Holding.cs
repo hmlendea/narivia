@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 using Narivia.Models.Enumerations;
@@ -33,11 +33,11 @@ namespace Narivia.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the identifier of the region to which this holding belongs to.
+        /// Gets or sets the identifier of the province to which this holding belongs to.
         /// </summary>
-        /// <value>The region identifier.</value>
+        /// <value>The province identifier.</value>
         [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
-        public string RegionId { get; set; }
+        public string ProvinceId { get; set; }
 
         /// <summary>
         /// Gets or sets the type.
@@ -66,7 +66,7 @@ namespace Narivia.Models
             return string.Equals(Id, other.Id) &&
                    string.Equals(Name, other.Name) &&
                    string.Equals(Description, other.Description) &&
-                   string.Equals(RegionId, other.RegionId) &&
+                   string.Equals(ProvinceId, other.ProvinceId) &&
                    Equals(Type, other.Type);
         }
 
@@ -108,7 +108,7 @@ namespace Narivia.Models
                 return ((Id != null ? Id.GetHashCode() : 0) * 397) ^
                        (Name != null ? Name.GetHashCode() : 0) ^
                        (Description != null ? Description.GetHashCode() : 0) ^
-                       (RegionId != null ? RegionId.GetHashCode() : 0) ^
+                       (ProvinceId != null ? ProvinceId.GetHashCode() : 0) ^
                        Type.GetHashCode();
             }
         }

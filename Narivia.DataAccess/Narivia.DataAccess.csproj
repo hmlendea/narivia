@@ -61,11 +61,11 @@
     <Compile Include="Repositories\Interfaces\ICultureRepository.cs" />
     <Compile Include="Repositories\Interfaces\IFactionRepository.cs" />
     <Compile Include="Repositories\Interfaces\IHoldingRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IRegionRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProvinceRepository.cs" />
     <Compile Include="Repositories\Interfaces\IResourceRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUnitRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorldRepository.cs" />
-    <Compile Include="Repositories\RegionRepository.cs" />
+    <Compile Include="Repositories\ProvinceRepository.cs" />
     <Compile Include="Repositories\ResourceRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
     <Compile Include="Repositories\WorldRepository.cs" />
@@ -76,7 +76,7 @@
     <Compile Include="DataObjects\CultureEntity.cs" />
     <Compile Include="DataObjects\FactionEntity.cs" />
     <Compile Include="DataObjects\HoldingEntity.cs" />
-    <Compile Include="DataObjects\RegionEntity.cs" />
+    <Compile Include="DataObjects\ProvinceEntity.cs" />
     <Compile Include="DataObjects\ResourceEntity.cs" />
     <Compile Include="DataObjects\UnitEntity.cs" />
     <Compile Include="DataObjects\WorldEntity.cs" />
@@ -88,7 +88,7 @@
     <Compile Include="Repositories\FlagRepository.cs" />
     <Compile Include="Exceptions\DuplicateEntityException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
-    <Compile Include="Exceptions\InvalidTargetRegionException.cs" />
+    <Compile Include="Exceptions\InvalidTargetProvinceException.cs" />
     <Compile Include="Resources\ResourceManager.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,9 @@
-﻿namespace Narivia.Models.Enumerations
+namespace Narivia.Models.Enumerations
 {
     /// <summary>
-    /// Region type enumeration.
+    /// Province type enumeration.
     /// </summary>
-    public enum RegionType
+    public enum ProvinceType
     {
         /// <summary>
         /// Province.

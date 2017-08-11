@@ -36,10 +36,10 @@ namespace Narivia.Gui.Screens
         public GuiInfoBar InfoBar { get; set; }
 
         /// <summary>
-        /// Gets or sets the region bar.
+        /// Gets or sets the province bar.
         /// </summary>
-        /// <value>The region bar.</value>
-        public GuiRegionBar RegionBar { get; set; }
+        /// <value>The province bar.</value>
+        public GuiProvinceBar ProvinceBar { get; set; }
 
         /// <summary>
         /// Gets or sets the side bar.
@@ -60,7 +60,7 @@ namespace Narivia.Gui.Screens
 
         Dictionary<string, int> troopsOld;
         Dictionary<string, int> relationsOld;
-        int regionsOld, holdingsOld, wealthOld, incomeOld, outcomeOld, recruitmentOld;
+        int provincesOld, holdingsOld, wealthOld, incomeOld, outcomeOld, recruitmentOld;
 
         /// <summary>
         /// Loads the content.
@@ -98,7 +98,7 @@ namespace Narivia.Gui.Screens
             game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsOld.Add(r.TargetFactionId, r.Value));
 
             GameMap.AssociateGameManager(ref game);
-            RegionBar.AssociateGameManager(ref game);
+            ProvinceBar.AssociateGameManager(ref game);
             SideBar.AssociateGameManager(ref game);
             recruitmentDialog.AssociateGameManager(ref game);
             buildDialog.AssociateGameManager(ref game);
@@ -107,7 +107,7 @@ namespace Narivia.Gui.Screens
 
             GuiManager.Instance.GuiElements.Add(GameMap);
             GuiManager.Instance.GuiElements.Add(InfoBar);
-            GuiManager.Instance.GuiElements.Add(RegionBar);
+            GuiManager.Instance.GuiElements.Add(ProvinceBar);
             GuiManager.Instance.GuiElements.Add(SideBar);
             GuiManager.Instance.GuiElements.Add(NotificationBar);
             GuiManager.Instance.GuiElements.Add(recruitmentDialog);
@@ -124,7 +124,7 @@ namespace Narivia.Gui.Screens
                              NotificationStyle.Big,
                              new Size2D(256, 256));
 
-            RegionBar.SetRegion(game.GetFactionCapital(game.PlayerFactionId).Id);
+            ProvinceBar.SetProvince(game.GetFactionCapital(game.PlayerFactionId).Id);
 
             LinkEvents();
 
@@ -156,14 +156,14 @@ namespace Narivia.Gui.Screens
             buildDialog.Location = new Point2D(GameMap.Location.X + (GameMap.Size.Width - buildDialog.Size.Width) / 2,
                                                GameMap.Location.Y + (GameMap.Size.Height - buildDialog.Size.Height) / 2);
 
-            InfoBar.Regions = game.GetFactionRegions(game.PlayerFactionId).Count();
+            InfoBar.Provinces = game.GetFactionProvinces(game.PlayerFactionId).Count();
             InfoBar.Holdings = game.GetFactionHoldings(game.PlayerFactionId).Count();
             InfoBar.Wealth = game.GetFaction(game.PlayerFactionId).Wealth;
             InfoBar.Troops = troops;
 
-            if (!string.IsNullOrEmpty(GameMap.SelectedRegionId))
+            if (!string.IsNullOrEmpty(GameMap.SelectedProvinceId))
             {
-                RegionBar.SetRegion(GameMap.SelectedRegionId);
+                ProvinceBar.SetProvince(GameMap.SelectedProvinceId);
             }
 
             SideBar.FactionId = game.PlayerFactionId;
@@ -183,7 +183,7 @@ namespace Narivia.Gui.Screens
 
         void LinkEvents()
         {
-            game.PlayerRegionAttacked += game_OnPlayerRegionAttacked;
+            game.PlayerProvinceAttacked += game_OnPlayerProvinceAttacked;
             game.FactionDestroyed += game_OnFactionDestroyed;
             game.FactionRevived += game_OnFactionRevived;
             game.FactionWon += game_OnFactionWon;
@@ -208,7 +208,7 @@ namespace Narivia.Gui.Screens
             game.GetUnits().ToList().ForEach(u => troopsNew.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
             game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsNew.Add(r.TargetFactionId, r.Value));
 
-            int regionsNew = game.GetFactionRegions(game.PlayerFactionId).Count();
+            int provincesNew = game.GetFactionProvinces(game.PlayerFactionId).Count();
             int holdingsNew = game.GetFactionHoldings(game.PlayerFactionId).Count();
             int wealthNew = game.GetFaction(game.PlayerFactionId).Wealth;
             int incomeNew = game.GetFactionIncome(game.PlayerFactionId);
@@ -217,7 +217,7 @@ namespace Narivia.Gui.Screens
 
             string recruitmentBody = string.Empty;
             string relationsBody = string.Empty;
-            string turnBody = $"Regions: {regionsNew} ({(regionsNew - regionsOld).ToString("+0;-#")})" + Environment.NewLine +
+            string turnBody = $"Provinces: {provincesNew} ({(provincesNew - provincesOld).ToString("+0;-#")})" + Environment.NewLine +
                               $"Holdings: {holdingsNew} ({(holdingsNew - holdingsOld).ToString("+0;-#")})" + Environment.NewLine +
                               $"Wealth: {wealthNew} ({(wealthNew - wealthOld).ToString("+0;-#")})" + Environment.NewLine +
                               $"Income: {incomeNew} ({(incomeNew - incomeOld).ToString("+0;-#")})" + Environment.NewLine +
@@ -259,7 +259,7 @@ namespace Narivia.Gui.Screens
             troopsOld = troopsNew;
             relationsOld = relationsNew;
 
-            regionsOld = regionsNew;
+            provincesOld = provincesNew;
             holdingsOld = holdingsNew;
             wealthOld = wealthNew;
             incomeOld = incomeNew;
@@ -295,9 +295,9 @@ namespace Narivia.Gui.Screens
 
         void GameMap_Clicked(object sender, MouseButtonEventArgs e)
         {
-            string regionId = GameMap.SelectedRegionId;
+            string provinceId = GameMap.SelectedProvinceId;
 
-            if (string.IsNullOrEmpty(regionId))
+            if (string.IsNullOrEmpty(provinceId))
             {
                 return;
             }
@@ -306,7 +306,7 @@ namespace Narivia.Gui.Screens
             {
                 ShowNotification($"Not enough troops!",
                                  $"Sorry!" + Environment.NewLine + Environment.NewLine +
-                                 $"You do need at least {game.GetWorld().MinTroopsPerAttack} troops to attack any region.",
+                                 $"You do need at least {game.GetWorld().MinTroopsPerAttack} troops to attack any province.",
                                  NotificationType.Informational,
                                  NotificationStyle.Big,
                                  new Size2D(256, 192));
@@ -316,12 +316,12 @@ namespace Narivia.Gui.Screens
 
             try
             {
-                Region region = game.GetRegion(regionId);
+                Province province = game.GetProvince(provinceId);
 
-                string regionName = region.Name;
-                string defenderFactionName = game.GetFaction(region.FactionId).Name;
+                string provinceName = province.Name;
+                string defenderFactionName = game.GetFaction(province.FactionId).Name;
 
-                BattleResult result = game.PlayerAttackRegion(regionId);
+                BattleResult result = game.PlayerAttackProvince(provinceId);
 
                 NextTurn();
 
@@ -329,10 +329,10 @@ namespace Narivia.Gui.Screens
                 {
                     NotificationBar.AddNotification(NotificationIcon.BattleVictory).Clicked += delegate
                         {
-                            ShowNotification($"Victory in {regionName}!",
+                            ShowNotification($"Victory in {provinceName}!",
                                              $"Good news!" + Environment.NewLine + Environment.NewLine +
-                                             $"Our troops attacking {defenderFactionName} in {regionName} " +
-                                             $"have managed to break the defence and occupy the region!",
+                                             $"Our troops attacking {defenderFactionName} in {provinceName} " +
+                                             $"have managed to break the defence and occupy the province!",
                                              NotificationType.Informational,
                                              NotificationStyle.Big,
                                              new Size2D(256, 224));
@@ -342,9 +342,9 @@ namespace Narivia.Gui.Screens
                 {
                     NotificationBar.AddNotification(NotificationIcon.BattleDefeat).Clicked += delegate
                         {
-                            ShowNotification($"Defeat in {regionName}!",
+                            ShowNotification($"Defeat in {provinceName}!",
                                              $"Bad news!" + Environment.NewLine + Environment.NewLine +
-                                             $"Our troops attacking {defenderFactionName} in {regionName} " +
+                                             $"Our troops attacking {defenderFactionName} in {provinceName} " +
                                              $"were defeated by the defending forces!",
                                              NotificationType.Informational,
                                              NotificationStyle.Big,
@@ -352,7 +352,7 @@ namespace Narivia.Gui.Screens
                         };
                 }
             }
-            catch (InvalidTargetRegionException)
+            catch (InvalidTargetProvinceException)
             {
                 ShowNotification($"Invalid target!",
                                  $"Sorry!" + Environment.NewLine + Environment.NewLine +
@@ -363,18 +363,18 @@ namespace Narivia.Gui.Screens
             }
         }
 
-        void game_OnPlayerRegionAttacked(object sender, BattleEventArgs e)
+        void game_OnPlayerProvinceAttacked(object sender, BattleEventArgs e)
         {
-            string regionName = game.GetRegion(e.RegionId).Name;
+            string provinceName = game.GetProvince(e.ProvinceId).Name;
             string attackerFactionName = game.GetFaction(e.AttackerFactionId).Name;
 
             if (e.BattleResult == BattleResult.Victory)
             {
-                NotificationBar.AddNotification(NotificationIcon.RegionLost).Clicked += delegate
+                NotificationBar.AddNotification(NotificationIcon.ProvinceLost).Clicked += delegate
                     {
-                        ShowNotification($"{regionName} region lost!",
+                        ShowNotification($"{provinceName} province lost!",
                                          $"Bad news!" + Environment.NewLine + Environment.NewLine +
-                                         $"One of our regions, {regionName}, was attacked by {attackerFactionName}, " +
+                                         $"One of our provinces, {provinceName}, was attacked by {attackerFactionName}, " +
                                          $"who managed to break the defence and occupy it!",
                                          NotificationType.Informational,
                                          NotificationStyle.Big,
@@ -383,11 +383,11 @@ namespace Narivia.Gui.Screens
             }
             else
             {
-                NotificationBar.AddNotification(NotificationIcon.RegionDefended).Clicked += delegate
+                NotificationBar.AddNotification(NotificationIcon.ProvinceDefended).Clicked += delegate
                     {
-                        ShowNotification($"{regionName} region defended!",
+                        ShowNotification($"{provinceName} province defended!",
                                          $"Important news!" + Environment.NewLine + Environment.NewLine +
-                                         $"One of our regions, {regionName}, was attacked by {attackerFactionName}, " +
+                                         $"One of our provinces, {provinceName}, was attacked by {attackerFactionName}, " +
                                          $"but our brave troops managed to sucesfully defend it!",
                                          NotificationType.Informational,
                                          NotificationStyle.Big,

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,24 +27,24 @@ namespace Narivia.Gui.GuiElements
         GuiImage holdingImage;
 
         GuiText holdingText;
-        GuiText regionText;
+        GuiText provinceText;
 
         GuiImage priceIcon;
         GuiText priceText;
 
         GuiButton previousHoldingButton;
         GuiButton nextHoldingButton;
-        GuiButton previouseRegionButton;
-        GuiButton nextRegionButton;
+        GuiButton previouseProvinceButton;
+        GuiButton nextProvinceButton;
 
         GuiButton buildButton;
         GuiButton cancelButton;
 
         List<HoldingType> holdingTypes;
-        List<Region> regions;
+        List<Province> provinces;
 
         int currentHoldingTypeIndex;
-        int currentRegionIndex;
+        int currentProvinceIndex;
 
         /// <summary>
         /// Loads the content.
@@ -74,7 +74,7 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(holdingBackground.Size.Width, 18),
                 FontName = "InfoBarFont"
             };
-            regionText = new GuiText
+            provinceText = new GuiText
             {
                 Size = new Size2D(holdingBackground.Size.Height, 18),
                 FontName = "InfoBarFont"
@@ -103,12 +103,12 @@ namespace Narivia.Gui.GuiElements
                 Text = ">",
                 Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
-            previouseRegionButton = new GuiButton
+            previouseProvinceButton = new GuiButton
             {
                 Text = "<",
                 Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
             };
-            nextRegionButton = new GuiButton
+            nextProvinceButton = new GuiButton
             {
                 Text = ">",
                 Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
@@ -129,23 +129,23 @@ namespace Narivia.Gui.GuiElements
             Children.Add(holdingImage);
 
             Children.Add(holdingText);
-            Children.Add(regionText);
+            Children.Add(provinceText);
 
             Children.Add(priceIcon);
             Children.Add(priceText);
 
             Children.Add(nextHoldingButton);
             Children.Add(previousHoldingButton);
-            Children.Add(nextRegionButton);
-            Children.Add(previouseRegionButton);
+            Children.Add(nextProvinceButton);
+            Children.Add(previouseProvinceButton);
             Children.Add(buildButton);
             Children.Add(cancelButton);
 
             base.LoadContent();
 
-            UpdateRegionList();
+            UpdateProvinceList();
             SelectHolding(0);
-            SelectRegion(0);
+            SelectProvince(0);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Narivia.Gui.GuiElements
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            UpdateRegionList();
+            UpdateProvinceList();
 
             base.Update(gameTime);
         }
@@ -170,12 +170,12 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
-        /// Updates the region list.
+        /// Updates the province list.
         /// </summary>
-        void UpdateRegionList()
+        void UpdateProvinceList()
         {
-            regions = game.GetFactionRegions(game.PlayerFactionId).Where(r => game.RegionHasEmptyHoldingSlots(r.Id)).ToList();
-            SelectRegion(currentRegionIndex);
+            provinces = game.GetFactionProvinces(game.PlayerFactionId).Where(r => game.ProvinceHasEmptyHoldingSlots(r.Id)).ToList();
+            SelectProvince(currentProvinceIndex);
         }
 
         protected override void RegisterEvents()
@@ -185,9 +185,9 @@ namespace Narivia.Gui.GuiElements
             buildButton.Clicked += OnBuildButtonClicked;
             cancelButton.Clicked += OnCancelButtonClicked;
             nextHoldingButton.Clicked += OnNextHoldingButtonClicked;
-            nextRegionButton.Clicked += OnNextRegionButtonClicked;
+            nextProvinceButton.Clicked += OnNextProvinceButtonClicked;
             previousHoldingButton.Clicked += OnPreviousHoldingButtonClicked;
-            previouseRegionButton.Clicked += OnPreviousRegionButtonClicked;
+            previouseProvinceButton.Clicked += OnPreviousProvinceButtonClicked;
         }
 
         protected override void UnregisterEvents()
@@ -197,9 +197,9 @@ namespace Narivia.Gui.GuiElements
             buildButton.Clicked -= OnBuildButtonClicked;
             cancelButton.Clicked -= OnCancelButtonClicked;
             nextHoldingButton.Clicked -= OnNextHoldingButtonClicked;
-            nextRegionButton.Clicked -= OnNextRegionButtonClicked;
+            nextProvinceButton.Clicked -= OnNextProvinceButtonClicked;
             previousHoldingButton.Clicked -= OnPreviousHoldingButtonClicked;
-            previouseRegionButton.Clicked -= OnPreviousRegionButtonClicked;
+            previouseProvinceButton.Clicked -= OnPreviousProvinceButtonClicked;
         }
 
         protected override void SetChildrenProperties()
@@ -221,9 +221,9 @@ namespace Narivia.Gui.GuiElements
             holdingText.Location = holdingBackground.Location;
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
 
-            regionText.ForegroundColour = ForegroundColour;
-            regionText.Location = new Point2D(holdingBackground.ClientRectangle.Left,
-                                              holdingBackground.ClientRectangle.Bottom - regionText.ClientRectangle.Height);
+            provinceText.ForegroundColour = ForegroundColour;
+            provinceText.Location = new Point2D(holdingBackground.ClientRectangle.Left,
+                                              holdingBackground.ClientRectangle.Bottom - provinceText.ClientRectangle.Height);
 
             priceIcon.Location = new Point2D(holdingBackground.ClientRectangle.Left,
                                              holdingBackground.ClientRectangle.Bottom + GameDefines.GUI_SPACING);
@@ -240,13 +240,13 @@ namespace Narivia.Gui.GuiElements
             nextHoldingButton.Location = new Point2D(holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
                                                      holdingBackground.ClientRectangle.Top);
 
-            previouseRegionButton.ForegroundColour = ForegroundColour;
-            previouseRegionButton.Location = new Point2D(holdingBackground.ClientRectangle.Left - previouseRegionButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
-                                                         holdingBackground.ClientRectangle.Bottom - previouseRegionButton.ClientRectangle.Height);
+            previouseProvinceButton.ForegroundColour = ForegroundColour;
+            previouseProvinceButton.Location = new Point2D(holdingBackground.ClientRectangle.Left - previouseProvinceButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
+                                                         holdingBackground.ClientRectangle.Bottom - previouseProvinceButton.ClientRectangle.Height);
 
-            nextRegionButton.ForegroundColour = ForegroundColour;
-            nextRegionButton.Location = new Point2D(holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
-                                                    holdingBackground.ClientRectangle.Bottom - nextRegionButton.ClientRectangle.Height);
+            nextProvinceButton.ForegroundColour = ForegroundColour;
+            nextProvinceButton.Location = new Point2D(holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                                                    holdingBackground.ClientRectangle.Bottom - nextProvinceButton.ClientRectangle.Height);
 
             buildButton.ForegroundColour = ForegroundColour;
             buildButton.Location = new Point2D(Location.X + GameDefines.GUI_SPACING,
@@ -273,34 +273,34 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
-        void SelectRegion(int index)
+        void SelectProvince(int index)
         {
-            if (regions.Count == 0)
+            if (provinces.Count == 0)
             {
                 // TODO: Handle this properly
 
                 return;
             }
 
-            if (index > regions.Count - 1)
+            if (index > provinces.Count - 1)
             {
-                currentRegionIndex = 0;
+                currentProvinceIndex = 0;
             }
             else if (index < 0)
             {
-                currentRegionIndex = regions.Count - 1;
+                currentProvinceIndex = provinces.Count - 1;
             }
             else
             {
-                currentRegionIndex = index;
+                currentProvinceIndex = index;
             }
 
-            regionText.Text = regions[currentRegionIndex].Name;
+            provinceText.Text = provinces[currentProvinceIndex].Name;
         }
 
         void OnBuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            if (regions.Count == 0)
+            if (provinces.Count == 0)
             {
                 // TODO: Handle this properly
 
@@ -309,7 +309,7 @@ namespace Narivia.Gui.GuiElements
 
             if (game.GetFaction(game.PlayerFactionId).Wealth >= game.GetWorld().HoldingsPrice)
             {
-                game.BuildHolding(regions[currentRegionIndex].Id, holdingTypes[currentHoldingTypeIndex]);
+                game.BuildHolding(provinces[currentProvinceIndex].Id, holdingTypes[currentHoldingTypeIndex]);
             }
         }
 
@@ -318,7 +318,7 @@ namespace Narivia.Gui.GuiElements
             Hide();
             SelectHolding(0);
 
-            currentRegionIndex = 0;
+            currentProvinceIndex = 0;
         }
 
         void OnPreviousHoldingButtonClicked(object sender, MouseButtonEventArgs e)
@@ -326,9 +326,9 @@ namespace Narivia.Gui.GuiElements
             SelectHolding(currentHoldingTypeIndex - 1);
         }
 
-        void OnPreviousRegionButtonClicked(object sender, MouseButtonEventArgs e)
+        void OnPreviousProvinceButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            SelectRegion(currentRegionIndex - 1);
+            SelectProvince(currentProvinceIndex - 1);
         }
 
         void OnNextHoldingButtonClicked(object sender, MouseButtonEventArgs e)
@@ -336,9 +336,9 @@ namespace Narivia.Gui.GuiElements
             SelectHolding(currentHoldingTypeIndex + 1);
         }
 
-        void OnNextRegionButtonClicked(object sender, MouseButtonEventArgs e)
+        void OnNextProvinceButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            SelectRegion(currentRegionIndex + 1);
+            SelectProvince(currentProvinceIndex + 1);
         }
     }
 }

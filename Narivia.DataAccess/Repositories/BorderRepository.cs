@@ -37,7 +37,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException($"{borderEntity.Region1Id}-{borderEntity.Region2Id}", nameof(BorderEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException($"{borderEntity.Province1Id}-{borderEntity.Province2Id}", nameof(BorderEntity).Replace("Entity", ""));
             }
         }
 
@@ -45,17 +45,17 @@ namespace Narivia.DataAccess.Repositories
         /// Gets the border with the specified faction and unit identifiers.
         /// </summary>
         /// <returns>The border.</returns>
-        /// <param name="region1Id">First region identifier.</param>
-        /// <param name="region2Id">Second region identifier.</param>
-        public BorderEntity Get(string region1Id, string region2Id)
+        /// <param name="province1Id">First province identifier.</param>
+        /// <param name="province2Id">Second province identifier.</param>
+        public BorderEntity Get(string province1Id, string province2Id)
         {
             List<BorderEntity> borderEntities = xmlDatabase.LoadEntities().ToList();
-            BorderEntity borderEntity = borderEntities.FirstOrDefault(x => x.Region1Id == region1Id &&
-                                                                           x.Region2Id == region2Id);
+            BorderEntity borderEntity = borderEntities.FirstOrDefault(x => x.Province1Id == province1Id &&
+                                                                           x.Province2Id == province2Id);
 
             if (borderEntity == null)
             {
-                throw new EntityNotFoundException($"{borderEntity.Region1Id}-{borderEntity.Region2Id}", nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException($"{borderEntity.Province1Id}-{borderEntity.Province2Id}", nameof(BorderEntity).Replace("Entity", ""));
             }
 
             return borderEntity;
@@ -75,13 +75,13 @@ namespace Narivia.DataAccess.Repositories
         /// <summary>
         /// Removes the border with the specified faction and unit identifiers.
         /// </summary>
-        /// <param name="region1Id">First region identifier.</param>
-        /// <param name="region2Id">Second region identifier.</param>
-        public void Remove(string region1Id, string region2Id)
+        /// <param name="province1Id">First province identifier.</param>
+        /// <param name="province2Id">Second province identifier.</param>
+        public void Remove(string province1Id, string province2Id)
         {
             List<BorderEntity> borderEntities = xmlDatabase.LoadEntities().ToList();
-            borderEntities.RemoveAll(x => x.Region1Id == region1Id &&
-                                         x.Region2Id == region2Id);
+            borderEntities.RemoveAll(x => x.Province1Id == province1Id &&
+                                         x.Province2Id == province2Id);
 
             try
             {
@@ -89,7 +89,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException($"{region1Id}-{region2Id}", nameof(BorderEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException($"{province1Id}-{province2Id}", nameof(BorderEntity).Replace("Entity", ""));
             }
         }
     }

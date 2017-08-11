@@ -10,29 +10,29 @@ using Narivia.Graphics.Mapping;
 using Narivia.Models;
 using Narivia.Settings;
 
-using Region = Narivia.Models.Region;
+using Province = Narivia.Models.Province;
 
 namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Region bar GUI element.
+    /// Province bar GUI element.
     /// </summary>
-    public class GuiRegionBar : GuiElement
+    public class GuiProvinceBar : GuiElement
     {
         /// <summary>
-        /// Gets the region identifier.
+        /// Gets the province identifier.
         /// </summary>
-        /// <value>The region identifier.</value>
+        /// <value>The province identifier.</value>
         [XmlIgnore]
-        public string RegionId { get; private set; }
+        public string ProvinceId { get; private set; }
 
         IGameManager game;
 
         GuiImage background;
 
-        GuiImage regionNameBackground;
-        GuiImage regionNameBackgroundDecor;
-        GuiText regionNameText;
+        GuiImage provinceNameBackground;
+        GuiImage provinceNameBackgroundDecor;
+        GuiText provinceNameText;
         GuiFactionFlag factionFlag;
 
         GuiImage resourceImage;
@@ -55,29 +55,29 @@ namespace Narivia.Gui.GuiElements
                 TextureLayout = TextureLayout.Tile
             };
 
-            regionNameBackground = new GuiImage
+            provinceNameBackground = new GuiImage
             {
                 Size = new Size2D(256, 48),
-                ContentFile = "Interface/region-panel-label",
+                ContentFile = "Interface/province-panel-label",
                 SourceRectangle = new Rectangle2D(0, 0, 256, 48)
             };
-            regionNameBackgroundDecor = new GuiImage
+            provinceNameBackgroundDecor = new GuiImage
             {
-                Size = regionNameBackground.Size,
-                ContentFile = regionNameBackground.ContentFile,
+                Size = provinceNameBackground.Size,
+                ContentFile = provinceNameBackground.ContentFile,
                 SourceRectangle = new Rectangle2D(0, 48, 256, 48)
             };
-            regionNameText = new GuiText
+            provinceNameText = new GuiText
             {
                 FontName = "SideBarFont", // TODO: Consider providing a dedicated font
-                Size = new Size2D(regionNameBackground.SourceRectangle.Width,
-                                  regionNameBackground.SourceRectangle.Height),
+                Size = new Size2D(provinceNameBackground.SourceRectangle.Width,
+                                  provinceNameBackground.SourceRectangle.Height),
                 TextOutline = true
             };
             factionFlag = new GuiFactionFlag
             {
-                Size = new Size2D(regionNameBackground.Size.Height,
-                                  regionNameBackground.Size.Height)
+                Size = new Size2D(provinceNameBackground.Size.Height,
+                                  provinceNameBackground.Size.Height)
             };
 
             resourceImage = new GuiImage
@@ -86,18 +86,18 @@ namespace Narivia.Gui.GuiElements
             };
             resourceText = new GuiText
             {
-                FontName = "RegionBarHoldingFont",
+                FontName = "ProvinceBarHoldingFont",
                 ForegroundColour = Colour.Black,
                 HorizontalAlignment = HorizontalAlignment.Top
             };
 
-            RegionId = game.GetFactionRegions(game.PlayerFactionId).First().Id;
+            ProvinceId = game.GetFactionProvinces(game.PlayerFactionId).First().Id;
 
             Children.Add(background);
 
-            Children.Add(regionNameBackground);
-            Children.Add(regionNameBackgroundDecor);
-            Children.Add(regionNameText);
+            Children.Add(provinceNameBackground);
+            Children.Add(provinceNameBackgroundDecor);
+            Children.Add(provinceNameText);
             Children.Add(factionFlag);
 
             Children.Add(resourceImage);
@@ -107,25 +107,25 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
-        /// Sets the region.
+        /// Sets the province.
         /// </summary>
-        /// <param name="regionId">Region identifier.</param>
-        public void SetRegion(string regionId)
+        /// <param name="provinceId">Province identifier.</param>
+        public void SetProvince(string provinceId)
         {
-            if (string.IsNullOrWhiteSpace(regionId) ||
-                RegionId == regionId)
+            if (string.IsNullOrWhiteSpace(provinceId) ||
+                ProvinceId == provinceId)
             {
                 return;
             }
 
-            RegionId = regionId;
+            ProvinceId = provinceId;
 
             holdingTexts.ForEach(w => w.Dispose());
             holdingImages.ForEach(w => w.Dispose());
             holdingTexts.Clear();
             holdingImages.Clear();
 
-            List<Holding> holdings = game.GetRegionHoldings(RegionId).OrderBy(h => h.Name).ToList();
+            List<Holding> holdings = game.GetProvinceHoldings(ProvinceId).OrderBy(h => h.Name).ToList();
 
             holdingImages = new List<GuiImage>();
 
@@ -145,7 +145,7 @@ namespace Narivia.Gui.GuiElements
                     Text = holding.Name,
                     Size = new Size2D(holdingImage.SourceRectangle.Width + GameDefines.GUI_SPACING * 2,
                                       Size.Height - holdingImage.SourceRectangle.Height + 10),
-                    FontName = "RegionBarHoldingFont",
+                    FontName = "ProvinceBarHoldingFont",
                     ForegroundColour = Colour.Black,
                     HorizontalAlignment = HorizontalAlignment.Top
                 };
@@ -175,32 +175,32 @@ namespace Narivia.Gui.GuiElements
             background.Location = Location;
             background.Size = Size;
 
-            regionNameBackground.Location = new Point2D(Location.X + (Size.Width - regionNameText.ClientRectangle.Width) / 2,
-                                                        Location.Y - regionNameText.ClientRectangle.Height + (int)(regionNameBackground.Size.Height * 0.1f));
-            regionNameBackgroundDecor.Location = regionNameBackground.Location;
-            regionNameText.Location = regionNameBackground.Location;
-            regionNameText.ForegroundColour = ForegroundColour;
+            provinceNameBackground.Location = new Point2D(Location.X + (Size.Width - provinceNameText.ClientRectangle.Width) / 2,
+                                                        Location.Y - provinceNameText.ClientRectangle.Height + (int)(provinceNameBackground.Size.Height * 0.1f));
+            provinceNameBackgroundDecor.Location = provinceNameBackground.Location;
+            provinceNameText.Location = provinceNameBackground.Location;
+            provinceNameText.ForegroundColour = ForegroundColour;
 
-            factionFlag.Location = new Point2D(regionNameBackground.Location.X - factionFlag.ClientRectangle.Width / 2,
-                                               regionNameBackground.Location.Y);
+            factionFlag.Location = new Point2D(provinceNameBackground.Location.X - factionFlag.ClientRectangle.Width / 2,
+                                               provinceNameBackground.Location.Y);
             resourceImage.Location = new Point2D(Location.X + GameDefines.GUI_SPACING,
                                                  Location.Y + Size.Height - 64);
             resourceText.Location = new Point2D(Location.X, Location.Y + 2);
             resourceText.Size = new Size2D(64 + GameDefines.GUI_SPACING * 2,
                                            Size.Height - 74);
 
-            if (string.IsNullOrWhiteSpace(RegionId))
+            if (string.IsNullOrWhiteSpace(ProvinceId))
             {
                 return;
             }
 
-            Region region = game.GetRegion(RegionId);
-            Resource resource = game.GetResource(region.ResourceId);
-            Faction faction = game.GetFaction(region.FactionId);
+            Province province = game.GetProvince(ProvinceId);
+            Resource resource = game.GetResource(province.ResourceId);
+            Faction faction = game.GetFaction(province.FactionId);
             Flag flag = game.GetFlag(faction.FlagId);
 
-            regionNameBackground.TintColour = faction.Colour.ToColour();
-            regionNameText.Text = region.Name;
+            provinceNameBackground.TintColour = faction.Colour.ToColour();
+            provinceNameText.Text = province.Name;
 
             factionFlag.Layer1 = flag.Layer1;
             factionFlag.Layer2 = flag.Layer2;
@@ -211,7 +211,7 @@ namespace Narivia.Gui.GuiElements
             factionFlag.Layer2Colour = flag.Layer2Colour.ToColour();
             factionFlag.EmblemColour = flag.EmblemColour.ToColour();
 
-            resourceImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/resources/{region.ResourceId}_big";
+            resourceImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/resources/{province.ResourceId}_big";
             resourceText.Text = resource.Name;
         }
     }
