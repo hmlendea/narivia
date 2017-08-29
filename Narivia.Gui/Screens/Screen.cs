@@ -54,7 +54,7 @@ namespace Narivia.Gui.Screens
         public string[] ScreenArgs { get; set; }
 
         /// <summary>
-        /// Occurs when the a kew is pressed while this <see cref="Screen"/> has input focus.
+        /// Occurs when a key is pressed while this <see cref="Screen"/> has input focus.
         /// </summary>
         public event KeyboardKeyEventHandler KeyPressed;
 

@@ -471,7 +471,7 @@ namespace Narivia.Graphics
             {
                 Vector2 lineSize = font.MeasureString(line);
 
-                if (vAlign == VerticalAlignment.Center)
+                if (vAlign == VerticalAlignment.Centre)
                 {
                     textOrigin.X = bounds.Width / 2 - lineSize.X / 2;
                 }

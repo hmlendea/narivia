@@ -65,7 +65,7 @@ namespace Narivia.Gui.GuiElements
             ForegroundColour = Colour.Gold;
             BackgroundColour = Colour.Transparent;
 
-            VerticalAlignment = VerticalAlignment.Center;
+            VerticalAlignment = VerticalAlignment.Centre;
             HorizontalAlignment = HorizontalAlignment.Centre;
         }
 

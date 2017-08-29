@@ -99,7 +99,6 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Update the content.
         /// </summary>
-        /// <returns>The update.</returns>
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
@@ -140,7 +139,6 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Draw the content on the specified spriteBatch.
         /// </summary>
-        /// <returns>The draw.</returns>
         /// <param name="spriteBatch">Sprite batch.</param>
         public override void Draw(SpriteBatch spriteBatch)
         {

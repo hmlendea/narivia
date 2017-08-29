@@ -133,14 +133,6 @@ namespace Narivia.Gui.Screens
         }
 
         /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
-
-        /// <summary>
         /// Update the content.
         /// </summary>
         /// <returns>The update.</returns>

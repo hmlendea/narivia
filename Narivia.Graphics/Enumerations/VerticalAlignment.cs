@@ -3,7 +3,7 @@
     public enum VerticalAlignment
     {
         Left,
-        Center,
+        Centre,
         Right
     }
 }

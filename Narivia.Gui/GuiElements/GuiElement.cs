@@ -181,17 +181,17 @@ namespace Narivia.Gui.GuiElements
         public event EventHandler ForegroundColourChanged;
 
         /// <summary>
-        /// Occurs when the a kew is down while this <see cref="GuiElement"/> has input focus.
+        /// Occurs when a key is down while this <see cref="GuiElement"/> has input focus.
         /// </summary>
         public event KeyboardKeyEventHandler KeyDown;
 
         /// <summary>
-        /// Occurs when the a kew is pressed while this <see cref="GuiElement"/> has input focus.
+        /// Occurs when a key is pressed while this <see cref="GuiElement"/> has input focus.
         /// </summary>
         public event KeyboardKeyEventHandler KeyPressed;
 
         /// <summary>
-        /// Occurs when the a kew is released while this <see cref="GuiElement"/> has input focus.
+        /// Occurs when a key is released while this <see cref="GuiElement"/> has input focus.
         /// </summary>
         public event KeyboardKeyEventHandler KeyReleased;
 

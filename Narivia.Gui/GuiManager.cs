@@ -50,8 +50,7 @@ namespace Narivia.Gui
         {
             GuiElements = new List<GuiElement>();
         }
-
-
+        
         /// <summary>
         /// Loads the content.
         /// </summary>
