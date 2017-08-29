@@ -106,7 +106,7 @@ namespace Narivia.Gui.Screens
 
         void AlignItems()
         {
-            float bgScale = Math.Max(ScreenManager.Instance.Size.Width, ScreenManager.Instance.Size.Height) /
+            float bgScale = (float)Math.Max(ScreenManager.Instance.Size.Width, ScreenManager.Instance.Size.Height) /
                             Math.Max(BackgroundImage.SpriteSize.Width, BackgroundImage.SpriteSize.Height);
 
             BackgroundImage.Scale = new Scale2D(bgScale, bgScale);
