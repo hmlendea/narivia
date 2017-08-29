@@ -88,6 +88,12 @@ namespace Narivia.Gui.Screens
 
             factionSelector.Values.AddRange(factions.Select(f => f.Name));
             factionSelector.SelectedIndex = 0;
+
+            // TODO: Remove this default selection, leave it at 0
+            if (factionSelector.Values.Contains("Alpalet"))
+            {
+                factionSelector.SelectedIndex = factionSelector.Values.IndexOf("Alpalet");
+            }
         }
 
         void OnFactionSelectorSelectedIndexChanged(object sender, EventArgs e)
