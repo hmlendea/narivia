@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Narivia.Graphics;
 using Narivia.Graphics.Geometry;
 using Narivia.Common.Helpers;
-using Narivia.Logging;
-using Narivia.Logging.Enumerations;
+
+using NuciLog;
+using NuciLog.Enumerations;
 
 namespace Narivia.Settings
 {

@@ -29,10 +29,17 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NuciLog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciLog.hmlendea.1.0.0\lib\netstandard2.0\NuciLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -45,14 +52,13 @@
       <Project>{f291ec71-b1cc-4b6e-8095-cfe380081951}</Project>
       <Name>Narivia.Graphics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
-      <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
-      <Name>Narivia.Logging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj">
       <Project>{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}</Project>
       <Name>Narivia.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

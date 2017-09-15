@@ -5,8 +5,8 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using Narivia.Logging;
-using Narivia.Logging.Enumerations;
+using NuciLog;
+using NuciLog.Enumerations;
 
 namespace Narivia.DataAccess.Resources
 {

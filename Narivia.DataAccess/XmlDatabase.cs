@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-using Narivia.Logging;
-using Narivia.Logging.Enumerations;
+using NuciLog;
+using NuciLog.Enumerations;
 
 namespace Narivia.DataAccess
 {

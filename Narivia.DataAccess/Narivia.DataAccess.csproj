@@ -34,7 +34,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NuciLog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciLog.hmlendea.1.0.0\lib\netstandard2.0\NuciLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="MonoGame.Framework">
@@ -95,10 +102,6 @@
     <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj">
       <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
       <Name>Narivia.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Logging\Narivia.Logging.csproj">
-      <Project>{9026F0EA-95AA-404C-89D8-DF82CFBEF015}</Project>
-      <Name>Narivia.Logging</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
