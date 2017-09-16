@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,7 +33,7 @@ namespace Narivia.GameLogic.Mapping
         }
 
         /// <summary>
-        /// Converts the domail model into an entity.
+        /// Converts the domain model into an entity.
         /// </summary>
         /// <returns>The entity.</returns>
         /// <param name="resource">Resource.</param>

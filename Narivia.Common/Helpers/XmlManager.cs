@@ -7,6 +7,7 @@ namespace Narivia.Common.Helpers
     /// <summary>
     /// XML Manager.
     /// </summary>
+    // TODO: Create an interface
     public class XmlManager<T>
     {
         /// <summary>
@@ -16,7 +17,7 @@ namespace Narivia.Common.Helpers
         public Type Type { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XmlManager"/> class.
+        /// Initializes a new instance of the <see cref="T:XmlManager"/> class.
         /// </summary>
         public XmlManager()
         {
@@ -24,11 +25,10 @@ namespace Narivia.Common.Helpers
         }
 
         /// <summary>
-        /// Load the specified path.
+        /// Reads a <see cref="T"/> from an XML file.
         /// </summary>
-        /// <returns>The load.</returns>
         /// <param name="path">Path.</param>
-        public T Load(string path)
+        public T Read(string path)
         {
             T instance;
 
@@ -42,12 +42,12 @@ namespace Narivia.Common.Helpers
         }
 
         /// <summary>
-        /// Save the specified path and obj.
+        /// Writes the specified <see cref="T"/> into an XML file.
         /// </summary>
-        /// <returns>The save.</returns>
         /// <param name="path">Path.</param>
-        /// <param name="obj">Object.</param>
-        public void Save(string path, object obj)
+        /// <param name="obj">Object to write.</param>
+        // TODO: Shouldn't I use T instead of object for the obj parameter?
+        public void Write(string path, object obj)
         {
             using (TextWriter writer = new StreamWriter(path))
             {
@@ -57,4 +57,3 @@ namespace Narivia.Common.Helpers
         }
     }
 }
-
