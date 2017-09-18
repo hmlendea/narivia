@@ -55,6 +55,8 @@
     <Compile Include="DataObjects\WorldGeoLayerEntity.cs" />
     <Compile Include="DataObjects\WorldTileEntity.cs" />
     <Compile Include="Exceptions\InvalidEntityFieldException.cs" />
+    <Compile Include="IO\FastBitmap.cs" />
+    <Compile Include="IO\XmlManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArmyRepository.cs" />
     <Compile Include="Repositories\BiomeRepository.cs" />

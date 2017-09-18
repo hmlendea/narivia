@@ -5,11 +5,11 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.DataAccess.IO;
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Geometry;
 using Narivia.Graphics.Enumerations;
-using Narivia.Common.Helpers;
 using Narivia.Settings;
 
 namespace Narivia.Gui.Screens
@@ -41,7 +41,7 @@ namespace Narivia.Gui.Screens
                         if (instance == null)
                         {
                             XmlManager<ScreenManager> xmlManager = new XmlManager<ScreenManager>();
-                            instance = xmlManager.Load(Path.Combine("Screens", $"{nameof(ScreenManager)}.xml"));
+                            instance = xmlManager.Read(Path.Combine("Screens", $"{nameof(ScreenManager)}.xml"));
                         }
                     }
                 }
@@ -90,7 +90,7 @@ namespace Narivia.Gui.Screens
                 Type = currentScreen.Type
             };
 
-            currentScreen = xmlScreenManager.Load(currentScreen.XmlPath);
+            currentScreen = xmlScreenManager.Read(currentScreen.XmlPath);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Narivia.Gui.Screens
 
             if (File.Exists(currentScreen.XmlPath))
             {
-                newScreen = xmlScreenManager.Load(newScreen.XmlPath);
+                newScreen = xmlScreenManager.Read(newScreen.XmlPath);
             }
 
             newScreen.ScreenArgs = screenArgs;

@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 
+using Narivia.DataAccess.IO;
 using Narivia.Graphics;
 using Narivia.Graphics.Geometry;
-using Narivia.Common.Helpers;
 
 using NuciLog;
 using NuciLog.Enumerations;
@@ -88,7 +88,7 @@ namespace Narivia.Settings
             }
 
             XmlManager<SettingsManager> xmlManager = new XmlManager<SettingsManager>();
-            SettingsManager storedSettings = xmlManager.Load(ApplicationPaths.SettingsFile);
+            SettingsManager storedSettings = xmlManager.Read(ApplicationPaths.SettingsFile);
 
             instance = storedSettings;
         }
@@ -99,7 +99,7 @@ namespace Narivia.Settings
         public void SaveContent()
         {
             XmlManager<SettingsManager> xmlManager = new XmlManager<SettingsManager>();
-            xmlManager.Save(ApplicationPaths.SettingsFile, this);
+            xmlManager.Write(ApplicationPaths.SettingsFile, this);
         }
 
         /// <summary>

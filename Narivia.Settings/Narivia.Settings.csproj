@@ -48,6 +48,10 @@
     <Compile Include="GameDefines.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
+      <Project>{1933f8d8-3c88-4329-a209-949f921598ce}</Project>
+      <Name>Narivia.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Narivia.Graphics\Narivia.Graphics.csproj">
       <Project>{f291ec71-b1cc-4b6e-8095-cfe380081951}</Project>
       <Name>Narivia.Graphics</Name>
