@@ -47,14 +47,13 @@ namespace Narivia.DataAccess
             }
             catch (Exception ex)
             {
-                LogManager.Instance.Error(LogBuilder.BuildKvpMessage(
-                    Operation.RepositoryLoading,
-                    OperationStatus.Failure,
-                    new Dictionary<LogInfoKey, string>
-                    {
-                        { LogInfoKey.FileName, FileName },
-                        { LogInfoKey.Message, "The repository cannot be accessed" }
-                    }), ex);
+                string logMessage = "The repository cannot be accessed";
+                Dictionary<LogInfoKey, string> logDetails = new Dictionary<LogInfoKey, string>
+                {
+                    { LogInfoKey.FileName, FileName }
+                };
+
+                LogManager.Instance.Error(Operation.RepositoryLoading, logMessage, logDetails, ex);
             }
 
             return entities;
@@ -78,14 +77,13 @@ namespace Narivia.DataAccess
             }
             catch (Exception ex)
             {
-                LogManager.Instance.Error(LogBuilder.BuildKvpMessage(
-                    Operation.RepositorySaving,
-                    OperationStatus.Failure,
-                    new Dictionary<LogInfoKey, string>
-                    {
-                        { LogInfoKey.FileName, FileName },
-                        { LogInfoKey.Message, "The repository cannot be accessed" }
-                    }), ex);
+                string logMessage = "The repository cannot be accessed";
+                Dictionary<LogInfoKey, string> logDetails = new Dictionary<LogInfoKey, string>
+                {
+                    { LogInfoKey.FileName, FileName }
+                };
+
+                LogManager.Instance.Error(Operation.RepositorySaving, logMessage, logDetails, ex);
             }
         }
     }

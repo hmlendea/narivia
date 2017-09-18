@@ -110,10 +110,14 @@ namespace Narivia.DataAccess.Resources
             if (texture2D == null)
             {
                 texture2D = content.Load<Texture2D>("ScreenManager/missing-texture");
+                
+                string logMessage = "The repository cannot be accessed";
+                Dictionary<LogInfoKey, string> logDetails = new Dictionary<LogInfoKey, string>
+                {
+                    { LogInfoKey.FileName, filePath }
+                };
 
-                LogManager.Instance.Warn(LogBuilder.BuildKvpMessage(Operation.ContentFileLoad,
-                                                                    OperationStatus.Failure,
-                                                                    new Dictionary<LogInfoKey, string> { { LogInfoKey.FileName, filePath } }));
+                LogManager.Instance.Warn(Operation.ContentFileLoad, OperationStatus.Failure, logMessage, logDetails);
             }
 
             return texture2D;

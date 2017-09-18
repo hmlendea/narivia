@@ -56,17 +56,17 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="worldId">World identifier.</param>
         public void LoadWorld(string worldId)
         {
-            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldLoading, OperationStatus.Started));
+            LogManager.Instance.Info(Operation.WorldLoading, OperationStatus.Started);
 
             LoadEntities(worldId);
             GenerateBorders();
 
-            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldLoading, OperationStatus.Success));
-            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldInitialisation, OperationStatus.Started));
+            LogManager.Instance.Info(Operation.WorldLoading, OperationStatus.Success);
+            LogManager.Instance.Info(Operation.WorldInitialisation, OperationStatus.Started);
 
             InitializeEntities();
 
-            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.WorldInitialisation, OperationStatus.Success));
+            LogManager.Instance.Info(Operation.WorldInitialisation, OperationStatus.Success);
         }
 
         /// <summary>

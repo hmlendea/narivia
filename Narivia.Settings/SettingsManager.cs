@@ -75,14 +75,13 @@ namespace Narivia.Settings
         {
             if (!File.Exists(ApplicationPaths.SettingsFile))
             {
-                LogManager.Instance.Warn(LogBuilder.BuildKvpMessage(
-                    Operation.SettingsLoading,
-                    OperationStatus.Failure,
-                    new Dictionary<LogInfoKey, string>
-                    {
-                        { LogInfoKey.FileName, ApplicationPaths.SettingsFile },
-                        { LogInfoKey.Message, "Settings file is missing. Using default settings." }
-                    }));
+                string logMessage = "Settings file is missing. Using default settings.";
+                Dictionary<LogInfoKey, string> logDetails = new Dictionary<LogInfoKey, string>
+                {
+                    { LogInfoKey.FileName, ApplicationPaths.SettingsFile }
+                };
+
+                LogManager.Instance.Warn(Operation.SettingsLoading, OperationStatus.Failure, logMessage, logDetails);
 
                 SaveContent();
                 return;

@@ -62,7 +62,7 @@ namespace Narivia
             LogManager.Instance.LogsDirectory = ApplicationPaths.LogsDirectory;
             LogManager.Instance.LoadContent();
 
-            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStart, OperationStatus.Started));
+            LogManager.Instance.Info(Operation.GameStart, OperationStatus.Started);
 
             GraphicsManager.Instance.SpriteBatch = spriteBatch;
             GraphicsManager.Instance.Graphics = graphics;
@@ -76,7 +76,7 @@ namespace Narivia
             fpsIndicator.LoadContent();
             cursor.LoadContent();
 
-            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStart, OperationStatus.Success));
+            LogManager.Instance.Info(Operation.GameStart, OperationStatus.Success);
         }
 
         /// <summary>
@@ -84,14 +84,14 @@ namespace Narivia
         /// </summary>
         protected override void UnloadContent()
         {
-            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStop, OperationStatus.Started));
+            LogManager.Instance.Info(Operation.GameStop, OperationStatus.Started);
 
             ScreenManager.Instance.UnloadContent();
 
             fpsIndicator.UnloadContent();
             cursor.UnloadContent();
 
-            LogManager.Instance.Info(LogBuilder.BuildKvpMessage(Operation.GameStop, OperationStatus.Success));
+            LogManager.Instance.Info(Operation.GameStop, OperationStatus.Success);
             LogManager.Instance.UnloadContent();
         }
 
