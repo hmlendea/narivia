@@ -3,7 +3,7 @@
     /// <summary>
     /// Name generator enumeration.
     /// </summary>
-    public enum NameGenerator
+    public enum NameGenerator : byte
     {
         /// <summary>
         /// Name generator based on Markov chains.

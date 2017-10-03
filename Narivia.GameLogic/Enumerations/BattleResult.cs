@@ -3,7 +3,7 @@
     /// <summary>
     /// Battle result.
     /// </summary>
-    public enum BattleResult
+    public enum BattleResult : byte
     {
         /// <summary>
         /// The victory battle result.

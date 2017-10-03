@@ -3,7 +3,7 @@ namespace Narivia.Models.Enumerations
     /// <summary>
     /// Province type enumeration.
     /// </summary>
-    public enum ProvinceType
+    public enum ProvinceType : byte
     {
         /// <summary>
         /// Province.

@@ -3,7 +3,7 @@ namespace Narivia.Gui.GuiElements.Enumerations
     /// <summary>
     /// Notification icon.
     /// </summary>
-    public enum NotificationIcon
+    public enum NotificationIcon : byte
     {
         /// <summary>
         /// 0 - Debug/Test notification icon.

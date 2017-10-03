@@ -3,7 +3,7 @@
     /// <summary>
     /// Resource type enumeration.
     /// </summary>
-    public enum ResourceType
+    public enum ResourceType : byte
     {
         /// <summary>
         /// Resource that improves economy.

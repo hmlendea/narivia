@@ -3,7 +3,7 @@
     /// <summary>
     /// Unit type enumeration.
     /// </summary>
-    public enum UnitType
+    public enum UnitType : byte
     {
         /// <summary>
         /// Light.

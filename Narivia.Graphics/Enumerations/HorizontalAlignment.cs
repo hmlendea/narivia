@@ -1,6 +1,6 @@
 ﻿namespace Narivia.Graphics.Enumerations
 {
-    public enum HorizontalAlignment
+    public enum HorizontalAlignment : byte
     {
         Top,
         Centre,

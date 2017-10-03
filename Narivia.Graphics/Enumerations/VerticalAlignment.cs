@@ -1,6 +1,6 @@
 ﻿namespace Narivia.Graphics.Enumerations
 {
-    public enum VerticalAlignment
+    public enum VerticalAlignment : byte
     {
         Left,
         Centre,

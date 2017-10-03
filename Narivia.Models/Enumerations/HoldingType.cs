@@ -5,7 +5,7 @@ namespace Narivia.Models.Enumerations
     /// <summary>
     /// Holding Type
     /// </summary>
-    public enum HoldingType
+    public enum HoldingType : byte
     {
         /// <summary>
         /// Empty land.

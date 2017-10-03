@@ -3,7 +3,7 @@
     /// <summary>
     /// Button style.
     /// </summary>
-    public enum ButtonStyle
+    public enum ButtonStyle : byte
     {
         Metal = 1,
         Narivian = 2,

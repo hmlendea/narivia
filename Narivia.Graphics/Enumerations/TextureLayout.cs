@@ -3,7 +3,7 @@
     /// <summary>
     /// Specifies how the <see cref="Microsoft.Xna.Framework.Graphics.Texture2D"/> is sized within the <see cref="Sprite"/>
     /// </summary>
-    public enum TextureLayout
+    public enum TextureLayout : byte
     {
         /// <summary>
         /// The texture is centered within the client rectangle.

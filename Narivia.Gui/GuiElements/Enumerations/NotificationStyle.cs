@@ -3,7 +3,7 @@
     /// <summary>
     /// Notification style.
     /// </summary>
-    public enum NotificationStyle
+    public enum NotificationStyle : byte
     {
         Big,
         Small

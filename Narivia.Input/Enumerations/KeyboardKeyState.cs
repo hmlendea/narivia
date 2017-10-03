@@ -3,7 +3,7 @@
     /// <summary>
     /// Keyboard key state.
     /// </summary>
-    public enum KeyboardKeyState
+    public enum KeyboardKeyState : byte
     {
         /// <summary>
         /// The key was just pressed.

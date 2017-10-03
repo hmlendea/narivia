@@ -3,7 +3,7 @@
     /// <summary>
     /// Mouse button state.
     /// </summary>
-    public enum MouseButtonState
+    public enum MouseButtonState : byte
     {
         /// <summary>
         /// The mouse button was just pressed.
