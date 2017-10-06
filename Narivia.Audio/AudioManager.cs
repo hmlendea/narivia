@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 
 using Narivia.DataAccess.Resources;
+using Narivia.Settings;
 
 namespace Narivia.Audio
 {
@@ -41,6 +42,11 @@ namespace Narivia.Audio
         /// <value>Plays the specified sound.</value>
         public void PlaySound(string sound)
         {
+            if (!SettingsManager.Instance.SoundEnabled)
+            {
+                return;
+            }
+
             SoundEffect soundEffect = ResourceManager.Instance.LoadSoundEffect("Audio/" + sound);
 
             soundEffect.CreateInstance().Play();

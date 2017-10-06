@@ -60,6 +60,12 @@ namespace Narivia.Settings
         public bool DebugMode { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the sound is enabled.
+        /// </summary>
+        /// <value>The sound toggle.</value>
+        public bool SoundEnabled { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SettingsManager"/> class.
         /// </summary>
         public SettingsManager()
