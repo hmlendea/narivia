@@ -82,7 +82,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public ScreenManager()
         {
-            Size = SettingsManager.Instance.Resolution;
+            Size = SettingsManager.Instance.GraphicsSettings.Resolution;
             currentScreen = new SplashScreen();
 
             xmlScreenManager = new XmlManager<Screen>()
@@ -127,7 +127,7 @@ namespace Narivia.Gui.Screens
                 return;
             }
 
-            Size = SettingsManager.Instance.Resolution;
+            Size = SettingsManager.Instance.GraphicsSettings.Resolution;
             TransitionImage.Scale = new Scale2D(Size);
         }
 

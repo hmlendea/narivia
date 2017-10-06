@@ -42,7 +42,7 @@ namespace Narivia.Audio
         /// <value>Plays the specified sound.</value>
         public void PlaySound(string sound)
         {
-            if (!SettingsManager.Instance.SoundEnabled)
+            if (!SettingsManager.Instance.AudioSettings.SoundEnabled)
             {
                 return;
             }

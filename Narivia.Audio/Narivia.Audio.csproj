@@ -45,6 +45,10 @@
       <Project>{1933F8D8-3C88-4329-A209-949F921598CE}</Project>
       <Name>Narivia.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Narivia.Settings\Narivia.Settings.csproj">
+      <Project>{54aca0bd-4d04-4765-9055-d84941d80e49}</Project>
+      <Name>Narivia.Settings</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

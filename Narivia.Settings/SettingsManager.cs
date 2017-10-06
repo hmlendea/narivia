@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 using Narivia.DataAccess.IO;
 using Narivia.Graphics;
-using Narivia.Graphics.Geometry;
 
 using NuciLog;
 using NuciLog.Enumerations;
@@ -41,17 +40,9 @@ namespace Narivia.Settings
             }
         }
 
-        /// <summary>
-        /// Gets or sets the resolution.
-        /// </summary>
-        /// <value>The resolution.</value>
-        public Size2D Resolution { get; set; }
+        public AudioSettings AudioSettings { get; set; }
 
-        /// <summary>
-        /// Gets or sets the fullscreen mode.
-        /// </summary>
-        /// <value>The fullscreen mode.</value>
-        public bool Fullscreen { get; set; }
+        public GraphicsSettings GraphicsSettings { get; set; }
 
         /// <summary>
         /// Gets or sets the debug mode.
@@ -60,18 +51,12 @@ namespace Narivia.Settings
         public bool DebugMode { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the sound is enabled.
-        /// </summary>
-        /// <value>The sound toggle.</value>
-        public bool SoundEnabled { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="SettingsManager"/> class.
         /// </summary>
         public SettingsManager()
         {
-            Resolution = new Size2D(1280, 720);
-            Fullscreen = false;
+            AudioSettings = new AudioSettings();
+            GraphicsSettings = new GraphicsSettings();
         }
 
         /// <summary>
@@ -115,18 +100,18 @@ namespace Narivia.Settings
         {
             bool graphicsChanged = false;
 
-            if (GraphicsManager.Instance.Graphics.IsFullScreen != Fullscreen)
+            if (GraphicsManager.Instance.Graphics.IsFullScreen != GraphicsSettings.Fullscreen)
             {
-                GraphicsManager.Instance.Graphics.IsFullScreen = Fullscreen;
+                GraphicsManager.Instance.Graphics.IsFullScreen = GraphicsSettings.Fullscreen;
 
                 graphicsChanged = true;
             }
 
-            if (GraphicsManager.Instance.Graphics.PreferredBackBufferWidth != Resolution.Width ||
-                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight != Resolution.Height)
+            if (GraphicsManager.Instance.Graphics.PreferredBackBufferWidth != GraphicsSettings.Resolution.Width ||
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight != GraphicsSettings.Resolution.Height)
             {
-                GraphicsManager.Instance.Graphics.PreferredBackBufferWidth = Resolution.Width;
-                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight = Resolution.Height;
+                GraphicsManager.Instance.Graphics.PreferredBackBufferWidth = GraphicsSettings.Resolution.Width;
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight = GraphicsSettings.Resolution.Height;
 
                 graphicsChanged = true;
             }

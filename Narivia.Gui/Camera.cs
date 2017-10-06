@@ -51,7 +51,7 @@ namespace Narivia.Gui
             Location = Point2D.Empty;
             Velocity = Vector2.Zero;
             Speed = 800;
-            Size = SettingsManager.Instance.Resolution; // TODO: Give it it's proper size once the game HUD is implemented
+            Size = SettingsManager.Instance.GraphicsSettings.Resolution; // TODO: Give it it's proper size once the game HUD is implemented
         }
 
         /// <summary>

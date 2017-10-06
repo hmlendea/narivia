@@ -24,7 +24,7 @@ namespace Narivia.Gui.Screens
             fullScreenToggle = Toggles.FirstOrDefault(t => t.Property == "Fullscreen");
             debugModeToggle = Toggles.FirstOrDefault(t => t.Property == "DebugMode");
 
-            fullScreenToggle.ToggleState = SettingsManager.Instance.Fullscreen;
+            fullScreenToggle.ToggleState = SettingsManager.Instance.GraphicsSettings.Fullscreen;
             debugModeToggle.ToggleState = SettingsManager.Instance.DebugMode;
 
             base.LoadContent();
@@ -47,7 +47,7 @@ namespace Narivia.Gui.Screens
         {
             base.Update(gameTime);
 
-            SettingsManager.Instance.Fullscreen = fullScreenToggle.ToggleState;
+            SettingsManager.Instance.GraphicsSettings.Fullscreen = fullScreenToggle.ToggleState;
             SettingsManager.Instance.DebugMode = debugModeToggle.ToggleState;
         }
 
