@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Exceptions;
@@ -10,64 +9,55 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Army repository implementation.
     /// </summary>
-    public class ArmyRepository : IArmyRepository
+    public class ArmyRepository : IRepository<string, ArmyEntity>
     {
         /// <summary>
         /// Gets or sets the armies.
         /// </summary>
         /// <value>The armies.</value>
-        readonly Dictionary<Tuple<string, string>, ArmyEntity> armyEntitiesStore;
+        readonly Dictionary<string, ArmyEntity> armyEntitiesStore;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArmyRepository"/> class.
         /// </summary>
         public ArmyRepository()
         {
-            armyEntitiesStore = new Dictionary<Tuple<string, string>, ArmyEntity>();
+            armyEntitiesStore = new Dictionary<string, ArmyEntity>();
         }
 
         /// <summary>
         /// Adds the specified army.
         /// </summary>
-        /// <param name="army">Army.</param>
-        public void Add(ArmyEntity army)
+        /// <param name="armyEntity">Army.</param>
+        public void Add(ArmyEntity armyEntity)
         {
-            Tuple<string, string> key = new Tuple<string, string>(army.FactionId, army.UnitId);
-
             try
             {
-                armyEntitiesStore.Add(key, army);
+                armyEntitiesStore.Add(armyEntity.Id, armyEntity);
             }
             catch
             {
-                throw new DuplicateEntityException(
-                    $"{army.FactionId}-{army.UnitId}",
-                    nameof(ArmyEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(armyEntity.Id, nameof(ArmyEntity));
             }
         }
 
         /// <summary>
-        /// Gets the army with the specified faction and unit identifiers.
+        /// Gets the army with the specified identifier.
         /// </summary>
         /// <returns>The army.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        /// <param name="unitId">Unit identifier.</param>
-        public ArmyEntity Get(string factionId, string unitId)
+        /// <param name="id">Identifier.</param>
+        public ArmyEntity Get(string id)
         {
-            Tuple<string, string> key = new Tuple<string, string>(factionId, unitId);
-
-            if (!armyEntitiesStore.ContainsKey(key))
+            if (!armyEntitiesStore.ContainsKey(id))
             {
                 return null;
             }
 
-            ArmyEntity armyEntity = armyEntitiesStore[key];
+            ArmyEntity armyEntity = armyEntitiesStore[id];
 
             if (armyEntity == null)
             {
-                throw new EntityNotFoundException(
-                    $"{factionId}-{unitId}",
-                    nameof(ArmyEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(ArmyEntity));
             }
 
             return armyEntity;
@@ -83,23 +73,18 @@ namespace Narivia.DataAccess.Repositories
         }
 
         /// <summary>
-        /// Removes the army with the specified faction and unit identifiers.
+        /// Removes the army with the specified identifier.
         /// </summary>
-        /// <param name="factionId">Faction identifier.</param>
-        /// <param name="unitId">Unit identifier.</param>
-        public void Remove(string factionId, string unitId)
+        /// <param name="id">Identifier.</param>
+        public void Remove(string id)
         {
-            Tuple<string, string> key = new Tuple<string, string>(factionId, unitId);
-
             try
             {
-                armyEntitiesStore.Remove(key);
+                armyEntitiesStore.Remove(id);
             }
             catch
             {
-                throw new DuplicateEntityException(
-                    $"{factionId}-{unitId}",
-                    nameof(ArmyEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(ArmyEntity));
             }
         }
     }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 using Narivia.DataAccess.DataObjects;
@@ -10,20 +9,20 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Border repository implementation.
     /// </summary>
-    public class RelationRepository : IRelationRepository
+    public class RelationRepository : IRepository<string, RelationEntity>
     {
         /// <summary>
         /// Gets or sets the borders.
         /// </summary>
         /// <value>The borders.</value>
-        readonly Dictionary<Tuple<string, string>, RelationEntity> relationEntitiesStore;
+        readonly Dictionary<string, RelationEntity> relationEntitiesStore;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BorderRepository"/> class.
         /// </summary>
         public RelationRepository()
         {
-            relationEntitiesStore = new Dictionary<Tuple<string, string>, RelationEntity>();
+            relationEntitiesStore = new Dictionary<string, RelationEntity>();
         }
 
         /// <summary>
@@ -32,42 +31,33 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="relationEntity">Border.</param>
         public void Add(RelationEntity relationEntity)
         {
-            Tuple<string, string> key = new Tuple<string, string>(relationEntity.SourceFactionId, relationEntity.TargetFactionId);
-
             try
             {
-                relationEntitiesStore.Add(key, relationEntity);
+                relationEntitiesStore.Add(relationEntity.Id, relationEntity);
             }
             catch
             {
-                throw new DuplicateEntityException(
-                    $"{relationEntity.SourceFactionId}-{relationEntity.TargetFactionId}",
-                    nameof(BorderEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(relationEntity.Id, nameof(RelationEntity));
             }
         }
 
         /// <summary>
-        /// Get the relation with the specified faction identifiers.
+        /// Get the relation with the specified identifier.
         /// </summary>
         /// <returns>The border.</returns>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        public RelationEntity Get(string sourceFactionId, string targetFactionId)
+        /// <param name="id">Identifier.</param>
+        public RelationEntity Get(string id)
         {
-            Tuple<string, string> key = new Tuple<string, string>(sourceFactionId, targetFactionId);
-
-            if (!relationEntitiesStore.ContainsKey(key))
+            if (!relationEntitiesStore.ContainsKey(id))
             {
                 return null;
             }
 
-            RelationEntity relationEntity = relationEntitiesStore[key];
+            RelationEntity relationEntity = relationEntitiesStore[id];
 
             if (relationEntity == null)
             {
-                throw new EntityNotFoundException(
-                    $"{sourceFactionId}-{targetFactionId}",
-                    nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(RelationEntity));
             }
 
             return relationEntity;
@@ -83,23 +73,18 @@ namespace Narivia.DataAccess.Repositories
         }
 
         /// <summary>
-        /// Removes the relation with the specified faction identifiers.
+        /// Removes the relation with the specified identifier.
         /// </summary>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        public void Remove(string sourceFactionId, string targetFactionId)
+        /// <param name="id">Identifier.</param>
+        public void Remove(string id)
         {
-            Tuple<string, string> key = new Tuple<string, string>(sourceFactionId, targetFactionId);
-
             try
             {
-                relationEntitiesStore.Remove(key);
+                relationEntitiesStore.Remove(id);
             }
             catch
             {
-                throw new DuplicateEntityException(
-                    $"{sourceFactionId}-{targetFactionId}",
-                    nameof(RelationEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(RelationEntity));
             }
         }
     }

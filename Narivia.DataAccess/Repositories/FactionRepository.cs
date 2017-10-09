@@ -10,7 +10,7 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Faction repository implementation.
     /// </summary>
-    public class FactionRepository : IFactionRepository
+    public class FactionRepository : IRepository<string, FactionEntity>
     {
         readonly XmlDatabase<FactionEntity> xmlDatabase;
 
@@ -38,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(factionEntity.Id, nameof(FactionEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(factionEntity.Id, nameof(FactionEntity));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (factionEntity == null)
             {
-                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(BorderEntity));
             }
 
             return factionEntity;
@@ -82,7 +82,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (factionEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(factionEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(factionEntity.Id, nameof(BorderEntity));
             }
 
             factionEntityToUpdate.Name = factionEntity.Name;
@@ -109,7 +109,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(id, nameof(FactionEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(FactionEntity));
             }
         }
     }

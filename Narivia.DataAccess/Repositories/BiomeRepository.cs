@@ -10,7 +10,7 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Biome repository implementation.
     /// </summary>
-    public class BiomeRepository : IBiomeRepository
+    public class BiomeRepository : IRepository<string, BiomeEntity>
     {
         readonly XmlDatabase<BiomeEntity> xmlDatabase;
 
@@ -38,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(biomeEntity.Id, nameof(BiomeEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(biomeEntity.Id, nameof(BiomeEntity));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (biomeEntity == null)
             {
-                throw new EntityNotFoundException(id, nameof(BiomeEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(BiomeEntity));
             }
 
             return biomeEntity;
@@ -82,7 +82,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (biomeEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(biomeEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(biomeEntity.Id, nameof(BorderEntity));
             }
 
             biomeEntityToUpdate.Name = biomeEntity.Name;
@@ -107,7 +107,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(id, nameof(BiomeEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(BiomeEntity));
             }
         }
     }

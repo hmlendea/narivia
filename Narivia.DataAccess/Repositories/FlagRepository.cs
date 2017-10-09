@@ -10,7 +10,7 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Flag repository implementation.
     /// </summary>
-    public class FlagRepository : IFlagRepository
+    public class FlagRepository : IRepository<string, FlagEntity>
     {
         readonly XmlDatabase<FlagEntity> xmlDatabase;
 
@@ -38,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(flagEntity.Id, nameof(FlagEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(flagEntity.Id, nameof(FlagEntity));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (flagEntity == null)
             {
-                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(BorderEntity));
             }
 
             return flagEntity;
@@ -82,7 +82,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (flagEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(flagEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(flagEntity.Id, nameof(BorderEntity));
             }
 
             flagEntityToUpdate.Layer1 = flagEntity.Layer1;
@@ -112,7 +112,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(id, nameof(FlagEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(FlagEntity));
             }
         }
     }

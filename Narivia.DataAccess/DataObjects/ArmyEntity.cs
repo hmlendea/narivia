@@ -6,6 +6,12 @@
     public class ArmyEntity
     {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>The identifier.</value>
+        public string Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the faction identifier.
         /// </summary>
         /// <value>The faction identifier.</value>

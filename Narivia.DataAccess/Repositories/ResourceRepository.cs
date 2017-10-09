@@ -10,7 +10,7 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Resource repository implementation.
     /// </summary>
-    public class ResourceRepository : IResourceRepository
+    public class ResourceRepository : IRepository<string, ResourceEntity>
     {
         readonly XmlDatabase<ResourceEntity> xmlDatabase;
 
@@ -38,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(resourceEntity.Id, nameof(ResourceEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(resourceEntity.Id, nameof(ResourceEntity));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (resourceEntity == null)
             {
-                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(BorderEntity));
             }
 
             return resourceEntity;
@@ -82,7 +82,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (resourceEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(resourceEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(resourceEntity.Id, nameof(BorderEntity));
             }
 
             resourceEntityToUpdate.Name = resourceEntity.Name;
@@ -108,7 +108,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(id, nameof(ResourceEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(ResourceEntity));
             }
         }
     }

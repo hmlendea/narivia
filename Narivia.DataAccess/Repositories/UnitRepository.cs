@@ -10,7 +10,7 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Unit repository implementation.
     /// </summary>
-    public class UnitRepository : IUnitRepository
+    public class UnitRepository : IRepository<string, UnitEntity>
     {
         readonly XmlDatabase<UnitEntity> xmlDatabase;
 
@@ -38,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(unitEntity.Id, nameof(UnitEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(unitEntity.Id, nameof(UnitEntity));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (unitEntity == null)
             {
-                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(BorderEntity));
             }
 
             return unitEntity;
@@ -82,7 +82,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (unitEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(unitEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(unitEntity.Id, nameof(BorderEntity));
             }
 
             unitEntityToUpdate.Name = unitEntity.Name;
@@ -111,7 +111,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(id, nameof(UnitEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(UnitEntity));
             }
         }
     }

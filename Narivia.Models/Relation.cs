@@ -13,7 +13,8 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The identifier.</value>
         [Key]
-        public string Id => $"{SourceFactionId}:{TargetFactionId}";
+        [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the source faction identifier.

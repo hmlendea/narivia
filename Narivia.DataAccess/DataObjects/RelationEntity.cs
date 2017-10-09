@@ -6,6 +6,12 @@ namespace Narivia.DataAccess.DataObjects
     public class RelationEntity
     {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>The identifier.</value>
+        public string Id { get; set; }
+
+        /// <summary>
         /// Gets the source faction identifier.
         /// </summary>
         /// <value>The source faction identifier.</value>

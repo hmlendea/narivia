@@ -20,7 +20,7 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// World repository implementation.
     /// </summary>
-    public class WorldRepository : IWorldRepository
+    public class WorldRepository : IRepository<string, WorldEntity>
     {
         readonly string worldsDirectory;
 
@@ -110,8 +110,8 @@ namespace Narivia.DataAccess.Repositories
             ConcurrentDictionary<int, string> provinceColourIds = new ConcurrentDictionary<int, string>();
             ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
 
-            IBiomeRepository biomeRepository = new BiomeRepository(Path.Combine(worldsDirectory, worldId, "biomes.xml"));
-            IProvinceRepository provinceRepository = new ProvinceRepository(Path.Combine(worldsDirectory, worldId, "provinces.xml"));
+            IRepository<string, BiomeEntity> biomeRepository = new BiomeRepository(Path.Combine(worldsDirectory, worldId, "biomes.xml"));
+            IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(Path.Combine(worldsDirectory, worldId, "provinces.xml"));
 
             Parallel.ForEach(biomeRepository.GetAll(), b => biomeColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
             Parallel.ForEach(provinceRepository.GetAll(), r => provinceColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));

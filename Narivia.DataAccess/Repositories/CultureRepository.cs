@@ -10,7 +10,7 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Culture repository implementation.
     /// </summary>
-    public class CultureRepository : ICultureRepository
+    public class CultureRepository : IRepository<string, CultureEntity>
     {
         readonly XmlDatabase<CultureEntity> xmlDatabase;
 
@@ -38,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(cultureEntity.Id, nameof(CultureEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(cultureEntity.Id, nameof(CultureEntity));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (cultureEntity == null)
             {
-                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(BorderEntity));
             }
 
             return cultureEntity;
@@ -82,7 +82,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (cultureEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(cultureEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(cultureEntity.Id, nameof(BorderEntity));
             }
 
             cultureEntityToUpdate.Name = cultureEntity.Name;
@@ -107,7 +107,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(id, nameof(CultureEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(CultureEntity));
             }
         }
     }

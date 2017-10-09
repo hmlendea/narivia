@@ -10,7 +10,7 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Holding repository implementation.
     /// </summary>
-    public class HoldingRepository : IHoldingRepository
+    public class HoldingRepository : IRepository<string, HoldingEntity>
     {
         readonly XmlDatabase<HoldingEntity> xmlDatabase;
 
@@ -38,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(holdingEntity.Id, nameof(HoldingEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(holdingEntity.Id, nameof(HoldingEntity));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (holdingEntity == null)
             {
-                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(BorderEntity));
             }
 
             return holdingEntity;
@@ -82,7 +82,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (holdingEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(holdingEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(holdingEntity.Id, nameof(BorderEntity));
             }
 
             holdingEntityToUpdate.Name = holdingEntity.Name;
@@ -107,7 +107,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(id, nameof(HoldingEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(HoldingEntity));
             }
         }
     }

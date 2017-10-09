@@ -10,7 +10,7 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Province repository implementation.
     /// </summary>
-    public class ProvinceRepository : IProvinceRepository
+    public class ProvinceRepository : IRepository<string, ProvinceEntity>
     {
         readonly XmlDatabase<ProvinceEntity> xmlDatabase;
 
@@ -38,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(provinceEntity.Id, nameof(ProvinceEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(provinceEntity.Id, nameof(ProvinceEntity));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (provinceEntity == null)
             {
-                throw new EntityNotFoundException(id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(id, nameof(BorderEntity));
             }
 
             return provinceEntity;
@@ -82,7 +82,7 @@ namespace Narivia.DataAccess.Repositories
 
             if (provinceEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(provinceEntity.Id, nameof(BorderEntity).Replace("Entity", ""));
+                throw new EntityNotFoundException(provinceEntity.Id, nameof(BorderEntity));
             }
 
             provinceEntityToUpdate.Name = provinceEntity.Name;
@@ -110,7 +110,7 @@ namespace Narivia.DataAccess.Repositories
             }
             catch
             {
-                throw new DuplicateEntityException(id, nameof(ProvinceEntity).Replace("Entity", ""));
+                throw new DuplicateEntityException(id, nameof(ProvinceEntity));
             }
         }
     }

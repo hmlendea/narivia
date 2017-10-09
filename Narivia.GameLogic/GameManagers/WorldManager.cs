@@ -13,6 +13,7 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.Generators;
 using Narivia.GameLogic.Generators.Interfaces;
 using Narivia.GameLogic.Mapping;
+using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories;
 using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
@@ -30,15 +31,15 @@ namespace Narivia.GameLogic.GameManagers
 
         World world;
 
-        ConcurrentDictionary<Tuple<string, string>, Army> armies;
+        ConcurrentDictionary<string, Army> armies;
         ConcurrentDictionary<string, Biome> biomes;
-        ConcurrentDictionary<Tuple<string, string>, Border> borders;
+        ConcurrentDictionary<string, Border> borders;
         ConcurrentDictionary<string, Culture> cultures;
         ConcurrentDictionary<string, Faction> factions;
         ConcurrentDictionary<string, Flag> flags;
         ConcurrentDictionary<string, Holding> holdings;
         ConcurrentDictionary<string, Province> provinces;
-        ConcurrentDictionary<Tuple<string, string>, Relation> relations;
+        ConcurrentDictionary<string, Relation> relations;
         ConcurrentDictionary<string, Resource> resources;
         ConcurrentDictionary<string, Unit> units;
 
@@ -402,16 +403,16 @@ namespace Narivia.GameLogic.GameManagers
 
         void LoadEntities(string worldId)
         {
-            IBiomeRepository biomeRepository = new BiomeRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml"));
-            IBorderRepository borderRepository = new BorderRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "borders.xml"));
-            ICultureRepository cultureRepository = new CultureRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml"));
-            IFactionRepository factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
-            IFlagRepository flagRepository = new FlagRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "flags.xml"));
-            IHoldingRepository holdingRepository = new HoldingRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
-            IProvinceRepository provinceRepository = new ProvinceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "provinces.xml"));
-            IResourceRepository resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
-            IUnitRepository unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
-            IWorldRepository worldRepository = new WorldRepository(ApplicationPaths.WorldsDirectory);
+            IRepository<string, BiomeEntity> biomeRepository = new BiomeRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml"));
+            IRepository<string, BorderEntity> borderRepository = new BorderRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "borders.xml"));
+            IRepository<string, CultureEntity> cultureRepository = new CultureRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml"));
+            IRepository<string, FactionEntity> factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
+            IRepository<string, FlagEntity> flagRepository = new FlagRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "flags.xml"));
+            IRepository<string, HoldingEntity> holdingRepository = new HoldingRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
+            IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "provinces.xml"));
+            IRepository<string, ResourceEntity> resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
+            IRepository<string, UnitEntity> unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
+            IRepository<string, WorldEntity> worldRepository = new WorldRepository(ApplicationPaths.WorldsDirectory);
 
             IEnumerable<Biome> biomeList = biomeRepository.GetAll().ToDomainModels();
             IEnumerable<Border> borderList = borderRepository.GetAll().ToDomainModels();
@@ -422,15 +423,15 @@ namespace Narivia.GameLogic.GameManagers
             IEnumerable<Resource> resourceList = resourceRepository.GetAll().ToDomainModels();
             IEnumerable<Unit> unitList = unitRepository.GetAll().ToDomainModels();
 
-            armies = new ConcurrentDictionary<Tuple<string, string>, Army>();
+            armies = new ConcurrentDictionary<string, Army>();
             biomes = new ConcurrentDictionary<string, Biome>(biomeList.ToDictionary(biome => biome.Id, biome => biome));
-            borders = new ConcurrentDictionary<Tuple<string, string>, Border>(borderList.ToDictionary(border => new Tuple<string, string>(border.SourceProvinceId, border.TargetProvinceId), border => border));
+            borders = new ConcurrentDictionary<string, Border>(borderList.ToDictionary(border => $"{border.SourceProvinceId}:{border.TargetProvinceId}", border => border));
             cultures = new ConcurrentDictionary<string, Culture>(cultureList.ToDictionary(culture => culture.Id, culture => culture));
             factions = new ConcurrentDictionary<string, Faction>(factionList.ToDictionary(faction => faction.Id, faction => faction));
             flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
             holdings = new ConcurrentDictionary<string, Holding>();
             provinces = new ConcurrentDictionary<string, Province>(provinceList.ToDictionary(province => province.Id, province => province));
-            relations = new ConcurrentDictionary<Tuple<string, string>, Relation>();
+            relations = new ConcurrentDictionary<string, Relation>();
             resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
             units = new ConcurrentDictionary<string, Unit>(unitList.ToDictionary(unit => unit.Id, unit => unit));
             world = worldRepository.Get(worldId).ToDomainModel();
@@ -480,15 +481,15 @@ namespace Narivia.GameLogic.GameManagers
             {
                 return;
             }
-
-            Tuple<string, string> borderKey = new Tuple<string, string>(province1Id, province2Id);
+            
             Border border = new Border
             {
+                Id = $"{province1Id}:{province2Id}",
                 SourceProvinceId = province1Id,
                 TargetProvinceId = province2Id
             };
 
-            borders.AddOrUpdate(borderKey, border);
+            borders.AddOrUpdate(border.Id, border);
         }
 
         void InitializeEntities()
@@ -514,15 +515,15 @@ namespace Narivia.GameLogic.GameManagers
             Parallel.ForEach(units.Values,
                              unit =>
             {
-                Tuple<string, string> armyKey = new Tuple<string, string>(faction.Id, unit.Id);
                 Army army = new Army
                 {
+                    Id = $"{faction.Id}:{unit.Id}",
                     FactionId = faction.Id,
                     UnitId = unit.Id,
                     Size = world.StartingTroops
                 };
 
-                armies.AddOrUpdate(armyKey, army);
+                armies.AddOrUpdate(army.Id, army);
             });
 
             Parallel.ForEach(factions.Values, f => InitialiseRelation(factionId, f.Id));
@@ -551,14 +552,13 @@ namespace Narivia.GameLogic.GameManagers
 
             Relation relation = new Relation
             {
+                Id = $"{sourceFactionId}:{targetFactionId}",
                 SourceFactionId = sourceFactionId,
                 TargetFactionId = targetFactionId,
                 Value = 0
             };
-
-            Tuple<string, string> relationKey = new Tuple<string, string>(relation.SourceFactionId, relation.TargetFactionId);
-
-            relations.AddOrUpdate(relationKey, relation);
+            
+            relations.AddOrUpdate(relation.Id, relation);
         }
 
         void GenerateHoldings(string factionId)
