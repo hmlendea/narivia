@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
+using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics.Enumerations;
-using Narivia.Graphics.Geometry;
 using Narivia.Common.Extensions;
 using Narivia.Input.Events;
 using Narivia.Models;

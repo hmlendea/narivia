@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
+using NuciXNA.Primitives;
+using NuciXNA.Primitives.Mapping;
+
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.Graphics;
 using Narivia.Graphics.Enumerations;
-using Narivia.Graphics.Geometry;
-using Narivia.Graphics.Mapping;
 using Narivia.Models;
 using Narivia.Settings;
 

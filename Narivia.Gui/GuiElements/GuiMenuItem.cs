@@ -1,11 +1,10 @@
 using System;
 
 using Microsoft.Xna.Framework.Input;
+using NuciXNA.Primitives;
 
 using Narivia.Audio;
-using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
-using Narivia.Graphics.Geometry;
 using Narivia.Input.Events;
 
 namespace Narivia.Gui.GuiElements

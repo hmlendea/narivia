@@ -1,6 +1,4 @@
-﻿using Narivia.Graphics;
-using Narivia.Graphics.Geometry;
-using Narivia.Graphics.Mapping;
+﻿using NuciXNA.Primitives;
 
 namespace Narivia.Gui.GuiElements
 {

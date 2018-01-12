@@ -4,11 +4,11 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Primitives;
 
 using Narivia.DataAccess.IO;
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
-using Narivia.Graphics.Geometry;
 using Narivia.Graphics.Enumerations;
 using Narivia.Settings;
 

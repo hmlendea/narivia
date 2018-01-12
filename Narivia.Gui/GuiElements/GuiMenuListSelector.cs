@@ -4,8 +4,8 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using NuciXNA.Primitives.Mapping;
 
-using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;
 

@@ -1,4 +1,4 @@
-﻿using Narivia.Graphics.Geometry;
+﻿using NuciXNA.Primitives;
 
 namespace Narivia.Settings
 {

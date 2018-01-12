@@ -4,10 +4,10 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Primitives;
+using NuciXNA.Primitives.Mapping;
 
 using Narivia.Graphics;
-using Narivia.Graphics.Geometry;
-using Narivia.Graphics.Mapping;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Input;

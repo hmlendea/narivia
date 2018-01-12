@@ -4,13 +4,13 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Primitives;
 
 using Narivia.DataAccess.Exceptions;
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
-using Narivia.Graphics.Geometry;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Input.Events;

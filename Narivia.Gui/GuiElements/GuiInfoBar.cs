@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-using Narivia.Graphics;
+using NuciXNA.Primitives;
+
 using Narivia.Graphics.Enumerations;
-using Narivia.Graphics.Geometry;
 using Narivia.Input.Events;
 using Narivia.Settings;
 

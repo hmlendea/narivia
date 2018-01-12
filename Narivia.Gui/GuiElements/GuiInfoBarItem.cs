@@ -1,5 +1,6 @@
-﻿using Narivia.Graphics.Enumerations;
-using Narivia.Graphics.Geometry;
+﻿using NuciXNA.Primitives;
+
+using Narivia.Graphics.Enumerations;
 using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements

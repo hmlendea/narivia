@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 
+using NuciXNA.Primitives;
+
 using Narivia.Audio;
-using Narivia.Graphics.Geometry;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Input.Enumerations;
 using Narivia.Input.Events;

@@ -6,14 +6,13 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Primitives;
+using NuciXNA.Primitives.Mapping;
 
 using Narivia.DataAccess.Resources;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
-using Narivia.Graphics.Geometry;
-using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Graphics.Helpers;
-using Narivia.Graphics.Mapping;
 
 namespace Narivia.Graphics
 {

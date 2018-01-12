@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using NuciXNA.Primitives;
 
-using Narivia.Graphics.Geometry;
 using Narivia.Input;
 using Narivia.Input.Events;
 using Narivia.Settings;

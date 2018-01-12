@@ -1,8 +1,7 @@
 ﻿using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
-
-using Narivia.Graphics.Geometry;
+using NuciXNA.Primitives;
 
 namespace Narivia.Graphics.CustomSpriteEffects
 {

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using NuciXNA.Primitives;
+
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics.Enumerations;
-using Narivia.Graphics.Geometry;
 using Narivia.Input.Events;
 using Narivia.Models;
 using Narivia.Settings;

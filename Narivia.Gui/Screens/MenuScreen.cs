@@ -5,10 +5,10 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NuciXNA.Primitives;
+using NuciXNA.Primitives.Mapping;
 
 using Narivia.Input.Events;
-using Narivia.Graphics.Geometry;
-using Narivia.Graphics.Geometry.Mapping;
 using Narivia.Gui.GuiElements;
 using Narivia.Settings;
 
