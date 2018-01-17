@@ -3,9 +3,9 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Input;
 
 using Narivia.Gui.GuiElements;
-using Narivia.Input;
 
 namespace Narivia.Gui
 {

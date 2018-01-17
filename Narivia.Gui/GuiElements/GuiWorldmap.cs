@@ -2,13 +2,13 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Graphics;
 using Narivia.Gui.WorldMap;
-using Narivia.Input.Events;
 using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements

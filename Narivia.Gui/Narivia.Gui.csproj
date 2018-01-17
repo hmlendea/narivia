@@ -32,6 +32,9 @@
     <Reference Include="NuciLog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciLog.hmlendea.1.1.0\lib\netstandard2.0\NuciLog.dll</HintPath>
     </Reference>
+    <Reference Include="NuciXNA.Input, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Input.1.0.1\lib\net45\NuciXNA.Input.dll</HintPath>
+    </Reference>
     <Reference Include="NuciXNA.Primitives, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Primitives.1.0.1\lib\net45\NuciXNA.Primitives.dll</HintPath>
     </Reference>
@@ -110,10 +113,6 @@
     <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj">
       <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
       <Name>Narivia.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Input\Narivia.Input.csproj">
-      <Project>{9aa1d3bd-bb14-4f0e-855c-5d24ecd0bc4f}</Project>
-      <Name>Narivia.Input</Name>
     </ProjectReference>
     <ProjectReference Include="..\Narivia.Models\Narivia.Models.csproj">
       <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>

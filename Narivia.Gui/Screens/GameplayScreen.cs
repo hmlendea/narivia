@@ -4,6 +4,7 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
 using Narivia.DataAccess.Exceptions;
@@ -13,7 +14,6 @@ using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
-using Narivia.Input.Events;
 using Narivia.Models;
 
 namespace Narivia.Gui.Screens

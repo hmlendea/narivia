@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
+using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
 using Narivia.Graphics.Enumerations;
-using Narivia.Input.Events;
 using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements

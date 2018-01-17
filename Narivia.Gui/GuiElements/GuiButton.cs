@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
+using NuciXNA.Input.Enumerations;
+using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
 using Narivia.Audio;
 using Narivia.Gui.GuiElements.Enumerations;
-using Narivia.Input.Enumerations;
-using Narivia.Input.Events;
 using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements

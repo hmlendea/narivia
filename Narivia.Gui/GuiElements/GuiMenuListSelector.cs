@@ -4,10 +4,9 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using NuciXNA.Input.Enumerations;
+using NuciXNA.Input.Events;
 using NuciXNA.Primitives.Mapping;
-
-using Narivia.Input.Enumerations;
-using Narivia.Input.Events;
 
 namespace Narivia.Gui.GuiElements
 {

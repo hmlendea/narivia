@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Input;
+using NuciXNA.Input.Enumerations;
+using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
-using Narivia.Input;
-using Narivia.Input.Enumerations;
-using Narivia.Input.Events;
 
 namespace Narivia.Gui
 {
