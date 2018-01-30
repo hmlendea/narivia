@@ -5,10 +5,10 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Graphics;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
-using Narivia.Graphics;
 using Narivia.Settings;
 
 namespace Narivia.Gui.WorldMap

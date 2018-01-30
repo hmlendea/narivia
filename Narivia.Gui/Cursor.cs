@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Graphics;
+using NuciXNA.Graphics.SpriteEffects;
 using NuciXNA.Input;
 using NuciXNA.Input.Enumerations;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
-
-using Narivia.Graphics;
-using Narivia.Graphics.CustomSpriteEffects;
 
 namespace Narivia.Gui
 {
@@ -29,18 +28,8 @@ namespace Narivia.Gui
         /// </summary>
         public void LoadContent()
         {
-            idleSprite = new Sprite
-            {
-                Effects = nameof(AnimationEffect),
-                ContentFile = "Cursors/idle",
-                Active = true
-            };
-            clickSprite = new Sprite
-            {
-                Effects = nameof(AnimationEffect),
-                ContentFile = "Cursors/click",
-                Active = true
-            };
+            idleSprite = new Sprite { ContentFile = "Cursors/idle" };
+            clickSprite = new Sprite { ContentFile = "Cursors/click" };
 
             idleSprite.AnimationEffect = new AnimationEffect
             {

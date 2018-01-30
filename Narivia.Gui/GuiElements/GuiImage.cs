@@ -1,10 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Graphics;
+using NuciXNA.Graphics.SpriteEffects;
+using NuciXNA.Graphics.Enumerations;
 using NuciXNA.Primitives;
-
-using Narivia.Graphics;
-using Narivia.Graphics.CustomSpriteEffects;
-using Narivia.Graphics.Enumerations;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -44,10 +43,30 @@ namespace Narivia.Gui.GuiElements
         public TextureLayout TextureLayout { get; set; }
 
         /// <summary>
+        /// Gets or sets the animation effect.
+        /// </summary>
+        /// <value>The animation effect.</value>
+        public AnimationEffect AnimationEffect { get; set; }
+
+        /// <summary>
         /// Gets or sets the fade effect.
         /// </summary>
         /// <value>The fade effect.</value>
         public FadeEffect FadeEffect { get; set; }
+
+        /// <summary>
+        /// Gets or sets the rotation effect.
+        /// </summary>
+        /// <value>The rotation effect.</value>
+        public RotationEffect RotationEffect { get; set; }
+
+        /// <summary>
+        /// Gets or sets the zoom effect.
+        /// </summary>
+        /// <value>The zoom effect.</value>
+        public ZoomEffect ZoomEffect { get; set; }
+
+        public float Rotation { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the effects are active.
@@ -79,6 +98,11 @@ namespace Narivia.Gui.GuiElements
             sprite.LoadContent();
 
             base.LoadContent();
+
+            if (SourceRectangle == Rectangle2D.Empty)
+            {
+                SourceRectangle = new Rectangle2D(Point2D.Empty, sprite.SpriteSize);
+            }
         }
 
         /// <summary>
@@ -113,21 +137,9 @@ namespace Narivia.Gui.GuiElements
             base.Draw(spriteBatch);
         }
 
-        /// <summary>
-        /// Activates the effect.
-        /// </summary>
-        /// <param name="effect">Effect.</param>
-        public void ActivateEffect(string effect)
-        => sprite.ActivateEffect(effect);
-
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-
-            if (SourceRectangle == Rectangle2D.Empty)
-            {
-                SourceRectangle = new Rectangle2D(Point2D.Empty, sprite.SpriteSize);
-            }
 
             if (Size == Size2D.Empty)
             {
@@ -137,11 +149,16 @@ namespace Narivia.Gui.GuiElements
             sprite.Active = EffectsActive;
             sprite.AlphaMaskFile = MaskFile;
             sprite.ContentFile = ContentFile;
-            sprite.FadeEffect = FadeEffect;
             sprite.Location = Location;
             sprite.SourceRectangle = SourceRectangle;
+            sprite.Rotation = Rotation;
             sprite.TextureLayout = TextureLayout;
             sprite.Tint = TintColour;
+
+            sprite.AnimationEffect = AnimationEffect;
+            sprite.FadeEffect = FadeEffect;
+            sprite.RotationEffect = RotationEffect;
+            sprite.ZoomEffect = ZoomEffect;
 
             if (!sprite.SourceRectangle.IsEmpty)
             {

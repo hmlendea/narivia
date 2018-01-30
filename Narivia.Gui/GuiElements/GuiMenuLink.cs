@@ -37,7 +37,7 @@ namespace Narivia.Gui.GuiElements
                 args = LinkArgs.Split(' ');
             }
 
-            ScreenManager.Instance.ChangeScreens(LinkId, args);
+            ScreenManager.Instance.ChangeScreens(Type.GetType($"{typeof(Screen).Namespace}.{LinkId}"), args);
         }
     }
 }

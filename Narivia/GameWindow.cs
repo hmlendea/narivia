@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using NuciLog;
 using NuciLog.Enumerations;
 using NuciXNA.DataAccess.Resources;
+using NuciXNA.Graphics;
 using NuciXNA.Input;
 
-using Narivia.Graphics;
 using Narivia.Gui;
 using Narivia.Gui.Screens;
 using Narivia.Settings;
@@ -44,10 +44,6 @@ namespace Narivia
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = ScreenManager.Instance.Size.Width;
-            graphics.PreferredBackBufferHeight = ScreenManager.Instance.Size.Height;
-            graphics.ApplyChanges();
-
             base.Initialize();
         }
 

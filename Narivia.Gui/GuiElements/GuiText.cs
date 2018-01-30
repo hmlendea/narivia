@@ -1,10 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Graphics;
+using NuciXNA.Graphics.SpriteEffects;
+using NuciXNA.Graphics.Enumerations;
 using NuciXNA.Primitives;
-
-using Narivia.Graphics;
-using Narivia.Graphics.CustomSpriteEffects;
-using Narivia.Graphics.Enumerations;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -120,14 +119,7 @@ namespace Narivia.Gui.GuiElements
 
             textSprite.Draw(spriteBatch);
         }
-
-        /// <summary>
-        /// Activates the effect.
-        /// </summary>
-        /// <param name="effect">Effect.</param>
-        public void ActivateEffect(string effect)
-        => textSprite.ActivateEffect(effect);
-
+        
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
@@ -142,7 +134,7 @@ namespace Narivia.Gui.GuiElements
             textSprite.Tint = ForegroundColour;
             textSprite.TextVerticalAlignment = VerticalAlignment;
             textSprite.TextHorizontalAlignment = HorizontalAlignment;
-            textSprite.TextOutline = TextOutline;
+            textSprite.FontOutline = TextOutline == true ? FontOutline.Around : FontOutline.None;
             textSprite.Location = new Point2D(Location.X + Margins,
                                               Location.Y + Margins);
             textSprite.SpriteSize = new Size2D(Size.Width - Margins * 2,

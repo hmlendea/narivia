@@ -35,6 +35,9 @@
     <Reference Include="NuciXNA.DataAccess, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.DataAccess.1.0.1\lib\net45\NuciXNA.DataAccess.dll</HintPath>
     </Reference>
+    <Reference Include="NuciXNA.Graphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Graphics.1.0.0\lib\net45\NuciXNA.Graphics.dll</HintPath>
+    </Reference>
     <Reference Include="NuciXNA.Input, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Input.1.0.1\lib\net45\NuciXNA.Input.dll</HintPath>
     </Reference>
@@ -108,10 +111,6 @@
     <ProjectReference Include="..\Narivia.GameLogic\Narivia.GameLogic.csproj">
       <Project>{3d8ac77c-03a5-470b-b5c3-26e7afa1c618}</Project>
       <Name>Narivia.GameLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Graphics\Narivia.Graphics.csproj">
-      <Project>{f291ec71-b1cc-4b6e-8095-cfe380081951}</Project>
-      <Name>Narivia.Graphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj">
       <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>

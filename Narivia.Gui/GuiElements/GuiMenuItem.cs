@@ -1,11 +1,11 @@
 using System;
 
 using Microsoft.Xna.Framework.Input;
+using NuciXNA.Graphics.SpriteEffects;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
 using Narivia.Audio;
-using Narivia.Graphics.CustomSpriteEffects;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -64,7 +64,7 @@ namespace Narivia.Gui.GuiElements
 
             base.LoadContent();
 
-            text.ActivateEffect("FadeEffect");
+            // LEFTOVER: text.ActivateEffect("FadeEffect");
         }
 
         protected override void SetChildrenProperties()

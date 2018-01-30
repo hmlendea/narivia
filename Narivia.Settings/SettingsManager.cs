@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using NuciLog;
 using NuciLog.Enumerations;
 using NuciXNA.DataAccess.IO;
-
-using Narivia.Graphics;
-
+using NuciXNA.Graphics;
 
 namespace Narivia.Settings
 {

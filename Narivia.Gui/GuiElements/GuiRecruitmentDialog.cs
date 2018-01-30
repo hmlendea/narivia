@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using NuciXNA.Graphics.Enumerations;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.Graphics.Enumerations;
 using Narivia.Models;
 using Narivia.Settings;
 

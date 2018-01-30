@@ -35,6 +35,9 @@
     <Reference Include="NuciXNA.DataAccess, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.DataAccess.1.0.1\lib\net45\NuciXNA.DataAccess.dll</HintPath>
     </Reference>
+    <Reference Include="NuciXNA.Graphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Graphics.1.0.0\lib\net45\NuciXNA.Graphics.dll</HintPath>
+    </Reference>
     <Reference Include="NuciXNA.Primitives, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Primitives.1.0.3\lib\net45\NuciXNA.Primitives.dll</HintPath>
     </Reference>
@@ -59,10 +62,6 @@
     <ProjectReference Include="..\Narivia.DataAccess\Narivia.DataAccess.csproj">
       <Project>{1933f8d8-3c88-4329-a209-949f921598ce}</Project>
       <Name>Narivia.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Narivia.Graphics\Narivia.Graphics.csproj">
-      <Project>{f291ec71-b1cc-4b6e-8095-cfe380081951}</Project>
-      <Name>Narivia.Graphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj">
       <Project>{ACC1B4C7-D5F3-4BB2-AF61-0CBF48B99DED}</Project>

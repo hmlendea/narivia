@@ -90,10 +90,6 @@
       <Project>{78502827-88b2-4989-85cf-7ed78ac7cf10}</Project>
       <Name>Narivia.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Narivia.Graphics\Narivia.Graphics.csproj">
-      <Project>{F291EC71-B1CC-4B6E-8095-CFE380081951}</Project>
-      <Name>Narivia.Graphics</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Narivia.Settings\Narivia.Settings.csproj">
       <Project>{54aca0bd-4d04-4765-9055-d84941d80e49}</Project>
       <Name>Narivia.Settings</Name>

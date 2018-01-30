@@ -1,15 +1,12 @@
 ﻿using System;
-using System.IO;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Graphics;
+using NuciXNA.Graphics.SpriteEffects;
+using NuciXNA.Graphics.Enumerations;
 using NuciXNA.Primitives;
-
-using Narivia.Graphics;
-using Narivia.Graphics.CustomSpriteEffects;
-using Narivia.Graphics.Enumerations;
-using Narivia.Settings;
 
 namespace Narivia.Gui.Screens
 {
@@ -22,6 +19,7 @@ namespace Narivia.Gui.Screens
         static object syncRoot = new object();
 
         Screen currentScreen, newScreen;
+        Sprite transitionSprite;
 
         /// <summary>
         /// Gets the instance.
@@ -46,6 +44,8 @@ namespace Narivia.Gui.Screens
             }
         }
 
+        public Type StartingScreenType { get; set; }
+
         /// <summary>
         /// Gets the size.
         /// </summary>
@@ -68,19 +68,13 @@ namespace Narivia.Gui.Screens
         public bool Transitioning { get; private set; }
 
         /// <summary>
-        /// Gets or sets the image.
-        /// </summary>
-        /// <value>The image.</value>
-        public Sprite TransitionImage { get; set; }
-
-        public Type StartingScreenType { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ScreenManager"/> class.
         /// </summary>
         public ScreenManager()
         {
-            Size = SettingsManager.Instance.GraphicsSettings.Resolution;
+            Size = new Size2D(
+                GraphicsManager.Instance.Graphics.PreferredBackBufferWidth,
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight);
         }
 
         /// <summary>
@@ -90,7 +84,7 @@ namespace Narivia.Gui.Screens
         {
             currentScreen = (Screen)Activator.CreateInstance(StartingScreenType);
 
-            TransitionImage = new Sprite
+            transitionSprite = new Sprite
             {
                 ContentFile = "ScreenManager/FillImage",
                 Tint = Colour.Black,
@@ -98,8 +92,10 @@ namespace Narivia.Gui.Screens
                 TextureLayout = TextureLayout.Tile
             };
 
+            transitionSprite.FadeEffect.AssociateSprite(transitionSprite);
+
             currentScreen.LoadContent();
-            TransitionImage.LoadContent();
+            transitionSprite.LoadContent();
         }
 
         /// <summary>
@@ -108,7 +104,7 @@ namespace Narivia.Gui.Screens
         public void UnloadContent()
         {
             currentScreen.UnloadContent();
-            TransitionImage.UnloadContent();
+            transitionSprite.UnloadContent();
         }
 
         /// <summary>
@@ -125,8 +121,11 @@ namespace Narivia.Gui.Screens
                 return;
             }
 
-            Size = SettingsManager.Instance.GraphicsSettings.Resolution;
-            TransitionImage.Scale = new Scale2D(Size);
+            Size = new Size2D(
+                GraphicsManager.Instance.Graphics.PreferredBackBufferWidth,
+                GraphicsManager.Instance.Graphics.PreferredBackBufferHeight);
+
+            transitionSprite.Scale = new Scale2D(Size);
         }
 
         /// <summary>
@@ -139,34 +138,40 @@ namespace Narivia.Gui.Screens
 
             if (Transitioning)
             {
-                TransitionImage.Draw(spriteBatch);
+                transitionSprite.Draw(spriteBatch);
             }
         }
 
         /// <summary>
         /// Changes the screen.
         /// </summary>
-        /// <param name="screenName">Screen name.</param>
-        public void ChangeScreens(string screenName)
+        /// <param name="screenType">Screen type.</param>
+        public void ChangeScreens(Type screenType)
         {
-            ChangeScreens(screenName, null);
+            ChangeScreens(screenType, null);
         }
 
         /// <summary>
         /// Changes the screen.
         /// </summary>
-        /// <param name="screenName">Screen name.</param>
+        /// <param name="screenType">Screen type.</param>
         /// <param name="screenArgs">Screen arguments.</param>
-        public void ChangeScreens(string screenName, string[] screenArgs)
+        public void ChangeScreens(Type screenType, string[] screenArgs)
         {
-            newScreen = (Screen)Activator.CreateInstance(Type.GetType($"{typeof(Screen).Namespace}.{screenName}"));
-            
+            newScreen = (Screen)Activator.CreateInstance(screenType);
             newScreen.ScreenArgs = screenArgs;
 
-            TransitionImage.ActivateEffect(nameof(FadeEffect));
-            TransitionImage.Active = true;
-            TransitionImage.FadeEffect.Increasing = true;
-            TransitionImage.Opacity = 0.0f;
+            if (currentScreen == null)
+            {
+                currentScreen = newScreen;
+                return;
+            }
+
+            transitionSprite.FadeEffect.Activate();
+
+            transitionSprite.Active = true;
+            transitionSprite.FadeEffect.Increasing = true;
+            transitionSprite.Opacity = 0.0f;
 
             Transitioning = true;
         }
@@ -177,20 +182,19 @@ namespace Narivia.Gui.Screens
         /// <param name="gameTime">Game time.</param>
         void Transition(GameTime gameTime)
         {
-            TransitionImage.Update(gameTime);
+            transitionSprite.Update(gameTime);
 
-            if (TransitionImage.Opacity >= 1.0f)
+            if (transitionSprite.Opacity >= 1.0f)
             {
                 currentScreen.UnloadContent();
                 currentScreen = newScreen;
                 currentScreen.LoadContent();
             }
-            else if (TransitionImage.Opacity <= 0.0f)
+            else if (transitionSprite.Opacity <= 0.0f)
             {
-                TransitionImage.Active = false;
+                transitionSprite.Active = false;
                 Transitioning = false;
             }
         }
     }
 }
-

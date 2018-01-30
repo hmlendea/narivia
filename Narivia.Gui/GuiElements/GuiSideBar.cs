@@ -1,10 +1,10 @@
 using System.Xml.Serialization;
 
+using NuciXNA.Graphics.Enumerations;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.Graphics.Enumerations;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Models;
 using Narivia.Settings;
