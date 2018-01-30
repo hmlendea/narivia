@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 using NuciLog;
 using NuciLog.Enumerations;
+using NuciXNA.DataAccess.Resources;
 using NuciXNA.Input;
 
-using Narivia.DataAccess.Resources;
 using Narivia.Graphics;
 using Narivia.Gui;
 using Narivia.Gui.Screens;

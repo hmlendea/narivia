@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Audio;
+using NuciXNA.DataAccess.Resources;
 
-using Narivia.DataAccess.Resources;
 using Narivia.Settings;
 
 namespace Narivia.Audio

@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace Narivia.DataAccess.Exceptions
+namespace Narivia.GameLogic.Exceptions
 {
     /// <summary>
     /// Invalid target province exception.

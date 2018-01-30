@@ -1,16 +1,12 @@
-﻿namespace Narivia.DataAccess.DataObjects
+﻿using NuciXNA.DataAccess.DataObjects;
+
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// Army data entity.
     /// </summary>
-    public class ArmyEntity
+    public class ArmyEntity : EntityBase
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public string Id { get; set; }
-
         /// <summary>
         /// Gets or sets the faction identifier.
         /// </summary>

@@ -1,19 +1,15 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
+using NuciXNA.DataAccess.DataObjects;
+
 namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// World data entity.
     /// </summary>
-    public class WorldEntity
+    public class WorldEntity : EntityBase
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public string Id { get; set; }
-
         /// <summary>
         /// Gets or sets the name.
         /// </summary>

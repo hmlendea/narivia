@@ -1,16 +1,12 @@
-﻿namespace Narivia.DataAccess.DataObjects
+﻿using NuciXNA.DataAccess.DataObjects;
+
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// Faction data entity.
     /// </summary>
-    public class FactionEntity
+    public class FactionEntity : EntityBase
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public string Id { get; set; }
-
         /// <summary>
         /// Gets or sets the name.
         /// </summary>

@@ -32,11 +32,14 @@
     <Reference Include="NuciLog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciLog.hmlendea.1.1.0\lib\netstandard2.0\NuciLog.dll</HintPath>
     </Reference>
+    <Reference Include="NuciXNA.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.DataAccess.1.0.0\lib\net45\NuciXNA.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="NuciXNA.Input, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Input.1.0.1\lib\net45\NuciXNA.Input.dll</HintPath>
     </Reference>
-    <Reference Include="NuciXNA.Primitives, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Primitives.1.0.1\lib\net45\NuciXNA.Primitives.dll</HintPath>
+    <Reference Include="NuciXNA.Primitives, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Primitives.1.0.3\lib\net45\NuciXNA.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="MonoGame.Framework">

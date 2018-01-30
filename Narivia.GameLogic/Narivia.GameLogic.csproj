@@ -36,6 +36,9 @@
     <Reference Include="NuciLog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciLog.hmlendea.1.1.0\lib\netstandard2.0\NuciLog.dll</HintPath>
     </Reference>
+    <Reference Include="NuciXNA.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.DataAccess.1.0.0\lib\net45\NuciXNA.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.4.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -45,6 +48,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InvalidTargetProvinceException.cs" />
     <Compile Include="Mapping\ArmyMappingExtensions.cs" />
     <Compile Include="Mapping\BiomeMappingExtensions.cs" />
     <Compile Include="Mapping\BorderMappingExtensions.cs" />

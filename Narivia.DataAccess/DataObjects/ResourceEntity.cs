@@ -1,16 +1,12 @@
-﻿namespace Narivia.DataAccess.DataObjects
+﻿using NuciXNA.DataAccess.DataObjects;
+
+namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// Resource data entity.
     /// </summary>
-    public class ResourceEntity
+    public class ResourceEntity : EntityBase
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public string Id { get; set; }
-
         /// <summary>
         /// Gets or sets the name.
         /// </summary>

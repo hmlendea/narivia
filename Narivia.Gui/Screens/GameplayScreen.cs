@@ -7,8 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
-using Narivia.DataAccess.Exceptions;
 using Narivia.GameLogic.Enumerations;
+using Narivia.GameLogic.Exceptions;
 using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;

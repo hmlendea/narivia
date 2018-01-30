@@ -4,9 +4,9 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.DataAccess.IO;
 using NuciXNA.Primitives;
 
-using Narivia.DataAccess.IO;
 using Narivia.Graphics;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
@@ -24,7 +24,7 @@ namespace Narivia.Gui.Screens
 
         Screen currentScreen, newScreen;
 
-        readonly XmlManager<Screen> xmlScreenManager;
+        readonly XmlFileObject<Screen> xmlScreenManager;
 
         /// <summary>
         /// Gets the instance.
@@ -40,7 +40,7 @@ namespace Narivia.Gui.Screens
                     {
                         if (instance == null)
                         {
-                            XmlManager<ScreenManager> xmlManager = new XmlManager<ScreenManager>();
+                            XmlFileObject<ScreenManager> xmlManager = new XmlFileObject<ScreenManager>();
                             instance = xmlManager.Read(Path.Combine("Screens", $"{nameof(ScreenManager)}.xml"));
                         }
                     }
@@ -85,7 +85,7 @@ namespace Narivia.Gui.Screens
             Size = SettingsManager.Instance.GraphicsSettings.Resolution;
             currentScreen = new SplashScreen();
 
-            xmlScreenManager = new XmlManager<Screen>()
+            xmlScreenManager = new XmlFileObject<Screen>()
             {
                 Type = currentScreen.Type
             };

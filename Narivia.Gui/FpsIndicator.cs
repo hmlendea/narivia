@@ -2,8 +2,8 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.DataAccess.Resources;
 
-using Narivia.DataAccess.Resources;
 using Narivia.Gui.Helpers;
 using Narivia.Settings;
 

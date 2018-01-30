@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Narivia.DataAccess.Exceptions;
 using Narivia.GameLogic.Enumerations;
+using Narivia.GameLogic.Exceptions;
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Common.Extensions;
 using Narivia.Models;

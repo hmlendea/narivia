@@ -1,16 +1,12 @@
+using NuciXNA.DataAccess.DataObjects;
+
 namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
     /// Border data entity.
     /// </summary>
-    public class BorderEntity
+    public class BorderEntity : EntityBase
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public string Id { get; set; }
-
         /// <summary>
         /// Gets the first province identifier.
         /// </summary>

@@ -6,10 +6,10 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.DataAccess.Resources;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
-using Narivia.DataAccess.Resources;
 using Narivia.Graphics.CustomSpriteEffects;
 using Narivia.Graphics.Enumerations;
 using Narivia.Graphics.Helpers;

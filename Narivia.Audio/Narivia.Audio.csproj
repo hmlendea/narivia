@@ -29,6 +29,9 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NuciXNA.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.DataAccess.1.0.0\lib\net45\NuciXNA.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
@@ -49,6 +52,9 @@
       <Project>{54aca0bd-4d04-4765-9055-d84941d80e49}</Project>
       <Name>Narivia.Settings</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
