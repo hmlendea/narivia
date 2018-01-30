@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+using NuciXNA.DataAccess.Repositories;
 using NuciLog;
 using NuciLog.Enumerations;
 
@@ -15,7 +16,6 @@ using Narivia.GameLogic.Generators.Interfaces;
 using Narivia.GameLogic.Mapping;
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories;
-using Narivia.DataAccess.Repositories.Interfaces;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 using Narivia.Settings;

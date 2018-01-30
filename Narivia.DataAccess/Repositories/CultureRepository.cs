@@ -1,85 +1,35 @@
-using System.Collections.Generic;
 using System.Linq;
 
 using NuciXNA.DataAccess.Exceptions;
+using NuciXNA.DataAccess.Repositories;
 
 using Narivia.DataAccess.DataObjects;
-using Narivia.DataAccess.Repositories.Interfaces;
 
 namespace Narivia.DataAccess.Repositories
 {
     /// <summary>
     /// Culture repository implementation.
     /// </summary>
-    public class CultureRepository : IRepository<string, CultureEntity>
+    public class CultureRepository : XmlRepository<CultureEntity>
     {
-        readonly XmlDatabase<CultureEntity> xmlDatabase;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CultureRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
-        public CultureRepository(string fileName)
+        public CultureRepository(string fileName) : base(fileName)
         {
-            xmlDatabase = new XmlDatabase<CultureEntity>(fileName);
+
         }
-
-        /// <summary>
-        /// Adds the specified culture.
-        /// </summary>
-        /// <param name="cultureEntity">Culture.</param>
-        public void Add(CultureEntity cultureEntity)
-        {
-            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
-            cultureEntities.Add(cultureEntity);
-
-            try
-            {
-                xmlDatabase.SaveEntities(cultureEntities);
-            }
-            catch
-            {
-                throw new DuplicateEntityException(cultureEntity.Id, nameof(CultureEntity));
-            }
-        }
-
-        /// <summary>
-        /// Get the culture with the specified identifier.
-        /// </summary>
-        /// <returns>The culture.</returns>
-        /// <param name="id">Identifier.</param>
-        public CultureEntity Get(string id)
-        {
-            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
-            CultureEntity cultureEntity = cultureEntities.FirstOrDefault(x => x.Id == id);
-
-            if (cultureEntity == null)
-            {
-                throw new EntityNotFoundException(id, nameof(BorderEntity));
-            }
-
-            return cultureEntity;
-        }
-
-        /// <summary>
-        /// Gets all the cultures.
-        /// </summary>
-        /// <returns>The cultures</returns>
-        public IEnumerable<CultureEntity> GetAll()
-        {
-            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
-
-            return cultureEntities;
-        }
-
+        
         /// <summary>
         /// Updates the specified culture.
         /// </summary>
         /// <param name="cultureEntity">Culture.</param>
-        public void Update(CultureEntity cultureEntity)
+        public override void Update(CultureEntity cultureEntity)
         {
-            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
-            CultureEntity cultureEntityToUpdate = cultureEntities.FirstOrDefault(x => x.Id == cultureEntity.Id);
+            LoadEntitiesIfNeeded();
+
+            CultureEntity cultureEntityToUpdate = Entities.FirstOrDefault(x => x.Id == cultureEntity.Id);
 
             if (cultureEntityToUpdate == null)
             {
@@ -90,26 +40,7 @@ namespace Narivia.DataAccess.Repositories
             cultureEntityToUpdate.Description = cultureEntity.Description;
             cultureEntityToUpdate.TextureSet = cultureEntity.TextureSet;
 
-            xmlDatabase.SaveEntities(cultureEntities);
-        }
-
-        /// <summary>
-        /// Removes the culture with the specified identifier.
-        /// </summary>
-        /// <param name="id">Identifier.</param>
-        public void Remove(string id)
-        {
-            List<CultureEntity> cultureEntities = xmlDatabase.LoadEntities().ToList();
-            cultureEntities.RemoveAll(x => x.Id == id);
-
-            try
-            {
-                xmlDatabase.SaveEntities(cultureEntities);
-            }
-            catch
-            {
-                throw new DuplicateEntityException(id, nameof(CultureEntity));
-            }
+            XmlFile.SaveEntities(Entities);
         }
     }
 }

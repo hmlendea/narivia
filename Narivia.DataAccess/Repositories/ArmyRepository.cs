@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 
 using NuciXNA.DataAccess.Exceptions;
+using NuciXNA.DataAccess.Repositories;
 
 using Narivia.DataAccess.DataObjects;
-using Narivia.DataAccess.Repositories.Interfaces;
 
 namespace Narivia.DataAccess.Repositories
 {
