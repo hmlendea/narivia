@@ -70,6 +70,35 @@ namespace Narivia.Gui.Screens
             string initialWorldId = "narivia";
             string initialFactionId = "f_alpalet";
 
+            InfoBar = new GuiInfoBar
+            {
+                Location = Point2D.Empty,
+                Size = new Size2D(1000, 20),
+                BackgroundColour = Colour.Black
+            };
+            GameMap = new GuiWorldmap
+            {
+                Location = new Point2D(0, 20),
+                Size = new Size2D(1000, 640)
+            };
+            SideBar = new GuiSideBar
+            {
+                Location = new Point2D(1000, 0),
+                Size = new Size2D(280, 720),
+                ForegroundColour = new Colour(255, 215, 0)
+            };
+            NotificationBar = new GuiNotificationBar
+            {
+                Location = new Point2D(0, 20),
+                Size = new Size2D(40, 610)
+            };
+            ProvinceBar = new GuiProvinceBar
+            {
+                Location = new Point2D(0, 640),
+                Size = new Size2D(1000, 80),
+                ForegroundColour = new Colour(255, 215, 0)
+            };
+
             if (ScreenArgs != null && ScreenArgs.Length >= 2)
             {
                 initialWorldId = ScreenArgs[0];

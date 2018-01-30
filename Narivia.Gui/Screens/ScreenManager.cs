@@ -4,7 +4,6 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using NuciXNA.DataAccess.IO;
 using NuciXNA.Primitives;
 
 using Narivia.Graphics;
@@ -24,8 +23,6 @@ namespace Narivia.Gui.Screens
 
         Screen currentScreen, newScreen;
 
-        readonly XmlFileObject<Screen> xmlScreenManager;
-
         /// <summary>
         /// Gets the instance.
         /// </summary>
@@ -40,8 +37,7 @@ namespace Narivia.Gui.Screens
                     {
                         if (instance == null)
                         {
-                            XmlFileObject<ScreenManager> xmlManager = new XmlFileObject<ScreenManager>();
-                            instance = xmlManager.Read(Path.Combine("Screens", $"{nameof(ScreenManager)}.xml"));
+                            instance = new ScreenManager();
                         }
                     }
                 }
@@ -77,20 +73,14 @@ namespace Narivia.Gui.Screens
         /// <value>The image.</value>
         public Sprite TransitionImage { get; set; }
 
+        public Type StartingScreenType { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ScreenManager"/> class.
         /// </summary>
         public ScreenManager()
         {
             Size = SettingsManager.Instance.GraphicsSettings.Resolution;
-            currentScreen = new SplashScreen();
-
-            xmlScreenManager = new XmlFileObject<Screen>()
-            {
-                Type = currentScreen.Type
-            };
-
-            currentScreen = xmlScreenManager.Read(currentScreen.XmlPath);
         }
 
         /// <summary>
@@ -98,7 +88,15 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public void LoadContent()
         {
-            TransitionImage.TextureLayout = TextureLayout.Tile;
+            currentScreen = (Screen)Activator.CreateInstance(StartingScreenType);
+
+            TransitionImage = new Sprite
+            {
+                ContentFile = "ScreenManager/FillImage",
+                Tint = Colour.Black,
+                FadeEffect = new FadeEffect { Speed = 3 },
+                TextureLayout = TextureLayout.Tile
+            };
 
             currentScreen.LoadContent();
             TransitionImage.LoadContent();
@@ -162,14 +160,7 @@ namespace Narivia.Gui.Screens
         public void ChangeScreens(string screenName, string[] screenArgs)
         {
             newScreen = (Screen)Activator.CreateInstance(Type.GetType($"{typeof(Screen).Namespace}.{screenName}"));
-
-            xmlScreenManager.Type = newScreen.Type;
-
-            if (File.Exists(currentScreen.XmlPath))
-            {
-                newScreen = xmlScreenManager.Read(newScreen.XmlPath);
-            }
-
+            
             newScreen.ScreenArgs = screenArgs;
 
             TransitionImage.ActivateEffect(nameof(FadeEffect));

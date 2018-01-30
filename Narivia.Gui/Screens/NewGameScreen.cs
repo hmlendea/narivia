@@ -33,6 +33,13 @@ namespace Narivia.Gui.Screens
         {
             base.LoadContent();
 
+            Axis = "Y";
+
+            Links.Add(new GuiMenuLink { Text = "Start", LinkId = "GameplayScreen" });
+            ListSelectors.Add(new GuiMenuListSelector { Text = "World" });
+            ListSelectors.Add(new GuiMenuListSelector { Text = "Faction" });
+            Links.Add(new GuiMenuLink { Text = "Back", LinkId = "TitleScreen" });
+
             // TODO: Identify and retrieve the items properly
             worldSelector = ListSelectors.FirstOrDefault(x => x.Text == "World");
             factionSelector = ListSelectors.FirstOrDefault(x => x.Text == "Faction");

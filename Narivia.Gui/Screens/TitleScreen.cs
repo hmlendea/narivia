@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Narivia.Gui.GuiElements;
+
 namespace Narivia.Gui.Screens
 {
     /// <summary>
@@ -13,6 +15,12 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public override void LoadContent()
         {
+            Axis = "Y";
+
+            Links.Add(new GuiMenuLink { Text = "New Game", LinkId = "NewGameScreen" });
+            Links.Add(new GuiMenuLink { Text = "Settings", LinkId = "SettingsScreen" });
+            Links.Add(new GuiMenuLink { Text = "Exit", LinkId = "Exit" });
+
             base.LoadContent();
         }
 

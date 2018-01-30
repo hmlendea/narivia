@@ -71,6 +71,7 @@ namespace Narivia
             SettingsManager.Instance.LoadContent();
 
             ScreenManager.Instance.SpriteBatch = spriteBatch;
+            ScreenManager.Instance.StartingScreenType = typeof(SplashScreen);
             ScreenManager.Instance.LoadContent();
 
             fpsIndicator.LoadContent();

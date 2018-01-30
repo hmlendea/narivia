@@ -6,6 +6,7 @@ using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
 using Narivia.Graphics;
+using Narivia.Graphics.CustomSpriteEffects;
 
 namespace Narivia.Gui.Screens
 {
@@ -52,6 +53,32 @@ namespace Narivia.Gui.Screens
         public override void LoadContent()
         {
             base.LoadContent();
+
+            Delay = 3;
+            BackgroundColour = new Colour(94, 96, 192);
+
+            BackgroundImage = new Sprite
+            {
+                ContentFile = "SplashScreen/Background",
+                RotationEffect = new RotationEffect
+                {
+                    Speed = 0.1f,
+                    MaximumRotation = 0.2f
+                },
+                ZoomEffect = new ZoomEffect
+                {
+                    Speed = 0.1f,
+                    MaximumZoom = 1.3f
+                }
+            };
+            OverlayImage = new Sprite
+            {
+                ContentFile = "SplashScreen/Overlay"
+            };
+            LogoImage = new Sprite
+            {
+                ContentFile = "SplashScreen/Logo"
+            };
 
             BackgroundImage.LoadContent();
             OverlayImage.LoadContent();
