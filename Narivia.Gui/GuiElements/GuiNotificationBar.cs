@@ -1,5 +1,6 @@
 using System.Xml.Serialization;
 
+using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers.Interfaces;

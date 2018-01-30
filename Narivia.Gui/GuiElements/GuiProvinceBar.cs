@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Serialization;
 
 using NuciXNA.Graphics.Enumerations;
+using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
@@ -72,7 +73,7 @@ namespace Narivia.Gui.GuiElements
                 FontName = "SideBarFont", // TODO: Consider providing a dedicated font
                 Size = new Size2D(provinceNameBackground.SourceRectangle.Width,
                                   provinceNameBackground.SourceRectangle.Height),
-                TextOutline = true
+                FontOutline = FontOutline.Around
             };
             factionFlag = new GuiFactionFlag
             {

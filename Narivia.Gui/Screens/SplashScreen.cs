@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NuciXNA.Graphics.SpriteEffects;
+using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Screens;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
-
-using Narivia.Gui.GuiElements;
 
 namespace Narivia.Gui.Screens
 {

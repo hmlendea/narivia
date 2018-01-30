@@ -1,6 +1,7 @@
 using System.Xml.Serialization;
 
 using NuciXNA.Graphics.Enumerations;
+using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 

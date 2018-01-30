@@ -1,4 +1,5 @@
-﻿using NuciXNA.Primitives;
+﻿using NuciXNA.Gui.GuiElements;
+using NuciXNA.Primitives;
 
 namespace Narivia.Gui.GuiElements
 {

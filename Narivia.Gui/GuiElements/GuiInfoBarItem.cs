@@ -1,4 +1,5 @@
 ﻿using NuciXNA.Graphics.Enumerations;
+using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 
 using Narivia.Settings;

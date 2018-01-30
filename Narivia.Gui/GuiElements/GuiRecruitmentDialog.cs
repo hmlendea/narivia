@@ -2,6 +2,7 @@
 using System.Linq;
 
 using NuciXNA.Graphics.Enumerations;
+using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 

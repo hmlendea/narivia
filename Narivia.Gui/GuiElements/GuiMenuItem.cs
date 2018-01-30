@@ -2,6 +2,8 @@ using System;
 
 using Microsoft.Xna.Framework.Input;
 using NuciXNA.Graphics.SpriteEffects;
+using NuciXNA.Gui;
+using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 

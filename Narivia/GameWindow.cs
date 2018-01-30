@@ -5,6 +5,8 @@ using NuciLog;
 using NuciLog.Enumerations;
 using NuciXNA.DataAccess.Resources;
 using NuciXNA.Graphics;
+using NuciXNA.Gui;
+using NuciXNA.Gui.Screens;
 using NuciXNA.Input;
 
 using Narivia.Gui;
