@@ -29,8 +29,11 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NuciXNA.DataAccess, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.DataAccess.1.0.1\lib\net45\NuciXNA.DataAccess.dll</HintPath>
+    <Reference Include="NuciXNA.DataAccess, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.DataAccess.1.0.3\lib\net45\NuciXNA.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="NuciXNA.Primitives, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Primitives.1.0.4\lib\net45\NuciXNA.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="MonoGame.Framework">

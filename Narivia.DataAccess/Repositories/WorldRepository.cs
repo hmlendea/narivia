@@ -105,6 +105,15 @@ namespace Narivia.DataAccess.Repositories
             Directory.Delete(Path.Combine(worldsDirectory, id));
         }
 
+        /// <summary>
+        /// Removes the specified world.
+        /// </summary>
+        /// <param name="world">World.</param>
+        public void Remove(WorldEntity worldEntity)
+        {
+            Remove(worldEntity.Id);
+        }
+
         WorldTileEntity[,] LoadWorldTiles(string worldId)
         {
             ConcurrentDictionary<int, string> provinceColourIds = new ConcurrentDictionary<int, string>();

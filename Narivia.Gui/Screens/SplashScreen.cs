@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using NuciXNA.Graphics.SpriteEffects;
+using NuciXNA.Gui;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Gui.Screens;
+using NuciXNA.Graphics.SpriteEffects;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
@@ -42,6 +42,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public SplashScreen()
         {
+            Delay = 3;
             BackgroundColour = Colour.DodgerBlue;
         }
 
@@ -50,50 +51,33 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public override void LoadContent()
         {
-            Delay = 3;
-            BackgroundColour = new Colour(94, 96, 192);
-
             BackgroundImage = new GuiImage
             {
                 ContentFile = "SplashScreen/Background",
                 RotationEffect = new RotationEffect
                 {
-                    Speed = 0.1f,
-                    MaximumRotation = 0.2f
+                    Speed = 0.25f,
+                    MinimumRotation = -0.5f,
+                    MaximumRotation = +0.5f,
                 },
                 ZoomEffect = new ZoomEffect
                 {
-                    Speed = 0.1f,
-                    MinimumZoom = 1.25f,
-                    MaximumZoom = 2.00f
-                }
+                    MinimumZoom = -0.5f,
+                    MaximumZoom = +0.5f
+                },
+                EffectsActive = true
             };
-            OverlayImage = new GuiImage
-            {
-                ContentFile = "SplashScreen/Overlay"
-            };
-            LogoImage = new GuiImage
-            {
-                ContentFile = "SplashScreen/Logo"
-            };
+            OverlayImage = new GuiImage { ContentFile = "SplashScreen/Overlay" };
+            LogoImage = new GuiImage { ContentFile = "SplashScreen/Logo" };
 
-            BackgroundImage.LoadContent();
-            OverlayImage.LoadContent();
-            LogoImage.LoadContent();
+            GuiManager.Instance.GuiElements.Add(BackgroundImage);
+            GuiManager.Instance.GuiElements.Add(OverlayImage);
+            GuiManager.Instance.GuiElements.Add(LogoImage);
 
             base.LoadContent();
-        }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-
-            BackgroundImage.UnloadContent();
-            OverlayImage.UnloadContent();
-            LogoImage.UnloadContent();
+            BackgroundImage.RotationEffect.Activate();
+            BackgroundImage.ZoomEffect.Activate();
         }
 
         /// <summary>
@@ -103,40 +87,35 @@ namespace Narivia.Gui.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            BackgroundImage.Update(gameTime);
-            OverlayImage.Update(gameTime);
-            LogoImage.Update(gameTime);
 
             Delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            // TODO: Align and size the elements
         }
 
-        /// <summary>
-        /// Draws the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
+        protected override void SetChildrenProperties()
         {
-            base.Draw(spriteBatch);
+            OverlayImage.Size = ScreenManager.Instance.Size;
 
-            BackgroundImage.Draw(spriteBatch);
-            OverlayImage.Draw(spriteBatch);
-            LogoImage.Draw(spriteBatch);
+            BackgroundImage.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - BackgroundImage.ClientRectangle.Width) / 2,
+                (ScreenManager.Instance.Size.Height - BackgroundImage.ClientRectangle.Height) / 2);
+
+            LogoImage.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - LogoImage.Size.Width) / 2,
+                (ScreenManager.Instance.Size.Height - LogoImage.Size.Height) / 2);
         }
 
         protected override void OnKeyPressed(object sender, KeyboardKeyEventArgs e)
         {
             base.OnKeyPressed(sender, e);
 
-            ScreenManager.Instance.ChangeScreens(typeof(TitleScreen));
+            ScreenManager.Instance.ChangeScreens(typeof(GameplayScreen));
         }
 
         protected override void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
             base.OnMouseButtonPressed(sender, e);
 
-            ScreenManager.Instance.ChangeScreens(typeof(TitleScreen));
+            ScreenManager.Instance.ChangeScreens(typeof(GameplayScreen));
         }
     }
 }

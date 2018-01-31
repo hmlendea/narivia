@@ -72,7 +72,7 @@ namespace Narivia.Gui
 
             if (SettingsManager.Instance.DebugMode)
             {
-                spriteBatch.DrawString(fpsFont, fpsString, new Vector2(1, 1), Color.Lime);
+                spriteBatch.DrawString(fpsFont, fpsString, Vector2.One, Color.Lime);
             }
         }
     }
