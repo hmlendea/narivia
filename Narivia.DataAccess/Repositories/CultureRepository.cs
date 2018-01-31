@@ -1,5 +1,3 @@
-using System.Linq;
-
 using NuciXNA.DataAccess.Exceptions;
 using NuciXNA.DataAccess.Repositories;
 
@@ -29,7 +27,7 @@ namespace Narivia.DataAccess.Repositories
         {
             LoadEntitiesIfNeeded();
 
-            CultureEntity cultureEntityToUpdate = Entities.FirstOrDefault(x => x.Id == cultureEntity.Id);
+            CultureEntity cultureEntityToUpdate = Get(cultureEntity.Id);
 
             if (cultureEntityToUpdate == null)
             {
@@ -40,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             cultureEntityToUpdate.Description = cultureEntity.Description;
             cultureEntityToUpdate.TextureSet = cultureEntity.TextureSet;
 
-            XmlFile.SaveEntities(Entities);
+            XmlFile.SaveEntities(Entities.Values);
         }
     }
 }

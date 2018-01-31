@@ -1,5 +1,3 @@
-using System.Linq;
-
 using NuciXNA.DataAccess.Exceptions;
 using NuciXNA.DataAccess.Repositories;
 
@@ -29,7 +27,7 @@ namespace Narivia.DataAccess.Repositories
         {
             LoadEntitiesIfNeeded();
 
-            FactionEntity factionEntityToUpdate = Entities.FirstOrDefault(x => x.Id == factionEntity.Id);
+            FactionEntity factionEntityToUpdate = Get(factionEntity.Id);
 
             if (factionEntityToUpdate == null)
             {
@@ -42,7 +40,7 @@ namespace Narivia.DataAccess.Repositories
             factionEntityToUpdate.FlagId = factionEntity.FlagId;
             factionEntityToUpdate.CultureId = factionEntity.CultureId;
 
-            XmlFile.SaveEntities(Entities);
+            XmlFile.SaveEntities(Entities.Values);
         }
     }
 }

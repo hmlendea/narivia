@@ -1,5 +1,3 @@
-using System.Linq;
-
 using NuciXNA.DataAccess.Exceptions;
 using NuciXNA.DataAccess.Repositories;
 
@@ -29,7 +27,7 @@ namespace Narivia.DataAccess.Repositories
         {
             LoadEntitiesIfNeeded();
 
-            ProvinceEntity provinceEntityToUpdate = Entities.FirstOrDefault(x => x.Id == provinceEntity.Id);
+            ProvinceEntity provinceEntityToUpdate = Get(provinceEntity.Id);
 
             if (provinceEntityToUpdate == null)
             {
@@ -43,7 +41,7 @@ namespace Narivia.DataAccess.Repositories
             provinceEntityToUpdate.FactionId = provinceEntity.FactionId;
             provinceEntityToUpdate.SovereignFactionId = provinceEntity.SovereignFactionId;
             
-            XmlFile.SaveEntities(Entities);
+            XmlFile.SaveEntities(Entities.Values);
         }
     }
 }

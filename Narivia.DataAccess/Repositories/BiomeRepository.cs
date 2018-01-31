@@ -1,5 +1,3 @@
-using System.Linq;
-
 using NuciXNA.DataAccess.Exceptions;
 using NuciXNA.DataAccess.Repositories;
 
@@ -29,7 +27,7 @@ namespace Narivia.DataAccess.Repositories
         {
             LoadEntitiesIfNeeded();
 
-            BiomeEntity biomeEntityToUpdate = Entities.FirstOrDefault(x => x.Id == biomeEntity.Id);
+            BiomeEntity biomeEntityToUpdate = Get(biomeEntity.Id);
 
             if (biomeEntityToUpdate == null)
             {
@@ -40,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             biomeEntityToUpdate.Description = biomeEntity.Description;
             biomeEntityToUpdate.ColourHexadecimal = biomeEntity.ColourHexadecimal;
 
-            XmlFile.SaveEntities(Entities);
+            XmlFile.SaveEntities(Entities.Values);
         }
     }
 }

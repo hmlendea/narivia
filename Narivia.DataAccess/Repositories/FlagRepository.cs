@@ -1,5 +1,3 @@
-using System.Linq;
-
 using NuciXNA.DataAccess.Exceptions;
 using NuciXNA.DataAccess.Repositories;
 
@@ -29,7 +27,7 @@ namespace Narivia.DataAccess.Repositories
         {
             LoadEntitiesIfNeeded();
 
-            FlagEntity flagEntityToUpdate = Entities.FirstOrDefault(x => x.Id == flagEntity.Id);
+            FlagEntity flagEntityToUpdate = Get(flagEntity.Id);
 
             if (flagEntityToUpdate == null)
             {
@@ -45,7 +43,7 @@ namespace Narivia.DataAccess.Repositories
             flagEntityToUpdate.Layer2ColourHexadecimal = flagEntity.Layer2ColourHexadecimal;
             flagEntityToUpdate.EmblemColourHexadecimal = flagEntity.EmblemColourHexadecimal;
 
-            XmlFile.SaveEntities(Entities);
+            XmlFile.SaveEntities(Entities.Values);
         }
     }
 }

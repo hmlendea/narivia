@@ -1,5 +1,3 @@
-using System.Linq;
-
 using NuciXNA.DataAccess.Exceptions;
 using NuciXNA.DataAccess.Repositories;
 
@@ -29,7 +27,7 @@ namespace Narivia.DataAccess.Repositories
         {
             LoadEntitiesIfNeeded();
 
-            HoldingEntity holdingEntityToUpdate = Entities.FirstOrDefault(x => x.Id == holdingEntity.Id);
+            HoldingEntity holdingEntityToUpdate = Get(holdingEntity.Id);
 
             if (holdingEntityToUpdate == null)
             {
@@ -40,7 +38,7 @@ namespace Narivia.DataAccess.Repositories
             holdingEntityToUpdate.Description = holdingEntity.Description;
             holdingEntityToUpdate.Type = holdingEntity.Type;
 
-            XmlFile.SaveEntities(Entities);
+            XmlFile.SaveEntities(Entities.Values);
         }
     }
 }
