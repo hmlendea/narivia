@@ -1,114 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfBorderEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <BorderEntity>
+    <Id>malpija-novodaja</Id>
     <Province1Id>r_malpija</Province1Id>
     <Province2Id>r_novodaja</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>novodaja-malpija</Id>
     <Province1Id>r_novodaja</Province1Id>
     <Province2Id>r_malpija</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>novodaja-lublija</Id>
     <Province1Id>r_novodaja</Province1Id>
     <Province2Id>r_lublija</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>lublija-novodaja</Id>
     <Province1Id>r_lublija</Province1Id>
     <Province2Id>r_novodaja</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>malpija-spogdija</Id>
     <Province1Id>r_malpija</Province1Id>
     <Province2Id>r_spogdija</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>spogdija-malpija</Id>
     <Province1Id>r_spogdija</Province1Id>
     <Province2Id>r_malpija</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>ulpter-gastivion</Id>
     <Province1Id>r_ulpter</Province1Id>
     <Province2Id>r_gastivion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>gastivion-ulpter</Id>
     <Province1Id>r_gastivion</Province1Id>
     <Province2Id>r_ulpter</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>mangter-gastivion</Id>
     <Province1Id>r_mangter</Province1Id>
     <Province2Id>r_gastivion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>gastivion-mangter</Id>
     <Province1Id>r_gastivion</Province1Id>
     <Province2Id>r_mangter</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>mangter-bertimion</Id>
     <Province1Id>r_mangter</Province1Id>
     <Province2Id>r_bertimion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>gastivion-bertimion</Id>
     <Province1Id>r_gastivion</Province1Id>
     <Province2Id>r_bertimion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>viris-daruz</Id>
     <Province1Id>r_viris</Province1Id>
     <Province2Id>r_daruz</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>daruz-viris</Id>
     <Province1Id>r_daruz</Province1Id>
     <Province2Id>r_viris</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>falnia-cariz</Id>
     <Province1Id>r_falnia</Province1Id>
     <Province2Id>r_cariz</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>cariz-falnia</Id>
     <Province1Id>r_cariz</Province1Id>
     <Province2Id>r_falnia</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>zambar-tambar</Id>
     <Province1Id>r_zambar</Province1Id>
     <Province2Id>r_tambar</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>tambar-zambar</Id>
     <Province1Id>r_tambar</Province1Id>
     <Province2Id>r_zambar</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>novion-anchorion</Id>
     <Province1Id>r_novion</Province1Id>
     <Province2Id>r_anchorion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>anchorion-novion</Id>
     <Province1Id>r_anchorion</Province1Id>
     <Province2Id>r_novion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>pentop-anchorion</Id>
     <Province1Id>r_pentop</Province1Id>
     <Province2Id>r_anchorion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>anchorion-pentop</Id>
     <Province1Id>r_anchorion</Province1Id>
     <Province2Id>r_pentop</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>faltop-anchorion</Id>
     <Province1Id>r_faltop</Province1Id>
     <Province2Id>r_anchorion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>anchorion-faltop</Id>
     <Province1Id>r_anchorion</Province1Id>
     <Province2Id>r_faltop</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>faltop-bertimion</Id>
     <Province1Id>r_faltop</Province1Id>
     <Province2Id>r_bertimion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>bertimion-faltop</Id>
     <Province1Id>r_bertimion</Province1Id>
     <Province2Id>r_faltop</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>faltop-lubion</Id>
     <Province1Id>r_faltop</Province1Id>
     <Province2Id>r_lubion</Province2Id>
   </BorderEntity>
   <BorderEntity>
+    <Id>lubion-faltop</Id>
     <Province1Id>r_lubion</Province1Id>
     <Province2Id>r_faltop</Province2Id>
   </BorderEntity>
