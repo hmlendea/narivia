@@ -2,8 +2,9 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Screens;
 
-using Narivia.Gui.GuiElements;
 using Narivia.Settings;
 
 namespace Narivia.Gui.Screens
@@ -23,7 +24,7 @@ namespace Narivia.Gui.Screens
         {
             Toggles.Add(new GuiMenuToggle { Text = "Toggle fullscreen mode", Property = "Fullscreen" });
             Toggles.Add(new GuiMenuToggle { Text = "Toggle debug mode", Property = "DebugMode" });
-            Links.Add(new GuiMenuLink { Text = "Back", LinkId = "TitleScreen" });
+            Links.Add(new GuiMenuLink { Text = "Back", TargetScreen = typeof(TitleScreen) });
 
             fullScreenToggle = Toggles.FirstOrDefault(t => t.Property == "Fullscreen");
             debugModeToggle = Toggles.FirstOrDefault(t => t.Property == "DebugMode");

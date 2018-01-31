@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
-using Narivia.Gui.GuiElements;
+using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Screens;
 
 namespace Narivia.Gui.Screens
 {
@@ -15,11 +15,9 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public override void LoadContent()
         {
-            Axis = "Y";
-
-            Links.Add(new GuiMenuLink { Text = "New Game", LinkId = "NewGameScreen" });
-            Links.Add(new GuiMenuLink { Text = "Settings", LinkId = "SettingsScreen" });
-            Links.Add(new GuiMenuLink { Text = "Exit", LinkId = "Exit" });
+            Links.Add(new GuiMenuLink { Text = "New Game", TargetScreen = typeof(NewGameScreen) });
+            Links.Add(new GuiMenuLink { Text = "Settings", TargetScreen = typeof(SettingsScreen) });
+            Actions.Add(new GuiMenuAction { Text = "Exit", ActionId = "Exit" });
 
             base.LoadContent();
         }

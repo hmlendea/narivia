@@ -59,8 +59,8 @@
     <Reference Include="NuciXNA.Graphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Graphics.1.0.0\lib\net45\NuciXNA.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="NuciXNA.Gui, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Gui.1.0.2\lib\net45\NuciXNA.Gui.dll</HintPath>
+    <Reference Include="NuciXNA.Gui, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Gui.1.1.0\lib\net45\NuciXNA.Gui.dll</HintPath>
     </Reference>
     <Reference Include="NuciXNA.Input, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Input.1.0.1\lib\net45\NuciXNA.Input.dll</HintPath>

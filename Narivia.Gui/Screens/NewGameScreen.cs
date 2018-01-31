@@ -4,11 +4,12 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Screens;
 
 using Narivia.DataAccess.Repositories;
 using Narivia.GameLogic.GameManagers;
 using Narivia.GameLogic.Mapping;
-using Narivia.Gui.GuiElements;
 using Narivia.Models;
 using Narivia.Settings;
 
@@ -33,12 +34,10 @@ namespace Narivia.Gui.Screens
         {
             base.LoadContent();
 
-            Axis = "Y";
-
-            Links.Add(new GuiMenuLink { Text = "Start", LinkId = "GameplayScreen" });
+            Links.Add(new GuiMenuLink { Text = "Start", TargetScreen = typeof(GameplayScreen) });
             ListSelectors.Add(new GuiMenuListSelector { Text = "World" });
             ListSelectors.Add(new GuiMenuListSelector { Text = "Faction" });
-            Links.Add(new GuiMenuLink { Text = "Back", LinkId = "TitleScreen" });
+            Links.Add(new GuiMenuLink { Text = "Back", TargetScreen = typeof(TitleScreen) });
 
             // TODO: Identify and retrieve the items properly
             worldSelector = ListSelectors.FirstOrDefault(x => x.Text == "World");

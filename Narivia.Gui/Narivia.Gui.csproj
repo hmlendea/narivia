@@ -38,8 +38,8 @@
     <Reference Include="NuciXNA.Graphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Graphics.1.0.0\lib\net45\NuciXNA.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="NuciXNA.Gui, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Gui.1.0.2\lib\net45\NuciXNA.Gui.dll</HintPath>
+    <Reference Include="NuciXNA.Gui, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Gui.1.1.0\lib\net45\NuciXNA.Gui.dll</HintPath>
     </Reference>
     <Reference Include="NuciXNA.Input, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Input.1.0.1\lib\net45\NuciXNA.Input.dll</HintPath>
@@ -71,11 +71,6 @@
     <Compile Include="GuiElements\GuiButton.cs" />
     <Compile Include="GuiElements\GuiFactionFlag.cs" />
     <Compile Include="GuiElements\GuiInfoBar.cs" />
-    <Compile Include="GuiElements\GuiMenuAction.cs" />
-    <Compile Include="GuiElements\GuiMenuItem.cs" />
-    <Compile Include="GuiElements\GuiMenuLink.cs" />
-    <Compile Include="GuiElements\GuiMenuListSelector.cs" />
-    <Compile Include="GuiElements\GuiMenuToggle.cs" />
     <Compile Include="GuiElements\GuiNotificationBar.cs" />
     <Compile Include="GuiElements\GuiNotificationDialog.cs" />
     <Compile Include="GuiElements\GuiNotificationIndicator.cs" />
@@ -86,7 +81,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="FpsIndicator.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
-    <Compile Include="Screens\MenuScreen.cs" />
+    <Compile Include="Screens\MenuScreenAxis.cs" />
     <Compile Include="Screens\NewGameScreen.cs" />
     <Compile Include="Screens\SettingsScreen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
