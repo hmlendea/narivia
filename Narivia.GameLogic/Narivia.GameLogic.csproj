@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\InvalidTargetProvinceException.cs" />
+    <Compile Include="GameManagers\HoldingManager.cs" />
+    <Compile Include="GameManagers\Interfaces\IHoldingManager.cs" />
     <Compile Include="Mapping\ArmyMappingExtensions.cs" />
     <Compile Include="Mapping\BiomeMappingExtensions.cs" />
     <Compile Include="Mapping\BorderMappingExtensions.cs" />

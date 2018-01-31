@@ -28,15 +28,20 @@ namespace Narivia.GameLogic.GameManagers
         const int BLITZKRIEG_RESOURCE_ECONOMY_IMPORTANCE = 5;
         const int BLITZKRIEG_RESOURCE_MILITARY_IMPORTANCE = 10;
 
-        readonly IWorldManager world;
+        readonly IHoldingManager holdingManager;
+        readonly IWorldManager worldManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AttackManager"/> class.
         /// </summary>
-        /// <param name="world">World.</param>
-        public AttackManager(IWorldManager world)
+        /// <param name="worldManager">World manager.</param>
+        /// <param name="holdingManager">Holding manager.</param>
+        public AttackManager(
+            IHoldingManager holdingManager,
+            IWorldManager worldManager)
         {
-            this.world = world;
+            this.holdingManager = holdingManager;
+            this.worldManager = worldManager;
 
             random = new Random();
         }
@@ -48,21 +53,21 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public string ChooseProvinceToAttack(string factionId)
         {
-            List<string> provincesOwnedIds = world.GetFactionProvinces(factionId)
+            List<string> provincesOwnedIds = worldManager.GetFactionProvinces(factionId)
                                                 .Select(x => x.Id)
                                                 .ToList();
 
             // TODO: Do not target factions with good relations
-            Dictionary<string, int> targets = world.GetProvinces()
+            Dictionary<string, int> targets = worldManager.GetProvinces()
                                                    .Where(r => r.FactionId != factionId &&
                                                                r.FactionId != GameDefines.GAIA_FACTION &&
                                                                r.Locked == false)
                                                    .Select(x => x.Id)
                                                    .Except(provincesOwnedIds)
-                                                   .Where(x => provincesOwnedIds.Any(y => world.ProvinceBordersProvince(x, y)))
+                                                   .Where(x => provincesOwnedIds.Any(y => worldManager.ProvinceBordersProvince(x, y)))
                                                    .ToDictionary(x => x, y => 0);
 
-            Parallel.ForEach(world.GetProvinces().Where(r => targets.ContainsKey(r.Id)).ToList(), (province) =>
+            Parallel.ForEach(worldManager.GetProvinces().Where(r => targets.ContainsKey(r.Id)).ToList(), (province) =>
             {
                 if (province.SovereignFactionId == factionId)
                 {
@@ -70,7 +75,7 @@ namespace Narivia.GameLogic.GameManagers
                 }
 
 
-                Parallel.ForEach(world.GetProvinceHoldings(province.Id), (holding) =>
+                Parallel.ForEach(holdingManager.GetProvinceHoldings(province.Id), (holding) =>
                 {
                     switch (holding.Type)
                     {
@@ -88,7 +93,7 @@ namespace Narivia.GameLogic.GameManagers
                     }
                 });
 
-                Resource provinceResource = world.GetResources().FirstOrDefault(x => x.Id == province.ResourceId);
+                Resource provinceResource = worldManager.GetResources().FirstOrDefault(x => x.Id == province.ResourceId);
 
                 if (provinceResource != null)
                 {
@@ -104,8 +109,8 @@ namespace Narivia.GameLogic.GameManagers
                     }
                 }
 
-                targets[province.Id] += provincesOwnedIds.Count(x => world.ProvinceBordersProvince(x, province.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
-                targets[province.Id] -= world.GetFactionRelations(factionId)
+                targets[province.Id] += provincesOwnedIds.Count(x => worldManager.ProvinceBordersProvince(x, province.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
+                targets[province.Id] -= worldManager.GetFactionRelations(factionId)
                                            .FirstOrDefault(r => r.TargetFactionId == province.FactionId)
                                            .Value;
 
@@ -131,17 +136,17 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="provinceId">Province identifier.</param>
         public BattleResult AttackProvince(string factionId, string provinceId)
         {
-            Province targetProvince = world.GetProvinces().FirstOrDefault(r => r.Id == provinceId);
+            Province targetProvince = worldManager.GetProvinces().FirstOrDefault(r => r.Id == provinceId);
 
             if (string.IsNullOrWhiteSpace(provinceId) ||
                 targetProvince.Locked ||
-                !world.FactionBordersProvince(factionId, provinceId))
+                !worldManager.FactionBordersProvince(factionId, provinceId))
             {
                 throw new InvalidTargetProvinceException(provinceId);
             }
 
-            Faction attackerFaction = world.GetFactions().FirstOrDefault(f => f.Id == factionId);
-            Faction defenderFaction = world.GetFactions().FirstOrDefault(f => f.Id == targetProvince.FactionId);
+            Faction attackerFaction = worldManager.GetFactions().FirstOrDefault(f => f.Id == factionId);
+            Faction defenderFaction = worldManager.GetFactions().FirstOrDefault(f => f.Id == targetProvince.FactionId);
 
             if (defenderFaction.Id == attackerFaction.Id ||
                 defenderFaction.Id == GameDefines.GAIA_FACTION)
@@ -149,18 +154,18 @@ namespace Narivia.GameLogic.GameManagers
                 throw new InvalidTargetProvinceException(provinceId);
             }
 
-            while (world.GetFactionTroopsAmount(attackerFaction.Id) > 0 &&
-                   world.GetFactionTroopsAmount(defenderFaction.Id) > 0)
+            while (worldManager.GetFactionTroopsAmount(attackerFaction.Id) > 0 &&
+                   worldManager.GetFactionTroopsAmount(defenderFaction.Id) > 0)
             {
-                Army attackerArmy = world.GetFactionArmies(attackerFaction.Id)
+                Army attackerArmy = worldManager.GetFactionArmies(attackerFaction.Id)
                                          .Where(a => a.Size > 0)
                                          .GetRandomElement();
-                Army defenderArmy = world.GetFactionArmies(defenderFaction.Id)
+                Army defenderArmy = worldManager.GetFactionArmies(defenderFaction.Id)
                                          .Where(a => a.Size > 0)
                                          .GetRandomElement();
 
-                Unit attackerUnit = world.GetUnits().FirstOrDefault(u => u.Id == attackerArmy.UnitId);
-                Unit defenderUnit = world.GetUnits().FirstOrDefault(u => u.Id == defenderArmy.UnitId);
+                Unit attackerUnit = worldManager.GetUnits().FirstOrDefault(u => u.Id == attackerArmy.UnitId);
+                Unit defenderUnit = worldManager.GetUnits().FirstOrDefault(u => u.Id == defenderArmy.UnitId);
 
                 // TODO: Attack and Defence bonuses
 
@@ -179,10 +184,10 @@ namespace Narivia.GameLogic.GameManagers
             // TODO: In the GameDomainService I should change the realations based on wether the
             // province was sovereign or not
 
-            if (world.GetFactionTroopsAmount(attackerFaction.Id) >
-                world.GetFactionTroopsAmount(defenderFaction.Id))
+            if (worldManager.GetFactionTroopsAmount(attackerFaction.Id) >
+                worldManager.GetFactionTroopsAmount(defenderFaction.Id))
             {
-                world.TransferProvince(provinceId, factionId);
+                worldManager.TransferProvince(provinceId, factionId);
                 targetProvince.Locked = true;
 
                 return BattleResult.Victory;

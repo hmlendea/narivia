@@ -37,11 +37,13 @@ namespace Narivia.GameLogic.GameManagers
         ConcurrentDictionary<string, Culture> cultures;
         ConcurrentDictionary<string, Faction> factions;
         ConcurrentDictionary<string, Flag> flags;
-        ConcurrentDictionary<string, Holding> holdings;
         ConcurrentDictionary<string, Province> provinces;
         ConcurrentDictionary<string, Relation> relations;
         ConcurrentDictionary<string, Resource> resources;
         ConcurrentDictionary<string, Unit> units;
+
+        public int HoldingSlotsPerFaction
+            => world.HoldingSlotsPerFaction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldManager"/> class.
@@ -80,16 +82,6 @@ namespace Narivia.GameLogic.GameManagers
         {
             return borders.Values.Any(x => (x.SourceProvinceId == province1Id && x.TargetProvinceId == province2Id) ||
                                            (x.SourceProvinceId == province2Id && x.TargetProvinceId == province1Id));
-        }
-
-        /// <summary>
-        /// Checks wether a province has empty holding slots.
-        /// </summary>
-        /// <returns><c>true</c>, if the province has empty holding slots, <c>false</c> otherwise.</returns>
-        /// <param name="provinceId">Province identifier.</param>
-        public bool ProvinceHasEmptyHoldingSlots(string provinceId)
-        {
-            return holdings.Values.Count(h => h.ProvinceId == provinceId && h.Type == HoldingType.Empty) > 0;
         }
 
         /// <summary>
@@ -159,6 +151,9 @@ namespace Narivia.GameLogic.GameManagers
         public IEnumerable<Border> GetBorders()
         => borders.Values;
 
+        public Culture GetCulture(string cultureId)
+            => cultures[cultureId];
+
         /// <summary>
         /// Gets the cultures.
         /// </summary>
@@ -172,6 +167,9 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The factions.</returns>
         public IEnumerable<Faction> GetFactions()
         => factions.Values;
+
+        public Faction GetFaction(string factionId)
+            => factions[factionId];
 
         /// <summary>
         /// Gets the faction troops amount.
@@ -267,15 +265,6 @@ namespace Narivia.GameLogic.GameManagers
         => armies.Values.Where(a => a.FactionId == factionId);
 
         /// <summary>
-        /// Gets the holdings of a faction.
-        /// </summary>
-        /// <returns>The holdings.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public IEnumerable<Holding> GetFactionHoldings(string factionId)
-        => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
-                                      provinces[h.ProvinceId].FactionId == factionId);
-
-        /// <summary>
         /// Gets the provinces of a faction.
         /// </summary>
         /// <returns>The provinces.</returns>
@@ -299,12 +288,8 @@ namespace Narivia.GameLogic.GameManagers
         public IEnumerable<Flag> GetFlags()
         => flags.Values;
 
-        /// <summary>
-        /// Gets the holdings.
-        /// </summary>
-        /// <returns>The holdings.</returns>
-        public IEnumerable<Holding> GetHoldings()
-        => holdings.Values;
+        public Province GetProvince(string provinceId)
+            => provinces[provinceId];
 
         /// <summary>
         /// Gets the provinces.
@@ -312,15 +297,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The provinces.</returns>
         public IEnumerable<Province> GetProvinces()
         => provinces.Values;
-
-        /// <summary>
-        /// Gets the holdings of a province.
-        /// </summary>
-        /// <returns>The holdings.</returns>
-        /// <param name="provinceId">Province identifier.</param>
-        public IEnumerable<Holding> GetProvinceHoldings(string provinceId)
-        => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
-                                      h.ProvinceId == provinceId);
 
         /// <summary>
         /// Gets the relations.
@@ -349,22 +325,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The world.</returns>
         public World GetWorld()
         => world;
-
-        /// <summary>
-        /// Adds the specified holding type in a province.
-        /// </summary>
-        /// <param name="provinceId">Province identifier.</param>
-        /// <param name="holdingType">Holding type.</param>
-        public void AddHolding(string provinceId, HoldingType holdingType)
-        {
-            Holding emptySlot = holdings.Values.FirstOrDefault(h => h.ProvinceId == provinceId &&
-                                                                    h.Type == HoldingType.Empty);
-
-            if (emptySlot != null)
-            {
-                emptySlot.Type = holdingType;
-            }
-        }
 
         /// <summary>
         /// Changes the relations between two factions.
@@ -408,7 +368,6 @@ namespace Narivia.GameLogic.GameManagers
             IRepository<string, CultureEntity> cultureRepository = new CultureRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml"));
             IRepository<string, FactionEntity> factionRepository = new FactionRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml"));
             IRepository<string, FlagEntity> flagRepository = new FlagRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "flags.xml"));
-            IRepository<string, HoldingEntity> holdingRepository = new HoldingRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml"));
             IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "provinces.xml"));
             IRepository<string, ResourceEntity> resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
             IRepository<string, UnitEntity> unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
@@ -429,7 +388,6 @@ namespace Narivia.GameLogic.GameManagers
             cultures = new ConcurrentDictionary<string, Culture>(cultureList.ToDictionary(culture => culture.Id, culture => culture));
             factions = new ConcurrentDictionary<string, Faction>(factionList.ToDictionary(faction => faction.Id, faction => faction));
             flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
-            holdings = new ConcurrentDictionary<string, Holding>();
             provinces = new ConcurrentDictionary<string, Province>(provinceList.ToDictionary(province => province.Id, province => province));
             relations = new ConcurrentDictionary<string, Relation>();
             resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
@@ -527,8 +485,6 @@ namespace Narivia.GameLogic.GameManagers
             });
 
             Parallel.ForEach(factions.Values, f => InitialiseRelation(factionId, f.Id));
-
-            GenerateHoldings(faction.Id);
         }
 
         void InitialiseProvince(string provinceId)
@@ -559,105 +515,6 @@ namespace Narivia.GameLogic.GameManagers
             };
             
             relations.AddOrUpdate(relation.Id, relation);
-        }
-
-        void GenerateHoldings(string factionId)
-        {
-            Faction faction = factions[factionId];
-            Province capitalProvince = GetFactionCapital(faction.Id);
-
-            int holdingSlotsLeft = world.HoldingSlotsPerFaction;
-
-            INameGenerator nameGenerator = CreateNameGenerator(faction.CultureId);
-            nameGenerator.ExcludedStrings.AddRange(factions.Values.Select(f => f.Name));
-            nameGenerator.ExcludedStrings.AddRange(holdings.Values.Select(h => h.Name));
-            nameGenerator.ExcludedStrings.AddRange(provinces.Values.Select(r => r.Name));
-
-            List<Province> ownedProvinces = GetFactionProvinces(faction.Id).ToList();
-
-            foreach (Province province in ownedProvinces)
-            {
-                Holding holding = GenerateHolding(nameGenerator, province.Id);
-
-                if (province.Id == capitalProvince.Id)
-                {
-                    holding.Name = province.Name;
-                    holding.Description = $"The government seat castle of {faction.Name}";
-                    holding.Type = HoldingType.Castle;
-                }
-
-                holdings.AddOrUpdate(holding.Id, holding);
-                holdingSlotsLeft -= 1;
-            }
-
-            while (holdingSlotsLeft > 0)
-            {
-                Province province = ownedProvinces.GetRandomElement();
-                Holding holding = GenerateHolding(nameGenerator, province.Id);
-
-                holding.Description = string.Empty;
-                holding.Type = HoldingType.Empty;
-
-                holdings.AddOrUpdate(holding.Id, holding);
-                holdingSlotsLeft -= 1;
-            }
-        }
-
-        /// <summary>
-        /// Creates a name generator.
-        /// </summary>
-        /// <returns>The name generator.</returns>
-        /// <param name="cultureId">Culture identifier.</param>
-        INameGenerator CreateNameGenerator(string cultureId)
-        {
-            INameGenerator nameGenerator;
-            Culture culture = cultures[cultureId];
-
-            List<List<string>> wordLists = culture.PlaceNameSchema.Split(' ').ToList()
-                                                  .Select(x => File.ReadAllLines(Path.Combine(ApplicationPaths.WordListsDirectory,
-                                                                                              $"{x}.txt")).ToList())
-                                                  .ToList();
-
-            if (culture.PlaceNameGenerator == Models.Enumerations.NameGenerator.RandomMixerNameGenerator && wordLists.Count == 2)
-            {
-                nameGenerator = new RandomMixerNameGenerator(wordLists[0], wordLists[1]);
-            }
-            else if (culture.PlaceNameGenerator == Models.Enumerations.NameGenerator.RandomMixerNameGenerator && wordLists.Count == 3)
-            {
-                nameGenerator = new RandomMixerNameGenerator(wordLists[0], wordLists[1], wordLists[2]);
-            }
-            else // Default: Markov
-            {
-                nameGenerator = new MarkovNameGenerator(wordLists[0]);
-            }
-
-            return nameGenerator;
-        }
-
-        Holding GenerateHolding(INameGenerator generator, string provinceId)
-        {
-            Province province = provinces[provinceId];
-            Array holdingTypes = Enum.GetValues(typeof(HoldingType));
-
-            HoldingType holdingType = (HoldingType)holdingTypes.GetValue(random.Next(1, holdingTypes.Length));
-            string name = generator.GenerateName();
-
-            Holding holding = new Holding
-            {
-                Id = $"h_{name.Replace(" ", "_").ToLower()}",
-                ProvinceId = province.Id,
-                Name = name,
-                Description = $"The {name} {holdingType.ToString().ToLower()}", // TODO: Better description
-                Type = holdingType
-            };
-
-            // TODO: Make sure this never happens and then remove this workaround
-            while (holdings.Values.Any(h => h.Id == holding.Id))
-            {
-                return GenerateHolding(generator, province.Id);
-            }
-
-            return holding;
         }
     }
 }

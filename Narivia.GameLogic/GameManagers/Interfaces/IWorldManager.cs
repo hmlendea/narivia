@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 
 using Narivia.Models;
-using Narivia.Models.Enumerations;
 
 namespace Narivia.GameLogic.GameManagers.Interfaces
 {
     public interface IWorldManager
     {
+        int HoldingSlotsPerFaction { get; }
+
         /// <summary>
         /// Loads the world.
         /// </summary>
@@ -20,13 +21,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <param name="province1Id">First province identifier.</param>
         /// <param name="province2Id">Second province identifier.</param>
         bool ProvinceBordersProvince(string province1Id, string province2Id);
-
-        /// <summary>
-        /// Checks wether a province has empty holding slots.
-        /// </summary>
-        /// <returns><c>true</c>, if the province has empty holding slots, <c>false</c> otherwise.</returns>
-        /// <param name="provinceId">Province identifier.</param>
-        bool ProvinceHasEmptyHoldingSlots(string provinceId);
 
         /// <summary>
         /// Checks wether the specified provinces share a border.
@@ -77,6 +71,8 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The borders.</returns>
         IEnumerable<Border> GetBorders();
 
+        Culture GetCulture(string cultureId);
+
         /// <summary>
         /// Gets the cultures.
         /// </summary>
@@ -88,6 +84,8 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// </summary>
         /// <returns>The factions.</returns>
         IEnumerable<Faction> GetFactions();
+
+        Faction GetFaction(string factionId);
 
         /// <summary>
         /// Gets the faction troops amount.
@@ -125,13 +123,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Army> GetFactionArmies(string factionId);
 
         /// <summary>
-        /// Gets the holdings of a faction.
-        /// </summary>
-        /// <returns>The holdings.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        IEnumerable<Holding> GetFactionHoldings(string factionId);
-
-        /// <summary>
         /// Gets the provinces of a faction.
         /// </summary>
         /// <returns>The provinces.</returns>
@@ -151,24 +142,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <returns>The flags.</returns>
         IEnumerable<Flag> GetFlags();
 
-        /// <summary>
-        /// Gets the holdings.
-        /// </summary>
-        /// <returns>The holdings.</returns>
-        IEnumerable<Holding> GetHoldings();
+        Province GetProvince(string provinceId);
 
         /// <summary>
         /// Gets the provinces.
         /// </summary>
         /// <returns>The provinces.</returns>
         IEnumerable<Province> GetProvinces();
-
-        /// <summary>
-        /// Gets the province holdings.
-        /// </summary>
-        /// <returns>The province holdings.</returns>
-        /// <param name="provinceId">Province identifier.</param>
-        IEnumerable<Holding> GetProvinceHoldings(string provinceId);
 
         /// <summary>
         /// Gets the relations.
@@ -193,13 +173,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// </summary>
         /// <returns>The world.</returns>
         World GetWorld();
-
-        /// <summary>
-        /// Adds the specified holding type in a province.
-        /// </summary>
-        /// <param name="provinceId">Province identifier.</param>
-        /// <param name="holdingType">Holding type.</param>
-        void AddHolding(string provinceId, HoldingType holdingType);
 
         /// <summary>
         /// Changes the relations between two factions.
