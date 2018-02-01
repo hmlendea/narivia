@@ -130,13 +130,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Province> GetFactionProvinces(string factionId);
 
         /// <summary>
-        /// Gets the relations of a faction.
-        /// </summary>
-        /// <returns>The relations of a faction.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        IEnumerable<Relation> GetFactionRelations(string factionId);
-
-        /// <summary>
         /// Gets the flags.
         /// </summary>
         /// <returns>The flags.</returns>
@@ -149,12 +142,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// </summary>
         /// <returns>The provinces.</returns>
         IEnumerable<Province> GetProvinces();
-
-        /// <summary>
-        /// Gets the relations.
-        /// </summary>
-        /// <returns>The relations.</returns>
-        IEnumerable<Relation> GetRelations();
 
         /// <summary>
         /// Gets the resources.
@@ -173,21 +160,5 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// </summary>
         /// <returns>The world.</returns>
         World GetWorld();
-
-        /// <summary>
-        /// Changes the relations between two factions.
-        /// </summary>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        /// <param name="delta">Relations value delta.</param>
-        void ChangeRelations(string sourceFactionId, string targetFactionId, int delta);
-
-        /// <summary>
-        /// Sets the relations between two factions.
-        /// </summary>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        /// <param name="value">Relations value.</param>
-        void SetRelations(string sourceFactionId, string targetFactionId, int value);
     }
 }

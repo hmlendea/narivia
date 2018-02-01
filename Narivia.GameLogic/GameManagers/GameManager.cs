@@ -19,9 +19,10 @@ namespace Narivia.GameLogic.GameManagers
     /// </summary>
     public class GameManager : IGameManager
     {
+        IAttackManager attackManager;
+        IDiplomacyManager diplomacyManager;
         IHoldingManager holdingManager;
         IWorldManager worldManager;
-        IAttackManager attackManager;
 
         const int HOLDING_CASTLE_INCOME = 5;
         const int HOLDING_CASTLE_RECRUITMENT = 15;
@@ -63,6 +64,17 @@ namespace Narivia.GameLogic.GameManagers
         public int Turn { get; private set; }
 
         /// <summary>
+        /// Starts a new game as a random faction.
+        /// </summary>
+        /// <param name="worldId">World identifier.</param>
+        public void NewGame(string worldId)
+        {
+            Faction playerFaction = GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION).GetRandomElement();
+
+            NewGame(worldId, playerFaction.Id);
+        }
+
+        /// <summary>
         /// Starts a new game.
         /// </summary>
         /// <param name="worldId">World identifier.</param>
@@ -70,11 +82,13 @@ namespace Narivia.GameLogic.GameManagers
         public void NewGame(string worldId, string factionId)
         {
             worldManager = new WorldManager();
+            diplomacyManager = new DiplomacyManager(worldManager);
             holdingManager = new HoldingManager(worldId, worldManager);
-            attackManager = new AttackManager(holdingManager, worldManager);
+            attackManager = new AttackManager(diplomacyManager ,holdingManager, worldManager);
 
             // TODO: Create a LoadContent() method and move these to it
             worldManager.LoadWorld(worldId);
+            diplomacyManager.LoadContent();
             holdingManager.LoadContent();
 
             foreach (Faction faction in worldManager.GetFactions())
@@ -83,28 +97,6 @@ namespace Narivia.GameLogic.GameManagers
             }
 
             InitializeGame(factionId);
-        }
-
-        /// <summary>
-        /// Starts a new game as a random faction.
-        /// </summary>
-        /// <param name="worldId">World identifier.</param>
-        public void NewGame(string worldId)
-        {
-            worldManager = new WorldManager();
-            worldManager.LoadWorld(worldId);
-
-            foreach (Faction faction in worldManager.GetFactions())
-            {
-                holdingManager.GenerateHoldings(faction.Id);
-            }
-
-            holdingManager = new HoldingManager(worldId, worldManager);
-            attackManager = new AttackManager(holdingManager, worldManager);
-
-            Faction playerFaction = GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION).GetRandomElement();
-
-            InitializeGame(playerFaction.Id);
         }
 
         /// <summary>
@@ -344,7 +336,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The relations of a faction.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Relation> GetFactionRelations(string factionId)
-        => worldManager.GetFactionRelations(factionId);
+        => diplomacyManager.GetFactionRelations(factionId);
 
         /// <summary>
         /// Gets the faction troops amount.
@@ -487,15 +479,17 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="sourceFactionId">Source faction identifier.</param>
         /// <param name="targetFactionId">Target faction identifier.</param>
         public Relation GetRelation(string sourceFactionId, string targetFactionId)
-        => worldManager.GetRelations().FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
-                                                    r.TargetFactionId == targetFactionId);
+        => diplomacyManager
+            .GetRelations()
+            .FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
+                                 r.TargetFactionId == targetFactionId);
 
         /// <summary>
         /// Gets the relations between factions.
         /// </summary>
         /// <returns>The relations.</returns>
         public IEnumerable<Relation> GetRelations()
-        => worldManager.GetRelations();
+        => diplomacyManager.GetRelations();
 
         /// <summary>
         /// Gets the resource.
@@ -627,10 +621,7 @@ namespace Narivia.GameLogic.GameManagers
 
             Faction faction = GetFactions().FirstOrDefault(f => f.Alive);
 
-            if (FactionWon != null)
-            {
-                FactionWon(this, new FactionEventArgs(faction.Id));
-            }
+            FactionWon?.Invoke(this, new FactionEventArgs(faction.Id));
         }
 
         BattleResult AttackProvince(string factionId, string provinceId)
@@ -642,33 +633,33 @@ namespace Narivia.GameLogic.GameManagers
 
             if (GetRelation(factionId, oldProvinceFactionId).Value > 0)
             {
-                worldManager.SetRelations(factionId, oldProvinceFactionId, 0);
+                diplomacyManager.SetRelations(factionId, oldProvinceFactionId, 0);
             }
 
             if (result == BattleResult.Victory)
             {
-                worldManager.ChangeRelations(factionId, oldProvinceFactionId, -10);
+                diplomacyManager.ChangeRelations(factionId, oldProvinceFactionId, -10);
             }
 
             switch (province.Type)
             {
                 case ProvinceType.Capital:
-                    worldManager.ChangeRelations(factionId, oldProvinceFactionId, -10);
+                    diplomacyManager.ChangeRelations(factionId, oldProvinceFactionId, -10);
                     break;
 
                 case ProvinceType.Province:
-                    worldManager.ChangeRelations(factionId, oldProvinceFactionId, -5);
+                    diplomacyManager.ChangeRelations(factionId, oldProvinceFactionId, -5);
                     break;
             }
 
             switch (province.State)
             {
                 case ProvinceState.Sovereign:
-                    worldManager.ChangeRelations(factionId, oldProvinceFactionId, -5);
+                    diplomacyManager.ChangeRelations(factionId, oldProvinceFactionId, -5);
                     break;
 
                 case ProvinceState.Occupied:
-                    worldManager.ChangeRelations(factionId, oldProvinceFactionId, -2);
+                    diplomacyManager.ChangeRelations(factionId, oldProvinceFactionId, -2);
                     break;
             }
 
@@ -676,10 +667,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 BattleEventArgs e = new BattleEventArgs(provinceId, factionId, result);
 
-                if (PlayerProvinceAttacked != null)
-                {
-                    PlayerProvinceAttacked(this, e);
-                }
+                PlayerProvinceAttacked?.Invoke(this, e);
             }
 
             return result;

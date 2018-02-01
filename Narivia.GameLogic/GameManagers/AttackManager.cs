@@ -28,18 +28,22 @@ namespace Narivia.GameLogic.GameManagers
         const int BLITZKRIEG_RESOURCE_ECONOMY_IMPORTANCE = 5;
         const int BLITZKRIEG_RESOURCE_MILITARY_IMPORTANCE = 10;
 
+        readonly IDiplomacyManager diplomacyManager;
         readonly IHoldingManager holdingManager;
         readonly IWorldManager worldManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AttackManager"/> class.
         /// </summary>
-        /// <param name="worldManager">World manager.</param>
+        /// <param name="diplomacyManager">Diplomacy manager.</param>
         /// <param name="holdingManager">Holding manager.</param>
+        /// <param name="worldManager">World manager.</param>
         public AttackManager(
+            IDiplomacyManager diplomacyManager,
             IHoldingManager holdingManager,
             IWorldManager worldManager)
         {
+            this.diplomacyManager = diplomacyManager;
             this.holdingManager = holdingManager;
             this.worldManager = worldManager;
 
@@ -110,7 +114,7 @@ namespace Narivia.GameLogic.GameManagers
                 }
 
                 targets[province.Id] += provincesOwnedIds.Count(x => worldManager.ProvinceBordersProvince(x, province.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
-                targets[province.Id] -= worldManager.GetFactionRelations(factionId)
+                targets[province.Id] -= diplomacyManager.GetFactionRelations(factionId)
                                            .FirstOrDefault(r => r.TargetFactionId == province.FactionId)
                                            .Value;
 

@@ -11,8 +11,6 @@ using NuciLog.Enumerations;
 
 using Narivia.Common.Extensions;
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.GameLogic.Generators;
-using Narivia.GameLogic.Generators.Interfaces;
 using Narivia.GameLogic.Mapping;
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories;
@@ -38,7 +36,6 @@ namespace Narivia.GameLogic.GameManagers
         ConcurrentDictionary<string, Faction> factions;
         ConcurrentDictionary<string, Flag> flags;
         ConcurrentDictionary<string, Province> provinces;
-        ConcurrentDictionary<string, Relation> relations;
         ConcurrentDictionary<string, Resource> resources;
         ConcurrentDictionary<string, Unit> units;
 
@@ -273,15 +270,6 @@ namespace Narivia.GameLogic.GameManagers
         => provinces.Values.Where(r => r.FactionId == factionId);
 
         /// <summary>
-        /// Gets the relations of a faction.
-        /// </summary>
-        /// <returns>The relations of a faction.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public IEnumerable<Relation> GetFactionRelations(string factionId)
-        => relations.Values.Where(r => r.SourceFactionId == factionId &&
-                                       r.SourceFactionId != r.TargetFactionId);
-
-        /// <summary>
         /// Gets the flags.
         /// </summary>
         /// <returns>The flags.</returns>
@@ -297,13 +285,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The provinces.</returns>
         public IEnumerable<Province> GetProvinces()
         => provinces.Values;
-
-        /// <summary>
-        /// Gets the relations.
-        /// </summary>
-        /// <returns>The relations.</returns>
-        public IEnumerable<Relation> GetRelations()
-        => relations.Values;
 
         /// <summary>
         /// Gets the resources.
@@ -325,41 +306,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The world.</returns>
         public World GetWorld()
         => world;
-
-        /// <summary>
-        /// Changes the relations between two factions.
-        /// </summary>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        /// <param name="delta">Relations value delta.</param>
-        public void ChangeRelations(string sourceFactionId, string targetFactionId, int delta)
-        {
-            Relation sourceRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
-                                                                           r.TargetFactionId == targetFactionId);
-            Relation targetRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
-                                                                           r.TargetFactionId == sourceFactionId);
-
-            int oldRelations = sourceRelation.Value;
-            sourceRelation.Value = Math.Max(-100, Math.Min(sourceRelation.Value + delta, 100));
-            targetRelation.Value = sourceRelation.Value;
-        }
-
-        /// <summary>
-        /// Sets the relations between two factions.
-        /// </summary>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        /// <param name="value">Relations value.</param>
-        public void SetRelations(string sourceFactionId, string targetFactionId, int value)
-        {
-            Relation sourceRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
-                                                                           r.TargetFactionId == targetFactionId);
-            Relation targetRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
-                                                                           r.TargetFactionId == sourceFactionId);
-
-            sourceRelation.Value = Math.Max(-100, Math.Min(value, 100));
-            targetRelation.Value = Math.Max(-100, Math.Min(value, 100));
-        }
 
         void LoadEntities(string worldId)
         {
@@ -389,7 +335,6 @@ namespace Narivia.GameLogic.GameManagers
             factions = new ConcurrentDictionary<string, Faction>(factionList.ToDictionary(faction => faction.Id, faction => faction));
             flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
             provinces = new ConcurrentDictionary<string, Province>(provinceList.ToDictionary(province => province.Id, province => province));
-            relations = new ConcurrentDictionary<string, Relation>();
             resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
             units = new ConcurrentDictionary<string, Unit>(unitList.ToDictionary(unit => unit.Id, unit => unit));
             world = worldRepository.Get(worldId).ToDomainModel();
@@ -483,8 +428,6 @@ namespace Narivia.GameLogic.GameManagers
 
                 armies.AddOrUpdate(army.Id, army);
             });
-
-            Parallel.ForEach(factions.Values, f => InitialiseRelation(factionId, f.Id));
         }
 
         void InitialiseProvince(string provinceId)
@@ -495,26 +438,6 @@ namespace Narivia.GameLogic.GameManagers
             {
                 province.SovereignFactionId = province.FactionId;
             }
-        }
-
-        void InitialiseRelation(string sourceFactionId, string targetFactionId)
-        {
-            if (sourceFactionId == targetFactionId ||
-                sourceFactionId == GameDefines.GAIA_FACTION ||
-                targetFactionId == GameDefines.GAIA_FACTION)
-            {
-                return;
-            }
-
-            Relation relation = new Relation
-            {
-                Id = $"{sourceFactionId}:{targetFactionId}",
-                SourceFactionId = sourceFactionId,
-                TargetFactionId = targetFactionId,
-                Value = 0
-            };
-            
-            relations.AddOrUpdate(relation.Id, relation);
         }
     }
 }
