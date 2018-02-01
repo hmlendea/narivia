@@ -119,8 +119,8 @@ namespace Narivia.Gui.Screens
             recruitmentDialog.Hide();
             buildDialog.Hide();
 
-            game = new GameManager();
-            game.NewGame(initialWorldId, initialFactionId);
+            game = new GameManager(initialWorldId, initialFactionId);
+            game.LoadContent();
 
             troopsOld = new Dictionary<string, int>();
             relationsOld = new Dictionary<string, int>();

@@ -11,6 +11,14 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         void UnloadContent();
 
         /// <summary>
+        /// Gets the relation between two factions.
+        /// </summary>
+        /// <returns>The faction relation.</returns>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        Relation GetRelation(string sourceFactionId, string targetFactionId);
+
+        /// <summary>
         /// Gets the relations.
         /// </summary>
         /// <returns>The relations.</returns>
@@ -38,5 +46,7 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <param name="targetFactionId">Target faction identifier.</param>
         /// <param name="value">Relations value.</param>
         void SetRelations(string sourceFactionId, string targetFactionId, int value);
+
+        void InitialiseFactionRelations(string factionId);
     }
 }

@@ -62,10 +62,19 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         void AddUnits(string factionId, string unitId, int amount);
 
         /// <summary>
+        /// Gets the faction recruitment.
+        /// </summary>
+        /// <returns>The faction recruitment.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        int GetFactionRecruitment(string factionId);
+
+        /// <summary>
         /// Gets the recruitment of a province.
         /// </summary>
         /// <returns>The province recruitment.</returns>
         /// <param name="provinceId">Province identifier.</param>
         int GetProvinceRecruitment(string provinceId);
+
+        void InitialiseFactionMilitary(string factionId);
     }
 }

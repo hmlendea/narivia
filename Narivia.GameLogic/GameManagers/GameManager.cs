@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.Linq;
 
@@ -47,6 +46,12 @@ namespace Narivia.GameLogic.GameManagers
         public event FactionEventHandler FactionWon;
 
         /// <summary>
+        /// Gets the world identifier.
+        /// </summary>
+        /// <value>The world identifier.</value>
+        public string WorldId { get; private set; }
+
+        /// <summary>
         /// Gets the player faction identifier.
         /// </summary>
         /// <value>The player faction identifier.</value>
@@ -58,44 +63,58 @@ namespace Narivia.GameLogic.GameManagers
         /// <value>The turn.</value>
         public int Turn { get; private set; }
 
-        /// <summary>
-        /// Starts a new game as a random faction.
-        /// </summary>
-        /// <param name="worldId">World identifier.</param>
-        public void NewGame(string worldId)
+        public GameManager(string worldId)
         {
             Faction playerFaction = GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION).GetRandomElement();
 
-            NewGame(worldId, playerFaction.Id);
+            WorldId = worldId;
+            PlayerFactionId = playerFaction.Id;
         }
 
-        /// <summary>
-        /// Starts a new game.
-        /// </summary>
-        /// <param name="worldId">World identifier.</param>
-        /// <param name="factionId">Faction identifier.</param>
-        public void NewGame(string worldId, string factionId)
+        public GameManager(string worldId, string playerFactionId)
         {
-            worldManager = new WorldManager();
+            WorldId = worldId;
+            PlayerFactionId = playerFactionId;
+
+            worldManager = new WorldManager(WorldId);
             diplomacyManager = new DiplomacyManager(worldManager);
-            holdingManager = new HoldingManager(worldId, worldManager);
+            holdingManager = new HoldingManager(WorldId, worldManager);
             militaryManager = new MilitaryManager(holdingManager, worldManager);
             economyManager = new EconomyManager(holdingManager, militaryManager, worldManager);
             attackManager = new AttackManager(diplomacyManager, holdingManager, militaryManager, worldManager);
+        }
 
-            // TODO: Create a LoadContent() method and move these to it
-            worldManager.LoadWorld(worldId);
+        public void LoadContent()
+        {
+            worldManager.LoadContent();
             diplomacyManager.LoadContent();
             holdingManager.LoadContent();
             militaryManager.LoadContent();
             economyManager.LoadContent();
+            
+            foreach (Province province in worldManager.GetProvinces())
+            {
+                worldManager.InitialiseProvince(province.Id);
+            }
 
             foreach (Faction faction in worldManager.GetFactions())
             {
-                holdingManager.GenerateHoldings(faction.Id);
+                worldManager.InitialiseFaction(faction.Id);
+                diplomacyManager.InitialiseFactionRelations(faction.Id);
+                holdingManager.InitialiseFactionHoldings(faction.Id);
+                militaryManager.InitialiseFactionMilitary(faction.Id);
             }
 
-            InitializeGame(factionId);
+            Turn = 0;
+        }
+
+        public void UnloadContent()
+        {
+            diplomacyManager.UnloadContent();
+            economyManager.UnloadContent();
+            holdingManager.UnloadContent();
+            militaryManager.UnloadContent();
+            worldManager.UnloadContent();
         }
 
         /// <summary>
@@ -281,21 +300,14 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionOutcome(string factionId)
             => economyManager.GetFactionOutcome(factionId);
-        
+
         /// <summary>
         /// Gets the faction recruitment.
         /// </summary>
         /// <returns>The faction recruitment.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionRecruitment(string factionId)
-        {
-            ConcurrentBag<int> recruitments = new ConcurrentBag<int>();
-
-            Parallel.ForEach(GetFactionProvinces(factionId),
-                             province => recruitments.Add(GetProvinceRecruitment(province.Id)));
-
-            return recruitments.Sum();
-        }
+            => militaryManager.GetFactionRecruitment(factionId);
 
         /// <summary>
         /// Gets the holdings of a faction.
@@ -418,7 +430,6 @@ namespace Narivia.GameLogic.GameManagers
         public IEnumerable<Province> GetProvinces()
         => worldManager.GetProvinces();
 
-
         /// <summary>
         /// Gets the relation between two factions.
         /// </summary>
@@ -426,10 +437,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="sourceFactionId">Source faction identifier.</param>
         /// <param name="targetFactionId">Target faction identifier.</param>
         public Relation GetRelation(string sourceFactionId, string targetFactionId)
-        => diplomacyManager
-            .GetRelations()
-            .FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
-                                 r.TargetFactionId == targetFactionId);
+            => diplomacyManager.GetRelation(sourceFactionId, targetFactionId);
 
         /// <summary>
         /// Gets the relations between factions.
@@ -500,17 +508,7 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <param name="provinceId">Province identifier.</param>
         public BattleResult PlayerAttackProvince(string provinceId)
-        {
-            BattleResult result = AttackProvince(PlayerFactionId, provinceId);
-
-            return result;
-        }
-
-        void InitializeGame(string factionId)
-        {
-            PlayerFactionId = factionId;
-            Turn = 0;
-        }
+            => AttackProvince(PlayerFactionId, provinceId);
 
         void UpdateFactionsAliveStatus()
         {

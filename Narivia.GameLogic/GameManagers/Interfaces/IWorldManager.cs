@@ -8,11 +8,9 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
     {
         int HoldingSlotsPerFaction { get; }
 
-        /// <summary>
-        /// Loads the world.
-        /// </summary>
-        /// <param name="worldId">World identifier.</param>
-        void LoadWorld(string worldId);
+        void LoadContent();
+
+        void UnloadContent();
 
         /// <summary>
         /// Checks wether the specified provinces share a border.
@@ -141,5 +139,9 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// </summary>
         /// <returns>The world.</returns>
         World GetWorld();
+
+        void InitialiseProvince(string provinceId);
+
+        void InitialiseFaction(string factionId);
     }
 }

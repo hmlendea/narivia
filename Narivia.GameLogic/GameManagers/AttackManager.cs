@@ -53,6 +53,16 @@ namespace Narivia.GameLogic.GameManagers
             random = new Random();
         }
 
+        public void LoadContent()
+        {
+
+        }
+
+        public void UnloadContent()
+        {
+
+        }
+
         /// <summary>
         /// Chooses the province to attack.
         /// </summary>

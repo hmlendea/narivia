@@ -24,7 +24,7 @@ namespace Narivia.Gui.Screens
         GuiMenuListSelector worldSelector;
         GuiMenuListSelector factionSelector;
 
-        GameManager game = new GameManager();
+        GameManager game;
         List<World> worlds;
         
         /// <summary>
@@ -85,12 +85,13 @@ namespace Narivia.Gui.Screens
 
         void OnWorldSelectorSelectedIndexChanged(object sender, EventArgs e)
         {
-            game.NewGame(worlds[worldSelector.SelectedIndex].Id);
+            game = new GameManager(worlds[worldSelector.SelectedIndex].Id);
+            game.LoadContent();
 
             List<Faction> factions = game.GetFactions()
-                                         .Where(f => f.Id != GameDefines.GAIA_FACTION)
-                                         .OrderBy(f => f.Name)
-                                         .ToList();
+                .Where(f => f.Id != GameDefines.GAIA_FACTION)
+                .OrderBy(f => f.Name)
+                .ToList();
 
             factionSelector.Values.AddRange(factions.Select(f => f.Name));
             factionSelector.SelectedIndex = 0;

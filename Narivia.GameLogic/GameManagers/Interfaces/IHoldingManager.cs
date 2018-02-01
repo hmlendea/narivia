@@ -11,8 +11,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
 
         void UnloadContent();
 
-        void GenerateHoldings(string factionId);
-
         /// <summary>
         /// Checks wether a province has empty holding slots.
         /// </summary>
@@ -53,5 +51,7 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <param name="provinceId">Province identifier.</param>
         /// <param name="holdingType">Holding type.</param>
         void AddHolding(string provinceId, HoldingType holdingType);
+
+        void InitialiseFactionHoldings(string factionId);
     }
 }

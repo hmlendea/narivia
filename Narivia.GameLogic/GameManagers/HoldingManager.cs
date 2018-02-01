@@ -49,57 +49,6 @@ namespace Narivia.GameLogic.GameManagers
             holdings.Clear();
         }
 
-        public void GenerateHoldings(string factionId)
-        {
-            // TODO: Remove this!!!
-            if (factionId == GameDefines.GAIA_FACTION)
-            {
-                return;
-            }
-
-            List<Faction> factions = worldManager.GetFactions().ToList();
-            List<Province> provinces = worldManager.GetProvinces().ToList();
-
-            Faction faction = worldManager.GetFaction(factionId);
-            Province capitalProvince = worldManager.GetFactionCapital(faction.Id);
-
-            int holdingSlotsLeft = worldManager.HoldingSlotsPerFaction;
-            
-            INameGenerator nameGenerator = CreateNameGenerator(faction.CultureId);
-            nameGenerator.ExcludedStrings.AddRange(factions.Select(f => f.Name));
-            nameGenerator.ExcludedStrings.AddRange(holdings.Values.Select(h => h.Name));
-            nameGenerator.ExcludedStrings.AddRange(provinces.Select(r => r.Name));
-
-            List<Province> ownedProvinces = worldManager.GetFactionProvinces(faction.Id).ToList();
-
-            foreach (Province province in ownedProvinces)
-            {
-                Holding holding = GenerateHolding(nameGenerator, province.Id);
-
-                if (province.Id == capitalProvince.Id)
-                {
-                    holding.Name = province.Name;
-                    holding.Description = $"The government seat castle of {faction.Name}";
-                    holding.Type = HoldingType.Castle;
-                }
-
-                holdings.AddOrUpdate(holding.Id, holding);
-                holdingSlotsLeft -= 1;
-            }
-
-            while (holdingSlotsLeft > 0)
-            {
-                Province province = ownedProvinces.GetRandomElement();
-                Holding holding = GenerateHolding(nameGenerator, province.Id);
-
-                holding.Description = string.Empty;
-                holding.Type = HoldingType.Empty;
-
-                holdings.AddOrUpdate(holding.Id, holding);
-                holdingSlotsLeft -= 1;
-            }
-        }
-
         /// <summary>
         /// Checks wether a province has empty holding slots.
         /// </summary>
@@ -164,6 +113,57 @@ namespace Narivia.GameLogic.GameManagers
             if (emptySlot != null)
             {
                 emptySlot.Type = holdingType;
+            }
+        }
+
+        public void InitialiseFactionHoldings(string factionId)
+        {
+            // TODO: Remove this!!!
+            if (factionId == GameDefines.GAIA_FACTION)
+            {
+                return;
+            }
+
+            List<Faction> factions = worldManager.GetFactions().ToList();
+            List<Province> provinces = worldManager.GetProvinces().ToList();
+
+            Faction faction = worldManager.GetFaction(factionId);
+            Province capitalProvince = worldManager.GetFactionCapital(faction.Id);
+
+            int holdingSlotsLeft = worldManager.HoldingSlotsPerFaction;
+
+            INameGenerator nameGenerator = CreateNameGenerator(faction.CultureId);
+            nameGenerator.ExcludedStrings.AddRange(factions.Select(f => f.Name));
+            nameGenerator.ExcludedStrings.AddRange(holdings.Values.Select(h => h.Name));
+            nameGenerator.ExcludedStrings.AddRange(provinces.Select(r => r.Name));
+
+            List<Province> ownedProvinces = worldManager.GetFactionProvinces(faction.Id).ToList();
+
+            foreach (Province province in ownedProvinces)
+            {
+                Holding holding = GenerateHolding(nameGenerator, province.Id);
+
+                if (province.Id == capitalProvince.Id)
+                {
+                    holding.Name = province.Name;
+                    holding.Description = $"The government seat castle of {faction.Name}";
+                    holding.Type = HoldingType.Castle;
+                }
+
+                holdings.AddOrUpdate(holding.Id, holding);
+                holdingSlotsLeft -= 1;
+            }
+
+            while (holdingSlotsLeft > 0)
+            {
+                Province province = ownedProvinces.GetRandomElement();
+                Holding holding = GenerateHolding(nameGenerator, province.Id);
+
+                holding.Description = string.Empty;
+                holding.Type = HoldingType.Empty;
+
+                holdings.AddOrUpdate(holding.Id, holding);
+                holdingSlotsLeft -= 1;
             }
         }
 

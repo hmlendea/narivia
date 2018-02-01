@@ -4,6 +4,10 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
 {
     public interface IAttackManager
     {
+        void LoadContent();
+
+        void UnloadContent();
+
         /// <summary>
         /// Chooses the province to attack.
         /// </summary>

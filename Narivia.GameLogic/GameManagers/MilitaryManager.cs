@@ -49,11 +49,6 @@ namespace Narivia.GameLogic.GameManagers
 
             armies = new Dictionary<string, Army>();
             units = new Dictionary<string, Unit>(unitList.ToDictionary(unit => unit.Id, unit => unit));
-
-            foreach(Faction faction in worldManager.GetFactions())
-            {
-                InitialiseFactionMilitary(faction.Id);
-            }
         }
 
         public void UnloadContent()
@@ -141,7 +136,26 @@ namespace Narivia.GameLogic.GameManagers
         {
             GetArmy(factionId, unitId).Size += amount;
         }
-        
+
+        /// <summary>
+        /// Gets the faction recruitment.
+        /// </summary>
+        /// <returns>The faction recruitment.</returns>
+        /// <param name="factionId">Faction identifier.</param>
+        public int GetFactionRecruitment(string factionId)
+        {
+            List<int> recruitments = new List<int>();
+
+            foreach (Province province in worldManager.GetFactionProvinces(factionId))
+            {
+                int income = GetProvinceRecruitment(province.Id);
+
+                recruitments.Add(income);
+            }
+
+            return recruitments.Sum();
+        }
+
         /// <summary>
         /// Gets the recruitment of a province.
         /// </summary>
@@ -168,7 +182,7 @@ namespace Narivia.GameLogic.GameManagers
             return recruitment;
         }
 
-        void InitialiseFactionMilitary(string factionId)
+        public void InitialiseFactionMilitary(string factionId)
         {
             foreach (Unit unit in units.Values)
             {

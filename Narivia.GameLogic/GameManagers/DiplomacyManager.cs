@@ -18,21 +18,29 @@ namespace Narivia.GameLogic.GameManagers
         public DiplomacyManager(IWorldManager worldManager)
         {
             this.worldManager = worldManager;
+
+            relations = new Dictionary<string, Relation>();
         }
 
         public void LoadContent()
         {
-            relations = new Dictionary<string, Relation>();
 
-            List<Faction> factions = worldManager.GetFactions().ToList();
-
-            factions.ForEach(s => factions.ForEach(t => InitialiseRelation(s.Id, t.Id)));
         }
 
         public void UnloadContent()
         {
             relations.Clear();
         }
+        
+        /// <summary>
+        /// Gets the relation between two factions.
+        /// </summary>
+        /// <returns>The faction relation.</returns>
+        /// <param name="sourceFactionId">Source faction identifier.</param>
+        /// <param name="targetFactionId">Target faction identifier.</param>
+        public Relation GetRelation(string sourceFactionId, string targetFactionId)
+        => GetRelations().FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
+                                              r.TargetFactionId == targetFactionId);
 
         /// <summary>
         /// Gets the relations.
@@ -85,24 +93,27 @@ namespace Narivia.GameLogic.GameManagers
             targetRelation.Value = Math.Max(-100, Math.Min(value, 100));
         }
 
-        void InitialiseRelation(string sourceFactionId, string targetFactionId)
+        public void InitialiseFactionRelations(string factionId)
         {
-            if (sourceFactionId == targetFactionId ||
-                sourceFactionId == GameDefines.GAIA_FACTION ||
-                targetFactionId == GameDefines.GAIA_FACTION)
+            foreach (Faction otherFaction in worldManager.GetFactions())
             {
-                return;
+                if (factionId == otherFaction.Id ||
+                    factionId == GameDefines.GAIA_FACTION ||
+                    otherFaction.Id == GameDefines.GAIA_FACTION)
+                {
+                    return;
+                }
+
+                Relation relation = new Relation
+                {
+                    Id = $"{factionId}:{otherFaction.Id}",
+                    SourceFactionId = factionId,
+                    TargetFactionId = otherFaction.Id,
+                    Value = 0
+                };
+
+                relations.AddOrUpdate(relation.Id, relation);
             }
-
-            Relation relation = new Relation
-            {
-                Id = $"{sourceFactionId}:{targetFactionId}",
-                SourceFactionId = sourceFactionId,
-                TargetFactionId = targetFactionId,
-                Value = 0
-            };
-
-            relations.AddOrUpdate(relation.Id, relation);
         }
     }
 }

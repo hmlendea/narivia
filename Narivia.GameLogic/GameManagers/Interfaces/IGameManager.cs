@@ -33,6 +33,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         event FactionEventHandler FactionWon;
 
         /// <summary>
+        /// Gets the world identifier.
+        /// </summary>
+        /// <value>The world identifier.</value>
+        string WorldId { get; }
+
+        /// <summary>
         /// Gets the player faction identifier.
         /// </summary>
         /// <value>The player faction identifier.</value>
@@ -44,12 +50,9 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <value>The turn.</value>
         int Turn { get; }
 
-        /// <summary>
-        /// Starts a new game.
-        /// </summary>
-        /// <param name="worldId">World identifier.</param>
-        /// <param name="factionId">Faction identifier.</param>
-        void NewGame(string worldId, string factionId);
+        void LoadContent();
+
+        void UnloadContent();
 
         /// <summary>
         /// Advances the game by one turn.
