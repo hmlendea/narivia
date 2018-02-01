@@ -136,6 +136,22 @@ namespace Narivia.GameLogic.GameManagers
                                       h.ProvinceId == provinceId);
 
         /// <summary>
+        /// Builds the specified holding type in a province.
+        /// </summary>
+        /// <param name="provinceId">Province identifier.</param>
+        /// <param name="holdingType">Holding type.</param>
+        public void BuildHolding(string provinceId, HoldingType holdingType)
+        {
+            Province province = worldManager.GetProvince(provinceId);
+            
+            if (ProvinceHasEmptyHoldingSlots(provinceId))
+            {
+                AddHolding(provinceId, holdingType);
+                worldManager.GetFaction(province.FactionId).Wealth -= worldManager.GetWorld().HoldingsPrice;
+            }
+        }
+
+        /// <summary>
         /// Adds the specified holding type in a province.
         /// </summary>
         /// <param name="provinceId">Province identifier.</param>

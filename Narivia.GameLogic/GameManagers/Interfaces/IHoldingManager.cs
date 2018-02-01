@@ -41,6 +41,13 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Holding> GetProvinceHoldings(string provinceId);
 
         /// <summary>
+        /// Builds the specified holding type in a province.
+        /// </summary>
+        /// <param name="provinceId">Province identifier.</param>
+        /// <param name="holdingType">Holding type.</param>
+        void BuildHolding(string provinceId, HoldingType holdingType);
+
+        /// <summary>
         /// Adds the specified holding type in a province.
         /// </summary>
         /// <param name="provinceId">Province identifier.</param>

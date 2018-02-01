@@ -54,12 +54,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         void TransferProvince(string provinceId, string factionId);
 
         /// <summary>
-        /// Gets the armies.
-        /// </summary>
-        /// <returns>The armies.</returns>
-        IEnumerable<Army> GetArmies();
-
-        /// <summary>
         /// Gets the biomes.
         /// </summary>
         /// <returns>The biomes.</returns>
@@ -88,13 +82,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         Faction GetFaction(string factionId);
 
         /// <summary>
-        /// Gets the faction troops amount.
-        /// </summary>
-        /// <returns>The faction troops amount.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        int GetFactionTroopsAmount(string factionId);
-
-        /// <summary>
         /// Gets the faction capital.
         /// </summary>
         /// <returns>Province.</returns>
@@ -114,13 +101,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// <value>The Y coordinate.</value>
         /// <param name="factionId">Faction identifier.</param>
         int GetFactionCentreY(string factionId);
-        
-        /// <summary>
-        /// Gets the armies of a faction.
-        /// </summary>
-        /// <returns>The armies.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        IEnumerable<Army> GetFactionArmies(string factionId);
 
         /// <summary>
         /// Gets the provinces of a faction.
@@ -144,16 +124,17 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Province> GetProvinces();
 
         /// <summary>
+        /// Gets the resource.
+        /// </summary>
+        /// <returns>The resource.</returns>
+        /// <param name="resourceId">Resource identifier.</param>
+        Resource GetResource(string resourceId);
+
+        /// <summary>
         /// Gets the resources.
         /// </summary>
         /// <returns>The resources.</returns>
         IEnumerable<Resource> GetResources();
-
-        /// <summary>
-        /// Gets the units.
-        /// </summary>
-        /// <returns>The units.</returns>
-        IEnumerable<Unit> GetUnits();
 
         /// <summary>
         /// Gets the world.

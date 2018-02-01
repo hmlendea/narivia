@@ -29,7 +29,6 @@ namespace Narivia.GameLogic.GameManagers
 
         World world;
 
-        ConcurrentDictionary<string, Army> armies;
         ConcurrentDictionary<string, Biome> biomes;
         ConcurrentDictionary<string, Border> borders;
         ConcurrentDictionary<string, Culture> cultures;
@@ -37,7 +36,6 @@ namespace Narivia.GameLogic.GameManagers
         ConcurrentDictionary<string, Flag> flags;
         ConcurrentDictionary<string, Province> provinces;
         ConcurrentDictionary<string, Resource> resources;
-        ConcurrentDictionary<string, Unit> units;
 
         public int HoldingSlotsPerFaction
             => world.HoldingSlotsPerFaction;
@@ -128,13 +126,6 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Gets the armies.
-        /// </summary>
-        /// <returns>The armies.</returns>
-        public IEnumerable<Army> GetArmies()
-        => armies.Values;
-
-        /// <summary>
         /// Gets the biomes.
         /// </summary>
         /// <returns>The biomes.</returns>
@@ -167,15 +158,6 @@ namespace Narivia.GameLogic.GameManagers
 
         public Faction GetFaction(string factionId)
             => factions[factionId];
-
-        /// <summary>
-        /// Gets the faction troops amount.
-        /// </summary>
-        /// <returns>The faction troops amount.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionTroopsAmount(string factionId)
-        => armies.Values.Where(a => a.FactionId == factionId)
-                        .Sum(a => a.Size);
 
         /// <summary>
         /// Gets the faction capital.
@@ -254,14 +236,6 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Gets the armies of a faction.
-        /// </summary>
-        /// <returns>The armies.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        public IEnumerable<Army> GetFactionArmies(string factionId)
-        => armies.Values.Where(a => a.FactionId == factionId);
-
-        /// <summary>
         /// Gets the provinces of a faction.
         /// </summary>
         /// <returns>The provinces.</returns>
@@ -287,18 +261,19 @@ namespace Narivia.GameLogic.GameManagers
         => provinces.Values;
 
         /// <summary>
+        /// Gets the resource.
+        /// </summary>
+        /// <returns>The resource.</returns>
+        /// <param name="resourceId">Resource identifier.</param>
+        public Resource GetResource(string resourceId)
+            => resources[resourceId];
+
+        /// <summary>
         /// Gets the resources.
         /// </summary>
         /// <returns>The resources.</returns>
         public IEnumerable<Resource> GetResources()
         => resources.Values;
-
-        /// <summary>
-        /// Gets the units.
-        /// </summary>
-        /// <returns>The units.</returns>
-        public IEnumerable<Unit> GetUnits()
-        => units.Values;
 
         /// <summary>
         /// Gets the world.
@@ -316,7 +291,6 @@ namespace Narivia.GameLogic.GameManagers
             IRepository<string, FlagEntity> flagRepository = new FlagRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "flags.xml"));
             IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "provinces.xml"));
             IRepository<string, ResourceEntity> resourceRepository = new ResourceRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml"));
-            IRepository<string, UnitEntity> unitRepository = new UnitRepository(Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "units.xml"));
             IRepository<string, WorldEntity> worldRepository = new WorldRepository(ApplicationPaths.WorldsDirectory);
 
             IEnumerable<Biome> biomeList = biomeRepository.GetAll().ToDomainModels();
@@ -326,9 +300,7 @@ namespace Narivia.GameLogic.GameManagers
             IEnumerable<Flag> flagList = flagRepository.GetAll().ToDomainModels();
             IEnumerable<Province> provinceList = provinceRepository.GetAll().ToDomainModels();
             IEnumerable<Resource> resourceList = resourceRepository.GetAll().ToDomainModels();
-            IEnumerable<Unit> unitList = unitRepository.GetAll().ToDomainModels();
 
-            armies = new ConcurrentDictionary<string, Army>();
             biomes = new ConcurrentDictionary<string, Biome>(biomeList.ToDictionary(biome => biome.Id, biome => biome));
             borders = new ConcurrentDictionary<string, Border>(borderList.ToDictionary(border => $"{border.SourceProvinceId}:{border.TargetProvinceId}", border => border));
             cultures = new ConcurrentDictionary<string, Culture>(cultureList.ToDictionary(culture => culture.Id, culture => culture));
@@ -336,7 +308,6 @@ namespace Narivia.GameLogic.GameManagers
             flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
             provinces = new ConcurrentDictionary<string, Province>(provinceList.ToDictionary(province => province.Id, province => province));
             resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
-            units = new ConcurrentDictionary<string, Unit>(unitList.ToDictionary(unit => unit.Id, unit => unit));
             world = worldRepository.Get(worldId).ToDomainModel();
         }
 
@@ -414,20 +385,6 @@ namespace Narivia.GameLogic.GameManagers
 
             faction.Wealth = world.StartingWealth;
             faction.Alive = true;
-
-            Parallel.ForEach(units.Values,
-                             unit =>
-            {
-                Army army = new Army
-                {
-                    Id = $"{faction.Id}:{unit.Id}",
-                    FactionId = faction.Id,
-                    UnitId = unit.Id,
-                    Size = world.StartingTroops
-                };
-
-                armies.AddOrUpdate(army.Id, army);
-            });
         }
 
         void InitialiseProvince(string provinceId)

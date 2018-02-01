@@ -30,6 +30,7 @@ namespace Narivia.GameLogic.GameManagers
 
         readonly IDiplomacyManager diplomacyManager;
         readonly IHoldingManager holdingManager;
+        readonly IMilitaryManager militaryManager;
         readonly IWorldManager worldManager;
 
         /// <summary>
@@ -41,10 +42,12 @@ namespace Narivia.GameLogic.GameManagers
         public AttackManager(
             IDiplomacyManager diplomacyManager,
             IHoldingManager holdingManager,
+            IMilitaryManager militaryManager,
             IWorldManager worldManager)
         {
             this.diplomacyManager = diplomacyManager;
             this.holdingManager = holdingManager;
+            this.militaryManager = militaryManager;
             this.worldManager = worldManager;
 
             random = new Random();
@@ -158,18 +161,18 @@ namespace Narivia.GameLogic.GameManagers
                 throw new InvalidTargetProvinceException(provinceId);
             }
 
-            while (worldManager.GetFactionTroopsAmount(attackerFaction.Id) > 0 &&
-                   worldManager.GetFactionTroopsAmount(defenderFaction.Id) > 0)
+            while (militaryManager.GetFactionTroopsAmount(attackerFaction.Id) > 0 &&
+                   militaryManager.GetFactionTroopsAmount(defenderFaction.Id) > 0)
             {
-                Army attackerArmy = worldManager.GetFactionArmies(attackerFaction.Id)
+                Army attackerArmy = militaryManager.GetFactionArmies(attackerFaction.Id)
                                          .Where(a => a.Size > 0)
                                          .GetRandomElement();
-                Army defenderArmy = worldManager.GetFactionArmies(defenderFaction.Id)
+                Army defenderArmy = militaryManager.GetFactionArmies(defenderFaction.Id)
                                          .Where(a => a.Size > 0)
                                          .GetRandomElement();
 
-                Unit attackerUnit = worldManager.GetUnits().FirstOrDefault(u => u.Id == attackerArmy.UnitId);
-                Unit defenderUnit = worldManager.GetUnits().FirstOrDefault(u => u.Id == defenderArmy.UnitId);
+                Unit attackerUnit = militaryManager.GetUnits().FirstOrDefault(u => u.Id == attackerArmy.UnitId);
+                Unit defenderUnit = militaryManager.GetUnits().FirstOrDefault(u => u.Id == defenderArmy.UnitId);
 
                 // TODO: Attack and Defence bonuses
 
@@ -188,8 +191,8 @@ namespace Narivia.GameLogic.GameManagers
             // TODO: In the GameDomainService I should change the realations based on wether the
             // province was sovereign or not
 
-            if (worldManager.GetFactionTroopsAmount(attackerFaction.Id) >
-                worldManager.GetFactionTroopsAmount(defenderFaction.Id))
+            if (militaryManager.GetFactionTroopsAmount(attackerFaction.Id) >
+                militaryManager.GetFactionTroopsAmount(defenderFaction.Id))
             {
                 worldManager.TransferProvince(provinceId, factionId);
                 targetProvince.Locked = true;

@@ -53,9 +53,13 @@
   <ItemGroup>
     <Compile Include="Exceptions\InvalidTargetProvinceException.cs" />
     <Compile Include="GameManagers\DiplomacyManager.cs" />
+    <Compile Include="GameManagers\EconomyManager.cs" />
     <Compile Include="GameManagers\HoldingManager.cs" />
     <Compile Include="GameManagers\Interfaces\IDiplomacyManager.cs" />
+    <Compile Include="GameManagers\Interfaces\IEconomyManager.cs" />
     <Compile Include="GameManagers\Interfaces\IHoldingManager.cs" />
+    <Compile Include="GameManagers\Interfaces\IMilitaryManager.cs" />
+    <Compile Include="GameManagers\MilitaryManager.cs" />
     <Compile Include="Mapping\ArmyMappingExtensions.cs" />
     <Compile Include="Mapping\BiomeMappingExtensions.cs" />
     <Compile Include="Mapping\BorderMappingExtensions.cs" />

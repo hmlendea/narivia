@@ -21,15 +21,10 @@ namespace Narivia.GameLogic.GameManagers
     {
         IAttackManager attackManager;
         IDiplomacyManager diplomacyManager;
+        IEconomyManager economyManager;
         IHoldingManager holdingManager;
+        IMilitaryManager militaryManager;
         IWorldManager worldManager;
-
-        const int HOLDING_CASTLE_INCOME = 5;
-        const int HOLDING_CASTLE_RECRUITMENT = 15;
-        const int HOLDING_CITY_INCOME = 15;
-        const int HOLDING_CITY_RECRUITMENT = 5;
-        const int HOLDING_TEMPLE_INCOME = 10;
-        const int HOLDING_TEMPLE_RECRUITMENT = 10;
 
         /// <summary>
         /// Occurs when a player province is attacked.
@@ -84,12 +79,16 @@ namespace Narivia.GameLogic.GameManagers
             worldManager = new WorldManager();
             diplomacyManager = new DiplomacyManager(worldManager);
             holdingManager = new HoldingManager(worldId, worldManager);
-            attackManager = new AttackManager(diplomacyManager ,holdingManager, worldManager);
+            militaryManager = new MilitaryManager(holdingManager, worldManager);
+            economyManager = new EconomyManager(holdingManager, militaryManager, worldManager);
+            attackManager = new AttackManager(diplomacyManager, holdingManager, militaryManager, worldManager);
 
             // TODO: Create a LoadContent() method and move these to it
             worldManager.LoadWorld(worldId);
             diplomacyManager.LoadContent();
             holdingManager.LoadContent();
+            militaryManager.LoadContent();
+            economyManager.LoadContent();
 
             foreach (Faction faction in worldManager.GetFactions())
             {
@@ -107,8 +106,8 @@ namespace Narivia.GameLogic.GameManagers
             foreach (Faction faction in worldManager.GetFactions().Where(f => f.Alive))
             {
                 // Economy
-                faction.Wealth += GetFactionIncome(faction.Id);
-                faction.Wealth -= GetFactionOutcome(faction.Id);
+                faction.Wealth += economyManager.GetFactionIncome(faction.Id);
+                faction.Wealth -= economyManager.GetFactionOutcome(faction.Id);
 
                 // Recruit
                 // TODO: Find a way around the hardcoded "militia" unit identifier
@@ -201,15 +200,14 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         /// <param name="unitId">Unit identifier.</param>
         public Army GetArmy(string factionId, string unitId)
-        => GetArmies().FirstOrDefault(a => a.FactionId == factionId &&
-                                                 a.UnitId == unitId);
+        => militaryManager.GetArmy(factionId, unitId);
 
         /// <summary>
         /// Gets the armies.
         /// </summary>
         /// <returns>The armies.</returns>
         public IEnumerable<Army> GetArmies()
-        => worldManager.GetArmies();
+        => militaryManager.GetArmies();
 
         /// <summary>
         /// Gets the biome.
@@ -274,14 +272,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction income.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionIncome(string factionId)
-        {
-            ConcurrentBag<int> incomes = new ConcurrentBag<int>();
-
-            Parallel.ForEach(GetFactionProvinces(factionId),
-                             province => incomes.Add(GetProvinceIncome(province.Id)));
-
-            return incomes.Sum();
-        }
+            => economyManager.GetFactionIncome(factionId);
 
         /// <summary>
         /// Gets the faction outcome.
@@ -289,16 +280,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction outcome.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionOutcome(string factionId)
-        {
-            int outcome = 0;
-
-            outcome += worldManager.GetArmies()
-                            .Where(x => x.FactionId == factionId)
-                            .Sum(x => x.Size * GetUnit(x.UnitId).Maintenance);
-
-            return outcome;
-        }
-
+            => economyManager.GetFactionOutcome(factionId);
+        
         /// <summary>
         /// Gets the faction recruitment.
         /// </summary>
@@ -344,7 +327,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The faction troops amount.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public int GetFactionTroopsAmount(string factionId)
-        => worldManager.GetFactionTroopsAmount(factionId);
+        => militaryManager.GetFactionTroopsAmount(factionId);
 
         /// <summary>
         /// Gets the faction capital.
@@ -418,25 +401,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The province income.</returns>
         /// <param name="provinceId">Province identifier.</param>
         public int GetProvinceIncome(string provinceId)
-        {
-            Province province = GetProvince(provinceId);
-            Resource resource = GetResource(province.ResourceId);
-
-            List<Holding> holdings = holdingManager.GetProvinceHoldings(province.Id).ToList();
-
-            int income = GetWorld().BaseProvinceIncome;
-
-            income += holdings.Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_INCOME;
-            income += holdings.Count(h => h.Type == HoldingType.City) * HOLDING_CITY_INCOME;
-            income += holdings.Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_INCOME;
-
-            if (resource.Type == ResourceType.Economy)
-            {
-                income += (int)(income * 0.1 * resource.Output);
-            }
-
-            return income;
-        }
+            => economyManager.GetProvinceIncome(provinceId);
 
         /// <summary>
         /// Gets the recruitment of a province.
@@ -444,25 +409,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The province recruitment.</returns>
         /// <param name="provinceId">Province identifier.</param>
         public int GetProvinceRecruitment(string provinceId)
-        {
-            Province province = GetProvince(provinceId);
-            Resource resource = GetResource(province.ResourceId);
-
-            List<Holding> holdings = holdingManager.GetProvinceHoldings(province.Id).ToList();
-
-            int recruitment = GetWorld().BaseProvinceRecruitment;
-
-            recruitment += holdings.Count(h => h.Type == HoldingType.Castle) * HOLDING_CASTLE_RECRUITMENT;
-            recruitment += holdings.Count(h => h.Type == HoldingType.City) * HOLDING_CITY_RECRUITMENT;
-            recruitment += holdings.Count(h => h.Type == HoldingType.Temple) * HOLDING_TEMPLE_RECRUITMENT;
-
-            if (resource.Type == ResourceType.Military)
-            {
-                recruitment += (int)(recruitment * 0.1 * resource.Output);
-            }
-
-            return recruitment;
-        }
+        => militaryManager.GetProvinceRecruitment(provinceId);
 
         /// <summary>
         /// Gets the provinces.
@@ -497,7 +444,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The resource.</returns>
         /// <param name="resourceId">Resource identifier.</param>
         public Resource GetResource(string resourceId)
-        => GetResources().FirstOrDefault(r => r.Id == resourceId);
+            => worldManager.GetResource(resourceId);
 
         /// <summary>
         /// Gets the resources.
@@ -512,14 +459,14 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The unit.</returns>
         /// <param name="unitId">Unit identifier.</param>
         public Unit GetUnit(string unitId)
-        => GetUnits().FirstOrDefault(u => u.Id == unitId);
+        => militaryManager.GetUnit(unitId);
 
         /// <summary>
         /// Gets the units.
         /// </summary>
         /// <returns>The units.</returns>
         public IEnumerable<Unit> GetUnits()
-        => worldManager.GetUnits();
+        => militaryManager.GetUnits();
 
         /// <summary>
         /// Gets the world.
@@ -535,27 +482,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="holdingType">Holding type.</param>
         public void BuildHolding(string provinceId, HoldingType holdingType)
         {
-            Province province = GetProvince(provinceId);
-
-
-            if (ProvinceHasEmptyHoldingSlots(provinceId))
-            {
-                holdingManager.AddHolding(provinceId, holdingType);
-                GetFaction(province.FactionId).Wealth -= GetWorld().HoldingsPrice;
-            }
+            holdingManager.BuildHolding(provinceId, holdingType);
         }
-
-        /// <summary>
-        /// Adds the specified amount of troops of a unit for a faction.
-        /// </summary>
-        /// <param name="factionId">Faction identifier.</param>
-        /// <param name="unitId">Unit identifier.</param>
-        /// <param name="amount">Amount.</param>
-        public void AddUnits(string factionId, string unitId, int amount)
-        {
-            GetArmy(factionId, unitId).Size += amount;
-        }
-
         /// <summary>
         /// Recruits the specified amount of troops of a unit for a faction.
         /// </summary>
@@ -564,16 +492,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="amount">Amount.</param>
         public void RecruitUnits(string factionId, string unitId, int amount)
         {
-            Faction faction = GetFaction(factionId);
-            Unit unit = GetUnit(unitId);
-
-            if (faction.Wealth < unit.Price * amount)
-            {
-                amount = faction.Wealth / unit.Price;
-            }
-
-            AddUnits(faction.Id, unit.Id, amount);
-            faction.Wealth -= unit.Price * amount;
+            militaryManager.RecruitUnits(factionId, unitId, amount);
         }
 
         /// <summary>
@@ -718,7 +637,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 string unitId = GetUnits().Select(u => u.Id).GetRandomElement();
 
-                RecruitUnits(factionId, unitId, 1);
+                militaryManager.RecruitUnits(factionId, unitId, 1);
             }
         }
     }
