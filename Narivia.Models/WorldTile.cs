@@ -19,6 +19,8 @@ namespace Narivia.Models
         [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string BiomeId { get; set; }
 
+        public bool HasRiver { get; set; }
+
         /// <summary>
         /// Determines whether the specified <see cref="WorldTile"/> is equal to the current <see cref="WorldTile"/>.
         /// </summary>

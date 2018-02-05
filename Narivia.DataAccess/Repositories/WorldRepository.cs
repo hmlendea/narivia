@@ -127,6 +127,7 @@ namespace Narivia.DataAccess.Repositories
 
             FastBitmap biomeBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "biomes_map.png"));
             FastBitmap provinceBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "map.png"));
+            FastBitmap riversBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "rivers.png"));
 
             Point worldSize = new Point(Math.Max(biomeBitmap.Width, provinceBitmap.Width),
                                         Math.Max(biomeBitmap.Height, provinceBitmap.Height));
@@ -137,19 +138,26 @@ namespace Narivia.DataAccess.Repositories
 
             biomeBitmap.LockBits();
             provinceBitmap.LockBits();
+            riversBitmap.LockBits();
 
             Parallel.For(0, biomeBitmap.Height, y => Parallel.For(0, biomeBitmap.Width, x =>
             {
                 int argb = biomeBitmap.GetPixel(x, y).ToArgb();
                 tiles[x, y].BiomeId = biomeColourIds[argb];
             }));
-            
+
             Parallel.For(0, provinceBitmap.Height, y => Parallel.For(0, provinceBitmap.Width, x =>
             {
                 int argb = provinceBitmap.GetPixel(x, y).ToArgb();
                 tiles[x, y].ProvinceId = provinceColourIds[argb];
             }));
-            
+
+            Parallel.For(0, riversBitmap.Height, y => Parallel.For(0, riversBitmap.Width, x =>
+            {
+                int argb = riversBitmap.GetPixel(x, y).ToArgb();
+                tiles[x, y].HasRiver = argb == 255;
+            }));
+
             biomeBitmap.Dispose();
             provinceBitmap.Dispose();
 
