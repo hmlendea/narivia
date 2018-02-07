@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using NuciXNA.Input;
-using NuciXNA.Input.Enumerations;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 

@@ -1,7 +1,3 @@
-using Narivia.Common.Extensions;
-using Narivia.DataAccess.DataObjects;
-using Narivia.DataAccess.IO;
-using NuciXNA.DataAccess.Repositories;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -9,6 +5,12 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+
+using NuciXNA.DataAccess.Repositories;
+
+using Narivia.Common.Extensions;
+using Narivia.DataAccess.DataObjects;
+using Narivia.DataAccess.IO;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -66,9 +68,11 @@ namespace Narivia.DataAccess.Repositories
         public IEnumerable<WorldEntity> GetAll()
         {
             ConcurrentBag<WorldEntity> worldEntities = new ConcurrentBag<WorldEntity>();
-
-            Parallel.ForEach(Directory.GetDirectories(worldsDirectory),
-                             worldId => worldEntities.Add(Get(worldId)));
+            
+            foreach(string worldId in Directory.GetDirectories(worldsDirectory))
+            {
+                worldEntities.Add(Get(worldId));
+            }
 
             return worldEntities;
         }
@@ -113,16 +117,19 @@ namespace Narivia.DataAccess.Repositories
             ConcurrentDictionary<int, string> provinceColourIds = new ConcurrentDictionary<int, string>();
             ConcurrentDictionary<int, string> terrainColourIds = new ConcurrentDictionary<int, string>();
 
-            IRepository<string, TerrainEntity> terrainRepository = new TerrainRepository(Path.Combine(worldsDirectory, worldId, "terrains.xml"));
-            IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(Path.Combine(worldsDirectory, worldId, "provinces.xml"));
+            string provincesPath = Path.Combine(worldsDirectory, worldId, "provinces.xml");
+            string terrainsPath = Path.Combine(worldsDirectory, worldId, "terrains.xml");
 
-            Parallel.ForEach(terrainRepository.GetAll(), b => terrainColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
+            IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(provincesPath);
+            IRepository<string, TerrainEntity> terrainRepository = new TerrainRepository(terrainsPath);
+
             Parallel.ForEach(provinceRepository.GetAll(), r => provinceColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));
+            Parallel.ForEach(terrainRepository.GetAll(), b => terrainColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
 
-            FastBitmap terrainBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_terrains.png"));
+            FastBitmap heightsBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
             FastBitmap provinceBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
             FastBitmap riversBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_rivers.png"));
-            FastBitmap heightsBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
+            FastBitmap terrainBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_terrains.png"));
 
             Point worldSize = new Point(Math.Max(terrainBitmap.Width, provinceBitmap.Width),
                                         Math.Max(terrainBitmap.Height, provinceBitmap.Height));
@@ -137,13 +144,13 @@ namespace Narivia.DataAccess.Repositories
 
             Parallel.For(0, worldSize.Y, y => Parallel.For(0, worldSize.X, x =>
             {
-                int terrainArgb = terrainBitmap.GetPixel(x, y).ToArgb();
-                int provinceArgb = provinceBitmap.GetPixel(x, y).ToArgb();
-                Color riverColour = riversBitmap.GetPixel(x, y);
                 Color heightColour = heightsBitmap.GetPixel(x, y);
+                Color riverColour = riversBitmap.GetPixel(x, y);
+                int provinceArgb = provinceBitmap.GetPixel(x, y).ToArgb();
+                int terrainArgb = terrainBitmap.GetPixel(x, y).ToArgb();
 
-                tiles[x, y].TerrainId = terrainColourIds[terrainArgb];
                 tiles[x, y].ProvinceId = provinceColourIds[provinceArgb];
+                tiles[x, y].TerrainId = terrainColourIds[terrainArgb];
                 tiles[x, y].HasRiver = riverColour == Color.Blue;
 
                 if (heightColour == Color.Blue ||
@@ -158,10 +165,10 @@ namespace Narivia.DataAccess.Repositories
                 }
             }));
 
-            terrainBitmap.Dispose();
+            heightsBitmap.Dispose();
             provinceBitmap.Dispose();
             riversBitmap.Dispose();
-            heightsBitmap.Dispose();
+            terrainBitmap.Dispose();
 
             return tiles;
         }
