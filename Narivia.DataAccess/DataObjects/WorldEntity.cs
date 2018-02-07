@@ -106,12 +106,5 @@ namespace Narivia.DataAccess.DataObjects
         /// <value>The tiles.</value>
         [XmlIgnore]
         public WorldTileEntity[,] Tiles { get; set; }
-
-        /// <summary>
-        /// Gets or sets the geographic layers.
-        /// </summary>
-        /// <value>The grographic layers.</value>
-        [XmlIgnore]
-        public IList<WorldGeoLayerEntity> Layers { get; set; }
     }
 }

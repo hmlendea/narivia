@@ -129,18 +129,11 @@ namespace Narivia.Models
         public WorldTile[,] Tiles { get; set; }
 
         /// <summary>
-        /// Gets or sets the geographic layers.
-        /// </summary>
-        /// <value>The grographic layers.</value>
-        [XmlIgnore]
-        public IList<WorldGeoLayer> Layers { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="World"/> class.
         /// </summary>
         public World()
         {
-            Layers = new List<WorldGeoLayer>();
+            
         }
 
         /// <summary>
@@ -177,8 +170,7 @@ namespace Narivia.Models
                    Equals(StartingWealth, other.StartingWealth) &&
                    Equals(StartingTroops, other.StartingTroops) &&
                    Equals(HoldingsPrice, other.HoldingsPrice) &&
-                   Equals(Tiles, other.Tiles) &&
-                   Equals(Layers, other.Layers);
+                   Equals(Tiles, other.Tiles);
         }
 
         /// <summary>
@@ -232,8 +224,7 @@ namespace Narivia.Models
                        StartingWealth.GetHashCode() ^
                        StartingTroops.GetHashCode() ^
                        HoldingsPrice.GetHashCode() ^
-                       (Tiles != null ? Tiles.GetHashCode() : 0) ^
-                       (Layers != null ? Layers.GetHashCode() : 0);
+                       (Tiles != null ? Tiles.GetHashCode() : 0);
             }
         }
     }

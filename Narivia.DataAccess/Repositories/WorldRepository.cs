@@ -58,7 +58,6 @@ namespace Narivia.DataAccess.Repositories
             }
 
             worldEntity.Tiles = LoadWorldTiles(id);
-            worldEntity.Layers = LoadWorldGeoLayers(id);
             
             return worldEntity;
         }
@@ -168,43 +167,6 @@ namespace Narivia.DataAccess.Repositories
             heightsBitmap.Dispose();
 
             return tiles;
-        }
-
-        List<WorldGeoLayerEntity> LoadWorldGeoLayers(string worldId)
-        {
-            TmxMap tmxMap = new TmxMap(Path.Combine(worldsDirectory, worldId, "world.tmx"));
-            ConcurrentBag<WorldGeoLayerEntity> layers = new ConcurrentBag<WorldGeoLayerEntity>();
-
-            Parallel.ForEach(tmxMap.Layers, tmxLayer => layers.Add(ProcessTmxLayer(tmxMap, tmxLayer)));
-
-            return layers.OrderBy(l => tmxMap.Layers.IndexOf(tmxMap.Layers.FirstOrDefault(x => x.Name == l.Name)))
-                         .ToList();
-        }
-
-        WorldGeoLayerEntity ProcessTmxLayer(TmxMap tmxMap, TmxLayer tmxLayer)
-        {
-            string tilesetName = tmxLayer.Properties["tileset"];
-
-            if (string.IsNullOrWhiteSpace(tilesetName) ||
-                tmxMap.Tilesets.ToList().FindIndex(t => t.Name == tilesetName) < 0)
-            {
-                throw new InvalidEntityFieldException(nameof(WorldGeoLayerEntity.Tileset), tmxLayer.Name, nameof(WorldGeoLayerEntity));
-            }
-
-            TmxTileset tmxTileset = tmxMap.Tilesets[tilesetName];
-
-            WorldGeoLayerEntity layer = new WorldGeoLayerEntity
-            {
-                Name = tmxLayer.Name,
-                Tiles = new int[tmxMap.Width, tmxMap.Height],
-                Tileset = tmxTileset.Name,
-                Opacity = (float)tmxLayer.Opacity,
-                Visible = tmxLayer.Visible
-            };
-
-            Parallel.ForEach(tmxLayer.Tiles, tile => layer.Tiles[tile.X, tile.Y] = Math.Max(-1, tile.Gid - tmxTileset.FirstGid));
-
-            return layer;
         }
     }
 }

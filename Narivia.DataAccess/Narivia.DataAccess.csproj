@@ -58,7 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataObjects\WorldGeoLayerEntity.cs" />
     <Compile Include="DataObjects\WorldTileEntity.cs" />
     <Compile Include="IO\FastBitmap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

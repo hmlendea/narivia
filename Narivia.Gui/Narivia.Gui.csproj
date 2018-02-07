@@ -85,9 +85,6 @@
     <Compile Include="Screens\SettingsScreen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\TitleScreen.cs" />
-    <Compile Include="WorldMap\Layer.cs" />
-    <Compile Include="WorldMap\Map.cs" />
-    <Compile Include="WorldMap\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Audio\Narivia.Audio.csproj">
