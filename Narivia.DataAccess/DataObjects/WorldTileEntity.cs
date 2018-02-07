@@ -16,7 +16,11 @@ namespace Narivia.DataAccess.DataObjects
         /// </summary>
         /// <value>The biome identifier.</value>
         public string BiomeId { get; set; }
-        
+
+        public byte Altitude { get; set; }
+
         public bool HasRiver { get; set; }
+
+        public bool HasWater { get; set; }
     }
 }

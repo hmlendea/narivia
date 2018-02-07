@@ -1,3 +1,8 @@
+using Narivia.Common.Extensions;
+using Narivia.DataAccess.DataObjects;
+using Narivia.DataAccess.IO;
+using NuciXNA.DataAccess.Exceptions;
+using NuciXNA.DataAccess.Repositories;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -6,14 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-
-using NuciXNA.DataAccess.Exceptions;
-using NuciXNA.DataAccess.Repositories;
 using TiledSharp;
-
-using Narivia.Common.Extensions;
-using Narivia.DataAccess.DataObjects;
-using Narivia.DataAccess.IO;
 
 namespace Narivia.DataAccess.Repositories
 {
@@ -128,6 +126,7 @@ namespace Narivia.DataAccess.Repositories
             FastBitmap biomeBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_biomes.png"));
             FastBitmap provinceBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
             FastBitmap riversBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_rivers.png"));
+            FastBitmap heightsBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
 
             Point worldSize = new Point(Math.Max(biomeBitmap.Width, provinceBitmap.Width),
                                         Math.Max(biomeBitmap.Height, provinceBitmap.Height));
@@ -140,26 +139,33 @@ namespace Narivia.DataAccess.Repositories
             provinceBitmap.LockBits();
             riversBitmap.LockBits();
 
-            Parallel.For(0, biomeBitmap.Height, y => Parallel.For(0, biomeBitmap.Width, x =>
+            Parallel.For(0, worldSize.Y, y => Parallel.For(0, worldSize.X, x =>
             {
-                int argb = biomeBitmap.GetPixel(x, y).ToArgb();
-                tiles[x, y].BiomeId = biomeColourIds[argb];
-            }));
+                int biomeArgb = biomeBitmap.GetPixel(x, y).ToArgb();
+                int provinceArgb = provinceBitmap.GetPixel(x, y).ToArgb();
+                Color riverColour = riversBitmap.GetPixel(x, y);
+                Color heightColour = heightsBitmap.GetPixel(x, y);
 
-            Parallel.For(0, provinceBitmap.Height, y => Parallel.For(0, provinceBitmap.Width, x =>
-            {
-                int argb = provinceBitmap.GetPixel(x, y).ToArgb();
-                tiles[x, y].ProvinceId = provinceColourIds[argb];
-            }));
+                tiles[x, y].BiomeId = biomeColourIds[biomeArgb];
+                tiles[x, y].ProvinceId = provinceColourIds[provinceArgb];
+                tiles[x, y].HasRiver = riverColour == Color.Blue;
 
-            Parallel.For(0, riversBitmap.Height, y => Parallel.For(0, riversBitmap.Width, x =>
-            {
-                int argb = riversBitmap.GetPixel(x, y).ToArgb();
-                tiles[x, y].HasRiver = argb == 255;
+                if (heightColour == Color.Blue ||
+                    heightColour == Color.Black)
+                {
+                    tiles[x, y].HasWater = true;
+                    tiles[x, y].Altitude = 0;
+                }
+                else
+                {
+                    tiles[x, y].Altitude = (byte)((heightColour.R + heightColour.G + heightColour.B) / 3);
+                }
             }));
 
             biomeBitmap.Dispose();
             provinceBitmap.Dispose();
+            riversBitmap.Dispose();
+            heightsBitmap.Dispose();
 
             return tiles;
         }

@@ -23,7 +23,9 @@ namespace Narivia.GameLogic.Mapping
             {
                 BiomeId = worldTileEntity.BiomeId,
                 ProvinceId = worldTileEntity.ProvinceId,
-                HasRiver = worldTileEntity.HasRiver
+                Altitude = worldTileEntity.Altitude,
+                HasRiver = worldTileEntity.HasRiver,
+                HasWater = worldTileEntity.HasWater
             };
 
             return worldTile;
@@ -40,7 +42,9 @@ namespace Narivia.GameLogic.Mapping
             {
                 BiomeId = worldTile.BiomeId,
                 ProvinceId = worldTile.ProvinceId,
-                HasRiver = worldTile.HasRiver
+                Altitude = worldTile.Altitude,
+                HasRiver = worldTile.HasRiver,
+                HasWater = worldTile.HasWater
             };
 
             return worldEntity;
