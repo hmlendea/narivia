@@ -19,6 +19,8 @@ namespace Narivia.DataAccess.DataObjects
         /// <value>The description.</value>
         public string Description { get; set; }
 
+        public string Spritesheet { get; set; }
+
         /// <summary>
         /// Gets or sets the colour in hexadecimal.
         /// </summary>

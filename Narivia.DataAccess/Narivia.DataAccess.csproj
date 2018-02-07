@@ -63,7 +63,7 @@
     <Compile Include="IO\FastBitmap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArmyRepository.cs" />
-    <Compile Include="Repositories\BiomeRepository.cs" />
+    <Compile Include="Repositories\TerrainRepository.cs" />
     <Compile Include="Repositories\BorderRepository.cs" />
     <Compile Include="Repositories\CultureRepository.cs" />
     <Compile Include="Repositories\FactionRepository.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="Repositories\WorldRepository.cs" />
     <Compile Include="XmlDatabase.cs" />
     <Compile Include="DataObjects\ArmyEntity.cs" />
-    <Compile Include="DataObjects\BiomeEntity.cs" />
+    <Compile Include="DataObjects\TerrainEntity.cs" />
     <Compile Include="DataObjects\BorderEntity.cs" />
     <Compile Include="DataObjects\CultureEntity.cs" />
     <Compile Include="DataObjects\FactionEntity.cs" />

@@ -32,6 +32,8 @@ namespace Narivia.Models
         [StringLength(300, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string Description { get; set; }
 
+        public string Spritesheet { get; set; }
+
         /// <summary>
         /// Gets or sets the colour.
         /// </summary>

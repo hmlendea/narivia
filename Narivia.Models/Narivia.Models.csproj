@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Army.cs" />
-    <Compile Include="Biome.cs" />
+    <Compile Include="Terrain.cs" />
     <Compile Include="Border.cs" />
     <Compile Include="Culture.cs" />
     <Compile Include="Faction.cs" />

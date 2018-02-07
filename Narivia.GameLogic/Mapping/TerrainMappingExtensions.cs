@@ -24,6 +24,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = terrainEntity.Id,
                 Name = terrainEntity.Name,
                 Description = terrainEntity.Description,
+                Spritesheet = terrainEntity.Spritesheet,
                 Colour = ColorTranslator.FromHtml(terrainEntity.ColourHexadecimal)
             };
 
@@ -42,6 +43,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = terrain.Id,
                 Name = terrain.Name,
                 Description = terrain.Description,
+                Spritesheet = terrain.Spritesheet,
                 ColourHexadecimal = ColorTranslator.ToHtml(terrain.Colour)
             };
 
