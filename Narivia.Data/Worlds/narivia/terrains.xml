@@ -3,85 +3,66 @@
   <TerrainEntity>
     <Id>plains</Id>
     <Name>Plains</Name>
-    <Description>A relatively flat and grassy biome with rolling hills and few trees.</Description>
-    <ColourHexadecimal>#007F00</ColourHexadecimal>
+    <ColourHexadecimal>#567C1B</ColourHexadecimal>
   </TerrainEntity>
   <TerrainEntity>
-    <Id>snowy_plains</Id>
-    <Name>Snow Plains</Name>
-    <Description>A barren and relatively inhospitable biome consisting mostly of snow-covered plains.</Description>
-    <ColourHexadecimal>#E4E4E4</ColourHexadecimal>
+    <Id>coastal_desert</Id>
+    <Name>Plains</Name>
+    <ColourHexadecimal>#829E4B</ColourHexadecimal>
   </TerrainEntity>
   <TerrainEntity>
-    <Id>desert_plains</Id>
-    <Name>Desert Plains</Name>
-    <Description>A barren and relatively inhospitable biome consisting mostly of sand dunes, dead bushes, and cacti.</Description>
-    <ColourHexadecimal>#F8D6A3</ColourHexadecimal>
+    <Id>desert</Id>
+    <Name>Desert</Name>
+    <ColourHexadecimal>#CEA963</ColourHexadecimal>
   </TerrainEntity>
   <TerrainEntity>
-    <Id>highland</Id>
-    <Name>Highland</Name>
-    <Description>A hilly biome with a few scattered trees.</Description>
-    <ColourHexadecimal>#2F815F</ColourHexadecimal>
+    <Id>sandy_mountain</Id>
+    <Name>Mountain</Name>
+    <ColourHexadecimal>#704A1F</ColourHexadecimal>
   </TerrainEntity>
   <TerrainEntity>
-    <Id>snowy_highland</Id>
-    <Name>Snow Highland</Name>
-    <Description> A hilly and snowy biome with a few scattered evergreen trees.</Description>
-    <ColourHexadecimal>#BFBFBF</ColourHexadecimal>
+    <Id>steppe</Id>
+    <Name>Steppe</Name>
+    <ColourHexadecimal>#FFBA00</ColourHexadecimal>
   </TerrainEntity>
   <TerrainEntity>
-    <Id>desert_highland</Id>
-    <Name>Desert Highland</Name>
-    <Description> A hilly and arid biome with a few scattered trees and cacti.</Description>
-    <ColourHexadecimal>#F6C998</ColourHexadecimal>
+    <Id>arctic</Id>
+    <Name>Arctic</Name>
+    <ColourHexadecimal>#0D603E</ColourHexadecimal>
   </TerrainEntity>
   <TerrainEntity>
-    <Id>swamp</Id>
-    <Name>Swamp</Name>
-    <Description>A mix of flat, dry areas around sea level and shallow pools of brackish green water with floating lily pads.</Description>
-    <ColourHexadecimal>#2F4431</ColourHexadecimal>
+    <Id>desert_mountain</Id>
+    <Name>Mountain</Name>
+    <ColourHexadecimal>#562E00</ColourHexadecimal>
   </TerrainEntity>
   <TerrainEntity>
-    <Id>semiarid</Id>
-    <Name>Semiarid</Name>
-    <Description>A relatively flat and dry biome with a dry grass ColourHexadecimal and scattered trees.</Description>
-    <ColourHexadecimal>#C39753</ColourHexadecimal>
+    <Id>forest</Id>
+    <Name>Hills</Name>
+    <ColourHexadecimal>#005606</ColourHexadecimal>
+  </TerrainEntity>
+  <TerrainEntity>
+    <Id>mountain</Id>
+    <Name>Mountain</Name>
+    <ColourHexadecimal>#412A11</ColourHexadecimal>
+  </TerrainEntity>
+  <TerrainEntity>
+    <Id>slightly_snowy_mountains</Id>
+    <Name>Mountains</Name>
+    <ColourHexadecimal>#9B9B9B</ColourHexadecimal>
+  </TerrainEntity>
+  <TerrainEntity>
+    <Id>snowy_mountains</Id>
+    <Name>Mountains</Name>
+    <ColourHexadecimal>#FFFFFF</ColourHexadecimal>
   </TerrainEntity>
   <TerrainEntity>
     <Id>jungle</Id>
     <Name>Jungle</Name>
-    <Description>A very dense, but rather uncommon tropical biome. It features large jungle trees.</Description>
-    <ColourHexadecimal>#00FF00</ColourHexadecimal>
-  </TerrainEntity>
-  <TerrainEntity>
-    <Id>forest</Id>
-    <Name>Forest</Name>
-    <Description>A biome with a lot of trees, occasional hills, and a fair amount of vegetation.</Description>
-    <ColourHexadecimal>#009F00</ColourHexadecimal>
-  </TerrainEntity>
-  <TerrainEntity>
-    <Id>mountains</Id>
-    <Name>Mountains</Name>
-    <Description>A vast biome known for huge mountain ranges, forests and it's inhospitability.</Description>
-    <ColourHexadecimal>#7F7F7F</ColourHexadecimal>
-  </TerrainEntity>
-  <TerrainEntity>
-    <Id>snowy_mountains</Id>
-    <Name>Snow Mountains</Name>
-    <Description>A vast and cold biome known for huge mountain ranges covered in snow, forests and it's inhospitability.</Description>
-    <ColourHexadecimal>#FFFFFF</ColourHexadecimal>
-  </TerrainEntity>
-  <TerrainEntity>
-    <Id>desert_mountains</Id>
-    <Name>Desert Mountains</Name>
-    <Description>A vast and hot biome known for huge rocky mountain ranges.</Description>
-    <ColourHexadecimal>#FBF5AF</ColourHexadecimal>
+    <ColourHexadecimal>#28B495</ColourHexadecimal>
   </TerrainEntity>
   <TerrainEntity>
     <Id>water</Id>
     <Name>Water</Name>
-    <Description>Land covered by water.</Description>
-    <ColourHexadecimal>#00BFFF</ColourHexadecimal>
+    <ColourHexadecimal>#455BBA</ColourHexadecimal>
   </TerrainEntity>
 </ArrayOfTerrainEntity>
