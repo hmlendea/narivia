@@ -3,9 +3,9 @@
 namespace Narivia.DataAccess.DataObjects
 {
     /// <summary>
-    /// Biome data emtity.
+    /// Terrain data emtity.
     /// </summary>
-    public class BiomeEntity : EntityBase
+    public class TerrainEntity : EntityBase
     {
         /// <summary>
         /// Gets or sets the name.

@@ -6,9 +6,9 @@ using System.Xml.Serialization;
 namespace Narivia.Models
 {
     /// <summary>
-    /// Biome domain model.
+    /// Terrain domain model.
     /// </summary>
-    public class Biome : IEquatable<Biome>
+    public class Terrain : IEquatable<Terrain>
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -40,12 +40,12 @@ namespace Narivia.Models
         public Color Colour { get; set; }
 
         /// <summary>
-        /// Determines whether the specified <see cref="Biome"/> is equal to the current <see cref="Biome"/>.
+        /// Determines whether the specified <see cref="Terrain"/> is equal to the current <see cref="Terrain"/>.
         /// </summary>
-        /// <param name="other">The <see cref="Biome"/> to compare with the current <see cref="Biome"/>.</param>
-        /// <returns><c>true</c> if the specified <see cref="Biome"/> is equal to the current
-        /// <see cref="Biome"/>; otherwise, <c>false</c>.</returns>
-        public bool Equals(Biome other)
+        /// <param name="other">The <see cref="Terrain"/> to compare with the current <see cref="Terrain"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="Terrain"/> is equal to the current
+        /// <see cref="Terrain"/>; otherwise, <c>false</c>.</returns>
+        public bool Equals(Terrain other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -64,11 +64,11 @@ namespace Narivia.Models
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Biome"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="Terrain"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Biome"/>.</param>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="Terrain"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
-        /// <see cref="Biome"/>; otherwise, <c>false</c>.</returns>
+        /// <see cref="Terrain"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -86,11 +86,11 @@ namespace Narivia.Models
                 return false;
             }
 
-            return Equals((Biome)obj);
+            return Equals((Terrain)obj);
         }
 
         /// <summary>
-        /// Serves as a hash function for a <see cref="Biome"/> object.
+        /// Serves as a hash function for a <see cref="Terrain"/> object.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
         /// hash table.</returns>

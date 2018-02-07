@@ -6,37 +6,37 @@ using Narivia.DataAccess.DataObjects;
 namespace Narivia.DataAccess.Repositories
 {
     /// <summary>
-    /// Biome repository implementation.
+    /// Terrain repository implementation.
     /// </summary>
-    public class BiomeRepository : XmlRepository<BiomeEntity>
+    public class TerrainRepository : XmlRepository<TerrainEntity>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BiomeRepository"/> class.
+        /// Initializes a new instance of the <see cref="TerrainRepository"/> class.
         /// </summary>
         /// <param name="fileName">File name.</param>
-        public BiomeRepository(string fileName) : base(fileName)
+        public TerrainRepository(string fileName) : base(fileName)
         {
 
         }
         
         /// <summary>
-        /// Updates the specified biome.
+        /// Updates the specified terrain.
         /// </summary>
-        /// <param name="biomeEntity">Biome.</param>
-        public override void Update(BiomeEntity biomeEntity)
+        /// <param name="terrainEntity">Terrain.</param>
+        public override void Update(TerrainEntity terrainEntity)
         {
             LoadEntitiesIfNeeded();
 
-            BiomeEntity biomeEntityToUpdate = Get(biomeEntity.Id);
+            TerrainEntity terrainEntityToUpdate = Get(terrainEntity.Id);
 
-            if (biomeEntityToUpdate == null)
+            if (terrainEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(biomeEntity.Id, nameof(BorderEntity));
+                throw new EntityNotFoundException(terrainEntity.Id, nameof(BorderEntity));
             }
 
-            biomeEntityToUpdate.Name = biomeEntity.Name;
-            biomeEntityToUpdate.Description = biomeEntity.Description;
-            biomeEntityToUpdate.ColourHexadecimal = biomeEntity.ColourHexadecimal;
+            terrainEntityToUpdate.Name = terrainEntity.Name;
+            terrainEntityToUpdate.Description = terrainEntity.Description;
+            terrainEntityToUpdate.ColourHexadecimal = terrainEntity.ColourHexadecimal;
 
             XmlFile.SaveEntities(Entities.Values);
         }

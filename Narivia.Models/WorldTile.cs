@@ -13,11 +13,11 @@ namespace Narivia.Models
         public string ProvinceId { get; set; }
 
         /// <summary>
-        /// Gets the biome identifier.
+        /// Gets the terrain identifier.
         /// </summary>
-        /// <value>The biome identifier.</value>
+        /// <value>The terrain identifier.</value>
         [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
-        public string BiomeId { get; set; }
+        public string TerrainId { get; set; }
 
         [Range(0, byte.MaxValue)]
         public byte Altitude { get; set; }
@@ -45,7 +45,7 @@ namespace Narivia.Models
             }
 
             return string.Equals(ProvinceId, other.ProvinceId) &&
-                   string.Equals(BiomeId, other.BiomeId);
+                   string.Equals(TerrainId, other.TerrainId);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Narivia.Models
             unchecked
             {
                 return ((ProvinceId != null ? ProvinceId.GetHashCode() : 0) * 397) ^
-                       (BiomeId != null ? BiomeId.GetHashCode() : 0);
+                       (TerrainId != null ? TerrainId.GetHashCode() : 0);
             }
         }
     }

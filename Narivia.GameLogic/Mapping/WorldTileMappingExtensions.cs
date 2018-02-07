@@ -21,7 +21,7 @@ namespace Narivia.GameLogic.Mapping
         {
             WorldTile worldTile = new WorldTile
             {
-                BiomeId = worldTileEntity.BiomeId,
+                TerrainId = worldTileEntity.TerrainId,
                 ProvinceId = worldTileEntity.ProvinceId,
                 Altitude = worldTileEntity.Altitude,
                 HasRiver = worldTileEntity.HasRiver,
@@ -40,7 +40,7 @@ namespace Narivia.GameLogic.Mapping
         {
             WorldTileEntity worldEntity = new WorldTileEntity
             {
-                BiomeId = worldTile.BiomeId,
+                TerrainId = worldTile.TerrainId,
                 ProvinceId = worldTile.ProvinceId,
                 Altitude = worldTile.Altitude,
                 HasRiver = worldTile.HasRiver,

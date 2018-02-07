@@ -91,7 +91,7 @@ namespace Narivia.DataAccess.Repositories
                 xml.Serialize(writer, worldEntity);
             }
 
-            // TODO: Save the ProvinceMap and BiomeMap as well
+            // TODO: Save the ProvinceMap and TerrainMap as well
         }
 
         /// <summary>
@@ -115,38 +115,38 @@ namespace Narivia.DataAccess.Repositories
         WorldTileEntity[,] LoadWorldTiles(string worldId)
         {
             ConcurrentDictionary<int, string> provinceColourIds = new ConcurrentDictionary<int, string>();
-            ConcurrentDictionary<int, string> biomeColourIds = new ConcurrentDictionary<int, string>();
+            ConcurrentDictionary<int, string> terrainColourIds = new ConcurrentDictionary<int, string>();
 
-            IRepository<string, BiomeEntity> biomeRepository = new BiomeRepository(Path.Combine(worldsDirectory, worldId, "biomes.xml"));
+            IRepository<string, TerrainEntity> terrainRepository = new TerrainRepository(Path.Combine(worldsDirectory, worldId, "terrains.xml"));
             IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(Path.Combine(worldsDirectory, worldId, "provinces.xml"));
 
-            Parallel.ForEach(biomeRepository.GetAll(), b => biomeColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
+            Parallel.ForEach(terrainRepository.GetAll(), b => terrainColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
             Parallel.ForEach(provinceRepository.GetAll(), r => provinceColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));
 
-            FastBitmap biomeBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_biomes.png"));
+            FastBitmap terrainBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_terrains.png"));
             FastBitmap provinceBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
             FastBitmap riversBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_rivers.png"));
             FastBitmap heightsBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
 
-            Point worldSize = new Point(Math.Max(biomeBitmap.Width, provinceBitmap.Width),
-                                        Math.Max(biomeBitmap.Height, provinceBitmap.Height));
+            Point worldSize = new Point(Math.Max(terrainBitmap.Width, provinceBitmap.Width),
+                                        Math.Max(terrainBitmap.Height, provinceBitmap.Height));
 
             WorldTileEntity[,] tiles = new WorldTileEntity[provinceBitmap.Width, provinceBitmap.Height];
 
             Parallel.For(0, worldSize.Y, y => Parallel.For(0, worldSize.X, x => tiles[x, y] = new WorldTileEntity()));
 
-            biomeBitmap.LockBits();
+            terrainBitmap.LockBits();
             provinceBitmap.LockBits();
             riversBitmap.LockBits();
 
             Parallel.For(0, worldSize.Y, y => Parallel.For(0, worldSize.X, x =>
             {
-                int biomeArgb = biomeBitmap.GetPixel(x, y).ToArgb();
+                int terrainArgb = terrainBitmap.GetPixel(x, y).ToArgb();
                 int provinceArgb = provinceBitmap.GetPixel(x, y).ToArgb();
                 Color riverColour = riversBitmap.GetPixel(x, y);
                 Color heightColour = heightsBitmap.GetPixel(x, y);
 
-                tiles[x, y].BiomeId = biomeColourIds[biomeArgb];
+                tiles[x, y].TerrainId = terrainColourIds[terrainArgb];
                 tiles[x, y].ProvinceId = provinceColourIds[provinceArgb];
                 tiles[x, y].HasRiver = riverColour == Color.Blue;
 
@@ -162,7 +162,7 @@ namespace Narivia.DataAccess.Repositories
                 }
             }));
 
-            biomeBitmap.Dispose();
+            terrainBitmap.Dispose();
             provinceBitmap.Dispose();
             riversBitmap.Dispose();
             heightsBitmap.Dispose();

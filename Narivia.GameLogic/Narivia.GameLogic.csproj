@@ -61,7 +61,7 @@
     <Compile Include="GameManagers\Interfaces\IMilitaryManager.cs" />
     <Compile Include="GameManagers\MilitaryManager.cs" />
     <Compile Include="Mapping\ArmyMappingExtensions.cs" />
-    <Compile Include="Mapping\BiomeMappingExtensions.cs" />
+    <Compile Include="Mapping\TerrainMappingExtensions.cs" />
     <Compile Include="Mapping\BorderMappingExtensions.cs" />
     <Compile Include="Mapping\CultureMappingExtensions.cs" />
     <Compile Include="Mapping\FactionMappingExtensions.cs" />

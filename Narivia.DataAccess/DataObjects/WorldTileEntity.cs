@@ -12,10 +12,10 @@ namespace Narivia.DataAccess.DataObjects
         public string ProvinceId { get; set; }
 
         /// <summary>
-        /// Gets the biome identifier.
+        /// Gets the terrain identifier.
         /// </summary>
-        /// <value>The biome identifier.</value>
-        public string BiomeId { get; set; }
+        /// <value>The terrain identifier.</value>
+        public string TerrainId { get; set; }
 
         public byte Altitude { get; set; }
 

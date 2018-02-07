@@ -112,19 +112,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Army> GetArmies();
 
         /// <summary>
-        /// Gets the biome.
-        /// </summary>
-        /// <returns>The biome.</returns>
-        /// <param name="biomeId">Biome identifier.</param>
-        Biome GetBiome(string biomeId);
-
-        /// <summary>
-        /// Gets the biomes.
-        /// </summary>
-        /// <returns>The biomes.</returns>
-        IEnumerable<Biome> GetBiomes();
-
-        /// <summary>
         /// Gets the culture.
         /// </summary>
         /// <returns>The culture.</returns>
@@ -316,10 +303,17 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         IEnumerable<Resource> GetResources();
 
         /// <summary>
-        /// Gets the world.
+        /// Gets the terrain.
         /// </summary>
-        /// <returns>The world.</returns>
-        World GetWorld();
+        /// <returns>The terrain.</returns>
+        /// <param name="terrainId">Terrain identifier.</param>
+        Terrain GetTerrain(string terrainId);
+
+        /// <summary>
+        /// Gets the terrains.
+        /// </summary>
+        /// <returns>The terrains.</returns>
+        IEnumerable<Terrain> GetTerrains();
 
         /// <summary>
         /// Gets the unit.
@@ -333,6 +327,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// </summary>
         /// <returns>The units.</returns>
         IEnumerable<Unit> GetUnits();
+
+        /// <summary>
+        /// Gets the world.
+        /// </summary>
+        /// <returns>The world.</returns>
+        World GetWorld();
 
         /// <summary>
         /// Builds the specified holding type in a province.

@@ -35,10 +35,10 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Worlds\narivia\biomes.xml">
+    <None Include="Worlds\narivia\terrains.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Worlds\narivia\world_biomes.png">
+    <None Include="Worlds\narivia\world_terrains.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Worlds\narivia\cultures.xml">

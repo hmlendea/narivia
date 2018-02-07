@@ -52,12 +52,6 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         void TransferProvince(string provinceId, string factionId);
 
         /// <summary>
-        /// Gets the biomes.
-        /// </summary>
-        /// <returns>The biomes.</returns>
-        IEnumerable<Biome> GetBiomes();
-
-        /// <summary>
         /// Gets the borders.
         /// </summary>
         /// <returns>The borders.</returns>
@@ -133,6 +127,12 @@ namespace Narivia.GameLogic.GameManagers.Interfaces
         /// </summary>
         /// <returns>The resources.</returns>
         IEnumerable<Resource> GetResources();
+
+        /// <summary>
+        /// Gets the terrains.
+        /// </summary>
+        /// <returns>The terrains.</returns>
+        IEnumerable<Terrain> GetTerrains();
 
         /// <summary>
         /// Gets the world.

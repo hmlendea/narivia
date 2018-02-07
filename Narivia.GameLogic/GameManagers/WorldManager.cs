@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 using NuciXNA.DataAccess.Repositories;
 using NuciLog;
@@ -30,13 +29,13 @@ namespace Narivia.GameLogic.GameManagers
         string worldId;
         World world;
 
-        ConcurrentDictionary<string, Biome> biomes;
         ConcurrentDictionary<string, Border> borders;
         ConcurrentDictionary<string, Culture> cultures;
         ConcurrentDictionary<string, Faction> factions;
         ConcurrentDictionary<string, Flag> flags;
         ConcurrentDictionary<string, Province> provinces;
         ConcurrentDictionary<string, Resource> resources;
+        ConcurrentDictionary<string, Terrain> terrains;
 
         public int HoldingSlotsPerFaction
             => world.HoldingSlotsPerFaction;
@@ -58,38 +57,38 @@ namespace Narivia.GameLogic.GameManagers
         {
             LogManager.Instance.Info(Operation.WorldLoading, OperationStatus.Started);
 
-            string biomesPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "biomes.xml");
             string bordersPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "borders.xml");
             string culturesPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml");
             string factionsPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "factions.xml");
             string flagsPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "flags.xml");
             string provincesPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "provinces.xml");
             string resourcesPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "resources.xml");
+            string terrainsPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "terrains.xml");
 
-            IRepository<string, BiomeEntity> biomeRepository = new BiomeRepository(biomesPath);
             IRepository<string, BorderEntity> borderRepository = new BorderRepository(bordersPath);
             IRepository<string, CultureEntity> cultureRepository = new CultureRepository(culturesPath);
             IRepository<string, FactionEntity> factionRepository = new FactionRepository(factionsPath);
             IRepository<string, FlagEntity> flagRepository = new FlagRepository(flagsPath);
             IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(provincesPath);
             IRepository<string, ResourceEntity> resourceRepository = new ResourceRepository(resourcesPath);
+            IRepository<string, TerrainEntity> terrainRepository = new TerrainRepository(terrainsPath);
             IRepository<string, WorldEntity> worldRepository = new WorldRepository(ApplicationPaths.WorldsDirectory);
 
-            IEnumerable<Biome> biomeList = biomeRepository.GetAll().ToDomainModels();
             IEnumerable<Border> borderList = borderRepository.GetAll().ToDomainModels();
             IEnumerable<Culture> cultureList = cultureRepository.GetAll().ToDomainModels();
             IEnumerable<Faction> factionList = factionRepository.GetAll().ToDomainModels();
             IEnumerable<Flag> flagList = flagRepository.GetAll().ToDomainModels();
             IEnumerable<Province> provinceList = provinceRepository.GetAll().ToDomainModels();
             IEnumerable<Resource> resourceList = resourceRepository.GetAll().ToDomainModels();
+            IEnumerable<Terrain> terrainList = terrainRepository.GetAll().ToDomainModels();
 
-            biomes = new ConcurrentDictionary<string, Biome>(biomeList.ToDictionary(biome => biome.Id, biome => biome));
             borders = new ConcurrentDictionary<string, Border>(borderList.ToDictionary(border => $"{border.SourceProvinceId}:{border.TargetProvinceId}", border => border));
             cultures = new ConcurrentDictionary<string, Culture>(cultureList.ToDictionary(culture => culture.Id, culture => culture));
             factions = new ConcurrentDictionary<string, Faction>(factionList.ToDictionary(faction => faction.Id, faction => faction));
             flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
             provinces = new ConcurrentDictionary<string, Province>(provinceList.ToDictionary(province => province.Id, province => province));
             resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
+            terrains = new ConcurrentDictionary<string, Terrain>(terrainList.ToDictionary(terrain => terrain.Id, biome => biome));
             world = worldRepository.Get(worldId).ToDomainModel();
 
             GenerateBorders();
@@ -159,13 +158,6 @@ namespace Narivia.GameLogic.GameManagers
         {
             provinces[provinceId].FactionId = factionId;
         }
-
-        /// <summary>
-        /// Gets the biomes.
-        /// </summary>
-        /// <returns>The biomes.</returns>
-        public IEnumerable<Biome> GetBiomes()
-        => biomes.Values;
 
         /// <summary>
         /// Gets the borders.
@@ -309,6 +301,13 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The resources.</returns>
         public IEnumerable<Resource> GetResources()
         => resources.Values;
+
+        /// <summary>
+        /// Gets the biomes.
+        /// </summary>
+        /// <returns>The biomes.</returns>
+        public IEnumerable<Terrain> GetTerrains()
+        => terrains.Values;
 
         /// <summary>
         /// Gets the world.

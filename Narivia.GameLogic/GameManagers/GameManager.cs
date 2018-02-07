@@ -229,17 +229,6 @@ namespace Narivia.GameLogic.GameManagers
         => militaryManager.GetArmies();
 
         /// <summary>
-        /// Gets the biome.
-        /// </summary>
-        /// <returns>The biome.</returns>
-        /// <param name="biomeId">Biome identifier.</param>
-        public Biome GetBiome(string biomeId)
-        => GetBiomes().FirstOrDefault(b => b.Id == biomeId);
-
-        public IEnumerable<Biome> GetBiomes()
-        => worldManager.GetBiomes();
-
-        /// <summary>
         /// Gets the culture.
         /// </summary>
         /// <returns>The culture.</returns>
@@ -460,6 +449,17 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The resources.</returns>
         public IEnumerable<Resource> GetResources()
         => worldManager.GetResources();
+
+        /// <summary>
+        /// Gets the terrain.
+        /// </summary>
+        /// <returns>The terrain.</returns>
+        /// <param name="terrainId">Terrain identifier.</param>
+        public Terrain GetTerrain(string terrainId)
+        => GetTerrains().FirstOrDefault(b => b.Id == terrainId);
+
+        public IEnumerable<Terrain> GetTerrains()
+        => worldManager.GetTerrains();
 
         /// <summary>
         /// Gets the unit.
