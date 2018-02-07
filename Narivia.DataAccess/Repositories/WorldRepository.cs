@@ -125,9 +125,9 @@ namespace Narivia.DataAccess.Repositories
             Parallel.ForEach(biomeRepository.GetAll(), b => biomeColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
             Parallel.ForEach(provinceRepository.GetAll(), r => provinceColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));
 
-            FastBitmap biomeBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "biomes_map.png"));
-            FastBitmap provinceBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "map.png"));
-            FastBitmap riversBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "rivers.png"));
+            FastBitmap biomeBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_biomes.png"));
+            FastBitmap provinceBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
+            FastBitmap riversBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_rivers.png"));
 
             Point worldSize = new Point(Math.Max(biomeBitmap.Width, provinceBitmap.Width),
                                         Math.Max(biomeBitmap.Height, provinceBitmap.Height));
