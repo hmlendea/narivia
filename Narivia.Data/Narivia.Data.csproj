@@ -38,7 +38,7 @@
     <None Include="Worlds\narivia\biomes.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Worlds\narivia\map_biomes.png">
+    <None Include="Worlds\narivia\world_biomes.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Worlds\narivia\cultures.xml">
@@ -50,7 +50,7 @@
     <None Include="Worlds\narivia\holdings.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Worlds\narivia\map_provinces.png">
+    <None Include="Worlds\narivia\world_provinces.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Worlds\narivia\provinces.xml">
@@ -137,7 +137,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Worlds\narivia\map_rivers.png">
+    <Content Include="Worlds\narivia\world_rivers.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="x64\SDL2.dll">
