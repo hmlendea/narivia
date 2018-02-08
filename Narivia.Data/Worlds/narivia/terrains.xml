@@ -50,13 +50,6 @@
     <ZIndex>22</ZIndex>
   </TerrainEntity>
   <TerrainEntity>
-    <Id>forest</Id>
-    <Name>Hills</Name>
-	<Spritesheet>grass</Spritesheet>
-    <ColourHexadecimal>#005606</ColourHexadecimal>
-    <ZIndex>50</ZIndex>
-  </TerrainEntity>
-  <TerrainEntity>
     <Id>mountain</Id>
     <Name>Mountain</Name>
 	<Spritesheet>darkstone</Spritesheet>
@@ -89,6 +82,6 @@
     <Name>Water</Name>
 	<Spritesheet>water</Spritesheet>
     <ColourHexadecimal>#455BBA</ColourHexadecimal>
-    <ZIndex>0</ZIndex>
+    <ZIndex>100</ZIndex>
   </TerrainEntity>
 </ArrayOfTerrainEntity>
