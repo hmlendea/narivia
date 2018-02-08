@@ -222,7 +222,7 @@ namespace Narivia.Gui.GuiElements
                     break;
 
                 case TileShape.OuterCornerNW:
-                    Terrain terrainSE = game.GetTerrain(world.Tiles[x - 1, y - 1].TerrainId);
+                    Terrain terrainSE = game.GetTerrain(world.Tiles[x + 1, y + 1].TerrainId);
                     DrawTerrainSprite(spriteBatch, x, y, terrainSE.Spritesheet, 0, 2);
                     break;
 
@@ -405,27 +405,51 @@ namespace Narivia.Gui.GuiElements
             WorldTile tileS = world.Tiles[x, y + 1];
             WorldTile tileE = world.Tiles[x + 1, y];
 
+            if (tileSE.TerrainId != tile.TerrainId &&
+                tileSE.TerrainId != tileS.TerrainId &&
+                tileSE.TerrainId != tileE.TerrainId)
+            {
+                Terrain terrainSE = game.GetTerrain(world.Tiles[x + 1, y + 1].TerrainId);
+
+                if (terrainSE.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.OuterCornerNW;
+                }
+            }
+
+            if (tileN.TerrainId != tile.TerrainId)
+            {
+                Terrain terrainN = game.GetTerrain(world.Tiles[x, y - 1].TerrainId);
+
+                if (terrainN.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.EdgeS;
+                }
+            }
+
             if (tileW.TerrainId != tile.TerrainId)
             {
-                Terrain terrainW = game.GetTerrain(tileW.TerrainId);
+                Terrain terrainW = game.GetTerrain(world.Tiles[x - 1, y].TerrainId);
 
                 if (terrainW.ZIndex > terrain.ZIndex)
                 {
                     return TileShape.EdgeE;
                 }
             }
-            else if (tileS.TerrainId != tile.TerrainId)
+
+            if (tileS.TerrainId != tile.TerrainId)
             {
-                Terrain terrainS = game.GetTerrain(tileS.TerrainId);
+                Terrain terrainS = game.GetTerrain(world.Tiles[x, y + 1].TerrainId);
 
                 if (terrainS.ZIndex > terrain.ZIndex)
                 {
                     return TileShape.EdgeN;
                 }
             }
-            else if (tileE.TerrainId != tile.TerrainId)
+
+            if (tileE.TerrainId != tile.TerrainId)
             {
-                Terrain terrainE = game.GetTerrain(tileE.TerrainId);
+                Terrain terrainE = game.GetTerrain(world.Tiles[x + 1, y].TerrainId);
 
                 if (terrainE.ZIndex > terrain.ZIndex)
                 {
