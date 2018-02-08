@@ -26,5 +26,7 @@ namespace Narivia.DataAccess.DataObjects
         /// </summary>
         /// <value>The colour's hexadecimal value.</value>
         public string ColourHexadecimal { get; set; }
+
+        public int ZIndex { get; set; }
     }
 }

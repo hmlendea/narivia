@@ -38,6 +38,7 @@ namespace Narivia.DataAccess.Repositories
             terrainEntityToUpdate.Description = terrainEntity.Description;
             terrainEntityToUpdate.Spritesheet = terrainEntity.Spritesheet;
             terrainEntityToUpdate.ColourHexadecimal = terrainEntity.ColourHexadecimal;
+            terrainEntityToUpdate.ZIndex = terrainEntity.ZIndex;
 
             XmlFile.SaveEntities(Entities.Values);
         }

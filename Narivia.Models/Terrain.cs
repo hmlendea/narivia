@@ -41,6 +41,8 @@ namespace Narivia.Models
         [XmlIgnore]
         public Color Colour { get; set; }
 
+        public int ZIndex { get; set; }
+
         /// <summary>
         /// Determines whether the specified <see cref="Terrain"/> is equal to the current <see cref="Terrain"/>.
         /// </summary>
