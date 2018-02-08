@@ -11,6 +11,7 @@ using NuciXNA.Primitives.Mapping;
 
 using Narivia.Common.Extensions;
 using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.Gui.Helpers;
 using Narivia.Models;
 using Narivia.Settings;
 
@@ -176,15 +177,7 @@ namespace Narivia.Gui.GuiElements
             {
                 for (int x = camCoordsBegin.X; x < camCoordsEnd.X; x++)
                 {
-                    WorldTile tile = world.Tiles[x, y];
-                    Terrain terrain = game.GetTerrain(tile.TerrainId); // TODO: Optimise this. Don't call this every time
-                    Sprite terrainSprite = terrainSprites[terrain.Spritesheet];
-
-                    terrainSprite.Location = new Point2D(
-                        x * GameDefines.MAP_TILE_SIZE - camera.Location.X,
-                        y * GameDefines.MAP_TILE_SIZE - camera.Location.Y);
-
-                    terrainSprite.Draw(spriteBatch);
+                    DrawTile(spriteBatch ,x, y);
                 }
             }
 
@@ -210,6 +203,63 @@ namespace Narivia.Gui.GuiElements
         public void CentreCameraOnLocation(int x, int y)
         {
             camera.CentreOnLocation(new Point2D(x * GameDefines.MAP_TILE_SIZE, y * GameDefines.MAP_TILE_SIZE));
+        }
+
+        void DrawTile(SpriteBatch spriteBatch, int x, int y)
+        {
+            WorldTile tile = world.Tiles[x, y];
+
+            Terrain terrain = game.GetTerrain(tile.TerrainId); // TODO: Optimise this. Don't call this every time
+            DrawTerrainSprite(spriteBatch, x, y, terrain.Spritesheet, 1, 3);
+
+            TileShape tileShape = GetTileShape(x, y);
+
+            switch(tileShape)
+            {
+                case TileShape.InnerCornerSW:
+                    Terrain terrainNW = game.GetTerrain(world.Tiles[x + 1, y + 1].TerrainId);
+                    DrawTerrainSprite(spriteBatch, x, y, terrainNW.Spritesheet, 2, 1);
+                    break;
+
+                case TileShape.OuterCornerNW:
+                    Terrain terrainSE = game.GetTerrain(world.Tiles[x - 1, y - 1].TerrainId);
+                    DrawTerrainSprite(spriteBatch, x, y, terrainSE.Spritesheet, 0, 2);
+                    break;
+
+                case TileShape.EdgeN:
+                    Terrain terrainS = game.GetTerrain(world.Tiles[x, y + 1].TerrainId);
+                    DrawTerrainSprite(spriteBatch, x, y, terrainS.Spritesheet, 1, 2);
+                    break;
+
+                case TileShape.EdgeW:
+                    Terrain terrainE = game.GetTerrain(world.Tiles[x + 1, y].TerrainId);
+                    DrawTerrainSprite(spriteBatch, x, y, terrainE.Spritesheet, 0, 3);
+                    break;
+
+                case TileShape.EdgeS:
+                    Terrain terrainN = game.GetTerrain(world.Tiles[x, y - 1].TerrainId);
+                    DrawTerrainSprite(spriteBatch, x, y, terrainN.Spritesheet, 1, 4);
+                    break;
+
+                case TileShape.EdgeE:
+                    Terrain terrainW = game.GetTerrain(world.Tiles[x - 1, y].TerrainId);
+                    DrawTerrainSprite(spriteBatch, x, y, terrainW.Spritesheet, 2, 3);
+                    break;
+            }
+        }
+
+        void DrawTerrainSprite(SpriteBatch spriteBatch, int tileX, int tileY, string spritesheet, int spritesheetX, int spritesheetY)
+        {
+            Sprite terrainSprite = terrainSprites[spritesheet];
+
+            terrainSprite.Location = new Point2D(
+                tileX * GameDefines.MAP_TILE_SIZE - camera.Location.X,
+                tileY * GameDefines.MAP_TILE_SIZE - camera.Location.Y);
+            terrainSprite.SourceRectangle = new Rectangle2D(
+                GameDefines.MAP_TILE_SIZE * spritesheetX, GameDefines.MAP_TILE_SIZE * spritesheetY,
+                GameDefines.MAP_TILE_SIZE, GameDefines.MAP_TILE_SIZE);
+
+            terrainSprite.Draw(spriteBatch);
         }
 
         void DrawProvinceHighlight(SpriteBatch spriteBatch)
@@ -341,6 +391,51 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
+        TileShape GetTileShape(int x, int y)
+        {
+            WorldTile tile = world.Tiles[x, y];
+            Terrain terrain = game.GetTerrain(tile.TerrainId); // TODO: Optimise this. Don't call this every time
+
+            WorldTile tileNW = world.Tiles[x - 1, y - 1];
+            WorldTile tileNE = world.Tiles[x + 1, y - 1];
+            WorldTile tileSW = world.Tiles[x - 1, y + 1];
+            WorldTile tileSE = world.Tiles[x + 1, y + 1];
+            WorldTile tileN = world.Tiles[x, y - 1];
+            WorldTile tileW = world.Tiles[x - 1, y];
+            WorldTile tileS = world.Tiles[x, y + 1];
+            WorldTile tileE = world.Tiles[x + 1, y];
+
+            if (tileW.TerrainId != tile.TerrainId)
+            {
+                Terrain terrainW = game.GetTerrain(tileW.TerrainId);
+
+                if (terrainW.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.EdgeE;
+                }
+            }
+            else if (tileS.TerrainId != tile.TerrainId)
+            {
+                Terrain terrainS = game.GetTerrain(tileS.TerrainId);
+
+                if (terrainS.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.EdgeN;
+                }
+            }
+            else if (tileE.TerrainId != tile.TerrainId)
+            {
+                Terrain terrainE = game.GetTerrain(tileE.TerrainId);
+
+                if (terrainE.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.EdgeW;
+                }
+            }
+
+            return TileShape.None;
+        }
+
         /// <summary>
         /// Gets the map cpprdomates based on the specified screen coordinates.
         /// </summary>
@@ -348,8 +443,9 @@ namespace Narivia.Gui.GuiElements
         /// <param name="screenCoords">Screen coordinates.</param>
         Point2D ScreenToMapCoordinates(Point2D screenCoords)
         {
-            return new Point2D((camera.Location.X + screenCoords.X) / GameDefines.MAP_TILE_SIZE,
-                               (camera.Location.Y + screenCoords.Y) / GameDefines.MAP_TILE_SIZE);
+            return new Point2D(
+                (camera.Location.X + screenCoords.X) / GameDefines.MAP_TILE_SIZE,
+                (camera.Location.Y + screenCoords.Y) / GameDefines.MAP_TILE_SIZE);
         }
 
         protected override void OnMouseMoved(object sender, MouseEventArgs e)
