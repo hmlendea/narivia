@@ -216,34 +216,52 @@ namespace Narivia.Gui.GuiElements
 
             switch(tileShape)
             {
+                case TileShape.InnerCornerNW:
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x - 1, y - 1].TerrainId).Spritesheet, 1, 0); // Terrain NW
+                    break;
+
+                case TileShape.InnerCornerNE:
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x + 1, y - 1].TerrainId).Spritesheet, 2, 0); // Terrain NE
+                    break;
+
                 case TileShape.InnerCornerSW:
-                    Terrain terrainNW = game.GetTerrain(world.Tiles[x + 1, y + 1].TerrainId);
-                    DrawTerrainSprite(spriteBatch, x, y, terrainNW.Spritesheet, 2, 1);
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x - 1, y + 1].TerrainId).Spritesheet, 1, 1); // Terrain SW
+                    break;
+
+                case TileShape.InnerCornerSE:
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x + 1, y + 1].TerrainId).Spritesheet, 2, 1); // Terrain SE
                     break;
 
                 case TileShape.OuterCornerNW:
-                    Terrain terrainSE = game.GetTerrain(world.Tiles[x + 1, y + 1].TerrainId);
-                    DrawTerrainSprite(spriteBatch, x, y, terrainSE.Spritesheet, 0, 2);
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x + 1, y + 1].TerrainId).Spritesheet, 0, 2); // Terrain SE
+                    break;
+
+                case TileShape.OuterCornerNE:
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x - 1, y + 1].TerrainId).Spritesheet, 2, 2); // Terrain SW
+                    break;
+
+                case TileShape.OuterCornerSW:
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x + 1, y - 1].TerrainId).Spritesheet, 0, 4); // Terrain NE
+                    break;
+
+                case TileShape.OuterCornerSE:
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x - 1, y - 1].TerrainId).Spritesheet, 2, 4); // Terrain NW
                     break;
 
                 case TileShape.EdgeN:
-                    Terrain terrainS = game.GetTerrain(world.Tiles[x, y + 1].TerrainId);
-                    DrawTerrainSprite(spriteBatch, x, y, terrainS.Spritesheet, 1, 2);
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x, y + 1].TerrainId).Spritesheet, 1, 2); // Terrain S
                     break;
 
                 case TileShape.EdgeW:
-                    Terrain terrainE = game.GetTerrain(world.Tiles[x + 1, y].TerrainId);
-                    DrawTerrainSprite(spriteBatch, x, y, terrainE.Spritesheet, 0, 3);
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x + 1, y].TerrainId).Spritesheet, 0, 3); // Terrain E
                     break;
 
                 case TileShape.EdgeS:
-                    Terrain terrainN = game.GetTerrain(world.Tiles[x, y - 1].TerrainId);
-                    DrawTerrainSprite(spriteBatch, x, y, terrainN.Spritesheet, 1, 4);
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x, y - 1].TerrainId).Spritesheet, 1, 4); // Terrain N
                     break;
 
                 case TileShape.EdgeE:
-                    Terrain terrainW = game.GetTerrain(world.Tiles[x - 1, y].TerrainId);
-                    DrawTerrainSprite(spriteBatch, x, y, terrainW.Spritesheet, 2, 3);
+                    DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x - 1, y].TerrainId).Spritesheet, 2, 3); // Terrain W
                     break;
             }
         }
@@ -405,6 +423,54 @@ namespace Narivia.Gui.GuiElements
             WorldTile tileS = world.Tiles[x, y + 1];
             WorldTile tileE = world.Tiles[x + 1, y];
 
+            if (tile.TerrainId != tileNW.TerrainId &&
+                tile.TerrainId != tileN.TerrainId &&
+                tile.TerrainId != tileW.TerrainId)
+            {
+                Terrain terrainNW = game.GetTerrain(world.Tiles[x - 1, y - 1].TerrainId);
+
+                if (terrainNW.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.InnerCornerNW;
+                }
+            }
+
+            if (tile.TerrainId != tileNE.TerrainId &&
+                tile.TerrainId != tileN.TerrainId &&
+                tile.TerrainId != tileE.TerrainId)
+            {
+                Terrain terrainNE = game.GetTerrain(world.Tiles[x + 1, y - 1].TerrainId);
+
+                if (terrainNE.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.InnerCornerNE;
+                }
+            }
+
+            if (tile.TerrainId != tileSW.TerrainId &&
+                tile.TerrainId != tileS.TerrainId &&
+                tile.TerrainId != tileW.TerrainId)
+            {
+                Terrain terrainSE = game.GetTerrain(world.Tiles[x - 1, y + 1].TerrainId);
+
+                if (terrainSE.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.InnerCornerSW;
+                }
+            }
+
+            if (tile.TerrainId != tileSE.TerrainId &&
+                tile.TerrainId != tileS.TerrainId &&
+                tile.TerrainId != tileE.TerrainId)
+            {
+                Terrain terrainSE = game.GetTerrain(world.Tiles[x + 1, y + 1].TerrainId);
+
+                if (terrainSE.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.InnerCornerSE;
+                }
+            }
+
             if (tileSE.TerrainId != tile.TerrainId &&
                 tileSE.TerrainId != tileS.TerrainId &&
                 tileSE.TerrainId != tileE.TerrainId)
@@ -414,6 +480,42 @@ namespace Narivia.Gui.GuiElements
                 if (terrainSE.ZIndex > terrain.ZIndex)
                 {
                     return TileShape.OuterCornerNW;
+                }
+            }
+
+            if (tileSW.TerrainId != tile.TerrainId &&
+                tileSW.TerrainId != tileW.TerrainId &&
+                tileSW.TerrainId != tileS.TerrainId)
+            {
+                Terrain terrainSW = game.GetTerrain(world.Tiles[x - 1, y + 1].TerrainId);
+
+                if(terrainSW.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.OuterCornerNE;
+                }
+            }
+
+            if (tileNE.TerrainId != tile.TerrainId &&
+                tileNE.TerrainId != tileN.TerrainId &&
+                tileNE.TerrainId != tileE.TerrainId)
+            {
+                Terrain terrainNE = game.GetTerrain(world.Tiles[x + 1, y - 1].TerrainId);
+
+                if (terrainNE.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.OuterCornerSW;
+                }
+            }
+
+            if (tileNW.TerrainId != tile.TerrainId &&
+                tileNW.TerrainId != tileN.TerrainId &&
+                tileNW.TerrainId != tileW.TerrainId)
+            {
+                Terrain terrainNW = game.GetTerrain(world.Tiles[x - 1, y - 1].TerrainId);
+
+                if (terrainNW.ZIndex > terrain.ZIndex)
+                {
+                    return TileShape.OuterCornerSE;
                 }
             }
 
