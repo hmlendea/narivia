@@ -101,7 +101,6 @@ namespace Narivia
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            LogManager.Instance.Update(gameTime.ElapsedGameTime);
             SettingsManager.Instance.Update();
             ScreenManager.Instance.Update(gameTime);
 
