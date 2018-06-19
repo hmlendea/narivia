@@ -83,6 +83,8 @@
     <Compile Include="Screens\SettingsScreen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\TitleScreen.cs" />
+    <Compile Include="GuiElements\GuiAdministrationBar.cs" />
+    <Compile Include="GuiElements\GuiSimpleButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Audio\Narivia.Audio.csproj">

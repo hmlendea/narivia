@@ -31,27 +31,6 @@ namespace Narivia.Gui.GuiElements
         public string FactionId { get; set; }
 
         /// <summary>
-        /// Gets the stats button.
-        /// </summary>
-        /// <value>The stats button.</value>
-        [XmlIgnore]
-        public GuiButton StatsButton { get; private set; }
-
-        /// <summary>
-        /// Gets the recruit button.
-        /// </summary>
-        /// <value>The recruit button.</value>
-        [XmlIgnore]
-        public GuiButton RecruitButton { get; private set; }
-
-        /// <summary>
-        /// Gets the build button.
-        /// </summary>
-        /// <value>The build button.</value>
-        [XmlIgnore]
-        public GuiButton BuildButton { get; private set; }
-
-        /// <summary>
         /// Gets the turn button.
         /// </summary>
         /// <value>The turn button.</value>
@@ -92,24 +71,6 @@ namespace Narivia.Gui.GuiElements
                 VerticalAlignment = VerticalAlignment.Right
             };
 
-            StatsButton = new GuiButton
-            {
-                Text = "Stats",
-                ForegroundColour = ForegroundColour,
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
-            };
-            RecruitButton = new GuiButton
-            {
-                Text = "Recruit",
-                ForegroundColour = ForegroundColour,
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
-            };
-            BuildButton = new GuiButton
-            {
-                Text = "Build",
-                ForegroundColour = ForegroundColour,
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 3, GameDefines.GUI_TILE_SIZE)
-            };
             TurnButton = new GuiButton
             {
                 Text = "End Turn",
@@ -124,9 +85,6 @@ namespace Narivia.Gui.GuiElements
             Children.Add(factionText);
             Children.Add(turnText);
 
-            Children.Add(StatsButton);
-            Children.Add(RecruitButton);
-            Children.Add(BuildButton);
             Children.Add(TurnButton);
 
             base.LoadContent();
@@ -158,12 +116,6 @@ namespace Narivia.Gui.GuiElements
 
             TurnButton.Location = new Point2D(Location.X + (Size.Width - TurnButton.Size.Width) / 2,
                                               Location.Y + (Size.Height - TurnButton.Size.Height - margins));
-            StatsButton.Location = new Point2D(Location.X + (Size.Width - StatsButton.Size.Width) / 2,
-                                               Location.Y + (Size.Height - StatsButton.Size.Height - RecruitButton.Size.Height - margins) / 2);
-            RecruitButton.Location = new Point2D(Location.X + (Size.Width - RecruitButton.Size.Width - BuildButton.Size.Width - margins * 5) / 2,
-                                                 Location.Y + (Size.Height + StatsButton.Size.Height - RecruitButton.Size.Height + margins) / 2);
-            BuildButton.Location = new Point2D(Location.X + (Size.Width + RecruitButton.Size.Width + margins * 5 - BuildButton.Size.Width) / 2,
-                                               Location.Y + (Size.Height + RecruitButton.Size.Height - BuildButton.Size.Height + margins) / 2);
 
             factionText.Text = game.GetFaction(FactionId).Name;
             factionText.ForegroundColour = ForegroundColour;

@@ -1,20 +1,17 @@
-﻿using System.Collections.Generic;
-
-using NuciXNA.Gui.GuiElements;
+﻿using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input.Enumerations;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
 using Narivia.Audio;
 using Narivia.Gui.GuiElements.Enumerations;
-using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
     /// <summary>
     /// Button GUI element.
     /// </summary>
-    public class GuiButton : GuiElement
+    public class GuiSimpleButton : GuiElement
     {
         /// <summary>
         /// Gets or sets the style.
@@ -23,29 +20,22 @@ namespace Narivia.Gui.GuiElements
         public ButtonStyle Style { get; set; }
 
         /// <summary>
-        /// Gets or sets the size of the button.
-        /// </summary>
-        /// <value>The size of the button.</value>
-        public int ButtonSize => Size.Width / ButtonTileSize;
-
-        public int ButtonTileSize { get; set; }
-
-        /// <summary>
         /// Gets or sets the text.
         /// </summary>
         /// <value>The text.</value>
         public string Text { get; set; }
 
-        List<GuiImage> images;
+        public string ContentFile { get; set; }
+
+        GuiImage image;
         GuiText text;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GuiButton"/> class.
+        /// Initializes a new instance of the <see cref="GuiSimpleButton"/> class.
         /// </summary>
-        public GuiButton()
+        public GuiSimpleButton()
         {
             FontName = "ButtonFont";
-            ButtonTileSize = GameDefines.GUI_TILE_SIZE;
         }
 
         /// <summary>
@@ -53,21 +43,13 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            images = new List<GuiImage>();
+            image = new GuiImage
+            {
+                ContentFile = ContentFile
+            };
             text = new GuiText();
 
-            for (int x = 0; x < ButtonSize; x++)
-            {
-                GuiImage image = new GuiImage
-                {
-                    ContentFile = "Interface/button",
-                    SourceRectangle = CalculateSourceRectangle(x, Style)
-                };
-
-                images.Add(image);
-            }
-
-            Children.AddRange(images);
+            Children.Add(image);
             Children.Add(text);
 
             base.LoadContent();
@@ -77,10 +59,15 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            for (int i = 0; i < images.Count; i++)
+            image.Location = Location;
+
+            if (!Hovered)
             {
-                images[i].Location = new Point2D(Location.X + i * GameDefines.GUI_TILE_SIZE, Location.Y);
-                images[i].SourceRectangle = CalculateSourceRectangle(i, Style);
+                image.SourceRectangle = new Rectangle2D(0, 0, Size.Width, Size.Height);
+            }
+            else
+            {
+                image.SourceRectangle = new Rectangle2D(Size.Width, 0, Size.Width, Size.Height);
             }
 
             text.Text = Text;
@@ -117,32 +104,6 @@ namespace Narivia.Gui.GuiElements
             base.OnMouseMoved(sender, e);
 
             AudioManager.Instance.PlaySound("Interface/select");
-        }
-
-        Rectangle2D CalculateSourceRectangle(int x, ButtonStyle style)
-        {
-            int sx = 1;
-
-            if (ButtonSize == 1)
-            {
-                sx = 3;
-            }
-            else if (x == 0)
-            {
-                sx = 0;
-            }
-            else if (x == ButtonSize - 1)
-            {
-                sx = 2;
-            }
-
-            if (Hovered)
-            {
-                sx += 4;
-            }
-
-            return new Rectangle2D(sx * GameDefines.GUI_TILE_SIZE, (int)style * GameDefines.GUI_TILE_SIZE,
-                                   GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
         }
     }
 }

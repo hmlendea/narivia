@@ -31,6 +31,8 @@ namespace Narivia.Gui.Screens
         /// <value>The game map.</value>
         public GuiWorldmap GameMap { get; set; }
 
+        public GuiAdministrationBar AdministrationBar { get; set; }
+
         /// <summary>
         /// Gets or sets the info bar.
         /// </summary>
@@ -72,10 +74,14 @@ namespace Narivia.Gui.Screens
             string initialWorldId = "narivia";
             string initialFactionId = "f_alpalet";
 
-            InfoBar = new GuiInfoBar
+            AdministrationBar = new GuiAdministrationBar
             {
                 Location = Point2D.Empty,
-                Size = new Size2D(1000, 20),
+            };
+            InfoBar = new GuiInfoBar
+            {
+                Location = new Point2D(130, 0),
+                Size = new Size2D(870, 20),
                 BackgroundColour = Colour.Black
             };
             GameMap = new GuiWorldmap
@@ -138,6 +144,7 @@ namespace Narivia.Gui.Screens
 
             GuiManager.Instance.GuiElements.Add(GameMap);
             GuiManager.Instance.GuiElements.Add(InfoBar);
+            GuiManager.Instance.GuiElements.Add(AdministrationBar);
             GuiManager.Instance.GuiElements.Add(ProvinceBar);
             GuiManager.Instance.GuiElements.Add(SideBar);
             GuiManager.Instance.GuiElements.Add(NotificationBar);
@@ -215,9 +222,9 @@ namespace Narivia.Gui.Screens
             GameMap.Clicked += GameMap_Clicked;
 
             SideBar.TurnButton.Clicked += SideBar_TurnButtonClicked;
-            SideBar.StatsButton.Clicked += SideBar_StatsButtonClicked;
-            SideBar.RecruitButton.Clicked += SideBar_RecruitButtonClicked;
-            SideBar.BuildButton.Clicked += SideBar_BuildButtonClicked;
+            AdministrationBar.BuildButton.Clicked += AdministrationBar_BuildButtonClicked;
+            AdministrationBar.RecruitButton.Clicked += AdministrationBar_RecruitButtonClicked;
+            AdministrationBar.StatsButton.Clicked += AdministrationBar_StatsButtonClicked;
         }
 
         void NextTurn()
@@ -296,7 +303,7 @@ namespace Narivia.Gui.Screens
             NextTurn();
         }
 
-        void SideBar_StatsButtonClicked(object sender, MouseButtonEventArgs e)
+        void AdministrationBar_StatsButtonClicked(object sender, MouseButtonEventArgs e)
         {
             NotificationManager.Instance.ShowNotification(
                 "Statistics",
@@ -308,12 +315,12 @@ namespace Narivia.Gui.Screens
                 new Size2D(256, 160));
         }
 
-        void SideBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)
+        void AdministrationBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)
         {
             recruitmentDialog.Show();
         }
 
-        void SideBar_BuildButtonClicked(object sender, MouseButtonEventArgs e)
+        void AdministrationBar_BuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
             buildDialog.Show();
         }
