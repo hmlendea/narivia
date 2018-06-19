@@ -26,14 +26,12 @@ namespace Narivia.Gui.Screens
 
         GameManager game;
         List<World> worlds;
-        
+
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
-            base.LoadContent();
-
             Links.Add(new GuiMenuLink { Text = "Start", TargetScreen = typeof(GameplayScreen) });
             ListSelectors.Add(new GuiMenuListSelector { Text = "World" });
             ListSelectors.Add(new GuiMenuListSelector { Text = "Faction" });
@@ -55,32 +53,9 @@ namespace Narivia.Gui.Screens
 
             worldSelector.Values.AddRange(worlds.Select(f => f.Name));
             worldSelector.SelectedIndex = 0;
-        }
+            OnWorldSelectorSelectedIndexChanged(this, null); // TODO: This is a hack
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
-
-        /// <summary>
-        /// Update the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// Draw the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
+            base.LoadContent();
         }
 
         void OnWorldSelectorSelectedIndexChanged(object sender, EventArgs e)

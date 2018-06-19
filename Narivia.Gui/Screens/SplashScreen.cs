@@ -108,14 +108,14 @@ namespace Narivia.Gui.Screens
         {
             base.OnKeyPressed(sender, e);
 
-            ScreenManager.Instance.ChangeScreens(typeof(GameplayScreen));
+            ScreenManager.Instance.ChangeScreens(typeof(TitleScreen));
         }
 
         protected override void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
             base.OnMouseButtonPressed(sender, e);
 
-            ScreenManager.Instance.ChangeScreens(typeof(GameplayScreen));
+            ScreenManager.Instance.ChangeScreens(typeof(TitleScreen));
         }
     }
 }

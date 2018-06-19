@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input.Enumerations;
@@ -67,8 +67,8 @@ namespace Narivia.Gui.GuiElements
                 images.Add(image);
             }
 
-            Children.AddRange(images);
-            Children.Add(text);
+            images.ForEach(AddChild);
+            AddChild(text);
 
             base.LoadContent();
         }
@@ -79,14 +79,13 @@ namespace Narivia.Gui.GuiElements
 
             for (int i = 0; i < images.Count; i++)
             {
-                images[i].Location = new Point2D(Location.X + i * GameDefines.GUI_TILE_SIZE, Location.Y);
+                images[i].Location = new Point2D(i * GameDefines.GUI_TILE_SIZE, 0);
                 images[i].SourceRectangle = CalculateSourceRectangle(i, Style);
             }
 
             text.Text = Text;
             text.ForegroundColour = ForegroundColour;
             text.FontName = FontName;
-            text.Location = Location;
             text.Size = Size;
         }
 

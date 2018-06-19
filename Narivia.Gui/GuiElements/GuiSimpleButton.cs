@@ -49,8 +49,8 @@ namespace Narivia.Gui.GuiElements
             };
             text = new GuiText();
 
-            Children.Add(image);
-            Children.Add(text);
+            AddChild(image);
+            AddChild(text);
 
             base.LoadContent();
         }
@@ -58,8 +58,6 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-
-            image.Location = Location;
 
             if (!Hovered)
             {
@@ -73,7 +71,6 @@ namespace Narivia.Gui.GuiElements
             text.Text = Text;
             text.ForegroundColour = ForegroundColour;
             text.FontName = FontName;
-            text.Location = Location;
             text.Size = Size;
         }
 

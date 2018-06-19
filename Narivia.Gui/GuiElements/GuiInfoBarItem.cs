@@ -58,9 +58,9 @@ namespace Narivia.Gui.GuiElements
                 VerticalAlignment = VerticalAlignment.Left
             };
 
-            Children.Add(icon);
-            Children.Add(text);
-            
+            AddChild(icon);
+            AddChild(text);
+
             base.LoadContent();
         }
 

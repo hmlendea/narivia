@@ -94,15 +94,15 @@ namespace Narivia.Gui.GuiElements
 
             ProvinceId = game.GetFactionProvinces(game.PlayerFactionId).First().Id;
 
-            Children.Add(background);
+            AddChild(background);
 
-            Children.Add(provinceNameBackground);
-            Children.Add(provinceNameBackgroundDecor);
-            Children.Add(provinceNameText);
-            Children.Add(factionFlag);
+            AddChild(provinceNameBackground);
+            AddChild(provinceNameBackgroundDecor);
+            AddChild(provinceNameText);
+            AddChild(factionFlag);
 
-            Children.Add(resourceImage);
-            Children.Add(resourceText);
+            AddChild(resourceImage);
+            AddChild(resourceText);
 
             base.LoadContent();
         }
@@ -136,16 +136,18 @@ namespace Narivia.Gui.GuiElements
                 {
                     ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic",
                     SourceRectangle = new Rectangle2D(64 * ((int)holding.Type - 1), 0, 64, 64),
-                    Location = new Point2D(Location.X + GameDefines.GUI_SPACING * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
-                                           Location.Y + Size.Height - 64)
+                    Location = new Point2D(
+                        GameDefines.GUI_SPACING * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
+                        Size.Height - 64)
                 };
 
                 GuiText holdingText = new GuiText
                 {
-                    Location = new Point2D(holdingImage.Location.X - GameDefines.GUI_SPACING, Location.Y + 2),
+                    Location = new Point2D(holdingImage.Location.X - GameDefines.GUI_SPACING, 2),
                     Text = holding.Name,
-                    Size = new Size2D(holdingImage.SourceRectangle.Width + GameDefines.GUI_SPACING * 2,
-                                      Size.Height - holdingImage.SourceRectangle.Height + 10),
+                    Size = new Size2D(
+                        holdingImage.SourceRectangle.Width + GameDefines.GUI_SPACING * 2,
+                        Size.Height - holdingImage.SourceRectangle.Height + 10),
                     FontName = "ProvinceBarHoldingFont",
                     ForegroundColour = Colour.Black,
                     HorizontalAlignment = HorizontalAlignment.Top
@@ -153,11 +155,11 @@ namespace Narivia.Gui.GuiElements
 
                 holdingTexts.Add(holdingText);
                 holdingText.LoadContent();
-                Children.Add(holdingText);
+                AddChild(holdingText);
 
                 holdingImages.Add(holdingImage);
                 holdingImage.LoadContent();
-                Children.Add(holdingImage);
+                AddChild(holdingImage);
             }
         }
 
@@ -173,22 +175,21 @@ namespace Narivia.Gui.GuiElements
 
         protected override void SetChildrenProperties()
         {
-            background.Location = Location;
             background.Size = Size;
 
-            provinceNameBackground.Location = new Point2D(Location.X + (Size.Width - provinceNameText.ClientRectangle.Width) / 2,
-                                                        Location.Y - provinceNameText.ClientRectangle.Height + (int)(provinceNameBackground.Size.Height * 0.1f));
+            provinceNameBackground.Location = new Point2D(
+                (Size.Width - provinceNameText.ClientRectangle.Width) / 2,
+                -provinceNameText.ClientRectangle.Height + (int)(provinceNameBackground.Size.Height * 0.1f));
             provinceNameBackgroundDecor.Location = provinceNameBackground.Location;
             provinceNameText.Location = provinceNameBackground.Location;
             provinceNameText.ForegroundColour = ForegroundColour;
 
-            factionFlag.Location = new Point2D(provinceNameBackground.Location.X - factionFlag.ClientRectangle.Width / 2,
-                                               provinceNameBackground.Location.Y);
-            resourceImage.Location = new Point2D(Location.X + GameDefines.GUI_SPACING,
-                                                 Location.Y + Size.Height - 64);
-            resourceText.Location = new Point2D(Location.X, Location.Y + 2);
-            resourceText.Size = new Size2D(64 + GameDefines.GUI_SPACING * 2,
-                                           Size.Height - 74);
+            factionFlag.Location = new Point2D(
+                provinceNameBackground.Location.X - factionFlag.ClientRectangle.Width / 2,
+                provinceNameBackground.Location.Y);
+            resourceImage.Location = new Point2D(GameDefines.GUI_SPACING, Size.Height - 64);
+            resourceText.Location = new Point2D(0, 2);
+            resourceText.Size = new Size2D(64 + GameDefines.GUI_SPACING * 2, Size.Height - 74);
 
             if (string.IsNullOrWhiteSpace(ProvinceId))
             {

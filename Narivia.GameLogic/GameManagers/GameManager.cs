@@ -65,33 +65,30 @@ namespace Narivia.GameLogic.GameManagers
 
         public GameManager(string worldId)
         {
-            Faction playerFaction = GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION).GetRandomElement();
-
             WorldId = worldId;
-            PlayerFactionId = playerFaction.Id;
         }
 
         public GameManager(string worldId, string playerFactionId)
+            : this(worldId)
         {
-            WorldId = worldId;
             PlayerFactionId = playerFactionId;
+        }
 
+        public void LoadContent()
+        {
             worldManager = new WorldManager(WorldId);
             diplomacyManager = new DiplomacyManager(worldManager);
             holdingManager = new HoldingManager(WorldId, worldManager);
             militaryManager = new MilitaryManager(holdingManager, worldManager);
             economyManager = new EconomyManager(holdingManager, militaryManager, worldManager);
             attackManager = new AttackManager(diplomacyManager, holdingManager, militaryManager, worldManager);
-        }
 
-        public void LoadContent()
-        {
             worldManager.LoadContent();
             diplomacyManager.LoadContent();
             holdingManager.LoadContent();
             militaryManager.LoadContent();
             economyManager.LoadContent();
-            
+
             foreach (Province province in worldManager.GetProvinces())
             {
                 worldManager.InitialiseProvince(province.Id);

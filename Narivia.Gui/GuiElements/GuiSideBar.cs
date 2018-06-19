@@ -79,13 +79,13 @@ namespace Narivia.Gui.GuiElements
                 Style = ButtonStyle.Narivian
             };
 
-            Children.Add(background);
-            Children.Add(factionImage);
+            AddChild(background);
+            AddChild(factionImage);
 
-            Children.Add(factionText);
-            Children.Add(turnText);
+            AddChild(factionText);
+            AddChild(turnText);
 
-            Children.Add(TurnButton);
+            AddChild(TurnButton);
 
             base.LoadContent();
         }
@@ -104,18 +104,18 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            background.Location = Location;
             background.Size = Size;
 
-            factionText.Location = new Point2D(Location.X + margins, Location.Y + margins);
-            turnText.Location = new Point2D(Location.X + Size.Width - turnText.ClientRectangle.Width - margins,
-                                            Location.Y + margins);
+            factionText.Location = new Point2D(margins, margins);
+            turnText.Location = new Point2D(Size.Width - turnText.ClientRectangle.Width - margins, margins);
 
-            factionImage.Location = new Point2D(Location.X + (Size.Width - factionImage.ClientRectangle.Width) / 2,
-                                                Location.Y + factionText.ClientRectangle.Bottom + margins);
+            factionImage.Location = new Point2D(
+                (Size.Width - factionImage.ClientRectangle.Width) / 2,
+                factionText.ClientRectangle.Bottom + margins);
 
-            TurnButton.Location = new Point2D(Location.X + (Size.Width - TurnButton.Size.Width) / 2,
-                                              Location.Y + (Size.Height - TurnButton.Size.Height - margins));
+            TurnButton.Location = new Point2D(
+                (Size.Width - TurnButton.Size.Width) / 2,
+                (Size.Height - TurnButton.Size.Height - margins));
 
             factionText.Text = game.GetFaction(FactionId).Name;
             factionText.ForegroundColour = ForegroundColour;

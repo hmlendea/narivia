@@ -99,12 +99,13 @@ namespace Narivia.Gui.GuiElements
                     images[x, y] = new GuiImage
                     {
                         ContentFile = imagePath,
-                        Location = new Point2D(Location.X + x * GameDefines.GUI_TILE_SIZE,
-                                               Location.Y + y * GameDefines.GUI_TILE_SIZE),
+                        Location = new Point2D(
+                            x * GameDefines.GUI_TILE_SIZE,
+                            y * GameDefines.GUI_TILE_SIZE),
                         SourceRectangle = CalculateSourceRectangle(x, y)
                     };
 
-                    Children.Add(images[x, y]);
+                    AddChild(images[x, y]);
                 }
             }
 
@@ -112,7 +113,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "Interface/notification_controls",
                 SourceRectangle = new Rectangle2D(0, 0, GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
-                Location = new Point2D(Location.X + (NotificationSize.Width - 1) * GameDefines.GUI_TILE_SIZE, Location.Y)
+                Location = new Point2D((NotificationSize.Width - 1) * GameDefines.GUI_TILE_SIZE, 0)
             };
 
             if (Type == NotificationType.Interogative)
@@ -120,17 +121,17 @@ namespace Narivia.Gui.GuiElements
                 noButtonImage = new GuiImage
                 {
                     ContentFile = "Interface/notification_controls",
-                    SourceRectangle = new Rectangle2D(GameDefines.GUI_TILE_SIZE, 0,
-                                                      GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE),
-                    Location = new Point2D(Location.X, Location.Y)
+                    SourceRectangle = new Rectangle2D(
+                        GameDefines.GUI_TILE_SIZE, 0,
+                        GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
                 };
 
-                Children.Add(noButtonImage);
+                AddChild(noButtonImage);
             }
 
-            Children.Add(title);
-            Children.Add(text);
-            Children.Add(yesButtonImage);
+            AddChild(title);
+            AddChild(text);
+            AddChild(yesButtonImage);
 
             base.LoadContent();
         }
@@ -155,15 +156,19 @@ namespace Narivia.Gui.GuiElements
 
             title.Text = Title;
             title.ForegroundColour = ForegroundColour;
-            title.Location = new Point2D(Location.X, Location.Y + GameDefines.GUI_TILE_SIZE);
-            title.Size = new Size2D(NotificationSize.Width * GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
+            title.Location = new Point2D(0, GameDefines.GUI_TILE_SIZE);
+            title.Size = new Size2D(
+                NotificationSize.Width * GameDefines.GUI_TILE_SIZE,
+                GameDefines.GUI_TILE_SIZE);
 
             text.Text = Text;
             text.ForegroundColour = ForegroundColour;
-            text.Location = new Point2D(Location.X + GameDefines.GUI_TILE_SIZE / 2,
-                                        Location.Y + (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
-            text.Size = new Size2D(Size.Width - GameDefines.GUI_TILE_SIZE,
-                                   Size.Height - title.Size.Height - (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
+            text.Location = new Point2D(
+                GameDefines.GUI_TILE_SIZE / 2,
+                (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
+            text.Size = new Size2D(
+                Size.Width - GameDefines.GUI_TILE_SIZE,
+                Size.Height - title.Size.Height - (int)(GameDefines.GUI_TILE_SIZE * 1.5f));
         }
 
         Rectangle2D CalculateSourceRectangle(int x, int y)
@@ -197,8 +202,9 @@ namespace Narivia.Gui.GuiElements
                 sy = 2;
             }
 
-            return new Rectangle2D(sx * GameDefines.GUI_TILE_SIZE, sy * GameDefines.GUI_TILE_SIZE,
-                                   GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
+            return new Rectangle2D(
+                sx * GameDefines.GUI_TILE_SIZE, sy * GameDefines.GUI_TILE_SIZE,
+                GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
         }
 
         void OnYesButtonClicked(object sender, MouseButtonEventArgs e)

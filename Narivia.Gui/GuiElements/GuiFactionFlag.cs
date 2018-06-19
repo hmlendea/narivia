@@ -1,4 +1,4 @@
-﻿using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 
 namespace Narivia.Gui.GuiElements
@@ -90,11 +90,11 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = Rectangle2D.Empty
             };
 
-            Children.Add(backgroundImage);
-            Children.Add(layer1Image);
-            Children.Add(layer2Image);
-            Children.Add(emblemImage);
-            Children.Add(skinImage);
+            AddChild(backgroundImage);
+            AddChild(layer1Image);
+            AddChild(layer2Image);
+            AddChild(emblemImage);
+            AddChild(skinImage);
 
             base.LoadContent();
         }
@@ -106,29 +106,24 @@ namespace Narivia.Gui.GuiElements
             backgroundImage.ContentFile = $"Interface/Flags/Skins/{Skin}_mask";
             backgroundImage.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
             backgroundImage.TintColour = BackgroundColour;
-            backgroundImage.Location = Location;
             backgroundImage.Size = Size;
 
             layer1Image.ContentFile = $"Interface/Flags/Layers/{Layer1}";
             layer1Image.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
             layer1Image.TintColour = Layer1Colour;
-            layer1Image.Location = Location;
             layer1Image.Size = Size;
 
             layer2Image.ContentFile = $"Interface/Flags/Layers/{Layer2}";
             layer2Image.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
             layer2Image.TintColour = Layer2Colour;
-            layer2Image.Location = Location;
             layer2Image.Size = Size;
 
             emblemImage.ContentFile = $"Interface/Flags/Emblems/{Emblem}";
             emblemImage.MaskFile = backgroundImage.MaskFile;
             emblemImage.TintColour = EmblemColour;
-            emblemImage.Location = Location;
             emblemImage.Size = Size;
 
             skinImage.ContentFile = $"Interface/Flags/Skins/{Skin}";
-            skinImage.Location = Location;
             skinImage.Size = Size;
         }
     }

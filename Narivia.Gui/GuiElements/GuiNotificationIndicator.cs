@@ -40,8 +40,8 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = CalculateIconSourceRectangle(Icon)
             };
 
-            Children.Add(background);
-            Children.Add(icon);
+            AddChild(background);
+            AddChild(icon);
 
             base.LoadContent();
         }

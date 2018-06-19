@@ -130,17 +130,17 @@ namespace Narivia.Gui.GuiElements
                 Visible = false
             };
 
-            Children.Add(background);
+            AddChild(background);
 
-            Children.Add(provincesItem);
-            Children.Add(holdingsItem);
-            Children.Add(wealthItem);
-            Children.Add(troopsItem);
-            
-            Children.Add(provincesTooltip);
-            Children.Add(holdingsTooltip);
-            Children.Add(wealthTooltip);
-            Children.Add(troopsTooltip);
+            AddChild(provincesItem);
+            AddChild(holdingsItem);
+            AddChild(wealthItem);
+            AddChild(troopsItem);
+
+            AddChild(provincesTooltip);
+            AddChild(holdingsTooltip);
+            AddChild(wealthTooltip);
+            AddChild(troopsTooltip);
 
             holdingsItem.MouseEntered += OnHoldingsMouseEntered;
             holdingsItem.MouseLeft += OnHoldingsMouseLeft;
@@ -178,12 +178,11 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            background.Location = Location;
             background.Size = Size;
             background.TintColour = BackgroundColour;
 
             provincesItem.ForegroundColour = ForegroundColour;
-            provincesItem.Location = new Point2D(Location.X + Spacing, Location.Y + (Size.Height - provincesItem.ClientRectangle.Height) / 2);
+            provincesItem.Location = new Point2D(Spacing, (Size.Height - provincesItem.ClientRectangle.Height) / 2);
             provincesItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             provincesItem.Text = Provinces.ToString();
 
@@ -206,7 +205,7 @@ namespace Narivia.Gui.GuiElements
             holdingsTooltip.Location = new Point2D(holdingsItem.Location.X, ClientRectangle.Bottom);
             wealthTooltip.Location = new Point2D(wealthItem.Location.X, ClientRectangle.Bottom);
             troopsTooltip.Location = new Point2D(troopsItem.Location.X, ClientRectangle.Bottom);
-            
+
             troopsTooltip.Text = string.Empty;
 
             if (Troops != null && Troops.Count > 0)

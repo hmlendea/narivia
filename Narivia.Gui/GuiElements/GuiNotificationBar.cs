@@ -35,7 +35,7 @@ namespace Narivia.Gui.GuiElements
             };
 
             notificationButton.LoadContent();
-            Children.Add(notificationButton);
+            AddChild(notificationButton);
 
             return notificationButton;
         }
