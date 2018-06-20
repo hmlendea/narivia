@@ -44,6 +44,7 @@ namespace Narivia.Gui.GuiElements
         public GuiInfoBarItem()
         {
             Spacing = GameDefines.GuiSpacing;
+            ForegroundColour = Colour.Gold;
         }
 
         /// <summary>

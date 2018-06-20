@@ -76,31 +76,36 @@ namespace Narivia.Gui.GuiElements
             provinceNameText = new GuiText
             {
                 FontName = "SideBarFont", // TODO: Consider providing a dedicated font
-                Size = new Size2D(provinceNameBackground.SourceRectangle.Width,
-                                  provinceNameBackground.SourceRectangle.Height),
+                Size = new Size2D(
+                    provinceNameBackground.SourceRectangle.Width,
+                    provinceNameBackground.SourceRectangle.Height),
                 FontOutline = FontOutline.Around
             };
             factionFlag = new GuiFactionFlag
             {
-                Size = new Size2D(provinceNameBackground.Size.Height,
-                                  provinceNameBackground.Size.Height)
+                Size = new Size2D(
+                    provinceNameBackground.Size.Height,
+                    provinceNameBackground.Size.Height)
             };
 
             resourceImage = new GuiImage
             {
-                SourceRectangle = new Rectangle2D(0, 0, 64, 64)
+                SourceRectangle = new Rectangle2D(0, 0, 64, 64),
+                Location = new Point2D(GameDefines.GuiSpacing, Size.Height - 64),
+                Size = new Size2D(64, 64)
             };
             resourceText = new GuiText
             {
                 FontName = "ProvinceBarHoldingFont",
                 ForegroundColour = Colour.Black,
-                HorizontalAlignment = HorizontalAlignment.Top
+                HorizontalAlignment = HorizontalAlignment.Top,
+                Location = new Point2D(0, 2),
+                Size = new Size2D(64 + GameDefines.GuiSpacing * 2, Size.Height - 74)
             };
 
             ProvinceId = game.GetFactionProvinces(game.PlayerFactionId).First().Id;
 
             AddChild(background);
-
             AddChild(provinceNameBackground);
             AddChild(provinceNameBackgroundDecor);
             AddChild(provinceNameText);
@@ -177,14 +182,10 @@ namespace Narivia.Gui.GuiElements
                 -provinceNameText.ClientRectangle.Height + (int)(provinceNameBackground.Size.Height * 0.1f));
             provinceNameBackgroundDecor.Location = provinceNameBackground.Location;
             provinceNameText.Location = provinceNameBackground.Location;
-            provinceNameText.ForegroundColour = ForegroundColour;
 
             factionFlag.Location = new Point2D(
                 provinceNameBackground.Location.X - factionFlag.ClientRectangle.Width / 2,
                 provinceNameBackground.Location.Y);
-            resourceImage.Location = new Point2D(GameDefines.GuiSpacing, Size.Height - 64);
-            resourceText.Location = new Point2D(0, 2);
-            resourceText.Size = new Size2D(64 + GameDefines.GuiSpacing * 2, Size.Height - 74);
 
             if (string.IsNullOrWhiteSpace(ProvinceId))
             {

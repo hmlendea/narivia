@@ -61,7 +61,8 @@ namespace Narivia.Gui.GuiElements
                 GuiImage image = new GuiImage
                 {
                     ContentFile = "Interface/button",
-                    SourceRectangle = CalculateSourceRectangle(x, Style)
+                    SourceRectangle = CalculateSourceRectangle(x, Style),
+                    Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
                 };
 
                 images.Add(image);
@@ -84,8 +85,6 @@ namespace Narivia.Gui.GuiElements
             }
 
             text.Text = Text;
-            text.ForegroundColour = ForegroundColour;
-            text.FontName = FontName;
             text.Size = Size;
         }
 
@@ -140,8 +139,9 @@ namespace Narivia.Gui.GuiElements
                 sx += 4;
             }
 
-            return new Rectangle2D(sx * GameDefines.GuiTileSize, (int)style * GameDefines.GuiTileSize,
-                                   GameDefines.GuiTileSize, GameDefines.GuiTileSize);
+            return new Rectangle2D(
+                sx * GameDefines.GuiTileSize, (int)style * GameDefines.GuiTileSize,
+                GameDefines.GuiTileSize, GameDefines.GuiTileSize);
         }
     }
 }

@@ -50,6 +50,7 @@ namespace Narivia.Gui.GuiElements
         public GuiBuildingDialog(IGameManager game)
         {
             this.game = game;
+            ForegroundColour = Colour.Gold;
         }
 
         /// <summary>
@@ -72,7 +73,8 @@ namespace Narivia.Gui.GuiElements
             };
             holdingImage = new GuiImage
             {
-                ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic"
+                ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic",
+                Size = new Size2D(64, 64)
             };
 
             holdingText = new GuiText
@@ -89,7 +91,8 @@ namespace Narivia.Gui.GuiElements
             priceIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(16, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(16, 0, 16, 16),
+                Size = new Size2D(16, 16)
             };
             priceText = new GuiText
             {
@@ -213,12 +216,10 @@ namespace Narivia.Gui.GuiElements
                 holdingBackground.Location.X + (holdingBackground.Size.Width - holdingImage.SourceRectangle.Width) / 2,
                 holdingBackground.Location.Y + (holdingBackground.Size.Height - holdingImage.SourceRectangle.Height) / 2);
             holdingImage.SourceRectangle = new Rectangle2D(64 * currentHoldingTypeIndex, 0, 64, 64);
-
-            holdingText.ForegroundColour = ForegroundColour;
+            
             holdingText.Location = holdingBackground.Location;
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
-
-            provinceText.ForegroundColour = ForegroundColour;
+            
             provinceText.Location = new Point2D(
                 holdingBackground.ClientRectangle.Left,
                 holdingBackground.ClientRectangle.Bottom - provinceText.ClientRectangle.Height);
@@ -226,37 +227,30 @@ namespace Narivia.Gui.GuiElements
             priceIcon.Location = new Point2D(
                 holdingBackground.ClientRectangle.Left,
                 holdingBackground.ClientRectangle.Bottom + GameDefines.GuiSpacing);
-
-            priceText.ForegroundColour = ForegroundColour;
+            
             priceText.Location = new Point2D(priceIcon.ClientRectangle.Right + GameDefines.GuiSpacing, priceIcon.ClientRectangle.Top);
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
-
-            previousHoldingButton.ForegroundColour = ForegroundColour;
+            
             previousHoldingButton.Location = new Point2D(
                 holdingBackground.ClientRectangle.Left - previousHoldingButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Top);
-
-            nextHoldingButton.ForegroundColour = ForegroundColour;
+            
             nextHoldingButton.Location = new Point2D(
                 holdingBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Top);
-
-            previouseProvinceButton.ForegroundColour = ForegroundColour;
+            
             previouseProvinceButton.Location = new Point2D(
                 holdingBackground.ClientRectangle.Left - previouseProvinceButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Bottom - previouseProvinceButton.ClientRectangle.Height);
-
-            nextProvinceButton.ForegroundColour = ForegroundColour;
+            
             nextProvinceButton.Location = new Point2D(
                 holdingBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Bottom - nextProvinceButton.ClientRectangle.Height);
-
-            buildButton.ForegroundColour = ForegroundColour;
+            
             buildButton.Location = new Point2D(
                 GameDefines.GuiSpacing,
                 Size.Height - buildButton.Size.Height - GameDefines.GuiSpacing);
-
-            cancelButton.ForegroundColour = ForegroundColour;
+;
             cancelButton.Location = new Point2D(
                 Size.Width - cancelButton.Size.Width - GameDefines.GuiSpacing,
                 Size.Height - buildButton.Size.Height - GameDefines.GuiSpacing);

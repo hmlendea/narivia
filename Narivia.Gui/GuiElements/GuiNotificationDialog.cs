@@ -107,7 +107,8 @@ namespace Narivia.Gui.GuiElements
                         Location = new Point2D(
                             x * GameDefines.GuiTileSize,
                             y * GameDefines.GuiTileSize),
-                        SourceRectangle = CalculateSourceRectangle(x, y)
+                        SourceRectangle = CalculateSourceRectangle(x, y),
+                        Size = new Size2D(32, 32)
                     };
 
                     AddChild(images[x, y]);
@@ -118,7 +119,8 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "Interface/notification_controls",
                 SourceRectangle = new Rectangle2D(0, 0, GameDefines.GuiTileSize, GameDefines.GuiTileSize),
-                Location = new Point2D((NotificationSize.Width - 1) * GameDefines.GuiTileSize, 0)
+                Location = new Point2D((NotificationSize.Width - 1) * GameDefines.GuiTileSize, 0),
+                Size = new Size2D(32, 32)
             };
 
             if (Type == NotificationType.Interogative)
@@ -160,13 +162,11 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             title.Text = Title;
-            title.ForegroundColour = ForegroundColour;
             title.Size = new Size2D(
                 NotificationSize.Width * GameDefines.GuiTileSize,
                 GameDefines.GuiTileSize);
 
             text.Text = Text;
-            text.ForegroundColour = ForegroundColour;
             text.Size = new Size2D(
                 Size.Width - GameDefines.GuiTileSize,
                 Size.Height - title.Size.Height - (int)(GameDefines.GuiTileSize * 1.5f));

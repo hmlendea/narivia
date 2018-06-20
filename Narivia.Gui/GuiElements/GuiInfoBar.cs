@@ -177,26 +177,21 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-
-            background.Size = Size;
+            
             background.TintColour = BackgroundColour;
-
-            provincesItem.ForegroundColour = ForegroundColour;
+            
             provincesItem.Location = new Point2D(Spacing, (Size.Height - provincesItem.ClientRectangle.Height) / 2);
             provincesItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             provincesItem.Text = Provinces.ToString();
-
-            holdingsItem.ForegroundColour = ForegroundColour;
+            
             holdingsItem.Location = new Point2D(provincesItem.ClientRectangle.Right + Spacing, provincesItem.Location.Y);
             holdingsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             holdingsItem.Text = Holdings.ToString();
-
-            wealthItem.ForegroundColour = ForegroundColour;
+            
             wealthItem.Location = new Point2D(holdingsItem.ClientRectangle.Right + Spacing, holdingsItem.Location.Y);
             wealthItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             wealthItem.Text = Wealth.ToString();
-
-            troopsItem.ForegroundColour = ForegroundColour;
+            
             troopsItem.Location = new Point2D(wealthItem.ClientRectangle.Right + Spacing, wealthItem.Location.Y);
             troopsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
             troopsItem.Text = "0";

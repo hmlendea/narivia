@@ -69,9 +69,6 @@ namespace Narivia.Gui.GuiElements
             }
 
             text.Text = Text;
-            text.ForegroundColour = ForegroundColour;
-            text.FontName = FontName;
-            text.Size = Size;
         }
 
         /// <summary>

@@ -69,25 +69,20 @@ namespace Narivia.Gui.GuiElements
             backgroundImage.ContentFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
             backgroundImage.MaskFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
             backgroundImage.TintColour = Flag.BackgroundColour.ToColour();
-            backgroundImage.Size = Size;
 
             layer1Image.ContentFile = $"Interface/Flags/Layers/{Flag.Layer1}";
             layer1Image.MaskFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
             layer1Image.TintColour = Flag.Layer1Colour.ToColour();
-            layer1Image.Size = Size;
 
             layer2Image.ContentFile = $"Interface/Flags/Layers/{Flag.Layer2}";
             layer2Image.MaskFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
             layer2Image.TintColour = Flag.Layer2Colour.ToColour();
-            layer2Image.Size = Size;
 
             emblemImage.ContentFile = $"Interface/Flags/Emblems/{Flag.Emblem}";
             emblemImage.MaskFile = backgroundImage.MaskFile;
             emblemImage.TintColour = Flag.EmblemColour.ToColour();
-            emblemImage.Size = Size;
 
             skinImage.ContentFile = $"Interface/Flags/Skins/{Flag.Skin}";
-            skinImage.Size = Size;
         }
     }
 }

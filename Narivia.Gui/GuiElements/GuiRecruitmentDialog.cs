@@ -51,6 +51,7 @@ namespace Narivia.Gui.GuiElements
         public GuiRecruitmentDialog(IGameManager game)
         {
             this.game = game;
+            ForegroundColour = Colour.Gold;
         }
 
         /// <summary>
@@ -74,7 +75,8 @@ namespace Narivia.Gui.GuiElements
             unitImage = new GuiImage
             {
                 ContentFile = $"World/Assets/{game.GetWorld().Id}/units/{units[currentUnitIndex].Id}",
-                SourceRectangle = new Rectangle2D(0, 0, 64, 64)
+                SourceRectangle = new Rectangle2D(0, 0, 64, 64),
+                Size = new Size2D(64, 64)
             };
 
             unitText = new GuiText
@@ -86,22 +88,26 @@ namespace Narivia.Gui.GuiElements
             healthIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(64, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(64, 0, 16, 16),
+                Size = new Size2D(16, 16)
             };
             powerIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(80, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(80, 0, 16, 16),
+                Size = new Size2D(16, 16)
             };
             priceIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(16, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(16, 0, 16, 16),
+                Size = new Size2D(16, 16)
             };
             maintenanceIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(96, 0, 16, 16)
+                SourceRectangle = new Rectangle2D(96, 0, 16, 16),
+                Size = new Size2D(16, 16)
             };
 
             healthText = new GuiText
@@ -221,19 +227,18 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Size = Size;
-
-            unitBackground.ForegroundColour = ForegroundColour;
+            
             unitBackground.Location = new Point2D(
                 (Size.Width - unitBackground.Size.Width) / 2,
                 unitText.Size.Height + GameDefines.GuiSpacing);
 
             unitText.Location = unitBackground.Location;
             unitText.Text = units[currentUnitIndex].Name;
-            unitText.ForegroundColour = ForegroundColour;
 
-            troopsText.Location = new Point2D(unitBackground.ClientRectangle.Left, unitBackground.ClientRectangle.Bottom - troopsText.ClientRectangle.Height);
+            troopsText.Location = new Point2D(
+                unitBackground.ClientRectangle.Left,
+                unitBackground.ClientRectangle.Bottom - troopsText.ClientRectangle.Height);
             troopsText.Text = $"x{troopsAmount}";
-            troopsText.ForegroundColour = ForegroundColour;
 
             healthIcon.Location = new Point2D(
                 unitBackground.ClientRectangle.Left,
@@ -247,58 +252,48 @@ namespace Narivia.Gui.GuiElements
             maintenanceIcon.Location = new Point2D(
                 priceIcon.ClientRectangle.Left,
                 priceIcon.ClientRectangle.Bottom + GameDefines.GuiSpacing);
-
-            healthText.ForegroundColour = ForegroundColour;
+            
             healthText.Location = new Point2D(
                 healthIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                 healthIcon.ClientRectangle.Top);
             healthText.Text = units[currentUnitIndex].Health.ToString();
-
-            powerText.ForegroundColour = ForegroundColour;
+            
             powerText.Location = new Point2D(
                 powerIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                 powerIcon.ClientRectangle.Top);
             powerText.Text = units[currentUnitIndex].Power.ToString();
-
-            priceText.ForegroundColour = ForegroundColour;
+            
             priceText.Location = new Point2D(
                 priceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                 priceIcon.ClientRectangle.Top);
             priceText.Text = units[currentUnitIndex].Price.ToString();
-
-            maintenanceText.ForegroundColour = ForegroundColour;
+            
             maintenanceText.Location = new Point2D(
                 maintenanceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                 maintenanceIcon.ClientRectangle.Top);
             maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
-
-            previousUnitButton.ForegroundColour = ForegroundColour;
+            
             previousUnitButton.Location = new Point2D(
                 unitBackground.ClientRectangle.Left - previousUnitButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 unitBackground.ClientRectangle.Top);
-
-            nextUnitButton.ForegroundColour = ForegroundColour;
+            
             nextUnitButton.Location = new Point2D(
                 unitBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 unitBackground.ClientRectangle.Top);
-
-            addUnitButton.ForegroundColour = ForegroundColour;
+            
             addUnitButton.Location = new Point2D(
                 unitBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 unitBackground.ClientRectangle.Bottom - addUnitButton.ClientRectangle.Height);
-
-            substractUnitButton.ForegroundColour = ForegroundColour;
+            
             substractUnitButton.Location = new Point2D(
                 unitBackground.ClientRectangle.Left - substractUnitButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 unitBackground.ClientRectangle.Bottom - substractUnitButton.ClientRectangle.Height);
-
-            recruitButton.ForegroundColour = ForegroundColour;
+            
             recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
             recruitButton.Location = new Point2D(
                 GameDefines.GuiSpacing,
                 Size.Height - recruitButton.Size.Height - GameDefines.GuiSpacing);
-
-            cancelButton.ForegroundColour = ForegroundColour;
+            
             cancelButton.Location = new Point2D(
                 Size.Width - cancelButton.Size.Width - GameDefines.GuiSpacing,
                 Size.Height - recruitButton.Size.Height - GameDefines.GuiSpacing);

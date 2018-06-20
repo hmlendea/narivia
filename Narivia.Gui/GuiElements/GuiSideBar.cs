@@ -100,8 +100,6 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-
-            background.Size = Size;
             
             turnText.Location = new Point2D(Size.Width - turnText.ClientRectangle.Width - margins, margins);
 
@@ -110,12 +108,10 @@ namespace Narivia.Gui.GuiElements
                 factionText.ClientRectangle.Bottom + margins);
 
             factionText.Text = game.GetFaction(FactionId).Name;
-            factionText.ForegroundColour = ForegroundColour;
             
             factionImage.Flag = game.GetFactionFlag(FactionId);
 
             turnText.Text = $"Turn: {game.Turn}";
-            turnText.ForegroundColour = ForegroundColour;
         }
     }
 }

@@ -76,8 +76,7 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = new Rectangle2D(
                     GameDefines.MapTileSize, GameDefines.MapTileSize * 3,
                     GameDefines.MapTileSize, GameDefines.MapTileSize),
-                Tint = Colour.White,
-                Opacity = 1.0f
+                Tint = Colour.White
             };
 
             selectedProvinceHighlight = new Sprite
@@ -86,8 +85,7 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = new Rectangle2D(
                     0, GameDefines.MapTileSize * 3,
                     GameDefines.MapTileSize, GameDefines.MapTileSize),
-                Tint = Colour.White,
-                Opacity = 1.0f
+                Tint = Colour.White
             };
 
             factionBorder = new Sprite
@@ -96,8 +94,7 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = new Rectangle2D(
                     0, GameDefines.MapTileSize,
                     GameDefines.MapTileSize, GameDefines.MapTileSize),
-                Tint = Colour.Blue,
-                Opacity = 1.0f
+                Tint = Colour.Blue
             };
 
             camera.LoadContent();

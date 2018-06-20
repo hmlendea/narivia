@@ -48,13 +48,6 @@ namespace Narivia.Gui.GuiElements
             base.LoadContent();
         }
 
-        protected override void SetChildrenProperties()
-        {
-            base.SetChildrenProperties();
-
-            background.Location = Location;
-        }
-
         Rectangle2D CalculateIconSourceRectangle(NotificationIcon notificationIcon)
         {
             return new Rectangle2D((int)notificationIcon % 8 * 20,
