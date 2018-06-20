@@ -1,5 +1,8 @@
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
+using NuciXNA.Primitives.Mapping;
+
+using Narivia.Models;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -8,47 +11,7 @@ namespace Narivia.Gui.GuiElements
     /// </summary>
     public class GuiFactionFlag : GuiElement
     {
-        /// <summary>
-        /// Gets or sets the first layer.
-        /// </summary>
-        /// <value>The first layer.</value>
-        public string Layer1 { get; set; }
-
-        /// <summary>
-        /// Gets or sets the second layer.
-        /// </summary>
-        /// <value>The second layer.</value>
-        public string Layer2 { get; set; }
-
-        /// <summary>
-        /// Gets or sets the emblem.
-        /// </summary>
-        /// <value>The emblem.</value>
-        public string Emblem { get; set; }
-
-        /// <summary>
-        /// Gets or sets the skin.
-        /// </summary>
-        /// <value>The skin.</value>
-        public string Skin { get; set; }
-
-        /// <summary>
-        /// Gets or sets the first layer's colour.
-        /// </summary>
-        /// <value>The first layer's colour.</value>
-        public Colour Layer1Colour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the second layer's colour.
-        /// </summary>
-        /// <value>The second layer's colour.</value>
-        public Colour Layer2Colour { get; set; }
-
-        /// <summary>
-        /// Gets or sets the emblem colour.
-        /// </summary>
-        /// <value>The emblem colour.</value>
-        public Colour EmblemColour { get; set; }
+        public Flag Flag { get; set; }
 
         GuiImage backgroundImage;
         GuiImage layer1Image;
@@ -103,27 +66,27 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            backgroundImage.ContentFile = $"Interface/Flags/Skins/{Skin}_mask";
-            backgroundImage.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
-            backgroundImage.TintColour = BackgroundColour;
+            backgroundImage.ContentFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
+            backgroundImage.MaskFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
+            backgroundImage.TintColour = Flag.BackgroundColour.ToColour();
             backgroundImage.Size = Size;
 
-            layer1Image.ContentFile = $"Interface/Flags/Layers/{Layer1}";
-            layer1Image.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
-            layer1Image.TintColour = Layer1Colour;
+            layer1Image.ContentFile = $"Interface/Flags/Layers/{Flag.Layer1}";
+            layer1Image.MaskFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
+            layer1Image.TintColour = Flag.Layer1Colour.ToColour();
             layer1Image.Size = Size;
 
-            layer2Image.ContentFile = $"Interface/Flags/Layers/{Layer2}";
-            layer2Image.MaskFile = $"Interface/Flags/Skins/{Skin}_mask";
-            layer2Image.TintColour = Layer2Colour;
+            layer2Image.ContentFile = $"Interface/Flags/Layers/{Flag.Layer2}";
+            layer2Image.MaskFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
+            layer2Image.TintColour = Flag.Layer2Colour.ToColour();
             layer2Image.Size = Size;
 
-            emblemImage.ContentFile = $"Interface/Flags/Emblems/{Emblem}";
+            emblemImage.ContentFile = $"Interface/Flags/Emblems/{Flag.Emblem}";
             emblemImage.MaskFile = backgroundImage.MaskFile;
-            emblemImage.TintColour = EmblemColour;
+            emblemImage.TintColour = Flag.EmblemColour.ToColour();
             emblemImage.Size = Size;
 
-            skinImage.ContentFile = $"Interface/Flags/Skins/{Skin}";
+            skinImage.ContentFile = $"Interface/Flags/Skins/{Flag.Skin}";
             skinImage.Size = Size;
         }
     }

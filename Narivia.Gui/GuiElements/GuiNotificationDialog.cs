@@ -45,8 +45,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <value>The text.</value>
         public string Text { get; set; }
-
-
+        
         GuiImage[,] images;
         GuiImage yesButtonImage;
         GuiImage noButtonImage;
@@ -73,8 +72,14 @@ namespace Narivia.Gui.GuiElements
 
             images = new GuiImage[NotificationSize.Width, NotificationSize.Height];
 
-            title = new GuiText();
-            text = new GuiText();
+            title = new GuiText
+            {
+                Location = new Point2D(0, GameDefines.GuiTileSize)
+            };
+            text = new GuiText
+            {
+                Location = new Point2D(GameDefines.GuiTileSize / 2, (int)(GameDefines.GuiTileSize * 1.5f))
+            };
 
             switch (Style)
             {
@@ -156,16 +161,12 @@ namespace Narivia.Gui.GuiElements
 
             title.Text = Title;
             title.ForegroundColour = ForegroundColour;
-            title.Location = new Point2D(0, GameDefines.GuiTileSize);
             title.Size = new Size2D(
                 NotificationSize.Width * GameDefines.GuiTileSize,
                 GameDefines.GuiTileSize);
 
             text.Text = Text;
             text.ForegroundColour = ForegroundColour;
-            text.Location = new Point2D(
-                GameDefines.GuiTileSize / 2,
-                (int)(GameDefines.GuiTileSize * 1.5f));
             text.Size = new Size2D(
                 Size.Width - GameDefines.GuiTileSize,
                 Size.Height - title.Size.Height - (int)(GameDefines.GuiTileSize * 1.5f));

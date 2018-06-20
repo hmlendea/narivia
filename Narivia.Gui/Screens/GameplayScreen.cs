@@ -176,10 +176,12 @@ namespace Narivia.Gui.Screens
 
             game.GetUnits().ToList().ForEach(u => troops.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
 
-            recruitmentDialog.Location = new Point2D(GameMap.Location.X + (GameMap.Size.Width - recruitmentDialog.Size.Width) / 2,
-                                                     GameMap.Location.Y + (GameMap.Size.Height - recruitmentDialog.Size.Height) / 2);
-            buildDialog.Location = new Point2D(GameMap.Location.X + (GameMap.Size.Width - buildDialog.Size.Width) / 2,
-                                               GameMap.Location.Y + (GameMap.Size.Height - buildDialog.Size.Height) / 2);
+            recruitmentDialog.Location = new Point2D(
+                GameMap.Location.X + (GameMap.Size.Width - recruitmentDialog.Size.Width) / 2,
+                GameMap.Location.Y + (GameMap.Size.Height - recruitmentDialog.Size.Height) / 2);
+            buildDialog.Location = new Point2D(
+                GameMap.Location.X + (GameMap.Size.Width - buildDialog.Size.Width) / 2,
+                GameMap.Location.Y + (GameMap.Size.Height - buildDialog.Size.Height) / 2);
 
             InfoBar.Provinces = game.GetFactionProvinces(game.PlayerFactionId).Count();
             InfoBar.Holdings = game.GetFactionHoldings(game.PlayerFactionId).Count();
@@ -248,8 +250,7 @@ namespace Narivia.Gui.Screens
                               $"Income: {incomeNew} ({(incomeNew - incomeOld).ToString("+0;-#")})" + Environment.NewLine +
                               $"Outcome: {outcomeNew} ({(outcomeNew - outcomeOld).ToString("+0;-#")})" + Environment.NewLine +
                               $"Militia Recruitment: {recruitmentNew} ({(recruitmentNew - recruitmentOld).ToString("+0;-#")})";
-
-
+            
             foreach (string key in troopsNew.Keys)
             {
                 recruitmentBody += $"{key}: {troopsNew[key]} ({(troopsNew[key] - troopsOld[key]).ToString("+0;-#")})" + Environment.NewLine;

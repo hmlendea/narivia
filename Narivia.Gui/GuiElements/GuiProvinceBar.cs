@@ -194,19 +194,11 @@ namespace Narivia.Gui.GuiElements
             Province province = game.GetProvince(ProvinceId);
             Resource resource = game.GetResource(province.ResourceId);
             Faction faction = game.GetFaction(province.FactionId);
-            Flag flag = game.GetFlag(faction.FlagId);
 
             provinceNameBackground.TintColour = faction.Colour.ToColour();
             provinceNameText.Text = province.Name;
 
-            factionFlag.Layer1 = flag.Layer1;
-            factionFlag.Layer2 = flag.Layer2;
-            factionFlag.Emblem = flag.Emblem;
-            factionFlag.Skin = flag.Skin;
-            factionFlag.BackgroundColour = flag.BackgroundColour.ToColour();
-            factionFlag.Layer1Colour = flag.Layer1Colour.ToColour();
-            factionFlag.Layer2Colour = flag.Layer2Colour.ToColour();
-            factionFlag.EmblemColour = flag.EmblemColour.ToColour();
+            factionFlag.Flag = game.GetFlag(faction.FlagId);
 
             resourceImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/resources/{province.ResourceId}_big";
             resourceText.Text = resource.Name;

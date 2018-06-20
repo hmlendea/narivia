@@ -30,14 +30,16 @@ namespace Narivia.Gui.GuiElements
             background = new GuiImage
             {
                 ContentFile = "Interface/notification_small",
-                SourceRectangle = new Rectangle2D(GameDefines.GuiTileSize * 3, GameDefines.GuiTileSize * 3,
-                                                  GameDefines.GuiTileSize, GameDefines.GuiTileSize)
+                SourceRectangle = new Rectangle2D(
+                    GameDefines.GuiTileSize * 3, GameDefines.GuiTileSize * 3,
+                    GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
 
             icon = new GuiImage
             {
                 ContentFile = "Interface/notification_icons",
-                SourceRectangle = CalculateIconSourceRectangle(Icon)
+                SourceRectangle = CalculateIconSourceRectangle(Icon),
+                Location = new Point2D(6, 6)
             };
 
             AddChild(background);
@@ -51,7 +53,6 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Location = Location;
-            icon.Location = new Point2D(Location.X + 6, Location.Y + 6);
         }
 
         Rectangle2D CalculateIconSourceRectangle(NotificationIcon notificationIcon)

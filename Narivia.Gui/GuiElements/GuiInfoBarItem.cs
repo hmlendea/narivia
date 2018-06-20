@@ -69,12 +69,11 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             icon.ContentFile = ContentFile;
-            icon.Location = Location;
             icon.Size = new Size2D(Size.Height, Size.Height);
             icon.SourceRectangle = SourceRectangle;
 
             text.Text = Text;
-            text.Location = new Point2D(icon.ClientRectangle.Right + Spacing, Location.Y);
+            text.Location = new Point2D(icon.ClientRectangle.Right + Spacing, 0);
             text.Size = new Size2D(Size.Width - Size.Height - Spacing, Size.Height);
         }
     }

@@ -34,8 +34,9 @@ namespace Narivia.Gui.GuiElements
             GuiNotificationIndicator notificationButton = new GuiNotificationIndicator
             {
                 Icon = icon,
-                Location = new Point2D(Location.X + GameDefines.GuiSpacing,
-                                       Location.Y + Size.Height - (Children.Count + 1) * (GameDefines.GuiTileSize + GameDefines.GuiSpacing)),
+                Location = new Point2D(
+                    GameDefines.GuiSpacing,
+                    Size.Height - (Children.Count + 1) * (GameDefines.GuiTileSize + GameDefines.GuiSpacing)),
                 Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
 
@@ -56,8 +57,9 @@ namespace Narivia.Gui.GuiElements
 
             for (int i = 0; i < Children.Count; i++)
             {
-                Children[i].Location = new Point2D(Location.X + GameDefines.GuiSpacing,
-                                                 Location.Y + Size.Height - (i + 1) * (GameDefines.GuiTileSize + GameDefines.GuiSpacing));
+                Children[i].Location = new Point2D(
+                    GameDefines.GuiSpacing,
+                    Size.Height - (i + 1) * (GameDefines.GuiTileSize + GameDefines.GuiSpacing));
             }
         }
     }
