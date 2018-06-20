@@ -509,7 +509,7 @@ namespace Narivia.GameLogic.GameManagers
 
         void UpdateFactionsAliveStatus()
         {
-            Parallel.ForEach(GetFactions().Where(f => f.Id != GameDefines.GAIA_FACTION), faction =>
+            Parallel.ForEach(GetFactions().Where(f => f.Id != GameDefines.GaiaFactionIdentifier), faction =>
             {
                 bool wasAlive = faction.Alive;
 

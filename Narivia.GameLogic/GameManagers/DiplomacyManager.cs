@@ -98,8 +98,8 @@ namespace Narivia.GameLogic.GameManagers
             foreach (Faction otherFaction in worldManager.GetFactions())
             {
                 if (factionId == otherFaction.Id ||
-                    factionId == GameDefines.GAIA_FACTION ||
-                    otherFaction.Id == GameDefines.GAIA_FACTION)
+                    factionId == GameDefines.GaiaFactionIdentifier ||
+                    otherFaction.Id == GameDefines.GaiaFactionIdentifier)
                 {
                     return;
                 }

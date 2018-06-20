@@ -43,7 +43,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public GuiInfoBarItem()
         {
-            Spacing = GameDefines.GUI_SPACING;
+            Spacing = GameDefines.GuiSpacing;
         }
 
         /// <summary>

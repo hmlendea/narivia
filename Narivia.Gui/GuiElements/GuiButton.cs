@@ -45,7 +45,7 @@ namespace Narivia.Gui.GuiElements
         public GuiButton()
         {
             FontName = "ButtonFont";
-            ButtonTileSize = GameDefines.GUI_TILE_SIZE;
+            ButtonTileSize = GameDefines.GuiTileSize;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Narivia.Gui.GuiElements
 
             for (int i = 0; i < images.Count; i++)
             {
-                images[i].Location = new Point2D(i * GameDefines.GUI_TILE_SIZE, 0);
+                images[i].Location = new Point2D(i * GameDefines.GuiTileSize, 0);
                 images[i].SourceRectangle = CalculateSourceRectangle(i, Style);
             }
 
@@ -140,8 +140,8 @@ namespace Narivia.Gui.GuiElements
                 sx += 4;
             }
 
-            return new Rectangle2D(sx * GameDefines.GUI_TILE_SIZE, (int)style * GameDefines.GUI_TILE_SIZE,
-                                   GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE);
+            return new Rectangle2D(sx * GameDefines.GuiTileSize, (int)style * GameDefines.GuiTileSize,
+                                   GameDefines.GuiTileSize, GameDefines.GuiTileSize);
         }
     }
 }

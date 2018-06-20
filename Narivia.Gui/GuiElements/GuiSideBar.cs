@@ -41,6 +41,11 @@ namespace Narivia.Gui.GuiElements
 
         int margins = 5;
 
+        public GuiSideBar(IGameManager game)
+        {
+            this.game = game;
+        }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -75,7 +80,7 @@ namespace Narivia.Gui.GuiElements
             {
                 Text = "End Turn",
                 ForegroundColour = ForegroundColour,
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 7, GameDefines.GUI_TILE_SIZE),
+                Size = new Size2D(GameDefines.GuiTileSize * 7, GameDefines.GuiTileSize),
                 Style = ButtonStyle.Narivian
             };
 
@@ -88,16 +93,6 @@ namespace Narivia.Gui.GuiElements
             AddChild(TurnButton);
 
             base.LoadContent();
-        }
-
-        // TODO: Handle this better
-        /// <summary>
-        /// Associates the game manager.
-        /// </summary>
-        /// <param name="game">Game.</param>
-        public void AssociateGameManager(ref IGameManager game)
-        {
-            this.game = game;
         }
 
         protected override void SetChildrenProperties()

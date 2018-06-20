@@ -64,7 +64,7 @@ namespace Narivia.Gui.Screens
             game.LoadContent();
 
             List<Faction> factions = game.GetFactions()
-                .Where(f => f.Id != GameDefines.GAIA_FACTION)
+                .Where(f => f.Id != GameDefines.GaiaFactionIdentifier)
                 .OrderBy(f => f.Name)
                 .ToList();
 

@@ -47,6 +47,11 @@ namespace Narivia.Gui.GuiElements
         int currentHoldingTypeIndex;
         int currentProvinceIndex;
 
+        public GuiBuildingDialog(IGameManager game)
+        {
+            this.game = game;
+        }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -97,32 +102,32 @@ namespace Narivia.Gui.GuiElements
             previousHoldingButton = new GuiButton
             {
                 Text = "<",
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
             nextHoldingButton = new GuiButton
             {
                 Text = ">",
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
             previouseProvinceButton = new GuiButton
             {
                 Text = "<",
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
             nextProvinceButton = new GuiButton
             {
                 Text = ">",
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
             buildButton = new GuiButton
             {
                 Text = "Build",
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 4, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GuiTileSize * 4, GameDefines.GuiTileSize)
             };
             cancelButton = new GuiButton
             {
                 Text = "Cancel",
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE * 2, GameDefines.GUI_TILE_SIZE)
+                Size = new Size2D(GameDefines.GuiTileSize * 2, GameDefines.GuiTileSize)
             };
 
             AddChild(background);
@@ -159,17 +164,7 @@ namespace Narivia.Gui.GuiElements
 
             base.Update(gameTime);
         }
-
-        // TODO: Handle this better
-        /// <summary>
-        /// Associates the game manager.
-        /// </summary>
-        /// <param name="game">Game.</param>
-        public void AssociateGameManager(ref IGameManager game)
-        {
-            this.game = game;
-        }
-
+        
         /// <summary>
         /// Updates the province list.
         /// </summary>
@@ -211,7 +206,7 @@ namespace Narivia.Gui.GuiElements
 
             holdingBackground.Location = new Point2D(
                 (Size.Width - holdingBackground.Size.Width) / 2,
-                holdingText.Size.Height + GameDefines.GUI_SPACING);
+                holdingText.Size.Height + GameDefines.GuiSpacing);
             holdingBackground.TintColour = BackgroundColour;
 
             holdingImage.Location = new Point2D(
@@ -230,41 +225,41 @@ namespace Narivia.Gui.GuiElements
 
             priceIcon.Location = new Point2D(
                 holdingBackground.ClientRectangle.Left,
-                holdingBackground.ClientRectangle.Bottom + GameDefines.GUI_SPACING);
+                holdingBackground.ClientRectangle.Bottom + GameDefines.GuiSpacing);
 
             priceText.ForegroundColour = ForegroundColour;
-            priceText.Location = new Point2D(priceIcon.ClientRectangle.Right + GameDefines.GUI_SPACING, priceIcon.ClientRectangle.Top);
+            priceText.Location = new Point2D(priceIcon.ClientRectangle.Right + GameDefines.GuiSpacing, priceIcon.ClientRectangle.Top);
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
 
             previousHoldingButton.ForegroundColour = ForegroundColour;
             previousHoldingButton.Location = new Point2D(
-                holdingBackground.ClientRectangle.Left - previousHoldingButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
+                holdingBackground.ClientRectangle.Left - previousHoldingButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Top);
 
             nextHoldingButton.ForegroundColour = ForegroundColour;
             nextHoldingButton.Location = new Point2D(
-                holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                holdingBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Top);
 
             previouseProvinceButton.ForegroundColour = ForegroundColour;
             previouseProvinceButton.Location = new Point2D(
-                holdingBackground.ClientRectangle.Left - previouseProvinceButton.ClientRectangle.Width - GameDefines.GUI_SPACING,
+                holdingBackground.ClientRectangle.Left - previouseProvinceButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Bottom - previouseProvinceButton.ClientRectangle.Height);
 
             nextProvinceButton.ForegroundColour = ForegroundColour;
             nextProvinceButton.Location = new Point2D(
-                holdingBackground.ClientRectangle.Right + GameDefines.GUI_SPACING,
+                holdingBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Bottom - nextProvinceButton.ClientRectangle.Height);
 
             buildButton.ForegroundColour = ForegroundColour;
             buildButton.Location = new Point2D(
-                GameDefines.GUI_SPACING,
-                Size.Height - buildButton.Size.Height - GameDefines.GUI_SPACING);
+                GameDefines.GuiSpacing,
+                Size.Height - buildButton.Size.Height - GameDefines.GuiSpacing);
 
             cancelButton.ForegroundColour = ForegroundColour;
             cancelButton.Location = new Point2D(
-                Size.Width - cancelButton.Size.Width - GameDefines.GUI_SPACING,
-                Size.Height - buildButton.Size.Height - GameDefines.GUI_SPACING);
+                Size.Width - cancelButton.Size.Width - GameDefines.GuiSpacing,
+                Size.Height - buildButton.Size.Height - GameDefines.GuiSpacing);
         }
 
         void SelectHolding(int index)

@@ -385,7 +385,7 @@ namespace Narivia.GameLogic.GameManagers
         {
             Faction faction = factions[factionId];
 
-            if (faction.Id == GameDefines.GAIA_FACTION)
+            if (faction.Id == GameDefines.GaiaFactionIdentifier)
             {
                 faction.Alive = false;
                 return;

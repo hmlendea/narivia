@@ -70,7 +70,7 @@ namespace Narivia.Gui.GuiElements
         public GuiInfoBar()
         {
             BackgroundColour = Colour.Black;
-            Spacing = GameDefines.GUI_SPACING;
+            Spacing = GameDefines.GuiSpacing;
         }
 
         /// <summary>

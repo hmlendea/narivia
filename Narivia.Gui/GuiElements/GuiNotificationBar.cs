@@ -19,6 +19,11 @@ namespace Narivia.Gui.GuiElements
 
         IGameManager game;
 
+        public GuiNotificationBar(IGameManager game)
+        {
+            this.game = game;
+        }
+
         // TODO: Handle this better
         /// <summary>
         /// Adds the notification.
@@ -29,9 +34,9 @@ namespace Narivia.Gui.GuiElements
             GuiNotificationIndicator notificationButton = new GuiNotificationIndicator
             {
                 Icon = icon,
-                Location = new Point2D(Location.X + GameDefines.GUI_SPACING,
-                                       Location.Y + Size.Height - (Children.Count + 1) * (GameDefines.GUI_TILE_SIZE + GameDefines.GUI_SPACING)),
-                Size = new Size2D(GameDefines.GUI_TILE_SIZE, GameDefines.GUI_TILE_SIZE)
+                Location = new Point2D(Location.X + GameDefines.GuiSpacing,
+                                       Location.Y + Size.Height - (Children.Count + 1) * (GameDefines.GuiTileSize + GameDefines.GuiSpacing)),
+                Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
 
             notificationButton.LoadContent();
@@ -45,24 +50,14 @@ namespace Narivia.Gui.GuiElements
             Children.ForEach(x => x.Dispose());
         }
         
-        // TODO: Handle this better
-        /// <summary>
-        /// Associates the game manager.
-        /// </summary>
-        /// <param name="game">Game.</param>
-        public void AssociateGameManager(ref IGameManager game)
-        {
-            this.game = game;
-        }
-
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
 
             for (int i = 0; i < Children.Count; i++)
             {
-                Children[i].Location = new Point2D(Location.X + GameDefines.GUI_SPACING,
-                                                 Location.Y + Size.Height - (i + 1) * (GameDefines.GUI_TILE_SIZE + GameDefines.GUI_SPACING));
+                Children[i].Location = new Point2D(Location.X + GameDefines.GuiSpacing,
+                                                 Location.Y + Size.Height - (i + 1) * (GameDefines.GuiTileSize + GameDefines.GuiSpacing));
             }
         }
     }

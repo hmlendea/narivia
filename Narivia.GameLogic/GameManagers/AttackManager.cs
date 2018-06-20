@@ -77,7 +77,7 @@ namespace Narivia.GameLogic.GameManagers
             // TODO: Do not target factions with good relations
             Dictionary<string, int> targets = worldManager.GetProvinces()
                                                    .Where(r => r.FactionId != factionId &&
-                                                               r.FactionId != GameDefines.GAIA_FACTION &&
+                                                               r.FactionId != GameDefines.GaiaFactionIdentifier &&
                                                                r.Locked == false)
                                                    .Select(x => x.Id)
                                                    .Except(provincesOwnedIds)
@@ -166,7 +166,7 @@ namespace Narivia.GameLogic.GameManagers
             Faction defenderFaction = worldManager.GetFactions().FirstOrDefault(f => f.Id == targetProvince.FactionId);
 
             if (defenderFaction.Id == attackerFaction.Id ||
-                defenderFaction.Id == GameDefines.GAIA_FACTION)
+                defenderFaction.Id == GameDefines.GaiaFactionIdentifier)
             {
                 throw new InvalidTargetProvinceException(provinceId);
             }

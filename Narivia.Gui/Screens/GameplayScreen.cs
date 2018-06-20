@@ -74,6 +74,9 @@ namespace Narivia.Gui.Screens
             string initialWorldId = "narivia";
             string initialFactionId = "f_alpalet";
 
+            game = new GameManager(initialWorldId, initialFactionId);
+            game.LoadContent();
+
             AdministrationBar = new GuiAdministrationBar
             {
                 Location = Point2D.Empty,
@@ -84,23 +87,23 @@ namespace Narivia.Gui.Screens
                 Size = new Size2D(870, 20),
                 BackgroundColour = Colour.Black
             };
-            GameMap = new GuiWorldmap
+            GameMap = new GuiWorldmap(game)
             {
                 Location = new Point2D(0, 20),
                 Size = new Size2D(1000, 640)
             };
-            SideBar = new GuiSideBar
+            SideBar = new GuiSideBar(game)
             {
                 Location = new Point2D(1000, 0),
                 Size = new Size2D(280, 720),
                 ForegroundColour = new Colour(255, 215, 0)
             };
-            NotificationBar = new GuiNotificationBar
+            NotificationBar = new GuiNotificationBar(game)
             {
                 Location = new Point2D(0, 20),
                 Size = new Size2D(40, 610)
             };
-            ProvinceBar = new GuiProvinceBar
+            ProvinceBar = new GuiProvinceBar(game)
             {
                 Location = new Point2D(0, 640),
                 Size = new Size2D(1000, 80),
@@ -113,11 +116,11 @@ namespace Narivia.Gui.Screens
                 initialFactionId = ScreenArgs[1];
             }
 
-            recruitmentDialog = new GuiRecruitmentDialog
+            recruitmentDialog = new GuiRecruitmentDialog(game)
             {
                 Size = new Size2D(256, 288)
             };
-            buildDialog = new GuiBuildingDialog
+            buildDialog = new GuiBuildingDialog(game)
             {
                 Size = new Size2D(256, 224)
             };
@@ -125,21 +128,12 @@ namespace Narivia.Gui.Screens
             recruitmentDialog.Hide();
             buildDialog.Hide();
 
-            game = new GameManager(initialWorldId, initialFactionId);
-            game.LoadContent();
-
             troopsOld = new Dictionary<string, int>();
             relationsOld = new Dictionary<string, int>();
 
             game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
             game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsOld.Add(r.TargetFactionId, r.Value));
-
-            GameMap.AssociateGameManager(ref game);
-            ProvinceBar.AssociateGameManager(ref game);
-            SideBar.AssociateGameManager(ref game);
-            recruitmentDialog.AssociateGameManager(ref game);
-            buildDialog.AssociateGameManager(ref game);
-
+            
             SideBar.FactionId = game.PlayerFactionId;
 
             GuiManager.Instance.GuiElements.Add(GameMap);

@@ -119,7 +119,7 @@ namespace Narivia.GameLogic.GameManagers
         public void InitialiseFactionHoldings(string factionId)
         {
             // TODO: Remove this!!!
-            if (factionId == GameDefines.GAIA_FACTION)
+            if (factionId == GameDefines.GaiaFactionIdentifier)
             {
                 return;
             }

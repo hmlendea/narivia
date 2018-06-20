@@ -42,6 +42,11 @@ namespace Narivia.Gui.GuiElements
         List<GuiImage> holdingImages;
         List<GuiText> holdingTexts;
 
+        public GuiProvinceBar(IGameManager game)
+        {
+            this.game = game;
+        }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -137,16 +142,16 @@ namespace Narivia.Gui.GuiElements
                     ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic",
                     SourceRectangle = new Rectangle2D(64 * ((int)holding.Type - 1), 0, 64, 64),
                     Location = new Point2D(
-                        GameDefines.GUI_SPACING * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
+                        GameDefines.GuiSpacing * (holdingImages.Count + 2) + 64 * (holdingImages.Count + 1),
                         Size.Height - 64)
                 };
 
                 GuiText holdingText = new GuiText
                 {
-                    Location = new Point2D(holdingImage.Location.X - GameDefines.GUI_SPACING, 2),
+                    Location = new Point2D(holdingImage.Location.X - GameDefines.GuiSpacing, 2),
                     Text = holding.Name,
                     Size = new Size2D(
-                        holdingImage.SourceRectangle.Width + GameDefines.GUI_SPACING * 2,
+                        holdingImage.SourceRectangle.Width + GameDefines.GuiSpacing * 2,
                         Size.Height - holdingImage.SourceRectangle.Height + 10),
                     FontName = "ProvinceBarHoldingFont",
                     ForegroundColour = Colour.Black,
@@ -163,16 +168,6 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
-        // TODO: Handle this better
-        /// <summary>
-        /// Associates the game manager.
-        /// </summary>
-        /// <param name="game">Game.</param>
-        public void AssociateGameManager(ref IGameManager game)
-        {
-            this.game = game;
-        }
-
         protected override void SetChildrenProperties()
         {
             background.Size = Size;
@@ -187,9 +182,9 @@ namespace Narivia.Gui.GuiElements
             factionFlag.Location = new Point2D(
                 provinceNameBackground.Location.X - factionFlag.ClientRectangle.Width / 2,
                 provinceNameBackground.Location.Y);
-            resourceImage.Location = new Point2D(GameDefines.GUI_SPACING, Size.Height - 64);
+            resourceImage.Location = new Point2D(GameDefines.GuiSpacing, Size.Height - 64);
             resourceText.Location = new Point2D(0, 2);
-            resourceText.Size = new Size2D(64 + GameDefines.GUI_SPACING * 2, Size.Height - 74);
+            resourceText.Size = new Size2D(64 + GameDefines.GuiSpacing * 2, Size.Height - 74);
 
             if (string.IsNullOrWhiteSpace(ProvinceId))
             {
