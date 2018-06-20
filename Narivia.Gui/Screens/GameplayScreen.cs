@@ -133,7 +133,7 @@ namespace Narivia.Gui.Screens
 
             game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
             game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsOld.Add(r.TargetFactionId, r.Value));
-            
+
             SideBar.FactionId = game.PlayerFactionId;
 
             GuiManager.Instance.GuiElements.Add(GameMap);
@@ -152,10 +152,7 @@ namespace Narivia.Gui.Screens
             NotificationManager.Instance.ShowNotification(
                             $"Welcome to {game.GetWorld().Name}",
                             $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
-                            $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!",
-                            NotificationType.Informational,
-                            NotificationStyle.Big,
-                            new Size2D(256, 256));
+                            $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!");
 
             ProvinceBar.SetProvince(game.GetFactionCapital(game.PlayerFactionId).Id);
 
@@ -250,7 +247,7 @@ namespace Narivia.Gui.Screens
                               $"Income: {incomeNew} ({(incomeNew - incomeOld).ToString("+0;-#")})" + Environment.NewLine +
                               $"Outcome: {outcomeNew} ({(outcomeNew - outcomeOld).ToString("+0;-#")})" + Environment.NewLine +
                               $"Militia Recruitment: {recruitmentNew} ({(recruitmentNew - recruitmentOld).ToString("+0;-#")})";
-            
+
             foreach (string key in troopsNew.Keys)
             {
                 recruitmentBody += $"{key}: {troopsNew[key]} ({(troopsNew[key] - troopsOld[key]).ToString("+0;-#")})" + Environment.NewLine;
@@ -266,19 +263,19 @@ namespace Narivia.Gui.Screens
 
             NotificationBar.AddNotification(NotificationIcon.TurnReport).Clicked += delegate
             {
-                NotificationManager.Instance.ShowNotification($"Turn {game.Turn} Report", turnBody, NotificationType.Informational, NotificationStyle.Big, new Size2D(256, 224));
+                NotificationManager.Instance.ShowNotification($"Turn {game.Turn} Report", turnBody);
             };
 
             NotificationBar.AddNotification(NotificationIcon.RecruitmentReport).Clicked += delegate
             {
-                NotificationManager.Instance.ShowNotification($"Recruitment Report", recruitmentBody, NotificationType.Informational, NotificationStyle.Big, new Size2D(256, 224));
+                NotificationManager.Instance.ShowNotification($"Recruitment Report", recruitmentBody);
             };
 
             if (!string.IsNullOrWhiteSpace(relationsBody))
             {
                 NotificationBar.AddNotification(NotificationIcon.RelationsReport).Clicked += delegate
                 {
-                    NotificationManager.Instance.ShowNotification($"Relations Report", relationsBody, NotificationType.Informational, NotificationStyle.Big, new Size2D(256, 196));
+                    NotificationManager.Instance.ShowNotification($"Relations Report", relationsBody);
                 };
             }
 
@@ -304,10 +301,7 @@ namespace Narivia.Gui.Screens
                 "Statistics",
                 $"Income: {game.GetFactionIncome(game.PlayerFactionId)}" + Environment.NewLine +
                 $"Outcome: {game.GetFactionOutcome(game.PlayerFactionId)}" + Environment.NewLine +
-                $"Militia Recruitment: {game.GetFactionRecruitment(game.PlayerFactionId)}",
-                NotificationType.Informational,
-                NotificationStyle.Big,
-                new Size2D(256, 160));
+                $"Militia Recruitment: {game.GetFactionRecruitment(game.PlayerFactionId)}");
         }
 
         void AdministrationBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)
@@ -334,10 +328,7 @@ namespace Narivia.Gui.Screens
                 NotificationManager.Instance.ShowNotification(
                     $"Not enough troops!",
                     $"Sorry!" + Environment.NewLine + Environment.NewLine +
-                    $"You do need at least {game.GetWorld().MinTroopsPerAttack} troops to attack any province.",
-                    NotificationType.Informational,
-                    NotificationStyle.Big,
-                    new Size2D(256, 192));
+                    $"You do need at least {game.GetWorld().MinTroopsPerAttack} troops to attack any province.");
 
                 return;
             }
@@ -356,30 +347,24 @@ namespace Narivia.Gui.Screens
                 if (result == BattleResult.Victory)
                 {
                     NotificationBar.AddNotification(NotificationIcon.BattleVictory).Clicked += delegate
-                        {
-                            NotificationManager.Instance.ShowNotification(
-                                $"Victory in {provinceName}!",
-                                $"Good news!" + Environment.NewLine + Environment.NewLine +
-                                $"Our troops attacking {defenderFactionName} in {provinceName} " +
-                                $"have managed to break the defence and occupy the province!",
-                                NotificationType.Informational,
-                                NotificationStyle.Big,
-                                new Size2D(256, 224));
-                        };
+                    {
+                        NotificationManager.Instance.ShowNotification(
+                            $"Victory in {provinceName}!",
+                            $"Good news!" + Environment.NewLine + Environment.NewLine +
+                            $"Our troops attacking {defenderFactionName} in {provinceName} " +
+                            $"have managed to break the defence and occupy the province!");
+                    };
                 }
                 else
                 {
                     NotificationBar.AddNotification(NotificationIcon.BattleDefeat).Clicked += delegate
-                        {
-                            NotificationManager.Instance.ShowNotification(
-                                $"Defeat in {provinceName}!",
-                                $"Bad news!" + Environment.NewLine + Environment.NewLine +
-                                $"Our troops attacking {defenderFactionName} in {provinceName} " +
-                                $"were defeated by the defending forces!",
-                                NotificationType.Informational,
-                                NotificationStyle.Big,
-                                new Size2D(256, 224));
-                        };
+                    {
+                        NotificationManager.Instance.ShowNotification(
+                            $"Defeat in {provinceName}!",
+                            $"Bad news!" + Environment.NewLine + Environment.NewLine +
+                            $"Our troops attacking {defenderFactionName} in {provinceName} " +
+                            $"were defeated by the defending forces!");
+                    };
                 }
             }
             catch (InvalidTargetProvinceException)
@@ -387,10 +372,7 @@ namespace Narivia.Gui.Screens
                 NotificationManager.Instance.ShowNotification(
                     $"Invalid target!",
                     $"Sorry!" + Environment.NewLine + Environment.NewLine +
-                    $"You have chosen an invalid target that cannot be attacked.",
-                    NotificationType.Informational,
-                    NotificationStyle.Big,
-                    new Size2D(256, 192));
+                    $"You have chosen an invalid target that cannot be attacked.");
             }
         }
 
@@ -402,30 +384,24 @@ namespace Narivia.Gui.Screens
             if (e.BattleResult == BattleResult.Victory)
             {
                 NotificationBar.AddNotification(NotificationIcon.ProvinceLost).Clicked += delegate
-                    {
-                        NotificationManager.Instance.ShowNotification(
-                            $"{provinceName} province lost!",
-                            $"Bad news!" + Environment.NewLine + Environment.NewLine +
-                            $"One of our provinces, {provinceName}, was attacked by {attackerFactionName}, " +
-                            $"who managed to break the defence and occupy it!",
-                            NotificationType.Informational,
-                            NotificationStyle.Big,
-                            new Size2D(256, 224));
-                    };
+                {
+                    NotificationManager.Instance.ShowNotification(
+                        $"{provinceName} province lost!",
+                        $"Bad news!" + Environment.NewLine + Environment.NewLine +
+                        $"One of our provinces, {provinceName}, was attacked by {attackerFactionName}, " +
+                        $"who managed to break the defence and occupy it!");
+                };
             }
             else
             {
                 NotificationBar.AddNotification(NotificationIcon.ProvinceDefended).Clicked += delegate
-                    {
-                        NotificationManager.Instance.ShowNotification(
-                            $"{provinceName} province defended!",
-                            $"Important news!" + Environment.NewLine + Environment.NewLine +
-                            $"One of our provinces, {provinceName}, was attacked by {attackerFactionName}, " +
-                            $"but our brave troops managed to sucesfully defend it!",
-                            NotificationType.Informational,
-                            NotificationStyle.Big,
-                            new Size2D(256, 224));
-                    };
+                {
+                    NotificationManager.Instance.ShowNotification(
+                        $"{provinceName} province defended!",
+                        $"Important news!" + Environment.NewLine + Environment.NewLine +
+                        $"One of our provinces, {provinceName}, was attacked by {attackerFactionName}, " +
+                        $"but our brave troops managed to sucesfully defend it!");
+                };
             }
         }
 
@@ -434,15 +410,12 @@ namespace Narivia.Gui.Screens
             string factionName = game.GetFaction(e.FactionId).Name;
 
             NotificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
-                {
-                    NotificationManager.Instance.ShowNotification(
-                        $"{factionName} destroyed!",
-                        $"A significant development in the war just took place, " +
-                        $"as {factionName} was destroyed!",
-                        NotificationType.Informational,
-                        NotificationStyle.Big,
-                        new Size2D(256, 192));
-                };
+            {
+                NotificationManager.Instance.ShowNotification(
+                    $"{factionName} destroyed!",
+                    $"A significant development in the war just took place, " +
+                    $"as {factionName} was destroyed!");
+            };
         }
 
         void game_OnFactionRevived(object sender, FactionEventArgs e)
@@ -450,15 +423,12 @@ namespace Narivia.Gui.Screens
             string factionName = game.GetFaction(e.FactionId).Name;
 
             NotificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
-                {
-                    NotificationManager.Instance.ShowNotification(
-                        $"{factionName} revived!",
-                        $"A significant development in the war just took place, " +
-                        $"as {factionName} was revived!",
-                        NotificationType.Informational,
-                        NotificationStyle.Big,
-                        new Size2D(256, 192));
-                };
+            {
+                NotificationManager.Instance.ShowNotification(
+                    $"{factionName} revived!",
+                    $"A significant development in the war just took place, " +
+                    $"as {factionName} was revived!");
+            };
         }
 
         void game_OnFactionWon(object sender, FactionEventArgs e)
@@ -466,15 +436,12 @@ namespace Narivia.Gui.Screens
             string factionName = game.GetFaction(e.FactionId).Name;
 
             NotificationBar.AddNotification(NotificationIcon.GameFinished).Clicked += delegate
-                {
-                    NotificationManager.Instance.ShowNotification(
-                        $"{factionName} has won!",
-                        $"The war is over!" + Environment.NewLine +
-                        $"{factionName} has conquered the world and established a new world order!",
-                        NotificationType.Informational,
-                        NotificationStyle.Big,
-                        new Size2D(256, 192));
-                };
+            {
+                NotificationManager.Instance.ShowNotification(
+                    $"{factionName} has won!",
+                    $"The war is over!" + Environment.NewLine +
+                    $"{factionName} has conquered the world and established a new world order!");
+            };
         }
     }
 }

@@ -29,15 +29,12 @@ namespace Narivia.Gui.GuiElements
         {
             background = new GuiImage
             {
-                ContentFile = "Interface/notification_small",
-                SourceRectangle = new Rectangle2D(
-                    GameDefines.GuiTileSize * 3, GameDefines.GuiTileSize * 3,
-                    GameDefines.GuiTileSize, GameDefines.GuiTileSize)
+                ContentFile = "Interface/Notification/icon_background"
             };
 
             icon = new GuiImage
             {
-                ContentFile = "Interface/notification_icons",
+                ContentFile = "Interface/Notification/icons",
                 SourceRectangle = CalculateIconSourceRectangle(Icon),
                 Location = new Point2D(6, 6)
             };

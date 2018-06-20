@@ -52,21 +52,17 @@ namespace Narivia.Gui
         /// </summary>
         /// <param name="title">Title.</param>
         /// <param name="text">Text.</param>
-        /// <param name="type">Type.</param>
-        /// <param name="style">Style.</param>
-        /// <param name="size">Size.</param>
-        public void ShowNotification(string title, string text, NotificationType type, NotificationStyle style, Size2D size)
+        public void ShowNotification(string title, string text)
         {
             GuiNotificationDialog notification = new GuiNotificationDialog
             {
                 Title = title,
                 Text = text,
-                Type = type,
-                Style = style,
-                Location = new Point2D((ScreenManager.Instance.Size.Width - size.Width) / 2,
-                                       (ScreenManager.Instance.Size.Height - size.Height) / 2),
-                Size = size
             };
+
+            notification.Location = new Point2D(
+                    (ScreenManager.Instance.Size.Width - notification.Size.Width) / 2,
+                    (ScreenManager.Instance.Size.Height - notification.Size.Height) / 2);
 
             notification.LoadContent();
 
