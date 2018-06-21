@@ -73,7 +73,6 @@
     <Compile Include="GuiElements\GuiNotificationIndicator.cs" />
     <Compile Include="GuiElements\GuiRecruitmentDialog.cs" />
     <Compile Include="GuiElements\GuiProvinceBar.cs" />
-    <Compile Include="GuiElements\GuiSideBar.cs" />
     <Compile Include="GuiElements\GuiWorldmap.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="FpsIndicator.cs" />

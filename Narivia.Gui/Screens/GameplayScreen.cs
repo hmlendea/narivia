@@ -44,13 +44,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         /// <value>The province bar.</value>
         public GuiProvinceBar ProvinceBar { get; set; }
-
-        /// <summary>
-        /// Gets or sets the side bar.
-        /// </summary>
-        /// <value>The side bar.</value>
-        public GuiSideBar SideBar { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the notification bar.
         /// </summary>
@@ -83,18 +77,12 @@ namespace Narivia.Gui.Screens
             };
             InfoBar = new GuiInfoBar(game)
             {
-                Location = new Point2D(834, 0)
+                Location = new Point2D(ScreenManager.Instance.Size.Width - 166, 0)
             };
             GameMap = new GuiWorldmap(game)
             {
                 Location = new Point2D(0, 20),
-                Size = new Size2D(1000, 640)
-            };
-            SideBar = new GuiSideBar(game)
-            {
-                Location = new Point2D(1000, 0),
-                Size = new Size2D(280, 720),
-                ForegroundColour = new Colour(255, 215, 0)
+                Size = new Size2D(ScreenManager.Instance.Size.Width, ScreenManager.Instance.Size.Height - 80)
             };
             NotificationBar = new GuiNotificationBar(game)
             {
@@ -104,7 +92,7 @@ namespace Narivia.Gui.Screens
             ProvinceBar = new GuiProvinceBar(game)
             {
                 Location = new Point2D(0, 640),
-                Size = new Size2D(1000, 80),
+                Size = new Size2D(ScreenManager.Instance.Size.Width, 80),
                 ForegroundColour = new Colour(255, 215, 0)
             };
 
@@ -131,14 +119,11 @@ namespace Narivia.Gui.Screens
 
             game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
             game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsOld.Add(r.TargetFactionId, r.Value));
-
-            SideBar.FactionId = game.PlayerFactionId;
-
+            
             GuiManager.Instance.GuiElements.Add(GameMap);
             GuiManager.Instance.GuiElements.Add(InfoBar);
             GuiManager.Instance.GuiElements.Add(AdministrationBar);
             GuiManager.Instance.GuiElements.Add(ProvinceBar);
-            GuiManager.Instance.GuiElements.Add(SideBar);
             GuiManager.Instance.GuiElements.Add(NotificationBar);
             GuiManager.Instance.GuiElements.Add(recruitmentDialog);
             GuiManager.Instance.GuiElements.Add(buildDialog);
@@ -178,9 +163,7 @@ namespace Narivia.Gui.Screens
             {
                 ProvinceBar.SetProvince(GameMap.SelectedProvinceId);
             }
-
-            SideBar.FactionId = game.PlayerFactionId;
-
+            
             base.Update(gameTime);
         }
 
