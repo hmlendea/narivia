@@ -40,6 +40,12 @@ namespace Narivia.Gui.Screens
         public GuiInfoBar InfoBar { get; set; }
 
         /// <summary>
+        /// Gets or sets the faction bar.
+        /// </summary>
+        /// <value>The faction bar.</value>
+        public GuiFactionBar FactionBar { get; set; }
+
+        /// <summary>
         /// Gets or sets the province bar.
         /// </summary>
         /// <value>The province bar.</value>
@@ -78,6 +84,11 @@ namespace Narivia.Gui.Screens
             InfoBar = new GuiInfoBar(game)
             {
                 Location = new Point2D(ScreenManager.Instance.Size.Width - 166, 0)
+            };
+            FactionBar = new GuiFactionBar(game)
+            {
+                Location = new Point2D((ScreenManager.Instance.Size.Width - 242) / 2, 0),
+                Size = new Size2D(242, 94)
             };
             GameMap = new GuiWorldmap(game)
             {
@@ -119,10 +130,11 @@ namespace Narivia.Gui.Screens
 
             game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
             game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsOld.Add(r.TargetFactionId, r.Value));
-            
+
             GuiManager.Instance.GuiElements.Add(GameMap);
-            GuiManager.Instance.GuiElements.Add(InfoBar);
             GuiManager.Instance.GuiElements.Add(AdministrationBar);
+            GuiManager.Instance.GuiElements.Add(InfoBar);
+            GuiManager.Instance.GuiElements.Add(FactionBar);
             GuiManager.Instance.GuiElements.Add(ProvinceBar);
             GuiManager.Instance.GuiElements.Add(NotificationBar);
             GuiManager.Instance.GuiElements.Add(recruitmentDialog);
@@ -141,8 +153,9 @@ namespace Narivia.Gui.Screens
 
             LinkEvents();
 
-            GameMap.CentreCameraOnLocation(game.GetFactionCentreX(game.PlayerFactionId),
-                                           game.GetFactionCentreY(game.PlayerFactionId));
+            GameMap.CentreCameraOnLocation(
+                game.GetFactionCentreX(game.PlayerFactionId),
+                game.GetFactionCentreY(game.PlayerFactionId));
         }
 
         /// <summary>
@@ -158,7 +171,7 @@ namespace Narivia.Gui.Screens
             buildDialog.Location = new Point2D(
                 GameMap.Location.X + (GameMap.Size.Width - buildDialog.Size.Width) / 2,
                 GameMap.Location.Y + (GameMap.Size.Height - buildDialog.Size.Height) / 2);
-            
+
             if (!string.IsNullOrEmpty(GameMap.SelectedProvinceId))
             {
                 ProvinceBar.SetProvince(GameMap.SelectedProvinceId);
