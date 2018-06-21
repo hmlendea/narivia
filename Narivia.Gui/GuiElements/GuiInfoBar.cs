@@ -7,7 +7,7 @@ using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 
-using Narivia.Settings;
+using Narivia.GameLogic.GameManagers.Interfaces;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -16,6 +16,8 @@ namespace Narivia.Gui.GuiElements
     /// </summary>
     public class GuiInfoBar : GuiElement
     {
+        IGameManager game;
+
         GuiImage background;
 
         GuiImage provincesIcon;
@@ -33,41 +35,20 @@ namespace Narivia.Gui.GuiElements
         GuiTooltip troopsTooltip;
         GuiTooltip wealthTooltip;
 
-        /// <summary>
-        /// Gets or sets the provinces count.
-        /// </summary>
-        /// <value>The provinces count.</value>
-        [XmlIgnore]
-        public int Provinces { get; set; }
+        GuiSimpleButton turnButton;
+        GuiText turnText;
 
         /// <summary>
-        /// Gets or sets the holdings count.
+        /// Occurs when clicked.
         /// </summary>
-        /// <value>The holdings count.</value>
-        [XmlIgnore]
-        public int Holdings { get; set; }
+        public event MouseButtonEventHandler TurnButtonClicked;
 
-        /// <summary>
-        /// Gets or sets the wealth.
-        /// </summary>
-        /// <value>The wealth.</value>
-        [XmlIgnore]
-        public int Wealth { get; set; }
-
-        /// <summary>
-        /// Gets or sets the troops count.
-        /// </summary>
-        /// <value>The troops count.</value>
-        [XmlIgnore]
-        public Dictionary<string, int> Troops { get; set; }
-        
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InfoBar"/> class.
-        /// </summary>
-        public GuiInfoBar()
+        public GuiInfoBar(IGameManager game)
         {
             ForegroundColour = Colour.Gold;
             FontName = "InfoBarFont";
+
+            this.game = game;
         }
 
         /// <summary>
@@ -163,6 +144,20 @@ namespace Narivia.Gui.GuiElements
                 Visible = false
             };
 
+            turnButton = new GuiSimpleButton
+            {
+                ContentFile = "Interface/InfoBar/turn-button",
+                Location = new Point2D(142, 59),
+                Size = new Size2D(24, 24)
+            };
+            turnText = new GuiText
+            {
+                Location = new Point2D(15, 62),
+                Size = new Size2D(138, 15),
+                VerticalAlignment = VerticalAlignment.Centre,
+                HorizontalAlignment = HorizontalAlignment.Centre
+            };
+
             AddChild(background);
 
             AddChild(provincesIcon);
@@ -180,6 +175,9 @@ namespace Narivia.Gui.GuiElements
             AddChild(wealthTooltip);
             AddChild(troopsTooltip);
 
+            AddChild(turnButton);
+            AddChild(turnText);
+
             provincesIcon.MouseEntered += OnProvincesMouseEntered;
             provincesIcon.MouseLeft += OnProvincesMouseLeft;
 
@@ -191,6 +189,8 @@ namespace Narivia.Gui.GuiElements
 
             wealthIcon.MouseEntered += OnWealthMouseEntered;
             wealthIcon.MouseLeft += OnWealthMouseLeft;
+
+            turnButton.Clicked += TurnButtonClicked;
 
             base.LoadContent();
         }
@@ -210,16 +210,23 @@ namespace Narivia.Gui.GuiElements
 
             wealthIcon.MouseEntered -= OnWealthMouseEntered;
             wealthIcon.MouseLeft -= OnWealthMouseLeft;
+
+            turnButton.Clicked -= TurnButtonClicked;
         }
 
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-            
-            provincesText.Text = Provinces.ToString();
-            holdingsText.Text = Holdings.ToString();
+
+            Dictionary<string, int> troops = new Dictionary<string, int>();
+
+            game.GetUnits().ToList().ForEach(u => troops.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
+
+            provincesText.Text = game.GetFactionProvinces(game.PlayerFactionId).Count().ToString();
+            holdingsText.Text = game.GetFactionHoldings(game.PlayerFactionId).Count().ToString();
             troopsText.Text = "0";
-            wealthText.Text = Wealth.ToString();
+            wealthText.Text = game.GetFaction(game.PlayerFactionId).Wealth.ToString();
+            turnText.Text = $"Turn: {game.Turn}";
 
             provincesTooltip.Location = new Point2D(provincesIcon.Location.X, ClientRectangle.Bottom);
             holdingsTooltip.Location = new Point2D(holdingsIcon.Location.X, ClientRectangle.Bottom);
@@ -228,10 +235,10 @@ namespace Narivia.Gui.GuiElements
 
             troopsTooltip.Text = string.Empty;
 
-            if (Troops != null && Troops.Count > 0)
+            if (troops != null && troops.Count > 0)
             {
-                troopsText.Text = Troops.Values.Sum().ToString();
-                Troops.ToList().ForEach(t => troopsTooltip.Text += $"{t.Key}: {t.Value}\n");
+                troopsText.Text = troops.Values.Sum().ToString();
+                troops.ToList().ForEach(t => troopsTooltip.Text += $"{t.Key}: {t.Value}\n");
             }
         }
 

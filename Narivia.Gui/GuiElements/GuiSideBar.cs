@@ -19,7 +19,6 @@ namespace Narivia.Gui.GuiElements
         GuiFactionFlag factionImage;
 
         GuiText factionText;
-        GuiText turnText;
 
         /// <summary>
         /// Gets or sets the faction identifier.
@@ -27,13 +26,6 @@ namespace Narivia.Gui.GuiElements
         /// <value>The faction identifier.</value>
         [XmlIgnore]
         public string FactionId { get; set; }
-
-        /// <summary>
-        /// Gets the turn button.
-        /// </summary>
-        /// <value>The turn button.</value>
-        [XmlIgnore]
-        public GuiButton TurnButton { get; private set; }
 
         IGameManager game;
 
@@ -67,32 +59,11 @@ namespace Narivia.Gui.GuiElements
                 VerticalAlignment = VerticalAlignment.Left,
                 Location = new Point2D(margins, margins)
             };
-
-            turnText = new GuiText
-            {
-                FontName = "SideBarFont",
-                Size = new Size2D(Size.Width / 3, 48),
-                VerticalAlignment = VerticalAlignment.Right
-            };
-
-            TurnButton = new GuiButton
-            {
-                Text = "End Turn",
-                ForegroundColour = ForegroundColour,
-                Style = ButtonStyle.Narivian,
-                Size = new Size2D(GameDefines.GuiTileSize * 7, GameDefines.GuiTileSize)
-            };
-            TurnButton.Location = new Point2D(
-                (Size.Width - TurnButton.Size.Width) / 2,
-                (Size.Height - TurnButton.Size.Height - margins));
-
+            
             AddChild(background);
             AddChild(factionImage);
 
             AddChild(factionText);
-            AddChild(turnText);
-
-            AddChild(TurnButton);
 
             base.LoadContent();
         }
@@ -101,8 +72,6 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
             
-            turnText.Location = new Point2D(Size.Width - turnText.ClientRectangle.Width - margins, margins);
-
             factionImage.Location = new Point2D(
                 (Size.Width - factionImage.ClientRectangle.Width) / 2,
                 factionText.ClientRectangle.Bottom + margins);
@@ -110,8 +79,6 @@ namespace Narivia.Gui.GuiElements
             factionText.Text = game.GetFaction(FactionId).Name;
             
             factionImage.Flag = game.GetFactionFlag(FactionId);
-
-            turnText.Text = $"Turn: {game.Turn}";
         }
     }
 }

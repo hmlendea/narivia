@@ -81,7 +81,7 @@ namespace Narivia.Gui.Screens
             {
                 Location = Point2D.Empty,
             };
-            InfoBar = new GuiInfoBar
+            InfoBar = new GuiInfoBar(game)
             {
                 Location = new Point2D(834, 0)
             };
@@ -167,22 +167,13 @@ namespace Narivia.Gui.Screens
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            Dictionary<string, int> troops = new Dictionary<string, int>();
-
-            game.GetUnits().ToList().ForEach(u => troops.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
-
             recruitmentDialog.Location = new Point2D(
                 GameMap.Location.X + (GameMap.Size.Width - recruitmentDialog.Size.Width) / 2,
                 GameMap.Location.Y + (GameMap.Size.Height - recruitmentDialog.Size.Height) / 2);
             buildDialog.Location = new Point2D(
                 GameMap.Location.X + (GameMap.Size.Width - buildDialog.Size.Width) / 2,
                 GameMap.Location.Y + (GameMap.Size.Height - buildDialog.Size.Height) / 2);
-
-            InfoBar.Provinces = game.GetFactionProvinces(game.PlayerFactionId).Count();
-            InfoBar.Holdings = game.GetFactionHoldings(game.PlayerFactionId).Count();
-            InfoBar.Wealth = game.GetFaction(game.PlayerFactionId).Wealth;
-            InfoBar.Troops = troops;
-
+            
             if (!string.IsNullOrEmpty(GameMap.SelectedProvinceId))
             {
                 ProvinceBar.SetProvince(GameMap.SelectedProvinceId);
@@ -212,7 +203,7 @@ namespace Narivia.Gui.Screens
 
             GameMap.Clicked += GameMap_Clicked;
 
-            SideBar.TurnButton.Clicked += SideBar_TurnButtonClicked;
+            InfoBar.TurnButtonClicked += SideBar_TurnButtonClicked;
             AdministrationBar.BuildButton.Clicked += AdministrationBar_BuildButtonClicked;
             AdministrationBar.RecruitButton.Clicked += AdministrationBar_RecruitButtonClicked;
             AdministrationBar.StatsButton.Clicked += AdministrationBar_StatsButtonClicked;
