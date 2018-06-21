@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GuiElements\GuiInfoBarItem.cs" />
     <Compile Include="Helpers\FramerateCounter.cs" />
     <Compile Include="Helpers\TileShape.cs" />
     <Compile Include="NotificationManager.cs" />

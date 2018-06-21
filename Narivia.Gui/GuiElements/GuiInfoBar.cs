@@ -18,17 +18,20 @@ namespace Narivia.Gui.GuiElements
     {
         GuiImage background;
 
-        // TODO: Create a GUI Element that contains both the icon and the text
+        GuiImage provincesIcon;
+        GuiImage holdingsIcon;
+        GuiImage troopsIcon;
+        GuiImage wealthIcon;
 
-        GuiInfoBarItem provincesItem;
-        GuiInfoBarItem holdingsItem;
-        GuiInfoBarItem wealthItem;
-        GuiInfoBarItem troopsItem;
+        GuiText provincesText;
+        GuiText holdingsText;
+        GuiText troopsText;
+        GuiText wealthText;
 
         GuiTooltip provincesTooltip;
         GuiTooltip holdingsTooltip;
-        GuiTooltip wealthTooltip;
         GuiTooltip troopsTooltip;
+        GuiTooltip wealthTooltip;
 
         /// <summary>
         /// Gets or sets the provinces count.
@@ -57,20 +60,14 @@ namespace Narivia.Gui.GuiElements
         /// <value>The troops count.</value>
         [XmlIgnore]
         public Dictionary<string, int> Troops { get; set; }
-
-        /// <summary>
-        /// Gets or sets the spacing.
-        /// </summary>
-        /// <value>The spacing.</value>
-        public int Spacing { get; set; }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="InfoBar"/> class.
         /// </summary>
         public GuiInfoBar()
         {
-            BackgroundColour = Colour.Black;
-            Spacing = GameDefines.GuiSpacing;
+            ForegroundColour = Colour.Gold;
+            FontName = "InfoBarFont";
         }
 
         /// <summary>
@@ -80,29 +77,65 @@ namespace Narivia.Gui.GuiElements
         {
             background = new GuiImage
             {
-                ContentFile = "ScreenManager/FillImage",
-                TextureLayout = TextureLayout.Tile
+                ContentFile = "Interface/InfoBar/bar"
             };
 
-            provincesItem = new GuiInfoBarItem
+            provincesIcon = new GuiImage
             {
-                ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(0, 0, 16, 16)
+                ContentFile = "Interface/InfoBar/icons",
+                SourceRectangle = new Rectangle2D(0, 0, 26, 26),
+                Location = new Point2D(16, 10),
+                Size = new Size2D(26, 26)
             };
-            holdingsItem = new GuiInfoBarItem
+            holdingsIcon = new GuiImage
             {
-                ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(48, 0, 16, 16)
+                ContentFile = "Interface/InfoBar/icons",
+                SourceRectangle = new Rectangle2D(26, 0, 26, 26),
+                Location = new Point2D(52, 10),
+                Size = new Size2D(26, 26)
             };
-            wealthItem = new GuiInfoBarItem
+            troopsIcon = new GuiImage
             {
-                ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(16, 0, 16, 16)
+                ContentFile = "Interface/InfoBar/icons",
+                SourceRectangle = new Rectangle2D(52, 0, 26, 26),
+                Location = new Point2D(89, 10),
+                Size = new Size2D(26, 26)
             };
-            troopsItem = new GuiInfoBarItem
+            wealthIcon = new GuiImage
             {
-                ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(32, 0, 16, 16)
+                ContentFile = "Interface/InfoBar/icons",
+                SourceRectangle = new Rectangle2D(78, 0, 26, 26),
+                Location = new Point2D(124, 10),
+                Size = new Size2D(26, 26)
+            };
+
+            provincesText = new GuiText
+            {
+                Location = new Point2D(13, 36),
+                Size = new Size2D(32, 15),
+                VerticalAlignment = VerticalAlignment.Centre,
+                HorizontalAlignment = HorizontalAlignment.Centre
+            };
+            holdingsText = new GuiText
+            {
+                Location = new Point2D(49, 36),
+                Size = new Size2D(32, 15),
+                VerticalAlignment = VerticalAlignment.Centre,
+                HorizontalAlignment = HorizontalAlignment.Centre
+            };
+            troopsText = new GuiText
+            {
+                Location = new Point2D(85, 36),
+                Size = new Size2D(32, 15),
+                VerticalAlignment = VerticalAlignment.Centre,
+                HorizontalAlignment = HorizontalAlignment.Centre
+            };
+            wealthText = new GuiText
+            {
+                Location = new Point2D(121, 36),
+                Size = new Size2D(32, 15),
+                VerticalAlignment = VerticalAlignment.Centre,
+                HorizontalAlignment = HorizontalAlignment.Centre
             };
 
             provincesTooltip = new GuiTooltip
@@ -117,42 +150,47 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(100, 20),
                 Visible = false
             };
-            wealthTooltip = new GuiTooltip
-            {
-                Text = "Wealth",
-                Size = new Size2D(100, 20),
-                Visible = false
-            };
             troopsTooltip = new GuiTooltip
             {
                 Text = "Troops",
                 Size = new Size2D(128, 128),
                 Visible = false
             };
+            wealthTooltip = new GuiTooltip
+            {
+                Text = "Wealth",
+                Size = new Size2D(100, 20),
+                Visible = false
+            };
 
             AddChild(background);
 
-            AddChild(provincesItem);
-            AddChild(holdingsItem);
-            AddChild(wealthItem);
-            AddChild(troopsItem);
+            AddChild(provincesIcon);
+            AddChild(holdingsIcon);
+            AddChild(troopsIcon);
+            AddChild(wealthIcon);
+
+            AddChild(provincesText);
+            AddChild(holdingsText);
+            AddChild(troopsText);
+            AddChild(wealthText);
 
             AddChild(provincesTooltip);
             AddChild(holdingsTooltip);
             AddChild(wealthTooltip);
             AddChild(troopsTooltip);
 
-            holdingsItem.MouseEntered += OnHoldingsMouseEntered;
-            holdingsItem.MouseLeft += OnHoldingsMouseLeft;
+            provincesIcon.MouseEntered += OnProvincesMouseEntered;
+            provincesIcon.MouseLeft += OnProvincesMouseLeft;
 
-            provincesItem.MouseEntered += OnProvincesMouseEntered;
-            provincesItem.MouseLeft += OnProvincesMouseLeft;
+            holdingsIcon.MouseEntered += OnHoldingsMouseEntered;
+            holdingsIcon.MouseLeft += OnHoldingsMouseLeft;
 
-            troopsItem.MouseEntered += OnTroopsMouseEntered;
-            troopsItem.MouseLeft += OnTroopsMouseLeft;
+            troopsIcon.MouseEntered += OnTroopsMouseEntered;
+            troopsIcon.MouseLeft += OnTroopsMouseLeft;
 
-            wealthItem.MouseEntered += OnWealthMouseEntered;
-            wealthItem.MouseLeft += OnWealthMouseLeft;
+            wealthIcon.MouseEntered += OnWealthMouseEntered;
+            wealthIcon.MouseLeft += OnWealthMouseLeft;
 
             base.LoadContent();
         }
@@ -161,51 +199,38 @@ namespace Narivia.Gui.GuiElements
         {
             base.UnloadContent();
 
-            holdingsItem.MouseEntered -= OnHoldingsMouseEntered;
-            holdingsItem.MouseLeft -= OnHoldingsMouseLeft;
+            provincesIcon.MouseEntered -= OnProvincesMouseEntered;
+            provincesIcon.MouseLeft -= OnProvincesMouseLeft;
 
-            provincesItem.MouseEntered -= OnProvincesMouseEntered;
-            provincesItem.MouseLeft -= OnProvincesMouseLeft;
+            holdingsIcon.MouseEntered -= OnHoldingsMouseEntered;
+            holdingsIcon.MouseLeft -= OnHoldingsMouseLeft;
 
-            troopsItem.MouseEntered -= OnTroopsMouseEntered;
-            troopsItem.MouseLeft -= OnTroopsMouseLeft;
+            troopsIcon.MouseEntered -= OnTroopsMouseEntered;
+            troopsIcon.MouseLeft -= OnTroopsMouseLeft;
 
-            wealthItem.MouseEntered -= OnWealthMouseEntered;
-            wealthItem.MouseLeft -= OnWealthMouseLeft;
+            wealthIcon.MouseEntered -= OnWealthMouseEntered;
+            wealthIcon.MouseLeft -= OnWealthMouseLeft;
         }
 
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
             
-            background.TintColour = BackgroundColour;
-            
-            provincesItem.Location = new Point2D(Spacing, (Size.Height - provincesItem.ClientRectangle.Height) / 2);
-            provincesItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
-            provincesItem.Text = Provinces.ToString();
-            
-            holdingsItem.Location = new Point2D(provincesItem.ClientRectangle.Right + Spacing, provincesItem.Location.Y);
-            holdingsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
-            holdingsItem.Text = Holdings.ToString();
-            
-            wealthItem.Location = new Point2D(holdingsItem.ClientRectangle.Right + Spacing, holdingsItem.Location.Y);
-            wealthItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
-            wealthItem.Text = Wealth.ToString();
-            
-            troopsItem.Location = new Point2D(wealthItem.ClientRectangle.Right + Spacing, wealthItem.Location.Y);
-            troopsItem.Size = new Size2D((Size.Width - Spacing * 3) / 4, 16);
-            troopsItem.Text = "0";
+            provincesText.Text = Provinces.ToString();
+            holdingsText.Text = Holdings.ToString();
+            troopsText.Text = "0";
+            wealthText.Text = Wealth.ToString();
 
-            provincesTooltip.Location = new Point2D(provincesItem.Location.X, ClientRectangle.Bottom);
-            holdingsTooltip.Location = new Point2D(holdingsItem.Location.X, ClientRectangle.Bottom);
-            wealthTooltip.Location = new Point2D(wealthItem.Location.X, ClientRectangle.Bottom);
-            troopsTooltip.Location = new Point2D(troopsItem.Location.X, ClientRectangle.Bottom);
+            provincesTooltip.Location = new Point2D(provincesIcon.Location.X, ClientRectangle.Bottom);
+            holdingsTooltip.Location = new Point2D(holdingsIcon.Location.X, ClientRectangle.Bottom);
+            wealthTooltip.Location = new Point2D(wealthIcon.Location.X, ClientRectangle.Bottom);
+            troopsTooltip.Location = new Point2D(troopsIcon.Location.X, ClientRectangle.Bottom);
 
             troopsTooltip.Text = string.Empty;
 
             if (Troops != null && Troops.Count > 0)
             {
-                troopsItem.Text = Troops.Values.Sum().ToString();
+                troopsText.Text = Troops.Values.Sum().ToString();
                 Troops.ToList().ForEach(t => troopsTooltip.Text += $"{t.Key}: {t.Value}\n");
             }
         }

@@ -83,9 +83,7 @@ namespace Narivia.Gui.Screens
             };
             InfoBar = new GuiInfoBar
             {
-                Location = new Point2D(130, 0),
-                Size = new Size2D(870, 20),
-                BackgroundColour = Colour.Black
+                Location = new Point2D(834, 0)
             };
             GameMap = new GuiWorldmap(game)
             {
