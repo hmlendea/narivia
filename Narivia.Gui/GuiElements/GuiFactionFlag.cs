@@ -65,7 +65,7 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-            
+
             backgroundImage.ContentFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
             backgroundImage.MaskFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
             backgroundImage.TintColour = Flag.BackgroundColour.ToColour();

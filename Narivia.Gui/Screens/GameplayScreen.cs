@@ -137,6 +137,8 @@ namespace Narivia.Gui.Screens
             GuiManager.Instance.GuiElements.Add(recruitmentDialog);
             GuiManager.Instance.GuiElements.Add(buildDialog);
 
+            ProvincePanel.ProvinceId = game.GetFactionCapital(game.PlayerFactionId).Id;
+
             base.LoadContent();
 
             string factionName = game.GetFaction(game.PlayerFactionId).Name;
@@ -145,8 +147,6 @@ namespace Narivia.Gui.Screens
                             $"Welcome to {game.GetWorld().Name}",
                             $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
                             $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!");
-
-            ProvincePanel.ProvinceId = game.GetFactionCapital(game.PlayerFactionId).Id;
 
             LinkEvents();
 

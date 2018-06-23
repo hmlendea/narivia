@@ -436,13 +436,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/SideBarFont.spritefont
 
-#begin Fonts/ProvinceBarHoldingFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/ProvinceBarHoldingFont.spritefont
-
 #begin Fonts/ToolTipFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -1848,4 +1841,11 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Interface/ProvincePanel/holding-frame.png
+
+#begin Fonts/ProvincePanelInfoFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/ProvincePanelInfoFont.spritefont
 

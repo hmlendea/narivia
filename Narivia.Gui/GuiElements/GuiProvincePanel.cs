@@ -8,6 +8,7 @@ using NuciXNA.Primitives.Mapping;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Models;
+using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -22,6 +23,12 @@ namespace Narivia.Gui.GuiElements
         GuiSimpleButton closeButton;
         GuiText title;
 
+        GuiFactionFlag factionFlag;
+        GuiText factionName;
+
+        GuiImage resourceIcon;
+        GuiText resourceName;
+
         List<GuiImage> holdings;
         List<GuiImage> holdingFrames;
 
@@ -34,11 +41,12 @@ namespace Narivia.Gui.GuiElements
             this.game = game;
 
             Size = new Size2D(274, 424);
-            ForegroundColour = Colour.Gold;
         }
 
         public override void LoadContent()
         {
+            string worldId = game.GetWorld().Id;
+
             panel = new GuiImage
             {
                 ContentFile = "Interface/ProvincePanel/panel"
@@ -55,20 +63,21 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(163, 43),
                 Location = new Point2D(55, 0)
             };
-            closeButton = new GuiSimpleButton
-            {
-                ContentFile = "Interface/ProvincePanel/close-button",
-                Size = new Size2D(28, 28),
-                Location = new Point2D(241, 0)
-            };
             paper = new GuiImage
             {
                 ContentFile = "Interface/ProvincePanel/paper",
                 Size = new Size2D(248, 80),
                 Location = new Point2D(12, 68)
             };
+            closeButton = new GuiSimpleButton
+            {
+                ContentFile = "Interface/ProvincePanel/close-button",
+                Size = new Size2D(28, 28),
+                Location = new Point2D(241, 0)
+            };
             title = new GuiText
             {
+                ForegroundColour = Colour.Gold,
                 Size = new Size2D(125, 31),
                 Location = new Point2D(76, 4),
                 FontName = "ProvincePanelTitleFont",
@@ -77,12 +86,40 @@ namespace Narivia.Gui.GuiElements
                 FontOutline = FontOutline.Around
             };
 
+            factionFlag = new GuiFactionFlag
+            {
+                Size = new Size2D(16, 16),
+                Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 20)
+            };
+            factionName = new GuiText
+            {
+                Size = new Size2D(80, factionFlag.Size.Height),
+                Location = new Point2D(factionFlag.ClientRectangle.Right + GameDefines.GuiSpacing, factionFlag.Location.Y),
+                FontName = "ProvincePanelInfoFont",
+                HorizontalAlignment = HorizontalAlignment.Centre,
+                VerticalAlignment = VerticalAlignment.Left
+            };
+
+            resourceIcon = new GuiImage
+            {
+                ContentFile = $"World/Assets/{worldId}/resources/gold",
+                Size = new Size2D(16, 16),
+                Location = new Point2D(factionFlag.Location.X, factionFlag.ClientRectangle.Bottom + GameDefines.GuiSpacing)
+            };
+            resourceName = new GuiText
+            {
+                Size = new Size2D(factionName.Size.Width, resourceIcon.Size.Height),
+                Location = new Point2D(resourceIcon.ClientRectangle.Right + GameDefines.GuiSpacing, resourceIcon.Location.Y),
+                FontName = "ProvincePanelInfoFont",
+                HorizontalAlignment = HorizontalAlignment.Centre,
+                VerticalAlignment = VerticalAlignment.Left
+            };
+
             holdings = new List<GuiImage>();
             holdingFrames = new List<GuiImage>();
 
             Point2D holdingsStart = new Point2D(21, 165);
             Point2D holdingFramesStart = new Point2D(16, 161);
-            string worldId = game.GetWorld().Id;
 
             for (int y = 0; y < 3; y++)
             {
@@ -121,6 +158,12 @@ namespace Narivia.Gui.GuiElements
             AddChild(closeButton);
             AddChild(title);
 
+            AddChild(factionFlag);
+            AddChild(factionName);
+
+            AddChild(resourceIcon);
+            AddChild(resourceName);
+
             holdings.ForEach(AddChild);
             holdingFrames.ForEach(AddChild);
 
@@ -139,10 +182,16 @@ namespace Narivia.Gui.GuiElements
             currentProvinceId = ProvinceId;
 
             Province province = game.GetProvince(ProvinceId);
-            string factionId = game.GetProvince(ProvinceId).FactionId;
+            Faction faction = game.GetFaction(province.FactionId);
 
-            crystal.TintColour = game.GetFaction(factionId).Colour.ToColour();
+            crystal.TintColour = faction.Colour.ToColour();
             title.Text = province.Name;
+
+            factionFlag.Flag = game.GetFactionFlag(province.FactionId);
+            factionName.Text = faction.Name;
+
+            resourceIcon.ContentFile = $"World/Assets/{game.WorldId}/resources/{province.ResourceId}";
+            resourceName.Text = game.GetResource(province.ResourceId).Name;
 
             List<Holding> provinceHoldings = game.GetProvinceHoldings(ProvinceId).ToList();
             for (int i = 0; i < 9; i++)
