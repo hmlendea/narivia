@@ -15,7 +15,7 @@
         /// <summary>
         /// The GUI spacing.
         /// </summary>
-        public const int GuiSpacing = 8;
+        public const int GuiSpacing = 6;
 
         /// <summary>
         /// Mother Nature's faction.

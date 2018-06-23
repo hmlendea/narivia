@@ -29,6 +29,9 @@ namespace Narivia.Gui.GuiElements
         GuiImage resourceIcon;
         GuiText resourceName;
 
+        GuiSimpleButton attackButton;
+        GuiSimpleButton buildButton;
+
         List<GuiImage> holdings;
         List<GuiImage> holdingFrames;
 
@@ -88,8 +91,8 @@ namespace Narivia.Gui.GuiElements
 
             factionFlag = new GuiFactionFlag
             {
-                Size = new Size2D(16, 16),
-                Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 20)
+                Size = new Size2D(28, 28),
+                Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 8)
             };
             factionName = new GuiText
             {
@@ -103,16 +106,35 @@ namespace Narivia.Gui.GuiElements
             resourceIcon = new GuiImage
             {
                 ContentFile = $"World/Assets/{worldId}/resources/gold",
-                Size = new Size2D(16, 16),
-                Location = new Point2D(factionFlag.Location.X, factionFlag.ClientRectangle.Bottom + GameDefines.GuiSpacing)
+                Size = new Size2D(28, 28),
+                Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 44)
             };
             resourceName = new GuiText
             {
                 Size = new Size2D(factionName.Size.Width, resourceIcon.Size.Height),
-                Location = new Point2D(resourceIcon.ClientRectangle.Right + GameDefines.GuiSpacing, resourceIcon.Location.Y),
+                Location = new Point2D(
+                    resourceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
+                    resourceIcon.Location.Y),
                 FontName = "ProvincePanelInfoFont",
                 HorizontalAlignment = HorizontalAlignment.Centre,
                 VerticalAlignment = VerticalAlignment.Left
+            };
+
+            attackButton = new GuiSimpleButton
+            {
+                ContentFile = "Interface/ProvincePanel/attack-button",
+                Size = new Size2D(28, 28),
+                Location = new Point2D(
+                    paper.Location.X + paper.Size.Width - 40,
+                    factionFlag.Location.Y)
+            };
+            buildButton = new GuiSimpleButton
+            {
+                ContentFile = "Interface/ProvincePanel/build-button",
+                Size = new Size2D(28, 28),
+                Location = new Point2D(
+                    paper.Location.X + paper.Size.Width - 40,
+                    resourceIcon.Location.Y)
             };
 
             holdings = new List<GuiImage>();
@@ -163,6 +185,9 @@ namespace Narivia.Gui.GuiElements
 
             AddChild(resourceIcon);
             AddChild(resourceName);
+
+            AddChild(attackButton);
+            AddChild(buildButton);
 
             holdings.ForEach(AddChild);
             holdingFrames.ForEach(AddChild);
