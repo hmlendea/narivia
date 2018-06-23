@@ -46,11 +46,11 @@ namespace Narivia.Gui.Screens
         public GuiFactionBar FactionBar { get; set; }
 
         /// <summary>
-        /// Gets or sets the province bar.
+        /// Gets or sets the province panel.
         /// </summary>
-        /// <value>The province bar.</value>
-        public GuiProvinceBar ProvinceBar { get; set; }
-        
+        /// <value>The province panel.</value>
+        public GuiProvincePanel ProvincePanel { get; set; }
+
         /// <summary>
         /// Gets or sets the notification bar.
         /// </summary>
@@ -92,19 +92,16 @@ namespace Narivia.Gui.Screens
             };
             GameMap = new GuiWorldmap(game)
             {
-                Location = new Point2D(0, 20),
-                Size = new Size2D(ScreenManager.Instance.Size.Width, ScreenManager.Instance.Size.Height - 80)
+                Size = ScreenManager.Instance.Size
             };
             NotificationBar = new GuiNotificationBar(game)
             {
                 Location = new Point2D(0, 20),
                 Size = new Size2D(40, 610)
             };
-            ProvinceBar = new GuiProvinceBar(game)
+            ProvincePanel = new GuiProvincePanel(game)
             {
-                Location = new Point2D(0, 640),
-                Size = new Size2D(ScreenManager.Instance.Size.Width, 80),
-                ForegroundColour = new Colour(255, 215, 0)
+                Location = new Point2D(0, 296)
             };
 
             if (ScreenArgs != null && ScreenArgs.Length >= 2)
@@ -135,7 +132,7 @@ namespace Narivia.Gui.Screens
             GuiManager.Instance.GuiElements.Add(AdministrationBar);
             GuiManager.Instance.GuiElements.Add(InfoBar);
             GuiManager.Instance.GuiElements.Add(FactionBar);
-            GuiManager.Instance.GuiElements.Add(ProvinceBar);
+            GuiManager.Instance.GuiElements.Add(ProvincePanel);
             GuiManager.Instance.GuiElements.Add(NotificationBar);
             GuiManager.Instance.GuiElements.Add(recruitmentDialog);
             GuiManager.Instance.GuiElements.Add(buildDialog);
@@ -149,7 +146,7 @@ namespace Narivia.Gui.Screens
                             $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
                             $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!");
 
-            ProvinceBar.SetProvince(game.GetFactionCapital(game.PlayerFactionId).Id);
+            ProvincePanel.ProvinceId = game.GetFactionCapital(game.PlayerFactionId).Id;
 
             LinkEvents();
 
@@ -174,9 +171,9 @@ namespace Narivia.Gui.Screens
 
             if (!string.IsNullOrEmpty(GameMap.SelectedProvinceId))
             {
-                ProvinceBar.SetProvince(GameMap.SelectedProvinceId);
+                ProvincePanel.ProvinceId = GameMap.SelectedProvinceId;
             }
-            
+
             base.Update(gameTime);
         }
 

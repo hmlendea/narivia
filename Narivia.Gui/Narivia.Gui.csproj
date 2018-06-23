@@ -73,7 +73,6 @@
     <Compile Include="GuiElements\GuiNotificationDialog.cs" />
     <Compile Include="GuiElements\GuiNotificationIndicator.cs" />
     <Compile Include="GuiElements\GuiRecruitmentDialog.cs" />
-    <Compile Include="GuiElements\GuiProvinceBar.cs" />
     <Compile Include="GuiElements\GuiWorldmap.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="FpsIndicator.cs" />
@@ -84,6 +83,7 @@
     <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="GuiElements\GuiAdministrationBar.cs" />
     <Compile Include="GuiElements\GuiSimpleButton.cs" />
+    <Compile Include="GuiElements\GuiProvincePanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Audio\Narivia.Audio.csproj">
