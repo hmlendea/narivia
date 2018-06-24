@@ -31,7 +31,7 @@ namespace Narivia.GameLogic.GameManagers
         {
             relations.Clear();
         }
-        
+
         /// <summary>
         /// Gets the relation between two factions.
         /// </summary>
@@ -39,8 +39,9 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="sourceFactionId">Source faction identifier.</param>
         /// <param name="targetFactionId">Target faction identifier.</param>
         public Relation GetRelation(string sourceFactionId, string targetFactionId)
-        => GetRelations().FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
-                                              r.TargetFactionId == targetFactionId);
+        => GetRelations().FirstOrDefault(r =>
+               (r.SourceFactionId == sourceFactionId && r.TargetFactionId == targetFactionId) ||
+               (r.SourceFactionId == targetFactionId && r.TargetFactionId == sourceFactionId));
 
         /// <summary>
         /// Gets the relations.
@@ -55,8 +56,9 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The relations of a faction.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Relation> GetFactionRelations(string factionId)
-        => relations.Values.Where(r => r.SourceFactionId == factionId &&
-                                       r.SourceFactionId != r.TargetFactionId);
+        => relations.Values.Where(r =>
+               (r.SourceFactionId == factionId || r.TargetFactionId == factionId) &&
+               r.SourceFactionId != r.TargetFactionId);
 
         /// <summary>
         /// Changes the relations between two factions.
@@ -66,14 +68,9 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="delta">Relations value delta.</param>
         public void ChangeRelations(string sourceFactionId, string targetFactionId, int delta)
         {
-            Relation sourceRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
-                                                                           r.TargetFactionId == targetFactionId);
-            Relation targetRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
-                                                                           r.TargetFactionId == sourceFactionId);
+            Relation relation = GetRelation(sourceFactionId, targetFactionId);
 
-            int oldRelations = sourceRelation.Value;
-            sourceRelation.Value = Math.Max(-100, Math.Min(sourceRelation.Value + delta, 100));
-            targetRelation.Value = sourceRelation.Value;
+            SetRelations(relation, relation.Value + delta);
         }
 
         /// <summary>
@@ -84,31 +81,36 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="value">Relations value.</param>
         public void SetRelations(string sourceFactionId, string targetFactionId, int value)
         {
-            Relation sourceRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == sourceFactionId &&
-                                                                           r.TargetFactionId == targetFactionId);
-            Relation targetRelation = relations.Values.FirstOrDefault(r => r.SourceFactionId == targetFactionId &&
-                                                                           r.TargetFactionId == sourceFactionId);
+            Relation relation = GetRelation(sourceFactionId, targetFactionId);
 
-            sourceRelation.Value = Math.Max(-100, Math.Min(value, 100));
-            targetRelation.Value = Math.Max(-100, Math.Min(value, 100));
+            SetRelations(relation, value);
         }
 
-        public void InitialiseFactionRelations(string factionId)
+        public void SetRelations(Relation relation, int value)
         {
-            foreach (Faction otherFaction in worldManager.GetFactions())
+            relation.Value = Math.Max(-100, Math.Min(value, 100));
+        }
+
+        public void InitialiseFactionRelations(string sourceFactionId)
+        {
+            if (sourceFactionId == GameDefines.GaiaFactionIdentifier)
             {
-                if (factionId == otherFaction.Id ||
-                    factionId == GameDefines.GaiaFactionIdentifier ||
-                    otherFaction.Id == GameDefines.GaiaFactionIdentifier)
+                return;
+            }
+
+            foreach (Faction targetFaction in worldManager.GetFactions())
+            {
+                if (targetFaction.Id == sourceFactionId ||
+                    targetFaction.Id == GameDefines.GaiaFactionIdentifier)
                 {
-                    return;
+                    continue;
                 }
 
                 Relation relation = new Relation
                 {
-                    Id = $"{factionId}:{otherFaction.Id}",
-                    SourceFactionId = factionId,
-                    TargetFactionId = otherFaction.Id,
+                    Id = $"{sourceFactionId}:{targetFaction.Id}",
+                    SourceFactionId = sourceFactionId,
+                    TargetFactionId = targetFaction.Id,
                     Value = 0
                 };
 

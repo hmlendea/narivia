@@ -51,7 +51,8 @@ namespace Narivia.Gui.GuiElements
             {
                 FontName = "NotificationTitleFontBig",
                 Location = new Point2D(15, 45),
-                Size = new Size2D(Size.Width - 30, 20)
+                Size = new Size2D(Size.Width - 30, 20),
+                ForegroundColour = Colour.DarkRed
             };
             text = new GuiText
             {

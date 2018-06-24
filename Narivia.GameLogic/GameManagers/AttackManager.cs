@@ -84,6 +84,7 @@ namespace Narivia.GameLogic.GameManagers
                                                    .Where(x => provincesOwnedIds.Any(y => worldManager.ProvinceBordersProvince(x, y)))
                                                    .ToDictionary(x => x, y => 0);
 
+            //foreach (Province province in worldManager.GetProvinces().Where(r => targets.ContainsKey(r.Id)))
             Parallel.ForEach(worldManager.GetProvinces().Where(r => targets.ContainsKey(r.Id)).ToList(), (province) =>
             {
                 if (province.SovereignFactionId == factionId)
@@ -91,7 +92,7 @@ namespace Narivia.GameLogic.GameManagers
                     targets[province.Id] += BLITZKRIEG_SOVEREIGNTY_IMPORTANCE;
                 }
 
-
+                //foreach (Holding holding in holdingManager.GetProvinceHoldings(province.Id))
                 Parallel.ForEach(holdingManager.GetProvinceHoldings(province.Id), (holding) =>
                 {
                     switch (holding.Type)

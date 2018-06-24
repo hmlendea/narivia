@@ -83,7 +83,8 @@ namespace Narivia.Gui.Screens
             };
             InfoBar = new GuiInfoBar(game)
             {
-                Location = new Point2D(ScreenManager.Instance.Size.Width - 166, 0)
+                Location = new Point2D(ScreenManager.Instance.Size.Width - 166, 0),
+                Size = new Size2D(166, 82)
             };
             FactionBar = new GuiFactionBar(game)
             {
@@ -96,8 +97,10 @@ namespace Narivia.Gui.Screens
             };
             NotificationBar = new GuiNotificationBar(game)
             {
-                Location = new Point2D(0, 20),
-                Size = new Size2D(40, 610)
+                Location = new Point2D(
+                    ScreenManager.Instance.Size.Width - 40,
+                    InfoBar.Size.Height),
+                Size = new Size2D(40, ScreenManager.Instance.Size.Height - InfoBar.Size.Height)
             };
             ProvincePanel = new GuiProvincePanel(game)
             {
@@ -126,7 +129,18 @@ namespace Narivia.Gui.Screens
             relationsOld = new Dictionary<string, int>();
 
             game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
-            game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsOld.Add(r.TargetFactionId, r.Value));
+
+            foreach (Relation relation in game.GetFactionRelations(game.PlayerFactionId))
+            {
+                if (relationsOld.ContainsKey(relation.TargetFactionId))
+                {
+                    relationsOld[relation.TargetFactionId] = relation.Value;
+                }
+                else
+                {
+                    relationsOld.Add(relation.TargetFactionId, relation.Value);
+                }
+            }
 
             GuiManager.Instance.GuiElements.Add(GameMap);
             GuiManager.Instance.GuiElements.Add(AdministrationBar);
@@ -210,7 +224,18 @@ namespace Narivia.Gui.Screens
             Dictionary<string, int> relationsNew = new Dictionary<string, int>();
 
             game.GetUnits().ToList().ForEach(u => troopsNew.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
-            game.GetFactionRelations(game.PlayerFactionId).ToList().ForEach(r => relationsNew.Add(r.TargetFactionId, r.Value));
+
+            foreach (Relation relation in game.GetFactionRelations(game.PlayerFactionId))
+            {
+                if (relationsNew.ContainsKey(relation.TargetFactionId))
+                {
+                    relationsNew[relation.TargetFactionId] = relation.Value;
+                }
+                else
+                {
+                    relationsNew.Add(relation.TargetFactionId, relation.Value);
+                }
+            }
 
             int provincesNew = game.GetFactionProvinces(game.PlayerFactionId).Count();
             int holdingsNew = game.GetFactionHoldings(game.PlayerFactionId).Count();
