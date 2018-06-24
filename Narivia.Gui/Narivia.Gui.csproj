@@ -84,6 +84,8 @@
     <Compile Include="GuiElements\GuiAdministrationBar.cs" />
     <Compile Include="GuiElements\GuiSimpleButton.cs" />
     <Compile Include="GuiElements\GuiProvincePanel.cs" />
+    <Compile Include="GuiElements\GuiHoldingCard.cs" />
+    <Compile Include="GuiElements\GuiPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Audio\Narivia.Audio.csproj">

@@ -22,6 +22,11 @@ namespace Narivia.Gui.GuiElements
         GuiImage background;
         GuiImage icon;
 
+        public GuiNotificationIndicator()
+        {
+            Size = new Size2D(48, 48);
+        }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -36,7 +41,7 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "Interface/Notification/icons",
                 SourceRectangle = CalculateIconSourceRectangle(Icon),
-                Location = new Point2D(6, 6),
+                Location = new Point2D((Size.Width - 20) / 2, (Size.Height - 20) / 2),
                 Size = new Size2D(20, 20)
             };
 

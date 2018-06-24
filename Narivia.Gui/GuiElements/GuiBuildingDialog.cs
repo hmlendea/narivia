@@ -91,8 +91,8 @@ namespace Narivia.Gui.GuiElements
             priceIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(16, 0, 16, 16),
-                Size = new Size2D(16, 16)
+                SourceRectangle = new Rectangle2D(66, 0, 22, 22),
+                Size = new Size2D(22, 22)
             };
             priceText = new GuiText
             {
@@ -167,7 +167,7 @@ namespace Narivia.Gui.GuiElements
 
             base.Update(gameTime);
         }
-        
+
         /// <summary>
         /// Updates the province list.
         /// </summary>
@@ -216,10 +216,10 @@ namespace Narivia.Gui.GuiElements
                 holdingBackground.Location.X + (holdingBackground.Size.Width - holdingImage.SourceRectangle.Width) / 2,
                 holdingBackground.Location.Y + (holdingBackground.Size.Height - holdingImage.SourceRectangle.Height) / 2);
             holdingImage.SourceRectangle = new Rectangle2D(64 * currentHoldingTypeIndex, 0, 64, 64);
-            
+
             holdingText.Location = holdingBackground.Location;
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
-            
+
             provinceText.Location = new Point2D(
                 holdingBackground.ClientRectangle.Left,
                 holdingBackground.ClientRectangle.Bottom - provinceText.ClientRectangle.Height);
@@ -227,30 +227,30 @@ namespace Narivia.Gui.GuiElements
             priceIcon.Location = new Point2D(
                 holdingBackground.ClientRectangle.Left,
                 holdingBackground.ClientRectangle.Bottom + GameDefines.GuiSpacing);
-            
+
             priceText.Location = new Point2D(priceIcon.ClientRectangle.Right + GameDefines.GuiSpacing, priceIcon.ClientRectangle.Top);
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
-            
+
             previousHoldingButton.Location = new Point2D(
                 holdingBackground.ClientRectangle.Left - previousHoldingButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Top);
-            
+
             nextHoldingButton.Location = new Point2D(
                 holdingBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Top);
-            
+
             previouseProvinceButton.Location = new Point2D(
                 holdingBackground.ClientRectangle.Left - previouseProvinceButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Bottom - previouseProvinceButton.ClientRectangle.Height);
-            
+
             nextProvinceButton.Location = new Point2D(
                 holdingBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 holdingBackground.ClientRectangle.Bottom - nextProvinceButton.ClientRectangle.Height);
-            
+
             buildButton.Location = new Point2D(
                 GameDefines.GuiSpacing,
                 Size.Height - buildButton.Size.Height - GameDefines.GuiSpacing);
-;
+            ;
             cancelButton.Location = new Point2D(
                 Size.Width - cancelButton.Size.Width - GameDefines.GuiSpacing,
                 Size.Height - buildButton.Size.Height - GameDefines.GuiSpacing);

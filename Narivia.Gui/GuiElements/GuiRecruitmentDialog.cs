@@ -88,26 +88,26 @@ namespace Narivia.Gui.GuiElements
             healthIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(64, 0, 16, 16),
-                Size = new Size2D(16, 16)
+                SourceRectangle = new Rectangle2D(0, 0, 22, 22),
+                Size = new Size2D(22, 22)
             };
             powerIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(80, 0, 16, 16),
-                Size = new Size2D(16, 16)
+                SourceRectangle = new Rectangle2D(22, 0, 22, 22),
+                Size = new Size2D(22, 22)
             };
             priceIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(16, 0, 16, 16),
-                Size = new Size2D(16, 16)
+                SourceRectangle = new Rectangle2D(66, 0, 22, 22),
+                Size = new Size2D(22, 22)
             };
             maintenanceIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(96, 0, 16, 16),
-                Size = new Size2D(16, 16)
+                SourceRectangle = new Rectangle2D(66, 0, 22, 22),
+                Size = new Size2D(22, 22)
             };
 
             healthText = new GuiText
@@ -227,7 +227,7 @@ namespace Narivia.Gui.GuiElements
             base.SetChildrenProperties();
 
             background.Size = Size;
-            
+
             unitBackground.Location = new Point2D(
                 (Size.Width - unitBackground.Size.Width) / 2,
                 unitText.Size.Height + GameDefines.GuiSpacing);
@@ -252,48 +252,48 @@ namespace Narivia.Gui.GuiElements
             maintenanceIcon.Location = new Point2D(
                 priceIcon.ClientRectangle.Left,
                 priceIcon.ClientRectangle.Bottom + GameDefines.GuiSpacing);
-            
+
             healthText.Location = new Point2D(
                 healthIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                 healthIcon.ClientRectangle.Top);
             healthText.Text = units[currentUnitIndex].Health.ToString();
-            
+
             powerText.Location = new Point2D(
                 powerIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                 powerIcon.ClientRectangle.Top);
             powerText.Text = units[currentUnitIndex].Power.ToString();
-            
+
             priceText.Location = new Point2D(
                 priceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                 priceIcon.ClientRectangle.Top);
             priceText.Text = units[currentUnitIndex].Price.ToString();
-            
+
             maintenanceText.Location = new Point2D(
                 maintenanceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                 maintenanceIcon.ClientRectangle.Top);
             maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
-            
+
             previousUnitButton.Location = new Point2D(
                 unitBackground.ClientRectangle.Left - previousUnitButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 unitBackground.ClientRectangle.Top);
-            
+
             nextUnitButton.Location = new Point2D(
                 unitBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 unitBackground.ClientRectangle.Top);
-            
+
             addUnitButton.Location = new Point2D(
                 unitBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
                 unitBackground.ClientRectangle.Bottom - addUnitButton.ClientRectangle.Height);
-            
+
             substractUnitButton.Location = new Point2D(
                 unitBackground.ClientRectangle.Left - substractUnitButton.ClientRectangle.Width - GameDefines.GuiSpacing,
                 unitBackground.ClientRectangle.Bottom - substractUnitButton.ClientRectangle.Height);
-            
+
             recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
             recruitButton.Location = new Point2D(
                 GameDefines.GuiSpacing,
                 Size.Height - recruitButton.Size.Height - GameDefines.GuiSpacing);
-            
+
             cancelButton.Location = new Point2D(
                 Size.Width - cancelButton.Size.Width - GameDefines.GuiSpacing,
                 Size.Height - recruitButton.Size.Height - GameDefines.GuiSpacing);

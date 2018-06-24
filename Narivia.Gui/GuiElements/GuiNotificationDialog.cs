@@ -49,14 +49,14 @@ namespace Narivia.Gui.GuiElements
             };
             title = new GuiText
             {
-                FontName = "NotificationTitleFontBig",
+                FontName = "NotificationTitleFont",
                 Location = new Point2D(15, 45),
                 Size = new Size2D(Size.Width - 30, 20),
                 ForegroundColour = Colour.DarkRed
             };
             text = new GuiText
             {
-                FontName = "NotificationFontBig",
+                FontName = "NotificationFont",
                 Location = new Point2D(15, 70),
                 Size = new Size2D(Size.Width - 30, 270)
             };

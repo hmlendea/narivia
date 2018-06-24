@@ -98,9 +98,9 @@ namespace Narivia.Gui.Screens
             NotificationBar = new GuiNotificationBar(game)
             {
                 Location = new Point2D(
-                    ScreenManager.Instance.Size.Width - 40,
+                    ScreenManager.Instance.Size.Width - 48,
                     InfoBar.Size.Height),
-                Size = new Size2D(40, ScreenManager.Instance.Size.Height - InfoBar.Size.Height)
+                Size = new Size2D(48, ScreenManager.Instance.Size.Height - InfoBar.Size.Height)
             };
             ProvincePanel = new GuiProvincePanel(game)
             {
