@@ -141,6 +141,8 @@ namespace Narivia.Gui.Screens
 
             base.LoadContent();
 
+            ProvincePanel.Hide();
+
             string factionName = game.GetFaction(game.PlayerFactionId).Name;
 
             NotificationManager.Instance.ShowNotification(
@@ -169,11 +171,6 @@ namespace Narivia.Gui.Screens
                 GameMap.Location.X + (GameMap.Size.Width - buildDialog.Size.Width) / 2,
                 GameMap.Location.Y + (GameMap.Size.Height - buildDialog.Size.Height) / 2);
 
-            if (!string.IsNullOrEmpty(GameMap.SelectedProvinceId))
-            {
-                ProvincePanel.ProvinceId = GameMap.SelectedProvinceId;
-            }
-
             base.Update(gameTime);
         }
 
@@ -197,9 +194,10 @@ namespace Narivia.Gui.Screens
             GameMap.Clicked += GameMap_Clicked;
 
             InfoBar.TurnButtonClicked += SideBar_TurnButtonClicked;
-            AdministrationBar.BuildButton.Clicked += AdministrationBar_BuildButtonClicked;
             AdministrationBar.RecruitButton.Clicked += AdministrationBar_RecruitButtonClicked;
             AdministrationBar.StatsButton.Clicked += AdministrationBar_StatsButtonClicked;
+            ProvincePanel.AttackButtonClicked += ProvincePanel_AttackButtonClicked;
+            ProvincePanel.BuildButtonClicked += ProvincePanel_BuildButtonClicked;
         }
 
         void NextTurn()
@@ -272,39 +270,8 @@ namespace Narivia.Gui.Screens
             recruitmentOld = recruitmentNew;
         }
 
-        void SideBar_TurnButtonClicked(object sender, MouseButtonEventArgs e)
+        void AttackProvince(string provinceId)
         {
-            NextTurn();
-        }
-
-        void AdministrationBar_StatsButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            NotificationManager.Instance.ShowNotification(
-                "Statistics",
-                $"Income: {game.GetFactionIncome(game.PlayerFactionId)}" + Environment.NewLine +
-                $"Outcome: {game.GetFactionOutcome(game.PlayerFactionId)}" + Environment.NewLine +
-                $"Militia Recruitment: {game.GetFactionRecruitment(game.PlayerFactionId)}");
-        }
-
-        void AdministrationBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            recruitmentDialog.Show();
-        }
-
-        void AdministrationBar_BuildButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            buildDialog.Show();
-        }
-
-        void GameMap_Clicked(object sender, MouseButtonEventArgs e)
-        {
-            string provinceId = GameMap.SelectedProvinceId;
-
-            if (string.IsNullOrEmpty(provinceId))
-            {
-                return;
-            }
-
             if (game.GetFactionTroopsAmount(game.PlayerFactionId) < game.GetWorld().MinTroopsPerAttack)
             {
                 NotificationManager.Instance.ShowNotification(
@@ -356,6 +323,48 @@ namespace Narivia.Gui.Screens
                     $"Sorry!" + Environment.NewLine + Environment.NewLine +
                     $"You have chosen an invalid target that cannot be attacked.");
             }
+        }
+
+        void SideBar_TurnButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            NextTurn();
+        }
+
+        void AdministrationBar_StatsButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            NotificationManager.Instance.ShowNotification(
+                "Statistics",
+                $"Income: {game.GetFactionIncome(game.PlayerFactionId)}" + Environment.NewLine +
+                $"Outcome: {game.GetFactionOutcome(game.PlayerFactionId)}" + Environment.NewLine +
+                $"Militia Recruitment: {game.GetFactionRecruitment(game.PlayerFactionId)}");
+        }
+
+        void AdministrationBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            recruitmentDialog.Show();
+        }
+
+        void ProvincePanel_AttackButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            AttackProvince(ProvincePanel.ProvinceId);
+        }
+
+        void ProvincePanel_BuildButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            buildDialog.Show();
+        }
+
+        void GameMap_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            string provinceId = GameMap.SelectedProvinceId;
+
+            if (string.IsNullOrEmpty(provinceId))
+            {
+                return;
+            }
+
+            ProvincePanel.ProvinceId = provinceId;
+            ProvincePanel.Show();
         }
 
         void game_OnPlayerProvinceAttacked(object sender, BattleEventArgs e)

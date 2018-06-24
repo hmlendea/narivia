@@ -3,6 +3,7 @@ using System.Linq;
 
 using NuciXNA.Graphics.Enumerations;
 using NuciXNA.Gui.GuiElements;
+using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
@@ -38,6 +39,10 @@ namespace Narivia.Gui.GuiElements
         string currentProvinceId;
 
         public string ProvinceId { get; set; }
+
+        public event MouseButtonEventHandler AttackButtonClicked;
+
+        public event MouseButtonEventHandler BuildButtonClicked;
 
         public GuiProvincePanel(IGameManager game)
         {
@@ -192,7 +197,18 @@ namespace Narivia.Gui.GuiElements
             holdings.ForEach(AddChild);
             holdingFrames.ForEach(AddChild);
 
+            closeButton.Clicked += CloseButton_Clicked;
+            attackButton.Clicked += AttackButton_Clicked;
+            buildButton.Clicked += BuildButton_Clicked;
+
             base.LoadContent();
+        }
+
+        public override void UnloadContent()
+        {
+            closeButton.Clicked -= CloseButton_Clicked;
+
+            base.UnloadContent();
         }
 
         protected override void SetChildrenProperties()
@@ -233,6 +249,21 @@ namespace Narivia.Gui.GuiElements
                     holdingFrames[i].Visible = true;
                 }
             }
+        }
+
+        void CloseButton_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            Hide();
+        }
+
+        void AttackButton_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            AttackButtonClicked?.Invoke(this, e);
+        }
+
+        void BuildButton_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            BuildButtonClicked?.Invoke(this, e);
         }
     }
 }
