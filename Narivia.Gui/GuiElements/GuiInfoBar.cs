@@ -123,25 +123,25 @@ namespace Narivia.Gui.GuiElements
             {
                 Text = "Provinces",
                 Size = new Size2D(100, 20),
-                Visible = false
+                BackgroundColour = Colour.Black
             };
             holdingsTooltip = new GuiTooltip
             {
                 Text = "Holdings",
                 Size = new Size2D(100, 20),
-                Visible = false
+                BackgroundColour = Colour.Black
             };
             troopsTooltip = new GuiTooltip
             {
                 Text = "Troops",
                 Size = new Size2D(128, 128),
-                Visible = false
+                BackgroundColour = Colour.Black
             };
             wealthTooltip = new GuiTooltip
             {
                 Text = "Wealth",
                 Size = new Size2D(100, 20),
-                Visible = false
+                BackgroundColour = Colour.Black
             };
 
             turnButton = new GuiSimpleButton
@@ -158,6 +158,13 @@ namespace Narivia.Gui.GuiElements
                 HorizontalAlignment = HorizontalAlignment.Centre
             };
 
+            base.LoadContent();
+        }
+        
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+
             AddChild(background);
 
             AddChild(provincesIcon);
@@ -170,13 +177,18 @@ namespace Narivia.Gui.GuiElements
             AddChild(troopsText);
             AddChild(wealthText);
 
+            AddChild(turnButton);
+            AddChild(turnText);
+
             AddChild(provincesTooltip);
             AddChild(holdingsTooltip);
             AddChild(wealthTooltip);
             AddChild(troopsTooltip);
+        }
 
-            AddChild(turnButton);
-            AddChild(turnText);
+        protected override void RegisterEvents()
+        {
+            base.RegisterEvents();
 
             provincesIcon.MouseEntered += OnProvincesMouseEntered;
             provincesIcon.MouseLeft += OnProvincesMouseLeft;
@@ -191,13 +203,11 @@ namespace Narivia.Gui.GuiElements
             wealthIcon.MouseLeft += OnWealthMouseLeft;
 
             turnButton.Clicked += TurnButtonClicked;
-
-            base.LoadContent();
         }
 
-        public override void UnloadContent()
+        protected override void UnregisterEvents()
         {
-            base.UnloadContent();
+            base.UnregisterEvents();
 
             provincesIcon.MouseEntered -= OnProvincesMouseEntered;
             provincesIcon.MouseLeft -= OnProvincesMouseLeft;
@@ -228,10 +238,10 @@ namespace Narivia.Gui.GuiElements
             wealthText.Text = game.GetFaction(game.PlayerFactionId).Wealth.ToString();
             turnText.Text = $"Turn: {game.Turn}";
 
-            provincesTooltip.Location = new Point2D(provincesIcon.Location.X, ClientRectangle.Bottom);
-            holdingsTooltip.Location = new Point2D(holdingsIcon.Location.X, ClientRectangle.Bottom);
-            wealthTooltip.Location = new Point2D(wealthIcon.Location.X, ClientRectangle.Bottom);
-            troopsTooltip.Location = new Point2D(troopsIcon.Location.X, ClientRectangle.Bottom);
+            provincesTooltip.Location = new Point2D(provincesIcon.Location.X, provincesIcon.ClientRectangle.Bottom);
+            holdingsTooltip.Location = new Point2D(holdingsIcon.Location.X, holdingsIcon.ClientRectangle.Bottom);
+            wealthTooltip.Location = new Point2D(wealthIcon.Location.X, wealthIcon.ClientRectangle.Bottom);
+            troopsTooltip.Location = new Point2D(troopsIcon.Location.X, troopsIcon.ClientRectangle.Bottom);
 
             troopsTooltip.Text = string.Empty;
 

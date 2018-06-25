@@ -60,22 +60,32 @@ namespace Narivia.Gui.GuiElements
                 FontOutline = FontOutline.Around
             };
 
+            base.LoadContent();
+        }
+
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+
             AddChild(background);
             AddChild(crystal);
             AddChild(crystalOverlay);
             AddChild(closeButton);
             AddChild(title);
-
-            closeButton.Clicked += CloseButton_Clicked;
-
-            base.LoadContent();
         }
 
-        public override void UnloadContent()
+        protected override void RegisterEvents()
         {
-            closeButton.Clicked -= CloseButton_Clicked;
+            base.RegisterEvents();
 
-            base.UnloadContent();
+            closeButton.Clicked += CloseButton_Clicked;
+        }
+
+        protected override void UnregisterEvents()
+        {
+            base.UnregisterEvents();
+
+            closeButton.Clicked -= CloseButton_Clicked;
         }
 
         protected override void SetChildrenProperties()

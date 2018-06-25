@@ -133,23 +133,6 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(GameDefines.GuiTileSize * 2, GameDefines.GuiTileSize)
             };
 
-            AddChild(background);
-            AddChild(holdingBackground);
-            AddChild(holdingImage);
-
-            AddChild(holdingText);
-            AddChild(provinceText);
-
-            AddChild(priceIcon);
-            AddChild(priceText);
-
-            AddChild(nextHoldingButton);
-            AddChild(previousHoldingButton);
-            AddChild(nextProvinceButton);
-            AddChild(previouseProvinceButton);
-            AddChild(buildButton);
-            AddChild(cancelButton);
-
             base.LoadContent();
 
             UpdateProvinceList();
@@ -175,6 +158,28 @@ namespace Narivia.Gui.GuiElements
         {
             provinces = game.GetFactionProvinces(game.PlayerFactionId).Where(r => game.ProvinceHasEmptyHoldingSlots(r.Id)).ToList();
             SelectProvince(currentProvinceIndex);
+        }
+
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+
+            AddChild(background);
+            AddChild(holdingBackground);
+            AddChild(holdingImage);
+
+            AddChild(holdingText);
+            AddChild(provinceText);
+
+            AddChild(priceIcon);
+            AddChild(priceText);
+
+            AddChild(nextHoldingButton);
+            AddChild(previousHoldingButton);
+            AddChild(nextProvinceButton);
+            AddChild(previouseProvinceButton);
+            AddChild(buildButton);
+            AddChild(cancelButton);
         }
 
         protected override void RegisterEvents()

@@ -29,10 +29,15 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(76, 76)
             };
 
+            base.LoadContent();
+        }
+
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+
             AddChild(bar);
             AddChild(flag);
-
-            base.LoadContent();
         }
 
         protected override void SetChildrenProperties()

@@ -13,11 +13,10 @@ using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
 {
-    public class GuiProvincePanel : GuiElement
+    public class GuiProvincePanel : GuiPanel
     {
         readonly IGameManager game;
-
-        GuiPanel panel;
+        
         GuiImage paper;
 
         GuiFactionFlag factionFlag;
@@ -47,8 +46,7 @@ namespace Narivia.Gui.GuiElements
         public override void LoadContent()
         {
             string worldId = game.GetWorld().Id;
-
-            panel = new GuiPanel();
+            
             paper = new GuiImage
             {
                 ContentFile = "Interface/ProvincePanel/paper",
@@ -123,7 +121,18 @@ namespace Narivia.Gui.GuiElements
                 }
             }
 
-            AddChild(panel);
+            base.LoadContent();
+        }
+
+        public override void UnloadContent()
+        {
+            base.UnloadContent();
+        }
+
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+            
             AddChild(paper);
 
             AddChild(factionFlag);
@@ -136,19 +145,22 @@ namespace Narivia.Gui.GuiElements
             AddChild(buildButton);
 
             holdingCards.ForEach(AddChild);
+        }
+
+        protected override void RegisterEvents()
+        {
+            base.RegisterEvents();
 
             attackButton.Clicked += AttackButton_Clicked;
             buildButton.Clicked += BuildButton_Clicked;
-
-            base.LoadContent();
         }
 
-        public override void UnloadContent()
+        protected override void UnregisterEvents()
         {
+            base.UnregisterEvents();
+
             attackButton.Clicked -= AttackButton_Clicked;
             buildButton.Clicked -= BuildButton_Clicked;
-
-            base.UnloadContent();
         }
 
         protected override void SetChildrenProperties()
@@ -165,8 +177,8 @@ namespace Narivia.Gui.GuiElements
             Province province = game.GetProvince(ProvinceId);
             Faction faction = game.GetFaction(province.FactionId);
 
-            panel.CrystalColour = faction.Colour.ToColour();
-            panel.Title = province.Name;
+            CrystalColour = faction.Colour.ToColour();
+            Title = province.Name;
 
             factionFlag.Flag = game.GetFactionFlag(province.FactionId);
             factionName.Text = faction.Name;

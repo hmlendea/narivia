@@ -53,13 +53,18 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = Rectangle2D.Empty
             };
 
+            base.LoadContent();
+        }
+
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+
             AddChild(backgroundImage);
             AddChild(layer1Image);
             AddChild(layer2Image);
             AddChild(emblemImage);
             AddChild(skinImage);
-
-            base.LoadContent();
         }
 
         protected override void SetChildrenProperties()

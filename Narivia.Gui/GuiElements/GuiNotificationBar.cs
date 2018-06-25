@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using NuciXNA.Gui.GuiElements;
@@ -14,6 +15,8 @@ namespace Narivia.Gui.GuiElements
     /// </summary>
     public class GuiNotificationBar : GuiElement
     {
+        List<GuiNotificationIndicator> indicators;
+
         [XmlIgnore]
         public string ProvinceId { get; private set; }
 
@@ -22,6 +25,13 @@ namespace Narivia.Gui.GuiElements
         public GuiNotificationBar(IGameManager game)
         {
             this.game = game;
+        }
+
+        public override void LoadContent()
+        {
+            indicators = new List<GuiNotificationIndicator>();
+
+            base.LoadContent();
         }
 
         // TODO: Handle this better
@@ -36,11 +46,12 @@ namespace Narivia.Gui.GuiElements
                 Icon = icon,
                 Location = new Point2D(
                     GameDefines.GuiSpacing,
-                    Size.Height - (Children.Count + 1) * (GameDefines.GuiTileSize + GameDefines.GuiSpacing)),
+                    Size.Height - (indicators.Count + 1) * (GameDefines.GuiTileSize + GameDefines.GuiSpacing)),
                 Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
 
             notificationButton.LoadContent();
+            indicators.Add(notificationButton);
             AddChild(notificationButton);
 
             return notificationButton;
@@ -48,18 +59,21 @@ namespace Narivia.Gui.GuiElements
 
         public void Clear()
         {
-            Children.ForEach(x => x.Dispose());
+            indicators.ForEach(x => x.Dispose());
         }
         
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
 
-            for (int i = 0; i < Children.Count; i++)
+            int i = 0;
+            foreach(GuiNotificationIndicator indicator in indicators)
             {
-                Children[i].Location = new Point2D(
+                indicator.Location = new Point2D(
                     GameDefines.GuiSpacing,
                     Size.Height - (i + 1) * (GameDefines.GuiTileSize + GameDefines.GuiSpacing));
+
+                i += 1;
             }
         }
     }

@@ -39,10 +39,15 @@ namespace Narivia.Gui.GuiElements
                 ContentFile = "Interface/ProvincePanel/holding-frame"
             };
 
+            base.LoadContent();
+        }
+
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+
             AddChild(icon);
             AddChild(frame);
-
-            base.LoadContent();
         }
 
         protected override void SetChildrenProperties()

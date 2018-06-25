@@ -171,6 +171,13 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(GameDefines.GuiTileSize * 2, GameDefines.GuiTileSize)
             };
 
+            base.LoadContent();
+        }
+
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+
             AddChild(background);
             AddChild(unitBackground);
             AddChild(unitImage);
@@ -194,8 +201,6 @@ namespace Narivia.Gui.GuiElements
             AddChild(substractUnitButton);
             AddChild(recruitButton);
             AddChild(cancelButton);
-
-            base.LoadContent();
         }
 
         protected override void RegisterEvents()

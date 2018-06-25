@@ -69,12 +69,17 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(88, 26)
             };
 
+            base.LoadContent();
+        }
+
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+
             AddChild(background);
             AddChild(title);
             AddChild(text);
             AddChild(acceptButton);
-
-            base.LoadContent();
         }
 
         protected override void RegisterEvents()

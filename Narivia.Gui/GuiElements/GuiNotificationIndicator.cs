@@ -45,18 +45,15 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(20, 20)
             };
 
-            AddChild(background);
-            AddChild(icon);
-
             base.LoadContent();
         }
 
-        Rectangle2D CalculateIconSourceRectangle(NotificationIcon notificationIcon)
+        protected override void RegisterChildren()
         {
-            return new Rectangle2D((int)notificationIcon % 8 * 20,
-                                   (int)notificationIcon / 8 * 20,
-                                   20,
-                                   20);
+            base.RegisterChildren();
+
+            AddChild(background);
+            AddChild(icon);
         }
 
         /// <summary>
@@ -80,6 +77,14 @@ namespace Narivia.Gui.GuiElements
         protected override void OnMouseEntered(object sender, MouseEventArgs e)
         {
             AudioManager.Instance.PlaySound("Interface/select");
+        }
+
+        Rectangle2D CalculateIconSourceRectangle(NotificationIcon notificationIcon)
+        {
+            return new Rectangle2D((int)notificationIcon % 8 * 20,
+                                   (int)notificationIcon / 8 * 20,
+                                   20,
+                                   20);
         }
     }
 }

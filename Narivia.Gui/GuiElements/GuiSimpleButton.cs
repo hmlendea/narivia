@@ -49,10 +49,15 @@ namespace Narivia.Gui.GuiElements
             };
             text = new GuiText();
 
+            base.LoadContent();
+        }
+
+        protected override void RegisterChildren()
+        {
+            base.RegisterChildren();
+
             AddChild(image);
             AddChild(text);
-
-            base.LoadContent();
         }
 
         protected override void SetChildrenProperties()
