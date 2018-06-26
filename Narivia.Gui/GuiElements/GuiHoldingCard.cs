@@ -21,7 +21,7 @@ namespace Narivia.Gui.GuiElements
         {
             this.game = game;
 
-            Size = new Size2D(128, 74);
+            Size = new Size2D(74, 74);
         }
 
         public override void LoadContent()

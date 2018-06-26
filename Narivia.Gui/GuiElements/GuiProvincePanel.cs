@@ -111,7 +111,6 @@ namespace Narivia.Gui.GuiElements
                 {
                     GuiHoldingCard holdingCard = new GuiHoldingCard(game)
                     {
-                        Size = new Size2D(74, 74),
                         Location = new Point2D(
                             holdingCardsStart.X + x * 84,
                             holdingCardsStart.Y + y * 84),
