@@ -34,7 +34,7 @@ namespace Narivia.Gui.GuiElements
         GuiTooltip troopsTooltip;
         GuiTooltip wealthTooltip;
 
-        GuiSimpleButton turnButton;
+        GuiButton turnButton;
         GuiText turnText;
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Narivia.Gui.GuiElements
                 BackgroundColour = Colour.Black
             };
 
-            turnButton = new GuiSimpleButton
+            turnButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/button-plus",
                 Location = new Point2D(142, 59),

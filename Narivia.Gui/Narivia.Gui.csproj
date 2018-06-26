@@ -66,7 +66,6 @@
     <Compile Include="GuiElements\Enumerations\NotificationStyle.cs" />
     <Compile Include="GuiElements\Enumerations\NotificationType.cs" />
     <Compile Include="GuiElements\GuiBuildingPanel.cs" />
-    <Compile Include="GuiElements\GuiButton.cs" />
     <Compile Include="GuiElements\GuiFactionFlag.cs" />
     <Compile Include="GuiElements\GuiInfoBar.cs" />
     <Compile Include="GuiElements\GuiNotificationBar.cs" />
@@ -82,7 +81,7 @@
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="GuiElements\GuiAdministrationBar.cs" />
-    <Compile Include="GuiElements\GuiSimpleButton.cs" />
+    <Compile Include="GuiElements\GuiButton.cs" />
     <Compile Include="GuiElements\GuiProvincePanel.cs" />
     <Compile Include="GuiElements\GuiHoldingCard.cs" />
     <Compile Include="GuiElements\GuiPanel.cs" />

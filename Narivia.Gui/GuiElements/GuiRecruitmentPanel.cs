@@ -37,12 +37,12 @@ namespace Narivia.Gui.GuiElements
         GuiText priceText;
         GuiText maintenanceText;
 
-        GuiSimpleButton previousUnitButton;
-        GuiSimpleButton nextUnitButton;
-        GuiSimpleButton addUnitButton;
-        GuiSimpleButton substractUnitButton;
+        GuiButton previousUnitButton;
+        GuiButton nextUnitButton;
+        GuiButton addUnitButton;
+        GuiButton substractUnitButton;
 
-        GuiSimpleButton recruitButton;
+        GuiButton recruitButton;
 
         List<Unit> units;
 
@@ -182,7 +182,7 @@ namespace Narivia.Gui.GuiElements
                     unitBackground.ClientRectangle.Bottom - 18)
             };
 
-            previousUnitButton = new GuiSimpleButton
+            previousUnitButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/button-minus",
                 Size = new Size2D(24, 24),
@@ -190,7 +190,7 @@ namespace Narivia.Gui.GuiElements
                     unitBackground.Location.X - GameDefines.GuiSpacing - 24,
                     unitBackground.Location.Y)
             };
-            nextUnitButton = new GuiSimpleButton
+            nextUnitButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/button-plus",
                 Size = new Size2D(24, 24),
@@ -198,7 +198,7 @@ namespace Narivia.Gui.GuiElements
                     unitBackground.Location.X + unitBackground.Size.Width + GameDefines.GuiSpacing,
                     unitBackground.Location.Y)
             };
-            substractUnitButton = new GuiSimpleButton
+            substractUnitButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/button-minus",
                 Size = new Size2D(24, 24),
@@ -206,7 +206,7 @@ namespace Narivia.Gui.GuiElements
                     unitBackground.Location.X - GameDefines.GuiSpacing - 24,
                     unitBackground.Location.Y + unitBackground.Size.Height - 24)
             };
-            addUnitButton = new GuiSimpleButton
+            addUnitButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/button-plus",
                 Size = new Size2D(24, 24),
@@ -215,7 +215,7 @@ namespace Narivia.Gui.GuiElements
                     unitBackground.Location.Y + unitBackground.Size.Height - 24)
             };
 
-            recruitButton = new GuiSimpleButton
+            recruitButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/green-button-large",
                 ForegroundColour = Colour.White,

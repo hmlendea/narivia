@@ -10,7 +10,7 @@ namespace Narivia.Gui.GuiElements
         GuiImage background;
         GuiImage crystal;
         GuiImage crystalOverlay;
-        GuiSimpleButton closeButton;
+        GuiButton closeButton;
         GuiText title;
 
         public string Title { get; set; }
@@ -43,7 +43,7 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(163, 43),
                 Location = new Point2D(55, 0)
             };
-            closeButton = new GuiSimpleButton
+            closeButton = new GuiButton
             {
                 ContentFile = "Interface/ProvincePanel/close-button",
                 Size = new Size2D(28, 28),

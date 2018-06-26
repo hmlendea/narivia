@@ -27,7 +27,7 @@ namespace Narivia.Gui.GuiElements
         GuiImage background;
         GuiText title;
         GuiText text;
-        GuiSimpleButton acceptButton;
+        GuiButton acceptButton;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuiNotificationDialog"/> class.
@@ -60,7 +60,7 @@ namespace Narivia.Gui.GuiElements
                 Location = new Point2D(15, 70),
                 Size = new Size2D(Size.Width - 30, 270)
             };
-            acceptButton = new GuiSimpleButton
+            acceptButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/green-button",
                 Text = "Accept",

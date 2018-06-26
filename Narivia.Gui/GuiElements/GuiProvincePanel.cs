@@ -25,8 +25,8 @@ namespace Narivia.Gui.GuiElements
         GuiImage resourceIcon;
         GuiText resourceName;
 
-        GuiSimpleButton attackButton;
-        GuiSimpleButton buildButton;
+        GuiButton attackButton;
+        GuiButton buildButton;
 
         List<GuiHoldingCard> holdingCards;
 
@@ -85,7 +85,7 @@ namespace Narivia.Gui.GuiElements
                 VerticalAlignment = VerticalAlignment.Left
             };
 
-            attackButton = new GuiSimpleButton
+            attackButton = new GuiButton
             {
                 ContentFile = "Interface/ProvincePanel/attack-button",
                 Size = new Size2D(28, 28),
@@ -93,7 +93,7 @@ namespace Narivia.Gui.GuiElements
                     paper.Location.X + paper.Size.Width - 40,
                     factionFlag.Location.Y)
             };
-            buildButton = new GuiSimpleButton
+            buildButton = new GuiButton
             {
                 ContentFile = "Interface/ProvincePanel/build-button",
                 Size = new Size2D(28, 28),

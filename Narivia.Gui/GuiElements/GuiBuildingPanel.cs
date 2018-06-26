@@ -35,12 +35,12 @@ namespace Narivia.Gui.GuiElements
         GuiImage priceIcon;
         GuiText priceText;
 
-        GuiSimpleButton previousHoldingButton;
-        GuiSimpleButton nextHoldingButton;
-        GuiSimpleButton previouseProvinceButton;
-        GuiSimpleButton nextProvinceButton;
+        GuiButton previousHoldingButton;
+        GuiButton nextHoldingButton;
+        GuiButton previouseProvinceButton;
+        GuiButton nextProvinceButton;
 
-        GuiSimpleButton buildButton;
+        GuiButton buildButton;
 
         List<HoldingType> holdingTypes;
         List<Province> provinces;
@@ -122,7 +122,7 @@ namespace Narivia.Gui.GuiElements
                     priceIcon.Location.Y)
             };
 
-            previousHoldingButton = new GuiSimpleButton
+            previousHoldingButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/button-minus",
                 Size = new Size2D(24, 24),
@@ -130,7 +130,7 @@ namespace Narivia.Gui.GuiElements
                     holdingBackground.Location.X - GameDefines.GuiSpacing - 24,
                     holdingBackground.Location.Y)
             };
-            nextHoldingButton = new GuiSimpleButton
+            nextHoldingButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/button-plus",
                 Size = new Size2D(24, 24),
@@ -138,7 +138,7 @@ namespace Narivia.Gui.GuiElements
                     holdingBackground.Location.X + holdingBackground.Size.Width + GameDefines.GuiSpacing,
                     holdingBackground.Location.Y)
             };
-            previouseProvinceButton = new GuiSimpleButton
+            previouseProvinceButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/button-minus",
                 Size = new Size2D(24, 24),
@@ -146,7 +146,7 @@ namespace Narivia.Gui.GuiElements
                     holdingBackground.Location.X - GameDefines.GuiSpacing - 24,
                     holdingBackground.Location.Y + holdingBackground.Size.Height - 24)
             };
-            nextProvinceButton = new GuiSimpleButton
+            nextProvinceButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/button-plus",
                 Size = new Size2D(24, 24),
@@ -155,7 +155,7 @@ namespace Narivia.Gui.GuiElements
                     holdingBackground.Location.Y + holdingBackground.Size.Height - 24)
             };
 
-            buildButton = new GuiSimpleButton
+            buildButton = new GuiButton
             {
                 ContentFile = "Interface/Buttons/green-button-large",
                 ForegroundColour = Colour.White,
