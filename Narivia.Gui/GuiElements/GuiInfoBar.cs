@@ -145,7 +145,7 @@ namespace Narivia.Gui.GuiElements
 
             turnButton = new GuiSimpleButton
             {
-                ContentFile = "Interface/InfoBar/turn-button",
+                ContentFile = "Interface/Buttons/button-plus",
                 Location = new Point2D(142, 59),
                 Size = new Size2D(24, 24)
             };

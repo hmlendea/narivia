@@ -21,10 +21,13 @@ namespace Narivia.Gui.GuiElements
     /// </summary>
     public class GuiBuildingPanel : GuiPanel
     {
+        const int IconSize = 22;
+
         IGameManager game;
         
         GuiImage holdingBackground;
         GuiImage holdingImage;
+        GuiImage paper;
 
         GuiText holdingText;
         GuiText provinceText;
@@ -32,10 +35,10 @@ namespace Narivia.Gui.GuiElements
         GuiImage priceIcon;
         GuiText priceText;
 
-        GuiButton previousHoldingButton;
-        GuiButton nextHoldingButton;
-        GuiButton previouseProvinceButton;
-        GuiButton nextProvinceButton;
+        GuiSimpleButton previousHoldingButton;
+        GuiSimpleButton nextHoldingButton;
+        GuiSimpleButton previouseProvinceButton;
+        GuiSimpleButton nextProvinceButton;
 
         GuiSimpleButton buildButton;
 
@@ -48,9 +51,9 @@ namespace Narivia.Gui.GuiElements
         public GuiBuildingPanel(IGameManager game)
         {
             this.game = game;
-
-            ForegroundColour = Colour.Gold;
+            
             Title = "Building";
+            FontName = "ButtonFont";
         }
 
         /// <summary>
@@ -64,66 +67,103 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "ScreenManager/FillImage",
                 TextureLayout = TextureLayout.Tile,
-                Size = new Size2D(100, 100)
+                TintColour = Colour.Black,
+                Size = new Size2D(100, 100),
+                Location = new Point2D((Size.Width - 100) / 2, 64)
             };
             holdingImage = new GuiImage
             {
                 ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic",
-                Size = new Size2D(64, 64)
+                SourceRectangle = new Rectangle2D(0, 0, 64, 64),
+                Size = new Size2D(64, 64),
+                Location = new Point2D(
+                    holdingBackground.Location.X + (holdingBackground.Size.Width - 64) / 2,
+                    holdingBackground.Location.Y + (holdingBackground.Size.Height - 64) / 2)
+            };
+            paper = new GuiImage
+            {
+                ContentFile = "Interface/ProvincePanel/paper",
+                Size = new Size2D(248, 80),
+                Location = new Point2D(
+                    (Size.Width - 248) / 2,
+                    holdingBackground.ClientRectangle.Bottom + GameDefines.GuiSpacing)
             };
 
             holdingText = new GuiText
             {
+                ForegroundColour = Colour.Gold,
                 Size = new Size2D(holdingBackground.Size.Width, 18),
-                FontName = "InfoBarFont"
+                Location = holdingBackground.Location
             };
             provinceText = new GuiText
             {
+                ForegroundColour = Colour.Gold,
                 Size = new Size2D(holdingBackground.Size.Height, 18),
-                FontName = "InfoBarFont"
+                Location = new Point2D(
+                    holdingBackground.Location.X,
+                    holdingBackground.Location.Y + holdingBackground.Size.Height - 18)
             };
 
             priceIcon = new GuiImage
             {
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(66, 0, 22, 22),
-                Size = new Size2D(22, 22)
+                SourceRectangle = new Rectangle2D(IconSize * 3, 0, IconSize, IconSize),
+                Size = new Size2D(IconSize, IconSize),
+                Location = new Point2D(
+                    paper.Location.X + (paper.Size.Width - IconSize * 3 - GameDefines.GuiSpacing) / 2,
+                    paper.Location.Y + (paper.Size.Height - IconSize) / 2)
             };
             priceText = new GuiText
             {
-                Size = new Size2D(priceIcon.SourceRectangle.Width * 2,
-                                  priceIcon.SourceRectangle.Height),
-                FontName = "InfoBarFont",
-                VerticalAlignment = VerticalAlignment.Left
+                VerticalAlignment = VerticalAlignment.Left,
+                Size = new Size2D(priceIcon.Size.Width * 2, priceIcon.Size.Height),
+                Location = new Point2D(
+                    priceIcon.Location.X + priceIcon.Size.Width + GameDefines.GuiSpacing,
+                    priceIcon.Location.Y)
             };
 
-            previousHoldingButton = new GuiButton
+            previousHoldingButton = new GuiSimpleButton
             {
-                Text = "<",
-                Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
+                ContentFile = "Interface/Buttons/button-minus",
+                Size = new Size2D(24, 24),
+                Location = new Point2D(
+                    holdingBackground.Location.X - GameDefines.GuiSpacing - 24,
+                    holdingBackground.Location.Y)
             };
-            nextHoldingButton = new GuiButton
+            nextHoldingButton = new GuiSimpleButton
             {
-                Text = ">",
-                Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
+                ContentFile = "Interface/Buttons/button-plus",
+                Size = new Size2D(24, 24),
+                Location = new Point2D(
+                    holdingBackground.Location.X + holdingBackground.Size.Width + GameDefines.GuiSpacing,
+                    holdingBackground.Location.Y)
             };
-            previouseProvinceButton = new GuiButton
+            previouseProvinceButton = new GuiSimpleButton
             {
-                Text = "<",
-                Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
+                ContentFile = "Interface/Buttons/button-minus",
+                Size = new Size2D(24, 24),
+                Location = new Point2D(
+                    holdingBackground.Location.X - GameDefines.GuiSpacing - 24,
+                    holdingBackground.Location.Y + holdingBackground.Size.Height - 24)
             };
-            nextProvinceButton = new GuiButton
+            nextProvinceButton = new GuiSimpleButton
             {
-                Text = ">",
-                Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
+                ContentFile = "Interface/Buttons/button-plus",
+                Size = new Size2D(24, 24),
+                Location = new Point2D(
+                    holdingBackground.Location.X + holdingBackground.Size.Width + GameDefines.GuiSpacing,
+                    holdingBackground.Location.Y + holdingBackground.Size.Height - 24)
             };
 
             buildButton = new GuiSimpleButton
             {
-                ContentFile = "Interface/green-button-large",
-                Text = "Build",
+                ContentFile = "Interface/Buttons/green-button-large",
                 ForegroundColour = Colour.White,
-                Size = new Size2D(128, 26)
+                Text = "Build",
+                Size = new Size2D(128, 26),
+                Location = new Point2D(
+                    (Size.Width - 128) / 2,
+                    Size.Height - 42 - GameDefines.GuiSpacing)
             };
 
             base.LoadContent();
@@ -159,6 +199,7 @@ namespace Narivia.Gui.GuiElements
             
             AddChild(holdingBackground);
             AddChild(holdingImage);
+            AddChild(paper);
 
             AddChild(holdingText);
             AddChild(provinceText);
@@ -200,49 +241,10 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
             
-            holdingBackground.Location = new Point2D(
-                (Size.Width - holdingBackground.Size.Width) / 2,
-                holdingText.Size.Height + 50 + GameDefines.GuiSpacing);
-            holdingBackground.TintColour = BackgroundColour;
-
-            holdingImage.Location = new Point2D(
-                holdingBackground.Location.X + (holdingBackground.Size.Width - holdingImage.SourceRectangle.Width) / 2,
-                holdingBackground.Location.Y + (holdingBackground.Size.Height - holdingImage.SourceRectangle.Height) / 2);
             holdingImage.SourceRectangle = new Rectangle2D(64 * currentHoldingTypeIndex, 0, 64, 64);
-
-            holdingText.Location = holdingBackground.Location;
+            
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
-
-            provinceText.Location = new Point2D(
-                holdingBackground.ClientRectangle.Left,
-                holdingBackground.ClientRectangle.Bottom - provinceText.ClientRectangle.Height);
-
-            priceIcon.Location = new Point2D(
-                holdingBackground.ClientRectangle.Left,
-                holdingBackground.ClientRectangle.Bottom + GameDefines.GuiSpacing);
-
-            priceText.Location = new Point2D(priceIcon.ClientRectangle.Right + GameDefines.GuiSpacing, priceIcon.ClientRectangle.Top);
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
-
-            previousHoldingButton.Location = new Point2D(
-                holdingBackground.ClientRectangle.Left - previousHoldingButton.ClientRectangle.Width - GameDefines.GuiSpacing,
-                holdingBackground.ClientRectangle.Top);
-
-            nextHoldingButton.Location = new Point2D(
-                holdingBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
-                holdingBackground.ClientRectangle.Top);
-
-            previouseProvinceButton.Location = new Point2D(
-                holdingBackground.ClientRectangle.Left - previouseProvinceButton.ClientRectangle.Width - GameDefines.GuiSpacing,
-                holdingBackground.ClientRectangle.Bottom - previouseProvinceButton.ClientRectangle.Height);
-
-            nextProvinceButton.Location = new Point2D(
-                holdingBackground.ClientRectangle.Right + GameDefines.GuiSpacing,
-                holdingBackground.ClientRectangle.Bottom - nextProvinceButton.ClientRectangle.Height);
-
-            buildButton.Location = new Point2D(
-                (Size.Width - buildButton.Size.Width) / 2,
-                Size.Height - buildButton.Size.Height - 16 - GameDefines.GuiSpacing);
         }
 
         void SelectHolding(int index)
