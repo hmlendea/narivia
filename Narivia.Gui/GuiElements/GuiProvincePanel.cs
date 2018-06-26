@@ -64,8 +64,7 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(80, factionFlag.Size.Height),
                 Location = new Point2D(factionFlag.ClientRectangle.Right + GameDefines.GuiSpacing, factionFlag.Location.Y),
                 FontName = "ProvincePanelInfoFont",
-                HorizontalAlignment = HorizontalAlignment.Centre,
-                VerticalAlignment = VerticalAlignment.Left
+                HorizontalAlignment = HorizontalAlignment.Left
             };
 
             resourceIcon = new GuiImage
@@ -81,8 +80,7 @@ namespace Narivia.Gui.GuiElements
                     resourceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                     resourceIcon.Location.Y),
                 FontName = "ProvincePanelInfoFont",
-                HorizontalAlignment = HorizontalAlignment.Centre,
-                VerticalAlignment = VerticalAlignment.Left
+                HorizontalAlignment = HorizontalAlignment.Left
             };
 
             attackButton = new GuiButton

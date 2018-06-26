@@ -92,30 +92,22 @@ namespace Narivia.Gui.GuiElements
             provincesText = new GuiText
             {
                 Location = new Point2D(13, 36),
-                Size = new Size2D(32, 15),
-                VerticalAlignment = VerticalAlignment.Centre,
-                HorizontalAlignment = HorizontalAlignment.Centre
+                Size = new Size2D(32, 15)
             };
             holdingsText = new GuiText
             {
                 Location = new Point2D(49, 36),
-                Size = new Size2D(32, 15),
-                VerticalAlignment = VerticalAlignment.Centre,
-                HorizontalAlignment = HorizontalAlignment.Centre
+                Size = new Size2D(32, 15)
             };
             troopsText = new GuiText
             {
                 Location = new Point2D(85, 36),
-                Size = new Size2D(32, 15),
-                VerticalAlignment = VerticalAlignment.Centre,
-                HorizontalAlignment = HorizontalAlignment.Centre
+                Size = new Size2D(32, 15)
             };
             wealthText = new GuiText
             {
                 Location = new Point2D(121, 36),
-                Size = new Size2D(32, 15),
-                VerticalAlignment = VerticalAlignment.Centre,
-                HorizontalAlignment = HorizontalAlignment.Centre
+                Size = new Size2D(32, 15)
             };
 
             provincesTooltip = new GuiTooltip
@@ -152,9 +144,7 @@ namespace Narivia.Gui.GuiElements
             turnText = new GuiText
             {
                 Location = new Point2D(15, 62),
-                Size = new Size2D(138, 15),
-                VerticalAlignment = VerticalAlignment.Centre,
-                HorizontalAlignment = HorizontalAlignment.Centre
+                Size = new Size2D(138, 15)
             };
 
             base.LoadContent();

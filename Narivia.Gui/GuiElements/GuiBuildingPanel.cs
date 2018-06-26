@@ -115,7 +115,7 @@ namespace Narivia.Gui.GuiElements
             };
             priceText = new GuiText
             {
-                VerticalAlignment = VerticalAlignment.Left,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 Size = new Size2D(priceIcon.Size.Width * 2, priceIcon.Size.Height),
                 Location = new Point2D(
                     priceIcon.Location.X + priceIcon.Size.Width + GameDefines.GuiSpacing,

@@ -136,7 +136,7 @@ namespace Narivia.Gui.GuiElements
 
             healthText = new GuiText
             {
-                VerticalAlignment = VerticalAlignment.Left,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 Size = new Size2D(
                     healthIcon.Size.Width * 2,
                     healthIcon.Size.Height),
@@ -146,7 +146,7 @@ namespace Narivia.Gui.GuiElements
             };
             powerText = new GuiText
             {
-                VerticalAlignment = VerticalAlignment.Left,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 Size = new Size2D(
                     powerIcon.Size.Width * 2,
                     powerIcon.Size.Height),
@@ -156,7 +156,7 @@ namespace Narivia.Gui.GuiElements
             };
             priceText = new GuiText
             {
-                VerticalAlignment = VerticalAlignment.Right,
+                HorizontalAlignment = HorizontalAlignment.Right,
                 Size = new Size2D(
                     priceIcon.Size.Width * 2,
                     priceIcon.Size.Height),
@@ -166,7 +166,7 @@ namespace Narivia.Gui.GuiElements
             };
             maintenanceText = new GuiText
             {
-                VerticalAlignment = VerticalAlignment.Right,
+                HorizontalAlignment = HorizontalAlignment.Right,
                 Size = new Size2D(
                     maintenanceIcon.Size.Width * 2,
                     maintenanceIcon.Size.Height),

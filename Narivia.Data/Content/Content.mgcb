@@ -1696,3 +1696,10 @@
 /processorParam:TextureFormat=Color
 /build:Interface/Buttons/green-button-large.png
 
+#begin Fonts/DefaultFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/DefaultFont.spritefont
+

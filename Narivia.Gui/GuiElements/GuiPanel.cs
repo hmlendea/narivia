@@ -55,8 +55,6 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(125, 31),
                 Location = new Point2D(76, 4),
                 FontName = "ProvincePanelTitleFont",
-                VerticalAlignment = VerticalAlignment.Centre,
-                HorizontalAlignment = HorizontalAlignment.Centre,
                 FontOutline = FontOutline.Around
             };
 
