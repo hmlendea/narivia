@@ -17,13 +17,12 @@ using Narivia.Settings;
 namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Unit recruitment dialog GUI element.
+    /// Unit recruitment panel GUI element.
     /// </summary>
-    public class GuiBuildingDialog : GuiElement
+    public class GuiBuildingPanel : GuiPanel
     {
         IGameManager game;
-
-        GuiImage background;
+        
         GuiImage holdingBackground;
         GuiImage holdingImage;
 
@@ -38,8 +37,7 @@ namespace Narivia.Gui.GuiElements
         GuiButton previouseProvinceButton;
         GuiButton nextProvinceButton;
 
-        GuiButton buildButton;
-        GuiButton cancelButton;
+        GuiSimpleButton buildButton;
 
         List<HoldingType> holdingTypes;
         List<Province> provinces;
@@ -47,10 +45,12 @@ namespace Narivia.Gui.GuiElements
         int currentHoldingTypeIndex;
         int currentProvinceIndex;
 
-        public GuiBuildingDialog(IGameManager game)
+        public GuiBuildingPanel(IGameManager game)
         {
             this.game = game;
+
             ForegroundColour = Colour.Gold;
+            Title = "Building";
         }
 
         /// <summary>
@@ -59,12 +59,7 @@ namespace Narivia.Gui.GuiElements
         public override void LoadContent()
         {
             holdingTypes = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).ToList();
-
-            background = new GuiImage
-            {
-                ContentFile = "Interface/Backgrounds/stone-bricks",
-                TextureLayout = TextureLayout.Tile
-            };
+            
             holdingBackground = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
@@ -122,15 +117,13 @@ namespace Narivia.Gui.GuiElements
                 Text = ">",
                 Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
-            buildButton = new GuiButton
+
+            buildButton = new GuiSimpleButton
             {
+                ContentFile = "Interface/green-button-large",
                 Text = "Build",
-                Size = new Size2D(GameDefines.GuiTileSize * 4, GameDefines.GuiTileSize)
-            };
-            cancelButton = new GuiButton
-            {
-                Text = "Cancel",
-                Size = new Size2D(GameDefines.GuiTileSize * 2, GameDefines.GuiTileSize)
+                ForegroundColour = Colour.White,
+                Size = new Size2D(128, 26)
             };
 
             base.LoadContent();
@@ -163,8 +156,7 @@ namespace Narivia.Gui.GuiElements
         protected override void RegisterChildren()
         {
             base.RegisterChildren();
-
-            AddChild(background);
+            
             AddChild(holdingBackground);
             AddChild(holdingImage);
 
@@ -178,8 +170,8 @@ namespace Narivia.Gui.GuiElements
             AddChild(previousHoldingButton);
             AddChild(nextProvinceButton);
             AddChild(previouseProvinceButton);
+
             AddChild(buildButton);
-            AddChild(cancelButton);
         }
 
         protected override void RegisterEvents()
@@ -187,7 +179,6 @@ namespace Narivia.Gui.GuiElements
             base.RegisterEvents();
 
             buildButton.Clicked += OnBuildButtonClicked;
-            cancelButton.Clicked += OnCancelButtonClicked;
             nextHoldingButton.Clicked += OnNextHoldingButtonClicked;
             nextProvinceButton.Clicked += OnNextProvinceButtonClicked;
             previousHoldingButton.Clicked += OnPreviousHoldingButtonClicked;
@@ -199,7 +190,6 @@ namespace Narivia.Gui.GuiElements
             base.UnregisterEvents();
 
             buildButton.Clicked -= OnBuildButtonClicked;
-            cancelButton.Clicked -= OnCancelButtonClicked;
             nextHoldingButton.Clicked -= OnNextHoldingButtonClicked;
             nextProvinceButton.Clicked -= OnNextProvinceButtonClicked;
             previousHoldingButton.Clicked -= OnPreviousHoldingButtonClicked;
@@ -209,12 +199,10 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-
-            background.Size = Size;
-
+            
             holdingBackground.Location = new Point2D(
                 (Size.Width - holdingBackground.Size.Width) / 2,
-                holdingText.Size.Height + GameDefines.GuiSpacing);
+                holdingText.Size.Height + 50 + GameDefines.GuiSpacing);
             holdingBackground.TintColour = BackgroundColour;
 
             holdingImage.Location = new Point2D(
@@ -253,12 +241,8 @@ namespace Narivia.Gui.GuiElements
                 holdingBackground.ClientRectangle.Bottom - nextProvinceButton.ClientRectangle.Height);
 
             buildButton.Location = new Point2D(
-                GameDefines.GuiSpacing,
-                Size.Height - buildButton.Size.Height - GameDefines.GuiSpacing);
-            ;
-            cancelButton.Location = new Point2D(
-                Size.Width - cancelButton.Size.Width - GameDefines.GuiSpacing,
-                Size.Height - buildButton.Size.Height - GameDefines.GuiSpacing);
+                (Size.Width - buildButton.Size.Width) / 2,
+                Size.Height - buildButton.Size.Height - 16 - GameDefines.GuiSpacing);
         }
 
         void SelectHolding(int index)

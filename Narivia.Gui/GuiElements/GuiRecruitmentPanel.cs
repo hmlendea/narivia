@@ -13,13 +13,12 @@ using Narivia.Settings;
 namespace Narivia.Gui.GuiElements
 {
     /// <summary>
-    /// Unit recruitment dialog GUI element.
+    /// Unit recruitment panel GUI element.
     /// </summary>
-    public class GuiRecruitmentDialog : GuiElement
+    public class GuiRecruitmentPanel : GuiPanel
     {
         IGameManager game;
-
-        GuiImage background;
+        
         GuiImage unitBackground;
         GuiImage unitImage;
         GuiText unitText;
@@ -40,18 +39,19 @@ namespace Narivia.Gui.GuiElements
         GuiButton addUnitButton;
         GuiButton substractUnitButton;
 
-        GuiButton recruitButton;
-        GuiButton cancelButton;
+        GuiSimpleButton recruitButton;
 
         List<Unit> units;
 
         int currentUnitIndex;
         int troopsAmount;
 
-        public GuiRecruitmentDialog(IGameManager game)
+        public GuiRecruitmentPanel(IGameManager game)
         {
             this.game = game;
+
             ForegroundColour = Colour.Gold;
+            Title = "Recruitment";
         }
 
         /// <summary>
@@ -60,12 +60,7 @@ namespace Narivia.Gui.GuiElements
         public override void LoadContent()
         {
             units = game.GetUnits().OrderBy(u => u.Price).ToList();
-
-            background = new GuiImage
-            {
-                ContentFile = "Interface/Backgrounds/stone-bricks",
-                TextureLayout = TextureLayout.Tile
-            };
+            
             unitBackground = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
@@ -160,15 +155,13 @@ namespace Narivia.Gui.GuiElements
                 Text = "-",
                 Size = new Size2D(GameDefines.GuiTileSize, GameDefines.GuiTileSize)
             };
-            recruitButton = new GuiButton
+
+            recruitButton = new GuiSimpleButton
             {
+                ContentFile = "Interface/green-button-large",
                 Text = "Recruit",
-                Size = new Size2D(GameDefines.GuiTileSize * 4, GameDefines.GuiTileSize)
-            };
-            cancelButton = new GuiButton
-            {
-                Text = "Cancel",
-                Size = new Size2D(GameDefines.GuiTileSize * 2, GameDefines.GuiTileSize)
+                ForegroundColour = Colour.White,
+                Size = new Size2D(128, 26)
             };
 
             base.LoadContent();
@@ -177,8 +170,7 @@ namespace Narivia.Gui.GuiElements
         protected override void RegisterChildren()
         {
             base.RegisterChildren();
-
-            AddChild(background);
+            
             AddChild(unitBackground);
             AddChild(unitImage);
 
@@ -200,7 +192,6 @@ namespace Narivia.Gui.GuiElements
             AddChild(addUnitButton);
             AddChild(substractUnitButton);
             AddChild(recruitButton);
-            AddChild(cancelButton);
         }
 
         protected override void RegisterEvents()
@@ -208,7 +199,6 @@ namespace Narivia.Gui.GuiElements
             base.RegisterEvents();
 
             addUnitButton.Clicked += OnAddUnitButtonClicked;
-            cancelButton.Clicked += OnCancelButtonClick;
             nextUnitButton.Clicked += OnNextUnitButtonClicked;
             previousUnitButton.Clicked += OnPreviousUnitButtonClicked;
             recruitButton.Clicked += OnRecruitButtonClick;
@@ -220,7 +210,6 @@ namespace Narivia.Gui.GuiElements
             base.UnregisterEvents();
 
             addUnitButton.Clicked -= OnAddUnitButtonClicked;
-            cancelButton.Clicked -= OnCancelButtonClick;
             nextUnitButton.Clicked -= OnNextUnitButtonClicked;
             previousUnitButton.Clicked -= OnPreviousUnitButtonClicked;
             recruitButton.Clicked -= OnRecruitButtonClick;
@@ -230,12 +219,10 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-
-            background.Size = Size;
-
+            
             unitBackground.Location = new Point2D(
                 (Size.Width - unitBackground.Size.Width) / 2,
-                unitText.Size.Height + GameDefines.GuiSpacing);
+                unitText.Size.Height + 50 + GameDefines.GuiSpacing);
 
             unitText.Location = unitBackground.Location;
             unitText.Text = units[currentUnitIndex].Name;
@@ -296,12 +283,8 @@ namespace Narivia.Gui.GuiElements
 
             recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
             recruitButton.Location = new Point2D(
-                GameDefines.GuiSpacing,
-                Size.Height - recruitButton.Size.Height - GameDefines.GuiSpacing);
-
-            cancelButton.Location = new Point2D(
-                Size.Width - cancelButton.Size.Width - GameDefines.GuiSpacing,
-                Size.Height - recruitButton.Size.Height - GameDefines.GuiSpacing);
+                (Size.Width - recruitButton.Size.Width) / 2,
+                Size.Height - recruitButton.Size.Height - 16 - GameDefines.GuiSpacing);
 
             unitImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/units/{units[currentUnitIndex].Id}";
             unitImage.Location = new Point2D(

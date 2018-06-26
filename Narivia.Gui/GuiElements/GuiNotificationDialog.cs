@@ -62,7 +62,7 @@ namespace Narivia.Gui.GuiElements
             };
             acceptButton = new GuiSimpleButton
             {
-                ContentFile = "Interface/Notification/button",
+                ContentFile = "Interface/green-button",
                 Text = "Accept",
                 ForegroundColour = Colour.White,
                 Location = new Point2D(15, 335),

@@ -65,14 +65,14 @@
     <Compile Include="GuiElements\Enumerations\NotificationIcon.cs" />
     <Compile Include="GuiElements\Enumerations\NotificationStyle.cs" />
     <Compile Include="GuiElements\Enumerations\NotificationType.cs" />
-    <Compile Include="GuiElements\GuiBuildingDialog.cs" />
+    <Compile Include="GuiElements\GuiBuildingPanel.cs" />
     <Compile Include="GuiElements\GuiButton.cs" />
     <Compile Include="GuiElements\GuiFactionFlag.cs" />
     <Compile Include="GuiElements\GuiInfoBar.cs" />
     <Compile Include="GuiElements\GuiNotificationBar.cs" />
     <Compile Include="GuiElements\GuiNotificationDialog.cs" />
     <Compile Include="GuiElements\GuiNotificationIndicator.cs" />
-    <Compile Include="GuiElements\GuiRecruitmentDialog.cs" />
+    <Compile Include="GuiElements\GuiRecruitmentPanel.cs" />
     <Compile Include="GuiElements\GuiWorldmap.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="FpsIndicator.cs" />

@@ -59,8 +59,8 @@ namespace Narivia.Gui.Screens
 
         IGameManager game;
 
-        GuiRecruitmentDialog recruitmentDialog;
-        GuiBuildingDialog buildDialog;
+        GuiRecruitmentPanel recruitmentPanel;
+        GuiBuildingPanel buildingPanel;
 
         Dictionary<string, int> troopsOld;
         Dictionary<string, int> relationsOld;
@@ -113,17 +113,11 @@ namespace Narivia.Gui.Screens
                 initialFactionId = ScreenArgs[1];
             }
 
-            recruitmentDialog = new GuiRecruitmentDialog(game)
-            {
-                Size = new Size2D(256, 288)
-            };
-            buildDialog = new GuiBuildingDialog(game)
-            {
-                Size = new Size2D(256, 224)
-            };
+            recruitmentPanel = new GuiRecruitmentPanel(game);
+            buildingPanel = new GuiBuildingPanel(game);
 
-            recruitmentDialog.Hide();
-            buildDialog.Hide();
+            recruitmentPanel.Hide();
+            buildingPanel.Hide();
 
             troopsOld = new Dictionary<string, int>();
             relationsOld = new Dictionary<string, int>();
@@ -148,8 +142,8 @@ namespace Narivia.Gui.Screens
             GuiManager.Instance.GuiElements.Add(FactionBar);
             GuiManager.Instance.GuiElements.Add(ProvincePanel);
             GuiManager.Instance.GuiElements.Add(NotificationBar);
-            GuiManager.Instance.GuiElements.Add(recruitmentDialog);
-            GuiManager.Instance.GuiElements.Add(buildDialog);
+            GuiManager.Instance.GuiElements.Add(recruitmentPanel);
+            GuiManager.Instance.GuiElements.Add(buildingPanel);
 
             ProvincePanel.ProvinceId = game.GetFactionCapital(game.PlayerFactionId).Id;
 
@@ -178,12 +172,12 @@ namespace Narivia.Gui.Screens
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
-            recruitmentDialog.Location = new Point2D(
-                GameMap.Location.X + (GameMap.Size.Width - recruitmentDialog.Size.Width) / 2,
-                GameMap.Location.Y + (GameMap.Size.Height - recruitmentDialog.Size.Height) / 2);
-            buildDialog.Location = new Point2D(
-                GameMap.Location.X + (GameMap.Size.Width - buildDialog.Size.Width) / 2,
-                GameMap.Location.Y + (GameMap.Size.Height - buildDialog.Size.Height) / 2);
+            recruitmentPanel.Location = new Point2D(
+                GameMap.Location.X + (GameMap.Size.Width - recruitmentPanel.Size.Width) / 2,
+                GameMap.Location.Y + (GameMap.Size.Height - recruitmentPanel.Size.Height) / 2);
+            buildingPanel.Location = new Point2D(
+                GameMap.Location.X + (GameMap.Size.Width - buildingPanel.Size.Width) / 2,
+                GameMap.Location.Y + (GameMap.Size.Height - buildingPanel.Size.Height) / 2);
 
             base.Update(gameTime);
         }
@@ -366,7 +360,7 @@ namespace Narivia.Gui.Screens
 
         void AdministrationBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            recruitmentDialog.Show();
+            recruitmentPanel.Show();
         }
 
         void ProvincePanel_AttackButtonClicked(object sender, MouseButtonEventArgs e)
@@ -376,7 +370,7 @@ namespace Narivia.Gui.Screens
 
         void ProvincePanel_BuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            buildDialog.Show();
+            buildingPanel.Show();
         }
 
         void GameMap_Clicked(object sender, MouseButtonEventArgs e)
