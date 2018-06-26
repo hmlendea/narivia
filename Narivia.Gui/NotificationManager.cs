@@ -6,7 +6,6 @@ using NuciXNA.Gui.Screens;
 using NuciXNA.Primitives;
 
 using Narivia.Gui.GuiElements;
-using Narivia.Gui.GuiElements.Enumerations;
 
 namespace Narivia.Gui
 {

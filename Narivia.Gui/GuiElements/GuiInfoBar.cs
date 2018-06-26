@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
 
 using NuciXNA.Graphics.Enumerations;
 using NuciXNA.Gui.GuiElements;
