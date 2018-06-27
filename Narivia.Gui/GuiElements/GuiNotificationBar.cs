@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
@@ -16,8 +15,7 @@ namespace Narivia.Gui.GuiElements
     public class GuiNotificationBar : GuiElement
     {
         List<GuiNotificationIndicator> indicators;
-
-        [XmlIgnore]
+        
         public string ProvinceId { get; private set; }
 
         IGameManager game;

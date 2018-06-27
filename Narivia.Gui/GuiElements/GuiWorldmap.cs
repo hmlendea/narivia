@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,7 +25,6 @@ namespace Narivia.Gui.GuiElements
         /// Gets the selected province identifier.
         /// </summary>
         /// <value>The selected province identifier.</value>
-        [XmlIgnore]
         public string SelectedProvinceId { get; private set; }
 
         IGameManager game;

@@ -88,7 +88,7 @@ namespace Narivia.GameLogic.GameManagers
             flags = new ConcurrentDictionary<string, Flag>(flagList.ToDictionary(flag => flag.Id, flag => flag));
             provinces = new ConcurrentDictionary<string, Province>(provinceList.ToDictionary(province => province.Id, province => province));
             resources = new ConcurrentDictionary<string, Resource>(resourceList.ToDictionary(resource => resource.Id, resource => resource));
-            terrains = new ConcurrentDictionary<string, Terrain>(terrainList.ToDictionary(terrain => terrain.Id, biome => biome));
+            terrains = new ConcurrentDictionary<string, Terrain>(terrainList.ToDictionary(terrain => terrain.Id, terrain => terrain));
             world = worldRepository.Get(worldId).ToDomainModel();
 
             GenerateBorders();
@@ -98,7 +98,7 @@ namespace Narivia.GameLogic.GameManagers
 
         public void UnloadContent()
         {
-            
+
         }
 
         /// <summary>
@@ -109,8 +109,9 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="province2Id">Second province identifier.</param>
         public bool ProvinceBordersProvince(string province1Id, string province2Id)
         {
-            return borders.Values.Any(x => (x.SourceProvinceId == province1Id && x.TargetProvinceId == province2Id) ||
-                                           (x.SourceProvinceId == province2Id && x.TargetProvinceId == province1Id));
+            return borders.Values.Any(x =>
+                (x.SourceProvinceId == province1Id && x.TargetProvinceId == province2Id) ||
+                (x.SourceProvinceId == province2Id && x.TargetProvinceId == province1Id));
         }
 
         /// <summary>
@@ -123,7 +124,7 @@ namespace Narivia.GameLogic.GameManagers
         {
             List<Province> faction1Provinces = GetFactionProvinces(faction1Id).ToList();
             List<Province> faction2Provinces = GetFactionProvinces(faction2Id).ToList();
-            
+
             return faction1Provinces.Any(r1 => faction2Provinces.Any(r2 => ProvinceBordersProvince(r1.Id, r2.Id)));
         }
 
@@ -134,9 +135,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         /// <param name="provinceId">Province identifier.</param>
         public bool FactionBordersProvince(string factionId, string provinceId)
-        {
-            return GetFactionProvinces(factionId).Any(r => ProvinceBordersProvince(r.Id, provinceId));
-        }
+            => GetFactionProvinces(factionId).Any(r => ProvinceBordersProvince(r.Id, provinceId));
 
         /// <summary>
         /// Returns the faction identifier at the given location.
@@ -145,9 +144,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="x">The x coordinate.</param>
         /// <param name="y">The y coordinate.</param>
         public string FactionIdAtLocation(int x, int y)
-        {
-            return provinces[world.Tiles[x, y].ProvinceId].FactionId;
-        }
+            => provinces[world.Tiles[x, y].ProvinceId].FactionId;
 
         /// <summary>
         /// Transfers the specified province to the specified faction.
@@ -164,7 +161,7 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <returns>The borders.</returns>
         public IEnumerable<Border> GetBorders()
-        => borders.Values;
+            => borders.Values;
 
         public Culture GetCulture(string cultureId)
             => cultures[cultureId];
@@ -174,14 +171,14 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <returns>The cultures.</returns>
         public IEnumerable<Culture> GetCultures()
-        => cultures.Values;
+            => cultures.Values;
 
         /// <summary>
         /// Gets the factions.
         /// </summary>
         /// <returns>The factions.</returns>
         public IEnumerable<Faction> GetFactions()
-        => factions.Values;
+            => factions.Values;
 
         public Faction GetFaction(string factionId)
             => factions[factionId];
@@ -268,14 +265,14 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The provinces.</returns>
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Province> GetFactionProvinces(string factionId)
-        => provinces.Values.Where(r => r.FactionId == factionId);
+            => provinces.Values.Where(r => r.FactionId == factionId);
 
         /// <summary>
         /// Gets the flags.
         /// </summary>
         /// <returns>The flags.</returns>
         public IEnumerable<Flag> GetFlags()
-        => flags.Values;
+            => flags.Values;
 
         public Province GetProvince(string provinceId)
             => provinces[provinceId];
@@ -285,7 +282,7 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <returns>The provinces.</returns>
         public IEnumerable<Province> GetProvinces()
-        => provinces.Values;
+            => provinces.Values;
 
         /// <summary>
         /// Gets the resource.
@@ -300,21 +297,21 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <returns>The resources.</returns>
         public IEnumerable<Resource> GetResources()
-        => resources.Values;
+            => resources.Values;
 
         /// <summary>
-        /// Gets the biomes.
+        /// Gets the terrains.
         /// </summary>
-        /// <returns>The biomes.</returns>
+        /// <returns>The terrains.</returns>
         public IEnumerable<Terrain> GetTerrains()
-        => terrains.Values;
+            => terrains.Values;
 
         /// <summary>
         /// Gets the world.
         /// </summary>
         /// <returns>The world.</returns>
         public World GetWorld()
-        => world;
+            => world;
 
         // TODO: Parallelise this
         void GenerateBorders()
@@ -360,7 +357,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 return;
             }
-            
+
             Border border = new Border
             {
                 Id = $"{province1Id}:{province2Id}",

@@ -1,5 +1,3 @@
-using System.Xml.Serialization;
-
 using NuciXNA.DataAccess.DataObjects;
 
 namespace Narivia.DataAccess.DataObjects
@@ -103,7 +101,6 @@ namespace Narivia.DataAccess.DataObjects
         /// Gets or sets the tiles.
         /// </summary>
         /// <value>The tiles.</value>
-        [XmlIgnore]
         public WorldTileEntity[,] Tiles { get; set; }
     }
 }
