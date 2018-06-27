@@ -186,14 +186,15 @@ namespace Narivia.Gui.GuiElements
             List<Holding> holdings = game.GetProvinceHoldings(ProvinceId).ToList();
             for (int i = 0; i < 9; i++)
             {
-                if (i >= holdings.Count)
+                if (i < holdings.Count)
                 {
-                    holdingCards[i].Visible = false;
+                    holdingCards[i].HoldingId = holdings[i].Id;
+                    holdingCards[i].CultureId = faction.CultureId;
+                    holdingCards[i].Visible = true;
                 }
                 else
                 {
-                    holdingCards[i].HoldingId = holdings[i].Id;
-                    holdingCards[i].Visible = true;
+                    holdingCards[i].Visible = false;
                 }
             }
         }
