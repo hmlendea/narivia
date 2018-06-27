@@ -112,24 +112,28 @@ namespace Narivia.Gui.GuiElements
 
             provincesTooltip = new GuiTooltip
             {
+                FontName = "DefaultFont",
                 Text = "Provinces",
                 Size = new Size2D(100, 20),
                 BackgroundColour = Colour.Black
             };
             holdingsTooltip = new GuiTooltip
             {
+                FontName = "DefaultFont",
                 Text = "Holdings",
                 Size = new Size2D(100, 20),
                 BackgroundColour = Colour.Black
             };
             troopsTooltip = new GuiTooltip
             {
+                FontName = "DefaultFont",
                 Text = "Troops",
                 Size = new Size2D(128, 128),
                 BackgroundColour = Colour.Black
             };
             wealthTooltip = new GuiTooltip
             {
+                FontName = "DefaultFont",
                 Text = "Wealth",
                 Size = new Size2D(100, 20),
                 BackgroundColour = Colour.Black

@@ -5,6 +5,7 @@ using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Models;
+using NuciXNA.Input.Events;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -16,6 +17,7 @@ namespace Narivia.Gui.GuiElements
 
         GuiImage icon;
         GuiImage frame;
+        GuiTooltip tooltip;
 
         public string HoldingId { get; set; }
 
@@ -43,6 +45,15 @@ namespace Narivia.Gui.GuiElements
                 ContentFile = "Interface/ProvincePanel/holding-frame"
             };
 
+            tooltip = new GuiTooltip
+            {
+                Size = new Size2D(100, 25),
+                Location = new Point2D(0, 50),
+                FontName = "DefaultFont",
+                BackgroundColour = Colour.Black,
+                ForegroundColour = Colour.Gold
+            };
+
             base.LoadContent();
         }
 
@@ -52,6 +63,7 @@ namespace Narivia.Gui.GuiElements
 
             AddChild(icon);
             AddChild(frame);
+            AddChild(tooltip);
         }
 
         protected override void SetChildrenProperties()
@@ -87,6 +99,22 @@ namespace Narivia.Gui.GuiElements
                 icon.SourceRectangle = new Rectangle2D(64 * ((int)holding.Type - 1), 0, 64, 64);
                 Visible = true;
             }
+
+            tooltip.Text = holding.Name;
+        }
+
+        protected override void OnMouseEntered(object sender, MouseEventArgs e)
+        {
+            base.OnMouseEntered(sender, e);
+
+            tooltip.Show();
+        }
+
+        protected override void OnMouseLeft(object sender, MouseEventArgs e)
+        {
+            base.OnMouseLeft(sender, e);
+
+            tooltip.Hide();
         }
     }
 }
