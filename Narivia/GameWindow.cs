@@ -31,7 +31,10 @@ namespace Narivia
         /// </summary>
         public GameWindow()
         {
-            graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8
+            };
             Content.RootDirectory = "Content";
 
             fpsIndicator = new FpsIndicator();

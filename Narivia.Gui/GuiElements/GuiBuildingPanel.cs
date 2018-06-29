@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
-using NuciXNA.Graphics.Enumerations;
+using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;

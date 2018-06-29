@@ -20,6 +20,7 @@ namespace Narivia.Gui.Screens
         GuiMenuLink startLink;
         GuiMenuListSelector worldSelector;
         GuiMenuListSelector factionSelector;
+        GuiMenuLink backLink;
 
         GameManager game;
         List<World> worlds;
@@ -29,16 +30,34 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public override void LoadContent()
         {
-            Links.Add(new GuiMenuLink { Text = "Start", TargetScreen = typeof(GameplayScreen) });
-            ListSelectors.Add(new GuiMenuListSelector { Text = "World" });
-            ListSelectors.Add(new GuiMenuListSelector { Text = "Faction" });
-            Links.Add(new GuiMenuLink { Text = "Back", TargetScreen = typeof(TitleScreen) });
+            startLink = new GuiMenuLink
+            {
+                Id = "start",
+                Text = "Start",
+                TargetScreen = typeof(GameplayScreen)
+            };
+            worldSelector = new GuiMenuListSelector
+            {
+                Id = "worldSelector",
+                Text = "World"
+            };
+            factionSelector = new GuiMenuListSelector
+            {
+                Id = "factionSelector",
+                Text = "Faction"
+            };
+            backLink = new GuiMenuLink
+            {
+                Id = "back",
+                Text = "Back",
+                TargetScreen = typeof(TitleScreen)
+            };
 
-            // TODO: Identify and retrieve the items properly
-            worldSelector = ListSelectors.FirstOrDefault(x => x.Text == "World");
-            factionSelector = ListSelectors.FirstOrDefault(x => x.Text == "Faction");
-            startLink = Links.FirstOrDefault(x => x.Text == "Start");
-
+            Items.Add(startLink);
+            Items.Add(worldSelector);
+            Items.Add(factionSelector);
+            Items.Add(backLink);
+            
             worldSelector.SelectedIndexChanged += OnWorldSelectorSelectedIndexChanged;
             factionSelector.SelectedIndexChanged += OnFactionSelectorSelectedIndexChanged;
 

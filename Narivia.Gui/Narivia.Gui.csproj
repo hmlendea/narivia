@@ -32,17 +32,17 @@
     <Reference Include="NuciXNA.DataAccess, Version=1.0.4.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.DataAccess.1.0.4.1\lib\net45\NuciXNA.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="NuciXNA.Graphics, Version=1.1.6751.33568, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Graphics.1.1.6751.33568\lib\net45\NuciXNA.Graphics.dll</HintPath>
+    <Reference Include="NuciXNA.Graphics, Version=1.2.6754.23016, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Graphics.1.2.6754.23016\lib\net45\NuciXNA.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="NuciXNA.Gui, Version=1.5.6751.33803, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Gui.1.5.6751.33803\lib\net45\NuciXNA.Gui.dll</HintPath>
+    <Reference Include="NuciXNA.Gui, Version=1.6.6754.23399, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Gui.1.6.6754.23399\lib\net45\NuciXNA.Gui.dll</HintPath>
     </Reference>
     <Reference Include="NuciXNA.Input, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Input.1.0.1\lib\net45\NuciXNA.Input.dll</HintPath>
     </Reference>
-    <Reference Include="NuciXNA.Primitives, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Primitives.1.0.4\lib\net45\NuciXNA.Primitives.dll</HintPath>
+    <Reference Include="NuciXNA.Primitives, Version=1.1.6754.26060, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Primitives.1.1.6754.26060\lib\net45\NuciXNA.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="MonoGame.Framework">

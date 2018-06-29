@@ -16,19 +16,36 @@ namespace Narivia.Gui.Screens
     {
         GuiMenuToggle fullScreenToggle;
         GuiMenuToggle debugModeToggle;
+        GuiMenuLink backLink;
 
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
-            Toggles.Add(new GuiMenuToggle { Text = "Toggle fullscreen mode", Property = "Fullscreen" });
-            Toggles.Add(new GuiMenuToggle { Text = "Toggle debug mode", Property = "DebugMode" });
-            Links.Add(new GuiMenuLink { Text = "Back", TargetScreen = typeof(TitleScreen) });
-
-            fullScreenToggle = Toggles.FirstOrDefault(t => t.Property == "Fullscreen");
-            debugModeToggle = Toggles.FirstOrDefault(t => t.Property == "DebugMode");
-
+            fullScreenToggle = new GuiMenuToggle
+            {
+                Id = "fullscreenToggle",
+                Text = "Toggle fullscreen mode",
+                Property = "Fullscreen"
+            };
+            debugModeToggle = new GuiMenuToggle
+            {
+                Id = "debugToggle",
+                Text = "Toggle debug mode",
+                Property = "DebugMode"
+            };
+            backLink = new GuiMenuLink
+            {
+                Id = "back",
+                Text = "Back",
+                TargetScreen = typeof(TitleScreen)
+            };
+            
+            Items.Add(fullScreenToggle);
+            Items.Add(debugModeToggle);
+            Items.Add(backLink);
+            
             fullScreenToggle.ToggleState = SettingsManager.Instance.GraphicsSettings.Fullscreen;
             debugModeToggle.ToggleState = SettingsManager.Instance.DebugMode;
 

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using NuciXNA.Graphics;
+using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input.Events;
 using NuciXNA.Primitives;
@@ -31,11 +31,11 @@ namespace Narivia.Gui.GuiElements
         Camera camera;
         World world;
 
-        Sprite provinceHighlight;
-        Sprite selectedProvinceHighlight;
-        Sprite factionBorder;
+        TextureSprite provinceHighlight;
+        TextureSprite selectedProvinceHighlight;
+        TextureSprite factionBorder;
 
-        Dictionary<string, Sprite> terrainSprites;
+        Dictionary<string, TextureSprite> terrainSprites;
 
         Point2D mouseCoords;
 
@@ -52,11 +52,11 @@ namespace Narivia.Gui.GuiElements
             camera = new Camera { Size = Size };
             world = game.GetWorld();
 
-            terrainSprites = new Dictionary<string, Sprite>();
+            terrainSprites = new Dictionary<string, TextureSprite>();
 
             foreach (Terrain terrain in game.GetTerrains())
             {
-                Sprite terrainSprite = new Sprite
+                TextureSprite terrainSprite = new TextureSprite
                 {
                     ContentFile = $"World/Terrain/{terrain.Spritesheet}",
                     SourceRectangle = new Rectangle2D(
@@ -68,7 +68,7 @@ namespace Narivia.Gui.GuiElements
                 terrainSprites.AddOrUpdate(terrain.Spritesheet, terrainSprite);
             }
 
-            provinceHighlight = new Sprite
+            provinceHighlight = new TextureSprite
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle2D(
@@ -77,7 +77,7 @@ namespace Narivia.Gui.GuiElements
                 Tint = Colour.White
             };
 
-            selectedProvinceHighlight = new Sprite
+            selectedProvinceHighlight = new TextureSprite
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle2D(
@@ -86,7 +86,7 @@ namespace Narivia.Gui.GuiElements
                 Tint = Colour.White
             };
 
-            factionBorder = new Sprite
+            factionBorder = new TextureSprite
             {
                 ContentFile = "World/Effects/border",
                 SourceRectangle = new Rectangle2D(
@@ -258,7 +258,7 @@ namespace Narivia.Gui.GuiElements
 
         void DrawTerrainSprite(SpriteBatch spriteBatch, int tileX, int tileY, string spritesheet, int spritesheetX, int spritesheetY)
         {
-            Sprite terrainSprite = terrainSprites[spritesheet];
+            TextureSprite terrainSprite = terrainSprites[spritesheet];
 
             terrainSprite.Location = new Point2D(
                 tileX * GameDefines.MapTileSize - camera.Location.X,

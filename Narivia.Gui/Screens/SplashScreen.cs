@@ -57,13 +57,13 @@ namespace Narivia.Gui.Screens
                 RotationEffect = new RotationEffect
                 {
                     Speed = 0.25f,
-                    MinimumRotation = -0.5f,
-                    MaximumRotation = +0.5f,
+                    MinimumValue = -0.5f,
+                    MaximumValue = +0.5f,
                 },
                 ZoomEffect = new ZoomEffect
                 {
-                    MinimumZoom = -0.5f,
-                    MaximumZoom = +0.5f
+                    MinimumValue = -0.5f,
+                    MaximumValue = +0.5f
                 },
                 EffectsActive = true
             };

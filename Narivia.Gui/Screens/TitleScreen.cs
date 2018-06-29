@@ -10,14 +10,37 @@ namespace Narivia.Gui.Screens
     /// </summary>
     public class TitleScreen : MenuScreen
     {
+        GuiMenuLink newGameLink;
+        GuiMenuLink settingsLink;
+        GuiMenuAction extiAction;
+
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
-            Links.Add(new GuiMenuLink { Text = "New Game", TargetScreen = typeof(NewGameScreen) });
-            Links.Add(new GuiMenuLink { Text = "Settings", TargetScreen = typeof(SettingsScreen) });
-            Actions.Add(new GuiMenuAction { Text = "Exit", ActionId = "Exit" });
+            newGameLink = new GuiMenuLink
+            {
+                Id = "newGame",
+                Text = "New Game",
+                TargetScreen = typeof(NewGameScreen)
+            };
+            settingsLink = new GuiMenuLink
+            {
+                Id = "settings",
+                Text = "Settings",
+                TargetScreen = typeof(SettingsScreen)
+            };
+            extiAction = new GuiMenuAction
+            {
+                Id = "exit",
+                Text = "Exit",
+                ActionId = "Exit"
+            };
+            
+            Items.Add(newGameLink);
+            Items.Add(settingsLink);
+            Items.Add(extiAction);
 
             base.LoadContent();
         }
