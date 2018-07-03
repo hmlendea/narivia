@@ -24,7 +24,7 @@ namespace Narivia.Gui.GuiElements
         const int IconSize = 22;
 
         IGameManager game;
-        
+
         GuiImage holdingBackground;
         GuiImage holdingImage;
         GuiImage paper;
@@ -51,7 +51,7 @@ namespace Narivia.Gui.GuiElements
         public GuiBuildingPanel(IGameManager game)
         {
             this.game = game;
-            
+
             Title = "Building";
             FontName = "ButtonFont";
         }
@@ -62,7 +62,7 @@ namespace Narivia.Gui.GuiElements
         public override void LoadContent()
         {
             holdingTypes = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).ToList();
-            
+
             holdingBackground = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
@@ -73,7 +73,7 @@ namespace Narivia.Gui.GuiElements
             };
             holdingImage = new GuiImage
             {
-                ContentFile = $"World/Assets/{game.GetWorld().Id}/holdings/generic",
+                ContentFile = $"Icons/holdings/generic",
                 SourceRectangle = new Rectangle2D(0, 0, 64, 64),
                 Size = new Size2D(64, 64),
                 Location = new Point2D(
@@ -196,7 +196,7 @@ namespace Narivia.Gui.GuiElements
         protected override void RegisterChildren()
         {
             base.RegisterChildren();
-            
+
             AddChild(holdingBackground);
             AddChild(holdingImage);
             AddChild(paper);
@@ -240,9 +240,9 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-            
+
             holdingImage.SourceRectangle = new Rectangle2D(64 * currentHoldingTypeIndex, 0, 64, 64);
-            
+
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
         }
