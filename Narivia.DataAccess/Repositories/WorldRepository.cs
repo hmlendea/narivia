@@ -126,15 +126,16 @@ namespace Narivia.DataAccess.Repositories
             Parallel.ForEach(provinceRepository.GetAll(), r => provinceColourIds.AddOrUpdate(ColorTranslator.FromHtml(r.ColourHexadecimal).ToArgb(), r.Id));
             Parallel.ForEach(terrainRepository.GetAll(), b => terrainColourIds.AddOrUpdate(ColorTranslator.FromHtml(b.ColourHexadecimal).ToArgb(), b.Id));
 
-            FastBitmap heightsBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
-            FastBitmap provinceBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
-            FastBitmap riversBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_rivers.png"));
-            FastBitmap terrainBitmap = new FastBitmap(Path.Combine(worldsDirectory, worldId, "world_terrains.png"));
+            BitmapFile heightsBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
+            BitmapFile provinceBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
+            BitmapFile riversBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_rivers.png"));
+            BitmapFile terrainBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_terrains.png"));
 
-            Point worldSize = new Point(Math.Max(terrainBitmap.Width, provinceBitmap.Width),
-                                        Math.Max(terrainBitmap.Height, provinceBitmap.Height));
+            Point worldSize = new Point(
+                Math.Max(terrainBitmap.Size.Width, provinceBitmap.Size.Width),
+                Math.Max(terrainBitmap.Size.Height, provinceBitmap.Size.Height));
 
-            WorldTileEntity[,] tiles = new WorldTileEntity[provinceBitmap.Width, provinceBitmap.Height];
+            WorldTileEntity[,] tiles = new WorldTileEntity[provinceBitmap.Size.Width, provinceBitmap.Size.Height];
 
             Parallel.For(0, worldSize.Y, y => Parallel.For(0, worldSize.X, x => tiles[x, y] = new WorldTileEntity()));
 
