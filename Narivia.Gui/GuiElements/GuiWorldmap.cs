@@ -177,7 +177,7 @@ namespace Narivia.Gui.GuiElements
             {
                 for (int x = camCoordsBegin.X; x < camCoordsEnd.X; x++)
                 {
-                    DrawTile(spriteBatch ,x, y);
+                    DrawTile(spriteBatch, x, y);
                 }
             }
 
@@ -204,7 +204,7 @@ namespace Narivia.Gui.GuiElements
 
             TileShape tileShape = GetTileShape(x, y);
 
-            switch(tileShape)
+            switch (tileShape)
             {
                 case TileShape.InnerCornerNW:
                     DrawTerrainSprite(spriteBatch, x, y, game.GetTerrain(world.Tiles[x - 1, y - 1].TerrainId).Spritesheet, 1, 0); // Terrain NW
@@ -479,7 +479,7 @@ namespace Narivia.Gui.GuiElements
             {
                 Terrain terrainSW = game.GetTerrain(world.Tiles[x - 1, y + 1].TerrainId);
 
-                if(terrainSW.ZIndex > terrain.ZIndex)
+                if (terrainSW.ZIndex > terrain.ZIndex)
                 {
                     return TileShape.OuterCornerNE;
                 }
@@ -549,7 +549,7 @@ namespace Narivia.Gui.GuiElements
                 }
             }
 
-            return TileShape.None;
+            return TileShape.Middle;
         }
 
         /// <summary>
