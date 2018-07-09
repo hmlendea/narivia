@@ -1,6 +1,5 @@
 ﻿using NuciXNA.Gui.GuiElements;
-using NuciXNA.Input.Enumerations;
-using NuciXNA.Input.Events;
+using NuciXNA.Input;
 using NuciXNA.Primitives;
 
 using Narivia.Audio;

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.GuiElements;
-using NuciXNA.Input.Events;
+using NuciXNA.Input;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
@@ -549,7 +549,7 @@ namespace Narivia.Gui.GuiElements
                 }
             }
 
-            return TileShape.Middle;
+            return TileShape.SingleBig;
         }
 
         /// <summary>
@@ -568,7 +568,7 @@ namespace Narivia.Gui.GuiElements
         {
             base.OnMouseMoved(sender, e);
 
-            mouseCoords = e.Location.ToPoint2D();
+            mouseCoords = e.Location;
         }
     }
 }

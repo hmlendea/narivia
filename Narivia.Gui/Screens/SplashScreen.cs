@@ -3,7 +3,7 @@ using NuciXNA.Gui;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Gui.Screens;
 using NuciXNA.Graphics.SpriteEffects;
-using NuciXNA.Input.Events;
+using NuciXNA.Input;
 using NuciXNA.Primitives;
 
 namespace Narivia.Gui.Screens

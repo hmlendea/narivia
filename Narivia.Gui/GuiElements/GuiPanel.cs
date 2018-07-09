@@ -1,6 +1,6 @@
 ﻿using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.GuiElements;
-using NuciXNA.Input.Events;
+using NuciXNA.Input;
 using NuciXNA.Primitives;
 
 namespace Narivia.Gui.GuiElements

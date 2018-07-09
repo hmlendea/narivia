@@ -5,7 +5,7 @@ using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Models;
-using NuciXNA.Input.Events;
+using NuciXNA.Input;
 
 namespace Narivia.Gui.GuiElements
 {
