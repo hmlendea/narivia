@@ -88,6 +88,11 @@ namespace Narivia.Gui.Screens
         {
             base.Update(gameTime);
 
+            if (Delay <= 0)
+            {
+                ChangeScreens();
+            }
+
             Delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
@@ -108,13 +113,18 @@ namespace Narivia.Gui.Screens
         {
             base.OnKeyPressed(sender, e);
 
-            ScreenManager.Instance.ChangeScreens(typeof(TitleScreen));
+            ChangeScreens();
         }
 
         protected override void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
             base.OnMouseButtonPressed(sender, e);
 
+            ChangeScreens();
+        }
+
+        void ChangeScreens()
+        {
             ScreenManager.Instance.ChangeScreens(typeof(TitleScreen));
         }
     }
