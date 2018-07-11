@@ -54,16 +54,16 @@ namespace Narivia.Gui.Screens
             BackgroundImage = new GuiImage
             {
                 ContentFile = "SplashScreen/Background",
-                RotationEffect = new RotationEffect
+                RotationEffect = new OscilationEffect
                 {
                     Speed = 0.25f,
-                    MinimumValue = -0.5f,
-                    MaximumValue = +0.5f,
+                    MinimumMultiplier = 0.5f,
+                    MaximumMultiplier = 1.5f,
                 },
-                ZoomEffect = new ZoomEffect
+                ScaleEffect = new ZoomEffect
                 {
-                    MinimumValue = -0.5f,
-                    MaximumValue = +0.5f
+                    MinimumMultiplier = 0.5f,
+                    MaximumMultiplier = 1.5f
                 },
                 EffectsActive = true
             };
@@ -77,7 +77,7 @@ namespace Narivia.Gui.Screens
             base.LoadContent();
 
             BackgroundImage.RotationEffect.Activate();
-            BackgroundImage.ZoomEffect.Activate();
+            BackgroundImage.ScaleEffect.Activate();
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Narivia.Gui.Screens
         {
             base.Update(gameTime);
 
-            if (Delay <= 0)
+            if (Delay <= 0 && !ScreenManager.Instance.Transitioning)
             {
                 ChangeScreens();
             }

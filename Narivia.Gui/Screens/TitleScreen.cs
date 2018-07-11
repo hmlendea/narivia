@@ -19,6 +19,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public override void LoadContent()
         {
+            System.Console.WriteLine("titlescreen");
             newGameLink = new GuiMenuLink
             {
                 Id = "newGame",
