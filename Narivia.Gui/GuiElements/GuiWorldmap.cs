@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,7 +11,7 @@ using NuciXNA.Primitives.Mapping;
 
 using Narivia.Common.Extensions;
 using Narivia.GameLogic.GameManagers.Interfaces;
-using Narivia.Gui.Helpers;
+using Narivia.Gui.SpriteEffects;
 using Narivia.Models;
 using Narivia.Settings;
 
@@ -35,7 +36,10 @@ namespace Narivia.Gui.GuiElements
         TextureSprite selectedProvinceHighlight;
         TextureSprite factionBorder;
 
+        Dictionary<string, Terrain> terrains;
         Dictionary<string, TextureSprite> terrainSprites;
+
+        TerrainSpriteSheetEffect terrainEffect;
 
         Point2D mouseCoords;
 
@@ -52,21 +56,28 @@ namespace Narivia.Gui.GuiElements
             camera = new Camera { Size = Size };
             world = game.GetWorld();
 
+            terrains = game.GetTerrains().ToDictionary(x => x.Id, x => x);
             terrainSprites = new Dictionary<string, TextureSprite>();
 
-            foreach (Terrain terrain in game.GetTerrains())
+            terrainEffect = new TerrainSpriteSheetEffect(game);
+            
+            foreach (Terrain terrain in terrains.Values)
             {
                 TextureSprite terrainSprite = new TextureSprite
                 {
                     ContentFile = $"World/Terrain/{terrain.Spritesheet}",
                     SourceRectangle = new Rectangle2D(
                         GameDefines.MapTileSize, GameDefines.MapTileSize * 3,
-                        GameDefines.MapTileSize, GameDefines.MapTileSize)
+                        GameDefines.MapTileSize, GameDefines.MapTileSize),
+                    SpriteSheetEffect = terrainEffect,
+                    Active = true
                 };
 
                 terrainSprite.LoadContent();
                 terrainSprites.AddOrUpdate(terrain.Spritesheet, terrainSprite);
             }
+
+            terrainEffect.Activate();
 
             provinceHighlight = new TextureSprite
             {
@@ -173,11 +184,17 @@ namespace Narivia.Gui.GuiElements
                 camCoordsBegin.X + camera.Size.Width / GameDefines.MapTileSize + 2,
                 camCoordsBegin.Y + camera.Size.Height / GameDefines.MapTileSize + 1);
 
-            for (int y = camCoordsBegin.Y; y < camCoordsEnd.Y; y++)
+            foreach (Terrain terrain in terrains.Values.OrderBy(x => x.ZIndex))
             {
-                for (int x = camCoordsBegin.X; x < camCoordsEnd.X; x++)
+                for (int y = camCoordsBegin.Y; y < camCoordsEnd.Y; y++)
                 {
-                    DrawTile(spriteBatch, x, y);
+                    for (int x = camCoordsBegin.X; x < camCoordsEnd.X; x++)
+                    {
+                        if (world.Tiles[x, y].TerrainId == terrain.Id)
+                        {
+                            DrawTile(spriteBatch, x, y);
+                        }
+                    }
                 }
             }
 
@@ -199,14 +216,21 @@ namespace Narivia.Gui.GuiElements
         {
             WorldTile tile = world.Tiles[x, y];
 
-            Terrain terrain = game.GetTerrain(tile.TerrainId); // TODO: Optimise this. Don't call this every time
+            Terrain terrain = terrains[tile.TerrainId]; // TODO: Optimise this. Don't call this every time
+            
+            // TODO: Don't do all this, and definetely don't do it here
+            terrainEffect.TileLocation = new Point2D(x, y);
+            terrainEffect.TerrainId = terrain.Id;
+            terrainEffect.TilesWith = new List<string> { terrain.Id };
+            terrainEffect.Update(null);
+
             DrawTerrainSprite(spriteBatch, x, y, terrain.Spritesheet, 1, 3);
         }
 
         void DrawTerrainSprite(SpriteBatch spriteBatch, int tileX, int tileY, string spritesheet, int spritesheetX, int spritesheetY)
         {
             TextureSprite terrainSprite = terrainSprites[spritesheet];
-
+            
             terrainSprite.Location = new Point2D(
                 tileX * GameDefines.MapTileSize - camera.Location.X,
                 tileY * GameDefines.MapTileSize - camera.Location.Y);

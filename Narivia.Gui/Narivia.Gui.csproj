@@ -81,6 +81,7 @@
     <Compile Include="GuiElements\GuiProvincePanel.cs" />
     <Compile Include="GuiElements\GuiHoldingCard.cs" />
     <Compile Include="GuiElements\GuiPanel.cs" />
+    <Compile Include="SpriteEffects\TerrainSpriteSheetEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Narivia.Audio\Narivia.Audio.csproj">
