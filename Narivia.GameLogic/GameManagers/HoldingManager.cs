@@ -117,15 +117,9 @@ namespace Narivia.GameLogic.GameManagers
 
         public void InitialiseFactionHoldings(string factionId)
         {
-            // TODO: Remove this!!!
-            if (factionId == GameDefines.GaiaFactionIdentifier)
-            {
-                return;
-            }
-
             List<Faction> factions = worldManager.GetFactions().ToList();
             List<Province> provinces = worldManager.GetProvinces().ToList();
-
+            
             Faction faction = worldManager.GetFaction(factionId);
             Province capitalProvince = worldManager.GetFactionCapital(faction.Id);
 
@@ -200,7 +194,7 @@ namespace Narivia.GameLogic.GameManagers
         Holding GenerateHolding(INameGenerator generator, string provinceId)
         {
             Province province = worldManager.GetProvince(provinceId);
-            Array holdingTypes = Enum.GetValues(typeof(HoldingType));
+            Array holdingTypes = HoldingType.GetValues();
 
             HoldingType holdingType = (HoldingType)holdingTypes.GetValue(random.Next(1, holdingTypes.Length));
             string name = generator.GenerateName();

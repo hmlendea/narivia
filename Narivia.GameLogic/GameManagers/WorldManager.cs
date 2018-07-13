@@ -135,16 +135,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="provinceId">Province identifier.</param>
         public bool FactionBordersProvince(string factionId, string provinceId)
             => GetFactionProvinces(factionId).Any(r => ProvinceBordersProvince(r.Id, provinceId));
-
-        /// <summary>
-        /// Returns the faction identifier at the given location.
-        /// </summary>
-        /// <returns>The faction identifier.</returns>
-        /// <param name="x">The x coordinate.</param>
-        /// <param name="y">The y coordinate.</param>
-        public string FactionIdAtLocation(int x, int y)
-            => provinces[world.Tiles[x, y].ProvinceId].FactionId;
-
+        
         /// <summary>
         /// Transfers the specified province to the specified faction.
         /// </summary>
@@ -181,6 +172,15 @@ namespace Narivia.GameLogic.GameManagers
 
         public Faction GetFaction(string factionId)
             => factions[factionId];
+
+        /// <summary>
+        /// Returns the faction at the given location.
+        /// </summary>
+        /// <returns>The faction.</returns>
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        public Faction GetFaction(int x, int y)
+            => factions[provinces[world.Tiles[x, y].ProvinceId].FactionId];
 
         /// <summary>
         /// Gets the faction capital.
@@ -380,15 +380,8 @@ namespace Narivia.GameLogic.GameManagers
         public void InitialiseFaction(string factionId)
         {
             Faction faction = factions[factionId];
-
-            if (faction.Id == GameDefines.GaiaFactionIdentifier)
-            {
-                faction.Alive = false;
-                return;
-            }
-
+            
             faction.Wealth = world.StartingWealth;
-            faction.Alive = true;
         }
     }
 }

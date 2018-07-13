@@ -16,12 +16,7 @@
         /// The GUI spacing.
         /// </summary>
         public const int GuiSpacing = 6;
-
-        /// <summary>
-        /// Mother Nature's faction.
-        /// </summary>
-        public const string GaiaFactionIdentifier = "f_gaia";
-
+        
         public const string MilitiaUnitIdentifier = "militia";
     }
 }

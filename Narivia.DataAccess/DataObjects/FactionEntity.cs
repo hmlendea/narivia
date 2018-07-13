@@ -36,5 +36,7 @@ namespace Narivia.DataAccess.DataObjects
         /// </summary>
         /// <value>The culture identifier.</value>
         public string CultureId { get; set; }
+
+        public string Type { get; set; }
     }
 }

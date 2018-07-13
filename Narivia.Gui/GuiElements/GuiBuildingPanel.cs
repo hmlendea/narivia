@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +8,6 @@ using NuciXNA.Input;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers;
-using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 using Narivia.Settings;
@@ -61,7 +59,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            holdingTypes = Enum.GetValues(typeof(HoldingType)).Cast<HoldingType>().Where(x => x != HoldingType.Empty).ToList();
+            holdingTypes = HoldingType.GetValues().Cast<HoldingType>().Where(x => x != HoldingType.Empty).ToList();
 
             holdingBackground = new GuiImage
             {

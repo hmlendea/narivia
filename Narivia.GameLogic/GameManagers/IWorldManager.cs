@@ -37,14 +37,6 @@ namespace Narivia.GameLogic.GameManagers
         bool FactionBordersProvince(string factionId, string provinceId);
 
         /// <summary>
-        /// Returns the faction identifier at the given location.
-        /// </summary>
-        /// <returns>The faction identifier.</returns>
-        /// <param name="x">The x coordinate.</param>
-        /// <param name="y">The y coordinate.</param>
-        string FactionIdAtLocation(int x, int y);
-
-        /// <summary>
         /// Transfers the specified province to the specified faction.
         /// </summary>
         /// <param name="provinceId">Province identifier.</param>
@@ -72,6 +64,13 @@ namespace Narivia.GameLogic.GameManagers
         IEnumerable<Faction> GetFactions();
 
         Faction GetFaction(string factionId);
+        /// <summary>
+        /// Returns the faction at the given location.
+        /// </summary>
+        /// <returns>The faction.</returns>
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        Faction GetFaction(int x, int y);
 
         /// <summary>
         /// Gets the faction capital.

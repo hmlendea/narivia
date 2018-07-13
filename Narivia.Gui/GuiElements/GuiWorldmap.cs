@@ -13,6 +13,7 @@ using Narivia.Common.Extensions;
 using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.SpriteEffects;
 using Narivia.Models;
+using Narivia.Models.Enumerations;
 using Narivia.Settings;
 
 namespace Narivia.Gui.GuiElements
@@ -159,7 +160,7 @@ namespace Narivia.Gui.GuiElements
                 SelectedProvinceId = game.GetWorld().Tiles[x, y].ProvinceId;
 
                 // TODO: Also handle this properly
-                if (game.FactionIdAtLocation(x, y) == GameDefines.GaiaFactionIdentifier)
+                if (game.GetFaction(x, y).Type == FactionType.Gaia)
                 {
                     SelectedProvinceId = null;
                 }
@@ -269,10 +270,9 @@ namespace Narivia.Gui.GuiElements
                     }
 
                     string provinceId = game.GetWorld().Tiles[x, y].ProvinceId;
-                    string factionId = game.FactionIdAtLocation(x, y);
-                    Colour factionColour = game.GetFaction(factionId).Colour.ToColour();
+                    Faction faction = game.GetFaction(x, y);
 
-                    if (factionId == GameDefines.GaiaFactionIdentifier)
+                    if (faction.Type == FactionType.Gaia)
                     {
                         continue;
                     }
@@ -280,13 +280,13 @@ namespace Narivia.Gui.GuiElements
                     if (SelectedProvinceId == provinceId)
                     {
                         selectedProvinceHighlight.Location = screenCoords;
-                        selectedProvinceHighlight.Tint = factionColour;
+                        selectedProvinceHighlight.Tint = faction.Colour.ToColour();
                         selectedProvinceHighlight.Draw(spriteBatch);
                     }
                     else
                     {
                         provinceHighlight.Location = screenCoords;
-                        provinceHighlight.Tint = factionColour;
+                        provinceHighlight.Tint = faction.Colour.ToColour();
                         provinceHighlight.Draw(spriteBatch);
                     }
                 }
@@ -316,50 +316,49 @@ namespace Narivia.Gui.GuiElements
                         continue;
                     }
 
-                    string factionId = game.FactionIdAtLocation(x, y);
-                    Colour factionColour = game.GetFaction(factionId).Colour.ToColour();
+                    Faction faction = game.GetFaction(x, y);
 
-                    if (factionId == GameDefines.GaiaFactionIdentifier)
+                    if (faction.Type == FactionType.Gaia)
                     {
                         continue;
                     }
 
-                    string factionIdN = game.FactionIdAtLocation(x, y - 1);
-                    string factionIdW = game.FactionIdAtLocation(x - 1, y);
-                    string factionIdS = game.FactionIdAtLocation(x, y + 1);
-                    string factionIdE = game.FactionIdAtLocation(x + 1, y);
+                    Faction factionN = game.GetFaction(x, y - 1);
+                    Faction factionW = game.GetFaction(x - 1, y);
+                    Faction factionS = game.GetFaction(x, y + 1);
+                    Faction factionE = game.GetFaction(x + 1, y);
 
                     factionBorder.Location = screenCoords;
-                    factionBorder.Tint = factionColour;
+                    factionBorder.Tint = faction.Colour.ToColour();
 
                     // TODO: Optimise the below IFs
 
-                    if (factionIdN != factionId &&
-                        factionIdN != GameDefines.GaiaFactionIdentifier)
+                    if (factionN.Id != faction.Id &&
+                        factionN.Type != FactionType.Gaia)
                     {
                         factionBorder.SourceRectangle = new Rectangle2D(
                             GameDefines.MapTileSize, 0,
                             GameDefines.MapTileSize, GameDefines.MapTileSize);
                         factionBorder.Draw(spriteBatch);
                     }
-                    if (factionIdW != factionId &&
-                        factionIdW != GameDefines.GaiaFactionIdentifier)
+                    if (factionW.Id != faction.Id &&
+                        factionW.Type != FactionType.Gaia)
                     {
                         factionBorder.SourceRectangle = new Rectangle2D(
                             0, GameDefines.MapTileSize,
                             GameDefines.MapTileSize, GameDefines.MapTileSize);
                         factionBorder.Draw(spriteBatch);
                     }
-                    if (factionIdS != factionId &&
-                        factionIdS != GameDefines.GaiaFactionIdentifier)
+                    if (factionS.Id != faction.Id &&
+                        factionS.Type != FactionType.Gaia)
                     {
                         factionBorder.SourceRectangle = new Rectangle2D(
                             GameDefines.MapTileSize, GameDefines.MapTileSize * 2,
                             GameDefines.MapTileSize, GameDefines.MapTileSize);
                         factionBorder.Draw(spriteBatch);
                     }
-                    if (factionIdE != factionId &&
-                        factionIdE != GameDefines.GaiaFactionIdentifier)
+                    if (factionE.Id != faction.Id &&
+                        factionE.Type != FactionType.Gaia)
                     {
                         factionBorder.SourceRectangle = new Rectangle2D(
                             GameDefines.MapTileSize * 2, GameDefines.MapTileSize,

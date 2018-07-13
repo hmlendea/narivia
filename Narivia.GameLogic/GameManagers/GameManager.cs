@@ -93,7 +93,7 @@ namespace Narivia.GameLogic.GameManagers
                 worldManager.InitialiseProvince(province.Id);
             }
 
-            foreach (Faction faction in worldManager.GetFactions())
+            foreach (Faction faction in worldManager.GetFactions().Where(f => f.Type.IsActive))
             {
                 worldManager.InitialiseFaction(faction.Id);
                 diplomacyManager.InitialiseFactionRelations(faction.Id);
@@ -118,7 +118,7 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         public void NextTurn()
         {
-            foreach (Faction faction in worldManager.GetFactions().Where(f => f.Alive))
+            foreach (Faction faction in worldManager.GetFactions().Where(f => f.Type.IsActive))
             {
                 // Economy
                 faction.Wealth += economyManager.GetFactionIncome(faction.Id);
@@ -189,16 +189,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="provinceId">Province identifier.</param>
         public bool FactionBordersProvince(string factionId, string provinceId)
         => worldManager.FactionBordersProvince(factionId, provinceId);
-
-        /// <summary>
-        /// Returns the faction identifier at the given location.
-        /// </summary>
-        /// <returns>The faction identifier.</returns>
-        /// <param name="x">The x coordinate.</param>
-        /// <param name="y">The y coordinate.</param>
-        public string FactionIdAtLocation(int x, int y)
-        => worldManager.FactionIdAtLocation(x, y);
-
+        
         /// <summary>
         /// Transfers the specified province to the specified faction.
         /// </summary>
@@ -245,6 +236,15 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public Faction GetFaction(string factionId)
         => GetFactions().FirstOrDefault(f => f.Id == factionId);
+
+        /// <summary>
+        /// Returns the faction at the given location.
+        /// </summary>
+        /// <returns>The faction.</returns>
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        public Faction GetFaction(int x, int y)
+        => worldManager.GetFaction(x, y);
 
         /// <summary>
         /// Gets the factions.
@@ -507,31 +507,34 @@ namespace Narivia.GameLogic.GameManagers
 
         void UpdateFactionsAliveStatus()
         {
-            Parallel.ForEach(GetFactions().Where(f => f.Id != GameDefines.GaiaFactionIdentifier), faction =>
+            foreach(Faction faction in GetFactions())
             {
-                bool wasAlive = faction.Alive;
+                bool wasAlive = faction.Type.IsActive;
+                int provincesCount = GetFactionProvinces(faction.Id).Count();
 
-                faction.Alive = GetFactionProvinces(faction.Id).Count() > 0;
-
-                if (wasAlive && !faction.Alive && FactionDestroyed != null)
-                {
-                    FactionDestroyed(this, new FactionEventArgs(faction.Id));
-                }
-                else if (!wasAlive && faction.Alive && FactionRevived != null)
+                if (!wasAlive && 
+                    provincesCount > 0 && 
+                    faction.Type == FactionType.Inactive)
                 {
                     FactionRevived(this, new FactionEventArgs(faction.Id));
+                    faction.Type = FactionType.Active;
                 }
-            });
+                else if (wasAlive && provincesCount == 0)
+                {
+                    FactionDestroyed(this, new FactionEventArgs(faction.Id));
+                    faction.Type = FactionType.Inactive;
+                }
+            }
         }
 
         void CheckForWinner()
         {
-            if (GetFactions().Count(f => f.Alive) > 1)
+            if (GetFactions().Count(f => f.Type.IsActive) > 1)
             {
                 return;
             }
 
-            Faction faction = GetFactions().FirstOrDefault(f => f.Alive);
+            Faction faction = GetFactions().FirstOrDefault(f => f.Type.IsActive);
 
             FactionWon?.Invoke(this, new FactionEventArgs(faction.Id));
         }

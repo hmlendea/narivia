@@ -92,15 +92,9 @@ namespace Narivia.GameLogic.GameManagers
 
         public void InitialiseFactionRelations(string sourceFactionId)
         {
-            if (sourceFactionId == GameDefines.GaiaFactionIdentifier)
-            {
-                return;
-            }
-
             foreach (Faction targetFaction in worldManager.GetFactions())
             {
-                if (targetFaction.Id == sourceFactionId ||
-                    targetFaction.Id == GameDefines.GaiaFactionIdentifier)
+                if (targetFaction.Id == sourceFactionId || !targetFaction.Type.IsActive)
                 {
                     continue;
                 }
