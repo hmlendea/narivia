@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Exceptions;
-using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
@@ -95,19 +94,17 @@ namespace Narivia.GameLogic.GameManagers
                 //foreach (Holding holding in holdingManager.GetProvinceHoldings(province.Id))
                 Parallel.ForEach(holdingManager.GetProvinceHoldings(province.Id), (holding) =>
                 {
-                    switch (holding.Type)
+                    if (holding.Type == HoldingType.Castle)
                     {
-                        case HoldingType.Castle:
-                            targets[province.Id] += BLITZKRIEG_HOLDING_CASTLE_IMPORTANCE;
-                            break;
-
-                        case HoldingType.City:
-                            targets[province.Id] += BLITZKRIEG_HOLDING_CITY_IMPORTANCE;
-                            break;
-
-                        case HoldingType.Temple:
-                            targets[province.Id] += BLITZKRIEG_HOLDING_TEMPLE_IMPORTANCE;
-                            break;
+                        targets[province.Id] += BLITZKRIEG_HOLDING_CASTLE_IMPORTANCE;
+                    }
+                    else if (holding.Type == HoldingType.City)
+                    {
+                        targets[province.Id] += BLITZKRIEG_HOLDING_CITY_IMPORTANCE;
+                    }
+                    else if (holding.Type == HoldingType.Temple)
+                    {
+                        targets[province.Id] += BLITZKRIEG_HOLDING_TEMPLE_IMPORTANCE;
                     }
                 });
 

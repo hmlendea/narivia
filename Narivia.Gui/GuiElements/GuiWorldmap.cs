@@ -10,7 +10,7 @@ using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
 using Narivia.Common.Extensions;
-using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.SpriteEffects;
 using Narivia.Models;
 using Narivia.Settings;

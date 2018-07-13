@@ -41,8 +41,8 @@
     <Reference Include="NuciXNA.Input, Version=1.1.6764.23188, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Input.1.1.6764.23188\lib\net45\NuciXNA.Input.dll</HintPath>
     </Reference>
-    <Reference Include="NuciXNA.Primitives, Version=1.2.6764.30556, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Primitives.1.2.6764.30556\lib\net45\NuciXNA.Primitives.dll</HintPath>
+    <Reference Include="NuciXNA.Primitives, Version=1.2.6767.23015, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Primitives.1.2.6767.23015\lib\net45\NuciXNA.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="MonoGame.Framework">

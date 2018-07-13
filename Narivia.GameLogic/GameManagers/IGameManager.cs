@@ -5,7 +5,7 @@ using Narivia.GameLogic.Events;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 
-namespace Narivia.GameLogic.GameManagers.Interfaces
+namespace Narivia.GameLogic.GameManagers
 {
     /// <summary>
     /// Game manager interface.

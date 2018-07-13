@@ -7,7 +7,7 @@ using NuciXNA.Input;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
-using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers;
 using Narivia.Models;
 using Narivia.Settings;
 

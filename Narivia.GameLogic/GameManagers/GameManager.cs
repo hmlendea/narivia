@@ -5,7 +5,6 @@ using System.Linq;
 
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
-using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
@@ -126,8 +125,7 @@ namespace Narivia.GameLogic.GameManagers
                 faction.Wealth -= economyManager.GetFactionOutcome(faction.Id);
 
                 // Recruit
-                // TODO: Find a way around the hardcoded "militia" unit identifier
-                GetArmy(faction.Id, "militia").Size += GetFactionRecruitment(faction.Id);
+                GetArmy(faction.Id, GameDefines.MilitiaUnitIdentifier).Size += GetFactionRecruitment(faction.Id);
 
                 // A.I.
                 if (faction.Id == PlayerFactionId)

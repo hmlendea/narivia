@@ -2,7 +2,7 @@
 
 using Narivia.Models;
 
-namespace Narivia.GameLogic.GameManagers.Interfaces
+namespace Narivia.GameLogic.GameManagers
 {
     public interface IDiplomacyManager
     {

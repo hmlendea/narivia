@@ -38,8 +38,8 @@
     <Reference Include="NuciXNA.Graphics, Version=1.4.6766.31710, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.Graphics.1.4.6766.31710\lib\net45\NuciXNA.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="NuciXNA.Primitives, Version=1.2.6764.30556, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Primitives.1.2.6764.30556\lib\net45\NuciXNA.Primitives.dll</HintPath>
+    <Reference Include="NuciXNA.Primitives, Version=1.2.6767.23015, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Primitives.1.2.6767.23015\lib\net45\NuciXNA.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="MonoGame.Framework">

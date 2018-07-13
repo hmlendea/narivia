@@ -12,7 +12,6 @@ using NuciXNA.Primitives;
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Exceptions;
 using Narivia.GameLogic.Events;
-using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.GuiElements;
 using Narivia.Gui.GuiElements.Enumerations;
@@ -25,40 +24,14 @@ namespace Narivia.Gui.Screens
     /// </summary>
     public class GameplayScreen : Screen
     {
-        /// <summary>
-        /// Gets or sets the game map.
-        /// </summary>
-        /// <value>The game map.</value>
-        public GuiWorldmap GameMap { get; set; }
-
-        public GuiAdministrationBar AdministrationBar { get; set; }
-
-        /// <summary>
-        /// Gets or sets the info bar.
-        /// </summary>
-        /// <value>The info bar.</value>
-        public GuiInfoBar InfoBar { get; set; }
-
-        /// <summary>
-        /// Gets or sets the faction bar.
-        /// </summary>
-        /// <value>The faction bar.</value>
-        public GuiFactionBar FactionBar { get; set; }
-
-        /// <summary>
-        /// Gets or sets the province panel.
-        /// </summary>
-        /// <value>The province panel.</value>
-        public GuiProvincePanel ProvincePanel { get; set; }
-
-        /// <summary>
-        /// Gets or sets the notification bar.
-        /// </summary>
-        /// <value>The notification bar.</value>
-        public GuiNotificationBar NotificationBar { get; set; }
-
         IGameManager game;
 
+        GuiWorldmap gameMap;
+        GuiAdministrationBar administrationBar;
+        GuiInfoBar infoBar;
+        GuiFactionBar factionBar;
+        GuiProvincePanel provincePanel;
+        GuiNotificationBar notificationBar;
         GuiRecruitmentPanel recruitmentPanel;
         GuiBuildingPanel buildingPanel;
 
@@ -77,32 +50,32 @@ namespace Narivia.Gui.Screens
             game = new GameManager(initialWorldId, initialFactionId);
             game.LoadContent();
 
-            AdministrationBar = new GuiAdministrationBar
+            administrationBar = new GuiAdministrationBar
             {
                 Location = Point2D.Empty,
             };
-            InfoBar = new GuiInfoBar(game)
+            infoBar = new GuiInfoBar(game)
             {
                 Location = new Point2D(ScreenManager.Instance.Size.Width - 166, 0),
                 Size = new Size2D(166, 82)
             };
-            FactionBar = new GuiFactionBar(game)
+            factionBar = new GuiFactionBar(game)
             {
                 Location = new Point2D((ScreenManager.Instance.Size.Width - 242) / 2, 0),
                 Size = new Size2D(242, 94)
             };
-            GameMap = new GuiWorldmap(game)
+            gameMap = new GuiWorldmap(game)
             {
                 Size = ScreenManager.Instance.Size
             };
-            NotificationBar = new GuiNotificationBar(game)
+            notificationBar = new GuiNotificationBar(game)
             {
                 Location = new Point2D(
                     ScreenManager.Instance.Size.Width - 48,
-                    InfoBar.Size.Height),
-                Size = new Size2D(48, ScreenManager.Instance.Size.Height - InfoBar.Size.Height)
+                    infoBar.Size.Height),
+                Size = new Size2D(48, ScreenManager.Instance.Size.Height - infoBar.Size.Height)
             };
-            ProvincePanel = new GuiProvincePanel(game)
+            provincePanel = new GuiProvincePanel(game)
             {
                 Location = new Point2D(0, 296)
             };
@@ -122,7 +95,7 @@ namespace Narivia.Gui.Screens
             troopsOld = new Dictionary<string, int>();
             relationsOld = new Dictionary<string, int>();
 
-            game.GetUnits().ToList().ForEach(u => troopsOld.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
+            troopsOld = game.GetUnits().ToDictionary(x => x.Name, x => game.GetArmy(game.PlayerFactionId, x.Id).Size);
 
             foreach (Relation relation in game.GetFactionRelations(game.PlayerFactionId))
             {
@@ -136,31 +109,29 @@ namespace Narivia.Gui.Screens
                 }
             }
 
-            GuiManager.Instance.GuiElements.Add(GameMap);
-            GuiManager.Instance.GuiElements.Add(AdministrationBar);
-            GuiManager.Instance.GuiElements.Add(InfoBar);
-            GuiManager.Instance.GuiElements.Add(FactionBar);
-            GuiManager.Instance.GuiElements.Add(ProvincePanel);
-            GuiManager.Instance.GuiElements.Add(NotificationBar);
+            GuiManager.Instance.GuiElements.Add(gameMap);
+            GuiManager.Instance.GuiElements.Add(administrationBar);
+            GuiManager.Instance.GuiElements.Add(infoBar);
+            GuiManager.Instance.GuiElements.Add(factionBar);
+            GuiManager.Instance.GuiElements.Add(provincePanel);
+            GuiManager.Instance.GuiElements.Add(notificationBar);
             GuiManager.Instance.GuiElements.Add(recruitmentPanel);
             GuiManager.Instance.GuiElements.Add(buildingPanel);
 
-            ProvincePanel.ProvinceId = game.GetFactionCapital(game.PlayerFactionId).Id;
+            provincePanel.ProvinceId = game.GetFactionCapital(game.PlayerFactionId).Id;
 
             base.LoadContent();
 
-            ProvincePanel.Hide();
+            provincePanel.Hide();
 
             string factionName = game.GetFaction(game.PlayerFactionId).Name;
 
             NotificationManager.Instance.ShowNotification(
-                            $"Welcome to {game.GetWorld().Name}",
-                            $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
-                            $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!");
-
-            LinkEvents();
-
-            GameMap.CentreCameraOnLocation(
+                $"Welcome to {game.GetWorld().Name}",
+                $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
+                $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!");
+            
+            gameMap.CentreCameraOnLocation(
                 game.GetFactionCentreX(game.PlayerFactionId),
                 game.GetFactionCentreY(game.PlayerFactionId));
         }
@@ -173,11 +144,11 @@ namespace Narivia.Gui.Screens
         public override void Update(GameTime gameTime)
         {
             recruitmentPanel.Location = new Point2D(
-                GameMap.Location.X + (GameMap.Size.Width - recruitmentPanel.Size.Width) / 2,
-                GameMap.Location.Y + (GameMap.Size.Height - recruitmentPanel.Size.Height) / 2);
+                gameMap.Location.X + (gameMap.Size.Width - recruitmentPanel.Size.Width) / 2,
+                gameMap.Location.Y + (gameMap.Size.Height - recruitmentPanel.Size.Height) / 2);
             buildingPanel.Location = new Point2D(
-                GameMap.Location.X + (GameMap.Size.Width - buildingPanel.Size.Width) / 2,
-                GameMap.Location.Y + (GameMap.Size.Height - buildingPanel.Size.Height) / 2);
+                gameMap.Location.X + (gameMap.Size.Width - buildingPanel.Size.Width) / 2,
+                gameMap.Location.Y + (gameMap.Size.Height - buildingPanel.Size.Height) / 2);
 
             base.Update(gameTime);
         }
@@ -192,25 +163,27 @@ namespace Narivia.Gui.Screens
             base.Draw(spriteBatch);
         }
 
-        void LinkEvents()
+        protected override void RegisterEvents()
         {
+            base.RegisterEvents();
+
             game.PlayerProvinceAttacked += game_OnPlayerProvinceAttacked;
             game.FactionDestroyed += game_OnFactionDestroyed;
             game.FactionRevived += game_OnFactionRevived;
             game.FactionWon += game_OnFactionWon;
 
-            GameMap.Clicked += GameMap_Clicked;
+            gameMap.Clicked += GameMap_Clicked;
 
-            InfoBar.TurnButtonClicked += SideBar_TurnButtonClicked;
-            AdministrationBar.RecruitButton.Clicked += AdministrationBar_RecruitButtonClicked;
-            AdministrationBar.StatsButton.Clicked += AdministrationBar_StatsButtonClicked;
-            ProvincePanel.AttackButtonClicked += ProvincePanel_AttackButtonClicked;
-            ProvincePanel.BuildButtonClicked += ProvincePanel_BuildButtonClicked;
+            infoBar.TurnButtonClicked += SideBar_TurnButtonClicked;
+            administrationBar.RecruitButton.Clicked += AdministrationBar_RecruitButtonClicked;
+            administrationBar.StatsButton.Clicked += AdministrationBar_StatsButtonClicked;
+            provincePanel.AttackButtonClicked += ProvincePanel_AttackButtonClicked;
+            provincePanel.BuildButtonClicked += ProvincePanel_BuildButtonClicked;
         }
 
         void NextTurn()
         {
-            NotificationBar.Clear();
+            notificationBar.Clear();
 
             game.NextTurn();
 
@@ -260,19 +233,19 @@ namespace Narivia.Gui.Screens
                                  $"({delta.ToString("+0;-#")})" + Environment.NewLine;
             }
 
-            NotificationBar.AddNotification(NotificationIcon.TurnReport).Clicked += delegate
+            notificationBar.AddNotification(NotificationIcon.TurnReport).Clicked += delegate
             {
                 NotificationManager.Instance.ShowNotification($"Turn {game.Turn} Report", turnBody);
             };
 
-            NotificationBar.AddNotification(NotificationIcon.RecruitmentReport).Clicked += delegate
+            notificationBar.AddNotification(NotificationIcon.RecruitmentReport).Clicked += delegate
             {
                 NotificationManager.Instance.ShowNotification($"Recruitment Report", recruitmentBody);
             };
 
             if (!string.IsNullOrWhiteSpace(relationsBody))
             {
-                NotificationBar.AddNotification(NotificationIcon.RelationsReport).Clicked += delegate
+                notificationBar.AddNotification(NotificationIcon.RelationsReport).Clicked += delegate
                 {
                     NotificationManager.Instance.ShowNotification($"Relations Report", relationsBody);
                 };
@@ -314,7 +287,7 @@ namespace Narivia.Gui.Screens
 
                 if (result == BattleResult.Victory)
                 {
-                    NotificationBar.AddNotification(NotificationIcon.BattleVictory).Clicked += delegate
+                    notificationBar.AddNotification(NotificationIcon.BattleVictory).Clicked += delegate
                     {
                         NotificationManager.Instance.ShowNotification(
                             $"Victory in {provinceName}!",
@@ -325,7 +298,7 @@ namespace Narivia.Gui.Screens
                 }
                 else
                 {
-                    NotificationBar.AddNotification(NotificationIcon.BattleDefeat).Clicked += delegate
+                    notificationBar.AddNotification(NotificationIcon.BattleDefeat).Clicked += delegate
                     {
                         NotificationManager.Instance.ShowNotification(
                             $"Defeat in {provinceName}!",
@@ -365,7 +338,7 @@ namespace Narivia.Gui.Screens
 
         void ProvincePanel_AttackButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            AttackProvince(ProvincePanel.ProvinceId);
+            AttackProvince(provincePanel.ProvinceId);
         }
 
         void ProvincePanel_BuildButtonClicked(object sender, MouseButtonEventArgs e)
@@ -375,15 +348,15 @@ namespace Narivia.Gui.Screens
 
         void GameMap_Clicked(object sender, MouseButtonEventArgs e)
         {
-            string provinceId = GameMap.SelectedProvinceId;
+            string provinceId = gameMap.SelectedProvinceId;
 
             if (string.IsNullOrEmpty(provinceId))
             {
                 return;
             }
 
-            ProvincePanel.ProvinceId = provinceId;
-            ProvincePanel.Show();
+            provincePanel.ProvinceId = provinceId;
+            provincePanel.Show();
         }
 
         void game_OnPlayerProvinceAttacked(object sender, BattleEventArgs e)
@@ -393,7 +366,7 @@ namespace Narivia.Gui.Screens
 
             if (e.BattleResult == BattleResult.Victory)
             {
-                NotificationBar.AddNotification(NotificationIcon.ProvinceLost).Clicked += delegate
+                notificationBar.AddNotification(NotificationIcon.ProvinceLost).Clicked += delegate
                 {
                     NotificationManager.Instance.ShowNotification(
                         $"{provinceName} province lost!",
@@ -404,7 +377,7 @@ namespace Narivia.Gui.Screens
             }
             else
             {
-                NotificationBar.AddNotification(NotificationIcon.ProvinceDefended).Clicked += delegate
+                notificationBar.AddNotification(NotificationIcon.ProvinceDefended).Clicked += delegate
                 {
                     NotificationManager.Instance.ShowNotification(
                         $"{provinceName} province defended!",
@@ -419,7 +392,7 @@ namespace Narivia.Gui.Screens
         {
             string factionName = game.GetFaction(e.FactionId).Name;
 
-            NotificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
+            notificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
             {
                 NotificationManager.Instance.ShowNotification(
                     $"{factionName} destroyed!",
@@ -432,7 +405,7 @@ namespace Narivia.Gui.Screens
         {
             string factionName = game.GetFaction(e.FactionId).Name;
 
-            NotificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
+            notificationBar.AddNotification(NotificationIcon.FactionDestroyed).Clicked += delegate
             {
                 NotificationManager.Instance.ShowNotification(
                     $"{factionName} revived!",
@@ -445,7 +418,7 @@ namespace Narivia.Gui.Screens
         {
             string factionName = game.GetFaction(e.FactionId).Name;
 
-            NotificationBar.AddNotification(NotificationIcon.GameFinished).Clicked += delegate
+            notificationBar.AddNotification(NotificationIcon.GameFinished).Clicked += delegate
             {
                 NotificationManager.Instance.ShowNotification(
                     $"{factionName} has won!",

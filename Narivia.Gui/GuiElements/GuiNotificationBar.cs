@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 
-using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.GuiElements.Enumerations;
 using Narivia.Settings;
 

@@ -3,7 +3,7 @@
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 
-using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers;
 using Narivia.Models;
 using NuciXNA.Input;
 
@@ -96,7 +96,7 @@ namespace Narivia.Gui.GuiElements
             }
             else
             {
-                icon.SourceRectangle = new Rectangle2D(64 * ((int)holding.Type - 1), 0, 64, 64);
+                icon.SourceRectangle = new Rectangle2D(64 * (holding.Type - 1), 0, 64, 64);
                 Visible = true;
             }
 

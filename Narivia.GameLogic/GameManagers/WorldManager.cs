@@ -9,7 +9,6 @@ using NuciLog;
 using NuciLog.Enumerations;
 
 using Narivia.Common.Extensions;
-using Narivia.GameLogic.GameManagers.Interfaces;
 using Narivia.GameLogic.Mapping;
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories;

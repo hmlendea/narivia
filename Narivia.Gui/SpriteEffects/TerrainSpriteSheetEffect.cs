@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using NuciXNA.Graphics.SpriteEffects;
 using NuciXNA.Primitives;
 
-using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers;
 using Narivia.Models;
 
 namespace Narivia.Gui.SpriteEffects

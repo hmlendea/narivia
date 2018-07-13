@@ -39,8 +39,8 @@
     <Reference Include="NuciXNA.DataAccess, Version=1.1.6764.23276, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NuciXNA.DataAccess.1.1.6764.23276\lib\net45\NuciXNA.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="NuciXNA.Primitives, Version=1.2.6764.30556, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Primitives.1.2.6764.30556\lib\net45\NuciXNA.Primitives.dll</HintPath>
+    <Reference Include="NuciXNA.Primitives, Version=1.2.6767.23015, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuciXNA.Primitives.1.2.6767.23015\lib\net45\NuciXNA.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -52,10 +52,10 @@
     <Compile Include="GameManagers\DiplomacyManager.cs" />
     <Compile Include="GameManagers\EconomyManager.cs" />
     <Compile Include="GameManagers\HoldingManager.cs" />
-    <Compile Include="GameManagers\Interfaces\IDiplomacyManager.cs" />
-    <Compile Include="GameManagers\Interfaces\IEconomyManager.cs" />
-    <Compile Include="GameManagers\Interfaces\IHoldingManager.cs" />
-    <Compile Include="GameManagers\Interfaces\IMilitaryManager.cs" />
+    <Compile Include="GameManagers\IDiplomacyManager.cs" />
+    <Compile Include="GameManagers\IEconomyManager.cs" />
+    <Compile Include="GameManagers\IHoldingManager.cs" />
+    <Compile Include="GameManagers\IMilitaryManager.cs" />
     <Compile Include="GameManagers\MilitaryManager.cs" />
     <Compile Include="Mapping\ArmyMappingExtensions.cs" />
     <Compile Include="Mapping\TerrainMappingExtensions.cs" />
@@ -69,12 +69,12 @@
     <Compile Include="Mapping\WorldMappingExtensions.cs" />
     <Compile Include="Mapping\WorldTileMappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GameManagers\Interfaces\IGameManager.cs" />
+    <Compile Include="GameManagers\IGameManager.cs" />
     <Compile Include="GameManagers\GameManager.cs" />
     <Compile Include="GameManagers\AttackManager.cs" />
     <Compile Include="GameManagers\WorldManager.cs" />
-    <Compile Include="GameManagers\Interfaces\IWorldManager.cs" />
-    <Compile Include="GameManagers\Interfaces\IAttackManager.cs" />
+    <Compile Include="GameManagers\IWorldManager.cs" />
+    <Compile Include="GameManagers\IAttackManager.cs" />
     <Compile Include="Events\BattleEvent.cs" />
     <Compile Include="Enumerations\BattleResult.cs" />
     <Compile Include="Generators\MarkovNameGenerator.cs" />

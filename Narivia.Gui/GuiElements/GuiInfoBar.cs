@@ -4,7 +4,7 @@ using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 
-using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers;
 
 namespace Narivia.Gui.GuiElements
 {

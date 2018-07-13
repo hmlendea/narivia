@@ -3,7 +3,7 @@
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 
-namespace Narivia.GameLogic.GameManagers.Interfaces
+namespace Narivia.GameLogic.GameManagers
 {
     public interface IHoldingManager
     {

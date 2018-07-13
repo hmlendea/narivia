@@ -21,5 +21,7 @@
         /// Mother Nature's faction.
         /// </summary>
         public const string GaiaFactionIdentifier = "f_gaia";
+
+        public const string MilitiaUnitIdentifier = "militia";
     }
 }

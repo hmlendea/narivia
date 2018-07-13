@@ -1,6 +1,6 @@
 using Narivia.GameLogic.Enumerations;
 
-namespace Narivia.GameLogic.GameManagers.Interfaces
+namespace Narivia.GameLogic.GameManagers
 {
     public interface IAttackManager
     {

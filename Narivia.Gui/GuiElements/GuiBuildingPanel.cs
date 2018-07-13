@@ -8,7 +8,7 @@ using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 
-using Narivia.GameLogic.GameManagers.Interfaces;
+using Narivia.GameLogic.GameManagers;
 using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
@@ -243,7 +243,7 @@ namespace Narivia.Gui.GuiElements
 
             holdingImage.SourceRectangle = new Rectangle2D(64 * currentHoldingTypeIndex, 0, 64, 64);
 
-            holdingText.Text = holdingTypes[currentHoldingTypeIndex].GetDisplayName();
+            holdingText.Text = holdingTypes[currentHoldingTypeIndex].Name;
             priceText.Text = game.GetWorld().HoldingsPrice.ToString();
         }
 
