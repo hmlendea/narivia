@@ -189,7 +189,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="provinceId">Province identifier.</param>
         public bool FactionBordersProvince(string factionId, string provinceId)
         => worldManager.FactionBordersProvince(factionId, provinceId);
-        
+
         /// <summary>
         /// Transfers the specified province to the specified faction.
         /// </summary>
@@ -381,7 +381,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The province.</returns>
         /// <param name="provinceId">Province identifier.</param>
         public Province GetProvince(string provinceId)
-        => GetProvinces().FirstOrDefault(r => r.Id == provinceId);
+        => worldManager.GetProvince(provinceId);
 
         /// <summary>
         /// Gets the holdings of a province.
@@ -507,13 +507,13 @@ namespace Narivia.GameLogic.GameManagers
 
         void UpdateFactionsAliveStatus()
         {
-            foreach(Faction faction in GetFactions())
+            foreach (Faction faction in GetFactions())
             {
                 bool wasAlive = faction.Type.IsActive;
                 int provincesCount = GetFactionProvinces(faction.Id).Count();
 
-                if (!wasAlive && 
-                    provincesCount > 0 && 
+                if (!wasAlive &&
+                    provincesCount > 0 &&
                     faction.Type == FactionType.Inactive)
                 {
                     FactionRevived(this, new FactionEventArgs(faction.Id));

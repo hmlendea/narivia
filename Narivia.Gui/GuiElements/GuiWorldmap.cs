@@ -34,13 +34,15 @@ namespace Narivia.Gui.GuiElements
         World world;
 
         TextureSprite provinceHighlight;
-        TextureSprite selectedProvinceHighlight;
         TextureSprite factionBorder;
+        TextureSprite provinceBorder;
 
         Dictionary<string, Terrain> terrains;
         Dictionary<string, TextureSprite> terrainSprites;
 
         TerrainSpriteSheetEffect terrainEffect;
+        ProvinceBorderEffect provinceBorderEffect;
+        FactionBorderEffect factionBorderEffect;
 
         Point2D mouseCoords;
 
@@ -61,7 +63,9 @@ namespace Narivia.Gui.GuiElements
             terrainSprites = new Dictionary<string, TextureSprite>();
 
             terrainEffect = new TerrainSpriteSheetEffect(game);
-            
+            provinceBorderEffect = new ProvinceBorderEffect(game);
+            factionBorderEffect = new FactionBorderEffect(game);
+
             foreach (Terrain terrain in terrains.Values)
             {
                 TextureSprite terrainSprite = new TextureSprite
@@ -78,40 +82,39 @@ namespace Narivia.Gui.GuiElements
                 terrainSprites.AddOrUpdate(terrain.Spritesheet, terrainSprite);
             }
 
-            terrainEffect.Activate();
-
             provinceHighlight = new TextureSprite
             {
                 ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle2D(
-                    GameDefines.MapTileSize, GameDefines.MapTileSize * 3,
-                    GameDefines.MapTileSize, GameDefines.MapTileSize),
+                SourceRectangle = new Rectangle2D(0, 0, GameDefines.MapTileSize, GameDefines.MapTileSize),
                 Tint = Colour.White
             };
 
-            selectedProvinceHighlight = new TextureSprite
+            provinceBorder = new TextureSprite
             {
-                ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle2D(
-                    0, GameDefines.MapTileSize * 3,
-                    GameDefines.MapTileSize, GameDefines.MapTileSize),
-                Tint = Colour.White
+                ContentFile = "Interface/Worldmap/province-border",
+                SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
+                Tint = Colour.Black,
+                Opacity = 0.25f,
+                SpriteSheetEffect = provinceBorderEffect,
+                Active = true
             };
-
             factionBorder = new TextureSprite
             {
-                ContentFile = "World/Effects/border",
-                SourceRectangle = new Rectangle2D(
-                    0, GameDefines.MapTileSize,
-                    GameDefines.MapTileSize, GameDefines.MapTileSize),
-                Tint = Colour.Blue
+                ContentFile = "Interface/Worldmap/faction-border",
+                SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
+                SpriteSheetEffect = factionBorderEffect,
+                Active = true
             };
 
             camera.LoadContent();
 
             provinceHighlight.LoadContent();
-            selectedProvinceHighlight.LoadContent();
             factionBorder.LoadContent();
+            provinceBorder.LoadContent();
+
+            terrainEffect.Activate();
+            provinceBorderEffect.Activate();
+            factionBorderEffect.Activate();
 
             base.LoadContent();
         }
@@ -124,7 +127,8 @@ namespace Narivia.Gui.GuiElements
             camera.UnloadContent();
 
             provinceHighlight.UnloadContent();
-            selectedProvinceHighlight.UnloadContent();
+            factionBorder.UnloadContent();
+            provinceBorder.UnloadContent();
             factionBorder.UnloadContent();
 
             terrainSprites.Clear();
@@ -143,8 +147,8 @@ namespace Narivia.Gui.GuiElements
             camera.Update(gameTime);
 
             provinceHighlight.Update(gameTime);
-            selectedProvinceHighlight.Update(gameTime);
             factionBorder.Update(gameTime);
+            provinceBorder.Update(gameTime);
 
             base.Update(gameTime);
 
@@ -200,7 +204,7 @@ namespace Narivia.Gui.GuiElements
             }
 
             DrawProvinceHighlight(spriteBatch);
-            DrawFactionBorders(spriteBatch);
+            DrawBorders(spriteBatch);
 
             base.Draw(spriteBatch);
         }
@@ -218,7 +222,7 @@ namespace Narivia.Gui.GuiElements
             WorldTile tile = world.Tiles[x, y];
 
             Terrain terrain = terrains[tile.TerrainId]; // TODO: Optimise this. Don't call this every time
-            
+
             // TODO: Don't do all this, and definetely don't do it here
             terrainEffect.TileLocation = new Point2D(x, y);
             terrainEffect.TerrainId = terrain.Id;
@@ -231,7 +235,7 @@ namespace Narivia.Gui.GuiElements
         void DrawTerrainSprite(SpriteBatch spriteBatch, int tileX, int tileY, string spritesheet, int spritesheetX, int spritesheetY)
         {
             TextureSprite terrainSprite = terrainSprites[spritesheet];
-            
+
             terrainSprite.Location = new Point2D(
                 tileX * GameDefines.MapTileSize - camera.Location.X,
                 tileY * GameDefines.MapTileSize - camera.Location.Y);
@@ -279,12 +283,6 @@ namespace Narivia.Gui.GuiElements
 
                     if (SelectedProvinceId == provinceId)
                     {
-                        selectedProvinceHighlight.Location = screenCoords;
-                        selectedProvinceHighlight.Tint = faction.Colour.ToColour();
-                        selectedProvinceHighlight.Draw(spriteBatch);
-                    }
-                    else
-                    {
                         provinceHighlight.Location = screenCoords;
                         provinceHighlight.Tint = faction.Colour.ToColour();
                         provinceHighlight.Draw(spriteBatch);
@@ -293,7 +291,7 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
-        void DrawFactionBorders(SpriteBatch spriteBatch)
+        void DrawBorders(SpriteBatch spriteBatch)
         {
             int cameraSizeX = camera.Size.Width / GameDefines.MapTileSize + 2;
             int cameraSizeY = camera.Size.Height / GameDefines.MapTileSize + 2;
@@ -323,48 +321,20 @@ namespace Narivia.Gui.GuiElements
                         continue;
                     }
 
-                    Faction factionN = game.GetFaction(x, y - 1);
-                    Faction factionW = game.GetFaction(x - 1, y);
-                    Faction factionS = game.GetFaction(x, y + 1);
-                    Faction factionE = game.GetFaction(x + 1, y);
+                    Colour tintColour = faction.Colour.ToColour();
 
+                    provinceBorder.Location = screenCoords;
                     factionBorder.Location = screenCoords;
-                    factionBorder.Tint = faction.Colour.ToColour();
+                    factionBorder.Tint = tintColour;
 
-                    // TODO: Optimise the below IFs
+                    provinceBorderEffect.TileLocation = gameCoords;
+                    provinceBorderEffect.UpdateFrame(null);
 
-                    if (factionN.Id != faction.Id &&
-                        factionN.Type != FactionType.Gaia)
-                    {
-                        factionBorder.SourceRectangle = new Rectangle2D(
-                            GameDefines.MapTileSize, 0,
-                            GameDefines.MapTileSize, GameDefines.MapTileSize);
-                        factionBorder.Draw(spriteBatch);
-                    }
-                    if (factionW.Id != faction.Id &&
-                        factionW.Type != FactionType.Gaia)
-                    {
-                        factionBorder.SourceRectangle = new Rectangle2D(
-                            0, GameDefines.MapTileSize,
-                            GameDefines.MapTileSize, GameDefines.MapTileSize);
-                        factionBorder.Draw(spriteBatch);
-                    }
-                    if (factionS.Id != faction.Id &&
-                        factionS.Type != FactionType.Gaia)
-                    {
-                        factionBorder.SourceRectangle = new Rectangle2D(
-                            GameDefines.MapTileSize, GameDefines.MapTileSize * 2,
-                            GameDefines.MapTileSize, GameDefines.MapTileSize);
-                        factionBorder.Draw(spriteBatch);
-                    }
-                    if (factionE.Id != faction.Id &&
-                        factionE.Type != FactionType.Gaia)
-                    {
-                        factionBorder.SourceRectangle = new Rectangle2D(
-                            GameDefines.MapTileSize * 2, GameDefines.MapTileSize,
-                            GameDefines.MapTileSize, GameDefines.MapTileSize);
-                        factionBorder.Draw(spriteBatch);
-                    }
+                    factionBorderEffect.TileLocation = gameCoords;
+                    factionBorderEffect.UpdateFrame(null);
+
+                    provinceBorder.Draw(spriteBatch);
+                    factionBorder.Draw(spriteBatch);
                 }
             }
         }
