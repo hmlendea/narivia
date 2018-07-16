@@ -22,7 +22,14 @@ namespace Narivia.Gui.Screens
         GuiMenuListSelector factionSelector;
         GuiMenuLink backLink;
 
-        GameManager game;
+        IAttackManager attackManager;
+        IDiplomacyManager diplomacyManager;
+        IEconomyManager economyManager;
+        IHoldingManager holdingManager;
+        IMilitaryManager militaryManager;
+        IWorldManager worldManager;
+        IGameManager gameManager;
+
         List<World> worlds;
 
         /// <summary>
@@ -57,7 +64,7 @@ namespace Narivia.Gui.Screens
             Items.Add(worldSelector);
             Items.Add(factionSelector);
             Items.Add(backLink);
-            
+
             worldSelector.SelectedIndexChanged += OnWorldSelectorSelectedIndexChanged;
             factionSelector.SelectedIndexChanged += OnFactionSelectorSelectedIndexChanged;
 
@@ -74,12 +81,41 @@ namespace Narivia.Gui.Screens
             base.LoadContent();
         }
 
+        public override void UnloadContent()
+        {
+            worldManager.UnloadContent();
+            diplomacyManager.UnloadContent();
+            holdingManager.UnloadContent();
+            militaryManager.UnloadContent();
+            economyManager.UnloadContent();
+            attackManager.UnloadContent();
+            gameManager.UnloadContent();
+
+            base.UnloadContent();
+        }
+
         void OnWorldSelectorSelectedIndexChanged(object sender, EventArgs e)
         {
-            game = new GameManager(worlds[worldSelector.SelectedIndex].Id);
-            game.LoadContent();
+            string selectedWorldId = worlds[worldSelector.SelectedIndex].Id;
+            string selectedFactionId = "f_alpalet"; // TODO: Remove hardcode
 
-            List<Faction> factions = game.GetFactions()
+            worldManager = new WorldManager(selectedWorldId);
+            diplomacyManager = new DiplomacyManager(worldManager);
+            holdingManager = new HoldingManager(selectedWorldId, worldManager);
+            militaryManager = new MilitaryManager(holdingManager, worldManager);
+            economyManager = new EconomyManager(holdingManager, militaryManager, worldManager);
+            attackManager = new AttackManager(diplomacyManager, holdingManager, militaryManager, worldManager);
+            gameManager = new GameManager(attackManager, diplomacyManager, economyManager, holdingManager, militaryManager, worldManager);
+
+            worldManager.LoadContent();
+            diplomacyManager.LoadContent();
+            holdingManager.LoadContent();
+            militaryManager.LoadContent();
+            economyManager.LoadContent();
+            attackManager.LoadContent();
+            gameManager.LoadContent(selectedWorldId, selectedFactionId);
+
+            List<Faction> factions = worldManager.GetFactions()
                 .Where(f => f.Type.IsActive)
                 .OrderBy(f => f.Name)
                 .ToList();
@@ -96,7 +132,7 @@ namespace Narivia.Gui.Screens
 
         void OnFactionSelectorSelectedIndexChanged(object sender, EventArgs e)
         {
-            string factionId = game.GetFactions().ToList()[factionSelector.SelectedIndex].Id;
+            string factionId = worldManager.GetFactions().ToList()[factionSelector.SelectedIndex].Id;
 
             startLink.LinkArgs = $"narivia {factionId}";
         }

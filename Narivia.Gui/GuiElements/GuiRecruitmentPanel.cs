@@ -19,8 +19,10 @@ namespace Narivia.Gui.GuiElements
     {
         const int IconSize = 22;
 
-        IGameManager game;
-        
+        IGameManager gameManager;
+        IWorldManager worldManager;
+        IMilitaryManager militaryManager;
+
         GuiImage unitBackground;
         GuiImage unitImage;
         GuiImage paper;
@@ -49,10 +51,15 @@ namespace Narivia.Gui.GuiElements
         int currentUnitIndex;
         int troopsAmount;
 
-        public GuiRecruitmentPanel(IGameManager game)
+        public GuiRecruitmentPanel(
+            IGameManager gameManager,
+            IWorldManager worldManager,
+            IMilitaryManager militaryManager)
         {
-            this.game = game;
-            
+            this.gameManager = gameManager;
+            this.worldManager = worldManager;
+            this.militaryManager = militaryManager;
+
             Title = "Recruitment";
             FontName = "ButtonFont";
         }
@@ -62,8 +69,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public override void LoadContent()
         {
-            units = game.GetUnits().OrderBy(u => u.Price).ToList();
-            
+            units = militaryManager.GetUnits().OrderBy(u => u.Price).ToList();
+
             unitBackground = new GuiImage
             {
                 ContentFile = "ScreenManager/FillImage",
@@ -74,7 +81,7 @@ namespace Narivia.Gui.GuiElements
             };
             unitImage = new GuiImage
             {
-                ContentFile = $"World/Assets/{game.GetWorld().Id}/units/{units[currentUnitIndex].Id}",
+                ContentFile = $"World/Assets/{gameManager.GetWorld().Id}/units/{units[currentUnitIndex].Id}",
                 SourceRectangle = new Rectangle2D(0, 0, 64, 64),
                 Size = new Size2D(64, 64),
                 Location = new Point2D(
@@ -231,7 +238,7 @@ namespace Narivia.Gui.GuiElements
         protected override void RegisterChildren()
         {
             base.RegisterChildren();
-            
+
             AddChild(unitBackground);
             AddChild(unitImage);
             AddChild(paper);
@@ -282,7 +289,7 @@ namespace Narivia.Gui.GuiElements
         protected override void SetChildrenProperties()
         {
             base.SetChildrenProperties();
-            
+
             unitText.Text = units[currentUnitIndex].Name;
             troopsText.Text = $"x{troopsAmount}";
             healthText.Text = units[currentUnitIndex].Health.ToString();
@@ -291,7 +298,7 @@ namespace Narivia.Gui.GuiElements
             maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
             recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
 
-            unitImage.ContentFile = $"World/Assets/{game.GetWorld().Id}/units/{units[currentUnitIndex].Id}";
+            unitImage.ContentFile = $"World/Assets/{gameManager.GetWorld().Id}/units/{units[currentUnitIndex].Id}";
         }
 
         void SelectUnit(int index)
@@ -312,7 +319,7 @@ namespace Narivia.Gui.GuiElements
 
         void AddTroops(int delta)
         {
-            int wealth = game.GetFaction(game.PlayerFactionId).Wealth;
+            int wealth = worldManager.GetFaction(gameManager.PlayerFactionId).Wealth;
 
             troopsAmount += delta;
 
@@ -335,7 +342,7 @@ namespace Narivia.Gui.GuiElements
 
         void OnRecruitButtonClick(object sender, MouseButtonEventArgs e)
         {
-            game.RecruitUnits(game.PlayerFactionId, units[currentUnitIndex].Id, troopsAmount);
+            militaryManager.RecruitUnits(gameManager.PlayerFactionId, units[currentUnitIndex].Id, troopsAmount);
         }
 
         void OnAddUnitButtonClicked(object sender, MouseButtonEventArgs e)

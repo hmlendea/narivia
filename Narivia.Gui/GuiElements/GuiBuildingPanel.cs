@@ -21,7 +21,9 @@ namespace Narivia.Gui.GuiElements
     {
         const int IconSize = 22;
 
-        IGameManager game;
+        IGameManager gameManager;
+        IWorldManager worldManager;
+        IHoldingManager holdingManager;
 
         GuiImage holdingBackground;
         GuiImage holdingImage;
@@ -46,9 +48,14 @@ namespace Narivia.Gui.GuiElements
         int currentHoldingTypeIndex;
         int currentProvinceIndex;
 
-        public GuiBuildingPanel(IGameManager game)
+        public GuiBuildingPanel(
+            IGameManager gameManager,
+            IWorldManager worldManager,
+            IHoldingManager holdingManager)
         {
-            this.game = game;
+            this.gameManager = gameManager;
+            this.worldManager = worldManager;
+            this.holdingManager = holdingManager;
 
             Title = "Building";
             FontName = "ButtonFont";
@@ -187,7 +194,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         void UpdateProvinceList()
         {
-            provinces = game.GetFactionProvinces(game.PlayerFactionId).Where(r => game.ProvinceHasEmptyHoldingSlots(r.Id)).ToList();
+            provinces = worldManager.GetFactionProvinces(gameManager.PlayerFactionId).Where(r => holdingManager.ProvinceHasEmptyHoldingSlots(r.Id)).ToList();
             SelectProvince(currentProvinceIndex);
         }
 
@@ -242,7 +249,7 @@ namespace Narivia.Gui.GuiElements
             holdingImage.SourceRectangle = new Rectangle2D(64 * currentHoldingTypeIndex, 0, 64, 64);
 
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].Name;
-            priceText.Text = game.GetWorld().HoldingsPrice.ToString();
+            priceText.Text = gameManager.GetWorld().HoldingsPrice.ToString();
         }
 
         void SelectHolding(int index)
@@ -295,9 +302,9 @@ namespace Narivia.Gui.GuiElements
                 return;
             }
 
-            if (game.GetFaction(game.PlayerFactionId).Wealth >= game.GetWorld().HoldingsPrice)
+            if (worldManager.GetFaction(gameManager.PlayerFactionId).Wealth >= gameManager.GetWorld().HoldingsPrice)
             {
-                game.BuildHolding(provinces[currentProvinceIndex].Id, holdingTypes[currentHoldingTypeIndex]);
+                holdingManager.BuildHolding(provinces[currentProvinceIndex].Id, holdingTypes[currentHoldingTypeIndex]);
             }
         }
 

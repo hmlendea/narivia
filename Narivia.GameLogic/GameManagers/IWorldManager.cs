@@ -64,6 +64,7 @@ namespace Narivia.GameLogic.GameManagers
         IEnumerable<Faction> GetFactions();
 
         Faction GetFaction(string factionId);
+
         /// <summary>
         /// Returns the faction at the given location.
         /// </summary>

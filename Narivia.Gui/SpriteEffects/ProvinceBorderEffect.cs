@@ -4,24 +4,23 @@ using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers;
 using Narivia.Models;
-using Narivia.Models.Enumerations;
 
 namespace Narivia.Gui.SpriteEffects
 {
     public class ProvinceBorderEffect : SpriteSheetEffect
     {
-        readonly IGameManager game;
+        readonly IWorldManager worldManager;
 
         readonly World world;
 
         public Point2D TileLocation { get; set; }
 
-        public ProvinceBorderEffect(IGameManager game)
+        public ProvinceBorderEffect(IWorldManager worldManager)
         {
             FrameAmount = new Size2D(7, 6);
 
-            this.game = game;
-            this.world = game.GetWorld();
+            this.worldManager = worldManager;
+            this.world = worldManager.GetWorld();
         }
 
         public override void UpdateFrame(GameTime gameTime)

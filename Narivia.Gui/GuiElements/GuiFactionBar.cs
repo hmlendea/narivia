@@ -7,14 +7,14 @@ namespace Narivia.Gui.GuiElements
 {
     public class GuiFactionBar : GuiElement
     {
-        readonly IGameManager game;
+        readonly IGameManager gameManager;
 
         GuiImage bar;
         GuiFactionFlag flag;
 
-        public GuiFactionBar(IGameManager game)
+        public GuiFactionBar(IGameManager gameManager)
         {
-            this.game = game;
+            this.gameManager = gameManager;
         }
 
         public override void LoadContent()
@@ -44,7 +44,8 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            flag.Flag = game.GetFactionFlag(game.PlayerFactionId);
+            string factionId = gameManager.PlayerFactionId;
+            flag.Flag = gameManager.GetFactionFlag(factionId);
         }
     }
 }

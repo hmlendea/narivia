@@ -15,8 +15,10 @@ namespace Narivia.Gui.GuiElements
 {
     public class GuiProvincePanel : GuiPanel
     {
-        readonly IGameManager game;
-        
+        readonly IGameManager gameManager;
+        readonly IWorldManager worldManager;
+        readonly IHoldingManager holdingManager;
+
         GuiImage paper;
 
         GuiFactionFlag factionFlag;
@@ -38,15 +40,20 @@ namespace Narivia.Gui.GuiElements
 
         public event MouseButtonEventHandler BuildButtonClicked;
 
-        public GuiProvincePanel(IGameManager game)
+        public GuiProvincePanel(
+            IGameManager gameManager,
+            IWorldManager worldManager,
+            IHoldingManager holdingManager)
         {
-            this.game = game;
+            this.gameManager = gameManager;
+            this.worldManager = worldManager;
+            this.holdingManager = holdingManager;
         }
 
         public override void LoadContent()
         {
-            string worldId = game.GetWorld().Id;
-            
+            string worldId = gameManager.GetWorld().Id;
+
             paper = new GuiImage
             {
                 ContentFile = "Interface/ProvincePanel/paper",
@@ -107,11 +114,11 @@ namespace Narivia.Gui.GuiElements
             {
                 for (int x = 0; x < 3; x++)
                 {
-                    GuiHoldingCard holdingCard = new GuiHoldingCard(game)
+                    GuiHoldingCard holdingCard = new GuiHoldingCard(gameManager)
                     {
                         Location = new Point2D(
                             holdingCardsStart.X + x * 84,
-                            holdingCardsStart.Y + y * 84),
+                            holdingCardsStart.Y + y * 84)
                     };
 
                     holdingCards.Add(holdingCard);
@@ -129,7 +136,7 @@ namespace Narivia.Gui.GuiElements
         protected override void RegisterChildren()
         {
             base.RegisterChildren();
-            
+
             AddChild(paper);
 
             AddChild(factionFlag);
@@ -171,19 +178,19 @@ namespace Narivia.Gui.GuiElements
 
             currentProvinceId = ProvinceId;
 
-            Province province = game.GetProvince(ProvinceId);
-            Faction faction = game.GetFaction(province.FactionId);
+            Province province = worldManager.GetProvince(ProvinceId);
+            Faction faction = worldManager.GetFaction(province.FactionId);
 
             CrystalColour = faction.Colour.ToColour();
             Title = province.Name;
 
-            factionFlag.Flag = game.GetFactionFlag(province.FactionId);
+            factionFlag.Flag = gameManager.GetFactionFlag(province.FactionId);
             factionName.Text = faction.Name;
 
-            resourceIcon.ContentFile = $"World/Assets/{game.WorldId}/resources/{province.ResourceId}";
-            resourceName.Text = game.GetResource(province.ResourceId).Name;
+            resourceIcon.ContentFile = $"World/Assets/{gameManager.WorldId}/resources/{province.ResourceId}";
+            resourceName.Text = worldManager.GetResource(province.ResourceId).Name;
 
-            List<Holding> holdings = game.GetProvinceHoldings(ProvinceId).ToList();
+            List<Holding> holdings = holdingManager.GetProvinceHoldings(ProvinceId).ToList();
             for (int i = 0; i < 9; i++)
             {
                 if (i < holdings.Count)

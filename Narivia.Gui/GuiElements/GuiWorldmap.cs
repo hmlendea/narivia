@@ -29,7 +29,9 @@ namespace Narivia.Gui.GuiElements
         /// <value>The selected province identifier.</value>
         public string SelectedProvinceId { get; private set; }
 
-        IGameManager game;
+        IGameManager gameManager;
+        IWorldManager worldManager;
+
         Camera camera;
         World world;
 
@@ -46,9 +48,12 @@ namespace Narivia.Gui.GuiElements
 
         Point2D mouseCoords;
 
-        public GuiWorldmap(IGameManager game)
+        public GuiWorldmap(
+            IGameManager gameManager,
+            IWorldManager worldManager)
         {
-            this.game = game;
+            this.gameManager = gameManager;
+            this.worldManager = worldManager;
         }
 
         /// <summary>
@@ -57,14 +62,14 @@ namespace Narivia.Gui.GuiElements
         public override void LoadContent()
         {
             camera = new Camera { Size = Size };
-            world = game.GetWorld();
+            world = gameManager.GetWorld();
 
-            terrains = game.GetTerrains().ToDictionary(x => x.Id, x => x);
+            terrains = worldManager.GetTerrains().ToDictionary(x => x.Id, x => x);
             terrainSprites = new Dictionary<string, TextureSprite>();
 
-            terrainEffect = new TerrainSpriteSheetEffect(game);
-            provinceBorderEffect = new ProvinceBorderEffect(game);
-            factionBorderEffect = new FactionBorderEffect(game);
+            terrainEffect = new TerrainSpriteSheetEffect(worldManager);
+            provinceBorderEffect = new ProvinceBorderEffect(worldManager);
+            factionBorderEffect = new FactionBorderEffect(worldManager);
 
             foreach (Terrain terrain in terrains.Values)
             {
@@ -84,7 +89,7 @@ namespace Narivia.Gui.GuiElements
 
             provinceHighlight = new TextureSprite
             {
-                ContentFile = "World/Effects/border",
+                ContentFile = "Interface/Worldmap/highlight",
                 SourceRectangle = new Rectangle2D(0, 0, GameDefines.MapTileSize, GameDefines.MapTileSize),
                 Tint = Colour.White
             };
@@ -157,14 +162,14 @@ namespace Narivia.Gui.GuiElements
             int x = mouseGameMapCoords.X;
             int y = mouseGameMapCoords.Y;
 
-            if (x > 0 && x < game.GetWorld().Width &&
-                y > 0 && y < game.GetWorld().Height)
+            if (x > 0 && x < world.Width &&
+                y > 0 && y < world.Height)
             {
                 // TODO: Handle the Id retrieval properly
-                SelectedProvinceId = game.GetWorld().Tiles[x, y].ProvinceId;
+                SelectedProvinceId = world.Tiles[x, y].ProvinceId;
 
                 // TODO: Also handle this properly
-                if (game.GetFaction(x, y).Type == FactionType.Gaia)
+                if (worldManager.GetFaction(x, y).Type == FactionType.Gaia)
                 {
                     SelectedProvinceId = null;
                 }
@@ -267,14 +272,14 @@ namespace Narivia.Gui.GuiElements
                     int x = gameCoords.X;
                     int y = gameCoords.Y;
 
-                    if (x < 0 || x > game.GetWorld().Width ||
-                        y < 0 || y > game.GetWorld().Height)
+                    if (x < 0 || x > world.Width ||
+                        y < 0 || y > world.Height)
                     {
                         continue;
                     }
 
-                    string provinceId = game.GetWorld().Tiles[x, y].ProvinceId;
-                    Faction faction = game.GetFaction(x, y);
+                    string provinceId = world.Tiles[x, y].ProvinceId;
+                    Faction faction = worldManager.GetFaction(x, y);
 
                     if (faction.Type == FactionType.Gaia)
                     {
@@ -308,13 +313,13 @@ namespace Narivia.Gui.GuiElements
                     int x = gameCoords.X;
                     int y = gameCoords.Y;
 
-                    if (x < 0 || x > game.GetWorld().Width ||
-                        y < 0 || y > game.GetWorld().Height)
+                    if (x < 0 || x > world.Width ||
+                        y < 0 || y > world.Height)
                     {
                         continue;
                     }
 
-                    Faction faction = game.GetFaction(x, y);
+                    Faction faction = worldManager.GetFaction(x, y);
 
                     if (faction.Type == FactionType.Gaia)
                     {

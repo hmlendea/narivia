@@ -11,7 +11,7 @@ namespace Narivia.Gui.SpriteEffects
 {
     public class TerrainSpriteSheetEffect : SpriteSheetEffect
     {
-        readonly IGameManager game;
+        readonly IWorldManager worldManager;
 
         readonly World world;
 
@@ -21,14 +21,13 @@ namespace Narivia.Gui.SpriteEffects
 
         public List<string> TilesWith { get; set; }
 
-        public TerrainSpriteSheetEffect(IGameManager game)
-            : base()
+        public TerrainSpriteSheetEffect(IWorldManager worldManager)
         {
             FrameAmount = new Size2D(3, 6);
             TilesWith = new List<string>();
 
-            this.game = game;
-            this.world = game.GetWorld();
+            this.worldManager = worldManager;
+            this.world = worldManager.GetWorld();
         }
 
         public override void UpdateFrame(GameTime gameTime)

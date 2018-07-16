@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
@@ -13,7 +14,10 @@ namespace Narivia.Gui.GuiElements
     /// </summary>
     public class GuiInfoBar : GuiElement
     {
-        IGameManager game;
+        IGameManager gameManager;
+        IWorldManager worldManager;
+        IHoldingManager holdingManager;
+        IMilitaryManager militaryManager;
 
         GuiImage background;
 
@@ -40,12 +44,19 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         public event MouseButtonEventHandler TurnButtonClicked;
 
-        public GuiInfoBar(IGameManager game)
+        public GuiInfoBar(
+            IGameManager gameManager,
+            IWorldManager worldManager,
+            IHoldingManager holdingManager,
+            IMilitaryManager militaryManager)
         {
             ForegroundColour = Colour.Gold;
             FontName = "InfoBarFont";
 
-            this.game = game;
+            this.gameManager = gameManager;
+            this.worldManager = worldManager;
+            this.holdingManager = holdingManager;
+            this.militaryManager = militaryManager;
         }
 
         /// <summary>
@@ -151,7 +162,7 @@ namespace Narivia.Gui.GuiElements
 
             base.LoadContent();
         }
-        
+
         protected override void RegisterChildren()
         {
             base.RegisterChildren();
@@ -221,13 +232,15 @@ namespace Narivia.Gui.GuiElements
 
             Dictionary<string, int> troops = new Dictionary<string, int>();
 
-            game.GetUnits().ToList().ForEach(u => troops.Add(u.Name, game.GetArmy(game.PlayerFactionId, u.Id).Size));
+            string factionId = gameManager.PlayerFactionId;
 
-            provincesText.Text = game.GetFactionProvinces(game.PlayerFactionId).Count().ToString();
-            holdingsText.Text = game.GetFactionHoldings(game.PlayerFactionId).Count().ToString();
+            militaryManager.GetUnits().ToList().ForEach(u => troops.Add(u.Name, militaryManager.GetArmy(factionId, u.Id).Size));
+
+            provincesText.Text = worldManager.GetFactionProvinces(factionId).Count().ToString();
+            holdingsText.Text = holdingManager.GetFactionHoldings(factionId).Count().ToString();
             troopsText.Text = "0";
-            wealthText.Text = game.GetFaction(game.PlayerFactionId).Wealth.ToString();
-            turnText.Text = $"Turn: {game.Turn}";
+            wealthText.Text = worldManager.GetFaction(factionId).Wealth.ToString();
+            turnText.Text = $"Turn: {gameManager.Turn}";
 
             provincesTooltip.Location = new Point2D(provincesIcon.Location.X, provincesIcon.ClientRectangle.Bottom);
             holdingsTooltip.Location = new Point2D(holdingsIcon.Location.X, holdingsIcon.ClientRectangle.Bottom);

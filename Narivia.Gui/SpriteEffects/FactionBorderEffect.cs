@@ -10,38 +10,38 @@ namespace Narivia.Gui.SpriteEffects
 {
     public class FactionBorderEffect : SpriteSheetEffect
     {
-        readonly IGameManager game;
+        readonly IWorldManager worldManager;
 
         readonly World world;
 
         public Point2D TileLocation { get; set; }
 
-        public FactionBorderEffect(IGameManager game)
+        public FactionBorderEffect(IWorldManager worldManager)
         {
             FrameAmount = new Size2D(7, 6);
 
-            this.game = game;
-            this.world = game.GetWorld();
+            this.worldManager = worldManager;
+            this.world = worldManager.GetWorld();
         }
 
         public override void UpdateFrame(GameTime gameTime)
         {
-            string id = game.GetFaction(TileLocation.X, TileLocation.Y).Id;
+            string id = worldManager.GetFaction(TileLocation.X, TileLocation.Y).Id;
             CurrentFrame = new Point2D(1, 3); // Default
 
-            if (game.GetFaction(TileLocation.X, TileLocation.Y).Type == FactionType.Gaia)
+            if (worldManager.GetFaction(TileLocation.X, TileLocation.Y).Type == FactionType.Gaia)
             {
                 return;
             }
 
-            string idN = game.GetFaction(TileLocation.X, TileLocation.Y - 1).Id;
-            string idW = game.GetFaction(TileLocation.X - 1, TileLocation.Y).Id;
-            string idS = game.GetFaction(TileLocation.X, TileLocation.Y + 1).Id;
-            string idE = game.GetFaction(TileLocation.X + 1, TileLocation.Y).Id;
-            string idNW = game.GetFaction(TileLocation.X - 1, TileLocation.Y - 1).Id;
-            string idNE = game.GetFaction(TileLocation.X + 1, TileLocation.Y - 1).Id;
-            string idSW = game.GetFaction(TileLocation.X - 1, TileLocation.Y + 1).Id;
-            string idSE = game.GetFaction(TileLocation.X + 1, TileLocation.Y + 1).Id;
+            string idN = worldManager.GetFaction(TileLocation.X, TileLocation.Y - 1).Id;
+            string idW = worldManager.GetFaction(TileLocation.X - 1, TileLocation.Y).Id;
+            string idS = worldManager.GetFaction(TileLocation.X, TileLocation.Y + 1).Id;
+            string idE = worldManager.GetFaction(TileLocation.X + 1, TileLocation.Y).Id;
+            string idNW = worldManager.GetFaction(TileLocation.X - 1, TileLocation.Y - 1).Id;
+            string idNE = worldManager.GetFaction(TileLocation.X + 1, TileLocation.Y - 1).Id;
+            string idSW = worldManager.GetFaction(TileLocation.X - 1, TileLocation.Y + 1).Id;
+            string idSE = worldManager.GetFaction(TileLocation.X + 1, TileLocation.Y + 1).Id;
 
             bool tilesN = id == idN;
             bool tilesW = id == idW;
