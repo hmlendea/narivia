@@ -66,6 +66,16 @@ namespace Narivia.GameLogic.GameManagers
         public IEnumerable<Holding> GetFactionHoldings(string factionId)
         => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
                                       worldManager.GetProvince(h.ProvinceId).FactionId == factionId);
+        
+        /// <summary>
+        /// Gets the holding.
+        /// </summary>
+        /// <returns>The holding.</returns>
+        /// <param name="holdingId">Holding identifier.</param>
+        public Holding GetHolding(string holdingId)
+        {
+            return holdings[holdingId];
+        }
 
         /// <summary>
         /// Gets the holdings.

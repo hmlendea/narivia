@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 
 using NuciXNA.DataAccess.Repositories;
+using NuciXNA.Primitives;
 using NuciLog;
 using NuciLog.Enumerations;
 
@@ -191,16 +192,13 @@ namespace Narivia.GameLogic.GameManagers
         => provinces.Values.FirstOrDefault(r => r.FactionId == factionId &&
                                               r.SovereignFactionId == factionId &&
                                               r.Type == ProvinceType.Capital);
-
-        /// <summary>
-        /// Gets or sets the X map coordinate of the centre of the faction territoriy.
-        /// </summary>
-        /// <value>The X coordinate.</value>
-        /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionCentreX(string factionId)
+        
+        public Point2D GetFactionCentre(string factionId)
         {
+            int minY = world.Height - 1;
             int minX = world.Width - 1;
             int maxX = 0;
+            int maxY = 0;
 
             for (int y = 0; y < world.Height; y++)
             {
@@ -219,30 +217,6 @@ namespace Narivia.GameLogic.GameManagers
                     {
                         maxX = x;
                     }
-                }
-            }
-
-            return (minX + maxX) / 2;
-        }
-
-        /// <summary>
-        /// Gets or sets the Y map coordinate of the centre of the faction territoriy.
-        /// </summary>
-        /// <value>The Y coordinate.</value>
-        /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionCentreY(string factionId)
-        {
-            int minY = world.Height - 1;
-            int maxY = 0;
-
-            for (int y = 0; y < world.Height; y++)
-            {
-                for (int x = 0; x < world.Width; x++)
-                {
-                    if (provinces[world.Tiles[x, y].ProvinceId].FactionId != factionId)
-                    {
-                        continue;
-                    }
 
                     if (y < minY)
                     {
@@ -255,7 +229,9 @@ namespace Narivia.GameLogic.GameManagers
                 }
             }
 
-            return (minY + maxY) / 2;
+            return new Point2D(
+                (minX + maxX) / 2,
+                (minY + maxY) / 2);
         }
 
         /// <summary>
@@ -265,6 +241,16 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Province> GetFactionProvinces(string factionId)
             => provinces.Values.Where(r => r.FactionId == factionId);
+
+        /// <summary>
+        /// Gets the flag.
+        /// </summary>
+        /// <returns>The flag.</returns>
+        /// <param name="flagId">Flag identifier.</param>
+        public Flag GetFlag(string flagId)
+        {
+            return flags[flagId];
+        }
 
         /// <summary>
         /// Gets the flags.
@@ -297,6 +283,16 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The resources.</returns>
         public IEnumerable<Resource> GetResources()
             => resources.Values;
+
+        /// <summary>
+        /// Gets the terrain.
+        /// </summary>
+        /// <returns>The terrain.</returns>
+        /// <param name="terrainId">Terrain identifier.</param>
+        public Terrain GetTerrain(string terrainId)
+        {
+            return terrains[terrainId];
+        }
 
         /// <summary>
         /// Gets the terrains.

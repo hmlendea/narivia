@@ -217,9 +217,9 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Centres the camera on the specified location.
         /// </summary>
-        public void CentreCameraOnLocation(int x, int y)
+        public void CentreCameraOnLocation(Point2D worldLocation)
         {
-            camera.CentreOnLocation(new Point2D(x * GameDefines.MapTileSize, y * GameDefines.MapTileSize));
+            camera.CentreOnLocation(worldLocation * GameDefines.MapTileSize);
         }
 
         void DrawTile(SpriteBatch spriteBatch, int x, int y)

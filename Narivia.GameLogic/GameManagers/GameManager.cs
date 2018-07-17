@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
 
 using Narivia.GameLogic.Enumerations;
@@ -154,41 +153,6 @@ namespace Narivia.GameLogic.GameManagers
         }
 
         /// <summary>
-        /// Checks wether the specified provinces share a border.
-        /// </summary>
-        /// <returns><c>true</c>, if the specified provinces share a border, <c>false</c> otherwise.</returns>
-        /// <param name="sourceProvinceId">Source province identifier.</param>
-        /// <param name="targetProvinceId">Target province identifier.</param>
-        public bool ProvinceBordersProvince(string sourceProvinceId, string targetProvinceId)
-        => worldManager.ProvinceBordersProvince(sourceProvinceId, targetProvinceId);
-
-        /// <summary>
-        /// Checks wether the specified factions share a border.
-        /// </summary>
-        /// <returns><c>true</c>, if the specified factions share a border, <c>false</c> otherwise.</returns>
-        /// <param name="sourceFactionId">Source faction identifier.</param>
-        /// <param name="targetFactionId">Target faction identifier.</param>
-        public bool FactionBordersFaction(string sourceFactionId, string targetFactionId)
-        => worldManager.FactionBordersFaction(sourceFactionId, targetFactionId);
-
-        /// <summary>
-        /// Checks wether the specified faction shares a border with the specified province.
-        /// </summary>
-        /// <returns><c>true</c>, if the faction share a border with that province, <c>false</c> otherwise.</returns>
-        /// <param name="factionId">Faction identifier.</param>
-        /// <param name="provinceId">Province identifier.</param>
-        public bool FactionBordersProvince(string factionId, string provinceId)
-        => worldManager.FactionBordersProvince(factionId, provinceId);
-
-        /// <summary>
-        /// Transfers the specified province to the specified faction.
-        /// </summary>
-        /// <param name="provinceId">Province identifier.</param>
-        /// <param name="factionId">Faction identifier.</param>
-        public void TransferProvince(string provinceId, string factionId)
-        => worldManager.TransferProvince(provinceId, factionId);
-
-        /// <summary>
         /// Gets the culture of a faction.
         /// </summary>
         /// <returns>The culture.</returns>
@@ -207,7 +171,7 @@ namespace Narivia.GameLogic.GameManagers
         public Flag GetFactionFlag(string factionId)
         {
             Faction faction = worldManager.GetFaction(factionId);
-            return GetFlag(faction.FlagId);
+            return worldManager.GetFlag(faction.FlagId);
         }
 
         /// <summary>
@@ -217,46 +181,6 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="factionId">Faction identifier.</param>
         public Province GetFactionCapital(string factionId)
         => worldManager.GetFactionCapital(factionId);
-
-        /// <summary>
-        /// Gets or sets the X map coordinate of the centre of the faction territoriy.
-        /// </summary>
-        /// <value>The X coordinate.</value>
-        /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionCentreX(string factionId)
-        => worldManager.GetFactionCentreX(factionId);
-
-        /// <summary>
-        /// Gets or sets the Y map coordinate of the centre of the faction territoriy.
-        /// </summary>
-        /// <value>The Y coordinate.</value>
-        /// <param name="factionId">Faction identifier.</param>
-        public int GetFactionCentreY(string factionId)
-        => worldManager.GetFactionCentreY(factionId);
-
-        /// <summary>
-        /// Gets the flag.
-        /// </summary>
-        /// <returns>The flag.</returns>
-        /// <param name="flagId">Flag identifier.</param>
-        public Flag GetFlag(string flagId)
-        => worldManager.GetFlags().FirstOrDefault(f => f.Id == flagId);
-
-        /// <summary>
-        /// Gets the holding.
-        /// </summary>
-        /// <returns>The holding.</returns>
-        /// <param name="holdingId">Holding identifier.</param>
-        public Holding GetHolding(string holdingId)
-        => holdingManager.GetHoldings().FirstOrDefault(h => h.Id == holdingId);
-
-        /// <summary>
-        /// Gets the terrain.
-        /// </summary>
-        /// <returns>The terrain.</returns>
-        /// <param name="terrainId">Terrain identifier.</param>
-        public Terrain GetTerrain(string terrainId)
-        => worldManager.GetTerrains().FirstOrDefault(b => b.Id == terrainId);
 
         /// <summary>
         /// Gets the world.

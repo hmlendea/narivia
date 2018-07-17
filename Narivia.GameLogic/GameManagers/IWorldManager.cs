@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using NuciXNA.Primitives;
+
 using Narivia.Models;
 
 namespace Narivia.GameLogic.GameManagers
@@ -79,20 +81,8 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>Province.</returns>
         /// <param name="factionId">Faction identifier.</param>
         Province GetFactionCapital(string factionId);
-
-        /// <summary>
-        /// Gets or sets the X map coordinate of the centre of the faction territoriy.
-        /// </summary>
-        /// <value>The X coordinate.</value>
-        /// <param name="factionId">Faction identifier.</param>
-        int GetFactionCentreX(string factionId);
-
-        /// <summary>
-        /// Gets or sets the Y map coordinate of the centre of the faction territoriy.
-        /// </summary>
-        /// <value>The Y coordinate.</value>
-        /// <param name="factionId">Faction identifier.</param>
-        int GetFactionCentreY(string factionId);
+        
+        Point2D GetFactionCentre(string factionId);
 
         /// <summary>
         /// Gets the provinces of a faction.
@@ -100,6 +90,13 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The provinces.</returns>
         /// <param name="factionId">Faction identifier.</param>
         IEnumerable<Province> GetFactionProvinces(string factionId);
+
+        /// <summary>
+        /// Gets the flag.
+        /// </summary>
+        /// <returns>The flag.</returns>
+        /// <param name="flagId">Flag identifier.</param>
+        Flag GetFlag(string flagId);
 
         /// <summary>
         /// Gets the flags.
@@ -127,6 +124,13 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <returns>The resources.</returns>
         IEnumerable<Resource> GetResources();
+
+        /// <summary>
+        /// Gets the terrain.
+        /// </summary>
+        /// <returns>The terrain.</returns>
+        /// <param name="terrainId">Terrain identifier.</param>
+        Terrain GetTerrain(string terrainId);
 
         /// <summary>
         /// Gets the terrains.

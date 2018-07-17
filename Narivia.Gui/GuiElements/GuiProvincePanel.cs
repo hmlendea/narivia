@@ -114,7 +114,7 @@ namespace Narivia.Gui.GuiElements
             {
                 for (int x = 0; x < 3; x++)
                 {
-                    GuiHoldingCard holdingCard = new GuiHoldingCard(gameManager)
+                    GuiHoldingCard holdingCard = new GuiHoldingCard(holdingManager)
                     {
                         Location = new Point2D(
                             holdingCardsStart.X + x * 84,

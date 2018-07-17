@@ -45,17 +45,26 @@ namespace Narivia.Gui.Screens
         Dictionary<string, int> relationsOld;
         int provincesOld, holdingsOld, wealthOld, incomeOld, outcomeOld, recruitmentOld;
 
+        string worldId;
+        string playerFactionId;
+
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
-            string initialWorldId = "narivia";
-            string initialFactionId = "f_caravenna";
+            worldId = "narivia";
+            playerFactionId = "f_caravenna";
 
-            WorldManager = new WorldManager(initialWorldId);
+            if (ScreenArgs != null && ScreenArgs.Length >= 2)
+            {
+                worldId = ScreenArgs[0];
+                playerFactionId = ScreenArgs[1];
+            }
+
+            WorldManager = new WorldManager(worldId);
             DiplomacyManager = new DiplomacyManager(WorldManager);
-            HoldingManager = new HoldingManager(initialWorldId, WorldManager);
+            HoldingManager = new HoldingManager(worldId, WorldManager);
             MilitaryManager = new MilitaryManager(HoldingManager, WorldManager);
             EconomyManager = new EconomyManager(HoldingManager, MilitaryManager, WorldManager);
             AttackManager = new AttackManager(DiplomacyManager, HoldingManager, MilitaryManager, WorldManager);
@@ -67,7 +76,7 @@ namespace Narivia.Gui.Screens
             MilitaryManager.LoadContent();
             EconomyManager.LoadContent();
             AttackManager.LoadContent();
-            GameManager.LoadContent(initialWorldId, initialFactionId);
+            GameManager.LoadContent(worldId, playerFactionId);
 
             administrationBar = new GuiAdministrationBar
             {
@@ -103,12 +112,6 @@ namespace Narivia.Gui.Screens
                 Location = new Point2D(0, 296)
             };
 
-            if (ScreenArgs != null && ScreenArgs.Length >= 2)
-            {
-                initialWorldId = ScreenArgs[0];
-                initialFactionId = ScreenArgs[1];
-            }
-
             recruitmentPanel = new GuiRecruitmentPanel(GameManager, WorldManager, MilitaryManager);
             buildingPanel = new GuiBuildingPanel(GameManager, WorldManager, HoldingManager);
 
@@ -118,9 +121,9 @@ namespace Narivia.Gui.Screens
             troopsOld = new Dictionary<string, int>();
             relationsOld = new Dictionary<string, int>();
 
-            troopsOld = MilitaryManager.GetUnits().ToDictionary(x => x.Name, x => MilitaryManager.GetArmy(GameManager.PlayerFactionId, x.Id).Size);
+            troopsOld = MilitaryManager.GetUnits().ToDictionary(x => x.Name, x => MilitaryManager.GetArmy(playerFactionId, x.Id).Size);
 
-            foreach (Relation relation in DiplomacyManager.GetFactionRelations(GameManager.PlayerFactionId))
+            foreach (Relation relation in DiplomacyManager.GetFactionRelations(playerFactionId))
             {
                 if (relationsOld.ContainsKey(relation.TargetFactionId))
                 {
@@ -141,22 +144,20 @@ namespace Narivia.Gui.Screens
             GuiManager.Instance.GuiElements.Add(recruitmentPanel);
             GuiManager.Instance.GuiElements.Add(buildingPanel);
 
-            provincePanel.ProvinceId = GameManager.GetFactionCapital(GameManager.PlayerFactionId).Id;
+            provincePanel.ProvinceId = GameManager.GetFactionCapital(playerFactionId).Id;
 
             base.LoadContent();
 
             provincePanel.Hide();
 
-            string factionName = WorldManager.GetFaction(GameManager.PlayerFactionId).Name;
+            string factionName = WorldManager.GetFaction(playerFactionId).Name;
 
             NotificationManager.Instance.ShowNotification(
                 $"Welcome to {GameManager.GetWorld().Name}",
                 $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
                 $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!");
 
-            gameMap.CentreCameraOnLocation(
-                GameManager.GetFactionCentreX(GameManager.PlayerFactionId),
-                GameManager.GetFactionCentreY(GameManager.PlayerFactionId));
+            gameMap.CentreCameraOnLocation(WorldManager.GetFactionCentre(playerFactionId));
         }
 
         public override void UnloadContent()
@@ -179,6 +180,8 @@ namespace Narivia.Gui.Screens
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime)
         {
+            playerFactionId = GameManager.PlayerFactionId;
+
             recruitmentPanel.Location = new Point2D(
                 gameMap.Location.X + (gameMap.Size.Width - recruitmentPanel.Size.Width) / 2,
                 gameMap.Location.Y + (gameMap.Size.Height - recruitmentPanel.Size.Height) / 2);
@@ -226,9 +229,9 @@ namespace Narivia.Gui.Screens
             Dictionary<string, int> troopsNew = new Dictionary<string, int>();
             Dictionary<string, int> relationsNew = new Dictionary<string, int>();
 
-            MilitaryManager.GetUnits().ToList().ForEach(u => troopsNew.Add(u.Name, MilitaryManager.GetArmy(GameManager.PlayerFactionId, u.Id).Size));
+            MilitaryManager.GetUnits().ToList().ForEach(u => troopsNew.Add(u.Name, MilitaryManager.GetArmy(playerFactionId, u.Id).Size));
 
-            foreach (Relation relation in DiplomacyManager.GetFactionRelations(GameManager.PlayerFactionId))
+            foreach (Relation relation in DiplomacyManager.GetFactionRelations(playerFactionId))
             {
                 if (relationsNew.ContainsKey(relation.TargetFactionId))
                 {
@@ -240,12 +243,12 @@ namespace Narivia.Gui.Screens
                 }
             }
 
-            int provincesNew = WorldManager.GetFactionProvinces(GameManager.PlayerFactionId).Count();
-            int holdingsNew = HoldingManager.GetFactionHoldings(GameManager.PlayerFactionId).Count();
-            int wealthNew = WorldManager.GetFaction(GameManager.PlayerFactionId).Wealth;
-            int incomeNew = EconomyManager.GetFactionIncome(GameManager.PlayerFactionId);
-            int outcomeNew = EconomyManager.GetFactionOutcome(GameManager.PlayerFactionId);
-            int recruitmentNew = MilitaryManager.GetFactionRecruitment(GameManager.PlayerFactionId);
+            int provincesNew = WorldManager.GetFactionProvinces(playerFactionId).Count();
+            int holdingsNew = HoldingManager.GetFactionHoldings(playerFactionId).Count();
+            int wealthNew = WorldManager.GetFaction(playerFactionId).Wealth;
+            int incomeNew = EconomyManager.GetFactionIncome(playerFactionId);
+            int outcomeNew = EconomyManager.GetFactionOutcome(playerFactionId);
+            int recruitmentNew = MilitaryManager.GetFactionRecruitment(playerFactionId);
 
             string recruitmentBody = string.Empty;
             string relationsBody = string.Empty;
@@ -300,7 +303,7 @@ namespace Narivia.Gui.Screens
 
         void AttackProvince(string provinceId)
         {
-            if (MilitaryManager.GetFactionTroopsAmount(GameManager.PlayerFactionId) < GameManager.GetWorld().MinTroopsPerAttack)
+            if (MilitaryManager.GetFactionTroopsAmount(playerFactionId) < GameManager.GetWorld().MinTroopsPerAttack)
             {
                 NotificationManager.Instance.ShowNotification(
                     $"Not enough troops!",
@@ -360,13 +363,11 @@ namespace Narivia.Gui.Screens
 
         void AdministrationBar_StatsButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            string factionId = GameManager.PlayerFactionId;
-
             NotificationManager.Instance.ShowNotification(
                 "Statistics",
-                $"Income: {EconomyManager.GetFactionIncome(factionId)}" + Environment.NewLine +
-                $"Outcome: {EconomyManager.GetFactionOutcome(factionId)}" + Environment.NewLine +
-                $"Militia Recruitment: {MilitaryManager.GetFactionRecruitment(factionId)}");
+                $"Income: {EconomyManager.GetFactionIncome(playerFactionId)}" + Environment.NewLine +
+                $"Outcome: {EconomyManager.GetFactionOutcome(playerFactionId)}" + Environment.NewLine +
+                $"Militia Recruitment: {MilitaryManager.GetFactionRecruitment(playerFactionId)}");
         }
 
         void AdministrationBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)

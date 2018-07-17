@@ -26,6 +26,13 @@ namespace Narivia.GameLogic.GameManagers
         IEnumerable<Holding> GetFactionHoldings(string factionId);
 
         /// <summary>
+        /// Gets the holding.
+        /// </summary>
+        /// <returns>The holding.</returns>
+        /// <param name="holdingId">Holding identifier.</param>
+        Holding GetHolding(string holdingId);
+
+        /// <summary>
         /// Gets the holdings.
         /// </summary>
         /// <returns>The holdings.</returns>

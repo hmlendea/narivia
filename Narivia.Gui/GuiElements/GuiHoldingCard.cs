@@ -11,7 +11,7 @@ namespace Narivia.Gui.GuiElements
 {
     public class GuiHoldingCard : GuiElement
     {
-        readonly IGameManager game;
+        readonly IHoldingManager holdingManager;
 
         string currentHoldingId;
 
@@ -23,9 +23,9 @@ namespace Narivia.Gui.GuiElements
 
         public string CultureId { get; set; }
 
-        public GuiHoldingCard(IGameManager game)
+        public GuiHoldingCard(IHoldingManager holdingManager)
         {
-            this.game = game;
+            this.holdingManager = holdingManager;
 
             Size = new Size2D(74, 74);
         }
@@ -77,7 +77,7 @@ namespace Narivia.Gui.GuiElements
 
             currentHoldingId = HoldingId;
 
-            Holding holding = game.GetHolding(HoldingId);
+            Holding holding = holdingManager.GetHolding(HoldingId);
 
             if (!string.IsNullOrWhiteSpace(CultureId) &&
                 (File.Exists($"Content/Icons/Holdings/{CultureId}.xnb") ||
