@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
@@ -111,7 +112,7 @@ namespace Narivia.Models
         /// </summary>
         public World()
         {
-            
+
         }
     }
 }

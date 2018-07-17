@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using NuciXNA.Graphics.SpriteEffects;
@@ -32,24 +33,24 @@ namespace Narivia.Gui.SpriteEffects
 
         public override void UpdateFrame(GameTime gameTime)
         {
-            string id = world.Tiles[TileLocation.X, TileLocation.Y].TerrainId;
-            string idN = world.Tiles[TileLocation.X, TileLocation.Y - 1].TerrainId;
-            string idW = world.Tiles[TileLocation.X - 1, TileLocation.Y].TerrainId;
-            string idS = world.Tiles[TileLocation.X, TileLocation.Y + 1].TerrainId;
-            string idE = world.Tiles[TileLocation.X + 1, TileLocation.Y].TerrainId;
-            string idNW = world.Tiles[TileLocation.X - 1, TileLocation.Y - 1].TerrainId;
-            string idNE = world.Tiles[TileLocation.X + 1, TileLocation.Y - 1].TerrainId;
-            string idSW = world.Tiles[TileLocation.X - 1, TileLocation.Y + 1].TerrainId;
-            string idSE = world.Tiles[TileLocation.X + 1, TileLocation.Y + 1].TerrainId;
+            List<string> id = world.Tiles[TileLocation.X, TileLocation.Y].TerrainIds;
+            List<string> idN = world.Tiles[TileLocation.X, TileLocation.Y - 1].TerrainIds;
+            List<string> idW = world.Tiles[TileLocation.X - 1, TileLocation.Y].TerrainIds;
+            List<string> idS = world.Tiles[TileLocation.X, TileLocation.Y + 1].TerrainIds;
+            List<string> idE = world.Tiles[TileLocation.X + 1, TileLocation.Y].TerrainIds;
+            List<string> idNW = world.Tiles[TileLocation.X - 1, TileLocation.Y - 1].TerrainIds;
+            List<string> idNE = world.Tiles[TileLocation.X + 1, TileLocation.Y - 1].TerrainIds;
+            List<string> idSW = world.Tiles[TileLocation.X - 1, TileLocation.Y + 1].TerrainIds;
+            List<string> idSE = world.Tiles[TileLocation.X + 1, TileLocation.Y + 1].TerrainIds;
 
-            bool tilesN = TilesWith.Contains(idN);
-            bool tilesW = TilesWith.Contains(idW);
-            bool tilesS = TilesWith.Contains(idS);
-            bool tilesE = TilesWith.Contains(idE);
-            bool tilesNW = TilesWith.Contains(idNW);
-            bool tilesNE = TilesWith.Contains(idNE);
-            bool tilesSW = TilesWith.Contains(idSW);
-            bool tilesSE = TilesWith.Contains(idSE);
+            bool tilesN = TilesWith.Intersect(idN).Any();
+            bool tilesW = TilesWith.Intersect(idW).Any();
+            bool tilesS = TilesWith.Intersect(idS).Any();
+            bool tilesE = TilesWith.Intersect(idE).Any();
+            bool tilesNW = TilesWith.Intersect(idNW).Any();
+            bool tilesNE = TilesWith.Intersect(idNE).Any();
+            bool tilesSW = TilesWith.Intersect(idSW).Any();
+            bool tilesSE = TilesWith.Intersect(idSE).Any();
 
             if (tilesN && tilesW && tilesS && tilesE) // Middle
             {

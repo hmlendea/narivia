@@ -22,6 +22,7 @@ namespace Narivia.GameLogic.Mapping
             WorldTile worldTile = new WorldTile
             {
                 TerrainId = worldTileEntity.TerrainId,
+                TerrainIds = worldTileEntity.TerrainIds,
                 ProvinceId = worldTileEntity.ProvinceId,
                 Altitude = worldTileEntity.Altitude,
                 HasRiver = worldTileEntity.HasRiver,
@@ -41,6 +42,7 @@ namespace Narivia.GameLogic.Mapping
             WorldTileEntity worldEntity = new WorldTileEntity
             {
                 TerrainId = worldTile.TerrainId,
+                TerrainIds = worldTile.TerrainIds,
                 ProvinceId = worldTile.ProvinceId,
                 Altitude = worldTile.Altitude,
                 HasRiver = worldTile.HasRiver,
@@ -86,7 +88,7 @@ namespace Narivia.GameLogic.Mapping
 
             WorldTile[,] worldTiles = new WorldTile[w, h];
 
-            Parallel.For(0, h, y => Parallel.For(0, w,  x => worldTiles[x, y] = worldTileEntities[x, y].ToDomainModel()));
+            Parallel.For(0, h, y => Parallel.For(0, w, x => worldTiles[x, y] = worldTileEntities[x, y].ToDomainModel()));
 
             return worldTiles;
         }
@@ -104,7 +106,7 @@ namespace Narivia.GameLogic.Mapping
             WorldTileEntity[,] worldTileEntities = new WorldTileEntity[w, h];
 
             Parallel.For(0, h, y => Parallel.For(0, w, x => worldTileEntities[x, y] = worldTiles[x, y].ToEntity()));
-            
+
             return worldTileEntities;
         }
     }

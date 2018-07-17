@@ -2,6 +2,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -57,7 +58,7 @@ namespace Narivia.DataAccess.Repositories
             }
 
             worldEntity.Tiles = LoadWorldTiles(id);
-            
+
             return worldEntity;
         }
 
@@ -68,8 +69,8 @@ namespace Narivia.DataAccess.Repositories
         public IEnumerable<WorldEntity> GetAll()
         {
             ConcurrentBag<WorldEntity> worldEntities = new ConcurrentBag<WorldEntity>();
-            
-            foreach(string worldId in Directory.GetDirectories(worldsDirectory))
+
+            foreach (string worldId in Directory.GetDirectories(worldsDirectory))
             {
                 // TODO: Don't load if the world.xml file is not present
                 worldEntities.Add(Get(worldId));
@@ -124,11 +125,11 @@ namespace Narivia.DataAccess.Repositories
             IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(provincesPath);
             IRepository<string, TerrainEntity> terrainRepository = new TerrainRepository(terrainsPath);
 
-            IEnumerable<ProvinceEntity> provinces = provinceRepository.GetAll();
-            IEnumerable<TerrainEntity> terrains = terrainRepository.GetAll();
+            Dictionary<string, ProvinceEntity> provinces = provinceRepository.GetAll().ToDictionary(x => x.Id, x => x);
+            Dictionary<string, TerrainEntity> terrains = terrainRepository.GetAll().ToDictionary(x => x.Id, x => x);
 
-            Parallel.ForEach(provinces, r => provinceColourIds.AddOrUpdate(Colour.FromHexadecimal(r.ColourHexadecimal).ToArgb(), r.Id));
-            Parallel.ForEach(terrains, t => terrainColourIds.AddOrUpdate(Colour.FromHexadecimal(t.ColourHexadecimal).ToArgb(), t.Id));
+            Parallel.ForEach(provinces.Values, r => provinceColourIds.AddOrUpdate(Colour.FromHexadecimal(r.ColourHexadecimal).ToArgb(), r.Id));
+            Parallel.ForEach(terrains.Values, t => terrainColourIds.AddOrUpdate(Colour.FromHexadecimal(t.ColourHexadecimal).ToArgb(), t.Id));
 
             BitmapFile heightsBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
             BitmapFile provinceBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
@@ -156,6 +157,7 @@ namespace Narivia.DataAccess.Repositories
 
                 tiles[x, y].ProvinceId = provinceColourIds[provinceArgb];
                 tiles[x, y].TerrainId = terrainColourIds[terrainArgb];
+                tiles[x, y].TerrainIds.Add(terrainColourIds[terrainArgb]);
                 tiles[x, y].HasRiver = riverColour == Colour.Blue;
 
                 if (heightColour == Colour.Blue ||
@@ -169,6 +171,46 @@ namespace Narivia.DataAccess.Repositories
                     tiles[x, y].Altitude = (byte)((heightColour.R + heightColour.G + heightColour.B) / 3);
                 }
             }));
+
+            // TODO: Optimise all this
+            for (int y = 0; y < worldSize.Y; y++)
+            {
+                for (int x = 0; x < worldSize.X; x++)
+                {
+                    TerrainEntity terrain = terrains[tiles[x, y].TerrainId];
+
+                    // TODO: Don't grow by 2 unnecessarily. 1 would be ideal
+                    int order = 2;
+
+                    // TODO: REMOVE THIS !!!
+                    if (terrain.Id == "water")
+                    {
+                        continue;
+                    }
+
+                    for (int dy = -order; dy <= order; dy++)
+                    {
+                        for (int dx = -order; dx <= order; dx++)
+                        {
+                            if (dx == dy || dx + dy == 0)
+                            {
+                                continue;
+                            }
+
+                            int destX = dx + x;
+                            int destY = dy + y;
+
+                            if (destX >= 0 && destX < worldSize.X &&
+                                destY >= 0 && destY < worldSize.Y &&
+                                !tiles[destX, destY].TerrainIds.Contains(terrain.Id))
+                            {
+                                tiles[destX, destY].TerrainIds.Add(terrain.Id);
+                                tiles[destX, destY].TerrainIds.Sort((id1, id2) => terrains[id1].ZIndex.CompareTo(terrains[id2].ZIndex));
+                            }
+                        }
+                    }
+                }
+            }
 
             heightsBitmap.Dispose();
             provinceBitmap.Dispose();

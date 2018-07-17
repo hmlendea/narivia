@@ -194,17 +194,11 @@ namespace Narivia.Gui.GuiElements
                 camCoordsBegin.X + camera.Size.Width / GameDefines.MapTileSize + 2,
                 camCoordsBegin.Y + camera.Size.Height / GameDefines.MapTileSize + 1);
 
-            foreach (Terrain terrain in terrains.Values.OrderBy(x => x.ZIndex))
+            for (int y = camCoordsBegin.Y; y < camCoordsEnd.Y; y++)
             {
-                for (int y = camCoordsBegin.Y; y < camCoordsEnd.Y; y++)
+                for (int x = camCoordsBegin.X; x < camCoordsEnd.X; x++)
                 {
-                    for (int x = camCoordsBegin.X; x < camCoordsEnd.X; x++)
-                    {
-                        if (world.Tiles[x, y].TerrainId == terrain.Id)
-                        {
-                            DrawTile(spriteBatch, x, y);
-                        }
-                    }
+                    DrawTile(spriteBatch, x, y);
                 }
             }
 
@@ -226,15 +220,19 @@ namespace Narivia.Gui.GuiElements
         {
             WorldTile tile = world.Tiles[x, y];
 
-            Terrain terrain = terrains[tile.TerrainId]; // TODO: Optimise this. Don't call this every time
-
             // TODO: Don't do all this, and definetely don't do it here
             terrainEffect.TileLocation = new Point2D(x, y);
-            terrainEffect.TerrainId = terrain.Id;
-            terrainEffect.TilesWith = new List<string> { terrain.Id };
-            terrainEffect.Update(null);
 
-            DrawTerrainSprite(spriteBatch, x, y, terrain.Spritesheet, 1, 3);
+            foreach (string terrainId in tile.TerrainIds)
+            {
+                Terrain terrain = terrains[terrainId]; // TODO: Optimise this. Don't call this every time
+
+                terrainEffect.TerrainId = terrain.Id;
+                terrainEffect.TilesWith = new List<string> { terrain.Id };
+                terrainEffect.Update(null);
+
+                DrawTerrainSprite(spriteBatch, x, y, terrain.Spritesheet, 1, 3);
+            }
         }
 
         void DrawTerrainSprite(SpriteBatch spriteBatch, int tileX, int tileY, string spritesheet, int spritesheetX, int spritesheetY)

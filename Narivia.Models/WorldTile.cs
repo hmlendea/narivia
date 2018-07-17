@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Narivia.Models
@@ -19,12 +20,19 @@ namespace Narivia.Models
         [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string TerrainId { get; set; }
 
+        public List<string> TerrainIds { get; set; }
+
         [Range(0, byte.MaxValue)]
         public byte Altitude { get; set; }
 
         public bool HasRiver { get; set; }
 
         public bool HasWater { get; set; }
+
+        public WorldTile()
+        {
+            TerrainIds = new List<string>();
+        }
 
         /// <summary>
         /// Determines whether the specified <see cref="WorldTile"/> is equal to the current <see cref="WorldTile"/>.
