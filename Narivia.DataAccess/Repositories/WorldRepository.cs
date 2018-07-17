@@ -71,6 +71,7 @@ namespace Narivia.DataAccess.Repositories
             
             foreach(string worldId in Directory.GetDirectories(worldsDirectory))
             {
+                // TODO: Don't load if the world.xml file is not present
                 worldEntities.Add(Get(worldId));
             }
 
@@ -123,8 +124,11 @@ namespace Narivia.DataAccess.Repositories
             IRepository<string, ProvinceEntity> provinceRepository = new ProvinceRepository(provincesPath);
             IRepository<string, TerrainEntity> terrainRepository = new TerrainRepository(terrainsPath);
 
-            Parallel.ForEach(provinceRepository.GetAll(), r => provinceColourIds.AddOrUpdate(Colour.FromHexadecimal(r.ColourHexadecimal).ToArgb(), r.Id));
-            Parallel.ForEach(terrainRepository.GetAll(), b => terrainColourIds.AddOrUpdate(Colour.FromHexadecimal(b.ColourHexadecimal).ToArgb(), b.Id));
+            IEnumerable<ProvinceEntity> provinces = provinceRepository.GetAll();
+            IEnumerable<TerrainEntity> terrains = terrainRepository.GetAll();
+
+            Parallel.ForEach(provinces, r => provinceColourIds.AddOrUpdate(Colour.FromHexadecimal(r.ColourHexadecimal).ToArgb(), r.Id));
+            Parallel.ForEach(terrains, t => terrainColourIds.AddOrUpdate(Colour.FromHexadecimal(t.ColourHexadecimal).ToArgb(), t.Id));
 
             BitmapFile heightsBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
             BitmapFile provinceBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));

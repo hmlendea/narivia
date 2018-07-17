@@ -37,6 +37,7 @@ namespace Narivia.GameLogic.Mapping
                 StartingWealth = worldEntity.StartingWealth,
                 StartingTroops = worldEntity.StartingTroops,
                 HoldingsPrice = worldEntity.HoldingsPrice,
+                AssetsPack = worldEntity.AssetsPack,
                 Tiles = worldEntity.Tiles.ToDomainModels()
             };
 
@@ -68,6 +69,7 @@ namespace Narivia.GameLogic.Mapping
                 StartingWealth = world.StartingWealth,
                 StartingTroops = world.StartingTroops,
                 HoldingsPrice = world.HoldingsPrice,
+                AssetsPack = world.AssetsPack,
                 Tiles = world.Tiles.ToEntities()
             };
 

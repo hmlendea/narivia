@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfResourceEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ResourceEntity>
+    <Id>none</Id>
+    <Name>None</Name>
+    <Description>Nothing. No resource. Nada.</Description>
+    <Type>Economy</Type>
+    <Output>0</Output>
+  </ResourceEntity>
+</ArrayOfResourceEntity>

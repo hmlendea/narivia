@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUnitEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <UnitEntity>
+    <Id>militia</Id>
+    <Name>Militia</Name>
+    <Description>The base unit in the game. Weak but useful when in great numbers.</Description>
+    <Type>Light</Type>
+    <Price>2</Price>
+    <Maintenance>0</Maintenance>
+    <Power>1</Power>
+    <Health>2</Health>
+  </UnitEntity>
+  <UnitEntity>
+    <Id>manatarms</Id>
+    <Name>Man-at-Arms</Name>
+    <Description>Balanced unit, better at defence</Description>
+    <Type>Light</Type>
+    <Price>3</Price>
+    <Maintenance>0</Maintenance>
+    <Power>2</Power>
+    <Health>3</Health>
+  </UnitEntity>
+  <UnitEntity>
+    <Id>maceman</Id>
+    <Name>Maceman</Name>
+    <Description>Fearless warriors that inflict a lot of damage but can be killed easily</Description>
+    <Type>Light</Type>
+    <Price>3</Price>
+    <Maintenance>0</Maintenance>
+    <Power>4</Power>
+    <Health>1</Health>
+  </UnitEntity>
+  <UnitEntity>
+    <Id>swordsman</Id>
+    <Name>Swordsman</Name>
+    <Description>Balanced unit, better at Power</Description>
+    <Type>Heavy</Type>
+    <Price>5</Price>
+    <Maintenance>1</Maintenance>
+    <Power>4</Power>
+    <Health>3</Health>
+  </UnitEntity>
+  <UnitEntity>
+    <Id>knight</Id>
+    <Name>Knight</Name>
+    <Description>Balanced unit, good at leading invasions</Description>
+    <Type>Heavy</Type>
+    <Price>5</Price>
+    <Maintenance>1</Maintenance>
+    <Power>3</Power>
+    <Health>4</Health>
+  </UnitEntity>
+</ArrayOfUnitEntity>

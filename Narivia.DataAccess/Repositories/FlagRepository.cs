@@ -1,3 +1,4 @@
+
 using NuciXNA.DataAccess.Exceptions;
 using NuciXNA.DataAccess.Repositories;
 

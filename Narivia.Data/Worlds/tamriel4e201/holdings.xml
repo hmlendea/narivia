@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfHoldingEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <HoldingEntity>
+    <Id>h_water</Id>
+    <ProvinceId>p_water</ProvinceId>
+    <Name>Water</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_others</Id>
+    <ProvinceId>p_others</ProvinceId>
+    <Name>Other Provinces</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_solitude</Id>
+    <ProvinceId>p_solitude</ProvinceId>
+    <Name>Solitude</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_imperial_city</Id>
+    <ProvinceId>p_imperial_city</ProvinceId>
+    <Name>Imperial City</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_blacklight</Id>
+    <ProvinceId>p_blacklight</ProvinceId>
+    <Name>Blacklight</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_sentinel</Id>
+    <ProvinceId>p_sentinel</ProvinceId>
+    <Name>Sentinel</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_daggerfall</Id>
+    <ProvinceId>p_daggerfall</ProvinceId>
+    <Name>Daggerfall</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_helstrom</Id>
+    <ProvinceId>p_helstrom</ProvinceId>
+    <Name>Helstrom</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_torval</Id>
+    <ProvinceId>p_torval</ProvinceId>
+    <Name>Torval</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_falinesti</Id>
+    <ProvinceId>p_falinesti</ProvinceId>
+    <Name>Falinesti</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_alinor</Id>
+    <ProvinceId>p_alinor</ProvinceId>
+    <Name>Alinor</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_whiterun</Id>
+    <ProvinceId>p_whiterun</ProvinceId>
+    <Name>Whiterun</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_dawnstar</Id>
+    <ProvinceId>p_dawnstar</ProvinceId>
+    <Name>Dawnstar</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_windhelm</Id>
+    <ProvinceId>p_windhelm</ProvinceId>
+    <Name>Windhelm</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_cheydinhal</Id>
+    <ProvinceId>p_cheydinhal</ProvinceId>
+    <Name>Cheydinhal</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_leyawiin</Id>
+    <ProvinceId>p_leyawiin</ProvinceId>
+    <Name>Leyawiin</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_anvil</Id>
+    <ProvinceId>p_anvil</ProvinceId>
+    <Name>Anvil</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_raven_rock</Id>
+    <ProvinceId>p_raven_rock</ProvinceId>
+    <Name>Raven Rock</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_necrom</Id>
+    <ProvinceId>p_necrom</ProvinceId>
+    <Name>Necrom</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_port_telvannis</Id>
+    <ProvinceId>p_port_telvannis</ProvinceId>
+    <Name>Port Telvannis</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_taneth</Id>
+    <ProvinceId>p_taneth</ProvinceId>
+    <Name>Taneth</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_elinhir</Id>
+    <ProvinceId>p_elinhir</ProvinceId>
+    <Name>Elinhir</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_dragonstar</Id>
+    <ProvinceId>p_dragonstar</ProvinceId>
+    <Name>Dragonstar</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_jehanna</Id>
+    <ProvinceId>p_jehanna</ProvinceId>
+    <Name>Jehanna</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_wayrest</Id>
+    <ProvinceId>p_wayrest</ProvinceId>
+    <Name>Wayrest</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_camlorn</Id>
+    <ProvinceId>p_camlorn</ProvinceId>
+    <Name>Camlorn</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_giedon</Id>
+    <ProvinceId>p_giedon</ProvinceId>
+    <Name>Gideon</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_archon</Id>
+    <ProvinceId>p_archon</ProvinceId>
+    <Name>Archon</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_thorn</Id>
+    <ProvinceId>p_thorn</ProvinceId>
+    <Name>Thorn</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_rimmen</Id>
+    <ProvinceId>p_rimmen</ProvinceId>
+    <Name>Rimmen</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_corinth</Id>
+    <ProvinceId>p_corinth</ProvinceId>
+    <Name>Corinth</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_dune</Id>
+    <ProvinceId>p_dune</ProvinceId>
+    <Name>Dune</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_woodheart</Id>
+    <ProvinceId>p_woodheart</ProvinceId>
+    <Name>Woodheart</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_southpoint</Id>
+    <ProvinceId>p_southpoint</ProvinceId>
+    <Name>Southpoint</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_elden_root</Id>
+    <ProvinceId>p_elden_root</ProvinceId>
+    <Name>Elden Root</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_skywatch</Id>
+    <ProvinceId>p_skywatch</ProvinceId>
+    <Name>Skywatch</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_lillandril</Id>
+    <ProvinceId>p_lillandril</ProvinceId>
+    <Name>Lillandril</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_shimmerene</Id>
+    <ProvinceId>p_shimmerene</ProvinceId>
+    <Name>Shimmerene</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_markarth</Id>
+    <ProvinceId>p_markarth</ProvinceId>
+    <Name>Markarth</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_bruma</Id>
+    <ProvinceId>p_bruma</ProvinceId>
+    <Name>Bruma</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_kragenmoor</Id>
+    <ProvinceId>p_kragenmoor</ProvinceId>
+    <Name>Kragenmoor</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_skaven</Id>
+    <ProvinceId>p_skaven</ProvinceId>
+    <Name>Skaven</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_wayrest</Id>
+    <ProvinceId>p_wayrest</ProvinceId>
+    <Name>Wayrest</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_blackrose</Id>
+    <ProvinceId>p_blackrose</ProvinceId>
+    <Name>Blackrose</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_senchal</Id>
+    <ProvinceId>p_senchal</ProvinceId>
+    <Name>Senchal</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_arenthia</Id>
+    <ProvinceId>p_arenthia</ProvinceId>
+    <Name>Arenthia</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_cloudrest</Id>
+    <ProvinceId>p_cloudrest</ProvinceId>
+    <Name>Cloudrest</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_riften</Id>
+    <ProvinceId>p_riften</ProvinceId>
+    <Name>Riften</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_chorrol</Id>
+    <ProvinceId>p_chorrol</ProvinceId>
+    <Name>Chorrol</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_mournhold</Id>
+    <ProvinceId>p_mournhold</ProvinceId>
+    <Name>Mournhold</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_rihad</Id>
+    <ProvinceId>p_rihad</ProvinceId>
+    <Name>Rihad</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_shornhelm</Id>
+    <ProvinceId>p_shornhelm</ProvinceId>
+    <Name>Shornhelm</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_stormhold</Id>
+    <ProvinceId>p_stormhold</ProvinceId>
+    <Name>Stormhold</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_orcrest</Id>
+    <ProvinceId>p_orcrest</ProvinceId>
+    <Name>Orcrest</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_silvenar</Id>
+    <ProvinceId>p_silvenar</ProvinceId>
+    <Name>Silvenar</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_dusk</Id>
+    <ProvinceId>p_dusk</ProvinceId>
+    <Name>Dusk</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_falkreath</Id>
+    <ProvinceId>p_falkreath</ProvinceId>
+    <Name>Falkreath</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_bravil</Id>
+    <ProvinceId>p_bravil</ProvinceId>
+    <Name>Bravil</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_sadrith_mora</Id>
+    <ProvinceId>p_sadrith_mora</ProvinceId>
+    <Name>Sadrith Mora</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_heagathe</Id>
+    <ProvinceId>p_heagathe</ProvinceId>
+    <Name>Hegathe</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_evermore</Id>
+    <ProvinceId>p_evermore</ProvinceId>
+    <Name>Evermore</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_narsis</Id>
+    <ProvinceId>p_narsis</ProvinceId>
+    <Name>Narsis</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_dune</Id>
+    <ProvinceId>p_dune</ProvinceId>
+    <Name>Dune</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_greenheart</Id>
+    <ProvinceId>p_greenheart</ProvinceId>
+    <Name>Greenheart</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_firsthold</Id>
+    <ProvinceId>p_firsthold</ProvinceId>
+    <Name>Firsthold</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_winterhold</Id>
+    <ProvinceId>p_winterhold</ProvinceId>
+    <Name>Winterhold</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_skingrad</Id>
+    <ProvinceId>p_skingrad</ProvinceId>
+    <Name>Skingrad</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_skaal_village</Id>
+    <ProvinceId>p_skaal_village</ProvinceId>
+    <Name>Skaal Village</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_taneth2</Id>
+    <ProvinceId>p_taneth2</ProvinceId>
+    <Name>Taneth2</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_farrun</Id>
+    <ProvinceId>p_farrun</ProvinceId>
+    <Name>Farrun</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_soulrest</Id>
+    <ProvinceId>p_soulrest</ProvinceId>
+    <Name>Soulrest</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_alabaster</Id>
+    <ProvinceId>p_alabaster</ProvinceId>
+    <Name>Alabaster</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_haven</Id>
+    <ProvinceId>p_haven</ProvinceId>
+    <Name>Haven</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+  <HoldingEntity>
+    <Id>h_sunhold</Id>
+    <ProvinceId>p_sunhold</ProvinceId>
+    <Name>Sunhold</Name>
+    <Description>Holding description goes here.</Description>
+    <Type>City</Type>
+</HoldingEntity>
+</Regions>

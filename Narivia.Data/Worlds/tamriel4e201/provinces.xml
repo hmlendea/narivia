@@ -1,0 +1,669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProvinceEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ProvinceEntity>
+    <Id>p_water</Id>
+    <Name>Water</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#00A1FF</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_gaia</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_others</Id>
+    <Name>Other Provinces</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#000000</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_gaia</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_solitude</Id>
+    <Name>Solitude</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#82A1C1</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_skyrim</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_imperial_city</Id>
+    <Name>Imperial City</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#F0D84B</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_cyrodiil</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_blacklight</Id>
+    <Name>Blacklight</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#7C0B7C</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_morrowind</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_sentinel</Id>
+    <Name>Sentinel</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#D94000</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_hammerfell</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_daggerfall</Id>
+    <Name>Daggerfall</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#00D9ff</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_high_rock</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_helstrom</Id>
+    <Name>Helstrom</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#18681C</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_black_marsh</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_torval</Id>
+    <Name>Torval</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#CFD12D</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_elsweyr</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_falinesti</Id>
+    <Name>Falinesti</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#AC7B1B</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_valenwood</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_alinor</Id>
+    <Name>Alinor</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#93D9B6</ColourHexadecimal>
+    <Type>Capital</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_summerset</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_whiterun</Id>
+    <Name>Whiterun</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#FFEC94</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_skyrim</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_dawnstar</Id>
+    <Name>Dawnstar</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#35EC94</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_skyrim</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_windhelm</Id>
+    <Name>Windhelm</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#C3A958</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_skyrim</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_cheydinhal</Id>
+    <Name>Cheydinhal</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#43CE88</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_cyrodiil</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_leyawiin</Id>
+    <Name>Leyawiin</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#FF0000</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_cyrodiil</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_anvil</Id>
+    <Name>Anvil</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#C3A920</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_cyrodiil</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_raven_rock</Id>
+    <Name>Raven Rock</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#E0A088</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_morrowind</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_necrom</Id>
+    <Name>Necrom</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#AC2B18</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_morrowind</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_port_telvannis</Id>
+    <Name>Port Telvannis</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#3173A2</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_morrowind</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_taneth</Id>
+    <Name>Taneth</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#8EBC4D</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_hammerfell</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_elinhir</Id>
+    <Name>Elinhir</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#CA4FB9</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_hammerfell</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_dragonstar</Id>
+    <Name>Dragonstar</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#C48f3B</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_hammerfell</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_jehanna</Id>
+    <Name>Jehanna</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#4D4296</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_high_rock</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_wayrest</Id>
+    <Name>Wayrest</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#AEB222</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_high_rock</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_camlorn</Id>
+    <Name>Camlorn</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#C46242</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_high_rock</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_giedon</Id>
+    <Name>Gideon</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#713982</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_black_marsh</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_archon</Id>
+    <Name>Archon</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#CBA053</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_black_marsh</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_thorn</Id>
+    <Name>Thorn</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#E35831</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_black_marsh</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_rimmen</Id>
+    <Name>Rimmen</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#CFD185</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_elsweyr</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_corinth</Id>
+    <Name>Corinth</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#CB95A0</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_elsweyr</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_dune</Id>
+    <Name>Dune</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#8984D6</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_elsweyr</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_woodheart</Id>
+    <Name>Woodheart</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#40DF3C</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_valenwood</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_southpoint</Id>
+    <Name>Southpoint</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#AC487E</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_valenwood</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_elden_root</Id>
+    <Name>Elden Root</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#3CB6AB</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_valenwood</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_skywatch</Id>
+    <Name>Skywatch</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#D56843</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_summerset</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_lillandril</Id>
+    <Name>Lillandril</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#78B0B0</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_summerset</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_shimmerene</Id>
+    <Name>Shimmerene</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#E4D221</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_summerset</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_markarth</Id>
+    <Name>Markarth</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#F74549</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_skyrim</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_bruma</Id>
+    <Name>Bruma</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#8EA78C</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_cyrodiil</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_kragenmoor</Id>
+    <Name>Kragenmoor</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#426DB7</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_morrowind</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_skaven</Id>
+    <Name>Skaven</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#08BF27</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_hammerfell</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_wayrest2</Id>
+    <Name>Wayrest2</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#F05EFF</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_high_rock</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_blackrose</Id>
+    <Name>Blackrose</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#B3FF4A</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_black_marsh</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_senchal</Id>
+    <Name>Senchal</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#8768F0</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_elsweyr</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_arenthia</Id>
+    <Name>Arenthia</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#4DB932</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_valenwood</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_cloudrest</Id>
+    <Name>Cloudrest</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#BC5787</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_summerset</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_riften</Id>
+    <Name>Riften</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#00FF00</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_skyrim</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_chorrol</Id>
+    <Name>Chorrol</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#B94000</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_cyrodiil</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_mournhold</Id>
+    <Name>Mournhold</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#008273</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_morrowind</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_rihad</Id>
+    <Name>Rihad</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#BDD8FF</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_hammerfell</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_shornhelm</Id>
+    <Name>Shornhelm</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#4850FF</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_high_rock</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_stormhold</Id>
+    <Name>Stormhold</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#FF24C1</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_black_marsh</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_orcrest</Id>
+    <Name>Orcrest</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#391578</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_elsweyr</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_silvenar</Id>
+    <Name>Silvenar</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#D88432</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_valenwood</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_dusk</Id>
+    <Name>Dusk</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#493174</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_summerset</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_falkreath</Id>
+    <Name>Falkreath</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#B79780</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_skyrim</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_bravil</Id>
+    <Name>Bravil</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#68452E</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_cyrodiil</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_sadrith_mora</Id>
+    <Name>Sadrith Mora</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#AEC151</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_morrowind</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_heagathe</Id>
+    <Name>Hegathe</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#543ECB</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_hammerfell</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_evermore</Id>
+    <Name>Evermore</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#CED94F</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_high_rock</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_narsis</Id>
+    <Name>Narsis</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#53D9FF</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_black_marsh</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_dune2</Id>
+    <Name>Dune2</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#E23166</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_elsweyr</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_greenheart</Id>
+    <Name>Greenheart</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#328FC8</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_valenwood</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_firsthold</Id>
+    <Name>Firsthold</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#468100</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_summerset</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_winterhold</Id>
+    <Name>Winterhold</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#3FBF42</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_skyrim</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_skingrad</Id>
+    <Name>Skingrad</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#8E4F9C</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_cyrodiil</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_skaal_village</Id>
+    <Name>Skaal Village</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#C63FAC</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_morrowind</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_taneth2</Id>
+    <Name>Taneth2</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#DC4AA2</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_hammerfell</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_farrun</Id>
+    <Name>Farrun</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#54A739</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_high_rock</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_soulrest</Id>
+    <Name>Soulrest</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#54A7DD</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_black_marsh</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_alabaster</Id>
+    <Name>Alabaster</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#B20035</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_elsweyr</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_haven</Id>
+    <Name>Haven</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#8FBDA0</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_valenwood</FactionId>
+  </ProvinceEntity>
+  <ProvinceEntity>
+    <Id>p_sunhold</Id>
+    <Name>Sunhold</Name>
+    <Description>Province description goes here.</Description>
+    <ColourHexadecimal>#D2206D</ColourHexadecimal>
+    <Type>Province</Type>
+    <ResourceId>none</ResourceId>
+    <FactionId>f_summerset</FactionId>
+  </ProvinceEntity>
+</ArrayOfProvinceEntity>

@@ -19,6 +19,8 @@ namespace Narivia.Gui.GuiElements
         readonly IWorldManager worldManager;
         readonly IHoldingManager holdingManager;
 
+        World world;
+
         GuiImage paper;
 
         GuiFactionFlag factionFlag;
@@ -52,7 +54,7 @@ namespace Narivia.Gui.GuiElements
 
         public override void LoadContent()
         {
-            string worldId = gameManager.GetWorld().Id;
+            world = gameManager.GetWorld();
 
             paper = new GuiImage
             {
@@ -76,7 +78,7 @@ namespace Narivia.Gui.GuiElements
 
             resourceIcon = new GuiImage
             {
-                ContentFile = $"World/Assets/{worldId}/resources/gold",
+                ContentFile = $"World/Assets/{world.AssetsPack}/resources/gold",
                 Size = new Size2D(28, 28),
                 Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 44)
             };
@@ -177,7 +179,7 @@ namespace Narivia.Gui.GuiElements
             }
 
             currentProvinceId = ProvinceId;
-
+            
             Province province = worldManager.GetProvince(ProvinceId);
             Faction faction = worldManager.GetFaction(province.FactionId);
 
@@ -187,7 +189,7 @@ namespace Narivia.Gui.GuiElements
             factionFlag.Flag = gameManager.GetFactionFlag(province.FactionId);
             factionName.Text = faction.Name;
 
-            resourceIcon.ContentFile = $"World/Assets/{gameManager.WorldId}/resources/{province.ResourceId}";
+            resourceIcon.ContentFile = $"World/Assets/{world.AssetsPack}/resources/{province.ResourceId}";
             resourceName.Text = worldManager.GetResource(province.ResourceId).Name;
 
             List<Holding> holdings = holdingManager.GetProvinceHoldings(ProvinceId).ToList();

@@ -97,6 +97,8 @@ namespace Narivia.Models
         [Range(0, int.MaxValue)]
         public int HoldingsPrice { get; set; }
 
+        public string AssetsPack { get; set; }
+
         /// <summary>
         /// Gets or sets the tiles.
         /// </summary>

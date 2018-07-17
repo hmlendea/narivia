@@ -99,6 +99,8 @@ namespace Narivia.DataAccess.DataObjects
         /// <value>The holdings price.</value>
         public int HoldingsPrice { get; set; }
 
+        public string AssetsPack { get; set; }
+
         /// <summary>
         /// Gets or sets the tiles.
         /// </summary>
