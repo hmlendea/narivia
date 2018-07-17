@@ -81,7 +81,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>Province.</returns>
         /// <param name="factionId">Faction identifier.</param>
         Province GetFactionCapital(string factionId);
-        
+
         Point2D GetFactionCentre(string factionId);
 
         /// <summary>
@@ -105,6 +105,8 @@ namespace Narivia.GameLogic.GameManagers
         IEnumerable<Flag> GetFlags();
 
         Province GetProvince(string provinceId);
+
+        Province GetProvince(int x, int y);
 
         /// <summary>
         /// Gets the provinces.

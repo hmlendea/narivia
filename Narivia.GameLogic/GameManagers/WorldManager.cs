@@ -136,7 +136,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <param name="provinceId">Province identifier.</param>
         public bool FactionBordersProvince(string factionId, string provinceId)
             => GetFactionProvinces(factionId).Any(r => ProvinceBordersProvince(r.Id, provinceId));
-        
+
         /// <summary>
         /// Transfers the specified province to the specified faction.
         /// </summary>
@@ -192,7 +192,7 @@ namespace Narivia.GameLogic.GameManagers
         => provinces.Values.FirstOrDefault(r => r.FactionId == factionId &&
                                               r.SovereignFactionId == factionId &&
                                               r.Type == ProvinceType.Capital);
-        
+
         public Point2D GetFactionCentre(string factionId)
         {
             int minY = world.Height - 1;
@@ -261,6 +261,11 @@ namespace Narivia.GameLogic.GameManagers
 
         public Province GetProvince(string provinceId)
             => provinces[provinceId];
+
+        public Province GetProvince(int x, int y)
+        {
+            return provinces[world.Tiles[x, y].ProvinceId];
+        }
 
         /// <summary>
         /// Gets the provinces.
@@ -376,7 +381,7 @@ namespace Narivia.GameLogic.GameManagers
         public void InitialiseFaction(string factionId)
         {
             Faction faction = factions[factionId];
-            
+
             faction.Wealth = world.StartingWealth;
         }
     }

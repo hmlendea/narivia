@@ -5,7 +5,7 @@
     <Name>Water</Name>
     <Description>Province description goes here.</Description>
     <ColourHexadecimal>#00A1FF</ColourHexadecimal>
-    <Type>Capital</Type>
+    <Type>Gaia</Type>
     <ResourceId>none</ResourceId>
     <FactionId>f_gaia</FactionId>
   </ProvinceEntity>
@@ -14,7 +14,7 @@
     <Name>Other Provinces</Name>
     <Description>Province description goes here.</Description>
     <ColourHexadecimal>#000000</ColourHexadecimal>
-    <Type>Province</Type>
+    <Type>Gaia</Type>
     <ResourceId>none</ResourceId>
     <FactionId>f_gaia</FactionId>
   </ProvinceEntity>

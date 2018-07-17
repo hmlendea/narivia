@@ -4,6 +4,7 @@ using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers;
 using Narivia.Models;
+using Narivia.Models.Enumerations;
 
 namespace Narivia.Gui.SpriteEffects
 {
@@ -27,24 +28,24 @@ namespace Narivia.Gui.SpriteEffects
         {
             CurrentFrame = new Point2D(1, 3); // Default
 
-            string id = world.Tiles[TileLocation.X, TileLocation.Y].ProvinceId;
-            string idN = world.Tiles[TileLocation.X, TileLocation.Y - 1].ProvinceId;
-            string idW = world.Tiles[TileLocation.X - 1, TileLocation.Y].ProvinceId;
-            string idS = world.Tiles[TileLocation.X, TileLocation.Y + 1].ProvinceId;
-            string idE = world.Tiles[TileLocation.X + 1, TileLocation.Y].ProvinceId;
-            string idNW = world.Tiles[TileLocation.X - 1, TileLocation.Y - 1].ProvinceId;
-            string idNE = world.Tiles[TileLocation.X + 1, TileLocation.Y - 1].ProvinceId;
-            string idSW = world.Tiles[TileLocation.X - 1, TileLocation.Y + 1].ProvinceId;
-            string idSE = world.Tiles[TileLocation.X + 1, TileLocation.Y + 1].ProvinceId;
+            Province province = worldManager.GetProvince(TileLocation.X, TileLocation.Y);
+            Province provinceN = worldManager.GetProvince(TileLocation.X, TileLocation.Y - 1);
+            Province provinceW = worldManager.GetProvince(TileLocation.X - 1, TileLocation.Y);
+            Province provinceS = worldManager.GetProvince(TileLocation.X, TileLocation.Y + 1);
+            Province provinceE = worldManager.GetProvince(TileLocation.X + 1, TileLocation.Y);
+            Province provinceNW = worldManager.GetProvince(TileLocation.X - 1, TileLocation.Y - 1);
+            Province provinceNE = worldManager.GetProvince(TileLocation.X + 1, TileLocation.Y - 1);
+            Province provinceSW = worldManager.GetProvince(TileLocation.X - 1, TileLocation.Y + 1);
+            Province provinceSE = worldManager.GetProvince(TileLocation.X + 1, TileLocation.Y + 1);
 
-            bool tilesN = id == idN;
-            bool tilesW = id == idW;
-            bool tilesS = id == idS;
-            bool tilesE = id == idE;
-            bool tilesNW = id == idNW;
-            bool tilesNE = id == idNE;
-            bool tilesSW = id == idSW;
-            bool tilesSE = id == idSE;
+            bool tilesN = province.Id == provinceN.Id || provinceN.Type == ProvinceType.Gaia;
+            bool tilesW = province.Id == provinceW.Id || provinceW.Type == ProvinceType.Gaia;
+            bool tilesS = province.Id == provinceS.Id || provinceS.Type == ProvinceType.Gaia;
+            bool tilesE = province.Id == provinceE.Id || provinceE.Type == ProvinceType.Gaia;
+            bool tilesNW = province.Id == provinceNW.Id || provinceNW.Type == ProvinceType.Gaia;
+            bool tilesNE = province.Id == provinceNE.Id || provinceNE.Type == ProvinceType.Gaia;
+            bool tilesSW = province.Id == provinceSW.Id || provinceSW.Type == ProvinceType.Gaia;
+            bool tilesSE = province.Id == provinceSE.Id || provinceSE.Type == ProvinceType.Gaia;
 
             if (tilesN && tilesW && tilesS && tilesE && tilesNW && tilesNE && tilesSW && tilesSE) // Middle
             {

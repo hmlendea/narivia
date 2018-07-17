@@ -5,7 +5,7 @@
     <Name>Water</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#00A1FF</ColourHexadecimal>
-    <Type>Capital</Type>
+    <Type>Gaia</Type>
     <ResourceId>fish</ResourceId>
     <FactionId>f_gaia</FactionId>
   </ProvinceEntity>
@@ -2156,7 +2156,7 @@
     <Name>Wilderness</Name>
     <Description>Lorem ipsum dolor sit amet.</Description>
     <ColourHexadecimal>#000000</ColourHexadecimal>
-    <Type>Province</Type>
+    <Type>Gaia</Type>
     <ResourceId>fish</ResourceId>
     <FactionId>f_gaia</FactionId>
   </ProvinceEntity>

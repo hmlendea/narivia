@@ -26,7 +26,7 @@ namespace Narivia.Gui.SpriteEffects
 
         public override void UpdateFrame(GameTime gameTime)
         {
-            string id = worldManager.GetFaction(TileLocation.X, TileLocation.Y).Id;
+            Faction faction = worldManager.GetFaction(TileLocation.X, TileLocation.Y);
             CurrentFrame = new Point2D(1, 3); // Default
 
             if (worldManager.GetFaction(TileLocation.X, TileLocation.Y).Type == FactionType.Gaia)
@@ -34,23 +34,23 @@ namespace Narivia.Gui.SpriteEffects
                 return;
             }
 
-            string idN = worldManager.GetFaction(TileLocation.X, TileLocation.Y - 1).Id;
-            string idW = worldManager.GetFaction(TileLocation.X - 1, TileLocation.Y).Id;
-            string idS = worldManager.GetFaction(TileLocation.X, TileLocation.Y + 1).Id;
-            string idE = worldManager.GetFaction(TileLocation.X + 1, TileLocation.Y).Id;
-            string idNW = worldManager.GetFaction(TileLocation.X - 1, TileLocation.Y - 1).Id;
-            string idNE = worldManager.GetFaction(TileLocation.X + 1, TileLocation.Y - 1).Id;
-            string idSW = worldManager.GetFaction(TileLocation.X - 1, TileLocation.Y + 1).Id;
-            string idSE = worldManager.GetFaction(TileLocation.X + 1, TileLocation.Y + 1).Id;
+            Faction factionN = worldManager.GetFaction(TileLocation.X, TileLocation.Y - 1);
+            Faction factionW = worldManager.GetFaction(TileLocation.X - 1, TileLocation.Y);
+            Faction factionS = worldManager.GetFaction(TileLocation.X, TileLocation.Y + 1);
+            Faction factionE = worldManager.GetFaction(TileLocation.X + 1, TileLocation.Y);
+            Faction factionNW = worldManager.GetFaction(TileLocation.X - 1, TileLocation.Y - 1);
+            Faction factionNE = worldManager.GetFaction(TileLocation.X + 1, TileLocation.Y - 1);
+            Faction factionSW = worldManager.GetFaction(TileLocation.X - 1, TileLocation.Y + 1);
+            Faction factionSE = worldManager.GetFaction(TileLocation.X + 1, TileLocation.Y + 1);
 
-            bool tilesN = id == idN;
-            bool tilesW = id == idW;
-            bool tilesS = id == idS;
-            bool tilesE = id == idE;
-            bool tilesNW = id == idNW;
-            bool tilesNE = id == idNE;
-            bool tilesSW = id == idSW;
-            bool tilesSE = id == idSE;
+            bool tilesN = faction.Id == factionN.Id || factionN.Type == FactionType.Gaia;
+            bool tilesW = faction.Id == factionW.Id || factionW.Type == FactionType.Gaia;
+            bool tilesS = faction.Id == factionS.Id || factionS.Type == FactionType.Gaia;
+            bool tilesE = faction.Id == factionE.Id || factionE.Type == FactionType.Gaia;
+            bool tilesNW = faction.Id == factionNW.Id || factionNW.Type == FactionType.Gaia;
+            bool tilesNE = faction.Id == factionNE.Id || factionNE.Type == FactionType.Gaia;
+            bool tilesSW = faction.Id == factionSW.Id || factionSW.Type == FactionType.Gaia;
+            bool tilesSE = faction.Id == factionSE.Id || factionSE.Type == FactionType.Gaia;
 
             if (tilesN && tilesW && tilesS && tilesE && tilesNW && tilesNE && tilesSW && tilesSE) // Middle
             {

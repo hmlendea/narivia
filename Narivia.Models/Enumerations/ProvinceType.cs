@@ -14,5 +14,10 @@ namespace Narivia.Models.Enumerations
         /// Capital.
         /// </summary>
         Capital = 1,
+
+        /// <summary>
+        /// Wilderness. Belongs to the Gaia faction.
+        /// </summary>
+        Gaia = 2
     }
 }
