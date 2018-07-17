@@ -15,34 +15,34 @@
     <Id>skyrim_flag</Id>
     <Layer1>none</Layer1>
 	<Layer2>none</Layer2>
-    <Emblem>divergence</Emblem>
+    <Emblem>stormcloak</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundColourHexadecimal>#300065</BackgroundColourHexadecimal>
+    <BackgroundColourHexadecimal>#4A7485</BackgroundColourHexadecimal>
     <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
 	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
-	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#EAEAEA</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>cyrodiil_flag</Id>
     <Layer1>none</Layer1>
 	<Layer2>none</Layer2>
-    <Emblem>thor-hammer</Emblem>
+    <Emblem>septim-empire</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundColourHexadecimal>#7B7B7B</BackgroundColourHexadecimal>
+    <BackgroundColourHexadecimal>#8B0000</BackgroundColourHexadecimal>
     <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
 	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#000000</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>morrowind_flag</Id>
-    <Layer1>none</Layer1>
+    <Layer1>half-left</Layer1>
 	<Layer2>none</Layer2>
-    <Emblem>horse-head</Emblem>
+    <Emblem>morrowind</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundColourHexadecimal>#B10000</BackgroundColourHexadecimal>
-    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+    <BackgroundColourHexadecimal>#FCD116</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#151515</Layer1ColourHexadecimal>
 	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
-	<EmblemColourHexadecimal>#FCD116</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#CE1126</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>hammerfell_flag</Id>
@@ -103,10 +103,10 @@
     <Id>alinor_flag</Id>
     <Layer1>none</Layer1>
 	<Layer2>none</Layer2>
-    <Emblem>virtual-marker</Emblem>
+    <Emblem>aldmeri</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundColourHexadecimal>#00AB98</BackgroundColourHexadecimal>
-     <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
+    <BackgroundColourHexadecimal>#F0C94B</BackgroundColourHexadecimal>
+    <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
 	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
 	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
   </FlagEntity>
