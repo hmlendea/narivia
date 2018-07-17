@@ -59,12 +59,12 @@
     <Id>high_rock_flag</Id>
     <Layer1>none</Layer1>
 	<Layer2>none</Layer2>
-    <Emblem>dove</Emblem>
+    <Emblem>daggerfall</Emblem>
     <Skin>buckler</Skin>
-    <BackgroundColourHexadecimal>#006353</BackgroundColourHexadecimal>
+    <BackgroundColourHexadecimal>#3A6E9F</BackgroundColourHexadecimal>
     <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
 	<Layer2ColourHexadecimal>#000000</Layer2ColourHexadecimal>
-	<EmblemColourHexadecimal>#FFFFFF</EmblemColourHexadecimal>
+	<EmblemColourHexadecimal>#EDEDED</EmblemColourHexadecimal>
   </FlagEntity>
   <FlagEntity>
     <Id>argonia_flag</Id>

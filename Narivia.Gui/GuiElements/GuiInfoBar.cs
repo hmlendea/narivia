@@ -237,15 +237,6 @@ namespace Narivia.Gui.GuiElements
 
             militaryManager.GetUnits().ToList().ForEach(u => troops.Add(u.Name, militaryManager.GetArmy(factionId, u.Id).Size));
 
-            var a = StringUtils.NumberToHumanReadable(100);
-            var b = StringUtils.NumberToHumanReadable(1234);
-            var c = StringUtils.NumberToHumanReadable(12345);
-            var d = StringUtils.NumberToHumanReadable(123456);
-            var e = StringUtils.NumberToHumanReadable(1234567);
-            var f = StringUtils.NumberToHumanReadable(12345678);
-            var g = StringUtils.NumberToHumanReadable(123456789);
-            var h = StringUtils.NumberToHumanReadable(1234567890);
-
             int provincesCount = worldManager.GetFactionProvinces(factionId).Count();
             int holdingsCount = holdingManager.GetFactionHoldings(factionId).Count();
             int troopsCount = 0;
