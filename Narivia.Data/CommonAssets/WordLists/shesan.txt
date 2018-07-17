@@ -1,6 +1,8 @@
 Anshon
 Aradesh
+Ashpareba
 Bagladesh
+Bahalada
 Blugidesh
 Bosher
 Buglidesh
@@ -36,6 +38,7 @@ Pablidesh
 Rabladesh
 Ragnadesh
 Sfeshna
+Shadagara
 Sheba
 Shesda
 Shida
@@ -45,4 +48,3 @@ Shishga
 Sopadesh
 Toridesh
 Ugridesh
-

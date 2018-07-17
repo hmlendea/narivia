@@ -1,3 +1,4 @@
+
 Aalholt
 Asdel
 Band
@@ -20,13 +21,17 @@ Cholbog
 Cholden
 Cholm
 Cropat
+Dargarth
 Deng
 Dholden
 Dholm
 Dhorradh
+Drunghul
 Dulgau
 Endel
 Fald
+Fogrok
+Galgoth
 Gand
 Ghadgirdel
 Gholden
@@ -39,6 +44,7 @@ Grugen
 Gucragh
 Haugel
 Irarden
+Kagrad
 Khoddon
 Kholm
 Kholt
@@ -70,4 +76,3 @@ Zarmukh
 Zraddon
 Zraddu
 Zradh
-
