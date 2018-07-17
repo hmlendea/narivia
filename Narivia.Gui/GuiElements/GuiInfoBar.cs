@@ -6,6 +6,7 @@ using NuciXNA.Input;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers;
+using Narivia.Gui.Helpers;
 
 namespace Narivia.Gui.GuiElements
 {
@@ -236,10 +237,24 @@ namespace Narivia.Gui.GuiElements
 
             militaryManager.GetUnits().ToList().ForEach(u => troops.Add(u.Name, militaryManager.GetArmy(factionId, u.Id).Size));
 
-            provincesText.Text = worldManager.GetFactionProvinces(factionId).Count().ToString();
-            holdingsText.Text = holdingManager.GetFactionHoldings(factionId).Count().ToString();
-            troopsText.Text = "0";
-            wealthText.Text = worldManager.GetFaction(factionId).Wealth.ToString();
+            var a = StringUtils.NumberToHumanReadable(100);
+            var b = StringUtils.NumberToHumanReadable(1234);
+            var c = StringUtils.NumberToHumanReadable(12345);
+            var d = StringUtils.NumberToHumanReadable(123456);
+            var e = StringUtils.NumberToHumanReadable(1234567);
+            var f = StringUtils.NumberToHumanReadable(12345678);
+            var g = StringUtils.NumberToHumanReadable(123456789);
+            var h = StringUtils.NumberToHumanReadable(1234567890);
+
+            int provincesCount = worldManager.GetFactionProvinces(factionId).Count();
+            int holdingsCount = holdingManager.GetFactionHoldings(factionId).Count();
+            int troopsCount = 0;
+            int wealthCount = worldManager.GetFaction(factionId).Wealth;
+
+            provincesText.Text = StringUtils.NumberToHumanReadable(provincesCount);
+            holdingsText.Text = StringUtils.NumberToHumanReadable(holdingsCount);
+            troopsText.Text = StringUtils.NumberToHumanReadable(troopsCount);
+            wealthText.Text = StringUtils.NumberToHumanReadable(wealthCount);
             turnText.Text = $"Turn: {gameManager.Turn}";
 
             provincesTooltip.Location = new Point2D(provincesIcon.Location.X, provincesIcon.ClientRectangle.Bottom);
