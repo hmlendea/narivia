@@ -53,9 +53,6 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public override void LoadContent()
         {
-            worldId = "tamriel4e201";
-            playerFactionId = "f_cyrodiil";
-
             if (ScreenArgs != null && ScreenArgs.Length >= 2)
             {
                 worldId = ScreenArgs[0];

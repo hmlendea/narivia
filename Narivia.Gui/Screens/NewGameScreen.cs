@@ -32,11 +32,17 @@ namespace Narivia.Gui.Screens
 
         List<World> worlds;
 
+        string selectedWorldId;
+        string selectedFactionId;
+
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
+            selectedWorldId = "narivia";
+            selectedFactionId = "f_alpalet";
+
             startLink = new GuiMenuLink
             {
                 Id = "start",
@@ -94,10 +100,16 @@ namespace Narivia.Gui.Screens
             base.UnloadContent();
         }
 
+        protected override void SetChildrenProperties()
+        {
+            startLink.LinkArgs = $"{selectedWorldId} {selectedFactionId}";
+
+            base.SetChildrenProperties();
+        }
+
         void OnWorldSelectorSelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedWorldId = worlds[worldSelector.SelectedIndex].Id;
-            string selectedFactionId = "f_alpalet"; // TODO: Remove hardcode
+            selectedWorldId = worlds[worldSelector.SelectedIndex].Id;
 
             worldManager = new WorldManager(selectedWorldId);
             diplomacyManager = new DiplomacyManager(worldManager);
@@ -128,13 +140,15 @@ namespace Narivia.Gui.Screens
             {
                 factionSelector.SelectedIndex = factionSelector.Values.IndexOf("Alpalet");
             }
+
+            // TODO: Remove this
+            OnFactionSelectorSelectedIndexChanged(this, null);
         }
 
         void OnFactionSelectorSelectedIndexChanged(object sender, EventArgs e)
         {
-            string factionId = worldManager.GetFactions().ToList()[factionSelector.SelectedIndex].Id;
-
-            startLink.LinkArgs = $"narivia {factionId}";
+            // TODO: Optimise this
+            selectedFactionId = worldManager.GetFactions().FirstOrDefault(x => x.Name == factionSelector.SelectedValue).Id;
         }
     }
 }

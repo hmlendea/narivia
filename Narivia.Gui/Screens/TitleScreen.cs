@@ -19,7 +19,6 @@ namespace Narivia.Gui.Screens
         /// </summary>
         public override void LoadContent()
         {
-            System.Console.WriteLine("titlescreen");
             newGameLink = new GuiMenuLink
             {
                 Id = "newGame",
@@ -38,7 +37,7 @@ namespace Narivia.Gui.Screens
                 Text = "Exit",
                 ActionId = "Exit"
             };
-            
+
             Items.Add(newGameLink);
             Items.Add(settingsLink);
             Items.Add(extiAction);
