@@ -158,10 +158,11 @@ namespace Narivia.DataAccess.Repositories
                 tiles[x, y].ProvinceId = provinceColourIds[provinceArgb];
                 tiles[x, y].TerrainId = terrainColourIds[terrainArgb];
                 tiles[x, y].TerrainIds.Add(terrainColourIds[terrainArgb]);
-                tiles[x, y].HasRiver = riverColour == Colour.Blue;
+                tiles[x, y].HasRiver = riverColour.Equals(0, 0, 255);
+                
 
-                if (heightColour == Colour.Blue ||
-                    heightColour == Colour.Black)
+                if (heightColour.Equals(0, 0, 255) ||
+                    heightColour.Equals(0, 0, 0))
                 {
                     tiles[x, y].HasWater = true;
                     tiles[x, y].Altitude = 0;

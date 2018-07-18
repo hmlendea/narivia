@@ -35,6 +35,7 @@ namespace Narivia.Gui.GuiElements
         Camera camera;
         World world;
 
+        TextureSprite riverSprite;
         TextureSprite provinceHighlight;
         TextureSprite factionBorder;
         TextureSprite provinceBorder;
@@ -42,7 +43,8 @@ namespace Narivia.Gui.GuiElements
         Dictionary<string, Terrain> terrains;
         Dictionary<string, TextureSprite> terrainSprites;
 
-        TerrainSpriteSheetEffect terrainEffect;
+        RiverTilingEffect riverTilingEffect;
+        TerrainSpriteSheetEffect terrainTilingEffect;
         ProvinceBorderEffect provinceBorderEffect;
         FactionBorderEffect factionBorderEffect;
 
@@ -67,9 +69,18 @@ namespace Narivia.Gui.GuiElements
             terrains = worldManager.GetTerrains().ToDictionary(x => x.Id, x => x);
             terrainSprites = new Dictionary<string, TextureSprite>();
 
-            terrainEffect = new TerrainSpriteSheetEffect(worldManager);
+            riverTilingEffect = new RiverTilingEffect(worldManager);
+            terrainTilingEffect = new TerrainSpriteSheetEffect(worldManager);
             provinceBorderEffect = new ProvinceBorderEffect(worldManager);
             factionBorderEffect = new FactionBorderEffect(worldManager);
+
+            riverSprite = new TextureSprite
+            {
+                ContentFile = $"World/Terrain/water_river",
+                SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
+                SpriteSheetEffect = riverTilingEffect,
+                Active = true
+            };
 
             foreach (Terrain terrain in terrains.Values)
             {
@@ -79,7 +90,7 @@ namespace Narivia.Gui.GuiElements
                     SourceRectangle = new Rectangle2D(
                         GameDefines.MapTileSize, GameDefines.MapTileSize * 3,
                         GameDefines.MapTileSize, GameDefines.MapTileSize),
-                    SpriteSheetEffect = terrainEffect,
+                    SpriteSheetEffect = terrainTilingEffect,
                     Active = true
                 };
 
@@ -112,12 +123,13 @@ namespace Narivia.Gui.GuiElements
             };
 
             camera.LoadContent();
-
+            riverSprite.LoadContent();
             provinceHighlight.LoadContent();
             factionBorder.LoadContent();
             provinceBorder.LoadContent();
 
-            terrainEffect.Activate();
+            riverTilingEffect.Activate();
+            terrainTilingEffect.Activate();
             provinceBorderEffect.Activate();
             factionBorderEffect.Activate();
 
@@ -131,10 +143,16 @@ namespace Narivia.Gui.GuiElements
         {
             camera.UnloadContent();
 
+            riverSprite.UnloadContent();
             provinceHighlight.UnloadContent();
             factionBorder.UnloadContent();
             provinceBorder.UnloadContent();
             factionBorder.UnloadContent();
+
+            foreach (TextureSprite terrainSprite in terrainSprites.Values)
+            {
+                terrainSprite.UnloadContent();
+            }
 
             terrainSprites.Clear();
 
@@ -150,7 +168,7 @@ namespace Narivia.Gui.GuiElements
             camera.Size = Size;
 
             camera.Update(gameTime);
-
+            
             provinceHighlight.Update(gameTime);
             factionBorder.Update(gameTime);
             provinceBorder.Update(gameTime);
@@ -219,19 +237,32 @@ namespace Narivia.Gui.GuiElements
         void DrawTile(SpriteBatch spriteBatch, int x, int y)
         {
             WorldTile tile = world.Tiles[x, y];
+            Point2D location = new Point2D(x, y);
 
             // TODO: Don't do all this, and definetely don't do it here
-            terrainEffect.TileLocation = new Point2D(x, y);
+            terrainTilingEffect.TileLocation = location;
 
             foreach (string terrainId in tile.TerrainIds)
             {
                 Terrain terrain = terrains[terrainId]; // TODO: Optimise this. Don't call this every time
 
-                terrainEffect.TerrainId = terrain.Id;
-                terrainEffect.TilesWith = new List<string> { terrain.Id };
-                terrainEffect.Update(null);
+                terrainTilingEffect.TerrainId = terrain.Id;
+                terrainTilingEffect.TilesWith = new List<string> { terrain.Id };
+                terrainTilingEffect.Update(null);
 
                 DrawTerrainSprite(spriteBatch, x, y, terrain.Spritesheet, 1, 3);
+            }
+
+            if (tile.HasRiver || tile.HasWater)
+            {
+                riverTilingEffect.TileLocation = location;
+                riverTilingEffect.Update(null);
+
+                riverSprite.Location = new Point2D(
+                    x * GameDefines.MapTileSize - camera.Location.X,
+                    y * GameDefines.MapTileSize - camera.Location.Y);
+
+                riverSprite.Draw(spriteBatch);
             }
         }
 

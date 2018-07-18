@@ -81,6 +81,7 @@
     <Compile Include="GuiElements\GuiProvincePanel.cs" />
     <Compile Include="GuiElements\GuiHoldingCard.cs" />
     <Compile Include="GuiElements\GuiPanel.cs" />
+    <Compile Include="SpriteEffects\RiverTilingEffect.cs" />
     <Compile Include="SpriteEffects\TerrainSpriteSheetEffect.cs" />
     <Compile Include="SpriteEffects\ProvinceBorderEffect.cs" />
     <Compile Include="SpriteEffects\FactionBorderEffect.cs" />
