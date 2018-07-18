@@ -160,7 +160,6 @@ namespace Narivia.DataAccess.Repositories
                 tiles[x, y].TerrainIds.Add(terrainColourIds[terrainArgb]);
                 tiles[x, y].HasRiver = riverColour.Equals(0, 0, 255);
                 
-
                 if (heightColour.Equals(0, 0, 255) ||
                     heightColour.Equals(0, 0, 0))
                 {
@@ -171,6 +170,13 @@ namespace Narivia.DataAccess.Repositories
                 {
                     tiles[x, y].Altitude = (byte)((heightColour.R + heightColour.G + heightColour.B) / 3);
                 }
+
+                if (tiles[x, y].HasRiver && tiles[x, y].HasWater)
+                {
+                    // TODO: Dedicated exception type
+                    throw new Exception("A tile cannot have both a river and water at the same time!");
+                }
+
             }));
 
             // TODO: Optimise all this
