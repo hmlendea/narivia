@@ -181,8 +181,8 @@
     <FactionId>f_morrowind</FactionId>
   </ProvinceEntity>
   <ProvinceEntity>
-    <Id>p_taneth</Id>
-    <Name>Taneth</Name>
+    <Id>p_gilane</Id>
+    <Name>Gilane</Name>
     <Description>Province description goes here.</Description>
     <ColourHexadecimal>#8EBC4D</ColourHexadecimal>
     <Type>Province</Type>
@@ -613,8 +613,8 @@
     <FactionId>f_morrowind</FactionId>
   </ProvinceEntity>
   <ProvinceEntity>
-    <Id>p_taneth2</Id>
-    <Name>Taneth2</Name>
+    <Id>p_taneth</Id>
+    <Name>Taneth</Name>
     <Description>Province description goes here.</Description>
     <ColourHexadecimal>#DC4AA2</ColourHexadecimal>
     <Type>Province</Type>

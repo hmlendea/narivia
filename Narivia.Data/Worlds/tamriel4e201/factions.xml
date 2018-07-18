@@ -5,7 +5,7 @@
     <Name>The Sea</Name>
     <Type>Gaia</Type>
     <Description>The good old water!</Description>
-    <ColourHexadcimal>#00A1FF</ColourHexadcimal>
+    <ColourHexadecimal>#00A1FF</ColourHexadecimal>
     <FlagId>gaia_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>
@@ -14,7 +14,7 @@
     <Name>Skyrim</Name>
     <Type>Active</Type>
     <Description>Skyrim, the northernmost province of Tamriel, is a cold and mountainous region known as the Old Kingdom, Mereth, or the Fatherland. Many past battles have given it a ravaged appearance and many ruins. Though currently inhabited primarily by Nords, the Elves who they replaced had resided there since time immemorial. The sovereign, the High King of Skyrim, is chosen by the Moot, a convention of jarls. A jarl is a regional ruler chosen through heredity and, rarely, through right of arms. The High King typically rules until death, though acts of dishonor, particularly the appearance of cowardice, can lead to the recall and reconsideration of the Moot. Since the Pact of Chieftains was signed in 1E 420, the Moot does not give serious consideration to anyone but the High King's direct heir unless one is not available.</Description>
-    <ColourHexadcimal>#82A1C1</ColourHexadcimal>
+    <ColourHexadecimal>#4A7485</ColourHexadecimal>
     <FlagId>skyrim_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>
@@ -23,7 +23,7 @@
     <Name>Cyrodiil</Name>
     <Type>Active</Type>
     <Description>Cyrodiil, also known as the Imperial Province, is a province in the south-central region of Tamriel, and the home of a humanoid race known as Imperials. The center of their Empire and seat of governance, Cyrodiil is also known as "the Heartland". The capital of Cyrodiil, and of the whole empire, the Imperial City, is located on an island in the center of the province, which bears the location of White Gold Tower, possibly the most renowned monument of Tamriel. Despite some accounts describing Cyrodiil as a jungle, it has primarily a temperate climate. Some attribute the discrepancy to the apotheosis of Emperor Tiber Septim.</Description>
-    <ColourHexadcimal>#F0D84B</ColourHexadcimal>
+    <ColourHexadecimal>#8B0000</ColourHexadecimal>
     <FlagId>cyrodiil_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>
@@ -33,7 +33,7 @@
     <Type>Active</Type>
     <Description>
     </Description>
-    <ColourHexadcimal>#7C0B7C</ColourHexadcimal>
+    <ColourHexadecimal>#7C0B7C</ColourHexadecimal>
     <FlagId>morrowind_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>
@@ -43,7 +43,7 @@
     <Type>Active</Type>
     <Description>
     </Description>
-    <ColourHexadcimal>#D94000</ColourHexadcimal>
+    <ColourHexadecimal>#D94000</ColourHexadecimal>
     <FlagId>hammerfell_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>
@@ -53,7 +53,7 @@
     <Type>Active</Type>
     <Description>
     </Description>
-    <ColourHexadcimal>#00D9ff</ColourHexadcimal>
+    <ColourHexadecimal>#3A6E9F</ColourHexadecimal>
     <FlagId>high_rock_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>
@@ -63,7 +63,7 @@
     <Type>Active</Type>
     <Description>
     </Description>
-    <ColourHexadcimal>#18681C</ColourHexadcimal>
+    <ColourHexadecimal>#18681C</ColourHexadecimal>
     <FlagId>argonia_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>
@@ -73,7 +73,7 @@
     <Type>Active</Type>
     <Description>
     </Description>
-    <ColourHexadcimal>#CFD185</ColourHexadcimal>
+    <ColourHexadecimal>#CFD185</ColourHexadecimal>
     <FlagId>elsweyr_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>
@@ -83,7 +83,7 @@
     <Type>Active</Type>
     <Description>
     </Description>
-    <ColourHexadcimal>#AC7B1B</ColourHexadcimal>
+    <ColourHexadecimal>#AC7B1B</ColourHexadecimal>
     <FlagId>valenwood_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>
@@ -93,7 +93,7 @@
     <Type>Active</Type>
     <Description>
     </Description>
-    <ColourHexadcimal>#93D9B6</ColourHexadcimal>
+    <ColourHexadecimal>#F0C94B</ColourHexadecimal>
     <FlagId>alinor_flag</FlagId>
     <CultureId>default</CultureId>
   </FactionEntity>

@@ -1,8 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfBorderEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <BorderEntity>
+    <Id>anvil-gilane</Id>
+    <Province1Id>p_anvil</Province1Id>
+    <Province2Id>p_gilane</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>anvil-woodheart</Id>
+    <Province1Id>p_anvil</Province1Id>
+    <Province2Id>p_woodheart</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>blacklight-raven_rock</Id>
+    <Province1Id>p_blacklight</Province1Id>
+    <Province2Id>p_raven_rock</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>cloudrest-firsthold</Id>
+    <Province1Id>p_cloudrest</Province1Id>
+    <Province2Id>p_firsthold</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>cloudrest-gilane</Id>
+    <Province1Id>p_cloudrest</Province1Id>
+    <Province2Id>p_gilane</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>cloudrest-skywatch</Id>
+    <Province1Id>p_cloudrest</Province1Id>
+    <Province2Id>p_skywatch</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>dusk-skywatch</Id>
+    <Province1Id>p_dusk</Province1Id>
+    <Province2Id>p_skywatch</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
     <Id>firsthold-anvil</Id>
     <Province1Id>p_firsthold</Province1Id>
     <Province2Id>p_anvil</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>firsthold-gilane</Id>
+    <Province1Id>p_firsthold</Province1Id>
+    <Province2Id>p_gilane</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>lillandril-firsthold</Id>
+    <Province1Id>p_lillandril</Province1Id>
+    <Province2Id>p_firsthold</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>sadrith_mora-port_telvannis</Id>
+    <Province1Id>p_sadrith_mora</Province1Id>
+    <Province2Id>p_port_telvannis</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>senchal-soulrest</Id>
+    <Province1Id>p_senchal</Province1Id>
+    <Province2Id>p_soulrest</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>shimmerene-skywatch</Id>
+    <Province1Id>p_shimmerene</Province1Id>
+    <Province2Id>p_skywatch</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>skywatch-woodheart</Id>
+    <Province1Id>p_skywatch</Province1Id>
+    <Province2Id>p_woodheart</Province2Id>
+  </BorderEntity>
+  <BorderEntity>
+    <Id>winterhold-raven_rock</Id>
+    <Province1Id>p_winterhold</Province1Id>
+    <Province2Id>p_raven_rock</Province2Id>
   </BorderEntity>
 </ArrayOfBorderEntity>
