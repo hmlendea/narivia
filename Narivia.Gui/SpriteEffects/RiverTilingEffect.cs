@@ -30,10 +30,14 @@ namespace Narivia.Gui.SpriteEffects
             bool isRiver = world.Tiles[TileLocation.X, TileLocation.Y].HasRiver;
             bool isWater = world.Tiles[TileLocation.X, TileLocation.Y].HasWater;
 
-            bool tilesN = world.Tiles[TileLocation.X, TileLocation.Y - 1].HasRiver;
-            bool tilesW = world.Tiles[TileLocation.X - 1, TileLocation.Y].HasRiver;
-            bool tilesS = world.Tiles[TileLocation.X, TileLocation.Y + 1].HasRiver;
-            bool tilesE = world.Tiles[TileLocation.X + 1, TileLocation.Y].HasRiver;
+            bool riverN = world.Tiles[TileLocation.X, TileLocation.Y - 1].HasRiver;
+            bool riverW = world.Tiles[TileLocation.X - 1, TileLocation.Y].HasRiver;
+            bool riverS = world.Tiles[TileLocation.X, TileLocation.Y + 1].HasRiver;
+            bool riverE = world.Tiles[TileLocation.X + 1, TileLocation.Y].HasRiver;
+            bool riverNW = world.Tiles[TileLocation.X - 1, TileLocation.Y - 1].HasRiver;
+            bool riverNE = world.Tiles[TileLocation.X + 1, TileLocation.Y - 1].HasRiver;
+            bool riverSW = world.Tiles[TileLocation.X - 1, TileLocation.Y + 1].HasRiver;
+            bool riverSE = world.Tiles[TileLocation.X + 1, TileLocation.Y + 1].HasRiver;
 
             bool waterN = world.Tiles[TileLocation.X, TileLocation.Y - 1].HasWater;
             bool waterW = world.Tiles[TileLocation.X - 1, TileLocation.Y].HasWater;
@@ -46,85 +50,123 @@ namespace Narivia.Gui.SpriteEffects
 
             if (!isRiver && isWater)
             {
-                if (tilesN)
+                if (riverN && waterW && waterE)
                 {
                     CurrentFrame = new Point2D(3, 0);
                 }
-                else if (tilesW)
+                else if (riverN && !waterW && waterE && !(riverNW && waterNE))
+                {
+                    CurrentFrame = new Point2D(3, 2);
+                }
+                else if (riverN && waterW && !waterE && !(riverNE && waterNW))
+                {
+                    CurrentFrame = new Point2D(4, 2);
+                }
+                else if (riverW && waterN && waterS)
                 {
                     CurrentFrame = new Point2D(4, 0);
                 }
-                else if (tilesS)
+                else if (riverS && waterW && waterE)
                 {
                     CurrentFrame = new Point2D(3, 1);
                 }
-                else if (tilesE)
+                else if (riverS && !waterW && waterE)
+                {
+                    CurrentFrame = new Point2D(3, 3);
+                }
+                else if (riverS && waterW && !waterE)
+                {
+                    CurrentFrame = new Point2D(4, 3);
+                }
+                else if (riverE && waterN && waterS)
                 {
                     CurrentFrame = new Point2D(4, 1);
                 }
+                else if (riverW && waterS && waterE && !(riverNW && waterSW))
+                {
+                    CurrentFrame = new Point2D(3, 4);
+                }
+                else if (riverE && waterW && waterS && !riverNE)
+                {
+                    CurrentFrame = new Point2D(4, 4);
+                }
+                else if (riverW && waterN && waterE)
+                {
+                    CurrentFrame = new Point2D(3, 5);
+                }
+                else if (riverE && waterN && waterW && !(riverSE && waterNE))
+                {
+                    CurrentFrame = new Point2D(4, 5);
+                }
             }
-            else if (tilesN && tilesW && tilesS && tilesE) // +
+            else if (riverN && riverW && riverS && riverE) // +
             {
                 CurrentFrame = new Point2D(0, 2);
             }
-            else if (tilesN && tilesW && !tilesS && tilesE) // _|_
+            else if (riverN && riverW && !riverS && riverE) // _|_
             {
                 CurrentFrame = new Point2D(0, 3);
             }
-            else if (tilesN && !tilesW && tilesS && tilesE) // |-
+            else if (riverN && !riverW && riverS && riverE) // |-
             {
                 CurrentFrame = new Point2D(1, 3);
             }
-            else if (tilesN && tilesW && tilesS && !tilesE) // -|
+            else if (riverN && riverW && riverS && !riverE) // -|
             {
                 CurrentFrame = new Point2D(0, 4);
             }
-            else if (!tilesN && tilesW && tilesS && tilesE) // T
+            else if (!riverN && riverW && riverS && riverE) // T
             {
                 CurrentFrame = new Point2D(1, 4);
             }
-            else if (!tilesN && !tilesW && tilesS && tilesE) // /
+            else if (riverN && !riverW && riverS && !riverE ||
+                     ((waterN || waterS) && !riverW && !riverE)) // ||
+            {
+                CurrentFrame = new Point2D(2, 4);
+            }
+            else if (!riverN && riverW && !riverS && riverE ||
+                     ((waterW || waterE) && !riverN && !riverS)) // ||
+            {
+                CurrentFrame = new Point2D(2, 3);
+            }
+            else if ((!riverN && !riverW && riverS && riverE) || // /
+                     ((riverE && waterS) || (riverS && waterE)))
             {
                 CurrentFrame = new Point2D(1, 0);
             }
-            else if (!tilesN && tilesW && tilesS && !tilesE) // 7
+            else if ((!riverN && riverW && riverS && !riverE) || // 7
+                     ((riverW && waterS) || (riverS && waterW)))
             {
                 CurrentFrame = new Point2D(2, 0);
             }
-            else if (tilesN && !tilesW && !tilesS && tilesE) // |_
+            else if ((riverN && !riverW && !riverS && riverE) || // |_
+                     ((riverE && waterN) || (riverN && waterE)))
             {
                 CurrentFrame = new Point2D(1, 1);
             }
-            else if (tilesN && tilesW && !tilesS && !tilesE) // _|
+            else if ((riverN && riverW && !riverS && !riverE) || // _|
+                     ((riverW && waterN) || (riverN && waterW)))
             {
                 CurrentFrame = new Point2D(2, 1);
             }
-            else if (!tilesW && !tilesE)
+            else if (!riverW && !riverE && !waterW && !waterE)
             {
-                if (!tilesN && tilesS && !waterN) // ^
+                if (!riverN && riverS && !waterN) // ^
                 {
                     CurrentFrame = new Point2D(0, 0);
                 }
-                else if ((tilesN || waterN) && (tilesS || waterS)) // ||
-                {
-                    CurrentFrame = new Point2D(2, 4);
-                }
-                else if (tilesN && !tilesS && !waterS) // V
+                else if (riverN && !riverS && !waterS) // V
                 {
                     CurrentFrame = new Point2D(0, 1);
                 }
             }
-            else if (!tilesN && !tilesS)
+            else if (!riverN && !riverS && !waterN && !waterS)
             { 
-                if (!tilesW && tilesE && !waterW) // <
+                if (!riverW && riverE && !waterW) // <
                 {
                     CurrentFrame = new Point2D(1, 2);
                 }
-                else if ((tilesW || waterW) && (tilesE || waterE)) // =
-                {
-                    CurrentFrame = new Point2D(2, 3);
-                }
-                else if (tilesW && !tilesE && !waterE) // >
+                else if (riverW && !riverE && !waterE) // >
                 {
                     CurrentFrame = new Point2D(2, 2);
                 }
