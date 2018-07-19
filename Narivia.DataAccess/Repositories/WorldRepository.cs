@@ -3,14 +3,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 using NuciXNA.DataAccess.IO;
 using NuciXNA.DataAccess.Repositories;
 using NuciXNA.Primitives;
 
-using Narivia.Common.Extensions;
 using Narivia.DataAccess.DataObjects;
 
 namespace Narivia.DataAccess.Repositories
@@ -116,8 +114,8 @@ namespace Narivia.DataAccess.Repositories
 
         WorldTileEntity[,] LoadWorldTiles(string worldId)
         {
-            ConcurrentDictionary<int, string> provinceColourIds = new ConcurrentDictionary<int, string>();
-            ConcurrentDictionary<int, string> terrainColourIds = new ConcurrentDictionary<int, string>();
+            Dictionary<Colour, string> provinceColourIds = new Dictionary<Colour, string>();
+            Dictionary<Colour, string> terrainColourIds = new Dictionary<Colour, string>();
 
             string provincesPath = Path.Combine(worldsDirectory, worldId, "provinces.xml");
             string terrainsPath = Path.Combine(worldsDirectory, worldId, "terrains.xml");
@@ -127,62 +125,82 @@ namespace Narivia.DataAccess.Repositories
 
             Dictionary<string, ProvinceEntity> provinces = provinceRepository.GetAll().ToDictionary(x => x.Id, x => x);
             Dictionary<string, TerrainEntity> terrains = terrainRepository.GetAll().ToDictionary(x => x.Id, x => x);
+            
+            foreach (ProvinceEntity province in provinces.Values)
+            {
+                provinceColourIds.Add(Colour.FromHexadecimal(province.ColourHexadecimal), province.Id);
+            }
 
-            Parallel.ForEach(provinces.Values, r => provinceColourIds.AddOrUpdate(Colour.FromHexadecimal(r.ColourHexadecimal).ToArgb(), r.Id));
-            Parallel.ForEach(terrains.Values, t => terrainColourIds.AddOrUpdate(Colour.FromHexadecimal(t.ColourHexadecimal).ToArgb(), t.Id));
+            foreach (TerrainEntity terrain in terrains.Values)
+            {
+                terrainColourIds.Add(Colour.FromHexadecimal(terrain.ColourHexadecimal), terrain.Id);
+            }
 
             BitmapFile heightsBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
             BitmapFile provinceBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
             BitmapFile riversBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_rivers.png"));
             BitmapFile terrainBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_terrains.png"));
 
-            Point2D worldSize = new Point2D(
-                Math.Max(terrainBitmap.Size.Width, provinceBitmap.Size.Width),
-                Math.Max(terrainBitmap.Size.Height, provinceBitmap.Size.Height));
+            Size2D worldSize = terrainBitmap.Size;
 
-            WorldTileEntity[,] tiles = new WorldTileEntity[provinceBitmap.Size.Width, provinceBitmap.Size.Height];
-
-            Parallel.For(0, worldSize.Y, y => Parallel.For(0, worldSize.X, x => tiles[x, y] = new WorldTileEntity()));
-
+            if (worldSize.Width != heightsBitmap.Size.Width ||
+                worldSize.Width != provinceBitmap.Size.Width ||
+                worldSize.Width != riversBitmap.Size.Width ||
+                worldSize.Width != terrainBitmap.Size.Width ||
+                worldSize.Height != heightsBitmap.Size.Height ||
+                worldSize.Height != provinceBitmap.Size.Height ||
+                worldSize.Height != riversBitmap.Size.Height ||
+                worldSize.Height != terrainBitmap.Size.Height)
+            {
+                // TODO: Dedicated exception type
+                throw new Exception("World bitmaps sizes do not match!");
+            }
+            
+            heightsBitmap.LockBits();
             terrainBitmap.LockBits();
             provinceBitmap.LockBits();
             riversBitmap.LockBits();
+            
+            WorldTileEntity[,] tiles = new WorldTileEntity[provinceBitmap.Size.Width, provinceBitmap.Size.Height];
 
-            Parallel.For(0, worldSize.Y, y => Parallel.For(0, worldSize.X, x =>
+            DateTime start1 = DateTime.Now;
+            for (int y = 0; y < worldSize.Height; y++)
             {
-                Colour heightColour = heightsBitmap.GetPixel(x, y);
-                Colour riverColour = riversBitmap.GetPixel(x, y);
-                int provinceArgb = provinceBitmap.GetPixel(x, y).ToArgb();
-                int terrainArgb = terrainBitmap.GetPixel(x, y).ToArgb();
-
-                tiles[x, y].ProvinceId = provinceColourIds[provinceArgb];
-                tiles[x, y].TerrainId = terrainColourIds[terrainArgb];
-                tiles[x, y].TerrainIds.Add(terrainColourIds[terrainArgb]);
-                tiles[x, y].HasRiver = riverColour.Equals(0, 0, 255);
-                
-                if (heightColour.Equals(0, 0, 255) ||
-                    heightColour.Equals(0, 0, 0))
+                for (int x = 0; x < worldSize.Width; x++)
                 {
-                    tiles[x, y].HasWater = true;
-                    tiles[x, y].Altitude = 0;
-                }
-                else
-                {
-                    tiles[x, y].Altitude = (byte)((heightColour.R + heightColour.G + heightColour.B) / 3);
-                }
+                    Colour heightColour = heightsBitmap.GetPixel(x, y);
+                    Colour riverColour = riversBitmap.GetPixel(x, y);
+                    Colour provinceColour = provinceBitmap.GetPixel(x, y);
+                    Colour terrainColour = terrainBitmap.GetPixel(x, y);
 
-                if (tiles[x, y].HasRiver && tiles[x, y].HasWater)
-                {
-                    // TODO: Dedicated exception type
-                    throw new Exception("A tile cannot have both a river and water at the same time!");
-                }
+                    tiles[x, y] = new WorldTileEntity();
+                    tiles[x, y].ProvinceId = provinceColourIds[provinceColour];
+                    tiles[x, y].TerrainId = terrainColourIds[terrainColour];
+                    tiles[x, y].TerrainIds.Add(terrainColourIds[terrainColour]);
+                    tiles[x, y].HasRiver = riverColour.Equals(0, 0, 255);
 
-            }));
+                    if (heightColour.B == 255 || heightColour.B == 0)
+                    {
+                        tiles[x, y].HasWater = true;
+                        tiles[x, y].Altitude = 0;
+                    }
+                    else
+                    {
+                        tiles[x, y].Altitude = (byte)((heightColour.R + heightColour.G + heightColour.B) / 3);
+                    }
+
+                    if (tiles[x, y].HasRiver && tiles[x, y].HasWater)
+                    {
+                        // TODO: Dedicated exception type
+                        throw new Exception("A tile cannot have both a river and water at the same time!");
+                    }
+                }
+            }
 
             // TODO: Optimise all this
-            for (int y = 0; y < worldSize.Y; y++)
+            for (int y = 0; y < worldSize.Height; y++)
             {
-                for (int x = 0; x < worldSize.X; x++)
+                for (int x = 0; x < worldSize.Width; x++)
                 {
                     TerrainEntity terrain = terrains[tiles[x, y].TerrainId];
 
@@ -207,8 +225,8 @@ namespace Narivia.DataAccess.Repositories
                             int destX = dx + x;
                             int destY = dy + y;
 
-                            if (destX >= 0 && destX < worldSize.X &&
-                                destY >= 0 && destY < worldSize.Y &&
+                            if (destX >= 0 && destX < worldSize.Width &&
+                                destY >= 0 && destY < worldSize.Height &&
                                 !tiles[destX, destY].TerrainIds.Contains(terrain.Id))
                             {
                                 tiles[destX, destY].TerrainIds.Add(terrain.Id);
@@ -219,7 +237,6 @@ namespace Narivia.DataAccess.Repositories
                 }
             }
 
-            heightsBitmap.Dispose();
             provinceBitmap.Dispose();
             riversBitmap.Dispose();
             terrainBitmap.Dispose();
