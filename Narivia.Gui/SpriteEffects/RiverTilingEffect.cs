@@ -99,25 +99,25 @@ namespace Narivia.Gui.SpriteEffects
                     CurrentFrame = new Point2D(4, 5);
                 }
             }
-            else if (riverN && riverW && riverS && riverE) // +
+            else if (riverN && riverW && riverS && riverE)
             {
-                CurrentFrame = new Point2D(0, 2);
+                CurrentFrame = new Point2D(0, 2); // +
             }
-            else if (riverN && riverW && !riverS && riverE) // _|_
+            else if (riverN && riverW && !riverS && riverE)
             {
-                CurrentFrame = new Point2D(0, 3);
+                CurrentFrame = new Point2D(0, 3); // _|_
             }
-            else if (riverN && !riverW && riverS && riverE) // |-
+            else if (riverN && riverW && riverS && !riverE)
             {
-                CurrentFrame = new Point2D(1, 3);
+                CurrentFrame = new Point2D(1, 3); // -|
             }
-            else if (riverN && riverW && riverS && !riverE) // -|
+            else if (!riverN && riverW && riverS && riverE)
             {
-                CurrentFrame = new Point2D(0, 4);
+                CurrentFrame = new Point2D(0, 4); // T
             }
-            else if (!riverN && riverW && riverS && riverE) // T
+            else if (riverN && !riverW && riverS && riverE)
             {
-                CurrentFrame = new Point2D(1, 4);
+                CurrentFrame = new Point2D(1, 4); // |-
             }
             else if (riverN && !riverW && riverS && !riverE ||
                      ((waterN || waterS) && !riverW && !riverE)) // ||

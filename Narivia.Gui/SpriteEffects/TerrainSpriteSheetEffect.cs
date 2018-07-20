@@ -60,40 +60,69 @@ namespace Narivia.Gui.SpriteEffects
             {
                 CurrentFrame = new Point2D(7, 3); // +
             }
-            else if (tilesN && tilesW && tilesS && tilesE)
-            {
-                if (!tilesNW)
-                {
-                    CurrentFrame = new Point2D(2, 1); // _|
-                }
-                else if (!tilesNE)
-                {
-                    CurrentFrame = new Point2D(1, 1); // |_
-                }
-                else if (!tilesSW)
-                {
-                    CurrentFrame = new Point2D(2, 0); // /
-                }
-                else if (!tilesSE)
-                {
-                    CurrentFrame = new Point2D(1, 0); // 7
-                }
-            }
             else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && !tilesNE && tilesSW && tilesSE)
             {
-                CurrentFrame = new Point2D(3, 0); // _|_
+                CurrentFrame = new Point2D(3, 0);
             }
             else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && tilesNE && !tilesSW && tilesSE)
             {
-                CurrentFrame = new Point2D(4, 0); // -|
+                CurrentFrame = new Point2D(4, 0);
             }
             else if (tilesN && tilesW && tilesS && tilesE && tilesNW && tilesNE && !tilesSW && !tilesSE)
             {
-                CurrentFrame = new Point2D(3, 1); // T
+                CurrentFrame = new Point2D(3, 1);
             }
             else if (tilesN && tilesW && tilesS && tilesE && tilesNW && !tilesNE && tilesSW && !tilesSE)
             {
-                CurrentFrame = new Point2D(4, 1); // |-
+                CurrentFrame = new Point2D(4, 1);
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && !tilesNE && !tilesSW && tilesSE)
+            {
+                CurrentFrame = new Point2D(5, 0);
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && !tilesNE && !tilesSW && tilesSE)
+            {
+                CurrentFrame = new Point2D(6, 0);
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && tilesNE && !tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(5, 1);
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && tilesNW && !tilesNE && !tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(6, 1);
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && !tilesNE && tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(7, 0);
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && tilesNE && !tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(8, 0);
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && tilesNW && !tilesNE && !tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(7, 1);
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && tilesNW && !tilesNE && !tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(8, 1);
+            }
+            else if (tilesN && tilesW && !tilesS && tilesE && !tilesNW && !tilesNE)
+            {
+                CurrentFrame = new Point2D(8, 2); // _|_
+            }
+            else if (tilesN && tilesW && tilesS && !tilesE && !tilesNW && !tilesSW)
+            {
+                CurrentFrame = new Point2D(8, 3); // -|
+            }
+            else if (!tilesN && tilesW && tilesS && tilesE && !tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(8, 4); // T
+            }
+            else if (tilesN && !tilesW && tilesS && tilesE && !tilesNE && !tilesSE)
+            {
+                CurrentFrame = new Point2D(8, 5); // |-
             }
             else if (tilesN && !tilesW && tilesS && tilesE && !tilesNE && tilesSE)
             {
@@ -126,6 +155,22 @@ namespace Narivia.Gui.SpriteEffects
             else if (tilesN && tilesW && !tilesS && tilesE && tilesNW && !tilesNE)
             {
                 CurrentFrame = new Point2D(4, 5);
+            }
+            else if (!tilesN && !tilesW && tilesS && tilesE && !tilesNW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(5, 2);
+            }
+            else if (!tilesN && tilesW && tilesS && !tilesE && !tilesNE && !tilesSW)
+            {
+                CurrentFrame = new Point2D(6, 2);
+            }
+            else if (tilesN && !tilesW && !tilesS && tilesE && !tilesNE && !tilesSW)
+            {
+                CurrentFrame = new Point2D(5, 3);
+            }
+            else if (tilesN && tilesW && !tilesS && !tilesE && !tilesNW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(6, 3);
             }
             else if (!tilesN && !tilesW && !tilesS && !tilesE)
             {
@@ -186,6 +231,25 @@ namespace Narivia.Gui.SpriteEffects
             else if (tilesN && tilesW && tilesS && !tilesE) // RightCorner
             {
                 CurrentFrame = new Point2D(2, 3);
+            }
+            else if (tilesN && tilesW && tilesS && tilesE)
+            {
+                if (!tilesNW)
+                {
+                    CurrentFrame = new Point2D(2, 1); // _|
+                }
+                else if (!tilesNE)
+                {
+                    CurrentFrame = new Point2D(1, 1); // |_
+                }
+                else if (!tilesSW)
+                {
+                    CurrentFrame = new Point2D(2, 0); // /
+                }
+                else if (!tilesSE)
+                {
+                    CurrentFrame = new Point2D(1, 0); // 7
+                }
             }
         }
     }
