@@ -70,7 +70,7 @@ namespace Narivia.Gui.SpriteEffects
                 {
                     CurrentFrame = new Point2D(3, 1);
                 }
-                else if (riverS && !waterW && waterE)
+                else if (riverS && !waterW && waterE && !(riverSW && waterSE))
                 {
                     CurrentFrame = new Point2D(3, 3);
                 }
@@ -78,7 +78,7 @@ namespace Narivia.Gui.SpriteEffects
                 {
                     CurrentFrame = new Point2D(4, 3);
                 }
-                else if (riverE && waterN && waterS && !(riverNE && waterSE))
+                else if (riverE && waterN && waterS && !riverNE)
                 {
                     CurrentFrame = new Point2D(4, 1);
                 }
@@ -86,7 +86,7 @@ namespace Narivia.Gui.SpriteEffects
                 {
                     CurrentFrame = new Point2D(3, 4);
                 }
-                else if (riverE && waterW && waterS && !(riverNE && waterSE))
+                else if (riverE && waterW && waterS && !(riverNE && waterSE || waterN))
                 {
                     CurrentFrame = new Point2D(4, 4);
                 }
@@ -94,7 +94,7 @@ namespace Narivia.Gui.SpriteEffects
                 {
                     CurrentFrame = new Point2D(3, 5);
                 }
-                else if (riverE && waterN && waterW && !(riverSE && waterNE))
+                else if (riverE && waterN && waterW && !(riverSE && waterNE || waterS))
                 {
                     CurrentFrame = new Point2D(4, 5);
                 }
