@@ -5,7 +5,7 @@
         /// <summary>
         /// The map tile size.
         /// </summary>
-        public const int MapTileSize = 16;
+        public const int MapTileSize = 32;
 
         /// <summary>
         /// The GUI tile size.

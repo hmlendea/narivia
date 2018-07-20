@@ -76,7 +76,7 @@ namespace Narivia.Gui.GuiElements
 
             riverSprite = new TextureSprite
             {
-                ContentFile = $"World/Terrain/water_river",
+                ContentFile = $"World/Terrain/{GameDefines.MapTileSize}/water_river",
                 SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
                 SpriteSheetEffect = riverTilingEffect,
                 Active = true
@@ -86,7 +86,7 @@ namespace Narivia.Gui.GuiElements
             {
                 TextureSprite terrainSprite = new TextureSprite
                 {
-                    ContentFile = $"World/Terrain/{terrain.Spritesheet}",
+                    ContentFile = $"World/Terrain/{GameDefines.MapTileSize}/{terrain.Spritesheet}",
                     SourceRectangle = new Rectangle2D(
                         GameDefines.MapTileSize, GameDefines.MapTileSize * 3,
                         GameDefines.MapTileSize, GameDefines.MapTileSize),
@@ -100,14 +100,14 @@ namespace Narivia.Gui.GuiElements
 
             provinceHighlight = new TextureSprite
             {
-                ContentFile = "Interface/Worldmap/highlight",
+                ContentFile = $"Interface/Worldmap/{GameDefines.MapTileSize}/highlight",
                 SourceRectangle = new Rectangle2D(0, 0, GameDefines.MapTileSize, GameDefines.MapTileSize),
                 Tint = Colour.White
             };
 
             provinceBorder = new TextureSprite
             {
-                ContentFile = "Interface/Worldmap/province-border",
+                ContentFile = $"Interface/Worldmap/{GameDefines.MapTileSize}/province-border",
                 SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
                 Tint = Colour.Black,
                 Opacity = 0.25f,
@@ -116,7 +116,7 @@ namespace Narivia.Gui.GuiElements
             };
             factionBorder = new TextureSprite
             {
-                ContentFile = "Interface/Worldmap/faction-border",
+                ContentFile = $"Interface/Worldmap/{GameDefines.MapTileSize}/faction-border",
                 SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
                 SpriteSheetEffect = factionBorderEffect,
                 Active = true

@@ -52,30 +52,108 @@ namespace Narivia.Gui.SpriteEffects
             bool tilesSW = TilesWith.Intersect(idSW).Any();
             bool tilesSE = TilesWith.Intersect(idSE).Any();
 
-            if (tilesN && tilesW && tilesS && tilesE) // Middle
+            if (tilesN && tilesW && tilesS && tilesE && tilesNW && tilesNE && tilesSW && tilesSE)
             {
-                CurrentFrame = new Point2D(1, 3);
-
+                CurrentFrame = new Point2D(1, 3); // Middle
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && !tilesNE && !tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(7, 3); // +
+            }
+            else if (tilesN && tilesW && tilesS && tilesE)
+            {
                 if (!tilesNW)
                 {
-                    CurrentFrame = new Point2D(2, 1);
+                    CurrentFrame = new Point2D(2, 1); // _|
                 }
                 else if (!tilesNE)
                 {
-                    CurrentFrame = new Point2D(1, 1);
+                    CurrentFrame = new Point2D(1, 1); // |_
                 }
                 else if (!tilesSW)
                 {
-                    CurrentFrame = new Point2D(2, 0);
+                    CurrentFrame = new Point2D(2, 0); // /
                 }
                 else if (!tilesSE)
                 {
-                    CurrentFrame = new Point2D(1, 0);
+                    CurrentFrame = new Point2D(1, 0); // 7
                 }
             }
-            else if (!tilesN && !tilesW && !tilesS && !tilesE) // Single
+            else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && !tilesNE && tilesSW && tilesSE)
             {
-                CurrentFrame = new Point2D(0, 0);
+                CurrentFrame = new Point2D(3, 0); // _|_
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && !tilesNW && tilesNE && !tilesSW && tilesSE)
+            {
+                CurrentFrame = new Point2D(4, 0); // -|
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && tilesNW && tilesNE && !tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(3, 1); // T
+            }
+            else if (tilesN && tilesW && tilesS && tilesE && tilesNW && !tilesNE && tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(4, 1); // |-
+            }
+            else if (tilesN && !tilesW && tilesS && tilesE && !tilesNE && tilesSE)
+            {
+                CurrentFrame = new Point2D(3, 2);
+            }
+            else if (tilesN && tilesW && tilesS && !tilesE && !tilesNW && tilesSW)
+            {
+                CurrentFrame = new Point2D(4, 2);
+            }
+            else if (tilesN && !tilesW && tilesS && tilesE && tilesNE && !tilesSE)
+            {
+                CurrentFrame = new Point2D(3, 3);
+            }
+            else if (tilesN && tilesW && tilesS && !tilesE && tilesNW && !tilesSW)
+            {
+                CurrentFrame = new Point2D(4, 3);
+            }
+            else if (!tilesN && tilesW && tilesS && tilesE && !tilesSW && tilesSE)
+            {
+                CurrentFrame = new Point2D(3, 4);
+            }
+            else if (!tilesN && tilesW && tilesS && tilesE && tilesSW && !tilesSE)
+            {
+                CurrentFrame = new Point2D(4, 4);
+            }
+            else if (tilesN && tilesW && !tilesS && tilesE && !tilesNW && tilesNE)
+            {
+                CurrentFrame = new Point2D(3, 5);
+            }
+            else if (tilesN && tilesW && !tilesS && tilesE && tilesNW && !tilesNE)
+            {
+                CurrentFrame = new Point2D(4, 5);
+            }
+            else if (!tilesN && !tilesW && !tilesS && !tilesE)
+            {
+                CurrentFrame = new Point2D(0, 0); // Single
+            }
+            else if (!tilesN && !tilesW && tilesS && !tilesE)
+            {
+                CurrentFrame = new Point2D(5, 4); // ^
+            }
+            else if (tilesN && !tilesW && !tilesS && !tilesE)
+            {
+                CurrentFrame = new Point2D(5, 5); // v
+            }
+            else if (!tilesN && !tilesW && !tilesS && tilesE)
+            {
+                CurrentFrame = new Point2D(6, 4); // <
+            }
+            else if (!tilesN && tilesW && !tilesS && !tilesE)
+            {
+                CurrentFrame = new Point2D(6, 5); // >
+            }
+            else if (tilesN && !tilesW && tilesS && !tilesE)
+            {
+                CurrentFrame = new Point2D(7, 4); // ||
+            }
+            else if (!tilesN && tilesW && !tilesS && tilesE)
+            {
+                CurrentFrame = new Point2D(7, 5); // =
             }
             else if (!tilesN && !tilesW && tilesS && tilesE) // TopLeftCorner
             {
