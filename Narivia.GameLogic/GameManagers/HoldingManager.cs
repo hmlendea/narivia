@@ -19,9 +19,9 @@ namespace Narivia.GameLogic.GameManagers
     public sealed class HoldingManager : IHoldingManager
     {
         readonly Random random;
+        readonly IWorldManager worldManager;
 
         string worldId;
-        IWorldManager worldManager;
         Dictionary<string, Holding> holdings;
 
         public HoldingManager(
@@ -66,7 +66,7 @@ namespace Narivia.GameLogic.GameManagers
         public IEnumerable<Holding> GetFactionHoldings(string factionId)
         => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
                                       worldManager.GetProvince(h.ProvinceId).FactionId == factionId);
-        
+
         /// <summary>
         /// Gets the holding.
         /// </summary>
@@ -101,7 +101,7 @@ namespace Narivia.GameLogic.GameManagers
         public void BuildHolding(string provinceId, HoldingType holdingType)
         {
             Province province = worldManager.GetProvince(provinceId);
-            
+
             if (ProvinceHasEmptyHoldingSlots(provinceId))
             {
                 AddHolding(provinceId, holdingType);
@@ -129,7 +129,7 @@ namespace Narivia.GameLogic.GameManagers
         {
             List<Faction> factions = worldManager.GetFactions().ToList();
             List<Province> provinces = worldManager.GetProvinces().ToList();
-            
+
             Faction faction = worldManager.GetFaction(factionId);
             Province capitalProvince = worldManager.GetFactionCapital(faction.Id);
 

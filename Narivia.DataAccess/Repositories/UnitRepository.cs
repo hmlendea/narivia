@@ -18,29 +18,29 @@ namespace Narivia.DataAccess.Repositories
         {
 
         }
-        
+
         /// <summary>
         /// Updates the specified unit.
         /// </summary>
-        /// <param name="unitEntity">Unit.</param>
-        public override void Update(UnitEntity unitEntity)
+        /// <param name="entity">Unit.</param>
+        public override void Update(UnitEntity entity)
         {
             LoadEntitiesIfNeeded();
 
-            UnitEntity unitEntityToUpdate = Get(unitEntity.Id);
+            UnitEntity unitEntityToUpdate = Get(entity.Id);
 
             if (unitEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(unitEntity.Id, nameof(BorderEntity));
+                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             }
 
-            unitEntityToUpdate.Name = unitEntity.Name;
-            unitEntityToUpdate.Description = unitEntity.Description;
-            unitEntityToUpdate.Type = unitEntity.Type;
-            unitEntityToUpdate.Power = unitEntity.Power;
-            unitEntityToUpdate.Health = unitEntity.Health;
-            unitEntityToUpdate.Price = unitEntity.Price;
-            unitEntityToUpdate.Maintenance = unitEntity.Maintenance;
+            unitEntityToUpdate.Name = entity.Name;
+            unitEntityToUpdate.Description = entity.Description;
+            unitEntityToUpdate.Type = entity.Type;
+            unitEntityToUpdate.Power = entity.Power;
+            unitEntityToUpdate.Health = entity.Health;
+            unitEntityToUpdate.Price = entity.Price;
+            unitEntityToUpdate.Maintenance = entity.Maintenance;
 
             XmlFile.SaveEntities(Entities.Values);
         }

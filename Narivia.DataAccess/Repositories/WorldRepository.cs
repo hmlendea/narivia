@@ -106,7 +106,7 @@ namespace Narivia.DataAccess.Repositories
         /// <summary>
         /// Removes the specified world.
         /// </summary>
-        /// <param name="world">World.</param>
+        /// <param name="worldEntity">World.</param>
         public void Remove(WorldEntity worldEntity)
         {
             Remove(worldEntity.Id);
@@ -125,7 +125,7 @@ namespace Narivia.DataAccess.Repositories
 
             Dictionary<string, ProvinceEntity> provinces = provinceRepository.GetAll().ToDictionary(x => x.Id, x => x);
             Dictionary<string, TerrainEntity> terrains = terrainRepository.GetAll().ToDictionary(x => x.Id, x => x);
-            
+
             foreach (ProvinceEntity province in provinces.Values)
             {
                 provinceColourIds.Add(Colour.FromHexadecimal(province.ColourHexadecimal), province.Id);
@@ -155,12 +155,12 @@ namespace Narivia.DataAccess.Repositories
                 // TODO: Dedicated exception type
                 throw new Exception("World bitmaps sizes do not match!");
             }
-            
+
             heightsBitmap.LockBits();
             terrainBitmap.LockBits();
             provinceBitmap.LockBits();
             riversBitmap.LockBits();
-            
+
             WorldTileEntity[,] tiles = new WorldTileEntity[provinceBitmap.Size.Width, provinceBitmap.Size.Height];
 
             DateTime start1 = DateTime.Now;

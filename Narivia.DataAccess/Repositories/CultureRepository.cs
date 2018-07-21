@@ -18,25 +18,25 @@ namespace Narivia.DataAccess.Repositories
         {
 
         }
-        
+
         /// <summary>
         /// Updates the specified culture.
         /// </summary>
-        /// <param name="cultureEntity">Culture.</param>
-        public override void Update(CultureEntity cultureEntity)
+        /// <param name="entity">Culture.</param>
+        public override void Update(CultureEntity entity)
         {
             LoadEntitiesIfNeeded();
 
-            CultureEntity cultureEntityToUpdate = Get(cultureEntity.Id);
+            CultureEntity cultureEntityToUpdate = Get(entity.Id);
 
             if (cultureEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(cultureEntity.Id, nameof(BorderEntity));
+                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             }
 
-            cultureEntityToUpdate.Name = cultureEntity.Name;
-            cultureEntityToUpdate.Description = cultureEntity.Description;
-            cultureEntityToUpdate.TextureSet = cultureEntity.TextureSet;
+            cultureEntityToUpdate.Name = entity.Name;
+            cultureEntityToUpdate.Description = entity.Description;
+            cultureEntityToUpdate.TextureSet = entity.TextureSet;
 
             XmlFile.SaveEntities(Entities.Values);
         }

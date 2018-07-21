@@ -58,7 +58,7 @@ namespace Narivia.Gui.Screens
                 {
                     Speed = 0.25f,
                     MinimumMultiplier = 0.5f,
-                    MaximumMultiplier = 1.5f,
+                    MaximumMultiplier = 1.5f
                 },
                 ScaleEffect = new ZoomEffect
                 {

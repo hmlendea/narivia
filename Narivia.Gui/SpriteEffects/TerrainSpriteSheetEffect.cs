@@ -28,7 +28,7 @@ namespace Narivia.Gui.SpriteEffects
             TilesWith = new List<string>();
 
             this.worldManager = worldManager;
-            this.world = worldManager.GetWorld();
+            world = worldManager.GetWorld();
         }
 
         public override void UpdateFrame(GameTime gameTime)

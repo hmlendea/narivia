@@ -21,17 +21,17 @@ namespace Narivia.Models.Enumerations
 
         public string Name { get; }
 
-        private HoldingType(int id, string name)
+        HoldingType(int id, string name)
         {
             Id = id;
             Name = name;
         }
-        
+
         public static HoldingType Empty = values[0];
         public static HoldingType Castle = values[1];
         public static HoldingType City = values[2];
         public static HoldingType Temple = values[3];
-        
+
         public static Array GetValues()
         {
             return values.Values.ToArray();

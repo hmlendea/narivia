@@ -9,6 +9,7 @@ namespace Narivia.Models
     /// </summary>
     public sealed class Resource : ModelBase
     {
+        /// <summary>
         /// Gets or sets the type.
         /// </summary>
         /// <value>The type.</value>

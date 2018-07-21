@@ -18,27 +18,27 @@ namespace Narivia.DataAccess.Repositories
         {
 
         }
-        
+
         /// <summary>
         /// Updates the specified faction.
         /// </summary>
-        /// <param name="factionEntity">Faction.</param>
-        public override void Update(FactionEntity factionEntity)
+        /// <param name="entity">Faction.</param>
+        public override void Update(FactionEntity entity)
         {
             LoadEntitiesIfNeeded();
 
-            FactionEntity factionEntityToUpdate = Get(factionEntity.Id);
+            FactionEntity factionEntityToUpdate = Get(entity.Id);
 
             if (factionEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(factionEntity.Id, nameof(BorderEntity));
+                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             }
 
-            factionEntityToUpdate.Name = factionEntity.Name;
-            factionEntityToUpdate.Description = factionEntity.Description;
-            factionEntityToUpdate.ColourHexadecimal = factionEntity.ColourHexadecimal;
-            factionEntityToUpdate.FlagId = factionEntity.FlagId;
-            factionEntityToUpdate.CultureId = factionEntity.CultureId;
+            factionEntityToUpdate.Name = entity.Name;
+            factionEntityToUpdate.Description = entity.Description;
+            factionEntityToUpdate.ColourHexadecimal = entity.ColourHexadecimal;
+            factionEntityToUpdate.FlagId = entity.FlagId;
+            factionEntityToUpdate.CultureId = entity.CultureId;
 
             XmlFile.SaveEntities(Entities.Values);
         }

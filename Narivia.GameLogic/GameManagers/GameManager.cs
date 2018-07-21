@@ -16,12 +16,12 @@ namespace Narivia.GameLogic.GameManagers
     /// </summary>
     public class GameManager : IGameManager
     {
-        IAttackManager attackManager;
-        IDiplomacyManager diplomacyManager;
-        IEconomyManager economyManager;
-        IHoldingManager holdingManager;
-        IMilitaryManager militaryManager;
-        IWorldManager worldManager;
+        readonly IAttackManager attackManager;
+        readonly IDiplomacyManager diplomacyManager;
+        readonly IEconomyManager economyManager;
+        readonly IHoldingManager holdingManager;
+        readonly IMilitaryManager militaryManager;
+        readonly IWorldManager worldManager;
 
         /// <summary>
         /// Occurs when a player province is attacked.

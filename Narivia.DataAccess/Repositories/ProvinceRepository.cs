@@ -22,25 +22,25 @@ namespace Narivia.DataAccess.Repositories
         /// <summary>
         /// Updates the specified province.
         /// </summary>
-        /// <param name="provinceEntity">Province.</param>
-        public override void Update(ProvinceEntity provinceEntity)
+        /// <param name="entity">Province.</param>
+        public override void Update(ProvinceEntity entity)
         {
             LoadEntitiesIfNeeded();
 
-            ProvinceEntity provinceEntityToUpdate = Get(provinceEntity.Id);
+            ProvinceEntity provinceEntityToUpdate = Get(entity.Id);
 
             if (provinceEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(provinceEntity.Id, nameof(BorderEntity));
+                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             }
 
-            provinceEntityToUpdate.Name = provinceEntity.Name;
-            provinceEntityToUpdate.Description = provinceEntity.Description;
-            provinceEntityToUpdate.ColourHexadecimal = provinceEntity.ColourHexadecimal;
-            provinceEntityToUpdate.Type = provinceEntity.Type;
-            provinceEntityToUpdate.FactionId = provinceEntity.FactionId;
-            provinceEntityToUpdate.SovereignFactionId = provinceEntity.SovereignFactionId;
-            
+            provinceEntityToUpdate.Name = entity.Name;
+            provinceEntityToUpdate.Description = entity.Description;
+            provinceEntityToUpdate.ColourHexadecimal = entity.ColourHexadecimal;
+            provinceEntityToUpdate.Type = entity.Type;
+            provinceEntityToUpdate.FactionId = entity.FactionId;
+            provinceEntityToUpdate.SovereignFactionId = entity.SovereignFactionId;
+
             XmlFile.SaveEntities(Entities.Values);
         }
     }

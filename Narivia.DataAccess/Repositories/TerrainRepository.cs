@@ -18,27 +18,27 @@ namespace Narivia.DataAccess.Repositories
         {
 
         }
-        
+
         /// <summary>
         /// Updates the specified terrain.
         /// </summary>
-        /// <param name="terrainEntity">Terrain.</param>
-        public override void Update(TerrainEntity terrainEntity)
+        /// <param name="entity">Terrain.</param>
+        public override void Update(TerrainEntity entity)
         {
             LoadEntitiesIfNeeded();
 
-            TerrainEntity terrainEntityToUpdate = Get(terrainEntity.Id);
+            TerrainEntity terrainEntityToUpdate = Get(entity.Id);
 
             if (terrainEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(terrainEntity.Id, nameof(BorderEntity));
+                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             }
 
-            terrainEntityToUpdate.Name = terrainEntity.Name;
-            terrainEntityToUpdate.Description = terrainEntity.Description;
-            terrainEntityToUpdate.Spritesheet = terrainEntity.Spritesheet;
-            terrainEntityToUpdate.ColourHexadecimal = terrainEntity.ColourHexadecimal;
-            terrainEntityToUpdate.ZIndex = terrainEntity.ZIndex;
+            terrainEntityToUpdate.Name = entity.Name;
+            terrainEntityToUpdate.Description = entity.Description;
+            terrainEntityToUpdate.Spritesheet = entity.Spritesheet;
+            terrainEntityToUpdate.ColourHexadecimal = entity.ColourHexadecimal;
+            terrainEntityToUpdate.ZIndex = entity.ZIndex;
 
             XmlFile.SaveEntities(Entities.Values);
         }

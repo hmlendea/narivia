@@ -18,26 +18,26 @@ namespace Narivia.DataAccess.Repositories
         {
 
         }
-        
+
         /// <summary>
         /// Updates the specified resource.
         /// </summary>
-        /// <param name="resourceEntity">Resource.</param>
-        public override void Update(ResourceEntity resourceEntity)
+        /// <param name="entity">Resource.</param>
+        public override void Update(ResourceEntity entity)
         {
             LoadEntitiesIfNeeded();
 
-            ResourceEntity resourceEntityToUpdate = Get(resourceEntity.Id);
+            ResourceEntity resourceEntityToUpdate = Get(entity.Id);
 
             if (resourceEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(resourceEntity.Id, nameof(BorderEntity));
+                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             }
 
-            resourceEntityToUpdate.Name = resourceEntity.Name;
-            resourceEntityToUpdate.Description = resourceEntity.Description;
-            resourceEntityToUpdate.Type = resourceEntity.Type;
-            resourceEntityToUpdate.Output = resourceEntity.Output;
+            resourceEntityToUpdate.Name = entity.Name;
+            resourceEntityToUpdate.Description = entity.Description;
+            resourceEntityToUpdate.Type = entity.Type;
+            resourceEntityToUpdate.Output = entity.Output;
 
             XmlFile.SaveEntities(Entities.Values);
         }

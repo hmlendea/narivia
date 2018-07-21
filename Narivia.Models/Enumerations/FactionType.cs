@@ -6,7 +6,7 @@ namespace Narivia.Models.Enumerations
 {
     public class FactionType : IEquatable<FactionType>
     {
-        static Dictionary<int, FactionType> values = new Dictionary<int, FactionType>
+        static readonly Dictionary<int, FactionType> values = new Dictionary<int, FactionType>
         {
             { 0, new FactionType(0, nameof(Gaia), false, false) },
             { 1, new FactionType(1, nameof(Player), true, false) },
@@ -22,7 +22,7 @@ namespace Narivia.Models.Enumerations
 
         public bool HasAi { get; }
 
-        private FactionType(int id, string name, bool isActive, bool hasAi)
+        FactionType(int id, string name, bool isActive, bool hasAi)
         {
             Id = id;
             Name = name;

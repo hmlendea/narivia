@@ -4,7 +4,6 @@ using System.Linq;
 
 using Narivia.Common.Extensions;
 using Narivia.Models;
-using Narivia.Settings;
 
 namespace Narivia.GameLogic.GameManagers
 {
@@ -12,7 +11,7 @@ namespace Narivia.GameLogic.GameManagers
     {
         readonly IWorldManager worldManager;
 
-        Dictionary<string, Relation> relations;
+        readonly Dictionary<string, Relation> relations;
 
         public DiplomacyManager(IWorldManager worldManager)
         {

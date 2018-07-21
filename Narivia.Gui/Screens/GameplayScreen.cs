@@ -77,7 +77,7 @@ namespace Narivia.Gui.Screens
 
             administrationBar = new GuiAdministrationBar
             {
-                Location = Point2D.Empty,
+                Location = Point2D.Empty
             };
             infoBar = new GuiInfoBar(
                 GameManager,

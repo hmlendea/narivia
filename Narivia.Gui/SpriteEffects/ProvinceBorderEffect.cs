@@ -21,7 +21,7 @@ namespace Narivia.Gui.SpriteEffects
             FrameAmount = new Size2D(7, 6);
 
             this.worldManager = worldManager;
-            this.world = worldManager.GetWorld();
+            world = worldManager.GetWorld();
         }
 
         public override void UpdateFrame(GameTime gameTime)

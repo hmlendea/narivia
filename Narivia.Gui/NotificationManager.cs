@@ -56,7 +56,7 @@ namespace Narivia.Gui
             GuiNotificationDialog notification = new GuiNotificationDialog
             {
                 Title = title,
-                Text = text,
+                Text = text
             };
 
             notification.Location = new Point2D(

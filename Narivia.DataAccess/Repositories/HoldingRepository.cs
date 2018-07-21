@@ -18,25 +18,25 @@ namespace Narivia.DataAccess.Repositories
         {
 
         }
-        
+
         /// <summary>
         /// Updates the specified holding.
         /// </summary>
-        /// <param name="holdingEntity">Holding.</param>
-        public override void Update(HoldingEntity holdingEntity)
+        /// <param name="entity">Holding.</param>
+        public override void Update(HoldingEntity entity)
         {
             LoadEntitiesIfNeeded();
 
-            HoldingEntity holdingEntityToUpdate = Get(holdingEntity.Id);
+            HoldingEntity holdingEntityToUpdate = Get(entity.Id);
 
             if (holdingEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(holdingEntity.Id, nameof(BorderEntity));
+                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             }
 
-            holdingEntityToUpdate.Name = holdingEntity.Name;
-            holdingEntityToUpdate.Description = holdingEntity.Description;
-            holdingEntityToUpdate.Type = holdingEntity.Type;
+            holdingEntityToUpdate.Name = entity.Name;
+            holdingEntityToUpdate.Description = entity.Description;
+            holdingEntityToUpdate.Type = entity.Type;
 
             XmlFile.SaveEntities(Entities.Values);
         }

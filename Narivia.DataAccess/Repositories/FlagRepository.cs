@@ -19,30 +19,30 @@ namespace Narivia.DataAccess.Repositories
         {
 
         }
-        
+
         /// <summary>
         /// Updates the specified flag.
         /// </summary>
-        /// <param name="flagEntity">Flag.</param>
-        public override void Update(FlagEntity flagEntity)
+        /// <param name="entity">Flag.</param>
+        public override void Update(FlagEntity entity)
         {
             LoadEntitiesIfNeeded();
 
-            FlagEntity flagEntityToUpdate = Get(flagEntity.Id);
+            FlagEntity flagEntityToUpdate = Get(entity.Id);
 
             if (flagEntityToUpdate == null)
             {
-                throw new EntityNotFoundException(flagEntity.Id, nameof(BorderEntity));
+                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             }
 
-            flagEntityToUpdate.Layer1 = flagEntity.Layer1;
-            flagEntityToUpdate.Layer2 = flagEntity.Layer2;
-            flagEntityToUpdate.Emblem = flagEntity.Emblem;
-            flagEntityToUpdate.Skin = flagEntity.Skin;
-            flagEntityToUpdate.BackgroundColourHexadecimal = flagEntity.BackgroundColourHexadecimal;
-            flagEntityToUpdate.Layer1ColourHexadecimal = flagEntity.Layer1ColourHexadecimal;
-            flagEntityToUpdate.Layer2ColourHexadecimal = flagEntity.Layer2ColourHexadecimal;
-            flagEntityToUpdate.EmblemColourHexadecimal = flagEntity.EmblemColourHexadecimal;
+            flagEntityToUpdate.Layer1 = entity.Layer1;
+            flagEntityToUpdate.Layer2 = entity.Layer2;
+            flagEntityToUpdate.Emblem = entity.Emblem;
+            flagEntityToUpdate.Skin = entity.Skin;
+            flagEntityToUpdate.BackgroundColourHexadecimal = entity.BackgroundColourHexadecimal;
+            flagEntityToUpdate.Layer1ColourHexadecimal = entity.Layer1ColourHexadecimal;
+            flagEntityToUpdate.Layer2ColourHexadecimal = entity.Layer2ColourHexadecimal;
+            flagEntityToUpdate.EmblemColourHexadecimal = entity.EmblemColourHexadecimal;
 
             XmlFile.SaveEntities(Entities.Values);
         }

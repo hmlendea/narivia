@@ -64,7 +64,6 @@
     <Compile Include="Repositories\ResourceRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
     <Compile Include="Repositories\WorldRepository.cs" />
-    <Compile Include="XmlDatabase.cs" />
     <Compile Include="DataObjects\ArmyEntity.cs" />
     <Compile Include="DataObjects\TerrainEntity.cs" />
     <Compile Include="DataObjects\BorderEntity.cs" />

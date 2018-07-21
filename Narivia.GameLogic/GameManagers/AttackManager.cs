@@ -8,7 +8,6 @@ using Narivia.GameLogic.Exceptions;
 using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
-using Narivia.Settings;
 
 namespace Narivia.GameLogic.GameManagers
 {
