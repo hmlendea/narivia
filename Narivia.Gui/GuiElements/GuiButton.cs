@@ -13,12 +13,6 @@ namespace Narivia.Gui.GuiElements
     public class GuiButton : GuiElement
     {
         /// <summary>
-        /// Gets or sets the style.
-        /// </summary>
-        /// <value>The style.</value>
-        public ButtonStyle Style { get; set; }
-
-        /// <summary>
         /// Gets or sets the text.
         /// </summary>
         /// <value>The text.</value>
