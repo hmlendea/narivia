@@ -11,6 +11,9 @@ ORIGINAL_DIR=$(pwd)
 echo " >>> Installing gtk-sharp3"
 sudo apt-get install gtk-sharp3
 
+echo " >>> Installing libfreeimage3"
+sudo apt-get install libfreeimage3
+
 echo " >>> Downloading the MonoGame SDK v$MONOGAME_VERSION Installer"
 wget -c "$DOWNLOAD_URL"
 
