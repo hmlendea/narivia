@@ -11,8 +11,8 @@ ORIGINAL_DIR=$(pwd)
 echo " >>> Installing gtk-sharp3"
 sudo apt-get install gtk-sharp3
 
-echo " >>> Installing libfreeimage3"
-sudo apt-get install libfreeimage3
+echo " >>> Installing libfreeimage-dev"
+sudo apt-get install libfreeimage-dev
 
 echo " >>> Installing ttf-mscorefonts-installer"
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
