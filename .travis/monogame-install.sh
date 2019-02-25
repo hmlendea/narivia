@@ -18,7 +18,7 @@ sudo "./$INSTALLER_EXE" --noexec --keep --target "$MONOGAME_DIR"
 sudo chmod 777 ./monogame/postinstall.sh
 
 echo " >>> Removing the user input prompt from the post-installation script"
-sed -i 's/read -p \"Continue (Y, n): \" choice2/choice2=\"Y\"/g' "./monogame/postinstall.sh"
+sed -i '62,66d' "$POSTINSTALL_SCRIPT"
 
 sudo chmod +x "$POSTINSTALL_SCRIPT"
 sudo "$POSTINSTALL_SCRIPT"
