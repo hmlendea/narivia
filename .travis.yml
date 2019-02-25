@@ -9,7 +9,7 @@ install:
   - chmod +x monogame-sdk.run
   - sudo ./monogame-sdk.run --noexec --keep --target ./monogame
   - sudo chmod 777 ./monogame/postinstall.sh
-  - sed -i 's/read -p \"Continue (Y, n): \" choice2/choice2=\"Y\"/g' "./monogame/postinstall.sh"
+  - sed -i 's/read -p \"Continue (Y, n): \" choice2/choice2=\"Y\"/g' "./monogame/postinstall.sh"
   - cd monogame
   - sudo chmod +x postinstall.sh
   - sudo ./postinstall.sh
