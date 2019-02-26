@@ -1,7 +1,9 @@
 language: csharp
-solution: MonoGameSample.sln
+solution: Narivia.sln
 install:
-  - bash .travis/monogame-install.sh
+  - wget https://raw.githubusercontent.com/hmlendea/deployment-scripts/master/monogame-install.sh
+  - bash monogame-install.sh
   - nuget restore
 script:
   - msbuild
+
