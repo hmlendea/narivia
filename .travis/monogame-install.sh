@@ -9,6 +9,7 @@ MONOGAME_DOWNLOAD_URL="http://www.monogame.net/releases/v$MONOGAME_VERSION/$INST
 MONOGAME_DIR=$(pwd)"/monogame"
 POSTINSTALL_SCRIPT="postinstall.sh"
 ORIGINAL_DIR=$(pwd)
+HOME_FONTS_DIR="/home/traivs/.fonts"
 
 echo " >>> Installing GTK#3"
 sudo apt-get install gtk-sharp3
@@ -44,11 +45,12 @@ sudo "./$POSTINSTALL_SCRIPT"
 cd "$ORIGINAL_DIR"
 
 echo " >>> Installing the fonts distributed in the solution"
-mkdir "~/.fonts"
+echo "$HOME"
+mkdir "$HOME_FONTS_DIIR"
 # TODO: Handle spaces in the paths
-FONTS=$(find .. -type f \( -name "*.ttf" -or -name "*.TTF" \))
+FONTS=$(find . -type f \( -name "*.ttf" -or -name "*.TTF" \))
 for FONT in $FONTS; do
     echo "Font found: $FONT"
-    cp "$FONT" "~/.fonts"
+    cp "$FONT" "$HOME_FONTS_DIIR"
 done
 fc-cache -f -v
