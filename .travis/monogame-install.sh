@@ -42,3 +42,13 @@ echo " >>> Running the MonoGame post-installation script"
 sudo chmod +x "$POSTINSTALL_SCRIPT"
 sudo "./$POSTINSTALL_SCRIPT"
 cd "$ORIGINAL_DIR"
+
+echo " >>> Installing the fonts distributed in the solution"
+mkdir "~/.fonts"
+# TODO: Handle spaces in the paths
+FONTS=$(find .. -type f \( -name "*.ttf" -or -name "*.TTF" \))
+for FONT in $FONTS; do
+    echo "Font found: $FONT"
+    cp "$FONT" "~/.fonts"
+done
+fc-cache -f -v
