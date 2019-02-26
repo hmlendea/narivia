@@ -22,9 +22,6 @@ make
 sudo make install
 cd "$ORIGINAL_DIR"
 
-sudo apt-get install libfreeimage3
-sudo ln -s "/usr/lib/x86_64/libfreeimage-3.17.0.so" "/usr/lib/libfreeimage-3.17.0.so"
-
 echo " >>> Installing ttf-mscorefonts-installer"
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 sudo apt-get install ttf-mscorefonts-installer
@@ -34,12 +31,12 @@ wget -c "$MONOGAME_DOWNLOAD_URL"
 chmod +x monogame-sdk.run
 sudo "./$INSTALLER_EXE" --noexec --keep --target "$MONOGAME_DIR"
 
-echo " >>> Removing the user input prompt from the post-installation script"
+echo " >>> Running the MonoGame post-installation script"
+# Remove the user input prompt
 cd "$MONOGAME_DIR"
 sudo chmod 777 "$POSTINSTALL_SCRIPT"
 sudo sed -i '62,66d' "$POSTINSTALL_SCRIPT"
-
-echo " >>> Running the MonoGame post-installation script"
+# Run the script
 sudo chmod +x "$POSTINSTALL_SCRIPT"
 sudo "./$POSTINSTALL_SCRIPT"
 cd "$ORIGINAL_DIR"
