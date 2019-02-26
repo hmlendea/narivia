@@ -50,6 +50,6 @@ sudo mkdir -p "$FONTS_TTF_DIR"
 FONTS=$(find . -type f \( -name "*.ttf" -or -name "*.TTF" \))
 for FONT in $FONTS; do
     echo "Font found in solution: $FONT"
-    cp "$FONT" "$FONTS_TTF_DIR"
+    sudo cp "$FONT" "$FONTS_TTF_DIR"
 done
 fc-cache -f -v
