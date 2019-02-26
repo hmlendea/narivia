@@ -46,11 +46,11 @@ cd "$ORIGINAL_DIR"
 
 echo " >>> Installing the fonts distributed in the solution"
 echo "$HOME"
-mkdir "$HOME_FONTS_DIIR"
+mkdir "$HOME_FONTS_DIR"
 # TODO: Handle spaces in the paths
 FONTS=$(find . -type f \( -name "*.ttf" -or -name "*.TTF" \))
 for FONT in $FONTS; do
     echo "Font found: $FONT"
-    cp "$FONT" "$HOME_FONTS_DIIR"
+    cp "$FONT" "$HOME_FONTS_DIR"
 done
 fc-cache -f -v
