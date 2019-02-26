@@ -1,0 +1,7 @@
+language: csharp
+solution: MonoGameSample.sln
+install:
+  - bash .travis/monogame-install.sh
+  - nuget restore
+script:
+  - msbuild
