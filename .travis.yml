@@ -1,7 +1,7 @@
 language: csharp
 solution: Narivia.sln
 install:
-  - wget https://raw.githubusercontent.com/hmlendea/deployment-scripts/master/monogame-install.sh
+  - wget https://raw.githubusercontent.com/hmlendea/deployment-scripts/master/monogame/install-monogame-3.6.sh
   - bash monogame-install.sh
   - nuget restore
 script:
