@@ -1,9 +1,11 @@
 language: csharp
-solution: Narivia.sln
+mono: none
+dotnet: 2.2
+dist: xenial
+
 install:
   - wget https://raw.githubusercontent.com/hmlendea/deployment-scripts/master/monogame/install-monogame-3.6.sh -O monogame-install.sh
   - bash monogame-install.sh
-  - nuget restore
+  - dotnet restore
 script:
-  - msbuild
-
+  - dotnet build
