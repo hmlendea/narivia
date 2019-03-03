@@ -4,10 +4,10 @@ dotnet: 2.2
 dist: xenial
 
 install:
+  - dotnet restore
   - ls /home/travis/.nuget
   - ls /home/travis/.nuget/packages
   - ls /home/travis/.nuget/package/monogame.content.builder
-  - dotnet restore
   - wget https://raw.githubusercontent.com/hmlendea/deployment-scripts/master/monogame/install-monogame-3.6.sh -O monogame-install.sh
   - bash monogame-install.sh
 script:
