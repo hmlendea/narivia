@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+
+using NuciXNA.Primitives;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.Models.Enumerations;
 
-using Province= Narivia.Models.Province;
+using Province = Narivia.Models.Province;
 
 namespace Narivia.GameLogic.Mapping
 {
@@ -27,7 +28,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = provinceEntity.Id,
                 Name = provinceEntity.Name,
                 Description = provinceEntity.Description,
-                Colour = ColorTranslator.FromHtml(provinceEntity.ColourHexadecimal),
+                Colour = Colour.FromHexadecimal(provinceEntity.ColourHexadecimal),
                 Type = (ProvinceType)Enum.Parse(typeof(ProvinceType), provinceEntity.Type),
                 ResourceId = provinceEntity.ResourceId,
                 FactionId = provinceEntity.FactionId,
@@ -49,7 +50,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = province.Id,
                 Name = province.Name,
                 Description = province.Description,
-                ColourHexadecimal = ColorTranslator.ToHtml(province.Colour),
+                ColourHexadecimal = province.Colour.ToHexadecimal(),
                 Type = province.Type.ToString(),
                 ResourceId = province.ResourceId,
                 FactionId = province.FactionId,

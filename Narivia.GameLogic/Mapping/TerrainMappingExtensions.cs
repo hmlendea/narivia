@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+
+using NuciXNA.Primitives;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.Models;
@@ -25,7 +26,7 @@ namespace Narivia.GameLogic.Mapping
                 Name = terrainEntity.Name,
                 Description = terrainEntity.Description,
                 Spritesheet = terrainEntity.Spritesheet,
-                Colour = ColorTranslator.FromHtml(terrainEntity.ColourHexadecimal),
+                Colour = Colour.FromHexadecimal(terrainEntity.ColourHexadecimal),
                 ZIndex = terrainEntity.ZIndex
             };
 
@@ -45,7 +46,7 @@ namespace Narivia.GameLogic.Mapping
                 Name = terrain.Name,
                 Description = terrain.Description,
                 Spritesheet = terrain.Spritesheet,
-                ColourHexadecimal = ColorTranslator.ToHtml(terrain.Colour),
+                ColourHexadecimal = terrain.Colour.ToHexadecimal(),
                 ZIndex = terrain.ZIndex
             };
 

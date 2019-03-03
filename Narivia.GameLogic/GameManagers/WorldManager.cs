@@ -6,8 +6,6 @@ using System.Linq;
 
 using NuciXNA.DataAccess.Repositories;
 using NuciXNA.Primitives;
-using NuciLog;
-using NuciLog.Enumerations;
 
 using Narivia.Common.Extensions;
 using Narivia.GameLogic.Mapping;
@@ -55,7 +53,8 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         public void LoadContent()
         {
-            LogManager.Instance.Info(Operation.WorldLoading, OperationStatus.Started);
+            // TODO: Logging
+            //LogManager.Instance.Info(Operation.WorldLoading, OperationStatus.Started);
 
             string bordersPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "borders.xml");
             string culturesPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "cultures.xml");
@@ -93,7 +92,8 @@ namespace Narivia.GameLogic.GameManagers
 
             GenerateBorders();
 
-            LogManager.Instance.Info(Operation.WorldLoading, OperationStatus.Success);
+            // TODO: Logging
+            //LogManager.Instance.Info(Operation.WorldLoading, OperationStatus.Success);
         }
 
         public void UnloadContent()

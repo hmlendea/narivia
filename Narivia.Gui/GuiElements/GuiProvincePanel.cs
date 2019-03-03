@@ -179,11 +179,11 @@ namespace Narivia.Gui.GuiElements
             }
 
             currentProvinceId = ProvinceId;
-            
+
             Province province = worldManager.GetProvince(ProvinceId);
             Faction faction = worldManager.GetFaction(province.FactionId);
 
-            CrystalColour = faction.Colour.ToColour();
+            CrystalColour = faction.Colour;
             Title = province.Name;
 
             factionFlag.Flag = gameManager.GetFactionFlag(province.FactionId);

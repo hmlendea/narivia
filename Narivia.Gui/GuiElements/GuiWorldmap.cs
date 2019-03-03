@@ -168,7 +168,7 @@ namespace Narivia.Gui.GuiElements
             camera.Size = Size;
 
             camera.Update(gameTime);
-            
+
             provinceHighlight.Update(gameTime);
             factionBorder.Update(gameTime);
             provinceBorder.Update(gameTime);
@@ -318,7 +318,7 @@ namespace Narivia.Gui.GuiElements
                     if (SelectedProvinceId == provinceId)
                     {
                         provinceHighlight.Location = screenCoords;
-                        provinceHighlight.Tint = faction.Colour.ToColour();
+                        provinceHighlight.Tint = faction.Colour;
                         provinceHighlight.Draw(spriteBatch);
                     }
                 }
@@ -355,7 +355,7 @@ namespace Narivia.Gui.GuiElements
                         continue;
                     }
 
-                    Colour tintColour = faction.Colour.ToColour();
+                    Colour tintColour = faction.Colour;
 
                     provinceBorder.Location = screenCoords;
                     factionBorder.Location = screenCoords;

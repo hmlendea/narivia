@@ -1,5 +1,6 @@
-﻿using System.Drawing;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
+
+using NuciXNA.Primitives;
 
 namespace Narivia.Models
 {
@@ -15,7 +16,7 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The colour.</value>
         [XmlIgnore]
-        public Color Colour { get; set; }
+        public Colour Colour { get; set; }
 
         public int ZIndex { get; set; }
     }

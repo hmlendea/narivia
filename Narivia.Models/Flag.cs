@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Drawing;
+
+using NuciXNA.Primitives;
 
 namespace Narivia.Models
 {
@@ -40,24 +41,24 @@ namespace Narivia.Models
         /// Gets or sets the background colour.
         /// </summary>
         /// <value>The background colour.</value>
-        public Color BackgroundColour { get; set; }
+        public Colour BackgroundColour { get; set; }
 
         /// <summary>
         /// Gets or sets the first layer's colour.
         /// </summary>
         /// <value>The first layer's colour.</value>
-        public Color Layer1Colour { get; set; }
+        public Colour Layer1Colour { get; set; }
 
         /// <summary>
         /// Gets or sets the second layer's colour.
         /// </summary>
         /// <value>The second layer's colour.</value>
-        public Color Layer2Colour { get; set; }
+        public Colour Layer2Colour { get; set; }
 
         /// <summary>
         /// Gets or sets the emblem colour.
         /// </summary>
         /// <value>The emblem colour.</value>
-        public Color EmblemColour { get; set; }
+        public Colour EmblemColour { get; set; }
     }
 }

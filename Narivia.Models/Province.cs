@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 using System.Xml.Serialization;
+
+using NuciXNA.Primitives;
 
 using Narivia.Models.Enumerations;
 
@@ -37,7 +38,7 @@ namespace Narivia.Models
         /// </summary>
         /// <value>The colour.</value>
         [XmlIgnore]
-        public Color Colour { get; set; }
+        public Colour Colour { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Province"/> is locked.

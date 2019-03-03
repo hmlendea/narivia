@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+
+using NuciXNA.Primitives;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.Models;
@@ -26,10 +27,10 @@ namespace Narivia.GameLogic.Mapping
                 Layer2 = flagEntity.Layer2,
                 Emblem = flagEntity.Emblem,
                 Skin = flagEntity.Skin,
-                BackgroundColour = ColorTranslator.FromHtml(flagEntity.BackgroundColourHexadecimal),
-                Layer1Colour = ColorTranslator.FromHtml(flagEntity.Layer1ColourHexadecimal),
-                Layer2Colour = ColorTranslator.FromHtml(flagEntity.Layer2ColourHexadecimal),
-                EmblemColour = ColorTranslator.FromHtml(flagEntity.EmblemColourHexadecimal)
+                BackgroundColour = Colour.FromHexadecimal(flagEntity.BackgroundColourHexadecimal),
+                Layer1Colour = Colour.FromHexadecimal(flagEntity.Layer1ColourHexadecimal),
+                Layer2Colour = Colour.FromHexadecimal(flagEntity.Layer2ColourHexadecimal),
+                EmblemColour = Colour.FromHexadecimal(flagEntity.EmblemColourHexadecimal)
             };
 
             return flag;
@@ -49,10 +50,10 @@ namespace Narivia.GameLogic.Mapping
                 Layer2 = flag.Layer2,
                 Emblem = flag.Emblem,
                 Skin = flag.Skin,
-                BackgroundColourHexadecimal = ColorTranslator.ToHtml(flag.BackgroundColour),
-                Layer1ColourHexadecimal = ColorTranslator.ToHtml(flag.Layer1Colour),
-                Layer2ColourHexadecimal = ColorTranslator.ToHtml(flag.Layer2Colour),
-                EmblemColourHexadecimal = ColorTranslator.ToHtml(flag.EmblemColour)
+                BackgroundColourHexadecimal = flag.BackgroundColour.ToHexadecimal(),
+                Layer1ColourHexadecimal = flag.Layer1Colour.ToHexadecimal(),
+                Layer2ColourHexadecimal = flag.Layer2Colour.ToHexadecimal(),
+                EmblemColourHexadecimal = flag.EmblemColour.ToHexadecimal()
             };
 
             return flagEntity;

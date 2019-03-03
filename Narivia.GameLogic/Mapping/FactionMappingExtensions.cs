@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+
+using NuciXNA.Primitives;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.Models;
@@ -25,7 +26,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = factionEntity.Id,
                 Name = factionEntity.Name,
                 Description = factionEntity.Description,
-                Colour = ColorTranslator.FromHtml(factionEntity.ColourHexadecimal),
+                Colour = Colour.FromHexadecimal(factionEntity.ColourHexadecimal),
                 FlagId = factionEntity.FlagId,
                 CultureId = factionEntity.CultureId,
                 Type = FactionType.FromString(factionEntity.Type)
@@ -46,7 +47,7 @@ namespace Narivia.GameLogic.Mapping
                 Id = faction.Id,
                 Name = faction.Name,
                 Description = faction.Description,
-                ColourHexadecimal = ColorTranslator.ToHtml(faction.Colour),
+                ColourHexadecimal = faction.Colour.ToHexadecimal(),
                 FlagId = faction.FlagId,
                 CultureId = faction.CultureId,
                 Type = faction.Type.ToString()
