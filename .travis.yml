@@ -4,8 +4,7 @@ dotnet: 2.2
 dist: xenial
 
 install:
-  - dotnet restore
-  - wget https://raw.githubusercontent.com/hmlendea/deployment-scripts/master/monogame/install-monogame-3.6.sh -O monogame-install.sh
-  - bash monogame-install.sh
+  - wget https://raw.githubusercontent.com/hmlendea/deployment-scripts/master/monogame/install-monogame.sh -O monogame-install.sh
+  - bash monogame-install.sh 3.7.1
 script:
   - dotnet build
