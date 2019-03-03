@@ -1,100 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1933F8D8-3C88-4329-A209-949F921598CE}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Narivia.DataAccess</RootNamespace>
-    <AssemblyName>Narivia.DataAccess</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
+    <Authors>Horațiu Mlendea</Authors>
+    <Copyright>Copyright 2019 © Horațiu Mlendea</Copyright>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="NuciLog.Core, Version=1.0.6744.25348, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciLog.Core.1.0.6744.25348\lib\net45\NuciLog.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NuciXNA.DataAccess, Version=1.1.6764.23276, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.DataAccess.1.1.6764.23276\lib\net45\NuciXNA.DataAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="NuciXNA.Primitives, Version=1.2.6767.23015, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NuciXNA.Primitives.1.2.6767.23015\lib\net45\NuciXNA.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="MonoGame.Framework">
-      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="DataObjects\WorldTileEntity.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ArmyRepository.cs" />
-    <Compile Include="Repositories\TerrainRepository.cs" />
-    <Compile Include="Repositories\BorderRepository.cs" />
-    <Compile Include="Repositories\CultureRepository.cs" />
-    <Compile Include="Repositories\FactionRepository.cs" />
-    <Compile Include="Repositories\HoldingRepository.cs" />
-    <Compile Include="Repositories\ProvinceRepository.cs" />
-    <Compile Include="Repositories\ResourceRepository.cs" />
-    <Compile Include="Repositories\UnitRepository.cs" />
-    <Compile Include="Repositories\WorldRepository.cs" />
-    <Compile Include="DataObjects\ArmyEntity.cs" />
-    <Compile Include="DataObjects\TerrainEntity.cs" />
-    <Compile Include="DataObjects\BorderEntity.cs" />
-    <Compile Include="DataObjects\CultureEntity.cs" />
-    <Compile Include="DataObjects\FactionEntity.cs" />
-    <Compile Include="DataObjects\HoldingEntity.cs" />
-    <Compile Include="DataObjects\ProvinceEntity.cs" />
-    <Compile Include="DataObjects\ResourceEntity.cs" />
-    <Compile Include="DataObjects\UnitEntity.cs" />
-    <Compile Include="DataObjects\WorldEntity.cs" />
-    <Compile Include="DataObjects\RelationEntity.cs" />
-    <Compile Include="Repositories\RelationRepository.cs" />
-    <Compile Include="DataObjects\FlagEntity.cs" />
-    <Compile Include="Repositories\FlagRepository.cs" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.7.0.7" />
+    <PackageReference Include="NuciXNA.DataAccess" Version="1.3.0" />
+    <PackageReference Include="NuciXNA.Primitives" Version="1.3.0" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Narivia.Common\Narivia.Common.csproj">
-      <Project>{acc1b4c7-d5f3-4bb2-af61-0cbf48b99ded}</Project>
-      <Name>Narivia.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

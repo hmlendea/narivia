@@ -1,4 +1,3 @@
-using NuciXNA.DataAccess.Exceptions;
 using NuciXNA.DataAccess.Repositories;
 
 using Narivia.DataAccess.DataObjects;

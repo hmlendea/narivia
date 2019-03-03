@@ -136,10 +136,10 @@ namespace Narivia.DataAccess.Repositories
                 terrainColourIds.Add(Colour.FromHexadecimal(terrain.ColourHexadecimal), terrain.Id);
             }
 
-            BitmapFile heightsBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
-            BitmapFile provinceBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
-            BitmapFile riversBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_rivers.png"));
-            BitmapFile terrainBitmap = new BitmapFile(Path.Combine(worldsDirectory, worldId, "world_terrains.png"));
+            Bitmap heightsBitmap = Bitmap.Load(Path.Combine(worldsDirectory, worldId, "world_heights.png"));
+            Bitmap provinceBitmap = Bitmap.Load(Path.Combine(worldsDirectory, worldId, "world_provinces.png"));
+            Bitmap riversBitmap = Bitmap.Load(Path.Combine(worldsDirectory, worldId, "world_rivers.png"));
+            Bitmap terrainBitmap = Bitmap.Load(Path.Combine(worldsDirectory, worldId, "world_terrains.png"));
 
             Size2D worldSize = terrainBitmap.Size;
 
@@ -155,11 +155,6 @@ namespace Narivia.DataAccess.Repositories
                 // TODO: Dedicated exception type
                 throw new Exception("World bitmaps sizes do not match!");
             }
-
-            heightsBitmap.LockBits();
-            terrainBitmap.LockBits();
-            provinceBitmap.LockBits();
-            riversBitmap.LockBits();
 
             WorldTileEntity[,] tiles = new WorldTileEntity[provinceBitmap.Size.Width, provinceBitmap.Size.Height];
 
