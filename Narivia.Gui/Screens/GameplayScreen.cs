@@ -48,17 +48,17 @@ namespace Narivia.Gui.Screens
         string worldId;
         string playerFactionId;
 
+        public GameplayScreen(string worldId, string playerFactionId)
+        {
+            this.worldId = worldId;
+            this.playerFactionId = playerFactionId;
+        }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
         public override void LoadContent()
         {
-            if (ScreenArgs != null && ScreenArgs.Length >= 2)
-            {
-                worldId = ScreenArgs[0];
-                playerFactionId = ScreenArgs[1];
-            }
-
             WorldManager = new WorldManager(worldId);
             DiplomacyManager = new DiplomacyManager(WorldManager);
             HoldingManager = new HoldingManager(worldId, WorldManager);

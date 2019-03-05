@@ -78,7 +78,7 @@ namespace Narivia.Gui.GuiElements
         {
             base.OnClicked(sender, e);
 
-            if (e.Button != MouseButton.LeftButton)
+            if (e.Button != MouseButton.Left)
             {
                 return;
             }
