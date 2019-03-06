@@ -102,7 +102,7 @@ namespace Narivia.Gui.Screens
 
         protected override void SetChildrenProperties()
         {
-            startLink.LinkArgs = $"{selectedWorldId} {selectedFactionId}";
+            startLink.Parameters = new object[] { selectedWorldId, selectedFactionId };
 
             base.SetChildrenProperties();
         }

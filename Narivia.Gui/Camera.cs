@@ -58,7 +58,7 @@ namespace Narivia.Gui
         /// </summary>
         public void LoadContent()
         {
-            InputManager.Instance.KeyboardKeyDown += InputManager_OnKeyboardKeyDown;
+            InputManager.Instance.KeyboardKeyHeldDown += InputManager_OnKeyboardKeyHeldDown;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Narivia.Gui
         /// </summary>
         public void UnloadContent()
         {
-            InputManager.Instance.KeyboardKeyDown -= InputManager_OnKeyboardKeyDown;
+            InputManager.Instance.KeyboardKeyHeldDown -= InputManager_OnKeyboardKeyHeldDown;
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Narivia.Gui
             Location = new Point2D(location.X - Size.Width / 2, location.Y - Size.Height / 2);
         }
 
-        void InputManager_OnKeyboardKeyDown(object sender, KeyboardKeyEventArgs e)
+        void InputManager_OnKeyboardKeyHeldDown(object sender, KeyboardKeyEventArgs e)
         {
             if (e.Key == Keys.Up || e.Key == Keys.W)
             {
