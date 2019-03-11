@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Narivia.Common.Extensions;
+using NuciExtensions;
+
 using Narivia.Models;
 
 namespace Narivia.GameLogic.GameManagers

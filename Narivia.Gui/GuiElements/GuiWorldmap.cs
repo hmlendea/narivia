@@ -3,13 +3,14 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
+using NuciExtensions;
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
-using Narivia.Common.Extensions;
 using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.SpriteEffects;
 using Narivia.Models;

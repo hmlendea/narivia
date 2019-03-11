@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Narivia.Common.Extensions;
+using NuciExtensions;
 
 namespace Narivia.GameLogic.Generators
 {

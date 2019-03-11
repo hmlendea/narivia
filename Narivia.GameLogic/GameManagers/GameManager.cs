@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using NuciExtensions;
+
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Events;
-using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 using Narivia.Settings;

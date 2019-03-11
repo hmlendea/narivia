@@ -4,10 +4,10 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
 
+using NuciExtensions;
 using NuciXNA.DataAccess.Repositories;
 using NuciXNA.Primitives;
 
-using Narivia.Common.Extensions;
 using Narivia.GameLogic.Mapping;
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories;

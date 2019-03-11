@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using NuciExtensions;
+
 using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Exceptions;
-using Narivia.Common.Extensions;
 using Narivia.Models;
 using Narivia.Models.Enumerations;
 

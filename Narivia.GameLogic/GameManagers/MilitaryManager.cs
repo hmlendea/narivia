@@ -2,9 +2,9 @@
 using System.IO;
 using System.Linq;
 
+using NuciExtensions;
 using NuciXNA.DataAccess.Repositories;
 
-using Narivia.Common.Extensions;
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories;
 using Narivia.GameLogic.Mapping;
