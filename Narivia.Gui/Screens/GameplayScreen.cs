@@ -221,7 +221,7 @@ namespace Narivia.Gui.Screens
         {
             notificationBar.Clear();
 
-            GameManager.NextTurn();
+            GameManager.PassTurn();
 
             Dictionary<string, int> troopsNew = new Dictionary<string, int>();
             Dictionary<string, int> relationsNew = new Dictionary<string, int>();
@@ -317,7 +317,7 @@ namespace Narivia.Gui.Screens
                 string provinceName = province.Name;
                 string defenderFactionName = WorldManager.GetFaction(province.FactionId).Name;
 
-                BattleResult result = GameManager.PlayerAttackProvince(provinceId);
+                BattleResult result = GameManager.AttackProvinceAsPlayer(provinceId);
 
                 NextTurn();
 

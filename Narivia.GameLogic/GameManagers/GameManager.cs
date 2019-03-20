@@ -111,7 +111,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <summary>
         /// Advances the game by one turn.
         /// </summary>
-        public void NextTurn()
+        public void PassTurn()
         {
             foreach (Faction faction in worldManager.GetFactions().Where(f => f.Type.IsActive))
             {
@@ -131,7 +131,7 @@ namespace Narivia.GameLogic.GameManagers
                 AiBuild(faction.Id);
                 AiRecruit(faction.Id);
 
-                string provinceId = attackManager.ChooseProvinceToAttack(faction.Id);
+                string provinceId = attackManager.FindProviceToAttack(faction.Id);
 
                 if (militaryManager.GetFactionTroopsAmount(faction.Id) < GetWorld().MinTroopsPerAttack ||
                     string.IsNullOrEmpty(provinceId))
@@ -194,7 +194,7 @@ namespace Narivia.GameLogic.GameManagers
         /// The player faction will attack the specified province.
         /// </summary>
         /// <param name="provinceId">Province identifier.</param>
-        public BattleResult PlayerAttackProvince(string provinceId)
+        public BattleResult AttackProvinceAsPlayer(string provinceId)
             => AttackProvince(PlayerFactionId, provinceId);
 
         void UpdateFactionsAliveStatus()
@@ -292,7 +292,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 List<Province> validSovereignProvinces = worldManager
                     .GetFactionProvinces(factionId)
-                    .Where(r => r.State == ProvinceState.Sovereign && holdingManager.ProvinceHasEmptyHoldingSlots(r.Id)).ToList();
+                    .Where(r => r.State == ProvinceState.Sovereign && holdingManager.DoesProvinceHaveEmptyHoldings(r.Id)).ToList();
 
                 if (validSovereignProvinces.Count < 1)
                 {
@@ -308,7 +308,7 @@ namespace Narivia.GameLogic.GameManagers
             {
                 List<Province> validOccupiedProvinces = worldManager
                     .GetFactionProvinces(factionId)
-                    .Where(r => r.State == ProvinceState.Occupied && holdingManager.ProvinceHasEmptyHoldingSlots(r.Id)).ToList();
+                    .Where(r => r.State == ProvinceState.Occupied && holdingManager.DoesProvinceHaveEmptyHoldings(r.Id)).ToList();
 
                 if (validOccupiedProvinces.Count < 1)
                 {

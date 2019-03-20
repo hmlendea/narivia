@@ -53,7 +53,7 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <returns><c>true</c>, if the province has empty holding slots, <c>false</c> otherwise.</returns>
         /// <param name="provinceId">Province identifier.</param>
-        public bool ProvinceHasEmptyHoldingSlots(string provinceId)
+        public bool DoesProvinceHaveEmptyHoldings(string provinceId)
         {
             return holdings.Values.Count(h => h.ProvinceId == provinceId && h.Type == HoldingType.Empty) > 0;
         }
@@ -102,7 +102,7 @@ namespace Narivia.GameLogic.GameManagers
         {
             Province province = worldManager.GetProvince(provinceId);
 
-            if (ProvinceHasEmptyHoldingSlots(provinceId))
+            if (DoesProvinceHaveEmptyHoldings(provinceId))
             {
                 AddHolding(provinceId, holdingType);
                 worldManager.GetFaction(province.FactionId).Wealth -= worldManager.GetWorld().HoldingsPrice;

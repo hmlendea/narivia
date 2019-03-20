@@ -21,6 +21,11 @@ namespace Narivia.Gui
         /// <value>The size.</value>
         public Size2D Size { get; set; }
 
+        public Point2D Centre
+            => new Point2D(
+                Location.X + Size.Width / 2,
+                Location.Y + Size.Height / 2);
+
         /// <summary>
         /// Gets or sets the velocity.
         /// </summary>

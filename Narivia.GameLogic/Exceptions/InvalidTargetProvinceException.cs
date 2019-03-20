@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Narivia.Models;
+
 namespace Narivia.GameLogic.Exceptions
 {
     /// <summary>
@@ -10,9 +12,28 @@ namespace Narivia.GameLogic.Exceptions
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidTargetProvinceException"/> class.
         /// </summary>
+        /// <param name="province">The province.</param>
+        public InvalidTargetProvinceException(Province province)
+            : this(province.Id)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InvalidTargetProvinceException"/> class.
+        /// </summary>
         /// <param name="provinceId">Province identifier.</param>
         public InvalidTargetProvinceException(string provinceId)
-            : base($"The targeted province, {provinceId}, is invalid.")
+            : this(provinceId, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InvalidTargetProvinceException"/> class.
+        /// </summary>
+        /// <param name="province">The province.</param>
+        /// /// <param name="innerException">Inner exception.</param>
+        public InvalidTargetProvinceException(Province province, Exception innerException)
+            : this(province.Id, innerException)
         {
         }
 

@@ -16,7 +16,7 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <returns><c>true</c>, if the province has empty holding slots, <c>false</c> otherwise.</returns>
         /// <param name="provinceId">Province identifier.</param>
-        bool ProvinceHasEmptyHoldingSlots(string provinceId);
+        bool DoesProvinceHaveEmptyHoldings(string provinceId);
 
         /// <summary>
         /// Gets the holdings of a faction.

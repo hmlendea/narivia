@@ -9,11 +9,11 @@ namespace Narivia.GameLogic.GameManagers
         void UnloadContent();
 
         /// <summary>
-        /// Chooses the province to attack.
+        /// Finds a province to attack.
         /// </summary>
         /// <returns>The province to attack.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        string ChooseProvinceToAttack(string factionId);
+        string FindProviceToAttack(string factionId);
 
         /// <summary>
         /// Attacks the province.

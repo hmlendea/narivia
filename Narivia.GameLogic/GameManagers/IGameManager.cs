@@ -54,7 +54,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <summary>
         /// Advances the game by one turn.
         /// </summary>
-        void NextTurn();
+        void PassTurn();
 
         /// <summary>
         /// Gets the culture of a faction.
@@ -87,6 +87,6 @@ namespace Narivia.GameLogic.GameManagers
         /// The player faction will attack the specified province.
         /// </summary>
         /// <param name="provinceId">Province identifier.</param>
-        BattleResult PlayerAttackProvince(string provinceId);
+        BattleResult AttackProvinceAsPlayer(string provinceId);
     }
 }

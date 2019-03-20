@@ -67,7 +67,7 @@ namespace Narivia.GameLogic.GameManagers
         /// </summary>
         /// <returns>The province to attack.</returns>
         /// <param name="factionId">Faction identifier.</param>
-        public string ChooseProvinceToAttack(string factionId)
+        public string FindProviceToAttack(string factionId)
         {
             List<string> provincesOwnedIds = worldManager.GetFactionProvinces(factionId)
                                                 .Select(x => x.Id)
@@ -80,7 +80,7 @@ namespace Narivia.GameLogic.GameManagers
                                                                worldManager.GetFaction(r.FactionId).Type != FactionType.Gaia)
                                                    .Select(x => x.Id)
                                                    .Except(provincesOwnedIds)
-                                                   .Where(x => provincesOwnedIds.Any(y => worldManager.ProvinceBordersProvince(x, y)))
+                                                   .Where(x => provincesOwnedIds.Any(y => worldManager.DoesProvinceBorderProvince(x, y)))
                                                    .ToDictionary(x => x, y => 0);
 
             //foreach (Province province in worldManager.GetProvinces().Where(r => targets.ContainsKey(r.Id)))
@@ -124,7 +124,7 @@ namespace Narivia.GameLogic.GameManagers
                     }
                 }
 
-                targets[province.Id] += provincesOwnedIds.Count(x => worldManager.ProvinceBordersProvince(x, province.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
+                targets[province.Id] += provincesOwnedIds.Count(x => worldManager.DoesProvinceBorderProvince(x, province.Id)) * BLITZKRIEG_BORDER_IMPORTANCE;
                 targets[province.Id] -= diplomacyManager.GetFactionRelations(factionId)
                                            .FirstOrDefault(r => r.TargetFactionId == province.FactionId)
                                            .Value;
@@ -155,7 +155,7 @@ namespace Narivia.GameLogic.GameManagers
 
             if (string.IsNullOrWhiteSpace(provinceId) ||
                 targetProvince.Locked ||
-                !worldManager.FactionBordersProvince(factionId, provinceId))
+                !worldManager.DoesFactionBorderProvince(factionId, provinceId))
             {
                 throw new InvalidTargetProvinceException(provinceId);
             }
@@ -202,7 +202,7 @@ namespace Narivia.GameLogic.GameManagers
             if (militaryManager.GetFactionTroopsAmount(attackerFaction.Id) >
                 militaryManager.GetFactionTroopsAmount(defenderFaction.Id))
             {
-                worldManager.TransferProvince(provinceId, factionId);
+                worldManager.TransferProvinceToFaction(provinceId, factionId);
                 targetProvince.Locked = true;
 
                 return BattleResult.Victory;

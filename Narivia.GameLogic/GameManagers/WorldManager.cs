@@ -107,7 +107,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the specified provinces share a border, <c>false</c> otherwise.</returns>
         /// <param name="province1Id">First province identifier.</param>
         /// <param name="province2Id">Second province identifier.</param>
-        public bool ProvinceBordersProvince(string province1Id, string province2Id)
+        public bool DoesProvinceBorderProvince(string province1Id, string province2Id)
         {
             return borders.Values.Any(x =>
                 (x.SourceProvinceId == province1Id && x.TargetProvinceId == province2Id) ||
@@ -120,12 +120,12 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the specified provinces share a border, <c>false</c> otherwise.</returns>
         /// <param name="faction1Id">First faction identifier.</param>
         /// <param name="faction2Id">Second faction identifier.</param>
-        public bool FactionBordersFaction(string faction1Id, string faction2Id)
+        public bool DoesFactionBorderFaction(string faction1Id, string faction2Id)
         {
             List<Province> faction1Provinces = GetFactionProvinces(faction1Id).ToList();
             List<Province> faction2Provinces = GetFactionProvinces(faction2Id).ToList();
 
-            return faction1Provinces.Any(r1 => faction2Provinces.Any(r2 => ProvinceBordersProvince(r1.Id, r2.Id)));
+            return faction1Provinces.Any(r1 => faction2Provinces.Any(r2 => DoesProvinceBorderProvince(r1.Id, r2.Id)));
         }
 
         /// <summary>
@@ -134,15 +134,15 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the faction share a border with that province, <c>false</c> otherwise.</returns>
         /// <param name="factionId">Faction identifier.</param>
         /// <param name="provinceId">Province identifier.</param>
-        public bool FactionBordersProvince(string factionId, string provinceId)
-            => GetFactionProvinces(factionId).Any(r => ProvinceBordersProvince(r.Id, provinceId));
+        public bool DoesFactionBorderProvince(string factionId, string provinceId)
+            => GetFactionProvinces(factionId).Any(r => DoesProvinceBorderProvince(r.Id, provinceId));
 
         /// <summary>
         /// Transfers the specified province to the specified faction.
         /// </summary>
         /// <param name="provinceId">Province identifier.</param>
         /// <param name="factionId">Faction identifier.</param>
-        public void TransferProvince(string provinceId, string factionId)
+        public void TransferProvinceToFaction(string provinceId, string factionId)
         {
             provinces[provinceId].FactionId = factionId;
         }
@@ -353,7 +353,7 @@ namespace Narivia.GameLogic.GameManagers
 
         void SetBorder(string province1Id, string province2Id)
         {
-            if (ProvinceBordersProvince(province1Id, province2Id))
+            if (DoesProvinceBorderProvince(province1Id, province2Id))
             {
                 return;
             }

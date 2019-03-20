@@ -194,7 +194,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         void UpdateProvinceList()
         {
-            provinces = worldManager.GetFactionProvinces(gameManager.PlayerFactionId).Where(r => holdingManager.ProvinceHasEmptyHoldingSlots(r.Id)).ToList();
+            provinces = worldManager.GetFactionProvinces(gameManager.PlayerFactionId).Where(r => holdingManager.DoesProvinceHaveEmptyHoldings(r.Id)).ToList();
             SelectProvince(currentProvinceIndex);
         }
 

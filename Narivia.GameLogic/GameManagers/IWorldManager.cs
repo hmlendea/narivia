@@ -20,7 +20,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the specified provinces share a border, <c>false</c> otherwise.</returns>
         /// <param name="province1Id">First province identifier.</param>
         /// <param name="province2Id">Second province identifier.</param>
-        bool ProvinceBordersProvince(string province1Id, string province2Id);
+        bool DoesProvinceBorderProvince(string province1Id, string province2Id);
 
         /// <summary>
         /// Checks wether the specified provinces share a border.
@@ -28,7 +28,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the specified provinces share a border, <c>false</c> otherwise.</returns>
         /// <param name="faction1Id">First faction identifier.</param>
         /// <param name="faction2Id">Second faction identifier.</param>
-        bool FactionBordersFaction(string faction1Id, string faction2Id);
+        bool DoesFactionBorderFaction(string faction1Id, string faction2Id);
 
         /// <summary>
         /// Checks wether the specified faction shares a border with the specified province.
@@ -36,14 +36,14 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns><c>true</c>, if the faction share a border with that province, <c>false</c> otherwise.</returns>
         /// <param name="factionId">Faction identifier.</param>
         /// <param name="provinceId">Province identifier.</param>
-        bool FactionBordersProvince(string factionId, string provinceId);
+        bool DoesFactionBorderProvince(string factionId, string provinceId);
 
         /// <summary>
         /// Transfers the specified province to the specified faction.
         /// </summary>
         /// <param name="provinceId">Province identifier.</param>
         /// <param name="factionId">Faction identifier.</param>
-        void TransferProvince(string provinceId, string factionId);
+        void TransferProvinceToFaction(string provinceId, string factionId);
 
         /// <summary>
         /// Gets the borders.
