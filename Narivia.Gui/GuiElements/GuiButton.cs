@@ -57,7 +57,7 @@ namespace Narivia.Gui.GuiElements
         {
             base.SetChildrenProperties();
 
-            if (!Hovered)
+            if (!IsHovered)
             {
                 image.SourceRectangle = new Rectangle2D(0, 0, Size.Width, Size.Height);
             }

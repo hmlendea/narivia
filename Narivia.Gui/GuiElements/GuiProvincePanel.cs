@@ -199,11 +199,11 @@ namespace Narivia.Gui.GuiElements
                 {
                     holdingCards[i].HoldingId = holdings[i].Id;
                     holdingCards[i].CultureId = faction.CultureId;
-                    holdingCards[i].Visible = true;
+                    holdingCards[i].Show();
                 }
                 else
                 {
-                    holdingCards[i].Visible = false;
+                    holdingCards[i].Hide();
                 }
             }
         }

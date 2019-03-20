@@ -92,12 +92,12 @@ namespace Narivia.Gui.GuiElements
 
             if (string.IsNullOrWhiteSpace(HoldingId))
             {
-                Visible = false;
+                Hide();
             }
             else
             {
                 icon.SourceRectangle = new Rectangle2D(64 * (holding.Type - 1), 0, 64, 64);
-                Visible = true;
+                Show();
             }
 
             tooltip.Text = holding.Name;
