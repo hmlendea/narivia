@@ -77,6 +77,7 @@ namespace Narivia.Gui.Screens
 
             administrationBar = new GuiAdministrationBar
             {
+                Id = nameof(administrationBar),
                 Location = Point2D.Empty
             };
             infoBar = new GuiInfoBar(
@@ -85,20 +86,24 @@ namespace Narivia.Gui.Screens
                 HoldingManager,
                 MilitaryManager)
             {
+                Id = nameof(infoBar),
                 Location = new Point2D(ScreenManager.Instance.Size.Width - 166, 0),
                 Size = new Size2D(166, 82)
             };
             factionBar = new GuiFactionBar(GameManager)
             {
+                Id = nameof(factionBar),
                 Location = new Point2D((ScreenManager.Instance.Size.Width - 242) / 2, 0),
                 Size = new Size2D(242, 94)
             };
             gameMap = new GuiWorldmap(GameManager, WorldManager)
             {
+                Id = nameof(gameMap),
                 Size = ScreenManager.Instance.Size
             };
             notificationBar = new GuiNotificationBar(GameManager)
             {
+                Id = nameof(notificationBar),
                 Location = new Point2D(
                     ScreenManager.Instance.Size.Width - 48,
                     infoBar.Size.Height),
@@ -106,11 +111,18 @@ namespace Narivia.Gui.Screens
             };
             provincePanel = new GuiProvincePanel(GameManager, WorldManager, HoldingManager)
             {
+                Id = nameof(provincePanel),
                 Location = new Point2D(0, 296)
             };
 
-            recruitmentPanel = new GuiRecruitmentPanel(GameManager, WorldManager, MilitaryManager);
-            buildingPanel = new GuiBuildingPanel(GameManager, WorldManager, HoldingManager);
+            recruitmentPanel = new GuiRecruitmentPanel(GameManager, WorldManager, MilitaryManager)
+            {
+                Id = nameof(recruitmentPanel)
+            };
+            buildingPanel = new GuiBuildingPanel(GameManager, WorldManager, HoldingManager)
+            {
+                Id = nameof(buildingPanel)
+            };
 
             recruitmentPanel.Hide();
             buildingPanel.Hide();

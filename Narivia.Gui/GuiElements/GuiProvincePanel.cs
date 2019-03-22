@@ -66,6 +66,7 @@ namespace Narivia.Gui.GuiElements
 
             paper = new GuiImage
             {
+                Id = $"{Id}_{nameof(paper)}",
                 ContentFile = "Interface/ProvincePanel/paper",
                 Size = new Size2D(248, 80),
                 Location = new Point2D(12, 68)
@@ -73,11 +74,13 @@ namespace Narivia.Gui.GuiElements
 
             factionFlag = new GuiFactionFlag
             {
+                Id = $"{Id}_{nameof(factionFlag)}",
                 Size = new Size2D(28, 28),
                 Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 8)
             };
             factionName = new GuiText
             {
+                Id = $"{Id}_{nameof(factionName)}",
                 Size = new Size2D(80, factionFlag.Size.Height),
                 Location = new Point2D(factionFlag.ClientRectangle.Right + GameDefines.GuiSpacing, factionFlag.Location.Y),
                 FontName = "ProvincePanelInfoFont",
@@ -86,12 +89,14 @@ namespace Narivia.Gui.GuiElements
 
             resourceIcon = new GuiImage
             {
+                Id = $"{Id}_{nameof(resourceIcon)}",
                 ContentFile = $"World/Assets/{world.AssetsPack}/resources/gold",
                 Size = new Size2D(28, 28),
                 Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 44)
             };
             resourceName = new GuiText
             {
+                Id = $"{Id}_{nameof(resourceName)}",
                 Size = new Size2D(factionName.Size.Width, resourceIcon.Size.Height),
                 Location = new Point2D(
                     resourceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
@@ -102,6 +107,7 @@ namespace Narivia.Gui.GuiElements
 
             attackButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(attackButton)}",
                 ContentFile = "Interface/ProvincePanel/attack-button",
                 Size = new Size2D(28, 28),
                 Location = new Point2D(
@@ -110,6 +116,7 @@ namespace Narivia.Gui.GuiElements
             };
             buildButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(buildButton)}",
                 ContentFile = "Interface/ProvincePanel/build-button",
                 Size = new Size2D(28, 28),
                 Location = new Point2D(
@@ -126,6 +133,7 @@ namespace Narivia.Gui.GuiElements
                 {
                     GuiHoldingCard holdingCard = new GuiHoldingCard(holdingManager)
                     {
+                        Id = $"{Id}_{nameof(holdingCard)}_{x}x{y}",
                         Location = new Point2D(
                             holdingCardsStart.X + x * 84,
                             holdingCardsStart.Y + y * 84)

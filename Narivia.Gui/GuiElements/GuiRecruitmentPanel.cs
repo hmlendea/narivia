@@ -80,6 +80,7 @@ namespace Narivia.Gui.GuiElements
 
             unitBackground = new GuiImage
             {
+                Id = $"{Id}_{nameof(unitBackground)}",
                 ContentFile = "ScreenManager/FillImage",
                 TextureLayout = TextureLayout.Tile,
                 TintColour = Colour.Black,
@@ -88,6 +89,7 @@ namespace Narivia.Gui.GuiElements
             };
             unitImage = new GuiImage
             {
+                Id = $"{Id}_{nameof(unitImage)}",
                 ContentFile = $"World/Assets/{world.AssetsPack}/units/{units[currentUnitIndex].Id}",
                 SourceRectangle = new Rectangle2D(0, 0, 64, 64),
                 Size = new Size2D(64, 64),
@@ -97,6 +99,7 @@ namespace Narivia.Gui.GuiElements
             };
             paper = new GuiImage
             {
+                Id = $"{Id}_{nameof(paper)}",
                 ContentFile = "Interface/ProvincePanel/paper",
                 Size = new Size2D(248, 80),
                 Location = new Point2D(
@@ -106,6 +109,7 @@ namespace Narivia.Gui.GuiElements
 
             unitText = new GuiText
             {
+                Id = $"{Id}_{nameof(unitText)}",
                 ForegroundColour = Colour.Gold,
                 Size = new Size2D(unitBackground.Size.Width, 18),
                 Location = unitBackground.Location
@@ -113,6 +117,7 @@ namespace Narivia.Gui.GuiElements
 
             healthIcon = new GuiImage
             {
+                Id = $"{Id}_{nameof(healthIcon)}",
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle2D(0, 0, IconSize, IconSize),
                 Size = new Size2D(IconSize, IconSize),
@@ -122,6 +127,7 @@ namespace Narivia.Gui.GuiElements
             };
             powerIcon = new GuiImage
             {
+                Id = $"{Id}_{nameof(powerIcon)}",
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle2D(IconSize, 0, IconSize, IconSize),
                 Size = new Size2D(IconSize, IconSize),
@@ -131,6 +137,7 @@ namespace Narivia.Gui.GuiElements
             };
             priceIcon = new GuiImage
             {
+                Id = $"{Id}_{nameof(priceIcon)}",
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle2D(IconSize * 3, 0, IconSize, IconSize),
                 Size = new Size2D(IconSize, IconSize),
@@ -140,6 +147,7 @@ namespace Narivia.Gui.GuiElements
             };
             maintenanceIcon = new GuiImage
             {
+                Id = $"{Id}_{nameof(maintenanceIcon)}",
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle2D(IconSize * 3, 0, IconSize, IconSize),
                 Size = new Size2D(IconSize, IconSize),
@@ -150,6 +158,7 @@ namespace Narivia.Gui.GuiElements
 
             healthText = new GuiText
             {
+                Id = $"{Id}_{nameof(healthText)}",
                 HorizontalAlignment = Alignment.Beginning,
                 Size = new Size2D(
                     healthIcon.Size.Width * 2,
@@ -160,6 +169,7 @@ namespace Narivia.Gui.GuiElements
             };
             powerText = new GuiText
             {
+                Id = $"{Id}_{nameof(powerText)}",
                 HorizontalAlignment = Alignment.Beginning,
                 Size = new Size2D(
                     powerIcon.Size.Width * 2,
@@ -170,6 +180,7 @@ namespace Narivia.Gui.GuiElements
             };
             priceText = new GuiText
             {
+                Id = $"{Id}_{nameof(priceText)}",
                 HorizontalAlignment = Alignment.End,
                 Size = new Size2D(
                     priceIcon.Size.Width * 2,
@@ -180,6 +191,7 @@ namespace Narivia.Gui.GuiElements
             };
             maintenanceText = new GuiText
             {
+                Id = $"{Id}_{nameof(maintenanceText)}",
                 HorizontalAlignment = Alignment.End,
                 Size = new Size2D(
                     maintenanceIcon.Size.Width * 2,
@@ -190,6 +202,7 @@ namespace Narivia.Gui.GuiElements
             };
             troopsText = new GuiText
             {
+                Id = $"{Id}_{nameof(troopsText)}",
                 Size = new Size2D(unitBackground.Size.Height, 18),
                 Location = new Point2D(
                     unitBackground.ClientRectangle.Left,
@@ -198,6 +211,7 @@ namespace Narivia.Gui.GuiElements
 
             previousUnitButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(previousUnitButton)}",
                 ContentFile = "Interface/Buttons/button-minus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
@@ -206,6 +220,7 @@ namespace Narivia.Gui.GuiElements
             };
             nextUnitButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(nextUnitButton)}",
                 ContentFile = "Interface/Buttons/button-plus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
@@ -214,6 +229,7 @@ namespace Narivia.Gui.GuiElements
             };
             substractUnitButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(substractUnitButton)}",
                 ContentFile = "Interface/Buttons/button-minus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
@@ -222,6 +238,7 @@ namespace Narivia.Gui.GuiElements
             };
             addUnitButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(addUnitButton)}",
                 ContentFile = "Interface/Buttons/button-plus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
@@ -231,6 +248,7 @@ namespace Narivia.Gui.GuiElements
 
             recruitButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(recruitButton)}",
                 ContentFile = "Interface/Buttons/green-button-large",
                 ForegroundColour = Colour.White,
                 Size = new Size2D(128, 26),

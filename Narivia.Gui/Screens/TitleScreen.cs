@@ -21,19 +21,19 @@ namespace Narivia.Gui.Screens
         {
             newGameLink = new GuiMenuLink
             {
-                Id = "newGame",
+                Id = nameof(newGameLink),
                 Text = "New Game",
                 TargetScreen = typeof(NewGameScreen)
             };
             settingsLink = new GuiMenuLink
             {
-                Id = "settings",
+                Id = nameof(settingsLink),
                 Text = "Settings",
                 TargetScreen = typeof(SettingsScreen)
             };
             extiAction = new GuiMenuAction
             {
-                Id = "exit",
+                Id = nameof(extiAction),
                 Text = "Exit",
                 ActionId = "Exit"
             };

@@ -36,11 +36,13 @@ namespace Narivia.Gui.GuiElements
         {
             background = new GuiImage
             {
+                Id = $"{Id}_{nameof(background)}",
                 ContentFile = "Interface/Notification/icon_background"
             };
 
             icon = new GuiImage
             {
+                Id = $"{Id}_{nameof(icon)}",
                 ContentFile = "Interface/Notification/icons",
                 SourceRectangle = CalculateIconSourceRectangle(Icon),
                 Location = new Point2D((Size.Width - 20) / 2, (Size.Height - 20) / 2),

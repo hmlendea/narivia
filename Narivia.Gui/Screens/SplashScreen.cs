@@ -53,7 +53,7 @@ namespace Narivia.Gui.Screens
         {
             BackgroundImage = new GuiImage
             {
-                Id = "backgroundImage",
+                Id = nameof(BackgroundImage),
                 ContentFile = "SplashScreen/Background",
                 RotationEffect = new OscilationEffect
                 {
@@ -70,12 +70,12 @@ namespace Narivia.Gui.Screens
             };
             OverlayImage = new GuiImage
             {
-                Id = "overlayImage",
+                Id = nameof(OverlayImage),
                 ContentFile = "SplashScreen/Overlay"
             };
             LogoImage = new GuiImage
             {
-                Id = "logoImage",
+                Id = nameof(LogoImage),
                 ContentFile = "SplashScreen/Logo"
             };
 

@@ -41,6 +41,7 @@ namespace Narivia.Gui.GuiElements
         {
             image = new GuiImage
             {
+                Id = $"{Id}_{nameof(image)}",
                 ContentFile = ContentFile
             };
             text = new GuiText();

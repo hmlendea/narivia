@@ -25,18 +25,21 @@ namespace Narivia.Gui.GuiElements
             };
             BuildButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(BuildButton)}",
                 ContentFile = "Interface/AdministrationBar/button-build",
                 Location = new Point2D(16, 10),
                 Size = new Size2D(26, 26)
             };
             RecruitButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(RecruitButton)}",
                 ContentFile = "Interface/AdministrationBar/button-recruit",
                 Location = new Point2D(52, 10),
                 Size = new Size2D(26, 26)
             };
             StatsButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(StatsButton)}",
                 ContentFile = "Interface/AdministrationBar/button-stats",
                 Location = new Point2D(89, 10),
                 Size = new Size2D(26, 26)

@@ -45,23 +45,23 @@ namespace Narivia.Gui.Screens
 
             startLink = new GuiMenuLink
             {
-                Id = "start",
+                Id = nameof(startLink),
                 Text = "Start",
                 TargetScreen = typeof(GameplayScreen)
             };
             worldSelector = new GuiMenuListSelector
             {
-                Id = "worldSelector",
+                Id = nameof(worldSelector),
                 Text = "World"
             };
             factionSelector = new GuiMenuListSelector
             {
-                Id = "factionSelector",
+                Id = nameof(factionSelector),
                 Text = "Faction"
             };
             backLink = new GuiMenuLink
             {
-                Id = "back",
+                Id = nameof(backLink),
                 Text = "Back",
                 TargetScreen = typeof(TitleScreen)
             };

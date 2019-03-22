@@ -73,6 +73,7 @@ namespace Narivia.Gui.GuiElements
         {
             GuiNotificationIndicator notificationButton = new GuiNotificationIndicator
             {
+                Id = $"{Id}_{indicators.Count}_{icon.ToString()}",
                 Icon = icon,
                 Location = new Point2D(
                     GameDefines.GuiSpacing,

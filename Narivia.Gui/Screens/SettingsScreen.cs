@@ -24,19 +24,19 @@ namespace Narivia.Gui.Screens
         {
             fullScreenToggle = new GuiMenuToggle
             {
-                Id = "fullscreenToggle",
+                Id = nameof(fullScreenToggle),
                 Text = "Toggle fullscreen mode",
                 Property = "Fullscreen"
             };
             debugModeToggle = new GuiMenuToggle
             {
-                Id = "debugToggle",
+                Id = nameof(debugModeToggle),
                 Text = "Toggle debug mode",
                 Property = "DebugMode"
             };
             backLink = new GuiMenuLink
             {
-                Id = "back",
+                Id = nameof(backLink),
                 Text = "Back",
                 TargetScreen = typeof(TitleScreen)
             };

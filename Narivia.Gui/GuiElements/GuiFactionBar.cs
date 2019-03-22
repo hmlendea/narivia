@@ -27,10 +27,12 @@ namespace Narivia.Gui.GuiElements
         {
             bar = new GuiImage
             {
+                Id = $"{Id}_{nameof(bar)}",
                 ContentFile = "Interface/FactionBar/bar"
             };
             flag = new GuiFactionFlag
             {
+                Id = $"{Id}_{nameof(flag)}",
                 Location = new Point2D(83, 14),
                 Size = new Size2D(76, 76)
             };

@@ -35,28 +35,33 @@ namespace Narivia.Gui.GuiElements
         {
             background = new GuiImage
             {
+                Id = $"{Id}_{nameof(background)}",
                 ContentFile = "Interface/ProvincePanel/panel"
             };
             crystal = new GuiImage
             {
+                Id = $"{Id}_{nameof(crystal)}",
                 ContentFile = "Interface/ProvincePanel/crystal",
                 Size = new Size2D(125, 31),
                 Location = new Point2D(76, 4)
             };
             crystalOverlay = new GuiImage
             {
+                Id = $"{Id}_{nameof(crystalOverlay)}",
                 ContentFile = "Interface/ProvincePanel/crystal_overlay",
                 Size = new Size2D(163, 43),
                 Location = new Point2D(55, 0)
             };
             closeButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(closeButton)}",
                 ContentFile = "Interface/ProvincePanel/close-button",
                 Size = new Size2D(28, 28),
                 Location = new Point2D(241, 0)
             };
             title = new GuiText
             {
+                Id = $"{Id}_{nameof(title)}",
                 ForegroundColour = Colour.Gold,
                 Size = new Size2D(125, 31),
                 Location = new Point2D(76, 4),

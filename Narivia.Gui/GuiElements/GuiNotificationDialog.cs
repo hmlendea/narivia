@@ -48,10 +48,12 @@ namespace Narivia.Gui.GuiElements
         {
             background = new GuiImage
             {
+                Id = $"{Id}_{nameof(background)}",
                 ContentFile = "Interface/Notification/background"
             };
             title = new GuiText
             {
+                Id = $"{Id}_{nameof(title)}",
                 FontName = "NotificationTitleFont",
                 Location = new Point2D(15, 45),
                 Size = new Size2D(Size.Width - 30, 20),
@@ -59,12 +61,14 @@ namespace Narivia.Gui.GuiElements
             };
             text = new GuiText
             {
+                Id = $"{Id}_{nameof(text)}",
                 FontName = "NotificationFont",
                 Location = new Point2D(15, 70),
                 Size = new Size2D(Size.Width - 30, 270)
             };
             acceptButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(acceptButton)}",
                 ContentFile = "Interface/Buttons/green-button",
                 Text = "Accept",
                 ForegroundColour = Colour.White,

@@ -72,6 +72,7 @@ namespace Narivia.Gui.GuiElements
 
             holdingBackground = new GuiImage
             {
+                Id = $"{Id}_{nameof(holdingBackground)}",
                 ContentFile = "ScreenManager/FillImage",
                 TextureLayout = TextureLayout.Tile,
                 TintColour = Colour.Black,
@@ -80,6 +81,7 @@ namespace Narivia.Gui.GuiElements
             };
             holdingImage = new GuiImage
             {
+                Id = $"{Id}_{nameof(holdingImage)}",
                 ContentFile = $"Icons/holdings/generic",
                 SourceRectangle = new Rectangle2D(0, 0, 64, 64),
                 Size = new Size2D(64, 64),
@@ -89,6 +91,7 @@ namespace Narivia.Gui.GuiElements
             };
             paper = new GuiImage
             {
+                Id = $"{Id}_{nameof(paper)}",
                 ContentFile = "Interface/ProvincePanel/paper",
                 Size = new Size2D(248, 80),
                 Location = new Point2D(
@@ -98,12 +101,14 @@ namespace Narivia.Gui.GuiElements
 
             holdingText = new GuiText
             {
+                Id = $"{Id}_{nameof(holdingText)}",
                 ForegroundColour = Colour.Gold,
                 Size = new Size2D(holdingBackground.Size.Width, 18),
                 Location = holdingBackground.Location
             };
             provinceText = new GuiText
             {
+                Id = $"{Id}_{nameof(provinceText)}",
                 ForegroundColour = Colour.Gold,
                 Size = new Size2D(holdingBackground.Size.Height, 18),
                 Location = new Point2D(
@@ -113,6 +118,7 @@ namespace Narivia.Gui.GuiElements
 
             priceIcon = new GuiImage
             {
+                Id = $"{Id}_{nameof(priceIcon)}",
                 ContentFile = "Interface/game_icons",
                 SourceRectangle = new Rectangle2D(IconSize * 3, 0, IconSize, IconSize),
                 Size = new Size2D(IconSize, IconSize),
@@ -122,6 +128,7 @@ namespace Narivia.Gui.GuiElements
             };
             priceText = new GuiText
             {
+                Id = $"{Id}_{nameof(priceText)}",
                 HorizontalAlignment = Alignment.Beginning,
                 Size = new Size2D(priceIcon.Size.Width * 2, priceIcon.Size.Height),
                 Location = new Point2D(
@@ -131,6 +138,7 @@ namespace Narivia.Gui.GuiElements
 
             previousHoldingButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(previousHoldingButton)}",
                 ContentFile = "Interface/Buttons/button-minus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
@@ -139,6 +147,7 @@ namespace Narivia.Gui.GuiElements
             };
             nextHoldingButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(nextHoldingButton)}",
                 ContentFile = "Interface/Buttons/button-plus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
@@ -147,6 +156,7 @@ namespace Narivia.Gui.GuiElements
             };
             previouseProvinceButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(previouseProvinceButton)}",
                 ContentFile = "Interface/Buttons/button-minus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
@@ -155,6 +165,7 @@ namespace Narivia.Gui.GuiElements
             };
             nextProvinceButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(nextProvinceButton)}",
                 ContentFile = "Interface/Buttons/button-plus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
@@ -164,6 +175,7 @@ namespace Narivia.Gui.GuiElements
 
             buildButton = new GuiButton
             {
+                Id = $"{Id}_{nameof(buildButton)}",
                 ContentFile = "Interface/Buttons/green-button-large",
                 ForegroundColour = Colour.White,
                 Text = "Build",
