@@ -142,15 +142,15 @@ namespace Narivia.Gui.GuiElements
             camera.UnloadContent();
 
             riverSprite.UnloadContent();
-            provinceHighlight.UnloadContent();
-            factionBorder.UnloadContent();
-            provinceBorder.UnloadContent();
-            factionBorder.UnloadContent();
-
+            
             foreach (TextureSprite terrainSprite in terrainSprites.Values)
             {
                 terrainSprite.UnloadContent();
             }
+
+            provinceHighlight.UnloadContent();
+            factionBorder.UnloadContent();
+            provinceBorder.UnloadContent();
 
             terrainSprites.Clear();
 
