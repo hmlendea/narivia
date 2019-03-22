@@ -1,4 +1,7 @@
-﻿using NuciXNA.Graphics.Drawing;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
@@ -25,7 +28,10 @@ namespace Narivia.Gui.GuiElements
             CrystalColour = Colour.Red;
         }
 
-        public override void LoadContent()
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        protected override void DoLoadContent()
         {
             background = new GuiImage
             {
@@ -58,12 +64,9 @@ namespace Narivia.Gui.GuiElements
                 FontOutline = FontOutline.Around
             };
 
-            base.LoadContent();
-        }
+            SetChildrenProperties();
 
-        protected override void RegisterChildren()
-        {
-            base.RegisterChildren();
+            closeButton.Clicked += OnCloseButtonClicked;
 
             AddChild(background);
             AddChild(crystal);
@@ -72,29 +75,39 @@ namespace Narivia.Gui.GuiElements
             AddChild(title);
         }
 
-        protected override void RegisterEvents()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
-            base.RegisterEvents();
-
-            closeButton.Clicked += CloseButton_Clicked;
+            closeButton.Clicked -= OnCloseButtonClicked;
         }
 
-        protected override void UnregisterEvents()
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
         {
-            base.UnregisterEvents();
-
-            closeButton.Clicked -= CloseButton_Clicked;
+            SetChildrenProperties();
         }
 
-        protected override void SetChildrenProperties()
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        void SetChildrenProperties()
         {
             crystal.TintColour = CrystalColour;
             title.Text = Title;
-
-            base.SetChildrenProperties();
         }
 
-        void CloseButton_Clicked(object sender, MouseButtonEventArgs e)
+        void OnCloseButtonClicked(object sender, MouseButtonEventArgs e)
         {
             Hide();
             Closed?.Invoke(this, e);

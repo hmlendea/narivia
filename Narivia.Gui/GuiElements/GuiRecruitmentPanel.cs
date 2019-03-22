@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
@@ -69,7 +72,7 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             world = gameManager.GetWorld();
 
@@ -147,7 +150,7 @@ namespace Narivia.Gui.GuiElements
 
             healthText = new GuiText
             {
-                HorizontalAlignment = HorizontalAlignment.Left,
+                HorizontalAlignment = Alignment.Beginning,
                 Size = new Size2D(
                     healthIcon.Size.Width * 2,
                     healthIcon.Size.Height),
@@ -157,7 +160,7 @@ namespace Narivia.Gui.GuiElements
             };
             powerText = new GuiText
             {
-                HorizontalAlignment = HorizontalAlignment.Left,
+                HorizontalAlignment = Alignment.Beginning,
                 Size = new Size2D(
                     powerIcon.Size.Width * 2,
                     powerIcon.Size.Height),
@@ -167,7 +170,7 @@ namespace Narivia.Gui.GuiElements
             };
             priceText = new GuiText
             {
-                HorizontalAlignment = HorizontalAlignment.Right,
+                HorizontalAlignment = Alignment.End,
                 Size = new Size2D(
                     priceIcon.Size.Width * 2,
                     priceIcon.Size.Height),
@@ -177,7 +180,7 @@ namespace Narivia.Gui.GuiElements
             };
             maintenanceText = new GuiText
             {
-                HorizontalAlignment = HorizontalAlignment.Right,
+                HorizontalAlignment = Alignment.End,
                 Size = new Size2D(
                     maintenanceIcon.Size.Width * 2,
                     maintenanceIcon.Size.Height),
@@ -235,14 +238,40 @@ namespace Narivia.Gui.GuiElements
                     (Size.Width - 128) / 2,
                     Size.Height - 42 - GameDefines.GuiSpacing)
             };
-
-            base.LoadContent();
+            
+            RegisterChildren();
+            RegisterEvents();
+            SetChildrenProperties();
         }
 
-        protected override void RegisterChildren()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
-            base.RegisterChildren();
+            UnregisterEvents();
+        }
 
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
+        {
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        void RegisterChildren()
+        {
             AddChild(unitBackground);
             AddChild(unitImage);
             AddChild(paper);
@@ -268,10 +297,8 @@ namespace Narivia.Gui.GuiElements
             AddChild(recruitButton);
         }
 
-        protected override void RegisterEvents()
+        void RegisterEvents()
         {
-            base.RegisterEvents();
-
             addUnitButton.Clicked += OnAddUnitButtonClicked;
             nextUnitButton.Clicked += OnNextUnitButtonClicked;
             previousUnitButton.Clicked += OnPreviousUnitButtonClicked;
@@ -279,10 +306,8 @@ namespace Narivia.Gui.GuiElements
             substractUnitButton.Clicked += OnSusbstractUnitButtonClicked;
         }
 
-        protected override void UnregisterEvents()
+        void UnregisterEvents()
         {
-            base.UnregisterEvents();
-
             addUnitButton.Clicked -= OnAddUnitButtonClicked;
             nextUnitButton.Clicked -= OnNextUnitButtonClicked;
             previousUnitButton.Clicked -= OnPreviousUnitButtonClicked;
@@ -290,10 +315,8 @@ namespace Narivia.Gui.GuiElements
             substractUnitButton.Clicked -= OnSusbstractUnitButtonClicked;
         }
 
-        protected override void SetChildrenProperties()
+        void SetChildrenProperties()
         {
-            base.SetChildrenProperties();
-
             unitText.Text = units[currentUnitIndex].Name;
             troopsText.Text = $"x{troopsAmount}";
             healthText.Text = units[currentUnitIndex].Health.ToString();

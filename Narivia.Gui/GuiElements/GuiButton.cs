@@ -1,4 +1,7 @@
-﻿using NuciXNA.Gui.GuiElements;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 
@@ -34,29 +37,65 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             image = new GuiImage
             {
                 ContentFile = ContentFile
             };
             text = new GuiText();
-
-            base.LoadContent();
+            
+            RegisterChildren();
+            RegisterEvents();
+            SetChildrenProperties();
         }
 
-        protected override void RegisterChildren()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
-            base.RegisterChildren();
+            UnregisterEvents();
+        }
 
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
+        {
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        void RegisterChildren()
+        {
             AddChild(image);
             AddChild(text);
         }
 
-        protected override void SetChildrenProperties()
+        void RegisterEvents()
         {
-            base.SetChildrenProperties();
+            Clicked += OnClicked;
+            MouseEntered += OnMouseEntered;
+        }
 
+        void UnregisterEvents()
+        {
+            Clicked -= OnClicked;
+            MouseEntered -= OnMouseEntered;
+        }
+
+        void SetChildrenProperties()
+        {
             if (!IsHovered)
             {
                 image.SourceRectangle = new Rectangle2D(0, 0, Size.Width, Size.Height);
@@ -74,10 +113,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        protected override void OnClicked(object sender, MouseButtonEventArgs e)
+        void OnClicked(object sender, MouseButtonEventArgs e)
         {
-            base.OnClicked(sender, e);
-
             if (e.Button != MouseButton.Left)
             {
                 return;
@@ -91,10 +128,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        protected override void OnMouseEntered(object sender, MouseEventArgs e)
+        void OnMouseEntered(object sender, MouseEventArgs e)
         {
-            base.OnMouseMoved(sender, e);
-
             AudioManager.Instance.PlaySound("Interface/select");
         }
     }

@@ -24,7 +24,7 @@ namespace Narivia.Gui.SpriteEffects
             world = worldManager.GetWorld();
         }
 
-        public override void UpdateFrame(GameTime gameTime)
+        protected override void DoUpdate(GameTime gameTime)
         {
             CurrentFrame = new Point2D(1, 3); // Default
 

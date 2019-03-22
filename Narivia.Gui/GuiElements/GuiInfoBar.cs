@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
@@ -63,7 +66,7 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             background = new GuiImage
             {
@@ -160,14 +163,40 @@ namespace Narivia.Gui.GuiElements
                 Location = new Point2D(15, 62),
                 Size = new Size2D(138, 15)
             };
-
-            base.LoadContent();
+            
+            RegisterChildren();
+            RegisterEvents();
+            SetChildrenProperties();
         }
 
-        protected override void RegisterChildren()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
-            base.RegisterChildren();
+            UnregisterEvents();
+        }
 
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
+        {
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        void RegisterChildren()
+        {
             AddChild(background);
 
             AddChild(provincesIcon);
@@ -189,10 +218,8 @@ namespace Narivia.Gui.GuiElements
             AddChild(troopsTooltip);
         }
 
-        protected override void RegisterEvents()
+        void RegisterEvents()
         {
-            base.RegisterEvents();
-
             provincesIcon.MouseEntered += OnProvincesMouseEntered;
             provincesIcon.MouseLeft += OnProvincesMouseLeft;
 
@@ -208,10 +235,8 @@ namespace Narivia.Gui.GuiElements
             turnButton.Clicked += TurnButtonClicked;
         }
 
-        protected override void UnregisterEvents()
+        void UnregisterEvents()
         {
-            base.UnregisterEvents();
-
             provincesIcon.MouseEntered -= OnProvincesMouseEntered;
             provincesIcon.MouseLeft -= OnProvincesMouseLeft;
 
@@ -227,10 +252,8 @@ namespace Narivia.Gui.GuiElements
             turnButton.Clicked -= TurnButtonClicked;
         }
 
-        protected override void SetChildrenProperties()
+        void SetChildrenProperties()
         {
-            base.SetChildrenProperties();
-
             Dictionary<string, int> troops = new Dictionary<string, int>();
 
             string factionId = gameManager.PlayerFactionId;

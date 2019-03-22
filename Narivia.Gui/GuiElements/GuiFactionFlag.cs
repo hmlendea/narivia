@@ -1,3 +1,6 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
@@ -30,36 +33,66 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             backgroundImage = new GuiImage
             {
+                Id = $"{Id}_{nameof(backgroundImage)}",
                 SourceRectangle = Rectangle2D.Empty
             };
             layer1Image = new GuiImage
             {
+                Id = $"{Id}_{nameof(layer1Image)}",
                 SourceRectangle = Rectangle2D.Empty
             };
             layer2Image = new GuiImage
             {
+                Id = $"{Id}_{nameof(layer2Image)}",
                 SourceRectangle = Rectangle2D.Empty
             };
             emblemImage = new GuiImage
             {
+                Id = $"{Id}_{nameof(emblemImage)}",
                 SourceRectangle = Rectangle2D.Empty
             };
             skinImage = new GuiImage
             {
+                Id = $"{Id}_{nameof(skinImage)}",
                 SourceRectangle = Rectangle2D.Empty
             };
 
-            base.LoadContent();
+            RegisterChildren();
+            SetChildrenProperties();
         }
 
-        protected override void RegisterChildren()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
-            base.RegisterChildren();
 
+        }
+
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
+        {
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        void RegisterChildren()
+        {
             AddChild(backgroundImage);
             AddChild(layer1Image);
             AddChild(layer2Image);
@@ -67,10 +100,8 @@ namespace Narivia.Gui.GuiElements
             AddChild(skinImage);
         }
 
-        protected override void SetChildrenProperties()
+        void SetChildrenProperties()
         {
-            base.SetChildrenProperties();
-
             backgroundImage.ContentFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
             backgroundImage.MaskFile = $"Interface/Flags/Skins/{Flag.Skin}_mask";
             backgroundImage.TintColour = Flag.BackgroundColour;

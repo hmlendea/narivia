@@ -2,7 +2,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using NuciXNA.DataAccess.Resources;
+using NuciXNA.DataAccess.Content;
 
 using Narivia.Gui.Helpers;
 using Narivia.Settings;
@@ -38,7 +38,7 @@ namespace Narivia.Gui
         /// </summary>
         public void LoadContent()
         {
-            fpsFont = ResourceManager.Instance.LoadSpriteFont("Fonts/FrameCounterFont");
+            fpsFont = NuciContentManager.Instance.LoadSpriteFont("Fonts/FrameCounterFont");
         }
 
         /// <summary>

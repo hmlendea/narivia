@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Audio;
-using NuciXNA.DataAccess.Resources;
+using NuciXNA.DataAccess.Content;
 
 using Narivia.Settings;
 
@@ -47,7 +47,7 @@ namespace Narivia.Audio
                 return;
             }
 
-            SoundEffect soundEffect = ResourceManager.Instance.LoadSoundEffect("Audio/" + sound);
+            SoundEffect soundEffect = NuciContentManager.Instance.LoadSoundEffect("Audio/" + sound);
 
             soundEffect.CreateInstance().Play();
         }

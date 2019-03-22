@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
@@ -52,8 +55,13 @@ namespace Narivia.Gui.GuiElements
             this.holdingManager = holdingManager;
         }
 
-        public override void LoadContent()
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        protected override void DoLoadContent()
         {
+            base.DoLoadContent();
+
             world = gameManager.GetWorld();
 
             paper = new GuiImage
@@ -73,7 +81,7 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(80, factionFlag.Size.Height),
                 Location = new Point2D(factionFlag.ClientRectangle.Right + GameDefines.GuiSpacing, factionFlag.Location.Y),
                 FontName = "ProvincePanelInfoFont",
-                HorizontalAlignment = HorizontalAlignment.Left
+                HorizontalAlignment = Alignment.Beginning
             };
 
             resourceIcon = new GuiImage
@@ -89,7 +97,7 @@ namespace Narivia.Gui.GuiElements
                     resourceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                     resourceIcon.Location.Y),
                 FontName = "ProvincePanelInfoFont",
-                HorizontalAlignment = HorizontalAlignment.Left
+                HorizontalAlignment = Alignment.Beginning
             };
 
             attackButton = new GuiButton
@@ -127,18 +135,43 @@ namespace Narivia.Gui.GuiElements
                 }
             }
 
-            base.LoadContent();
+            RegisterChildren();
+            RegisterEvents();
+            SetChildrenProperties();
         }
 
-        public override void UnloadContent()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
-            base.UnloadContent();
+            base.DoUnloadContent();
+
+            UnregisterEvents();
         }
 
-        protected override void RegisterChildren()
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
         {
-            base.RegisterChildren();
+            base.DoUpdate(gameTime);
 
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+            base.DoDraw(spriteBatch);
+        }
+
+        void RegisterChildren()
+        {
             AddChild(paper);
 
             AddChild(factionFlag);
@@ -153,26 +186,20 @@ namespace Narivia.Gui.GuiElements
             holdingCards.ForEach(AddChild);
         }
 
-        protected override void RegisterEvents()
+        void RegisterEvents()
         {
-            base.RegisterEvents();
-
-            attackButton.Clicked += AttackButton_Clicked;
-            buildButton.Clicked += BuildButton_Clicked;
+            attackButton.Clicked += OnAttackButtonClicked;
+            buildButton.Clicked += OnBuildButtonClicked;
         }
 
-        protected override void UnregisterEvents()
+        void UnregisterEvents()
         {
-            base.UnregisterEvents();
-
-            attackButton.Clicked -= AttackButton_Clicked;
-            buildButton.Clicked -= BuildButton_Clicked;
+            attackButton.Clicked -= OnAttackButtonClicked;
+            buildButton.Clicked -= OnBuildButtonClicked;
         }
 
-        protected override void SetChildrenProperties()
+        void SetChildrenProperties()
         {
-            base.SetChildrenProperties();
-
             if (currentProvinceId == ProvinceId)
             {
                 return;
@@ -208,12 +235,12 @@ namespace Narivia.Gui.GuiElements
             }
         }
 
-        void AttackButton_Clicked(object sender, MouseButtonEventArgs e)
+        void OnAttackButtonClicked(object sender, MouseButtonEventArgs e)
         {
             AttackButtonClicked?.Invoke(this, e);
         }
 
-        void BuildButton_Clicked(object sender, MouseButtonEventArgs e)
+        void OnBuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
             BuildButtonClicked?.Invoke(this, e);
         }

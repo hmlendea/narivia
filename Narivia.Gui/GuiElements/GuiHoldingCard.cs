@@ -1,5 +1,8 @@
 ﻿using System.IO;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 
@@ -30,7 +33,10 @@ namespace Narivia.Gui.GuiElements
             Size = new Size2D(74, 74);
         }
 
-        public override void LoadContent()
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        protected override void DoLoadContent()
         {
             icon = new GuiImage
             {
@@ -54,22 +60,58 @@ namespace Narivia.Gui.GuiElements
                 ForegroundColour = Colour.Gold
             };
 
-            base.LoadContent();
+            RegisterChildren();
+            RegisterEvents();
+            SetChildrenProperties();
         }
 
-        protected override void RegisterChildren()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
-            base.RegisterChildren();
+            UnregisterEvents();
+        }
 
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
+        {
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        void RegisterChildren()
+        {
             AddChild(icon);
             AddChild(frame);
             AddChild(tooltip);
         }
 
-        protected override void SetChildrenProperties()
+        void RegisterEvents()
         {
-            base.SetChildrenProperties();
+            MouseEntered += OnMouseEntered;
+            MouseLeft -= OnMouseLeft;
+        }
 
+        void UnregisterEvents()
+        {
+            MouseEntered -= OnMouseEntered;
+            MouseLeft -= OnMouseLeft;
+        }
+
+        void SetChildrenProperties()
+        {
             if (currentHoldingId == HoldingId)
             {
                 return;
@@ -103,17 +145,13 @@ namespace Narivia.Gui.GuiElements
             tooltip.Text = holding.Name;
         }
 
-        protected override void OnMouseEntered(object sender, MouseEventArgs e)
+        void OnMouseEntered(object sender, MouseEventArgs e)
         {
-            base.OnMouseEntered(sender, e);
-
             tooltip.Show();
         }
 
-        protected override void OnMouseLeft(object sender, MouseEventArgs e)
+        void OnMouseLeft(object sender, MouseEventArgs e)
         {
-            base.OnMouseLeft(sender, e);
-
             tooltip.Hide();
         }
     }

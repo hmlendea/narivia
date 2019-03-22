@@ -1,3 +1,6 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
@@ -41,7 +44,7 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             background = new GuiImage
             {
@@ -68,32 +71,60 @@ namespace Narivia.Gui.GuiElements
                 Location = new Point2D(15, 335),
                 Size = new Size2D(88, 26)
             };
-
-            base.LoadContent();
+            
+            RegisterChildren();
+            RegisterEvents();
+            SetChildrenProperties();
         }
 
-        protected override void RegisterChildren()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
-            base.RegisterChildren();
+            UnregisterEvents();
+        }
 
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
+        {
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        void RegisterChildren()
+        {
             AddChild(background);
             AddChild(title);
             AddChild(text);
             AddChild(acceptButton);
         }
 
-        protected override void RegisterEvents()
+        void RegisterEvents()
         {
-            base.RegisterEvents();
-
             acceptButton.Clicked += OnYesButtonClicked;
             acceptButton.MouseEntered += OnYesNoButtonEntered;
         }
 
-        protected override void SetChildrenProperties()
+        void UnregisterEvents()
         {
-            base.SetChildrenProperties();
+            acceptButton.Clicked -= OnYesButtonClicked;
+            acceptButton.MouseEntered -= OnYesNoButtonEntered;
+        }
 
+        void SetChildrenProperties()
+        {
             title.Text = Title;
             text.Text = Text;
         }

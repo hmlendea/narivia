@@ -44,11 +44,6 @@ namespace Narivia.Gui.GuiElements
         Dictionary<string, Terrain> terrains;
         Dictionary<string, TextureSprite> terrainSprites;
 
-        RiverTilingEffect riverTilingEffect;
-        TerrainSpriteSheetEffect terrainTilingEffect;
-        ProvinceBorderEffect provinceBorderEffect;
-        FactionBorderEffect factionBorderEffect;
-
         Point2D mouseCoords;
 
         public GuiWorldmap(
@@ -62,7 +57,7 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             camera = new Camera { Size = Size };
             world = gameManager.GetWorld();
@@ -70,17 +65,12 @@ namespace Narivia.Gui.GuiElements
             terrains = worldManager.GetTerrains().ToDictionary(x => x.Id, x => x);
             terrainSprites = new Dictionary<string, TextureSprite>();
 
-            riverTilingEffect = new RiverTilingEffect(worldManager);
-            terrainTilingEffect = new TerrainSpriteSheetEffect(worldManager);
-            provinceBorderEffect = new ProvinceBorderEffect(worldManager);
-            factionBorderEffect = new FactionBorderEffect(worldManager);
-
             riverSprite = new TextureSprite
             {
                 ContentFile = $"World/Terrain/{GameDefines.MapTileSize}/water_river",
                 SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
-                SpriteSheetEffect = riverTilingEffect,
-                Active = true
+                SpriteSheetEffect = new RiverTilingEffect(worldManager),
+                IsActive = true
             };
 
             foreach (Terrain terrain in terrains.Values)
@@ -91,11 +81,10 @@ namespace Narivia.Gui.GuiElements
                     SourceRectangle = new Rectangle2D(
                         GameDefines.MapTileSize, GameDefines.MapTileSize * 3,
                         GameDefines.MapTileSize, GameDefines.MapTileSize),
-                    SpriteSheetEffect = terrainTilingEffect,
-                    Active = true
+                    SpriteSheetEffect = new TerrainSpriteSheetEffect(worldManager),
+                    IsActive = true
                 };
 
-                terrainSprite.LoadContent();
                 terrainSprites.AddOrUpdate(terrain.Spritesheet, terrainSprite);
             }
 
@@ -112,35 +101,43 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
                 Tint = Colour.Black,
                 Opacity = 0.25f,
-                SpriteSheetEffect = provinceBorderEffect,
-                Active = true
+                SpriteSheetEffect = new ProvinceBorderEffect(worldManager),
+                IsActive = true
             };
             factionBorder = new TextureSprite
             {
                 ContentFile = $"Interface/Worldmap/{GameDefines.MapTileSize}/faction-border",
                 SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
-                SpriteSheetEffect = factionBorderEffect,
-                Active = true
+                SpriteSheetEffect = new FactionBorderEffect(worldManager),
+                IsActive = true
             };
 
             camera.LoadContent();
+
             riverSprite.LoadContent();
+            riverSprite.SpriteSheetEffect.Activate();
+
+            foreach (TextureSprite terrainSprite in terrainSprites.Values)
+            {
+                terrainSprite.LoadContent();
+                terrainSprite.SpriteSheetEffect.Activate();
+            }
+
             provinceHighlight.LoadContent();
+
             factionBorder.LoadContent();
+            factionBorder.SpriteSheetEffect.Activate();
+
             provinceBorder.LoadContent();
+            provinceBorder.SpriteSheetEffect.Activate();
 
-            riverTilingEffect.Activate();
-            terrainTilingEffect.Activate();
-            provinceBorderEffect.Activate();
-            factionBorderEffect.Activate();
-
-            base.LoadContent();
+            RegisterEvents();
         }
 
         /// <summary>
         /// Unloads the content.
         /// </summary>
-        public override void UnloadContent()
+        protected override void DoUnloadContent()
         {
             camera.UnloadContent();
 
@@ -157,14 +154,14 @@ namespace Narivia.Gui.GuiElements
 
             terrainSprites.Clear();
 
-            base.UnloadContent();
+            UnregisterEvents();
         }
 
         /// <summary>
         /// Update the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
+        protected override void DoUpdate(GameTime gameTime)
         {
             camera.Size = Size;
 
@@ -173,8 +170,6 @@ namespace Narivia.Gui.GuiElements
             provinceHighlight.Update(gameTime);
             factionBorder.Update(gameTime);
             provinceBorder.Update(gameTime);
-
-            base.Update(gameTime);
 
             Point2D mouseGameMapCoords = ScreenToMapCoordinates(mouseCoords);
 
@@ -203,7 +198,7 @@ namespace Narivia.Gui.GuiElements
         /// Draw the content on the specified spriteBatch.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
+        protected override void DoDraw(SpriteBatch spriteBatch)
         {
             Point camCoordsBegin = new Point(
                 camera.Location.X / GameDefines.MapTileSize,
@@ -223,8 +218,6 @@ namespace Narivia.Gui.GuiElements
 
             DrawProvinceHighlight(spriteBatch);
             DrawBorders(spriteBatch);
-
-            base.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -235,18 +228,28 @@ namespace Narivia.Gui.GuiElements
             camera.CentreOnLocation(worldLocation * GameDefines.MapTileSize);
         }
 
+        void RegisterEvents()
+        {
+            MouseMoved += OnMouseMoved;
+        }
+
+        void UnregisterEvents()
+        {
+            MouseMoved -= OnMouseMoved;
+        }
+
         void DrawTile(SpriteBatch spriteBatch, int x, int y)
         {
             WorldTile tile = world.Tiles[x, y];
             Point2D location = new Point2D(x, y);
 
             // TODO: Don't do all this, and definetely don't do it here
-            terrainTilingEffect.TileLocation = location;
-
             foreach (string terrainId in tile.TerrainIds)
             {
                 Terrain terrain = terrains[terrainId]; // TODO: Optimise this. Don't call this every time
 
+                TerrainSpriteSheetEffect terrainTilingEffect = (TerrainSpriteSheetEffect)terrainSprites[terrain.Spritesheet].SpriteSheetEffect;
+                terrainTilingEffect.TileLocation = location;
                 terrainTilingEffect.TerrainId = terrain.Id;
                 terrainTilingEffect.TilesWith = new List<string> { terrain.Id };
                 terrainTilingEffect.Update(null);
@@ -256,6 +259,7 @@ namespace Narivia.Gui.GuiElements
 
             if (tile.HasRiver || tile.HasWater)
             {
+                RiverTilingEffect riverTilingEffect = (RiverTilingEffect)riverSprite.SpriteSheetEffect;
                 riverTilingEffect.TileLocation = location;
                 riverTilingEffect.Update(null);
 
@@ -362,11 +366,13 @@ namespace Narivia.Gui.GuiElements
                     factionBorder.Location = screenCoords;
                     factionBorder.Tint = tintColour;
 
+                    ProvinceBorderEffect provinceBorderEffect = (ProvinceBorderEffect)provinceBorder.SpriteSheetEffect;
                     provinceBorderEffect.TileLocation = gameCoords;
-                    provinceBorderEffect.UpdateFrame(null);
+                    provinceBorderEffect.Update(null);
 
+                    FactionBorderEffect factionBorderEffect = (FactionBorderEffect)factionBorder.SpriteSheetEffect;
                     factionBorderEffect.TileLocation = gameCoords;
-                    factionBorderEffect.UpdateFrame(null);
+                    factionBorderEffect.Update(null);
 
                     provinceBorder.Draw(spriteBatch);
                     factionBorder.Draw(spriteBatch);
@@ -386,10 +392,8 @@ namespace Narivia.Gui.GuiElements
                 (camera.Location.Y + screenCoords.Y) / GameDefines.MapTileSize);
         }
 
-        protected override void OnMouseMoved(object sender, MouseEventArgs e)
+        void OnMouseMoved(object sender, MouseEventArgs e)
         {
-            base.OnMouseMoved(sender, e);
-
             mouseCoords = e.Location;
         }
     }

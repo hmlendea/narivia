@@ -1,4 +1,7 @@
-﻿using NuciXNA.Gui.GuiElements;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers;
@@ -17,7 +20,10 @@ namespace Narivia.Gui.GuiElements
             this.gameManager = gameManager;
         }
 
-        public override void LoadContent()
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        protected override void DoLoadContent()
         {
             bar = new GuiImage
             {
@@ -28,22 +34,45 @@ namespace Narivia.Gui.GuiElements
                 Location = new Point2D(83, 14),
                 Size = new Size2D(76, 76)
             };
-
-            base.LoadContent();
+            
+            RegisterChildren();
+            SetChildrenProperties();
         }
 
-        protected override void RegisterChildren()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
-            base.RegisterChildren();
 
+        }
+
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
+        {
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        void RegisterChildren()
+        {
             AddChild(bar);
             AddChild(flag);
         }
 
-        protected override void SetChildrenProperties()
+        void SetChildrenProperties()
         {
-            base.SetChildrenProperties();
-
             string factionId = gameManager.PlayerFactionId;
             flag.Flag = gameManager.GetFactionFlag(factionId);
         }

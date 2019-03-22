@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Input;
@@ -64,7 +66,7 @@ namespace Narivia.Gui.GuiElements
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             holdingTypes = HoldingType.GetValues().Cast<HoldingType>().Where(x => x != HoldingType.Empty).ToList();
 
@@ -120,7 +122,7 @@ namespace Narivia.Gui.GuiElements
             };
             priceText = new GuiText
             {
-                HorizontalAlignment = HorizontalAlignment.Left,
+                HorizontalAlignment = Alignment.Beginning,
                 Size = new Size2D(priceIcon.Size.Width * 2, priceIcon.Size.Height),
                 Location = new Point2D(
                     priceIcon.Location.X + priceIcon.Size.Width + GameDefines.GuiSpacing,
@@ -171,37 +173,27 @@ namespace Narivia.Gui.GuiElements
                     Size.Height - 42 - GameDefines.GuiSpacing)
             };
 
-            base.LoadContent();
-
             UpdateProvinceList();
             SelectHolding(0);
             SelectProvince(0);
+
+            RegisterChildren();
+            RegisterEvents();
+            SetChildrenProperties();
         }
 
         /// <summary>
         /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
+        protected override void DoUpdate(GameTime gameTime)
         {
+            SetChildrenProperties();
             UpdateProvinceList();
-
-            base.Update(gameTime);
         }
 
-        /// <summary>
-        /// Updates the province list.
-        /// </summary>
-        void UpdateProvinceList()
+        void RegisterChildren()
         {
-            provinces = worldManager.GetFactionProvinces(gameManager.PlayerFactionId).Where(r => holdingManager.DoesProvinceHaveEmptyHoldings(r.Id)).ToList();
-            SelectProvince(currentProvinceIndex);
-        }
-
-        protected override void RegisterChildren()
-        {
-            base.RegisterChildren();
-
             AddChild(holdingBackground);
             AddChild(holdingImage);
             AddChild(paper);
@@ -220,10 +212,8 @@ namespace Narivia.Gui.GuiElements
             AddChild(buildButton);
         }
 
-        protected override void RegisterEvents()
+        void RegisterEvents()
         {
-            base.RegisterEvents();
-
             buildButton.Clicked += OnBuildButtonClicked;
             nextHoldingButton.Clicked += OnNextHoldingButtonClicked;
             nextProvinceButton.Clicked += OnNextProvinceButtonClicked;
@@ -231,10 +221,8 @@ namespace Narivia.Gui.GuiElements
             previouseProvinceButton.Clicked += OnPreviousProvinceButtonClicked;
         }
 
-        protected override void UnregisterEvents()
+        void UnregisterEvents()
         {
-            base.UnregisterEvents();
-
             buildButton.Clicked -= OnBuildButtonClicked;
             nextHoldingButton.Clicked -= OnNextHoldingButtonClicked;
             nextProvinceButton.Clicked -= OnNextProvinceButtonClicked;
@@ -242,10 +230,18 @@ namespace Narivia.Gui.GuiElements
             previouseProvinceButton.Clicked -= OnPreviousProvinceButtonClicked;
         }
 
-        protected override void SetChildrenProperties()
+        void UpdateProvinceList()
         {
-            base.SetChildrenProperties();
+            provinces = worldManager
+                .GetFactionProvinces(gameManager.PlayerFactionId)
+                .Where(r => holdingManager.DoesProvinceHaveEmptyHoldings(r.Id))
+                .ToList();
 
+            SelectProvince(currentProvinceIndex);
+        }
+
+        void SetChildrenProperties()
+        {
             holdingImage.SourceRectangle = new Rectangle2D(64 * currentHoldingTypeIndex, 0, 64, 64);
 
             holdingText.Text = holdingTypes[currentHoldingTypeIndex].Name;

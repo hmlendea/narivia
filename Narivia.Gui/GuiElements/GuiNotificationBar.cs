@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Primitives;
 
@@ -25,11 +28,40 @@ namespace Narivia.Gui.GuiElements
             this.game = game;
         }
 
-        public override void LoadContent()
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        protected override void DoLoadContent()
         {
             indicators = new List<GuiNotificationIndicator>();
 
-            base.LoadContent();
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
+        {
+
+        }
+
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
+        {
+            SetChildrenProperties();
+        }
+
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
+
         }
 
         // TODO: Handle this better
@@ -60,10 +92,8 @@ namespace Narivia.Gui.GuiElements
             indicators.ForEach(x => x.Dispose());
         }
         
-        protected override void SetChildrenProperties()
+        void SetChildrenProperties()
         {
-            base.SetChildrenProperties();
-
             int i = 0;
             foreach(GuiNotificationIndicator indicator in indicators)
             {

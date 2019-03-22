@@ -31,7 +31,7 @@ namespace Narivia.Gui.SpriteEffects
             world = worldManager.GetWorld();
         }
 
-        public override void UpdateFrame(GameTime gameTime)
+        protected override void DoUpdate(GameTime gameTime)
         {
             List<string> id = world.Tiles[TileLocation.X, TileLocation.Y].TerrainIds;
             List<string> idN = world.Tiles[TileLocation.X, TileLocation.Y - 1].TerrainIds;
