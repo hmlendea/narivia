@@ -55,6 +55,7 @@ namespace Narivia.Gui
         {
             GuiNotificationDialog notification = new GuiNotificationDialog
             {
+                Id = $"{nameof(notification)}_{title.ToLower().Replace(' ', '-').Replace('\t', '-')}",
                 Title = title,
                 Text = text
             };

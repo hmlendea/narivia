@@ -128,7 +128,7 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
-        /// Fired by the MouseMoved event.
+        /// Fired by the MouseEntered event.
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
