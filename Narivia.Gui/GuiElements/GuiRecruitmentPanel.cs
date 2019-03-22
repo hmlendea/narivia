@@ -74,6 +74,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         protected override void DoLoadContent()
         {
+            base.DoLoadContent();
+
             world = gameManager.GetWorld();
 
             units = militaryManager.GetUnits().OrderBy(u => u.Price).ToList();
@@ -267,6 +269,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         protected override void DoUnloadContent()
         {
+            base.DoUnloadContent();
+
             UnregisterEvents();
         }
 
@@ -276,16 +280,9 @@ namespace Narivia.Gui.GuiElements
         /// <param name="gameTime">Game time.</param>
         protected override void DoUpdate(GameTime gameTime)
         {
+            base.DoUpdate(gameTime);
+
             SetChildrenProperties();
-        }
-
-        /// <summary>
-        /// Draw the content on the specified <see cref="SpriteBatch"/>.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        protected override void DoDraw(SpriteBatch spriteBatch)
-        {
-
         }
 
         void RegisterChildren()

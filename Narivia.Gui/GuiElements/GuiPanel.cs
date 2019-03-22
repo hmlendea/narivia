@@ -69,15 +69,9 @@ namespace Narivia.Gui.GuiElements
                 FontOutline = FontOutline.Around
             };
 
+            RegisterChildren();
+            RegisterEvents();
             SetChildrenProperties();
-
-            closeButton.Clicked += OnCloseButtonClicked;
-
-            AddChild(background);
-            AddChild(crystal);
-            AddChild(crystalOverlay);
-            AddChild(closeButton);
-            AddChild(title);
         }
 
         /// <summary>
@@ -85,7 +79,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         protected override void DoUnloadContent()
         {
-            closeButton.Clicked -= OnCloseButtonClicked;
+            UnregisterEvents();
         }
 
         /// <summary>
@@ -104,6 +98,25 @@ namespace Narivia.Gui.GuiElements
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
+        }
+
+        void RegisterChildren()
+        {
+            AddChild(background);
+            AddChild(crystal);
+            AddChild(crystalOverlay);
+            AddChild(closeButton);
+            AddChild(title);
+        }
+
+        void RegisterEvents()
+        {
+            closeButton.Clicked += OnCloseButtonClicked;
+        }
+
+        void UnregisterEvents()
+        {
+            closeButton.Clicked -= OnCloseButtonClicked;
         }
 
         void SetChildrenProperties()

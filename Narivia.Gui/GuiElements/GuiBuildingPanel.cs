@@ -68,6 +68,8 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         protected override void DoLoadContent()
         {
+            base.DoLoadContent();
+
             holdingTypes = HoldingType.GetValues().Cast<HoldingType>().Where(x => x != HoldingType.Empty).ToList();
 
             holdingBackground = new GuiImage
@@ -195,11 +197,23 @@ namespace Narivia.Gui.GuiElements
         }
 
         /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
+        {
+            base.DoUnloadContent();
+
+            UnregisterEvents();
+        }
+
+        /// <summary>
         /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
         protected override void DoUpdate(GameTime gameTime)
         {
+            base.DoUpdate(gameTime);
+
             SetChildrenProperties();
             UpdateProvinceList();
         }

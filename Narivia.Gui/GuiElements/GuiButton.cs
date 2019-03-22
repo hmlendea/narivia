@@ -44,7 +44,10 @@ namespace Narivia.Gui.GuiElements
                 Id = $"{Id}_{nameof(image)}",
                 ContentFile = ContentFile
             };
-            text = new GuiText();
+            text = new GuiText()
+            {
+                Id = $"{Id}_{nameof(text)}"
+            };
             
             RegisterChildren();
             RegisterEvents();

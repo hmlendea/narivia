@@ -169,15 +169,6 @@ namespace Narivia.Gui.GuiElements
             SetChildrenProperties();
         }
 
-        /// <summary>
-        /// Draw the content on the specified <see cref="SpriteBatch"/>.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        protected override void DoDraw(SpriteBatch spriteBatch)
-        {
-            base.DoDraw(spriteBatch);
-        }
-
         void RegisterChildren()
         {
             AddChild(paper);
