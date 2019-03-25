@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Gui.Screens;
 
@@ -22,27 +26,15 @@ namespace Narivia.Gui.Screens
         GuiMenuListSelector factionSelector;
         GuiMenuLink backLink;
 
-        IAttackManager attackManager;
-        IDiplomacyManager diplomacyManager;
-        IEconomyManager economyManager;
-        IHoldingManager holdingManager;
-        IMilitaryManager militaryManager;
         IWorldManager worldManager;
-        IGameManager gameManager;
 
         List<World> worlds;
-
-        string selectedWorldId;
-        string selectedFactionId;
 
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
-            selectedWorldId = "narivia";
-            selectedFactionId = "f_alpalet";
-
             startLink = new GuiMenuLink
             {
                 Id = nameof(startLink),
@@ -66,89 +58,107 @@ namespace Narivia.Gui.Screens
                 TargetScreen = typeof(TitleScreen)
             };
 
-            Items.Add(startLink);
-            Items.Add(worldSelector);
-            Items.Add(factionSelector);
-            Items.Add(backLink);
-
-            worldSelector.SelectedIndexChanged += OnWorldSelectorSelectedIndexChanged;
-            factionSelector.SelectedIndexChanged += OnFactionSelectorSelectedIndexChanged;
-
             // TODO: Do not access the repository directly from here
             WorldRepository worldRepository = new WorldRepository(ApplicationPaths.WorldsDirectory);
 
             // TODO: Don't load everything unnecessarily
             worlds = worldRepository.GetAll().ToDomainModels().ToList();
 
-            worldSelector.Values.AddRange(worlds.Select(f => f.Name));
-            worldSelector.SelectedIndex = 0;
-            OnWorldSelectorSelectedIndexChanged(this, null); // TODO: This is a hack
+            worldSelector.SetItems(worlds.ToDictionary(x => x.Id, x => x.Name));
+            
+            LoadSelectedWorld();
 
-            base.LoadContent();
+            RegisterChildren();
+            RegisterEvents();
+            SetChildrenProperties();
         }
 
-        public override void UnloadContent()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
+            worldSelector.SelectedItemChanged -= OnWorldSelectorSelectedItemChanged;
             worldManager.UnloadContent();
-            diplomacyManager.UnloadContent();
-            holdingManager.UnloadContent();
-            militaryManager.UnloadContent();
-            economyManager.UnloadContent();
-            attackManager.UnloadContent();
-            gameManager.UnloadContent();
 
-            base.UnloadContent();
+            UnregisterEvents();
         }
 
-        protected override void SetChildrenProperties()
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoUpdate(GameTime gameTime)
         {
-            startLink.Parameters = new object[] { selectedWorldId, selectedFactionId };
-
-            base.SetChildrenProperties();
+            SetChildrenProperties();
         }
 
-        void OnWorldSelectorSelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Draw the content on the specified <see cref="SpriteBatch"/>.
+        /// </summary>
+        /// <param name="spriteBatch">Sprite batch.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
         {
-            selectedWorldId = worlds[worldSelector.SelectedIndex].Id;
 
-            worldManager = new WorldManager(selectedWorldId);
-            diplomacyManager = new DiplomacyManager(worldManager);
-            holdingManager = new HoldingManager(selectedWorldId, worldManager);
-            militaryManager = new MilitaryManager(holdingManager, worldManager);
-            economyManager = new EconomyManager(holdingManager, militaryManager, worldManager);
-            attackManager = new AttackManager(diplomacyManager, holdingManager, militaryManager, worldManager);
-            gameManager = new GameManager(attackManager, diplomacyManager, economyManager, holdingManager, militaryManager, worldManager);
+        }
+
+        /// <summary>
+        /// Registers the children.
+        /// </summary>
+        void RegisterChildren()
+        {
+            Items.Add(startLink);
+            Items.Add(worldSelector);
+            Items.Add(factionSelector);
+            Items.Add(backLink);
+        }
+
+        /// <summary>
+        /// Registers the events.
+        /// </summary>
+        void RegisterEvents()
+        {
+            worldSelector.SelectedItemChanged += OnWorldSelectorSelectedItemChanged;
+        }
+
+        /// <summary>
+        /// Unregisters the events.
+        /// </summary>
+        void UnregisterEvents()
+        {
+            worldSelector.SelectedItemChanged -= OnWorldSelectorSelectedItemChanged;
+        }
+
+        void SetChildrenProperties()
+        {
+            startLink.Parameters = new object[] { worldSelector.SelectedKey, factionSelector.SelectedKey };
+        }
+
+        void LoadSelectedWorld()
+        {
+            worldManager = new WorldManager(worldSelector.SelectedKey);
 
             worldManager.LoadContent();
-            diplomacyManager.LoadContent();
-            holdingManager.LoadContent();
-            militaryManager.LoadContent();
-            economyManager.LoadContent();
-            attackManager.LoadContent();
-            gameManager.LoadContent(selectedWorldId, selectedFactionId);
+            
+            UpdateFactionSelectorItems();
+        }
 
+        void UpdateFactionSelectorItems()
+        {
             List<Faction> factions = worldManager.GetFactions()
                 .Where(f => f.Type.IsActive)
                 .OrderBy(f => f.Name)
                 .ToList();
-
-            factionSelector.Values.AddRange(factions.Select(f => f.Name));
-            factionSelector.SelectedIndex = 0;
+            
+            factionSelector.SetItems(factions.ToDictionary(x => x.Id, x => x.Name));
 
             // TODO: Remove this default selection, leave it at 0
-            if (factionSelector.Values.Contains("Alpalet"))
-            {
-                factionSelector.SelectedIndex = factionSelector.Values.IndexOf("Alpalet");
-            }
-
-            // TODO: Remove this
-            OnFactionSelectorSelectedIndexChanged(this, null);
+            factionSelector.TrySelectItem("Alpalet");
         }
 
-        void OnFactionSelectorSelectedIndexChanged(object sender, EventArgs e)
+        void OnWorldSelectorSelectedItemChanged(object sender, EventArgs e)
         {
-            // TODO: Optimise this
-            selectedFactionId = worldManager.GetFactions().FirstOrDefault(x => x.Name == factionSelector.SelectedValue).Id;
+            LoadSelectedWorld();
         }
     }
 }

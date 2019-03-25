@@ -20,19 +20,17 @@ namespace Narivia.Gui.Screens
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             fullScreenToggle = new GuiMenuToggle
             {
                 Id = nameof(fullScreenToggle),
-                Text = "Toggle fullscreen mode",
-                Property = "Fullscreen"
+                Text = "Toggle fullscreen mode"
             };
             debugModeToggle = new GuiMenuToggle
             {
                 Id = nameof(debugModeToggle),
-                Text = "Toggle debug mode",
-                Property = "DebugMode"
+                Text = "Toggle debug mode"
             };
             backLink = new GuiMenuLink
             {
@@ -45,40 +43,35 @@ namespace Narivia.Gui.Screens
             Items.Add(debugModeToggle);
             Items.Add(backLink);
             
-            fullScreenToggle.ToggleState = SettingsManager.Instance.GraphicsSettings.Fullscreen;
-            debugModeToggle.ToggleState = SettingsManager.Instance.DebugMode;
-
-            base.LoadContent();
+            fullScreenToggle.SetState(SettingsManager.Instance.GraphicsSettings.Fullscreen);
+            debugModeToggle.SetState(SettingsManager.Instance.DebugMode);
         }
 
         /// <summary>
         /// Unloads the content.
         /// </summary>
-        public override void UnloadContent()
+        protected override void DoUnloadContent()
         {
             SettingsManager.Instance.SaveContent();
-            base.UnloadContent();
         }
 
         /// <summary>
         /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
+        protected override void DoUpdate(GameTime gameTime)
         {
-            base.Update(gameTime);
-
-            SettingsManager.Instance.GraphicsSettings.Fullscreen = fullScreenToggle.ToggleState;
-            SettingsManager.Instance.DebugMode = debugModeToggle.ToggleState;
+            SettingsManager.Instance.GraphicsSettings.Fullscreen = fullScreenToggle.IsOn;
+            SettingsManager.Instance.DebugMode = debugModeToggle.IsOn;
         }
 
         /// <summary>
         /// Draws the content on the specified spriteBatch.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
+        protected override void DoDraw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+
         }
     }
 }

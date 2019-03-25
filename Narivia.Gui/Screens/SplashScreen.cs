@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Gui;
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Gui.Screens;
@@ -49,7 +51,7 @@ namespace Narivia.Gui.Screens
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             BackgroundImage = new GuiImage
             {
@@ -83,19 +85,25 @@ namespace Narivia.Gui.Screens
             GuiManager.Instance.GuiElements.Add(OverlayImage);
             GuiManager.Instance.GuiElements.Add(LogoImage);
 
-            base.LoadContent();
-
-            BackgroundImage.RotationEffect.Activate();
-            BackgroundImage.ScaleEffect.Activate();
+            SetChildrenProperties();
+            RegisterEvents();
+        }
+        
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
+        {
+            UnregisterEvents();
         }
 
         /// <summary>
         /// Updates the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
+        protected override void DoUpdate(GameTime gameTime)
         {
-            base.Update(gameTime);
+            SetChildrenProperties();
 
             if (Delay <= 0 && !ScreenManager.Instance.Transitioning)
             {
@@ -104,8 +112,35 @@ namespace Narivia.Gui.Screens
 
             Delay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
+        
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
 
-        protected override void SetChildrenProperties()
+        }
+
+        /// <summary>
+        /// Registers the events.
+        /// </summary>
+        void RegisterEvents()
+        {
+            KeyPressed += OnKeyPressed;
+            MouseButtonPressed += OnMouseButtonPressed;
+        }
+
+        /// <summary>
+        /// Unregisters the events.
+        /// </summary>
+        void UnregisterEvents()
+        {
+            KeyPressed -= OnKeyPressed;
+            MouseButtonPressed -= OnMouseButtonPressed;
+        }
+
+        void SetChildrenProperties()
         {
             OverlayImage.Size = ScreenManager.Instance.Size;
 
@@ -118,17 +153,13 @@ namespace Narivia.Gui.Screens
                 (ScreenManager.Instance.Size.Height - LogoImage.Size.Height) / 2);
         }
 
-        protected override void OnKeyPressed(object sender, KeyboardKeyEventArgs e)
+        void OnKeyPressed(object sender, KeyboardKeyEventArgs e)
         {
-            base.OnKeyPressed(sender, e);
-
             ChangeScreens();
         }
 
-        protected override void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
         {
-            base.OnMouseButtonPressed(sender, e);
-
             ChangeScreens();
         }
 

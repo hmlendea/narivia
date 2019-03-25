@@ -57,7 +57,7 @@ namespace Narivia.Gui.Screens
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             WorldManager = new WorldManager(worldId);
             DiplomacyManager = new DiplomacyManager(WorldManager);
@@ -155,7 +155,7 @@ namespace Narivia.Gui.Screens
 
             provincePanel.ProvinceId = GameManager.GetFactionCapital(playerFactionId).Id;
 
-            base.LoadContent();
+            ///
 
             provincePanel.Hide();
 
@@ -167,9 +167,14 @@ namespace Narivia.Gui.Screens
                 $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!");
 
             gameMap.CentreCameraOnLocation(WorldManager.GetFactionCentre(playerFactionId));
+
+            RegisterEvents();
         }
 
-        public override void UnloadContent()
+        /// <summary>
+        /// Unloads the content.
+        /// </summary>
+        protected override void DoUnloadContent()
         {
             WorldManager.UnloadContent();
             DiplomacyManager.UnloadContent();
@@ -179,7 +184,7 @@ namespace Narivia.Gui.Screens
             AttackManager.UnloadContent();
             GameManager.UnloadContent();
 
-            base.UnloadContent();
+            UnregisterEvents();
         }
 
         /// <summary>
@@ -187,7 +192,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         /// <returns>The update.</returns>
         /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
+        protected override void DoUpdate(GameTime gameTime)
         {
             playerFactionId = GameManager.PlayerFactionId;
 
@@ -197,24 +202,22 @@ namespace Narivia.Gui.Screens
             buildingPanel.Location = new Point2D(
                 gameMap.Location.X + (gameMap.Size.Width - buildingPanel.Size.Width) / 2,
                 gameMap.Location.Y + (gameMap.Size.Height - buildingPanel.Size.Height) / 2);
+        }
+        
+        /// <summary>
+        /// Update the content.
+        /// </summary>
+        /// <param name="gameTime">Game time.</param>
+        protected override void DoDraw(SpriteBatch spriteBatch)
+        {
 
-            base.Update(gameTime);
         }
 
         /// <summary>
-        /// Draw the content on the specified spriteBatch.
+        /// Registers the events.
         /// </summary>
-        /// <returns>The draw.</returns>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
+        void RegisterEvents()
         {
-            base.Draw(spriteBatch);
-        }
-
-        protected override void RegisterEvents()
-        {
-            base.RegisterEvents();
-
             GameManager.PlayerProvinceAttacked += game_OnPlayerProvinceAttacked;
             GameManager.FactionDestroyed += game_OnFactionDestroyed;
             GameManager.FactionRevived += game_OnFactionRevived;
@@ -227,6 +230,25 @@ namespace Narivia.Gui.Screens
             administrationBar.StatsButton.Clicked += AdministrationBar_StatsButtonClicked;
             provincePanel.AttackButtonClicked += ProvincePanel_AttackButtonClicked;
             provincePanel.BuildButtonClicked += ProvincePanel_BuildButtonClicked;
+        }
+
+        /// <summary>
+        /// Unregisters the events.
+        /// </summary>
+        void UnregisterEvents()
+        {
+            GameManager.PlayerProvinceAttacked -= game_OnPlayerProvinceAttacked;
+            GameManager.FactionDestroyed -= game_OnFactionDestroyed;
+            GameManager.FactionRevived -= game_OnFactionRevived;
+            GameManager.FactionWon -= game_OnFactionWon;
+
+            gameMap.Clicked -= GameMap_Clicked;
+
+            infoBar.TurnButtonClicked -= SideBar_TurnButtonClicked;
+            administrationBar.RecruitButton.Clicked -= AdministrationBar_RecruitButtonClicked;
+            administrationBar.StatsButton.Clicked -= AdministrationBar_StatsButtonClicked;
+            provincePanel.AttackButtonClicked -= ProvincePanel_AttackButtonClicked;
+            provincePanel.BuildButtonClicked -= ProvincePanel_BuildButtonClicked;
         }
 
         void NextTurn()

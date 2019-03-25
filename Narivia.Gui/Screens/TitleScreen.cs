@@ -1,5 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using NuciXNA.Gui.GuiElements;
 using NuciXNA.Gui.Screens;
 
@@ -12,12 +15,12 @@ namespace Narivia.Gui.Screens
     {
         GuiMenuLink newGameLink;
         GuiMenuLink settingsLink;
-        GuiMenuAction extiAction;
+        GuiMenuItem extiAction;
 
         /// <summary>
         /// Loads the content.
         /// </summary>
-        public override void LoadContent()
+        protected override void DoLoadContent()
         {
             newGameLink = new GuiMenuLink
             {
@@ -31,44 +34,41 @@ namespace Narivia.Gui.Screens
                 Text = "Settings",
                 TargetScreen = typeof(SettingsScreen)
             };
-            extiAction = new GuiMenuAction
+            extiAction = new GuiMenuItem
             {
                 Id = nameof(extiAction),
-                Text = "Exit",
-                ActionId = "Exit"
+                Text = "Exit"
             };
 
             Items.Add(newGameLink);
             Items.Add(settingsLink);
             Items.Add(extiAction);
-
-            base.LoadContent();
         }
 
         /// <summary>
         /// Unloads the content.
         /// </summary>
-        public override void UnloadContent()
+        protected override void DoUnloadContent()
         {
-            base.UnloadContent();
+            
         }
 
         /// <summary>
         /// Update the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        public override void Update(GameTime gameTime)
+        protected override void DoUpdate(GameTime gameTime)
         {
-            base.Update(gameTime);
+            
         }
 
         /// <summary>
         /// Draw the content on the specified spriteBatch.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
-        public override void Draw(SpriteBatch spriteBatch)
+        protected override void DoDraw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            
         }
     }
 }
