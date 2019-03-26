@@ -1,19 +1,19 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 
 using Narivia.Audio;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
     // TODO: Requires refactoring
     /// <summary>
     /// Notification GUI element.
     /// </summary>
-    public class GuiNotificationDialog : GuiElement
+    public class GuiNotificationDialog : GuiControl, IGuiControl
     {
         /// <summary>
         /// Gets or sets the title.
@@ -76,7 +76,7 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(88, 26)
             };
             
-            RegisterChildren();
+            RegisterChildren(background, title, text, acceptButton);
             RegisterEvents();
             SetChildrenProperties();
         }
@@ -105,14 +105,6 @@ namespace Narivia.Gui.GuiElements
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
-        }
-
-        void RegisterChildren()
-        {
-            AddChild(background);
-            AddChild(title);
-            AddChild(text);
-            AddChild(acceptButton);
         }
 
         void RegisterEvents()

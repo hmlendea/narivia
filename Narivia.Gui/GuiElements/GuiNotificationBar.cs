@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers;
-using Narivia.Gui.GuiElements.Enumerations;
+using Narivia.Gui.Controls.Enumerations;
 using Narivia.Settings;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
     /// <summary>
     /// Notification bar GUI element.
     /// </summary>
-    public class GuiNotificationBar : GuiElement
+    public class GuiNotificationBar : GuiControl, IGuiControl
     {
         List<GuiNotificationIndicator> indicators;
         
@@ -83,7 +83,7 @@ namespace Narivia.Gui.GuiElements
 
             notificationButton.LoadContent();
             indicators.Add(notificationButton);
-            AddChild(notificationButton);
+            RegisterChild(notificationButton);
 
             return notificationButton;
         }

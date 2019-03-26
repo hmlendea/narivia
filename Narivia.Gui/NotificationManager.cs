@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
 using NuciXNA.Gui;
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Gui.Screens;
 using NuciXNA.Primitives;
 
-using Narivia.Gui.GuiElements;
+using Narivia.Gui.Controls;
 
 namespace Narivia.Gui
 {
@@ -21,7 +21,7 @@ namespace Narivia.Gui
         /// Gets or sets the GUI elements.
         /// </summary>
         /// <value>The GUI elements.</value>
-        public List<GuiElement> GuiElements { get; set; }
+        public List<GuiControl> GuiControls { get; set; }
 
         /// <summary>
         /// Gets the instance.
@@ -66,7 +66,7 @@ namespace Narivia.Gui
 
             notification.LoadContent();
 
-            GuiManager.Instance.GuiElements.Add(notification);
+            GuiManager.Instance.RegisterControls(notification);
         }
     }
 }

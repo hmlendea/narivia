@@ -1,19 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 
 using Narivia.Audio;
-using Narivia.Gui.GuiElements.Enumerations;
+using Narivia.Gui.Controls.Enumerations;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
     /// <summary>
     /// Button GUI element.
     /// </summary>
-    public class GuiButton : GuiElement
+    public class GuiButton : GuiControl, IGuiControl
     {
         /// <summary>
         /// Gets or sets the text.
@@ -49,7 +49,7 @@ namespace Narivia.Gui.GuiElements
                 Id = $"{Id}_{nameof(text)}"
             };
             
-            RegisterChildren();
+            RegisterChildren(image, text);
             RegisterEvents();
             SetChildrenProperties();
         }
@@ -78,12 +78,6 @@ namespace Narivia.Gui.GuiElements
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
-        }
-
-        void RegisterChildren()
-        {
-            AddChild(image);
-            AddChild(text);
         }
 
         void RegisterEvents()

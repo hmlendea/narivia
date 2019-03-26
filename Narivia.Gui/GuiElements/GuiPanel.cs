@@ -2,13 +2,13 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Graphics.Drawing;
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
-    public class GuiPanel : GuiElement
+    public class GuiPanel : GuiControl, IGuiControl
     {
         GuiImage background;
         GuiImage crystal;
@@ -69,7 +69,7 @@ namespace Narivia.Gui.GuiElements
                 FontOutline = FontOutline.Around
             };
 
-            RegisterChildren();
+            RegisterChildren(background, crystal, crystalOverlay, closeButton, title);
             RegisterEvents();
             SetChildrenProperties();
         }
@@ -98,15 +98,6 @@ namespace Narivia.Gui.GuiElements
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
-        }
-
-        void RegisterChildren()
-        {
-            AddChild(background);
-            AddChild(crystal);
-            AddChild(crystalOverlay);
-            AddChild(closeButton);
-            AddChild(title);
         }
 
         void RegisterEvents()

@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Gui.Screens;
 
 using Narivia.DataAccess.Repositories;
@@ -71,6 +71,8 @@ namespace Narivia.Gui.Screens
             RegisterChildren();
             RegisterEvents();
             SetChildrenProperties();
+
+            base.DoLoadContent();
         }
 
         /// <summary>
@@ -82,6 +84,8 @@ namespace Narivia.Gui.Screens
             worldManager.UnloadContent();
 
             UnregisterEvents();
+
+            base.DoUnloadContent();
         }
 
         /// <summary>
@@ -91,15 +95,8 @@ namespace Narivia.Gui.Screens
         protected override void DoUpdate(GameTime gameTime)
         {
             SetChildrenProperties();
-        }
 
-        /// <summary>
-        /// Draw the content on the specified <see cref="SpriteBatch"/>.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        protected override void DoDraw(SpriteBatch spriteBatch)
-        {
-
+            base.DoUpdate(gameTime);
         }
 
         /// <summary>

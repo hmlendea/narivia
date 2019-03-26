@@ -3,16 +3,16 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers;
 using Narivia.Models;
 using NuciXNA.Input;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
-    public class GuiHoldingCard : GuiElement
+    public class GuiHoldingCard : GuiControl, IGuiControl
     {
         readonly IHoldingManager holdingManager;
 
@@ -60,7 +60,7 @@ namespace Narivia.Gui.GuiElements
                 ForegroundColour = Colour.Gold
             };
 
-            RegisterChildren();
+            RegisterChildren(icon, frame, tooltip);
             RegisterEvents();
             SetChildrenProperties();
         }
@@ -89,13 +89,6 @@ namespace Narivia.Gui.GuiElements
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
-        }
-
-        void RegisterChildren()
-        {
-            AddChild(icon);
-            AddChild(frame);
-            AddChild(tooltip);
         }
 
         void RegisterEvents()

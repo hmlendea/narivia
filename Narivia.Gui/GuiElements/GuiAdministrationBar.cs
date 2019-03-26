@@ -1,18 +1,27 @@
+using System;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
+using NuciXNA.Input;
 using NuciXNA.Primitives;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
-    public class GuiAdministrationBar : GuiElement
+    public class GuiAdministrationBar : GuiControl, IGuiControl
     {
         GuiImage bar;
 
-        public GuiButton BuildButton { get; private set; }
-        public GuiButton RecruitButton { get; private set; }
-        public GuiButton StatsButton { get; private set; }
+        GuiButton buildButton;
+        GuiButton recruitButton;
+        GuiButton statsButton;
+
+        public MouseButtonEventHandler BuildButtonClicked;
+
+        public MouseButtonEventHandler RecruitButtonClicked;
+
+        public MouseButtonEventHandler StatsButtonClicked;
 
         /// <summary>
         /// Loads the content.
@@ -23,32 +32,30 @@ namespace Narivia.Gui.GuiElements
             {
                 ContentFile = "Interface/AdministrationBar/bar"
             };
-            BuildButton = new GuiButton
+            buildButton = new GuiButton
             {
-                Id = $"{Id}_{nameof(BuildButton)}",
+                Id = $"{Id}_{nameof(buildButton)}",
                 ContentFile = "Interface/AdministrationBar/button-build",
                 Location = new Point2D(16, 10),
                 Size = new Size2D(26, 26)
             };
-            RecruitButton = new GuiButton
+            recruitButton = new GuiButton
             {
-                Id = $"{Id}_{nameof(RecruitButton)}",
+                Id = $"{Id}_{nameof(recruitButton)}",
                 ContentFile = "Interface/AdministrationBar/button-recruit",
                 Location = new Point2D(52, 10),
                 Size = new Size2D(26, 26)
             };
-            StatsButton = new GuiButton
+            statsButton = new GuiButton
             {
-                Id = $"{Id}_{nameof(StatsButton)}",
+                Id = $"{Id}_{nameof(statsButton)}",
                 ContentFile = "Interface/AdministrationBar/button-stats",
                 Location = new Point2D(89, 10),
                 Size = new Size2D(26, 26)
             };
-            
-            AddChild(bar);
-            AddChild(BuildButton);
-            AddChild(RecruitButton);
-            AddChild(StatsButton);
+
+            RegisterChildren(bar, buildButton, recruitButton, statsButton);
+            RegisterEvents();
         }
 
         /// <summary>
@@ -56,7 +63,7 @@ namespace Narivia.Gui.GuiElements
         /// </summary>
         protected override void DoUnloadContent()
         {
-
+            UnregisterEvents();
         }
 
         /// <summary>
@@ -75,6 +82,40 @@ namespace Narivia.Gui.GuiElements
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
+        }
+        /// <summary>
+        /// Registers the events.
+        /// </summary>
+        void RegisterEvents()
+        {
+            buildButton.Clicked += OnBuildButtonClicked;
+            recruitButton.Clicked += OnRecruitButtonClicked;
+            statsButton.Clicked += OnStatsButtonClicked;
+        }
+
+        /// <summary>
+        /// Unregisters the events.
+        /// </summary>
+        void UnregisterEvents()
+        {
+            buildButton.Clicked -= OnBuildButtonClicked;
+            recruitButton.Clicked -= OnRecruitButtonClicked;
+            statsButton.Clicked -= OnStatsButtonClicked;
+        }
+
+        void OnBuildButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            BuildButtonClicked?.Invoke(this, e);
+        }
+
+        void OnRecruitButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            RecruitButtonClicked?.Invoke(this, e);
+        }
+
+        void OnStatsButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            StatsButtonClicked?.Invoke(this, e);
         }
     }
 }

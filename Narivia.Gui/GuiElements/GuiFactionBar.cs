@@ -1,14 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
-    public class GuiFactionBar : GuiElement
+    public class GuiFactionBar : GuiControl, IGuiControl
     {
         readonly IGameManager gameManager;
 
@@ -37,7 +37,7 @@ namespace Narivia.Gui.GuiElements
                 Size = new Size2D(76, 76)
             };
             
-            RegisterChildren();
+            RegisterChildren(bar, flag);
             SetChildrenProperties();
         }
 
@@ -65,12 +65,6 @@ namespace Narivia.Gui.GuiElements
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
-        }
-
-        void RegisterChildren()
-        {
-            AddChild(bar);
-            AddChild(flag);
         }
 
         void SetChildrenProperties()

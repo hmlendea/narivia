@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Graphics.Drawing;
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 
@@ -14,7 +14,7 @@ using Narivia.Models;
 using Narivia.Models.Enumerations;
 using Narivia.Settings;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
     /// <summary>
     /// Unit recruitment panel GUI element.
@@ -191,7 +191,11 @@ namespace Narivia.Gui.GuiElements
             SelectHolding(0);
             SelectProvince(0);
 
-            RegisterChildren();
+            RegisterChildren(holdingBackground, holdingImage, paper);
+            RegisterChildren(holdingText, provinceText);
+            RegisterChildren(priceIcon, priceText);
+            RegisterChildren(nextHoldingButton, previousHoldingButton, nextProvinceButton, previouseProvinceButton, buildButton);
+            
             RegisterEvents();
             SetChildrenProperties();
         }
@@ -216,26 +220,6 @@ namespace Narivia.Gui.GuiElements
 
             SetChildrenProperties();
             UpdateProvinceList();
-        }
-
-        void RegisterChildren()
-        {
-            AddChild(holdingBackground);
-            AddChild(holdingImage);
-            AddChild(paper);
-
-            AddChild(holdingText);
-            AddChild(provinceText);
-
-            AddChild(priceIcon);
-            AddChild(priceText);
-
-            AddChild(nextHoldingButton);
-            AddChild(previousHoldingButton);
-            AddChild(nextProvinceButton);
-            AddChild(previouseProvinceButton);
-
-            AddChild(buildButton);
         }
 
         void RegisterEvents()

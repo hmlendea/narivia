@@ -13,8 +13,8 @@ using Narivia.GameLogic.Enumerations;
 using Narivia.GameLogic.Exceptions;
 using Narivia.GameLogic.Events;
 using Narivia.GameLogic.GameManagers;
-using Narivia.Gui.GuiElements;
-using Narivia.Gui.GuiElements.Enumerations;
+using Narivia.Gui.Controls;
+using Narivia.Gui.Controls.Enumerations;
 using Narivia.Models;
 
 namespace Narivia.Gui.Screens
@@ -59,21 +59,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         protected override void DoLoadContent()
         {
-            WorldManager = new WorldManager(worldId);
-            DiplomacyManager = new DiplomacyManager(WorldManager);
-            HoldingManager = new HoldingManager(worldId, WorldManager);
-            MilitaryManager = new MilitaryManager(HoldingManager, WorldManager);
-            EconomyManager = new EconomyManager(HoldingManager, MilitaryManager, WorldManager);
-            AttackManager = new AttackManager(DiplomacyManager, HoldingManager, MilitaryManager, WorldManager);
-            GameManager = new GameManager(AttackManager, DiplomacyManager, EconomyManager, HoldingManager, MilitaryManager, WorldManager);
-
-            WorldManager.LoadContent();
-            DiplomacyManager.LoadContent();
-            HoldingManager.LoadContent();
-            MilitaryManager.LoadContent();
-            EconomyManager.LoadContent();
-            AttackManager.LoadContent();
-            GameManager.LoadContent(worldId, playerFactionId);
+            LoadGameManagers();
 
             administrationBar = new GuiAdministrationBar
             {
@@ -124,49 +110,20 @@ namespace Narivia.Gui.Screens
                 Id = nameof(buildingPanel)
             };
 
-            recruitmentPanel.Hide();
-            buildingPanel.Hide();
-
             troopsOld = new Dictionary<string, int>();
-            relationsOld = new Dictionary<string, int>();
-
             troopsOld = MilitaryManager.GetUnits().ToDictionary(x => x.Name, x => MilitaryManager.GetArmy(playerFactionId, x.Id).Size);
 
-            foreach (Relation relation in DiplomacyManager.GetFactionRelations(playerFactionId))
-            {
-                if (relationsOld.ContainsKey(relation.TargetFactionId))
-                {
-                    relationsOld[relation.TargetFactionId] = relation.Value;
-                }
-                else
-                {
-                    relationsOld.Add(relation.TargetFactionId, relation.Value);
-                }
-            }
+            LoadRelations();
 
-            GuiManager.Instance.GuiElements.Add(gameMap);
-            GuiManager.Instance.GuiElements.Add(administrationBar);
-            GuiManager.Instance.GuiElements.Add(infoBar);
-            GuiManager.Instance.GuiElements.Add(factionBar);
-            GuiManager.Instance.GuiElements.Add(provincePanel);
-            GuiManager.Instance.GuiElements.Add(notificationBar);
-            GuiManager.Instance.GuiElements.Add(recruitmentPanel);
-            GuiManager.Instance.GuiElements.Add(buildingPanel);
-
-            provincePanel.ProvinceId = GameManager.GetFactionCapital(playerFactionId).Id;
-
-            ///
-
-            provincePanel.Hide();
-
-            string factionName = WorldManager.GetFaction(playerFactionId).Name;
-
-            NotificationManager.Instance.ShowNotification(
-                $"Welcome to {GameManager.GetWorld().Name}",
-                $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
-                $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!");
-
-            gameMap.CentreCameraOnLocation(WorldManager.GetFactionCentre(playerFactionId));
+            GuiManager.Instance.RegisterControls(
+                gameMap,
+                administrationBar,
+                infoBar,
+                factionBar,
+                provincePanel,
+                notificationBar,
+                recruitmentPanel,
+                buildingPanel);
 
             RegisterEvents();
         }
@@ -176,14 +133,7 @@ namespace Narivia.Gui.Screens
         /// </summary>
         protected override void DoUnloadContent()
         {
-            WorldManager.UnloadContent();
-            DiplomacyManager.UnloadContent();
-            HoldingManager.UnloadContent();
-            MilitaryManager.UnloadContent();
-            EconomyManager.UnloadContent();
-            AttackManager.UnloadContent();
-            GameManager.UnloadContent();
-
+            UnloadGameManagers();
             UnregisterEvents();
         }
 
@@ -214,22 +164,81 @@ namespace Narivia.Gui.Screens
         }
 
         /// <summary>
+        /// Loads the game managers.
+        /// </summary>
+        void LoadGameManagers()
+        {
+            WorldManager = new WorldManager(worldId);
+            DiplomacyManager = new DiplomacyManager(WorldManager);
+            HoldingManager = new HoldingManager(worldId, WorldManager);
+            MilitaryManager = new MilitaryManager(HoldingManager, WorldManager);
+            EconomyManager = new EconomyManager(HoldingManager, MilitaryManager, WorldManager);
+            AttackManager = new AttackManager(DiplomacyManager, HoldingManager, MilitaryManager, WorldManager);
+            GameManager = new GameManager(AttackManager, DiplomacyManager, EconomyManager, HoldingManager, MilitaryManager, WorldManager);
+
+            WorldManager.LoadContent();
+            DiplomacyManager.LoadContent();
+            HoldingManager.LoadContent();
+            MilitaryManager.LoadContent();
+            EconomyManager.LoadContent();
+            AttackManager.LoadContent();
+            GameManager.LoadContent(worldId, playerFactionId);
+        }
+        
+        /// <summary>
+        /// Loads the relations.
+        /// </summary>
+        void LoadRelations()
+        {
+            relationsOld = new Dictionary<string, int>();
+
+            foreach (Relation relation in DiplomacyManager.GetFactionRelations(playerFactionId))
+            {
+                if (relationsOld.ContainsKey(relation.TargetFactionId))
+                {
+                    relationsOld[relation.TargetFactionId] = relation.Value;
+                }
+                else
+                {
+                    relationsOld.Add(relation.TargetFactionId, relation.Value);
+                }
+            }
+        }
+
+        /// <summary>
         /// Registers the events.
         /// </summary>
         void RegisterEvents()
         {
-            GameManager.PlayerProvinceAttacked += game_OnPlayerProvinceAttacked;
-            GameManager.FactionDestroyed += game_OnFactionDestroyed;
-            GameManager.FactionRevived += game_OnFactionRevived;
-            GameManager.FactionWon += game_OnFactionWon;
+            ContentLoaded += OnContentLoaded;
 
-            gameMap.Clicked += GameMap_Clicked;
+            GameManager.PlayerProvinceAttacked += OnGamePlayerProvinceAttacked;
+            GameManager.FactionDestroyed += OnGameFactionDestroyed;
+            GameManager.FactionRevived += OnGameFactionRevived;
+            GameManager.FactionWon += OnGameFactionWon;
 
-            infoBar.TurnButtonClicked += SideBar_TurnButtonClicked;
-            administrationBar.RecruitButton.Clicked += AdministrationBar_RecruitButtonClicked;
-            administrationBar.StatsButton.Clicked += AdministrationBar_StatsButtonClicked;
-            provincePanel.AttackButtonClicked += ProvincePanel_AttackButtonClicked;
-            provincePanel.BuildButtonClicked += ProvincePanel_BuildButtonClicked;
+            gameMap.Clicked += OnGameMapClicked;
+
+            infoBar.TurnButtonClicked += OnSideBarTurnButtonClicked;
+            administrationBar.BuildButtonClicked += OnAdministrationBarBuildButtonClicked;
+            administrationBar.RecruitButtonClicked += OnAdministrationBarRecruitButtonClicked;
+            administrationBar.StatsButtonClicked += OnAdministrationBarStatsButtonClicked;
+            provincePanel.AttackButtonClicked += OnProvincePanelAttackButtonClicked;
+            provincePanel.BuildButtonClicked += OnProvincePanelBuildButtonClicked;
+        }
+
+        /// <summary>
+        /// Unloads the game managers.
+        /// </summary>
+        void UnloadGameManagers()
+        {
+            WorldManager.UnloadContent();
+            DiplomacyManager.UnloadContent();
+            HoldingManager.UnloadContent();
+            MilitaryManager.UnloadContent();
+            EconomyManager.UnloadContent();
+            AttackManager.UnloadContent();
+            GameManager.UnloadContent();
         }
 
         /// <summary>
@@ -237,18 +246,21 @@ namespace Narivia.Gui.Screens
         /// </summary>
         void UnregisterEvents()
         {
-            GameManager.PlayerProvinceAttacked -= game_OnPlayerProvinceAttacked;
-            GameManager.FactionDestroyed -= game_OnFactionDestroyed;
-            GameManager.FactionRevived -= game_OnFactionRevived;
-            GameManager.FactionWon -= game_OnFactionWon;
+            ContentLoaded -= OnContentLoaded;
 
-            gameMap.Clicked -= GameMap_Clicked;
+            GameManager.PlayerProvinceAttacked -= OnGamePlayerProvinceAttacked;
+            GameManager.FactionDestroyed -= OnGameFactionDestroyed;
+            GameManager.FactionRevived -= OnGameFactionRevived;
+            GameManager.FactionWon -= OnGameFactionWon;
 
-            infoBar.TurnButtonClicked -= SideBar_TurnButtonClicked;
-            administrationBar.RecruitButton.Clicked -= AdministrationBar_RecruitButtonClicked;
-            administrationBar.StatsButton.Clicked -= AdministrationBar_StatsButtonClicked;
-            provincePanel.AttackButtonClicked -= ProvincePanel_AttackButtonClicked;
-            provincePanel.BuildButtonClicked -= ProvincePanel_BuildButtonClicked;
+            gameMap.Clicked -= OnGameMapClicked;
+
+            infoBar.TurnButtonClicked -= OnSideBarTurnButtonClicked;
+            administrationBar.BuildButtonClicked -= OnAdministrationBarBuildButtonClicked;
+            administrationBar.RecruitButtonClicked -= OnAdministrationBarRecruitButtonClicked;
+            administrationBar.StatsButtonClicked -= OnAdministrationBarStatsButtonClicked;
+            provincePanel.AttackButtonClicked -= OnProvincePanelAttackButtonClicked;
+            provincePanel.BuildButtonClicked -= OnProvincePanelBuildButtonClicked;
         }
 
         void NextTurn()
@@ -387,12 +399,30 @@ namespace Narivia.Gui.Screens
             }
         }
 
-        void SideBar_TurnButtonClicked(object sender, MouseButtonEventArgs e)
+        void OnContentLoaded(object sender, EventArgs e)
+        {
+            provincePanel.ProvinceId = GameManager.GetFactionCapital(playerFactionId).Id;
+
+            provincePanel.Hide();
+            recruitmentPanel.Hide();
+            buildingPanel.Hide();
+
+            string factionName = WorldManager.GetFaction(playerFactionId).Name;
+
+            NotificationManager.Instance.ShowNotification(
+                $"Welcome to {GameManager.GetWorld().Name}",
+                $"The era of peace has ended! Old rivalries remerged, and a global war broke out." + Environment.NewLine +
+                $"Conquer the world in the name of {factionName}, and secure its place in the golden pages of history!");
+
+            gameMap.CentreCameraOnLocation(WorldManager.GetFactionCentre(playerFactionId));
+        }
+
+        void OnSideBarTurnButtonClicked(object sender, MouseButtonEventArgs e)
         {
             NextTurn();
         }
 
-        void AdministrationBar_StatsButtonClicked(object sender, MouseButtonEventArgs e)
+        void OnAdministrationBarStatsButtonClicked(object sender, MouseButtonEventArgs e)
         {
             NotificationManager.Instance.ShowNotification(
                 "Statistics",
@@ -401,22 +431,27 @@ namespace Narivia.Gui.Screens
                 $"Militia Recruitment: {MilitaryManager.GetFactionRecruitment(playerFactionId)}");
         }
 
-        void AdministrationBar_RecruitButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            recruitmentPanel.Show();
-        }
-
-        void ProvincePanel_AttackButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            AttackProvince(provincePanel.ProvinceId);
-        }
-
-        void ProvincePanel_BuildButtonClicked(object sender, MouseButtonEventArgs e)
+        void OnAdministrationBarBuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
             buildingPanel.Show();
         }
 
-        void GameMap_Clicked(object sender, MouseButtonEventArgs e)
+        void OnAdministrationBarRecruitButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            recruitmentPanel.Show();
+        }
+
+        void OnProvincePanelAttackButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            AttackProvince(provincePanel.ProvinceId);
+        }
+
+        void OnProvincePanelBuildButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            buildingPanel.Show();
+        }
+
+        void OnGameMapClicked(object sender, MouseButtonEventArgs e)
         {
             string provinceId = gameMap.SelectedProvinceId;
 
@@ -429,7 +464,7 @@ namespace Narivia.Gui.Screens
             provincePanel.Show();
         }
 
-        void game_OnPlayerProvinceAttacked(object sender, BattleEventArgs e)
+        void OnGamePlayerProvinceAttacked(object sender, BattleEventArgs e)
         {
             string provinceName = WorldManager.GetProvince(e.ProvinceId).Name;
             string attackerFactionName = WorldManager.GetFaction(e.AttackerFactionId).Name;
@@ -458,7 +493,7 @@ namespace Narivia.Gui.Screens
             }
         }
 
-        void game_OnFactionDestroyed(object sender, FactionEventArgs e)
+        void OnGameFactionDestroyed(object sender, FactionEventArgs e)
         {
             string factionName = WorldManager.GetFaction(e.FactionId).Name;
 
@@ -471,7 +506,7 @@ namespace Narivia.Gui.Screens
             };
         }
 
-        void game_OnFactionRevived(object sender, FactionEventArgs e)
+        void OnGameFactionRevived(object sender, FactionEventArgs e)
         {
             string factionName = WorldManager.GetFaction(e.FactionId).Name;
 
@@ -484,7 +519,7 @@ namespace Narivia.Gui.Screens
             };
         }
 
-        void game_OnFactionWon(object sender, FactionEventArgs e)
+        void OnGameFactionWon(object sender, FactionEventArgs e)
         {
             string factionName = WorldManager.GetFaction(e.FactionId).Name;
 

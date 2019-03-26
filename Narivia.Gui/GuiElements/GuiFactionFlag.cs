@@ -1,18 +1,18 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
 
 using Narivia.Models;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
     /// <summary>
     /// GUI faction flag element.
     /// </summary>
-    public class GuiFactionFlag : GuiElement
+    public class GuiFactionFlag : GuiControl, IGuiControl
     {
         public Flag Flag { get; set; }
 
@@ -61,7 +61,7 @@ namespace Narivia.Gui.GuiElements
                 SourceRectangle = Rectangle2D.Empty
             };
 
-            RegisterChildren();
+            RegisterChildren(backgroundImage, layer1Image, layer2Image, emblemImage, skinImage);
             SetChildrenProperties();
         }
 
@@ -89,15 +89,6 @@ namespace Narivia.Gui.GuiElements
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
-        }
-
-        void RegisterChildren()
-        {
-            AddChild(backgroundImage);
-            AddChild(layer1Image);
-            AddChild(layer2Image);
-            AddChild(emblemImage);
-            AddChild(skinImage);
         }
 
         void SetChildrenProperties()

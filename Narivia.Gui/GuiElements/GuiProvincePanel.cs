@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Graphics.Drawing;
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
@@ -14,7 +14,7 @@ using Narivia.GameLogic.GameManagers;
 using Narivia.Models;
 using Narivia.Settings;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
     public class GuiProvincePanel : GuiPanel
     {
@@ -143,7 +143,12 @@ namespace Narivia.Gui.GuiElements
                 }
             }
 
-            RegisterChildren();
+            RegisterChild(paper);
+            RegisterChildren(factionFlag, factionName);
+            RegisterChildren(resourceIcon, resourceName);
+            RegisterChildren(attackButton, buildButton);
+            RegisterChildren(holdingCards);
+            
             RegisterEvents();
             SetChildrenProperties();
         }
@@ -169,22 +174,6 @@ namespace Narivia.Gui.GuiElements
             SetChildrenProperties();
         }
 
-        void RegisterChildren()
-        {
-            AddChild(paper);
-
-            AddChild(factionFlag);
-            AddChild(factionName);
-
-            AddChild(resourceIcon);
-            AddChild(resourceName);
-
-            AddChild(attackButton);
-            AddChild(buildButton);
-
-            holdingCards.ForEach(AddChild);
-        }
-
         void RegisterEvents()
         {
             attackButton.Clicked += OnAttackButtonClicked;
@@ -201,6 +190,11 @@ namespace Narivia.Gui.GuiElements
         {
             if (currentProvinceId == ProvinceId)
             {
+                if (factionFlag.Flag == null)
+                {
+                    factionFlag.Flag = gameManager.GetFactionFlag("f_gaia"); // TODO: Tempfix
+                }
+
                 return;
             }
 

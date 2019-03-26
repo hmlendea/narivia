@@ -4,19 +4,19 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.Helpers;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
     /// <summary>
     /// Info bar GUI element.
     /// </summary>
-    public class GuiInfoBar : GuiElement
+    public class GuiInfoBar : GuiControl, IGuiControl
     {
         IGameManager gameManager;
         IWorldManager worldManager;
@@ -163,8 +163,13 @@ namespace Narivia.Gui.GuiElements
                 Location = new Point2D(15, 62),
                 Size = new Size2D(138, 15)
             };
-            
-            RegisterChildren();
+
+            RegisterChild(background);
+            RegisterChildren(provincesIcon, holdingsIcon, troopsIcon, wealthIcon);
+            RegisterChildren(provincesText, holdingsText, troopsText, wealthText);
+            RegisterChildren(turnButton, turnText);
+            RegisterChildren(provincesTooltip, holdingsTooltip, wealthTooltip);
+
             RegisterEvents();
             SetChildrenProperties();
         }
@@ -193,29 +198,6 @@ namespace Narivia.Gui.GuiElements
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
-        }
-
-        void RegisterChildren()
-        {
-            AddChild(background);
-
-            AddChild(provincesIcon);
-            AddChild(holdingsIcon);
-            AddChild(troopsIcon);
-            AddChild(wealthIcon);
-
-            AddChild(provincesText);
-            AddChild(holdingsText);
-            AddChild(troopsText);
-            AddChild(wealthText);
-
-            AddChild(turnButton);
-            AddChild(turnText);
-
-            AddChild(provincesTooltip);
-            AddChild(holdingsTooltip);
-            AddChild(wealthTooltip);
-            AddChild(troopsTooltip);
         }
 
         void RegisterEvents()

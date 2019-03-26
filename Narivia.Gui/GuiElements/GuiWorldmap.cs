@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using NuciExtensions;
 using NuciXNA.Graphics.Drawing;
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 using NuciXNA.Primitives.Mapping;
@@ -17,12 +17,12 @@ using Narivia.Models;
 using Narivia.Models.Enumerations;
 using Narivia.Settings;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
     /// <summary>
     /// World map GUI element.
     /// </summary>
-    public class GuiWorldmap : GuiElement
+    public class GuiWorldmap : GuiControl, IGuiControl
     {
         /// <summary>
         /// Gets the selected province identifier.

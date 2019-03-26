@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Graphics.Drawing;
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
 
@@ -13,7 +13,7 @@ using Narivia.GameLogic.GameManagers;
 using Narivia.Models;
 using Narivia.Settings;
 
-namespace Narivia.Gui.GuiElements
+namespace Narivia.Gui.Controls
 {
     /// <summary>
     /// Unit recruitment panel GUI element.
@@ -259,7 +259,12 @@ namespace Narivia.Gui.GuiElements
                     Size.Height - 42 - GameDefines.GuiSpacing)
             };
             
-            RegisterChildren();
+            RegisterChildren(unitBackground, unitImage, paper);
+            RegisterChildren(unitText, troopsText);
+            RegisterChildren(healthIcon, powerIcon, priceIcon, maintenanceIcon);
+            RegisterChildren(healthText, powerText, priceText, maintenanceText);
+            RegisterChildren(nextUnitButton, previousUnitButton, addUnitButton, substractUnitButton, recruitButton);
+            
             RegisterEvents();
             SetChildrenProperties();
         }
@@ -283,33 +288,6 @@ namespace Narivia.Gui.GuiElements
             base.DoUpdate(gameTime);
 
             SetChildrenProperties();
-        }
-
-        void RegisterChildren()
-        {
-            AddChild(unitBackground);
-            AddChild(unitImage);
-            AddChild(paper);
-
-            AddChild(unitText);
-            AddChild(troopsText);
-
-            AddChild(healthIcon);
-            AddChild(powerIcon);
-            AddChild(priceIcon);
-            AddChild(maintenanceIcon);
-
-            AddChild(healthText);
-            AddChild(powerText);
-            AddChild(priceText);
-            AddChild(maintenanceText);
-
-            AddChild(nextUnitButton);
-            AddChild(previousUnitButton);
-            AddChild(addUnitButton);
-            AddChild(substractUnitButton);
-
-            AddChild(recruitButton);
         }
 
         void RegisterEvents()

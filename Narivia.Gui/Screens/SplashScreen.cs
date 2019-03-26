@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Gui;
-using NuciXNA.Gui.GuiElements;
+using NuciXNA.Gui.Controls;
 using NuciXNA.Gui.Screens;
 using NuciXNA.Graphics.SpriteEffects;
 using NuciXNA.Input;
@@ -21,23 +21,9 @@ namespace Narivia.Gui.Screens
         /// <value>The delay.</value>
         public float Delay { get; set; }
 
-        /// <summary>
-        /// Gets or sets the background.
-        /// </summary>
-        /// <value>The background.</value>
-        public GuiImage BackgroundImage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the overlay.
-        /// </summary>
-        /// <value>The overlay.</value>
-        public GuiImage OverlayImage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the logo.
-        /// </summary>
-        /// <value>The logo.</value>
-        public GuiImage LogoImage { get; set; }
+        GuiImage backgroundImage;
+        GuiImage overlayImage;
+        GuiImage logoImage;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SplashScreen"/> class.
@@ -53,9 +39,9 @@ namespace Narivia.Gui.Screens
         /// </summary>
         protected override void DoLoadContent()
         {
-            BackgroundImage = new GuiImage
+            backgroundImage = new GuiImage
             {
-                Id = nameof(BackgroundImage),
+                Id = nameof(backgroundImage),
                 ContentFile = "SplashScreen/Background",
                 RotationEffect = new OscilationEffect
                 {
@@ -70,23 +56,21 @@ namespace Narivia.Gui.Screens
                 },
                 AreEffectsActive = true
             };
-            OverlayImage = new GuiImage
+            overlayImage = new GuiImage
             {
-                Id = nameof(OverlayImage),
+                Id = nameof(overlayImage),
                 ContentFile = "SplashScreen/Overlay"
             };
-            LogoImage = new GuiImage
+            logoImage = new GuiImage
             {
-                Id = nameof(LogoImage),
+                Id = nameof(logoImage),
                 ContentFile = "SplashScreen/Logo"
             };
 
-            GuiManager.Instance.GuiElements.Add(BackgroundImage);
-            GuiManager.Instance.GuiElements.Add(OverlayImage);
-            GuiManager.Instance.GuiElements.Add(LogoImage);
-
-            SetChildrenProperties();
+            GuiManager.Instance.RegisterControls(backgroundImage, overlayImage, logoImage);
+            
             RegisterEvents();
+            SetChildrenProperties();
         }
         
         /// <summary>
@@ -104,6 +88,12 @@ namespace Narivia.Gui.Screens
         protected override void DoUpdate(GameTime gameTime)
         {
             SetChildrenProperties();
+            
+            if (!backgroundImage.RotationEffect.IsActive)
+            {
+                backgroundImage.RotationEffect.Activate();
+                backgroundImage.ScaleEffect.Activate();
+            }
 
             if (Delay <= 0 && !ScreenManager.Instance.Transitioning)
             {
@@ -142,15 +132,15 @@ namespace Narivia.Gui.Screens
 
         void SetChildrenProperties()
         {
-            OverlayImage.Size = ScreenManager.Instance.Size;
+            overlayImage.Size = ScreenManager.Instance.Size;
 
-            BackgroundImage.Location = new Point2D(
-                (ScreenManager.Instance.Size.Width - BackgroundImage.ClientRectangle.Width) / 2,
-                (ScreenManager.Instance.Size.Height - BackgroundImage.ClientRectangle.Height) / 2);
+            backgroundImage.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - backgroundImage.ClientRectangle.Width) / 2,
+                (ScreenManager.Instance.Size.Height - backgroundImage.ClientRectangle.Height) / 2);
 
-            LogoImage.Location = new Point2D(
-                (ScreenManager.Instance.Size.Width - LogoImage.Size.Width) / 2,
-                (ScreenManager.Instance.Size.Height - LogoImage.Size.Height) / 2);
+            logoImage.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - logoImage.Size.Width) / 2,
+                (ScreenManager.Instance.Size.Height - logoImage.Size.Height) / 2);
         }
 
         void OnKeyPressed(object sender, KeyboardKeyEventArgs e)

@@ -1,7 +1,10 @@
 ﻿
+using System;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using NuciXNA.Gui.GuiElements;
+
+using NuciXNA.Gui.Controls;
 using NuciXNA.Gui.Screens;
 
 using Narivia.Settings;
@@ -42,9 +45,13 @@ namespace Narivia.Gui.Screens
             Items.Add(fullScreenToggle);
             Items.Add(debugModeToggle);
             Items.Add(backLink);
+
+            RegisterEvents();
             
             fullScreenToggle.SetState(SettingsManager.Instance.GraphicsSettings.Fullscreen);
             debugModeToggle.SetState(SettingsManager.Instance.DebugMode);
+
+            base.DoLoadContent();
         }
 
         /// <summary>
@@ -53,6 +60,10 @@ namespace Narivia.Gui.Screens
         protected override void DoUnloadContent()
         {
             SettingsManager.Instance.SaveContent();
+
+            UnregisterEvents();
+
+            base.DoUnloadContent();
         }
 
         /// <summary>
@@ -63,15 +74,36 @@ namespace Narivia.Gui.Screens
         {
             SettingsManager.Instance.GraphicsSettings.Fullscreen = fullScreenToggle.IsOn;
             SettingsManager.Instance.DebugMode = debugModeToggle.IsOn;
+
+            base.DoUnloadContent();
         }
 
         /// <summary>
-        /// Draws the content on the specified spriteBatch.
+        /// Registers the events.
         /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
-        protected override void DoDraw(SpriteBatch spriteBatch)
+        void RegisterEvents()
         {
+            fullScreenToggle.StateChanged += OnFullscreenToggleStateChanged;
+            debugModeToggle.StateChanged += OnDebugModeToggleStateChanged;
+        }
 
+        /// <summary>
+        /// Unregisters the events.
+        /// </summary>
+        void UnregisterEvents()
+        {
+            fullScreenToggle.StateChanged -= OnFullscreenToggleStateChanged;
+            debugModeToggle.StateChanged -= OnDebugModeToggleStateChanged;
+        }
+
+        void OnFullscreenToggleStateChanged(object sender, EventArgs e)
+        {
+            SettingsManager.Instance.GraphicsSettings.Fullscreen = fullScreenToggle.IsOn;
+        }
+
+        void OnDebugModeToggleStateChanged(object sender, EventArgs e)
+        {
+            SettingsManager.Instance.DebugMode = debugModeToggle.IsOn;
         }
     }
 }
