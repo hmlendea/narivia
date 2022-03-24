@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Narivia</RootNamespace>
     <Authors>Horațiu Mlendea</Authors>
     <Copyright>Copyright 2022 © Horațiu Mlendea</Copyright>
