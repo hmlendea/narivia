@@ -21,7 +21,7 @@
     <PackageReference Include="NuciXNA.Gui" Version="2.1.1" />
     <PackageReference Include="NuciXNA.Input" Version="1.5.0" />
     <PackageReference Include="NuciXNA.Primitives" Version="1.4.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
