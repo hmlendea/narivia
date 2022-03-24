@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/hmlendea/narivia.svg?branch=master)](https://travis-ci.com/hmlendea/narivia)
+[![Build Status](https://github.com/hmlendea/narivia/actions/workflows/dotnet.yml/badge.svg)](https://github.com/hmlendea/narivia/actions/workflows/dotnet.yml)
 
 # About
 Narivia is a free-to-play turn-based strategy game focused on economy and warfare. It is set in a big part of a fictional world called Narivia, containing it's two main continents.
