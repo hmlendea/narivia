@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Narivia</RootNamespace>
     <Authors>Horațiu Mlendea</Authors>
     <Copyright>Copyright 2022 © Horațiu Mlendea</Copyright>
@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
     <PackageReference Include="NuciExtensions" Version="1.1.0" />
     <PackageReference Include="NuciXNA.DataAccess" Version="1.5.0" />
     <PackageReference Include="NuciXNA.Graphics" Version="1.7.0" />
