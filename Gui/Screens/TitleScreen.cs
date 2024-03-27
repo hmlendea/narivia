@@ -53,6 +53,7 @@ namespace Narivia.Gui.Screens
 
             newGameButton.Clicked += OnNewGameButtonClicked;
             settingsButton.Clicked += OnSettingsButtonClicked;
+            exitButton.Clicked += OnExitButtonClicked;
 
             SetChildrenProperties();
 
@@ -60,12 +61,6 @@ namespace Narivia.Gui.Screens
                 newGameButton,
                 settingsButton,
                 exitButton);
-        }
-
-        protected override void DoUnloadContent()
-        {
-            newGameButton.Clicked -= OnNewGameButtonClicked;
-            settingsButton.Clicked -= OnSettingsButtonClicked;
         }
 
         protected override void DoUpdate(GameTime gameTime)
@@ -92,22 +87,26 @@ namespace Narivia.Gui.Screens
 
         void OnNewGameButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            if (e.Button != MouseButton.Left)
+            if (e.Button.Equals(MouseButton.Left))
             {
-                return;
+                ScreenManager.Instance.ChangeScreens<NewGameScreen>();
             }
-
-            ScreenManager.Instance.ChangeScreens<NewGameScreen>();
         }
 
         void OnSettingsButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            if (e.Button != MouseButton.Left)
+            if (e.Button.Equals(MouseButton.Left))
             {
-                return;
+                ScreenManager.Instance.ChangeScreens<SettingsScreen>();
             }
+        }
 
-            ScreenManager.Instance.ChangeScreens<SettingsScreen>();
+        void OnExitButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Button.Equals(MouseButton.Left))
+            {
+                GameWindow.Quit();
+            }
         }
     }
 }
