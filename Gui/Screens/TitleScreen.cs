@@ -43,7 +43,7 @@ namespace Narivia.Gui.Screens
             };
             exitButton = new GuiDynamicButton
             {
-                Id = $"{Id}_{nameof(GuiButton)}",
+                Id = $"{Id}_{nameof(exitButton)}",
                 ContentFile = "Interface/Buttons/Dynamic/red",
                 FontName = "Button/Menu",
                 ForegroundColour = Colour.Gold,

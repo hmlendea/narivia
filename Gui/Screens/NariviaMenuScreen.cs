@@ -10,6 +10,7 @@ namespace Narivia.Gui.Screens
 {
     public class NariviaMenuScreen : Screen
     {
+        protected static int ControlSpacing => 8;
         protected static int ButtonSpacing => 48;
         protected static Size2D ButtonSize => new(300, 50);
 

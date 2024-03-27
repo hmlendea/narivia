@@ -12,49 +12,81 @@ using Narivia.GameLogic.GameManagers;
 using Narivia.GameLogic.Mapping;
 using Narivia.Models;
 using Narivia.Settings;
+using Narivia.Gui.Controls;
+using NuciXNA.Primitives;
+using NuciXNA.Gui;
+using NuciXNA.Input;
 
 namespace Narivia.Gui.Screens
 {
     /// <summary>
     /// New game screen.
     /// </summary>
-    public class NewGameScreen : MenuScreen
+    public class NewGameScreen : NariviaMenuScreen
     {
-        GuiMenuLink startLink;
-        GuiMenuListSelector worldSelector;
-        GuiMenuListSelector factionSelector;
-        GuiMenuLink backLink;
+        GuiFactionFlag factionFlag;
+        GuiText factionName;
+        GuiButton previousFactionButton;
+        GuiButton nextFactionButton;
+
+        GuiDynamicButton startButton;
+        GuiDynamicButton backButton;
 
         IWorldManager worldManager;
 
-        List<World> worlds;
+        int selectedFactionIndex = 0;
+        IList<Faction> factions;
+        IList<World> worlds;
 
         /// <summary>
         /// Loads the content.
         /// </summary>
         protected override void DoLoadContent()
         {
-            startLink = new GuiMenuLink
+            base.DoLoadContent();
+
+            factionFlag = new GuiFactionFlag
             {
-                Id = nameof(startLink),
-                Text = "Start",
-                TargetScreen = typeof(GameplayScreen)
+                Id = $"{Id}_{nameof(factionFlag)}",
+                Size = new Size2D(76, 76)
             };
-            worldSelector = new GuiMenuListSelector
+            factionName = new GuiText
             {
-                Id = nameof(worldSelector),
-                Text = "World"
+                Id = $"{Id}_{nameof(factionName)}",
+                FontName = "Button/Menu",
+                ForegroundColour = Colour.Gold,
+                Size = new Size2D(512, 48)
             };
-            factionSelector = new GuiMenuListSelector
+            previousFactionButton = new GuiButton
             {
-                Id = nameof(factionSelector),
-                Text = "Faction"
+                Id = $"{Id}_{nameof(previousFactionButton)}",
+                ContentFile = "Interface/Buttons/button-minus",
+                Size = new Size2D(24, 24)
             };
-            backLink = new GuiMenuLink
+            nextFactionButton = new GuiButton
             {
-                Id = nameof(backLink),
-                Text = "Back",
-                TargetScreen = typeof(TitleScreen)
+                Id = $"{Id}_{nameof(nextFactionButton)}",
+                ContentFile = "Interface/Buttons/button-plus",
+                Size = new Size2D(24, 24)
+            };
+
+            startButton = new GuiDynamicButton
+            {
+                Id = $"{Id}_{nameof(startButton)}",
+                ContentFile = "Interface/Buttons/Dynamic/red",
+                FontName = "Button/Menu",
+                ForegroundColour = Colour.Gold,
+                Size = ButtonSize,
+                Text = "Start"
+            };
+            backButton = new GuiDynamicButton
+            {
+                Id = $"{Id}_{nameof(backButton)}",
+                ContentFile = "Interface/Buttons/Dynamic/red",
+                FontName = "Button/Menu",
+                ForegroundColour = Colour.Gold,
+                Size = ButtonSize,
+                Text = "Back"
             };
 
             // TODO: Do not access the repository directly from here
@@ -63,15 +95,18 @@ namespace Narivia.Gui.Screens
             // TODO: Don't load everything unnecessarily
             worlds = worldRepository.GetAll().ToDomainModels().ToList();
 
-            worldSelector.SetItems(worlds.ToDictionary(x => x.Id, x => x.Name));
-
             LoadSelectedWorld();
 
-            RegisterChildren();
+            GuiManager.Instance.RegisterControls(
+                factionFlag,
+                factionName,
+                previousFactionButton,
+                nextFactionButton,
+                startButton,
+                backButton);
+
             RegisterEvents();
             SetChildrenProperties();
-
-            base.DoLoadContent();
         }
 
         /// <summary>
@@ -79,12 +114,9 @@ namespace Narivia.Gui.Screens
         /// </summary>
         protected override void DoUnloadContent()
         {
-            worldSelector.SelectedItemChanged -= OnWorldSelectorSelectedItemChanged;
-            worldManager.UnloadContent();
-
-            UnregisterEvents();
-
             base.DoUnloadContent();
+
+            worldManager.UnloadContent();
         }
 
         /// <summary>
@@ -93,20 +125,9 @@ namespace Narivia.Gui.Screens
         /// <param name="gameTime">Game time.</param>
         protected override void DoUpdate(GameTime gameTime)
         {
-            SetChildrenProperties();
-
             base.DoUpdate(gameTime);
-        }
 
-        /// <summary>
-        /// Registers the children.
-        /// </summary>
-        void RegisterChildren()
-        {
-            Items.Add(startLink);
-            Items.Add(worldSelector);
-            Items.Add(factionSelector);
-            Items.Add(backLink);
+            SetChildrenProperties();
         }
 
         /// <summary>
@@ -114,47 +135,92 @@ namespace Narivia.Gui.Screens
         /// </summary>
         void RegisterEvents()
         {
-            worldSelector.SelectedItemChanged += OnWorldSelectorSelectedItemChanged;
-        }
-
-        /// <summary>
-        /// Unregisters the events.
-        /// </summary>
-        void UnregisterEvents()
-        {
-            worldSelector.SelectedItemChanged -= OnWorldSelectorSelectedItemChanged;
+            previousFactionButton.Clicked += OnPreviousFactionButtonClicked;
+            nextFactionButton.Clicked += OnNextFactionButtonClicked;
+            startButton.Clicked += OnStartButtonClicked;
+            backButton.Clicked += OnBackButtonClicked;
         }
 
         void SetChildrenProperties()
         {
-            startLink.Parameters = new object[] { worldSelector.SelectedKey, factionSelector.SelectedKey };
+            factionFlag.Flag = worldManager.GetFlag(factions[selectedFactionIndex].FlagId);
+            factionFlag.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - factionFlag.Size.Width) / 2,
+                ControlSpacing);
+
+            factionName.Text = factions[selectedFactionIndex].Name;
+            factionName.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - factionName.Size.Width) / 2,
+                factionFlag.Location.Y + factionFlag.Size.Height + ControlSpacing);
+
+            previousFactionButton.Location = new Point2D(
+                factionFlag.Location.X - previousFactionButton.Size.Width - 8,
+                factionFlag.Location.Y + factionFlag.Size.Height / 2 - previousFactionButton.Size.Height / 2);
+
+            nextFactionButton.Location = new Point2D(
+                factionFlag.Location.X + factionFlag.Size.Width + 8,
+                factionFlag.Location.Y + factionFlag.Size.Height / 2 - nextFactionButton.Size.Height / 2);
+
+            startButton.Location = new Point2D(
+                ScreenManager.Instance.Size.Width - ButtonSpacing - startButton.Size.Width,
+                ScreenManager.Instance.Size.Height - ButtonSpacing - startButton.Size.Height);
+
+            backButton.Location = new Point2D(
+                ButtonSpacing,
+                ScreenManager.Instance.Size.Height - ButtonSpacing - backButton.Size.Height);
         }
 
         void LoadSelectedWorld()
         {
-            worldManager = new WorldManager(worldSelector.SelectedKey);
+            worldManager = new WorldManager(worlds.First().Id);
 
             worldManager.LoadContent();
 
-            UpdateFactionSelectorItems();
+            factions = worldManager.GetFactions().ToList();
+            selectedFactionIndex = 0;
         }
 
-        void UpdateFactionSelectorItems()
+        void OnPreviousFactionButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            List<Faction> factions = worldManager.GetFactions()
-                .Where(f => f.Type.IsActive)
-                .OrderBy(f => f.Name)
-                .ToList();
+            if (e.Button.Equals(MouseButton.Left))
+            {
+                selectedFactionIndex -= 1;
 
-            factionSelector.SetItems(factions.ToDictionary(x => x.Id, x => x.Name));
-
-            // TODO: Remove this default selection, leave it at 0
-            factionSelector.TrySelectItem("Alpalet");
+                if (selectedFactionIndex < 0)
+                {
+                    selectedFactionIndex = factions.Count - 1;
+                }
+            }
         }
 
-        void OnWorldSelectorSelectedItemChanged(object sender, EventArgs e)
+        void OnNextFactionButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            LoadSelectedWorld();
+            if (e.Button.Equals(MouseButton.Left))
+            {
+                selectedFactionIndex += 1;
+
+                if (selectedFactionIndex >= factions.Count)
+                {
+                    selectedFactionIndex = 0;
+                }
+            }
+        }
+
+        void OnStartButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Button.Equals(MouseButton.Left))
+            {
+                ScreenManager.Instance.ChangeScreens<GameplayScreen>(worlds.First().Id, factions[selectedFactionIndex].Id);
+            }
+        }
+
+        void OnBackButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Button.Equals(MouseButton.Left))
+            {
+                ScreenManager.Instance.ChangeScreens<TitleScreen>();
+            }
+
         }
     }
 }
