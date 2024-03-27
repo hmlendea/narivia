@@ -1,62 +1,68 @@
 ﻿
-using System;
-
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-using NuciXNA.Gui.Controls;
-using NuciXNA.Gui.Screens;
 
 using Narivia.Settings;
+using Narivia.Gui.Controls;
+using NuciXNA.Primitives;
+using NuciXNA.Gui;
+using NuciXNA.Input;
+using NuciXNA.Gui.Screens;
 
 namespace Narivia.Gui.Screens
 {
     /// <summary>
     /// Settings screen.
     /// </summary>
-    public class SettingsScreen : MenuScreen
+    public class SettingsScreen : NariviaMenuScreen
     {
-        GuiMenuToggle fullScreenToggle;
-        GuiMenuToggle debugModeToggle;
-        GuiMenuLink backLink;
+        GuiDynamicButton fullScreenButton;
+        GuiDynamicButton debugModeButton;
+        GuiDynamicButton backButton;
 
         /// <summary>
         /// Loads the content.
         /// </summary>
         protected override void DoLoadContent()
         {
-            fullScreenToggle = new GuiMenuToggle
+            base.DoLoadContent();
+
+            fullScreenButton = new GuiDynamicButton
             {
-                Id = nameof(fullScreenToggle),
-                Text = "Toggle fullscreen mode"
+                Id = nameof(fullScreenButton),
+                ContentFile = "Interface/Buttons/Dynamic/red",
+                FontName = "Button/Menu",
+                ForegroundColour = Colour.Gold,
+                Size = ButtonSize
             };
-            debugModeToggle = new GuiMenuToggle
+
+            debugModeButton = new GuiDynamicButton
             {
-                Id = nameof(debugModeToggle),
-                Text = "Toggle debug mode"
+                Id = nameof(debugModeButton),
+                ContentFile = "Interface/Buttons/Dynamic/red",
+                FontName = "Button/Menu",
+                ForegroundColour = Colour.Gold,
+                Size = ButtonSize
             };
-            backLink = new GuiMenuLink
+
+            backButton = new GuiDynamicButton
             {
-                Id = nameof(backLink),
-                Text = "Back",
-                TargetScreen = typeof(TitleScreen)
+                Id = nameof(backButton),
+                ContentFile = "Interface/Buttons/Dynamic/red",
+                FontName = "Button/Menu",
+                ForegroundColour = Colour.Gold,
+                Size = ButtonSize,
+                Text = "Back"
             };
-            
-            Items.Add(fullScreenToggle);
-            Items.Add(debugModeToggle);
-            Items.Add(backLink);
 
             RegisterEvents();
-            
-            fullScreenToggle.SetState(SettingsManager.Instance.GraphicsSettings.Fullscreen);
-            debugModeToggle.SetState(SettingsManager.Instance.DebugMode);
+            SetChildrenProperties();
 
-            base.DoLoadContent();
+            GuiManager.Instance.RegisterControls(
+                fullScreenButton,
+                debugModeButton,
+                backButton);
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
         protected override void DoUnloadContent()
         {
             SettingsManager.Instance.SaveContent();
@@ -66,44 +72,63 @@ namespace Narivia.Gui.Screens
             base.DoUnloadContent();
         }
 
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
         protected override void DoUpdate(GameTime gameTime)
         {
-            SettingsManager.Instance.GraphicsSettings.Fullscreen = fullScreenToggle.IsOn;
-            SettingsManager.Instance.DebugMode = debugModeToggle.IsOn;
+            SetChildrenProperties();
 
-            base.DoUnloadContent();
+            base.DoUpdate(gameTime);
         }
 
-        /// <summary>
-        /// Registers the events.
-        /// </summary>
         void RegisterEvents()
         {
-            fullScreenToggle.StateChanged += OnFullscreenToggleStateChanged;
-            debugModeToggle.StateChanged += OnDebugModeToggleStateChanged;
+            fullScreenButton.Clicked += OnFullscreenButtonClicked;
+            debugModeButton.Clicked += OnDebugModeButtonClicked;
+            backButton.Clicked += OnBackButtonClicked;
         }
 
-        /// <summary>
-        /// Unregisters the events.
-        /// </summary>
         void UnregisterEvents()
         {
-            fullScreenToggle.StateChanged -= OnFullscreenToggleStateChanged;
-            debugModeToggle.StateChanged -= OnDebugModeToggleStateChanged;
+            fullScreenButton.Clicked -= OnFullscreenButtonClicked;
+            debugModeButton.Clicked -= OnDebugModeButtonClicked;
+            backButton.Clicked -= OnBackButtonClicked;
         }
 
-        void OnFullscreenToggleStateChanged(object sender, EventArgs e)
+        void SetChildrenProperties()
         {
-            SettingsManager.Instance.GraphicsSettings.Fullscreen = fullScreenToggle.IsOn;
+            fullScreenButton.Text = $"Fullscreen: {SettingsManager.Instance.GraphicsSettings.Fullscreen}";
+            debugModeButton.Text = $"Debug Mode: {SettingsManager.Instance.DebugMode}";
+
+            fullScreenButton.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - fullScreenButton.Size.Width) / 2,
+                (ScreenManager.Instance.Size.Height - debugModeButton.Size.Height) / 2 - ButtonSpacing - fullScreenButton.Size.Height);
+
+            debugModeButton.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - debugModeButton.Size.Width) / 2,
+                (ScreenManager.Instance.Size.Height - debugModeButton.Size.Height) / 2);
+
+            backButton.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - backButton.Size.Width) / 2,
+                (ScreenManager.Instance.Size.Height - debugModeButton.Size.Height) / 2 + ButtonSpacing + backButton.Size.Height);
         }
 
-        void OnDebugModeToggleStateChanged(object sender, EventArgs e)
+        void OnFullscreenButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            SettingsManager.Instance.DebugMode = debugModeToggle.IsOn;
+            SettingsManager.Instance.GraphicsSettings.Fullscreen = !SettingsManager.Instance.GraphicsSettings.Fullscreen;
+        }
+
+        void OnDebugModeButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            SettingsManager.Instance.DebugMode = !SettingsManager.Instance.DebugMode;
+        }
+
+        void OnBackButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Button != MouseButton.Left)
+            {
+                return;
+            }
+
+            ScreenManager.Instance.ChangeScreens<TitleScreen>();
         }
     }
 }

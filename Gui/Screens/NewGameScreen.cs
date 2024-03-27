@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Gui.Controls;
 using NuciXNA.Gui.Screens;
@@ -65,7 +64,7 @@ namespace Narivia.Gui.Screens
             worlds = worldRepository.GetAll().ToDomainModels().ToList();
 
             worldSelector.SetItems(worlds.ToDictionary(x => x.Id, x => x.Name));
-            
+
             LoadSelectedWorld();
 
             RegisterChildren();
@@ -136,7 +135,7 @@ namespace Narivia.Gui.Screens
             worldManager = new WorldManager(worldSelector.SelectedKey);
 
             worldManager.LoadContent();
-            
+
             UpdateFactionSelectorItems();
         }
 
@@ -146,7 +145,7 @@ namespace Narivia.Gui.Screens
                 .Where(f => f.Type.IsActive)
                 .OrderBy(f => f.Name)
                 .ToList();
-            
+
             factionSelector.SetItems(factions.ToDictionary(x => x.Id, x => x.Name));
 
             // TODO: Remove this default selection, leave it at 0
