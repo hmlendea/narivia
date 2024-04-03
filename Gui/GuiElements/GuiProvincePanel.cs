@@ -148,7 +148,7 @@ namespace Narivia.Gui.Controls
             RegisterChildren(resourceIcon, resourceName);
             RegisterChildren(attackButton, buildButton);
             RegisterChildren(holdingCards);
-            
+
             RegisterEvents();
             SetChildrenProperties();
         }
@@ -217,7 +217,7 @@ namespace Narivia.Gui.Controls
             {
                 if (i < holdings.Count)
                 {
-                    holdingCards[i].HoldingId = holdings[i].Id;
+                    holdingCards[i].SetHoldingProperties(holdings[i]);
                     holdingCards[i].CultureId = faction.CultureId;
                     holdingCards[i].Show();
                 }

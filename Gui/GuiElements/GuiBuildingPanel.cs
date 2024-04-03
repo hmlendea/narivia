@@ -27,8 +27,7 @@ namespace Narivia.Gui.Controls
         IWorldManager worldManager;
         IHoldingManager holdingManager;
 
-        GuiImage holdingBackground;
-        GuiImage holdingImage;
+        GuiHoldingCard holdingCard;
         GuiImage paper;
 
         GuiText holdingText;
@@ -44,10 +43,10 @@ namespace Narivia.Gui.Controls
 
         GuiButton buildButton;
 
-        List<HoldingType> holdingTypes;
-        List<Province> provinces;
+        IList<HoldingType> holdings;
+        IList<Province> provinces;
 
-        int currentHoldingTypeIndex;
+        int currentHoldingIndex;
         int currentProvinceIndex;
 
         public GuiBuildingPanel(
@@ -70,27 +69,72 @@ namespace Narivia.Gui.Controls
         {
             base.DoLoadContent();
 
-            holdingTypes = HoldingType.GetValues().Cast<HoldingType>().Where(x => x != HoldingType.Empty).ToList();
+            holdings = HoldingType
+                .GetValues()
+                .Cast<HoldingType>()
+                .Where(x => x != HoldingType.Empty)
+                .ToList();
 
-            holdingBackground = new GuiImage
+            holdingText = new GuiText
             {
-                Id = $"{Id}_{nameof(holdingBackground)}",
-                ContentFile = "ScreenManager/FillImage",
-                TextureLayout = TextureLayout.Tile,
-                TintColour = Colour.Black,
-                Size = new Size2D(100, 100),
+                Id = $"{Id}_{nameof(holdingText)}",
+                ForegroundColour = Colour.Gold,
+                Size = new Size2D(100, 18),
                 Location = new Point2D((Size.Width - 100) / 2, 64)
             };
-            holdingImage = new GuiImage
+            previousHoldingButton = new GuiButton
             {
-                Id = $"{Id}_{nameof(holdingImage)}",
-                ContentFile = $"Icons/holdings/generic",
-                SourceRectangle = new Rectangle2D(0, 0, 64, 64),
-                Size = new Size2D(64, 64),
+                Id = $"{Id}_{nameof(previousHoldingButton)}",
+                ContentFile = "Interface/Buttons/button-minus",
+                Size = new Size2D(24, 24),
                 Location = new Point2D(
-                    holdingBackground.Location.X + (holdingBackground.Size.Width - 64) / 2,
-                    holdingBackground.Location.Y + (holdingBackground.Size.Height - 64) / 2)
+                    holdingText.Location.X - GameDefines.GuiSpacing - 24,
+                    holdingText.Location.Y)
             };
+            nextHoldingButton = new GuiButton
+            {
+                Id = $"{Id}_{nameof(nextHoldingButton)}",
+                ContentFile = "Interface/Buttons/button-plus",
+                Size = new Size2D(24, 24),
+                Location = new Point2D(
+                    holdingText.ClientRectangle.Right + GameDefines.GuiSpacing,
+                    holdingText.Location.Y)
+            };
+            holdingCard = new GuiHoldingCard(holdingManager)
+            {
+                Id = $"{Id}_{nameof(holdingCard)}",
+                Size = new Size2D(100, 100),
+                Location = new Point2D(holdingText.Location.X, holdingText.ClientRectangle.Bottom + GameDefines.GuiSpacing)
+            };
+
+            provinceText = new GuiText
+            {
+                Id = $"{Id}_{nameof(provinceText)}",
+                ForegroundColour = Colour.Gold,
+                Size = new Size2D(holdingText.Size.Width, 18),
+                Location = new Point2D(
+                    holdingCard.Location.X,
+                    holdingCard.ClientRectangle.Bottom + GameDefines.GuiSpacing)
+            };
+            previouseProvinceButton = new GuiButton
+            {
+                Id = $"{Id}_{nameof(previouseProvinceButton)}",
+                ContentFile = "Interface/Buttons/button-minus",
+                Size = new Size2D(24, 24),
+                Location = new Point2D(
+                    provinceText.Location.X - GameDefines.GuiSpacing - 24,
+                    provinceText.Location.Y - (24 - provinceText.Size.Height) / 2)
+            };
+            nextProvinceButton = new GuiButton
+            {
+                Id = $"{Id}_{nameof(nextProvinceButton)}",
+                ContentFile = "Interface/Buttons/button-plus",
+                Size = new Size2D(24, 24),
+                Location = new Point2D(
+                    holdingCard.ClientRectangle.Right + GameDefines.GuiSpacing,
+                    previouseProvinceButton.Location.Y)
+            };
+
             paper = new GuiImage
             {
                 Id = $"{Id}_{nameof(paper)}",
@@ -98,24 +142,7 @@ namespace Narivia.Gui.Controls
                 Size = new Size2D(248, 80),
                 Location = new Point2D(
                     (Size.Width - 248) / 2,
-                    holdingBackground.ClientRectangle.Bottom + GameDefines.GuiSpacing)
-            };
-
-            holdingText = new GuiText
-            {
-                Id = $"{Id}_{nameof(holdingText)}",
-                ForegroundColour = Colour.Gold,
-                Size = new Size2D(holdingBackground.Size.Width, 18),
-                Location = holdingBackground.Location
-            };
-            provinceText = new GuiText
-            {
-                Id = $"{Id}_{nameof(provinceText)}",
-                ForegroundColour = Colour.Gold,
-                Size = new Size2D(holdingBackground.Size.Height, 18),
-                Location = new Point2D(
-                    holdingBackground.Location.X,
-                    holdingBackground.Location.Y + holdingBackground.Size.Height - 18)
+                    provinceText.ClientRectangle.Bottom + GameDefines.GuiSpacing)
             };
 
             priceIcon = new GuiImage
@@ -134,45 +161,8 @@ namespace Narivia.Gui.Controls
                 HorizontalAlignment = Alignment.Beginning,
                 Size = new Size2D(priceIcon.Size.Width * 2, priceIcon.Size.Height),
                 Location = new Point2D(
-                    priceIcon.Location.X + priceIcon.Size.Width + GameDefines.GuiSpacing,
+                    priceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
                     priceIcon.Location.Y)
-            };
-
-            previousHoldingButton = new GuiButton
-            {
-                Id = $"{Id}_{nameof(previousHoldingButton)}",
-                ContentFile = "Interface/Buttons/button-minus",
-                Size = new Size2D(24, 24),
-                Location = new Point2D(
-                    holdingBackground.Location.X - GameDefines.GuiSpacing - 24,
-                    holdingBackground.Location.Y)
-            };
-            nextHoldingButton = new GuiButton
-            {
-                Id = $"{Id}_{nameof(nextHoldingButton)}",
-                ContentFile = "Interface/Buttons/button-plus",
-                Size = new Size2D(24, 24),
-                Location = new Point2D(
-                    holdingBackground.Location.X + holdingBackground.Size.Width + GameDefines.GuiSpacing,
-                    holdingBackground.Location.Y)
-            };
-            previouseProvinceButton = new GuiButton
-            {
-                Id = $"{Id}_{nameof(previouseProvinceButton)}",
-                ContentFile = "Interface/Buttons/button-minus",
-                Size = new Size2D(24, 24),
-                Location = new Point2D(
-                    holdingBackground.Location.X - GameDefines.GuiSpacing - 24,
-                    holdingBackground.Location.Y + holdingBackground.Size.Height - 24)
-            };
-            nextProvinceButton = new GuiButton
-            {
-                Id = $"{Id}_{nameof(nextProvinceButton)}",
-                ContentFile = "Interface/Buttons/button-plus",
-                Size = new Size2D(24, 24),
-                Location = new Point2D(
-                    holdingBackground.Location.X + holdingBackground.Size.Width + GameDefines.GuiSpacing,
-                    holdingBackground.Location.Y + holdingBackground.Size.Height - 24)
             };
 
             buildButton = new GuiButton
@@ -191,18 +181,14 @@ namespace Narivia.Gui.Controls
             SelectHolding(0);
             SelectProvince(0);
 
-            RegisterChildren(holdingBackground, holdingImage, paper);
-            RegisterChildren(holdingText, provinceText);
-            RegisterChildren(priceIcon, priceText);
+            RegisterChildren(paper, holdingCard, priceIcon);
+            RegisterChildren(holdingText, priceText, provinceText);
             RegisterChildren(nextHoldingButton, previousHoldingButton, nextProvinceButton, previouseProvinceButton, buildButton);
-            
+
             RegisterEvents();
             SetChildrenProperties();
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
         protected override void DoUnloadContent()
         {
             base.DoUnloadContent();
@@ -210,10 +196,6 @@ namespace Narivia.Gui.Controls
             UnregisterEvents();
         }
 
-        /// <summary>
-        /// Updates the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
         protected override void DoUpdate(GameTime gameTime)
         {
             base.DoUpdate(gameTime);
@@ -252,25 +234,29 @@ namespace Narivia.Gui.Controls
 
         void SetChildrenProperties()
         {
-            holdingImage.SourceRectangle = new Rectangle2D(64 * currentHoldingTypeIndex, 0, 64, 64);
+            HoldingType holdingType = holdings.ElementAt(currentHoldingIndex);
 
-            holdingText.Text = holdingTypes[currentHoldingTypeIndex].Name;
+            holdingText.Text = holdingType.Name;
+
+            holdingCard.HoldingType = holdingType;
+            holdingCard.CultureId = worldManager.GetFaction(gameManager.PlayerFactionId).CultureId;// "generic"; // TODO: Use the actual culture
+
             priceText.Text = gameManager.GetWorld().HoldingsPrice.ToString();
         }
 
         void SelectHolding(int index)
         {
-            if (index > holdingTypes.Count - 1)
+            if (index > holdings.Count - 1)
             {
-                currentHoldingTypeIndex = 0;
+                currentHoldingIndex = 0;
             }
             else if (index < 0)
             {
-                currentHoldingTypeIndex = holdingTypes.Count - 1;
+                currentHoldingIndex = holdings.Count - 1;
             }
             else
             {
-                currentHoldingTypeIndex = index;
+                currentHoldingIndex = index;
             }
         }
 
@@ -310,7 +296,7 @@ namespace Narivia.Gui.Controls
 
             if (worldManager.GetFaction(gameManager.PlayerFactionId).Wealth >= gameManager.GetWorld().HoldingsPrice)
             {
-                holdingManager.BuildHolding(provinces[currentProvinceIndex].Id, holdingTypes[currentHoldingTypeIndex]);
+                holdingManager.BuildHolding(provinces[currentProvinceIndex].Id, holdings.ElementAt(currentHoldingIndex));
             }
         }
 
@@ -324,7 +310,7 @@ namespace Narivia.Gui.Controls
 
         void OnPreviousHoldingButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            SelectHolding(currentHoldingTypeIndex - 1);
+            SelectHolding(currentHoldingIndex - 1);
         }
 
         void OnPreviousProvinceButtonClicked(object sender, MouseButtonEventArgs e)
@@ -334,7 +320,7 @@ namespace Narivia.Gui.Controls
 
         void OnNextHoldingButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            SelectHolding(currentHoldingTypeIndex + 1);
+            SelectHolding(currentHoldingIndex + 1);
         }
 
         void OnNextProvinceButtonClicked(object sender, MouseButtonEventArgs e)
