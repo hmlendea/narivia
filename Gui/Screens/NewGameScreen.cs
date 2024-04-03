@@ -16,6 +16,7 @@ using NuciXNA.Primitives;
 using NuciXNA.Gui;
 using NuciXNA.Input;
 using System.Drawing;
+using NuciXNA.Graphics.Drawing;
 
 namespace Narivia.Gui.Screens
 {
@@ -100,7 +101,9 @@ namespace Narivia.Gui.Screens
             {
                 Id = $"{Id}_{nameof(factionDescription)}",
                 FontName = "FactionDescriptionFont",
-                ForegroundColour = Colour.Gold
+                ForegroundColour = Colour.Gold,
+                HorizontalAlignment = Alignment.Beginning,
+                VerticalAlignment = Alignment.Beginning
             };
 
             startButton = new GuiDynamicButton
