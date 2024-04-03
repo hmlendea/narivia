@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
@@ -24,8 +23,12 @@ namespace Narivia.Gui.Screens
     /// </summary>
     public class NewGameScreen : NariviaMenuScreen
     {
-        GuiFactionFlag factionFlag;
+        GuiText worldName;
+        GuiButton previousWorldButton;
+        GuiButton nextWorldButton;
+
         GuiText factionName;
+        GuiFactionFlag factionFlag;
         GuiButton previousFactionButton;
         GuiButton nextFactionButton;
 
@@ -34,9 +37,11 @@ namespace Narivia.Gui.Screens
 
         IWorldManager worldManager;
 
+        int selectedWorldIndex = 0;
+        IList<World> worlds;
+
         int selectedFactionIndex = 0;
         IList<Faction> factions;
-        IList<World> worlds;
 
         /// <summary>
         /// Loads the content.
@@ -45,17 +50,37 @@ namespace Narivia.Gui.Screens
         {
             base.DoLoadContent();
 
-            factionFlag = new GuiFactionFlag
+            worldName = new GuiText
             {
-                Id = $"{Id}_{nameof(factionFlag)}",
-                Size = new Size2D(76, 76)
+                Id = $"{Id}_{nameof(worldName)}",
+                FontName = "Button/Menu",
+                ForegroundColour = Colour.Gold,
+                Size = new Size2D(512, 48)
             };
+            previousWorldButton = new GuiButton
+            {
+                Id = $"{Id}_{nameof(previousWorldButton)}",
+                ContentFile = "Interface/Buttons/button-minus",
+                Size = new Size2D(24, 24)
+            };
+            nextWorldButton = new GuiButton
+            {
+                Id = $"{Id}_{nameof(nextWorldButton)}",
+                ContentFile = "Interface/Buttons/button-plus",
+                Size = new Size2D(24, 24)
+            };
+
             factionName = new GuiText
             {
                 Id = $"{Id}_{nameof(factionName)}",
                 FontName = "Button/Menu",
                 ForegroundColour = Colour.Gold,
                 Size = new Size2D(512, 48)
+            };
+            factionFlag = new GuiFactionFlag
+            {
+                Id = $"{Id}_{nameof(factionFlag)}",
+                Size = new Size2D(76, 76)
             };
             previousFactionButton = new GuiButton
             {
@@ -95,17 +120,19 @@ namespace Narivia.Gui.Screens
             // TODO: Don't load everything unnecessarily
             worlds = worldRepository.GetAll().ToDomainModels().ToList();
 
-            LoadSelectedWorld();
-
             GuiManager.Instance.RegisterControls(
-                factionFlag,
+                worldName,
+                previousWorldButton,
+                nextWorldButton,
                 factionName,
+                factionFlag,
                 previousFactionButton,
                 nextFactionButton,
                 startButton,
                 backButton);
 
             RegisterEvents();
+            LoadSelectedWorld();
             SetChildrenProperties();
         }
 
@@ -127,6 +154,7 @@ namespace Narivia.Gui.Screens
         {
             base.DoUpdate(gameTime);
 
+            LoadSelectedWorld();
             SetChildrenProperties();
         }
 
@@ -135,6 +163,8 @@ namespace Narivia.Gui.Screens
         /// </summary>
         void RegisterEvents()
         {
+            previousWorldButton.Clicked += OnPreviousWorldButtonClicked;
+            nextWorldButton.Clicked += OnNextWorldButtonClicked;
             previousFactionButton.Clicked += OnPreviousFactionButtonClicked;
             nextFactionButton.Clicked += OnNextFactionButtonClicked;
             startButton.Clicked += OnStartButtonClicked;
@@ -143,23 +173,36 @@ namespace Narivia.Gui.Screens
 
         void SetChildrenProperties()
         {
-            factionFlag.Flag = worldManager.GetFlag(factions[selectedFactionIndex].FlagId);
-            factionFlag.Location = new Point2D(
-                (ScreenManager.Instance.Size.Width - factionFlag.Size.Width) / 2,
+            worldName.Text = worlds[selectedWorldIndex].Name;
+            worldName.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - worldName.Size.Width) / 2,
                 GameDefines.GuiSpacing);
+
+            previousWorldButton.Location = new Point2D(
+                worldName.Location.X - previousWorldButton.Size.Width - 8,
+                worldName.Location.Y + worldName.Size.Height / 2 - previousWorldButton.Size.Height / 2);
+
+            nextWorldButton.Location = new Point2D(
+                worldName.Location.X + worldName.Size.Width + 8,
+                worldName.Location.Y + worldName.Size.Height / 2 - nextWorldButton.Size.Height / 2);
 
             factionName.Text = factions[selectedFactionIndex].Name;
             factionName.Location = new Point2D(
                 (ScreenManager.Instance.Size.Width - factionName.Size.Width) / 2,
-                factionFlag.Location.Y + factionFlag.Size.Height + GameDefines.GuiSpacing);
+                worldName.Location.Y + factionName.Size.Height + GameDefines.GuiSpacing);
+
+            factionFlag.Flag = worldManager.GetFlag(factions[selectedFactionIndex].FlagId);
+            factionFlag.Location = new Point2D(
+                (ScreenManager.Instance.Size.Width - factionFlag.Size.Width) / 2,
+                factionName.Location.Y + factionFlag.Size.Height + GameDefines.GuiSpacing);
 
             previousFactionButton.Location = new Point2D(
-                factionFlag.Location.X - previousFactionButton.Size.Width - 8,
-                factionFlag.Location.Y + factionFlag.Size.Height / 2 - previousFactionButton.Size.Height / 2);
+                factionName.Location.X - previousFactionButton.Size.Width - 8,
+                factionName.Location.Y + factionName.Size.Height / 2 - previousFactionButton.Size.Height / 2);
 
             nextFactionButton.Location = new Point2D(
-                factionFlag.Location.X + factionFlag.Size.Width + 8,
-                factionFlag.Location.Y + factionFlag.Size.Height / 2 - nextFactionButton.Size.Height / 2);
+                factionName.Location.X + factionName.Size.Width + 8,
+                factionName.Location.Y + factionName.Size.Height / 2 - nextFactionButton.Size.Height / 2);
 
             startButton.Location = new Point2D(
                 ScreenManager.Instance.Size.Width - GameDefines.GuiButtonSpacing - startButton.Size.Width,
@@ -172,12 +215,47 @@ namespace Narivia.Gui.Screens
 
         void LoadSelectedWorld()
         {
-            worldManager = new WorldManager(worlds.First().Id);
+            if (worldManager is not null)
+            {
+                if (worldManager.GetWorld().Id == worlds[selectedWorldIndex].Id)
+                {
+                    return;
+                }
 
+                worldManager.UnloadContent();
+            }
+
+            worldManager = new WorldManager(worlds[selectedWorldIndex].Id);
             worldManager.LoadContent();
 
             factions = worldManager.GetFactions().ToList();
             selectedFactionIndex = 0;
+        }
+
+        void OnPreviousWorldButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Button.Equals(MouseButton.Left))
+            {
+                selectedWorldIndex -= 1;
+
+                if (selectedWorldIndex < 0)
+                {
+                    selectedWorldIndex = worlds.Count - 1;
+                }
+            }
+        }
+
+        void OnNextWorldButtonClicked(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Button.Equals(MouseButton.Left))
+            {
+                selectedWorldIndex += 1;
+
+                if (selectedWorldIndex >= worlds.Count)
+                {
+                    selectedWorldIndex = 0;
+                }
+            }
         }
 
         void OnPreviousFactionButtonClicked(object sender, MouseButtonEventArgs e)
