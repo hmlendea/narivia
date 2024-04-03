@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,6 +19,8 @@ namespace Narivia.Gui.Controls
     /// </summary>
     public class GuiInfoBar : GuiControl, IGuiControl
     {
+        const int TooltipWidth = 100;
+
         IGameManager gameManager;
         IWorldManager worldManager;
         IHoldingManager holdingManager;
@@ -127,28 +130,28 @@ namespace Narivia.Gui.Controls
             {
                 FontName = "DefaultFont",
                 Text = "Provinces",
-                Size = new Size2D(100, 20),
+                Size = new Size2D(TooltipWidth, 20),
                 BackgroundColour = Colour.Black
             };
             holdingsTooltip = new GuiTooltip
             {
                 FontName = "DefaultFont",
                 Text = "Holdings",
-                Size = new Size2D(100, 20),
+                Size = new Size2D(TooltipWidth, 20),
                 BackgroundColour = Colour.Black
             };
             troopsTooltip = new GuiTooltip
             {
                 FontName = "DefaultFont",
                 Text = "Troops",
-                Size = new Size2D(128, 128),
+                Size = new Size2D(TooltipWidth, 20),
                 BackgroundColour = Colour.Black
             };
             wealthTooltip = new GuiTooltip
             {
                 FontName = "DefaultFont",
                 Text = "Wealth",
-                Size = new Size2D(100, 20),
+                Size = new Size2D(TooltipWidth, 20),
                 BackgroundColour = Colour.Black
             };
 
@@ -168,7 +171,7 @@ namespace Narivia.Gui.Controls
             RegisterChildren(provincesIcon, holdingsIcon, troopsIcon, wealthIcon);
             RegisterChildren(provincesText, holdingsText, troopsText, wealthText);
             RegisterChildren(turnButton, turnText);
-            RegisterChildren(provincesTooltip, holdingsTooltip, wealthTooltip);
+            RegisterChildren(provincesTooltip, holdingsTooltip, troopsTooltip, wealthTooltip);
 
             RegisterEvents();
             SetChildrenProperties();
@@ -258,12 +261,11 @@ namespace Narivia.Gui.Controls
             wealthTooltip.Location = new Point2D(wealthIcon.Location.X, wealthIcon.ClientRectangle.Bottom);
             troopsTooltip.Location = new Point2D(troopsIcon.Location.X, troopsIcon.ClientRectangle.Bottom);
 
-            troopsTooltip.Text = string.Empty;
+            troopsTooltip.Text = "Troops";
 
             if (troops != null && troops.Count > 0)
             {
                 troopsText.Text = troops.Values.Sum().ToString();
-                troops.ToList().ForEach(t => troopsTooltip.Text += $"{t.Key}: {t.Value}\n");
             }
         }
 
