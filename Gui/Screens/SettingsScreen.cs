@@ -100,7 +100,7 @@ namespace Narivia.Gui.Screens
 
             fullScreenButton.Location = new Point2D(
                 (ScreenManager.Instance.Size.Width - fullScreenButton.Size.Width) / 2,
-                (ScreenManager.Instance.Size.Height - debugModeButton.Size.Height) / 2 - ButtonSpacing - fullScreenButton.Size.Height);
+                (ScreenManager.Instance.Size.Height - debugModeButton.Size.Height) / 2 - GameDefines.GuiButtonSpacing - fullScreenButton.Size.Height);
 
             debugModeButton.Location = new Point2D(
                 (ScreenManager.Instance.Size.Width - debugModeButton.Size.Width) / 2,
@@ -108,7 +108,7 @@ namespace Narivia.Gui.Screens
 
             backButton.Location = new Point2D(
                 (ScreenManager.Instance.Size.Width - backButton.Size.Width) / 2,
-                (ScreenManager.Instance.Size.Height - debugModeButton.Size.Height) / 2 + ButtonSpacing + backButton.Size.Height);
+                (ScreenManager.Instance.Size.Height - debugModeButton.Size.Height) / 2 + GameDefines.GuiButtonSpacing + backButton.Size.Height);
         }
 
         void OnFullscreenButtonClicked(object sender, MouseButtonEventArgs e)

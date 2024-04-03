@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Narivia.Settings;
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui;
 using NuciXNA.Gui.Controls;
@@ -10,9 +11,7 @@ namespace Narivia.Gui.Screens
 {
     public class NariviaMenuScreen : Screen
     {
-        protected static int ControlSpacing => 8;
-        protected static int ButtonSpacing => 48;
-        protected static Size2D ButtonSize => new(300, 50);
+        protected static Size2D ButtonSize => new(GameDefines.GuiTileSize * 10, GameDefines.GuiTileSize * 2);
 
         GuiImage backgroundImage;
 

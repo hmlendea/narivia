@@ -146,12 +146,12 @@ namespace Narivia.Gui.Screens
             factionFlag.Flag = worldManager.GetFlag(factions[selectedFactionIndex].FlagId);
             factionFlag.Location = new Point2D(
                 (ScreenManager.Instance.Size.Width - factionFlag.Size.Width) / 2,
-                ControlSpacing);
+                GameDefines.GuiSpacing);
 
             factionName.Text = factions[selectedFactionIndex].Name;
             factionName.Location = new Point2D(
                 (ScreenManager.Instance.Size.Width - factionName.Size.Width) / 2,
-                factionFlag.Location.Y + factionFlag.Size.Height + ControlSpacing);
+                factionFlag.Location.Y + factionFlag.Size.Height + GameDefines.GuiSpacing);
 
             previousFactionButton.Location = new Point2D(
                 factionFlag.Location.X - previousFactionButton.Size.Width - 8,
@@ -162,12 +162,12 @@ namespace Narivia.Gui.Screens
                 factionFlag.Location.Y + factionFlag.Size.Height / 2 - nextFactionButton.Size.Height / 2);
 
             startButton.Location = new Point2D(
-                ScreenManager.Instance.Size.Width - ButtonSpacing - startButton.Size.Width,
-                ScreenManager.Instance.Size.Height - ButtonSpacing - startButton.Size.Height);
+                ScreenManager.Instance.Size.Width - GameDefines.GuiButtonSpacing - startButton.Size.Width,
+                ScreenManager.Instance.Size.Height - GameDefines.GuiButtonSpacing - startButton.Size.Height);
 
             backButton.Location = new Point2D(
-                ButtonSpacing,
-                ScreenManager.Instance.Size.Height - ButtonSpacing - backButton.Size.Height);
+                GameDefines.GuiButtonSpacing,
+                ScreenManager.Instance.Size.Height - GameDefines.GuiButtonSpacing - backButton.Size.Height);
         }
 
         void LoadSelectedWorld()

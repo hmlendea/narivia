@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Narivia.Gui.Controls;
+using Narivia.Settings;
 using NuciXNA.Gui;
 using NuciXNA.Gui.Screens;
 using NuciXNA.Input;
@@ -74,7 +75,7 @@ namespace Narivia.Gui.Screens
         {
             newGameButton.Location = new Point2D(
                 (ScreenManager.Instance.Size.Width - newGameButton.Size.Width) / 2,
-                (ScreenManager.Instance.Size.Height - settingsButton.Size.Height) / 2 - ButtonSpacing - newGameButton.Size.Height);
+                (ScreenManager.Instance.Size.Height - settingsButton.Size.Height) / 2 - GameDefines.GuiButtonSpacing - newGameButton.Size.Height);
 
             settingsButton.Location = new Point2D(
                 (ScreenManager.Instance.Size.Width - settingsButton.Size.Width) / 2,
@@ -82,7 +83,7 @@ namespace Narivia.Gui.Screens
 
             exitButton.Location = new Point2D(
                 (ScreenManager.Instance.Size.Width - exitButton.Size.Width) / 2,
-                (ScreenManager.Instance.Size.Height - settingsButton.Size.Height) / 2 + ButtonSpacing + exitButton.Size.Height);
+                (ScreenManager.Instance.Size.Height - settingsButton.Size.Height) / 2 + GameDefines.GuiButtonSpacing + exitButton.Size.Height);
         }
 
         void OnNewGameButtonClicked(object sender, MouseButtonEventArgs e)
