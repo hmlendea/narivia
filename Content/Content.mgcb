@@ -1237,6 +1237,18 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Holdings/generic.png
 
+#begin Icons/Holdings/amionic.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Holdings/amionic.png
+
 #begin Icons/Holdings/ayakan.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1273,6 +1285,18 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Holdings/letian.png
 
+#begin Icons/Holdings/naryrican.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Holdings/naryrican.png
+
 #begin Icons/Holdings/nordic.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1296,6 +1320,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Icons/Holdings/rodah.png
+
+#begin Icons/Holdings/shesan.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Holdings/shesan.png
 
 #begin Icons/Holdings/sudic.png
 /importer:TextureImporter
