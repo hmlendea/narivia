@@ -14,6 +14,7 @@ namespace Narivia.Gui.Controls
 {
     public class GuiHoldingCard : GuiControl, IGuiControl
     {
+        const int IconSourceSize = 1024;
         readonly IHoldingManager holdingManager;
 
         string currentHoldingId;
@@ -42,8 +43,7 @@ namespace Narivia.Gui.Controls
             {
                 ContentFile = "Icons/Holdings/generic",
                 Size = new Size2D(64, 64),
-                Location = new Point2D(5, 5),
-                SourceRectangle = new Rectangle2D(0, 0, 64, 64)
+                Location = new Point2D(5, 5)
             };
 
             frame = new GuiImage
@@ -131,7 +131,7 @@ namespace Narivia.Gui.Controls
             }
             else
             {
-                icon.SourceRectangle = new Rectangle2D(64 * (holding.Type - 1), 0, 64, 64);
+                icon.SourceRectangle = new Rectangle2D(IconSourceSize * (holding.Type - 1), 0, IconSourceSize, IconSourceSize);
                 Show();
             }
 
