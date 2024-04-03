@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,7 +17,6 @@ namespace Narivia.Gui.Controls
     public class GuiHoldingCard : GuiControl, IGuiControl
     {
         const int IconSourceSize = 1024;
-        readonly IHoldingManager holdingManager;
 
         GuiImage icon;
         GuiImage frame;
@@ -28,10 +28,8 @@ namespace Narivia.Gui.Controls
 
         public string CultureId { get; set; }
 
-        public GuiHoldingCard(IHoldingManager holdingManager)
+        public GuiHoldingCard()
         {
-            this.holdingManager = holdingManager;
-
             Size = new Size2D(74, 74);
         }
 
@@ -55,7 +53,6 @@ namespace Narivia.Gui.Controls
 
             tooltip = new GuiTooltip
             {
-                Size = new Size2D(100, 25),
                 FontName = "DefaultFont",
                 BackgroundColour = Colour.Black,
                 ForegroundColour = Colour.Gold
@@ -122,11 +119,13 @@ namespace Narivia.Gui.Controls
 
             if (string.IsNullOrWhiteSpace(HoldingName))
             {
+                tooltip.Size = new Size2D(100, 25);
                 tooltip.Text = HoldingType.Name;
             }
             else
             {
-                tooltip.Text = HoldingName;
+                tooltip.Size = new Size2D(100, 40);
+                tooltip.Text = $"{HoldingName}{Environment.NewLine}{HoldingType.Name}";
             }
         }
 

@@ -100,7 +100,7 @@ namespace Narivia.Gui.Controls
                     holdingText.ClientRectangle.Right + GameDefines.GuiSpacing,
                     holdingText.Location.Y)
             };
-            holdingCard = new GuiHoldingCard(holdingManager)
+            holdingCard = new GuiHoldingCard()
             {
                 Id = $"{Id}_{nameof(holdingCard)}",
                 Size = new Size2D(100, 100),

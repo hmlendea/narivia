@@ -131,7 +131,7 @@ namespace Narivia.Gui.Controls
             {
                 for (int x = 0; x < 3; x++)
                 {
-                    GuiHoldingCard holdingCard = new GuiHoldingCard(holdingManager)
+                    GuiHoldingCard holdingCard = new GuiHoldingCard()
                     {
                         Id = $"{Id}_{nameof(holdingCard)}_{x}x{y}",
                         Location = new Point2D(
