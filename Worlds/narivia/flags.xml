@@ -59,7 +59,7 @@
     <Id>meuristia_flag</Id>
     <Layer1>none</Layer1>
 	<Layer2>none</Layer2>
-    <Emblem>dove</Emblem>
+    <Emblem>freedom_dove</Emblem>
     <Skin>buckler</Skin>
     <BackgroundColourHexadecimal>#006353</BackgroundColourHexadecimal>
     <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>
@@ -367,7 +367,7 @@
     <Id>gammeland_flag</Id>
     <Layer1>none</Layer1>
 	<Layer2>none</Layer2>
-    <Emblem>horned_skull</Emblem>
+    <Emblem>horned-skull</Emblem>
     <Skin>buckler</Skin>
     <BackgroundColourHexadecimal>#FFFFFF</BackgroundColourHexadecimal>
     <Layer1ColourHexadecimal>#000000</Layer1ColourHexadecimal>

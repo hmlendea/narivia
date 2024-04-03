@@ -6,7 +6,6 @@ using NuciXNA.Input;
 using NuciXNA.Primitives;
 
 using Narivia.Audio;
-using Narivia.Gui.Controls.Enumerations;
 
 namespace Narivia.Gui.Controls
 {
@@ -48,7 +47,7 @@ namespace Narivia.Gui.Controls
             {
                 Id = $"{Id}_{nameof(text)}"
             };
-            
+
             RegisterChildren(image, text);
             RegisterEvents();
             SetChildrenProperties();
@@ -94,13 +93,13 @@ namespace Narivia.Gui.Controls
 
         void SetChildrenProperties()
         {
-            if (!IsHovered)
+            if (IsHovered)
             {
-                image.SourceRectangle = new Rectangle2D(0, 0, Size.Width, Size.Height);
+                image.SourceRectangle = new Rectangle2D(Size.Width, 0, Size.Width, Size.Height);
             }
             else
             {
-                image.SourceRectangle = new Rectangle2D(Size.Width, 0, Size.Width, Size.Height);
+                image.SourceRectangle = new Rectangle2D(0, 0, Size.Width, Size.Height);
             }
 
             text.Text = Text;

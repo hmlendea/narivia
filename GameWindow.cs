@@ -24,6 +24,8 @@ namespace Narivia
         readonly FpsIndicator fpsIndicator;
         readonly Cursor cursor;
 
+        static bool exitGame = false;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GameWindow"/> class.
         /// </summary>
@@ -37,6 +39,11 @@ namespace Narivia
 
             fpsIndicator = new FpsIndicator();
             cursor = new Cursor();
+        }
+
+        public static void Quit()
+        {
+            exitGame = true;
         }
 
         /// <summary>
@@ -106,6 +113,11 @@ namespace Narivia
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (exitGame)
+            {
+                Exit();
+            }
+
             SettingsManager.Instance.Update();
             ScreenManager.Instance.Update(gameTime);
 
