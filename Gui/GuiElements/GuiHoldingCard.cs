@@ -94,7 +94,7 @@ namespace Narivia.Gui.Controls
         void RegisterEvents()
         {
             MouseEntered += OnMouseEntered;
-            MouseLeft -= OnMouseLeft;
+            MouseLeft += OnMouseLeft;
         }
 
         void UnregisterEvents()
