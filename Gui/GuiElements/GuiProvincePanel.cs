@@ -116,10 +116,8 @@ namespace Narivia.Gui.Controls
             {
                 Id = $"{Id}_{nameof(buildButton)}",
                 ContentFile = "Interface/ProvincePanel/build-button",
-                Size = new Size2D(28, 28),
-                Location = new Point2D(
-                    paper.Location.X + paper.Size.Width - 40,
-                    resourceIcon.Location.Y)
+                Size = attackButton.Size,
+                Location = attackButton.Location
             };
 
             Point2D holdingCardsStart = new Point2D(16, 161);
