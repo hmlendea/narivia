@@ -36,10 +36,6 @@ namespace Narivia.GameLogic.GameManagers
 
         public void LoadContent()
         {
-            string holdingsPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "holdings.xml");
-
-            IRepository<string, HoldingEntity> holdingRepository = new HoldingRepository(holdingsPath);
-
             holdings = new Dictionary<string, Holding>();
         }
 
@@ -48,41 +44,22 @@ namespace Narivia.GameLogic.GameManagers
             holdings.Clear();
         }
 
-        /// <summary>
-        /// Checks wether a province has empty holding slots.
-        /// </summary>
-        /// <returns><c>true</c>, if the province has empty holding slots, <c>false</c> otherwise.</returns>
-        /// <param name="provinceId">Province identifier.</param>
         public bool DoesProvinceHaveEmptyHoldings(string provinceId)
-        {
-            return holdings.Values.Count(h => h.ProvinceId == provinceId && h.Type == HoldingType.Empty) > 0;
-        }
+            => holdings.Values.Count(h => h.ProvinceId == provinceId && h.Type == HoldingType.Empty) > 0;
 
-        /// <summary>
-        /// Gets the holdings of a faction.
-        /// </summary>
-        /// <returns>The holdings.</returns>
-        /// <param name="factionId">Faction identifier.</param>
         public IEnumerable<Holding> GetFactionHoldings(string factionId)
-        => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
+            => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
                                       worldManager.GetProvince(h.ProvinceId).FactionId == factionId);
 
-        /// <summary>
-        /// Gets the holding.
-        /// </summary>
-        /// <returns>The holding.</returns>
-        /// <param name="holdingId">Holding identifier.</param>
         public Holding GetHolding(string holdingId)
-        {
-            return holdings[holdingId];
-        }
+            => holdings[holdingId];
 
         /// <summary>
         /// Gets the holdings.
         /// </summary>
         /// <returns>The holdings.</returns>
         public IEnumerable<Holding> GetHoldings()
-        => holdings.Values;
+            => holdings.Values;
 
         /// <summary>
         /// Gets the holdings of a province.
@@ -90,7 +67,7 @@ namespace Narivia.GameLogic.GameManagers
         /// <returns>The holdings.</returns>
         /// <param name="provinceId">Province identifier.</param>
         public IEnumerable<Holding> GetProvinceHoldings(string provinceId)
-        => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
+            => holdings.Values.Where(h => h.Type != HoldingType.Empty &&
                                       h.ProvinceId == provinceId);
 
         /// <summary>
