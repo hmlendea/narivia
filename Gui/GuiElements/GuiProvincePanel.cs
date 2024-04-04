@@ -206,10 +206,12 @@ namespace Narivia.Gui.Controls
             if (province.FactionId.Equals(gameManager.PlayerFactionId))
             {
                 attackButton.Hide();
+                buildButton.Show();
             }
             else
             {
                 attackButton.Show();
+                buildButton.Hide();
             }
 
             List<Holding> holdings = holdingManager.GetProvinceHoldings(ProvinceId).ToList();
