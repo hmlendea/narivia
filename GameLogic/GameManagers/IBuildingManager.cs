@@ -1,4 +1,5 @@
-﻿using Narivia.Models;
+﻿using System.Collections.Generic;
+using Narivia.Models;
 
 namespace Narivia.GameLogic.GameManagers
 {
@@ -10,8 +11,12 @@ namespace Narivia.GameLogic.GameManagers
 
         Building GetBuilding(string buildingId);
 
-        void BuildBuilding(string provinceId, string buildingId);
+        IEnumerable<Building> GetBuildings();
 
-        void AddBuilding(string provinceId, string buildingId);
+        IEnumerable<Building> GetHoldingBuildings(string holdingId);
+
+        void BuildBuilding(string holdingId, string buildingTypeId);
+
+        void AddBuilding(string holdingId, string buildingTypeId);
     }
 }

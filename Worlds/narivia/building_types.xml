@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ArrayOfBuildingEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ArrayOfBuildingTypeEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>none</Id>
         <Name>None</Name>
         <Description>The base building of this region</Description>
@@ -13,9 +13,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>z
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>tavern</Id>
         <Name>Tavern</Name>
         <Description>A place for your people to spend money</Description>
@@ -26,9 +26,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>farms</Id>
         <Name>Farms</Name>
         <Description>Grows animals as a source of food</Description>
@@ -39,9 +39,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>barracks_infantry</Id>
         <Name>Barracks</Name>
         <Description>Trains the people of this region into becoming soldiers</Description>
@@ -52,9 +52,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>5</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>market</Id>
         <Name>Market</Name>
         <Description>The main source of trade in the region</Description>
@@ -65,9 +65,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>aqueducts</Id>
         <Name>Aqueducts</Name>
         <Description>Brings water in dry areas to increase productivity</Description>
@@ -78,9 +78,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>mines</Id>
         <Name>Mines</Name>
         <Description>Digs and gathers mineral resources</Description>
@@ -91,9 +91,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>paved_roads</Id>
         <Name>Paved Roads</Name>
         <Description>Lets your people travel faster</Description>
@@ -104,9 +104,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>temple</Id>
         <Name>Temple</Name>
         <Description>A place to pray and obey</Description>
@@ -117,9 +117,9 @@
         <DefenceBonus>1</DefenceBonus>
         <RecruitmentBonus>1</RecruitmentBonus>
         <ReligionInfluence>5</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>walls</Id>
         <Name>Walls</Name>
         <Description>The main defence line of the city</Description>
@@ -130,9 +130,9 @@
         <DefenceBonus>10</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>mines_gold</Id>
         <Name>Gold Mines</Name>
         <Description>Digs and gathers gold</Description>
@@ -144,9 +144,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>whalery</Id>
         <Name>Whalery</Name>
         <Description>Sends whale-hunting boats to the ocean</Description>
@@ -158,9 +158,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>foundry</Id>
         <Name>Foundry</Name>
         <Description>The best backsmiths work there</Description>
@@ -172,9 +172,9 @@
         <DefenceBonus>5</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>farms_wheat</Id>
         <Name>Wheat Farms</Name>
         <Description>Grows and harvests wheat to make bread</Description>
@@ -186,9 +186,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>farms_grape</Id>
         <Name>Grape Farms</Name>
         <Description>Grows and harvests grapes to make wine</Description>
@@ -200,9 +200,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>market_slave</Id>
         <Name>Slave Market</Name>
         <Description>A place to buy or sell slaves</Description>
@@ -214,9 +214,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>barracks_cavalry</Id>
         <Name>Cavalry Barracks</Name>
         <Description>Top-quality horses for a top-quality army</Description>
@@ -228,9 +228,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>10</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>hunting_lodge</Id>
         <Name>Hunting Lodge</Name>
         <Description>A base of wild animal hunting operations</Description>
@@ -242,9 +242,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>caravanserai</Id>
         <Name>Caravan</Name>
         <Description>Sends caravans over vast distances, selling and buying exotic goods</Description>
@@ -256,9 +256,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>fishery</Id>
         <Name>Fishery</Name>
         <Description>Sends fishing boats to the sea</Description>
@@ -270,9 +270,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>mines_silver</Id>
         <Name>Silver Mines</Name>
         <Description>Digs and gathers silver</Description>
@@ -284,9 +284,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>pearl_hunting_post</Id>
         <Name>Pearl Hunting Post</Name>
         <Description>Sends pearl-hunting boats to the sea</Description>
@@ -298,9 +298,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>timber_camp</Id>
         <Name>Timber Camp</Name>
         <Description>Chops down dense forests for wood</Description>
@@ -312,9 +312,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>carpentry</Id>
         <Name>Carpenter</Name>
         <Description>Crafts furniture for this region</Description>
@@ -325,9 +325,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>public_baths</Id>
         <Name>Public Baths</Name>
         <Description>A place for people to wash themselves</Description>
@@ -338,9 +338,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>arena</Id>
         <Name>Arena</Name>
         <Description>A place for people to enjoy gladiatorial battles</Description>
@@ -351,9 +351,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>1</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>blacksmith_weapons</Id>
         <Name>Weapons Blacksmith</Name>
         <Description>Provides steel weapons for the soldiers</Description>
@@ -364,9 +364,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>blacksmith_armours</Id>
         <Name>Armours Blacksmith</Name>
         <Description>Provides steel armours for the soldiers</Description>
@@ -377,9 +377,9 @@
         <DefenceBonus>2</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>siege_workshop</Id>
         <Name>Siege Engineer</Name>
         <Description>Provides siege equipment for the soldiers</Description>
@@ -390,9 +390,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>tannery</Id>
         <Name>Tannery</Name>
         <Description>Provides leather armors for the soldiers</Description>
@@ -403,9 +403,9 @@
         <DefenceBonus>1</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>castle</Id>
         <Name>Defensive Castle</Name>
         <Description>A fortified structure that defends this region</Description>
@@ -416,9 +416,9 @@
         <DefenceBonus>7</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>watchtower</Id>
         <Name>Watchtower</Name>
         <Description>Helps you defend this region by sighting enemies in time</Description>
@@ -429,9 +429,9 @@
         <DefenceBonus>5</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>windmill</Id>
         <Name>Windmill</Name>
         <Description>Increases food productivity in the region</Description>
@@ -442,9 +442,9 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-    <BuildingEntity>
+    <BuildingTypeEntity>
         <Id>statue</Id>
         <Name>Statue</Name>
         <Description>A structure that represents the greatness of your empire</Description>
@@ -455,6 +455,6 @@
         <DefenceBonus>0</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
-    </BuildingEntity>
+    </BuildingTypeEntity>
 
-</ArrayOfBuildingEntity>
+</ArrayOfBuildingTypeEntity>
