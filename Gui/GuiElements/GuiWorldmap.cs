@@ -189,10 +189,11 @@ namespace Narivia.Gui.Controls
                 {
                     Point2D gameCoords = new(x, y);
 
-                    DrawTile(spriteBatch, gameCoords);
+                    DrawTerrain(spriteBatch, gameCoords);
                     DrawProvinceHighlight(spriteBatch, gameCoords);
-                    DrawRiver(spriteBatch, gameCoords);
                     DrawBorder(spriteBatch, gameCoords);
+                    DrawWater(spriteBatch, gameCoords);
+                    DrawRiver(spriteBatch, gameCoords);
                 }
             }
         }
@@ -210,23 +211,43 @@ namespace Narivia.Gui.Controls
             MouseMoved -= OnMouseMoved;
         }
 
-        void DrawTile(SpriteBatch spriteBatch, Point2D gameCoords)
+        void DrawTerrain(SpriteBatch spriteBatch, Point2D gameCoords)
         {
             WorldTile tile = world.Tiles[gameCoords.X, gameCoords.Y];
 
-            // TODO: Don't do all this, and definetely don't do it here
             foreach (string terrainId in tile.TerrainIds)
             {
-                Terrain terrain = terrains[terrainId]; // TODO: Optimise this. Don't call this every time
-
-                TerrainSpriteSheetEffect terrainTilingEffect = (TerrainSpriteSheetEffect)terrainSprites[terrain.Spritesheet].SpriteSheetEffect;
-                terrainTilingEffect.TileLocation = gameCoords;
-                terrainTilingEffect.TerrainId = terrain.Id;
-                terrainTilingEffect.TilesWith = [terrain.Id];
-                terrainTilingEffect.Update(null);
-
-                DrawTerrainSprite(spriteBatch, gameCoords, terrain.Spritesheet, 1, 3);
+                if (!tile.TerrainId.Equals("water"))
+                {
+                    DrawTile(spriteBatch, terrainId, gameCoords);
+                }
             }
+        }
+
+        void DrawWater(SpriteBatch spriteBatch, Point2D gameCoords)
+        {
+            WorldTile tile = world.Tiles[gameCoords.X, gameCoords.Y];
+
+            foreach (string terrainId in tile.TerrainIds)
+            {
+                if (tile.TerrainId.Equals("water"))
+                {
+                    DrawTile(spriteBatch, terrainId, gameCoords);
+                }
+            }
+        }
+
+        void DrawTile(SpriteBatch spriteBatch, string terrainId, Point2D gameCoords)
+        {
+            Terrain terrain = terrains[terrainId]; // TODO: Optimise this. Don't call this every time
+
+            TerrainSpriteSheetEffect terrainTilingEffect = (TerrainSpriteSheetEffect)terrainSprites[terrain.Spritesheet].SpriteSheetEffect;
+            terrainTilingEffect.TileLocation = gameCoords;
+            terrainTilingEffect.TerrainId = terrain.Id;
+            terrainTilingEffect.TilesWith = [terrain.Id];
+            terrainTilingEffect.Update(null);
+
+            DrawTerrainSprite(spriteBatch, gameCoords, terrain.Spritesheet, 1, 3);
         }
 
         void DrawRiver(SpriteBatch spriteBatch, Point2D gameCoords)
