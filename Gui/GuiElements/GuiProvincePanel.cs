@@ -2,13 +2,11 @@
 using System.Linq;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
-using NuciXNA.Primitives.Mapping;
 
 using Narivia.GameLogic.GameManagers;
 using Narivia.Models;
@@ -153,9 +151,6 @@ namespace Narivia.Gui.Controls
             SetChildrenProperties();
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
         protected override void DoUnloadContent()
         {
             base.DoUnloadContent();
@@ -163,10 +158,6 @@ namespace Narivia.Gui.Controls
             UnregisterEvents();
         }
 
-        /// <summary>
-        /// Update the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
         protected override void DoUpdate(GameTime gameTime)
         {
             base.DoUpdate(gameTime);
@@ -176,13 +167,13 @@ namespace Narivia.Gui.Controls
 
         void RegisterEvents()
         {
-            attackButton.Clicked += OnAttackButtonClicked;
+            attackButton.Clicked += OnRecruitButtonClicked;
             buildButton.Clicked += OnBuildButtonClicked;
         }
 
         void UnregisterEvents()
         {
-            attackButton.Clicked -= OnAttackButtonClicked;
+            attackButton.Clicked -= OnRecruitButtonClicked;
             buildButton.Clicked -= OnBuildButtonClicked;
         }
 
@@ -212,6 +203,15 @@ namespace Narivia.Gui.Controls
             resourceIcon.ContentFile = $"World/Assets/{world.AssetsPack}/resources/{province.ResourceId}";
             resourceName.Text = worldManager.GetResource(province.ResourceId).Name;
 
+            if (province.FactionId.Equals(gameManager.PlayerFactionId))
+            {
+                attackButton.Hide();
+            }
+            else
+            {
+                attackButton.Show();
+            }
+
             List<Holding> holdings = holdingManager.GetProvinceHoldings(ProvinceId).ToList();
             for (int i = 0; i < 9; i++)
             {
@@ -228,7 +228,7 @@ namespace Narivia.Gui.Controls
             }
         }
 
-        void OnAttackButtonClicked(object sender, MouseButtonEventArgs e)
+        void OnRecruitButtonClicked(object sender, MouseButtonEventArgs e)
         {
             AttackButtonClicked?.Invoke(this, e);
         }
