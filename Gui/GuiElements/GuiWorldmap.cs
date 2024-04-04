@@ -21,6 +21,7 @@ namespace Narivia.Gui.Controls
     public class GuiWorldmap : GuiControl, IGuiControl
     {
         public string SelectedProvinceId { get; private set; }
+        public string SelectedFactionId { get; private set; }
 
         readonly IGameManager gameManager;
         readonly IWorldManager worldManager;
@@ -162,17 +163,21 @@ namespace Narivia.Gui.Controls
                 y > 0 && y < world.Height)
             {
                 // TODO: Handle the Id retrieval properly
+                Faction faction = worldManager.GetFaction(x, y);
                 SelectedProvinceId = world.Tiles[x, y].ProvinceId;
+                SelectedFactionId = faction.Id;
 
                 // TODO: Also handle this properly
-                if (worldManager.GetFaction(x, y).Type == FactionType.Gaia)
+                if (faction.Type == FactionType.Gaia)
                 {
                     SelectedProvinceId = null;
+                    SelectedFactionId = null;
                 }
             }
             else
             {
                 SelectedProvinceId = null;
+                SelectedFactionId = null;
             }
         }
 
@@ -217,7 +222,7 @@ namespace Narivia.Gui.Controls
 
             foreach (string terrainId in tile.TerrainIds)
             {
-                if (!tile.TerrainId.Equals("water"))
+                if (!terrainId.Equals("water"))
                 {
                     DrawTile(spriteBatch, terrainId, gameCoords);
                 }
@@ -228,12 +233,9 @@ namespace Narivia.Gui.Controls
         {
             WorldTile tile = world.Tiles[gameCoords.X, gameCoords.Y];
 
-            foreach (string terrainId in tile.TerrainIds)
+            if (tile.TerrainIds.Contains("water"))
             {
-                if (tile.TerrainId.Equals("water"))
-                {
-                    DrawTile(spriteBatch, terrainId, gameCoords);
-                }
+                DrawTile(spriteBatch, "water", gameCoords);
             }
         }
 
@@ -284,39 +286,46 @@ namespace Narivia.Gui.Controls
                 return;
             }
 
-            if (gameCoords.X < 0 || gameCoords.X > world.Width ||
-                gameCoords.Y < 0 || gameCoords.Y > world.Height)
+            if (AreCoordinatesOutsideWorld(gameCoords))
             {
                 return;
             }
 
-            string provinceId = world.Tiles[gameCoords.X, gameCoords.Y].ProvinceId;
-            Faction faction = worldManager.GetFaction(gameCoords.X, gameCoords.Y);
+            Province province = worldManager.GetProvince(gameCoords.X, gameCoords.Y);
+            Faction faction = worldManager.GetFaction(province.FactionId);
 
-            if (faction.Type == FactionType.Gaia)
+            if (!province.Id.Equals(SelectedProvinceId))
             {
-                return;
+                if (faction.Type.Equals(FactionType.Gaia))
+                {
+                    if(!DoesTileNeighbourProvince(gameCoords, SelectedProvinceId))
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
             }
 
-            if (SelectedProvinceId == provinceId)
-            {
-                provinceHighlight.Location = MapToScreenCoordinates(gameCoords);
-                provinceHighlight.Tint = faction.Colour;
-                provinceHighlight.Draw(spriteBatch);
-            }
+            Faction selectedFaction = worldManager.GetFaction(SelectedFactionId);
+
+            provinceHighlight.Location = MapToScreenCoordinates(gameCoords);
+            provinceHighlight.Tint = selectedFaction.Colour;
+            provinceHighlight.Draw(spriteBatch);
         }
 
         void DrawBorder(SpriteBatch spriteBatch, Point2D gameCoords)
         {
-            if (gameCoords.X < 0 || gameCoords.X > world.Width ||
-                gameCoords.Y < 0 || gameCoords.Y > world.Height)
+            if (AreCoordinatesOutsideWorld(gameCoords))
             {
                 return;
             }
 
             Faction faction = worldManager.GetFaction(gameCoords.X, gameCoords.Y);
 
-            if (faction.Type == FactionType.Gaia)
+            if (faction.Type.Equals(FactionType.Gaia))
             {
                 return;
             }
@@ -346,6 +355,42 @@ namespace Narivia.Gui.Controls
 
         Point2D MapToScreenCoordinates(Point2D mapCoords)
         => mapCoords * GameDefines.MapTileSize - camera.Location;
+
+        bool DoesTileNeighbourProvince(Point2D gameCoords, string provinceId)
+        {
+            for (int relX = -1; relX <= 1; relX++)
+            {
+                for (int relY = -1; relY <= 1; relY++)
+                {
+                    Point2D relGameCoords = new(gameCoords.X + relX, gameCoords.Y + relY);
+
+                    if (AreCoordinatesOutsideWorld(relGameCoords))
+                    {
+                        continue;
+                    }
+
+                    Province relProvince = worldManager.GetProvince(relGameCoords.X, relGameCoords.Y);
+
+                    if (relProvince.Id.Equals(provinceId))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        bool AreCoordinatesOutsideWorld(Point2D gameCoords)
+        {
+            if (gameCoords.X < 0 || gameCoords.X > world.Width ||
+                gameCoords.Y < 0 || gameCoords.Y > world.Height)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         void OnMouseMoved(object sender, MouseEventArgs e)
         {
