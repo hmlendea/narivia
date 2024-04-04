@@ -119,13 +119,13 @@ namespace Narivia.Gui.Controls
 
             if (string.IsNullOrWhiteSpace(HoldingName))
             {
-                tooltip.Size = new Size2D(100, 25);
+                tooltip.Size = new Size2D(100, 20);
                 tooltip.Text = HoldingType.Name;
             }
             else
             {
-                tooltip.Size = new Size2D(100, 40);
-                tooltip.Text = $"{HoldingName}{Environment.NewLine}{HoldingType.Name}";
+                tooltip.Size = new Size2D(160, 20);
+                tooltip.Text = $"{HoldingName} {HoldingType.Name}";
             }
         }
 
