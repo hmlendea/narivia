@@ -34,7 +34,7 @@ namespace Narivia.GameLogic.GameManagers
 
         public void LoadContent()
         {
-            string buildingsPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "buildings.xml");
+            string buildingsPath = Path.Combine(ApplicationPaths.WorldsDirectory, worldId, "building_types.xml");
 
             IRepository<BuildingTypeEntity> repository = new XmlRepository<BuildingTypeEntity>(buildingsPath);
 
@@ -61,20 +61,24 @@ namespace Narivia.GameLogic.GameManagers
             BuildingType buildingType = buildingTypes[buildingTypeId];
             Holding holding = holdingManager.GetHolding(holdingId);
             Province province = worldManager.GetProvince(holding.ProvinceId);
+            Faction faction = worldManager.GetFaction(province.FactionId);
 
-            AddBuilding(holding.Id, buildingType.Id);
-            worldManager.GetFaction(province.FactionId).Wealth -= buildingType.Price;
+            AddBuilding(holding.Id, buildingType.Id, faction.CultureId);
+            faction.Wealth -= buildingType.Price;
         }
 
-        public void AddBuilding(string holdingId, string buildingTypeId)
+        public void AddBuilding(string holdingId, string buildingTypeId, string cultureId)
         {
+            // TODO: Don't pass cultureId as a parameter
+
             Building building = new()
             {
                 Id = $"{holdingId}_{buildingTypeId}",
                 Name = buildingTypes[buildingTypeId].Name,
                 Description = buildingTypes[buildingTypeId].Description,
                 TypeId = buildingTypeId,
-                HoldingId = holdingId
+                HoldingId = holdingId,
+                CultureId = cultureId
             };
 
             buildings.Add(building.Id, building);

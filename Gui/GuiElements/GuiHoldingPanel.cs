@@ -14,10 +14,11 @@ using Narivia.Settings;
 
 namespace Narivia.Gui.Controls
 {
-    public class GuiProvincePanel : GuiPanel
+    public class GuiHoldingPanel : GuiPanel
     {
         readonly IGameManager gameManager;
         readonly IWorldManager worldManager;
+        readonly IBuildingManager buildingManager;
         readonly IHoldingManager holdingManager;
 
         World world;
@@ -27,31 +28,25 @@ namespace Narivia.Gui.Controls
         GuiFactionFlag factionFlag;
         GuiText factionName;
 
-        GuiImage resourceIcon;
-        GuiText resourceName;
-
-        GuiButton attackButton;
         GuiButton buildButton;
 
-        List<GuiHoldingCard> holdingCards;
+        List<GuiBuildingCard> cards;
 
-        string currentProvinceId;
+        string currentHoldingId;
 
-        public string ProvinceId { get; set; }
-
-        public event MouseButtonEventHandler AttackButtonClicked;
+        public string HoldingId { get; set; }
 
         public event MouseButtonEventHandler BuildButtonClicked;
 
-        public event MouseButtonEventHandler HoldingCardClicked;
-
-        public GuiProvincePanel(
+        public GuiHoldingPanel(
             IGameManager gameManager,
             IWorldManager worldManager,
+            IBuildingManager buildingManager,
             IHoldingManager holdingManager)
         {
             this.gameManager = gameManager;
             this.worldManager = worldManager;
+            this.buildingManager = buildingManager;
             this.holdingManager = holdingManager;
         }
 
@@ -84,65 +79,37 @@ namespace Narivia.Gui.Controls
                 HorizontalAlignment = Alignment.Beginning
             };
 
-            resourceIcon = new GuiImage
+            buildButton = new GuiButton
             {
-                Id = $"{Id}_{nameof(resourceIcon)}",
-                ContentFile = $"World/Assets/{world.AssetsPack}/resources/gold",
-                Size = new Size2D(28, 28),
-                Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 44)
-            };
-            resourceName = new GuiText
-            {
-                Id = $"{Id}_{nameof(resourceName)}",
-                Size = new Size2D(factionName.Size.Width, resourceIcon.Size.Height),
-                Location = new Point2D(
-                    resourceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
-                    resourceIcon.Location.Y),
-                FontName = "ProvincePanelInfoFont",
-                HorizontalAlignment = Alignment.Beginning
-            };
-
-            attackButton = new GuiButton
-            {
-                Id = $"{Id}_{nameof(attackButton)}",
-                ContentFile = "Interface/ProvincePanel/attack-button",
+                Id = $"{Id}_{nameof(buildButton)}",
+                ContentFile = "Interface/ProvincePanel/build-button",
                 Size = new Size2D(28, 28),
                 Location = new Point2D(
                     paper.Location.X + paper.Size.Width - 40,
                     factionFlag.Location.Y)
             };
-            buildButton = new GuiButton
-            {
-                Id = $"{Id}_{nameof(buildButton)}",
-                ContentFile = "Interface/ProvincePanel/build-button",
-                Size = attackButton.Size,
-                Location = attackButton.Location
-            };
 
-            Point2D holdingCardsStart = new Point2D(16, 161);
-            holdingCards = new List<GuiHoldingCard>();
+            Point2D cardsStart = new Point2D(16, 161);
+            cards = new List<GuiBuildingCard>();
 
             for (int y = 0; y < 3; y++)
             {
                 for (int x = 0; x < 3; x++)
                 {
-                    GuiHoldingCard holdingCard = new GuiHoldingCard()
+                    GuiBuildingCard card = new ()
                     {
-                        Id = $"{Id}_{nameof(holdingCard)}_{x}x{y}",
-                        Location = new Point2D(
-                            holdingCardsStart.X + x * 84,
-                            holdingCardsStart.Y + y * 84)
+                        Id = $"{Id}_{nameof(card)}_{x}x{y}",
+                        Location = cardsStart + new Point2D(x * 84, y * 84)
                     };
 
-                    holdingCards.Add(holdingCard);
+                    cards.Add(card);
                 }
             }
 
             RegisterChild(paper);
             RegisterChildren(factionFlag, factionName);
-            RegisterChildren(resourceIcon, resourceName);
-            RegisterChildren(attackButton, buildButton);
-            RegisterChildren(holdingCards);
+            RegisterChildren(buildButton);
+            RegisterChildren(cards);
 
             RegisterEvents();
             SetChildrenProperties();
@@ -164,21 +131,17 @@ namespace Narivia.Gui.Controls
 
         void RegisterEvents()
         {
-            attackButton.Clicked += OnAttackButtonClicked;
             buildButton.Clicked += OnBuildButtonClicked;
-            holdingCards.ForEach(x => x.Clicked += OnHoldingCardClicked);
         }
 
         void UnregisterEvents()
         {
-            attackButton.Clicked -= OnAttackButtonClicked;
             buildButton.Clicked -= OnBuildButtonClicked;
-            holdingCards.ForEach(x => x.Clicked -= OnHoldingCardClicked);
         }
 
         void SetChildrenProperties()
         {
-            if (currentProvinceId == ProvinceId)
+            if (currentHoldingId == HoldingId)
             {
                 if (factionFlag.Flag == null)
                 {
@@ -188,71 +151,46 @@ namespace Narivia.Gui.Controls
                 return;
             }
 
-            currentProvinceId = ProvinceId;
+            currentHoldingId = HoldingId;
 
-            Province province = worldManager.GetProvince(ProvinceId);
+            Holding holding = holdingManager.GetHolding(HoldingId);
+            Province province = worldManager.GetProvince(holding.ProvinceId);
             Faction faction = worldManager.GetFaction(province.FactionId);
 
             CrystalColour = faction.Colour;
-            Title = province.Name;
+            Title = holding.Name;
 
             factionFlag.Flag = gameManager.GetFactionFlag(province.FactionId);
             factionName.Text = faction.Name;
 
-            resourceIcon.ContentFile = $"World/Assets/{world.AssetsPack}/resources/{province.ResourceId}";
-            resourceName.Text = worldManager.GetResource(province.ResourceId).Name;
-
             if (province.FactionId.Equals(gameManager.PlayerFactionId))
             {
-                attackButton.Hide();
                 buildButton.Show();
             }
             else
             {
-                attackButton.Show();
                 buildButton.Hide();
             }
 
-            List<Holding> holdings = holdingManager.GetProvinceHoldings(ProvinceId).ToList();
+            List<Building> buildings = buildingManager.GetHoldingBuildings(holding.Id).ToList();
             for (int i = 0; i < 9; i++)
             {
-                if (i < holdings.Count)
+                if (i < buildings.Count)
                 {
-                    holdingCards[i].SetHoldingProperties(holdings[i]);
-                    holdingCards[i].CultureId = faction.CultureId;
-                    holdingCards[i].Show();
+                    cards[i].SetHoldingProperties(buildings[i]);
+                    cards[i].CultureId = faction.CultureId;
+                    cards[i].Show();
                 }
                 else
                 {
-                    holdingCards[i].Hide();
+                    cards[i].Hide();
                 }
             }
-        }
-
-        void OnAttackButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            AttackButtonClicked?.Invoke(this, e);
         }
 
         void OnBuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
             BuildButtonClicked?.Invoke(this, e);
-        }
-
-        void OnHoldingCardClicked(object sender, MouseButtonEventArgs e)
-        {
-            foreach (GuiHoldingCard holdingCard in holdingCards)
-            {
-                Rectangle2D screenClientRectangle = new Rectangle2D(
-                    Location + holdingCard.Location,
-                    holdingCard.Size);
-
-                if (screenClientRectangle.Contains(e.Location))
-                {
-                    HoldingCardClicked?.Invoke(holdingCard, e);
-                    break;
-                }
-            }
         }
     }
 }

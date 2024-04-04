@@ -17,6 +17,6 @@ namespace Narivia.GameLogic.GameManagers
 
         void BuildBuilding(string holdingId, string buildingTypeId);
 
-        void AddBuilding(string holdingId, string buildingTypeId);
+        void AddBuilding(string holdingId, string buildingTypeId, string cultureId);
     }
 }

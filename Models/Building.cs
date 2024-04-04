@@ -9,5 +9,8 @@ namespace Narivia.Models
 
         [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
         public string HoldingId { get; set; }
+
+        [StringLength(40, ErrorMessage = "The {0} must be between {1} and {2} characters long", MinimumLength = 3)]
+        public string CultureId { get; set; }
     }
 }
