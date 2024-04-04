@@ -13,8 +13,6 @@ namespace Narivia.Gui.Controls
 {
     public class GuiBuildingCard : GuiControl, IGuiControl
     {
-        const int IconSourceSize = 1024;
-
         GuiImage icon;
         GuiImage frame;
         GuiTooltip tooltip;
@@ -89,15 +87,10 @@ namespace Narivia.Gui.Controls
 
         void SetChildrenProperties()
         {
-            icon.ContentFile = $"Content/Icons/Buildings/{CultureId}/{BuildingTypeId}";
+            icon.ContentFile = $"Icons/Buildings/{CultureId}/{BuildingTypeId}";
 
-            if (string.IsNullOrWhiteSpace(CultureId) ||
-                (File.Exists($"{icon.ContentFile}.xnb") && File.Exists($"{icon.ContentFile}.png")))
-            {
-                icon.ContentFile = $"Icons/Buildings/generic/{BuildingTypeId}";
-            }
-
-            if (!File.Exists($"{icon.ContentFile}.xnb") && !File.Exists($"{icon.ContentFile}.png"))
+            if (string.IsNullOrWhiteSpace(BuildingTypeId) ||
+                string.IsNullOrWhiteSpace(CultureId))
             {
                 icon.ContentFile = "ScreenManager/missing-texture";
             }
