@@ -9,7 +9,6 @@ using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
 using NuciXNA.Primitives;
-using NuciXNA.Primitives.Mapping;
 
 using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.SpriteEffects;
@@ -19,19 +18,13 @@ using Narivia.Settings;
 
 namespace Narivia.Gui.Controls
 {
-    /// <summary>
-    /// World map GUI element.
-    /// </summary>
     public class GuiWorldmap : GuiControl, IGuiControl
     {
-        /// <summary>
-        /// Gets the selected province identifier.
-        /// </summary>
-        /// <value>The selected province identifier.</value>
         public string SelectedProvinceId { get; private set; }
+        public string SelectedFactionId { get; private set; }
 
-        IGameManager gameManager;
-        IWorldManager worldManager;
+        readonly IGameManager gameManager;
+        readonly IWorldManager worldManager;
 
         Camera camera;
         World world;
@@ -54,16 +47,13 @@ namespace Narivia.Gui.Controls
             this.worldManager = worldManager;
         }
 
-        /// <summary>
-        /// Loads the content.
-        /// </summary>
         protected override void DoLoadContent()
         {
             camera = new Camera { Size = Size };
             world = gameManager.GetWorld();
 
             terrains = worldManager.GetTerrains().ToDictionary(x => x.Id, x => x);
-            terrainSprites = new Dictionary<string, TextureSprite>();
+            terrainSprites = [];
 
             riverSprite = new TextureSprite
             {
@@ -75,7 +65,7 @@ namespace Narivia.Gui.Controls
 
             foreach (Terrain terrain in terrains.Values)
             {
-                TextureSprite terrainSprite = new TextureSprite
+                TextureSprite terrainSprite = new()
                 {
                     ContentFile = $"World/Terrain/{GameDefines.MapTileSize}/{terrain.Spritesheet}",
                     SourceRectangle = new Rectangle2D(
@@ -134,15 +124,12 @@ namespace Narivia.Gui.Controls
             RegisterEvents();
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
         protected override void DoUnloadContent()
         {
             camera.UnloadContent();
 
             riverSprite.UnloadContent();
-            
+
             foreach (TextureSprite terrainSprite in terrainSprites.Values)
             {
                 terrainSprite.UnloadContent();
@@ -157,10 +144,6 @@ namespace Narivia.Gui.Controls
             UnregisterEvents();
         }
 
-        /// <summary>
-        /// Update the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
         protected override void DoUpdate(GameTime gameTime)
         {
             camera.Size = Size;
@@ -180,53 +163,48 @@ namespace Narivia.Gui.Controls
                 y > 0 && y < world.Height)
             {
                 // TODO: Handle the Id retrieval properly
+                Faction faction = worldManager.GetFaction(x, y);
                 SelectedProvinceId = world.Tiles[x, y].ProvinceId;
+                SelectedFactionId = faction.Id;
 
                 // TODO: Also handle this properly
-                if (worldManager.GetFaction(x, y).Type == FactionType.Gaia)
+                if (faction.Type == FactionType.Gaia)
                 {
                     SelectedProvinceId = null;
+                    SelectedFactionId = null;
                 }
             }
             else
             {
                 SelectedProvinceId = null;
+                SelectedFactionId = null;
             }
         }
 
-        /// <summary>
-        /// Draw the content on the specified spriteBatch.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
-            Point camCoordsBegin = new Point(
-                camera.Location.X / GameDefines.MapTileSize,
-                camera.Location.Y / GameDefines.MapTileSize);
-
-            Point camCoordsEnd = new Point(
-                camCoordsBegin.X + camera.Size.Width / GameDefines.MapTileSize + 2,
-                camCoordsBegin.Y + camera.Size.Height / GameDefines.MapTileSize + 1);
+            Point2D camCoordsBegin = camera.Location / GameDefines.MapTileSize;
+            Point2D camCoordsEnd = camCoordsBegin + new Point2D(
+                camera.Size.Width / GameDefines.MapTileSize + 2,
+                camera.Size.Height / GameDefines.MapTileSize + 1);
 
             for (int y = camCoordsBegin.Y; y < camCoordsEnd.Y; y++)
             {
                 for (int x = camCoordsBegin.X; x < camCoordsEnd.X; x++)
                 {
-                    DrawTile(spriteBatch, x, y);
+                    Point2D gameCoords = new(x, y);
+
+                    DrawTerrain(spriteBatch, gameCoords);
+                    DrawProvinceHighlight(spriteBatch, gameCoords);
+                    DrawBorder(spriteBatch, gameCoords);
+                    DrawWater(spriteBatch, gameCoords);
+                    DrawRiver(spriteBatch, gameCoords);
                 }
             }
-
-            DrawProvinceHighlight(spriteBatch);
-            DrawBorders(spriteBatch);
         }
 
-        /// <summary>
-        /// Centres the camera on the specified location.
-        /// </summary>
         public void CentreCameraOnLocation(Point2D worldLocation)
-        {
-            camera.CentreOnLocation(worldLocation * GameDefines.MapTileSize);
-        }
+        => camera.CentreOnLocation(worldLocation * GameDefines.MapTileSize);
 
         void RegisterEvents()
         {
@@ -238,46 +216,62 @@ namespace Narivia.Gui.Controls
             MouseMoved -= OnMouseMoved;
         }
 
-        void DrawTile(SpriteBatch spriteBatch, int x, int y)
+        void DrawTerrain(SpriteBatch spriteBatch, Point2D gameCoords)
         {
-            WorldTile tile = world.Tiles[x, y];
-            Point2D location = new Point2D(x, y);
+            WorldTile tile = world.Tiles[gameCoords.X, gameCoords.Y];
 
-            // TODO: Don't do all this, and definetely don't do it here
             foreach (string terrainId in tile.TerrainIds)
             {
-                Terrain terrain = terrains[terrainId]; // TODO: Optimise this. Don't call this every time
-
-                TerrainSpriteSheetEffect terrainTilingEffect = (TerrainSpriteSheetEffect)terrainSprites[terrain.Spritesheet].SpriteSheetEffect;
-                terrainTilingEffect.TileLocation = location;
-                terrainTilingEffect.TerrainId = terrain.Id;
-                terrainTilingEffect.TilesWith = new List<string> { terrain.Id };
-                terrainTilingEffect.Update(null);
-
-                DrawTerrainSprite(spriteBatch, x, y, terrain.Spritesheet, 1, 3);
+                if (!terrainId.Equals("water"))
+                {
+                    DrawTile(spriteBatch, terrainId, gameCoords);
+                }
             }
+        }
+
+        void DrawWater(SpriteBatch spriteBatch, Point2D gameCoords)
+        {
+            WorldTile tile = world.Tiles[gameCoords.X, gameCoords.Y];
+
+            if (tile.TerrainIds.Contains("water"))
+            {
+                DrawTile(spriteBatch, "water", gameCoords);
+            }
+        }
+
+        void DrawTile(SpriteBatch spriteBatch, string terrainId, Point2D gameCoords)
+        {
+            Terrain terrain = terrains[terrainId]; // TODO: Optimise this. Don't call this every time
+
+            TerrainSpriteSheetEffect terrainTilingEffect = (TerrainSpriteSheetEffect)terrainSprites[terrain.Spritesheet].SpriteSheetEffect;
+            terrainTilingEffect.TileLocation = gameCoords;
+            terrainTilingEffect.TerrainId = terrain.Id;
+            terrainTilingEffect.TilesWith = [terrain.Id];
+            terrainTilingEffect.Update(null);
+
+            DrawTerrainSprite(spriteBatch, gameCoords, terrain.Spritesheet, 1, 3);
+        }
+
+        void DrawRiver(SpriteBatch spriteBatch, Point2D gameCoords)
+        {
+            WorldTile tile = world.Tiles[gameCoords.X, gameCoords.Y];
 
             if (tile.HasRiver || tile.HasWater)
             {
                 RiverTilingEffect riverTilingEffect = (RiverTilingEffect)riverSprite.SpriteSheetEffect;
-                riverTilingEffect.TileLocation = location;
+                riverTilingEffect.TileLocation = gameCoords;
                 riverTilingEffect.Update(null);
 
-                riverSprite.Location = new Point2D(
-                    x * GameDefines.MapTileSize - camera.Location.X,
-                    y * GameDefines.MapTileSize - camera.Location.Y);
-
+                riverSprite.Location = MapToScreenCoordinates(gameCoords);
                 riverSprite.Draw(spriteBatch);
             }
         }
 
-        void DrawTerrainSprite(SpriteBatch spriteBatch, int tileX, int tileY, string spritesheet, int spritesheetX, int spritesheetY)
+        void DrawTerrainSprite(SpriteBatch spriteBatch, Point2D gameCoords, string spritesheet, int spritesheetX, int spritesheetY)
         {
             TextureSprite terrainSprite = terrainSprites[spritesheet];
 
-            terrainSprite.Location = new Point2D(
-                tileX * GameDefines.MapTileSize - camera.Location.X,
-                tileY * GameDefines.MapTileSize - camera.Location.Y);
+            terrainSprite.Location = MapToScreenCoordinates(gameCoords);
             terrainSprite.SourceRectangle = new Rectangle2D(
                 GameDefines.MapTileSize * spritesheetX, GameDefines.MapTileSize * spritesheetY,
                 GameDefines.MapTileSize, GameDefines.MapTileSize);
@@ -285,111 +279,117 @@ namespace Narivia.Gui.Controls
             terrainSprite.Draw(spriteBatch);
         }
 
-        void DrawProvinceHighlight(SpriteBatch spriteBatch)
+        void DrawProvinceHighlight(SpriteBatch spriteBatch, Point2D gameCoords)
         {
             if (string.IsNullOrEmpty(SelectedProvinceId))
             {
                 return;
             }
 
-            int cameraSizeX = camera.Size.Width / GameDefines.MapTileSize + 2;
-            int cameraSizeY = camera.Size.Height / GameDefines.MapTileSize + 2;
-
-            for (int j = 0; j < cameraSizeY; j++)
+            if (AreCoordinatesOutsideWorld(gameCoords))
             {
-                for (int i = 0; i < cameraSizeX; i++)
+                return;
+            }
+
+            Province province = worldManager.GetProvince(gameCoords.X, gameCoords.Y);
+            Faction faction = worldManager.GetFaction(province.FactionId);
+
+            if (!province.Id.Equals(SelectedProvinceId))
+            {
+                if (faction.Type.Equals(FactionType.Gaia))
                 {
-                    Point2D screenCoords = new Point2D((i * GameDefines.MapTileSize) - camera.Location.X % GameDefines.MapTileSize,
-                                                     (j * GameDefines.MapTileSize) - camera.Location.Y % GameDefines.MapTileSize);
-                    Point2D gameCoords = ScreenToMapCoordinates(screenCoords);
-
-                    int x = gameCoords.X;
-                    int y = gameCoords.Y;
-
-                    if (x < 0 || x > world.Width ||
-                        y < 0 || y > world.Height)
+                    if(!DoesTileNeighbourProvince(gameCoords, SelectedProvinceId))
                     {
-                        continue;
-                    }
-
-                    string provinceId = world.Tiles[x, y].ProvinceId;
-                    Faction faction = worldManager.GetFaction(x, y);
-
-                    if (faction.Type == FactionType.Gaia)
-                    {
-                        continue;
-                    }
-
-                    if (SelectedProvinceId == provinceId)
-                    {
-                        provinceHighlight.Location = screenCoords;
-                        provinceHighlight.Tint = faction.Colour;
-                        provinceHighlight.Draw(spriteBatch);
+                        return;
                     }
                 }
+                else
+                {
+                    return;
+                }
             }
+
+            Faction selectedFaction = worldManager.GetFaction(SelectedFactionId);
+
+            provinceHighlight.Location = MapToScreenCoordinates(gameCoords);
+            provinceHighlight.Tint = selectedFaction.Colour;
+            provinceHighlight.Draw(spriteBatch);
         }
 
-        void DrawBorders(SpriteBatch spriteBatch)
+        void DrawBorder(SpriteBatch spriteBatch, Point2D gameCoords)
         {
-            int cameraSizeX = camera.Size.Width / GameDefines.MapTileSize + 2;
-            int cameraSizeY = camera.Size.Height / GameDefines.MapTileSize + 2;
-
-            for (int j = 0; j < cameraSizeY; j++)
+            if (AreCoordinatesOutsideWorld(gameCoords))
             {
-                for (int i = 0; i < cameraSizeX; i++)
-                {
-                    Point2D screenCoords = new Point2D(
-                        (i * GameDefines.MapTileSize) - camera.Location.X % GameDefines.MapTileSize,
-                        (j * GameDefines.MapTileSize) - camera.Location.Y % GameDefines.MapTileSize);
-                    Point2D gameCoords = ScreenToMapCoordinates(screenCoords);
-
-                    int x = gameCoords.X;
-                    int y = gameCoords.Y;
-
-                    if (x < 0 || x > world.Width ||
-                        y < 0 || y > world.Height)
-                    {
-                        continue;
-                    }
-
-                    Faction faction = worldManager.GetFaction(x, y);
-
-                    if (faction.Type == FactionType.Gaia)
-                    {
-                        continue;
-                    }
-
-                    Colour tintColour = faction.Colour;
-
-                    provinceBorder.Location = screenCoords;
-                    factionBorder.Location = screenCoords;
-                    factionBorder.Tint = tintColour;
-
-                    ProvinceBorderEffect provinceBorderEffect = (ProvinceBorderEffect)provinceBorder.SpriteSheetEffect;
-                    provinceBorderEffect.TileLocation = gameCoords;
-                    provinceBorderEffect.Update(null);
-
-                    FactionBorderEffect factionBorderEffect = (FactionBorderEffect)factionBorder.SpriteSheetEffect;
-                    factionBorderEffect.TileLocation = gameCoords;
-                    factionBorderEffect.Update(null);
-
-                    provinceBorder.Draw(spriteBatch);
-                    factionBorder.Draw(spriteBatch);
-                }
+                return;
             }
+
+            Faction faction = worldManager.GetFaction(gameCoords.X, gameCoords.Y);
+
+            if (faction.Type.Equals(FactionType.Gaia))
+            {
+                return;
+            }
+
+            Point2D screenCoords = MapToScreenCoordinates(gameCoords);
+
+            Colour tintColour = faction.Colour;
+
+            provinceBorder.Location = screenCoords;
+            factionBorder.Location = screenCoords;
+            factionBorder.Tint = tintColour;
+
+            ProvinceBorderEffect provinceBorderEffect = (ProvinceBorderEffect)provinceBorder.SpriteSheetEffect;
+            provinceBorderEffect.TileLocation = gameCoords;
+            provinceBorderEffect.Update(null);
+
+            FactionBorderEffect factionBorderEffect = (FactionBorderEffect)factionBorder.SpriteSheetEffect;
+            factionBorderEffect.TileLocation = gameCoords;
+            factionBorderEffect.Update(null);
+
+            provinceBorder.Draw(spriteBatch);
+            factionBorder.Draw(spriteBatch);
         }
 
-        /// <summary>
-        /// Gets the map cpprdomates based on the specified screen coordinates.
-        /// </summary>
-        /// <returns>The map coordinates.</returns>
-        /// <param name="screenCoords">Screen coordinates.</param>
         Point2D ScreenToMapCoordinates(Point2D screenCoords)
+        => (camera.Location + screenCoords) / GameDefines.MapTileSize;
+
+        Point2D MapToScreenCoordinates(Point2D mapCoords)
+        => mapCoords * GameDefines.MapTileSize - camera.Location;
+
+        bool DoesTileNeighbourProvince(Point2D gameCoords, string provinceId)
         {
-            return new Point2D(
-                (camera.Location.X + screenCoords.X) / GameDefines.MapTileSize,
-                (camera.Location.Y + screenCoords.Y) / GameDefines.MapTileSize);
+            for (int relX = -1; relX <= 1; relX++)
+            {
+                for (int relY = -1; relY <= 1; relY++)
+                {
+                    Point2D relGameCoords = new(gameCoords.X + relX, gameCoords.Y + relY);
+
+                    if (AreCoordinatesOutsideWorld(relGameCoords))
+                    {
+                        continue;
+                    }
+
+                    Province relProvince = worldManager.GetProvince(relGameCoords.X, relGameCoords.Y);
+
+                    if (relProvince.Id.Equals(provinceId))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        bool AreCoordinatesOutsideWorld(Point2D gameCoords)
+        {
+            if (gameCoords.X < 0 || gameCoords.X > world.Width ||
+                gameCoords.Y < 0 || gameCoords.Y > world.Height)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         void OnMouseMoved(object sender, MouseEventArgs e)

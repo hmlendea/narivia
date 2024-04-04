@@ -4,42 +4,40 @@ using System.Linq;
 
 namespace Narivia.Models.Enumerations
 {
-    /// <summary>
-    /// Holding Type
-    /// </summary>
     public class HoldingType : IEquatable<HoldingType>
     {
-        static Dictionary<int, HoldingType> values = new Dictionary<int, HoldingType>
+        static readonly Dictionary<string, HoldingType> values = new()
         {
-            { 0, new HoldingType(0, "N/A") },
-            { 1, new HoldingType(1, "Castle") },
-            { 2, new HoldingType(2, "City") },
-            { 3, new HoldingType(3, "Temple") }
+            { "empty", new HoldingType("string", 0, "N/A") },
+            { "castle", new HoldingType("castle", 1, "Castle") },
+            { "city", new HoldingType("city", 2, "City") },
+            { "temple", new HoldingType("temple", 3, "Temple") }
         };
 
-        public int Id { get; }
+        public string Id { get; }
+
+        public int NumericalId { get; }
 
         public string Name { get; }
 
-        HoldingType(int id, string name)
+        HoldingType(string id, int numericalId, string name)
         {
             Id = id;
+            NumericalId = numericalId;
             Name = name;
         }
 
-        public static HoldingType Empty = values[0];
-        public static HoldingType Castle = values[1];
-        public static HoldingType City = values[2];
-        public static HoldingType Temple = values[3];
+        public static HoldingType Empty = values["empty"];
+        public static HoldingType Castle = values["castle"];
+        public static HoldingType City = values["city"];
+        public static HoldingType Temple = values["temple"];
 
         public static Array GetValues()
-        {
-            return values.Values.ToArray();
-        }
+            => values.Values.ToArray();
 
         public bool Equals(HoldingType other)
         {
-            if (ReferenceEquals(null, other))
+            if (other is null)
             {
                 return false;
             }
@@ -54,7 +52,7 @@ namespace Narivia.Models.Enumerations
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj))
+            if (obj is null)
             {
                 return false;
             }
@@ -73,31 +71,30 @@ namespace Narivia.Models.Enumerations
         }
 
         public override int GetHashCode()
-        {
-            return 873 ^ Id;
-        }
+            => 873 ^ Id.GetHashCode();
 
         public override string ToString()
-        {
-            return Name;
-        }
+            => Id;
 
-        public static HoldingType FromId(int id)
-        {
-            return values[id];
-        }
+        public static HoldingType FromId(string id)
+            => values[id];
+
+        public static HoldingType FromNumericalId(int id)
+            => values.Values.First(x => x.NumericalId.Equals(id));
 
         public static HoldingType FromString(string name)
-        {
-            return values.First(x => x.Value.Name.Equals(name)).Value;
-        }
+            => values.First(x => x.Value.Name.Equals(name)).Value;
 
         public static bool operator ==(HoldingType current, HoldingType other) => current.Equals(other);
 
         public static bool operator !=(HoldingType current, HoldingType other) => !current.Equals(other);
 
-        public static implicit operator int(HoldingType current) => current.Id;
+        public static implicit operator string(HoldingType current) => current.Id;
 
-        public static implicit operator HoldingType(int id) => FromId(id);
+        public static implicit operator HoldingType(string id) => FromId(id);
+
+        public static implicit operator int(HoldingType current) => current.NumericalId;
+
+        public static implicit operator HoldingType(int id) => FromNumericalId(id);
     }
 }
