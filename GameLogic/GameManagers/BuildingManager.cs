@@ -56,6 +56,9 @@ namespace Narivia.GameLogic.GameManagers
         public IEnumerable<Building> GetHoldingBuildings(string holdingId)
         => buildings.Values.Where(building => building.HoldingId == holdingId);
 
+        public IEnumerable<BuildingType> GetBuildingTypes()
+        => buildingTypes.Values;
+
         public void BuildBuilding(string holdingId, string buildingTypeId)
         {
             BuildingType buildingType = buildingTypes[buildingTypeId];

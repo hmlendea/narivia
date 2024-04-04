@@ -15,6 +15,8 @@ namespace Narivia.GameLogic.GameManagers
 
         IEnumerable<Building> GetHoldingBuildings(string holdingId);
 
+        IEnumerable<BuildingType> GetBuildingTypes();
+
         void BuildBuilding(string holdingId, string buildingTypeId);
 
         void AddBuilding(string holdingId, string buildingTypeId, string cultureId);

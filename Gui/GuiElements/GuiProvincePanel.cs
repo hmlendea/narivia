@@ -72,8 +72,8 @@ namespace Narivia.Gui.Controls
             factionFlag = new GuiFactionFlag
             {
                 Id = $"{Id}_{nameof(factionFlag)}",
-                Size = new Size2D(28, 28),
-                Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 8)
+                Size = new Size2D(GameDefines.GuiIconSize),
+                Location = new Point2D(paper.Location.X  + GameDefines.GuiSpacing * 2, paper.Location.Y + GameDefines.GuiSpacing * 2)
             };
             factionName = new GuiText
             {
@@ -88,8 +88,8 @@ namespace Narivia.Gui.Controls
             {
                 Id = $"{Id}_{nameof(resourceIcon)}",
                 ContentFile = $"World/Assets/{world.AssetsPack}/resources/gold",
-                Size = new Size2D(28, 28),
-                Location = new Point2D(paper.Location.X + 12, paper.Location.Y + 44)
+                Size = new Size2D(GameDefines.GuiIconSize),
+                Location = new Point2D(factionFlag.Location.X, factionFlag.ClientRectangle.Bottom + GameDefines.GuiSpacing)
             };
             resourceName = new GuiText
             {
