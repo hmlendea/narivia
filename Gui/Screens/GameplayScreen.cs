@@ -40,7 +40,7 @@ namespace Narivia.Gui.Screens
         GuiProvincePanel provincePanel;
         GuiNotificationBar notificationBar;
         GuiRecruitmentPanel recruitmentPanel;
-        GuiBuildingPanel buildingPanel;
+        GuiBuildHoldingPanel buildHoldingPanel;
 
         Dictionary<string, int> troopsOld;
         Dictionary<string, int> relationsOld;
@@ -108,9 +108,9 @@ namespace Narivia.Gui.Screens
             {
                 Id = nameof(recruitmentPanel)
             };
-            buildingPanel = new GuiBuildingPanel(GameManager, WorldManager, HoldingManager)
+            buildHoldingPanel = new GuiBuildHoldingPanel(GameManager, WorldManager, HoldingManager)
             {
-                Id = nameof(buildingPanel)
+                Id = nameof(buildHoldingPanel)
             };
 
             troopsOld = new Dictionary<string, int>();
@@ -126,7 +126,7 @@ namespace Narivia.Gui.Screens
                 provincePanel,
                 notificationBar,
                 recruitmentPanel,
-                buildingPanel);
+                buildHoldingPanel);
 
             RegisterEvents();
         }
@@ -152,9 +152,9 @@ namespace Narivia.Gui.Screens
             recruitmentPanel.Location = new Point2D(
                 gameMap.Location.X + (gameMap.Size.Width - recruitmentPanel.Size.Width) / 2,
                 gameMap.Location.Y + (gameMap.Size.Height - recruitmentPanel.Size.Height) / 2);
-            buildingPanel.Location = new Point2D(
-                gameMap.Location.X + (gameMap.Size.Width - buildingPanel.Size.Width) / 2,
-                gameMap.Location.Y + (gameMap.Size.Height - buildingPanel.Size.Height) / 2);
+            buildHoldingPanel.Location = new Point2D(
+                gameMap.Location.X + (gameMap.Size.Width - buildHoldingPanel.Size.Width) / 2,
+                gameMap.Location.Y + (gameMap.Size.Height - buildHoldingPanel.Size.Height) / 2);
         }
 
         /// <summary>
@@ -408,7 +408,7 @@ namespace Narivia.Gui.Screens
 
             provincePanel.Hide();
             recruitmentPanel.Hide();
-            buildingPanel.Hide();
+            buildHoldingPanel.Hide();
 
             string factionName = WorldManager.GetFaction(playerFactionId).Name;
 
@@ -436,7 +436,7 @@ namespace Narivia.Gui.Screens
 
         void OnAdministrationBarBuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            buildingPanel.Show();
+            buildHoldingPanel.Show();
         }
 
         void OnAdministrationBarRecruitButtonClicked(object sender, MouseButtonEventArgs e)
@@ -451,7 +451,7 @@ namespace Narivia.Gui.Screens
 
         void OnProvincePanelBuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
-            buildingPanel.Show();
+            buildHoldingPanel.Show();
         }
 
         void OnGameMapClicked(object sender, MouseButtonEventArgs e)
