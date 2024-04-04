@@ -3,19 +3,6 @@
 <ArrayOfBuildingTypeEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <BuildingTypeEntity>
-        <Id>none</Id>
-        <Name>None</Name>
-        <Description>The base building of this region</Description>
-        <Price>0</Price>
-        <MaintenanceCost>0</MaintenanceCost>
-        <Income>0</Income>
-        <AttackBonus>0</AttackBonus>
-        <DefenceBonus>0</DefenceBonus>
-        <RecruitmentBonus>0</RecruitmentBonus>
-        <ReligionInfluence>0</ReligionInfluence>z
-    </BuildingTypeEntity>
-
-    <BuildingTypeEntity>
         <Id>tavern</Id>
         <Name>Tavern</Name>
         <Description>A place for your people to spend money</Description>
