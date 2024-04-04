@@ -16,6 +16,7 @@ using Narivia.GameLogic.GameManagers;
 using Narivia.Gui.Controls;
 using Narivia.Gui.Controls.Enumerations;
 using Narivia.Models;
+using Narivia.Settings;
 
 namespace Narivia.Gui.Screens
 {
@@ -85,7 +86,9 @@ namespace Narivia.Gui.Screens
             gameMap = new GuiWorldmap(GameManager, WorldManager)
             {
                 Id = nameof(gameMap),
-                Size = ScreenManager.Instance.Size
+                Size = new Size2D(
+                    ScreenManager.Instance.Size.Width,
+                    ScreenManager.Instance.Size.Height + GameDefines.MapTileSize)
             };
             notificationBar = new GuiNotificationBar(GameManager)
             {
@@ -153,7 +156,7 @@ namespace Narivia.Gui.Screens
                 gameMap.Location.X + (gameMap.Size.Width - buildingPanel.Size.Width) / 2,
                 gameMap.Location.Y + (gameMap.Size.Height - buildingPanel.Size.Height) / 2);
         }
-        
+
         /// <summary>
         /// Update the content.
         /// </summary>
@@ -184,7 +187,7 @@ namespace Narivia.Gui.Screens
             AttackManager.LoadContent();
             GameManager.LoadContent(worldId, playerFactionId);
         }
-        
+
         /// <summary>
         /// Loads the relations.
         /// </summary>
@@ -533,4 +536,3 @@ namespace Narivia.Gui.Screens
         }
     }
 }
-
