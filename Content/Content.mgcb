@@ -924,6 +924,18 @@
 /processorParam:TextureFormat=Color
 /build:Interface/Flags/Skins/buckler_mask.png
 
+#begin Interface/Icons/province.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Interface/Icons/province.png
+
 #begin Interface/InfoBar/bar.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -28,6 +28,9 @@ namespace Narivia.Gui.Controls
         GuiFactionFlag factionFlag;
         GuiText factionName;
 
+        GuiImage provinceIcon;
+        GuiText provinceName;
+
         GuiButton buildButton;
 
         List<GuiBuildingCard> cards;
@@ -79,6 +82,22 @@ namespace Narivia.Gui.Controls
                 HorizontalAlignment = Alignment.Beginning
             };
 
+            provinceIcon = new GuiImage
+            {
+                Id = $"{Id}_{nameof(provinceIcon)}",
+                ContentFile = "Interface/Icons/province",
+                Size = new Size2D(28, 28),
+                Location = new Point2D(factionFlag.Location.X, factionFlag.ClientRectangle.Bottom + GameDefines.GuiSpacing)
+            };
+            provinceName = new GuiText
+            {
+                Id = $"{Id}_{nameof(provinceName)}",
+                Size = new Size2D(80, provinceIcon.Size.Height),
+                Location = new Point2D(provinceIcon.ClientRectangle.Right + GameDefines.GuiSpacing, provinceIcon.Location.Y),
+                FontName = "ProvincePanelInfoFont",
+                HorizontalAlignment = Alignment.Beginning
+            };
+
             buildButton = new GuiButton
             {
                 Id = $"{Id}_{nameof(buildButton)}",
@@ -108,6 +127,7 @@ namespace Narivia.Gui.Controls
 
             RegisterChild(paper);
             RegisterChildren(factionFlag, factionName);
+            RegisterChildren(provinceIcon, provinceName);
             RegisterChildren(buildButton);
             RegisterChildren(cards);
 
@@ -162,6 +182,8 @@ namespace Narivia.Gui.Controls
 
             factionFlag.Flag = gameManager.GetFactionFlag(province.FactionId);
             factionName.Text = faction.Name;
+
+            provinceName.Text = province.Name;
 
             if (province.FactionId.Equals(gameManager.PlayerFactionId))
             {
