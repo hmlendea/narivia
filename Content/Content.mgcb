@@ -2305,6 +2305,18 @@
 /processorParam:TextureFormat=Color
 /build:Interface/Worldmap/16/province-border.png
 
+#begin Icons/Buildings/barbarian/fishery.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/barbarian/fishery.png
+
 #begin Icons/Buildings/barbarian/mines_gold.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2377,6 +2389,18 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/aqueducts.png
 
+#begin Icons/Buildings/nordic/barracks_cavalry.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/nordic/barracks_cavalry.png
+
 #begin Icons/Buildings/nordic/barracks_infantry.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2388,6 +2412,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/barracks_infantry.png
+
+#begin Icons/Buildings/nordic/caravanserai.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/nordic/caravanserai.png
+
+#begin Icons/Buildings/nordic/carpentry.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/nordic/carpentry.png
 
 #begin Icons/Buildings/nordic/farms.png
 /importer:TextureImporter
@@ -2401,6 +2449,18 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/farms.png
 
+#begin Icons/Buildings/nordic/farms_grape.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/nordic/farms_grape.png
+
 #begin Icons/Buildings/nordic/farms_wheat.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2412,6 +2472,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/farms_wheat.png
+
+#begin Icons/Buildings/nordic/fishery.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/nordic/fishery.png
 
 #begin Icons/Buildings/nordic/foundry.png
 /importer:TextureImporter
@@ -2425,6 +2497,18 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/foundry.png
 
+#begin Icons/Buildings/nordic/hunting_lodge.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/nordic/hunting_lodge.png
+
 #begin Icons/Buildings/nordic/market.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2436,6 +2520,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/market.png
+
+#begin Icons/Buildings/nordic/market_slave.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/nordic/market_slave.png
 
 #begin Icons/Buildings/nordic/mines.png
 /importer:TextureImporter
@@ -2509,6 +2605,18 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/temple.png
 
+#begin Icons/Buildings/nordic/timber_camp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/nordic/timber_camp.png
+
 #begin Icons/Buildings/nordic/walls.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2580,3 +2688,15 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/rural/mines_silver.png
+
+#begin Icons/Buildings/rural/timber_camp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/rural/timber_camp.png
