@@ -253,6 +253,14 @@ namespace Narivia.Gui.Controls
             SetChildrenProperties();
         }
 
+        public override void Close()
+        {
+            base.Close();
+
+            currentUnitIndex = 0;
+            troopsAmount = 1;
+        }
+
         protected override void DoUnloadContent()
         {
             base.DoUnloadContent();

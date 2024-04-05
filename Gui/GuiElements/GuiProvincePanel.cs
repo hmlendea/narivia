@@ -53,6 +53,14 @@ namespace Narivia.Gui.Controls
             this.holdingManager = holdingManager;
         }
 
+        public override void Close()
+        {
+            base.Close();
+
+            ProvinceId = string.Empty;
+            currentProvinceId = string.Empty;
+        }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
