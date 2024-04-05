@@ -23,10 +23,8 @@ namespace Narivia.Gui.Controls
         GuiBuildingCard buildingCard;
         GuiImage paper;
 
-        GuiText buildingText;
-
-        GuiImage priceIcon;
-        GuiText priceText;
+        GuiText buildingNameText;
+        GuiText buildingDescriptionText;
 
         GuiButton previousBuildingButton;
         GuiButton nextBuildingButton;
@@ -58,21 +56,22 @@ namespace Narivia.Gui.Controls
 
             buildingTypes = buildingManager.GetBuildingTypes().ToList();
 
-            buildingText = new GuiText
+            buildingNameText = new GuiText
             {
-                Id = $"{Id}_{nameof(buildingText)}",
+                Id = $"{Id}_{nameof(buildingNameText)}",
                 ForegroundColour = Colour.Gold,
                 Size = new Size2D(140, 18),
                 Location = new Point2D((Size.Width - 140) / 2, 64)
             };
+
             previousBuildingButton = new GuiButton
             {
                 Id = $"{Id}_{nameof(previousBuildingButton)}",
                 ContentFile = "Interface/Buttons/button-minus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
-                    buildingText.Location.X - GameDefines.GuiSpacing - 24,
-                    buildingText.Location.Y)
+                    buildingNameText.Location.X - GameDefines.GuiSpacing - 24,
+                    buildingNameText.Location.Y)
             };
             nextBuildingButton = new GuiButton
             {
@@ -80,14 +79,14 @@ namespace Narivia.Gui.Controls
                 ContentFile = "Interface/Buttons/button-plus",
                 Size = new Size2D(24, 24),
                 Location = new Point2D(
-                    buildingText.ClientRectangle.Right + GameDefines.GuiSpacing,
-                    buildingText.Location.Y)
+                    buildingNameText.ClientRectangle.Right + GameDefines.GuiSpacing,
+                    buildingNameText.Location.Y)
             };
             buildingCard = new GuiBuildingCard()
             {
                 Id = $"{Id}_{nameof(buildingCard)}",
                 Size = new Size2D(100, 100),
-                Location = new Point2D((Size.Width - 100) / 2, buildingText.ClientRectangle.Bottom + GameDefines.GuiSpacing)
+                Location = new Point2D((Size.Width - 100) / 2, buildingNameText.ClientRectangle.Bottom + GameDefines.GuiSpacing)
             };
 
             paper = new GuiImage
@@ -99,24 +98,13 @@ namespace Narivia.Gui.Controls
                     (Size.Width - 248) / 2,
                     buildingCard.ClientRectangle.Bottom + GameDefines.GuiSpacing)
             };
-
-            priceIcon = new GuiImage
+            buildingDescriptionText = new GuiText
             {
-                Id = $"{Id}_{nameof(priceIcon)}",
-                ContentFile = "Interface/Icons/wealth",
-                Size = new Size2D(GameDefines.GuiIconSize, GameDefines.GuiIconSize),
-                Location = paper.Location + new Point2D(
-                    (paper.Size.Width - GameDefines.GuiIconSize * 3 - GameDefines.GuiSpacing) / 2,
-                    (paper.Size.Height - GameDefines.GuiIconSize) / 2)
-            };
-            priceText = new GuiText
-            {
-                Id = $"{Id}_{nameof(priceText)}",
-                HorizontalAlignment = Alignment.Beginning,
-                Size = new Size2D(priceIcon.Size.Width * 2, priceIcon.Size.Height),
-                Location = new Point2D(
-                    priceIcon.ClientRectangle.Right + GameDefines.GuiSpacing,
-                    priceIcon.Location.Y)
+                Id = $"{Id}_{nameof(buildingDescriptionText)}",
+                Size = new Size2D(
+                    paper.Size.Width - GameDefines.GuiSpacing * 4,
+                    paper.Size.Height - GameDefines.GuiSpacing * 4),
+                Location = paper.Location + new Point2D(GameDefines.GuiSpacing * 2, GameDefines.GuiSpacing * 2)
             };
 
             buildButton = new GuiButton
@@ -124,7 +112,6 @@ namespace Narivia.Gui.Controls
                 Id = $"{Id}_{nameof(buildButton)}",
                 ContentFile = "Interface/Buttons/green-button-large",
                 ForegroundColour = Colour.White,
-                Text = "Build",
                 Size = new Size2D(128, 26),
                 Location = new Point2D(
                     (Size.Width - 128) / 2,
@@ -133,8 +120,8 @@ namespace Narivia.Gui.Controls
 
             SelectBuilding(0);
 
-            RegisterChildren(paper, buildingCard, priceIcon);
-            RegisterChildren(buildingText, priceText);
+            RegisterChildren(paper, buildingCard);
+            RegisterChildren(buildingNameText, buildingDescriptionText);
             RegisterChildren(nextBuildingButton, previousBuildingButton, buildButton);
 
             RegisterEvents();
@@ -173,12 +160,13 @@ namespace Narivia.Gui.Controls
         {
             BuildingType buildingType = buildingTypes.ElementAt(currentBuildingTypeIndex);
 
-            buildingText.Text = buildingType.Name;
+            buildingNameText.Text = buildingType.Name;
+            buildingDescriptionText.Text = buildingType.Description;
 
             buildingCard.BuildingTypeId = buildingType.Id;
             buildingCard.CultureId = worldManager.GetFaction(gameManager.PlayerFactionId).CultureId;
 
-            priceText.Text = buildingType.Price.ToString();
+            buildButton.Text = $"Build ({buildingType.Price}g)";
         }
 
         void SelectBuilding(int index)
