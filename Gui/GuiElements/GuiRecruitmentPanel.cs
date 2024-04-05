@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.Controls;
@@ -15,13 +14,8 @@ using Narivia.Settings;
 
 namespace Narivia.Gui.Controls
 {
-    /// <summary>
-    /// Unit recruitment panel GUI element.
-    /// </summary>
     public class GuiRecruitmentPanel : GuiPanel
     {
-        const int IconSize = 22;
-
         readonly IGameManager gameManager;
         readonly IWorldManager worldManager;
         readonly IMilitaryManager militaryManager;
@@ -69,9 +63,6 @@ namespace Narivia.Gui.Controls
             FontName = "ButtonFont";
         }
 
-        /// <summary>
-        /// Loads the content.
-        /// </summary>
         protected override void DoLoadContent()
         {
             base.DoLoadContent();
@@ -121,8 +112,8 @@ namespace Narivia.Gui.Controls
             {
                 Id = $"{Id}_{nameof(healthIcon)}",
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(0, 0, IconSize, IconSize),
-                Size = new Size2D(IconSize, IconSize),
+                SourceRectangle = new Rectangle2D(0, 0, GameDefines.GuiIconSize, GameDefines.GuiIconSize),
+                Size = new Size2D(GameDefines.GuiIconSize),
                 Location = new Point2D(
                     paper.Location.X + GameDefines.GuiSpacing * 2,
                     paper.Location.Y + GameDefines.GuiSpacing * 2)
@@ -131,31 +122,31 @@ namespace Narivia.Gui.Controls
             {
                 Id = $"{Id}_{nameof(powerIcon)}",
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(IconSize, 0, IconSize, IconSize),
-                Size = new Size2D(IconSize, IconSize),
+                SourceRectangle = new Rectangle2D(GameDefines.GuiIconSize, 0, GameDefines.GuiIconSize, GameDefines.GuiIconSize),
+                Size = new Size2D(GameDefines.GuiIconSize),
                 Location = new Point2D(
                     paper.ClientRectangle.Left + GameDefines.GuiSpacing * 2,
-                    paper.ClientRectangle.Bottom - GameDefines.GuiSpacing * 2 - IconSize)
+                    paper.ClientRectangle.Bottom - GameDefines.GuiSpacing * 2 - GameDefines.GuiIconSize)
             };
             priceIcon = new GuiImage
             {
                 Id = $"{Id}_{nameof(priceIcon)}",
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(IconSize * 3, 0, IconSize, IconSize),
-                Size = new Size2D(IconSize, IconSize),
+                SourceRectangle = new Rectangle2D(GameDefines.GuiIconSize * 3, 0, GameDefines.GuiIconSize, GameDefines.GuiIconSize),
+                Size = new Size2D(GameDefines.GuiIconSize),
                 Location = new Point2D(
-                    paper.ClientRectangle.Right - GameDefines.GuiSpacing * 2 - IconSize,
+                    paper.ClientRectangle.Right - GameDefines.GuiSpacing * 2 - GameDefines.GuiIconSize,
                     paper.ClientRectangle.Top + GameDefines.GuiSpacing * 2)
             };
             maintenanceIcon = new GuiImage
             {
                 Id = $"{Id}_{nameof(maintenanceIcon)}",
                 ContentFile = "Interface/game_icons",
-                SourceRectangle = new Rectangle2D(IconSize * 3, 0, IconSize, IconSize),
-                Size = new Size2D(IconSize, IconSize),
-                Location = new Point2D(
-                    paper.ClientRectangle.Right - GameDefines.GuiSpacing * 2 - IconSize,
-                    paper.ClientRectangle.Bottom - GameDefines.GuiSpacing * 2 - IconSize)
+                SourceRectangle = new Rectangle2D(GameDefines.GuiIconSize * 3, 0, GameDefines.GuiIconSize, GameDefines.GuiIconSize),
+                Size = new Size2D(GameDefines.GuiIconSize),
+                Location = paper.ClientRectangle.BottomRight - new Point2D(
+                    GameDefines.GuiSpacing * 2 + GameDefines.GuiIconSize,
+                    GameDefines.GuiSpacing * 2 + GameDefines.GuiIconSize)
             };
 
             healthText = new GuiText
@@ -165,9 +156,7 @@ namespace Narivia.Gui.Controls
                 Size = new Size2D(
                     healthIcon.Size.Width * 2,
                     healthIcon.Size.Height),
-                Location = new Point2D(
-                    healthIcon.Location.X + healthIcon.Size.Width + GameDefines.GuiSpacing,
-                    healthIcon.Location.Y)
+                Location = healthIcon.Location + new Point2D(healthIcon.Size.Width + GameDefines.GuiSpacing, 0)
             };
             powerText = new GuiText
             {
@@ -176,9 +165,7 @@ namespace Narivia.Gui.Controls
                 Size = new Size2D(
                     powerIcon.Size.Width * 2,
                     powerIcon.Size.Height),
-                Location = new Point2D(
-                    powerIcon.Location.X + healthIcon.Size.Width + GameDefines.GuiSpacing,
-                    powerIcon.Location.Y)
+                Location = powerIcon.Location + new Point2D(healthIcon.Size.Width + GameDefines.GuiSpacing, 0)
             };
             priceText = new GuiText
             {
@@ -187,9 +174,7 @@ namespace Narivia.Gui.Controls
                 Size = new Size2D(
                     priceIcon.Size.Width * 2,
                     priceIcon.Size.Height),
-                Location = new Point2D(
-                    priceIcon.Location.X - priceIcon.Size.Width * 2 - GameDefines.GuiSpacing,
-                    priceIcon.Location.Y)
+                Location = priceIcon.Location - new Point2D(priceIcon.Size.Width * 2 + GameDefines.GuiSpacing, 0)
             };
             maintenanceText = new GuiText
             {
@@ -198,13 +183,12 @@ namespace Narivia.Gui.Controls
                 Size = new Size2D(
                     maintenanceIcon.Size.Width * 2,
                     maintenanceIcon.Size.Height),
-                Location = new Point2D(
-                    maintenanceIcon.Location.X - maintenanceIcon.Size.Width * 2 - GameDefines.GuiSpacing,
-                    maintenanceIcon.Location.Y)
+                Location = maintenanceIcon.Location - new Point2D(maintenanceIcon.Size.Width * 2 + GameDefines.GuiSpacing, 0)
             };
             troopsText = new GuiText
             {
                 Id = $"{Id}_{nameof(troopsText)}",
+                ForegroundColour = Colour.Gold,
                 Size = new Size2D(unitBackground.Size.Height, 18),
                 Location = new Point2D(
                     unitBackground.ClientRectangle.Left,
@@ -258,20 +242,17 @@ namespace Narivia.Gui.Controls
                     (Size.Width - 128) / 2,
                     Size.Height - 42 - GameDefines.GuiSpacing)
             };
-            
+
             RegisterChildren(unitBackground, unitImage, paper);
             RegisterChildren(unitText, troopsText);
             RegisterChildren(healthIcon, powerIcon, priceIcon, maintenanceIcon);
             RegisterChildren(healthText, powerText, priceText, maintenanceText);
             RegisterChildren(nextUnitButton, previousUnitButton, addUnitButton, substractUnitButton, recruitButton);
-            
+
             RegisterEvents();
             SetChildrenProperties();
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
         protected override void DoUnloadContent()
         {
             base.DoUnloadContent();
@@ -279,10 +260,6 @@ namespace Narivia.Gui.Controls
             UnregisterEvents();
         }
 
-        /// <summary>
-        /// Update the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
         protected override void DoUpdate(GameTime gameTime)
         {
             base.DoUpdate(gameTime);
@@ -310,15 +287,17 @@ namespace Narivia.Gui.Controls
 
         void SetChildrenProperties()
         {
-            unitText.Text = units[currentUnitIndex].Name;
-            troopsText.Text = $"x{troopsAmount}";
-            healthText.Text = units[currentUnitIndex].Health.ToString();
-            powerText.Text = units[currentUnitIndex].Power.ToString();
-            priceText.Text = units[currentUnitIndex].Price.ToString();
-            maintenanceText.Text = units[currentUnitIndex].Maintenance.ToString();
-            recruitButton.Text = $"Recruit ({units[currentUnitIndex].Price * troopsAmount}g)";
+            Unit unit = units[currentUnitIndex];
 
-            unitImage.ContentFile = $"World/Assets/{world.AssetsPack}/units/{units[currentUnitIndex].Id}";
+            unitText.Text = unit.Name;
+            troopsText.Text = $"x{troopsAmount}";
+            healthText.Text = unit.Health.ToString();
+            powerText.Text = unit.Power.ToString();
+            priceText.Text = unit.Price.ToString();
+            maintenanceText.Text = unit.Maintenance.ToString();
+            recruitButton.Text = $"Recruit ({unit.Price * troopsAmount}g)";
+
+            unitImage.ContentFile = $"World/Assets/{world.AssetsPack}/units/{unit.Id}";
         }
 
         void SelectUnit(int index)
@@ -351,13 +330,6 @@ namespace Narivia.Gui.Controls
             {
                 troopsAmount = wealth / units[currentUnitIndex].Price;
             }
-        }
-
-        void OnCancelButtonClick(object sender, MouseButtonEventArgs e)
-        {
-            Hide();
-            SelectUnit(0);
-            troopsAmount = 0;
         }
 
         void OnRecruitButtonClick(object sender, MouseButtonEventArgs e)
