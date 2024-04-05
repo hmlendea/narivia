@@ -2509,7 +2509,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/arena.png
 
-#begin Icons/Buildings/nordic/barracks_cavalry.png
+#begin Icons/Buildings/nordic/barracks.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2519,19 +2519,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/nordic/barracks_cavalry.png
-
-#begin Icons/Buildings/nordic/barracks_infantry.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=True
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Icons/Buildings/nordic/barracks_infantry.png
+/build:Icons/Buildings/nordic/barracks.png
 
 #begin Icons/Buildings/nordic/blacksmith.png
 /importer:TextureImporter
@@ -2749,6 +2737,18 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/siege_workshop.png
 
+#begin Icons/Buildings/nordic/stables.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/nordic/stables.png
+
 #begin Icons/Buildings/nordic/statue.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2917,18 +2917,6 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/rural/arena.png
 
-#begin Icons/Buildings/rural/baracks_cavalry.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=True
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Icons/Buildings/rural/baracks_cavalry.png
-
 #begin Icons/Buildings/rural/blacksmith.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -3000,6 +2988,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/rural/paved_road.png
+
+#begin Icons/Buildings/rural/stables.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/rural/stables.png
 
 #begin Icons/Buildings/rural/statue.png
 /importer:TextureImporter

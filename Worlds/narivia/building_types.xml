@@ -29,7 +29,7 @@
     </BuildingTypeEntity>
 
     <BuildingTypeEntity>
-        <Id>barracks_infantry</Id>
+        <Id>barracks</Id>
         <Name>Barracks</Name>
         <Description>Trains the people of this region into becoming soldiers</Description>
         <Price>250</Price>
@@ -191,8 +191,8 @@
     </BuildingTypeEntity>
 
     <BuildingTypeEntity>
-        <Id>barracks_cavalry</Id>
-        <Name>Cavalry Barracks</Name>
+        <Id>stables</Id>
+        <Name>Stables</Name>
         <Description>Top-quality horses for a top-quality army</Description>
         <Price>500</Price>
         <RequiredResource>horses</RequiredResource>
