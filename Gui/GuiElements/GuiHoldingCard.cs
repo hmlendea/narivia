@@ -57,7 +57,8 @@ namespace Narivia.Gui.Controls
             {
                 FontName = "DefaultFont",
                 BackgroundColour = Colour.Black,
-                ForegroundColour = Colour.Gold
+                ForegroundColour = Colour.Gold,
+                Size = new Size2D(160, 20)
             };
 
             RegisterChildren(icon, frame, tooltip);
@@ -119,12 +120,7 @@ namespace Narivia.Gui.Controls
 
             tooltip.Location = new Point2D(0, Size.Height - tooltip.Size.Height);
 
-            if (string.IsNullOrWhiteSpace(HoldingName))
-            {
-                tooltip.Size = new Size2D(100, 20);
-                tooltip.Text = HoldingType.Name;
-            }
-            else
+            if (!string.IsNullOrWhiteSpace(HoldingName))
             {
                 tooltip.Size = new Size2D(160, 20);
                 tooltip.Text = $"{HoldingName} {HoldingType.Name}";
@@ -133,7 +129,10 @@ namespace Narivia.Gui.Controls
 
         void OnMouseEntered(object sender, MouseEventArgs e)
         {
-            tooltip.Show();
+            if (!string.IsNullOrWhiteSpace(HoldingName))
+            {
+                tooltip.Show();
+            }
         }
 
         void OnMouseLeft(object sender, MouseEventArgs e)

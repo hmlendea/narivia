@@ -19,7 +19,7 @@ namespace Narivia.Gui.Controls
 
         public string BuildingTypeId { get; set; }
 
-        public string Name { get; set; }
+        public string BuildingName { get; set; }
 
         public string CultureId { get; set; }
 
@@ -31,7 +31,7 @@ namespace Narivia.Gui.Controls
         public void SetHoldingProperties(Building building)
         {
             BuildingTypeId = building.TypeId;
-            Name = building.Name;
+            BuildingName = building.Name;
         }
 
         protected override void DoLoadContent()
@@ -100,12 +100,15 @@ namespace Narivia.Gui.Controls
 
             tooltip.Location = new Point2D(0, Size.Height - tooltip.Size.Height);
             tooltip.Size = new Size2D(100, 20);
-            tooltip.Text = Name;
+            tooltip.Text = BuildingName;
         }
 
         void OnMouseEntered(object sender, MouseEventArgs e)
         {
-            tooltip.Show();
+            if (!string.IsNullOrWhiteSpace(BuildingName))
+            {
+                tooltip.Show();
+            }
         }
 
         void OnMouseLeft(object sender, MouseEventArgs e)
