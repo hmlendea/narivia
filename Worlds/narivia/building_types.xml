@@ -55,19 +55,6 @@
     </BuildingTypeEntity>
 
     <BuildingTypeEntity>
-        <Id>aqueducts</Id>
-        <Name>Aqueducts</Name>
-        <Description>Brings water in dry areas to increase productivity</Description>
-        <Price>450</Price>
-        <MaintenanceCost>7</MaintenanceCost>
-        <Income>30</Income>
-        <AttackBonus>0</AttackBonus>
-        <DefenceBonus>0</DefenceBonus>
-        <RecruitmentBonus>0</RecruitmentBonus>
-        <ReligionInfluence>0</ReligionInfluence>
-    </BuildingTypeEntity>
-
-    <BuildingTypeEntity>
         <Id>mines</Id>
         <Name>Mines</Name>
         <Description>Digs and gathers mineral resources</Description>
@@ -341,27 +328,14 @@
     </BuildingTypeEntity>
 
     <BuildingTypeEntity>
-        <Id>blacksmith_weapons</Id>
-        <Name>Weapons Blacksmith</Name>
-        <Description>Provides steel weapons for the soldiers</Description>
+        <Id>blacksmith</Id>
+        <Name>Blacksmith</Name>
+        <Description>Provides steel weapons and armours for the soldiers</Description>
         <Price>300</Price>
         <MaintenanceCost>5</MaintenanceCost>
         <Income>0</Income>
         <AttackBonus>2</AttackBonus>
         <DefenceBonus>0</DefenceBonus>
-        <RecruitmentBonus>0</RecruitmentBonus>
-        <ReligionInfluence>0</ReligionInfluence>
-    </BuildingTypeEntity>
-
-    <BuildingTypeEntity>
-        <Id>blacksmith_armours</Id>
-        <Name>Armours Blacksmith</Name>
-        <Description>Provides steel armours for the soldiers</Description>
-        <Price>300</Price>
-        <MaintenanceCost>5</MaintenanceCost>
-        <Income>0</Income>
-        <AttackBonus>0</AttackBonus>
-        <DefenceBonus>2</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
     </BuildingTypeEntity>
@@ -388,19 +362,6 @@
         <Income>0</Income>
         <AttackBonus>0</AttackBonus>
         <DefenceBonus>1</DefenceBonus>
-        <RecruitmentBonus>0</RecruitmentBonus>
-        <ReligionInfluence>0</ReligionInfluence>
-    </BuildingTypeEntity>
-
-    <BuildingTypeEntity>
-        <Id>castle</Id>
-        <Name>Defensive Castle</Name>
-        <Description>A fortified structure that defends this region</Description>
-        <Price>1500</Price>
-        <MaintenanceCost>15</MaintenanceCost>
-        <Income>0</Income>
-        <AttackBonus>0</AttackBonus>
-        <DefenceBonus>7</DefenceBonus>
         <RecruitmentBonus>0</RecruitmentBonus>
         <ReligionInfluence>0</ReligionInfluence>
     </BuildingTypeEntity>
