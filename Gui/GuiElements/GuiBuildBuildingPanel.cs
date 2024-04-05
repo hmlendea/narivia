@@ -85,8 +85,8 @@ namespace Narivia.Gui.Controls
             buildingCard = new GuiBuildingCard()
             {
                 Id = $"{Id}_{nameof(buildingCard)}",
-                Size = new Size2D(100, 100),
-                Location = new Point2D((Size.Width - 100) / 2, buildingNameText.ClientRectangle.Bottom + GameDefines.GuiSpacing)
+                Size = new Size2D(140, 140),
+                Location = new Point2D((Size.Width - 140) / 2, buildingNameText.ClientRectangle.Bottom + GameDefines.GuiSpacing)
             };
 
             paper = new GuiImage
