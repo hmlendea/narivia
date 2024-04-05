@@ -2341,7 +2341,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/barbarian/fishery.png
 
-#begin Icons/Buildings/barbarian/mines_gold.png
+#begin Icons/Buildings/barbarian/mine_gold.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2351,9 +2351,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/barbarian/mines_gold.png
+/build:Icons/Buildings/barbarian/mine_gold.png
 
-#begin Icons/Buildings/barbarian/mines_silver.png
+#begin Icons/Buildings/barbarian/mine_silver.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2363,7 +2363,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/barbarian/mines_silver.png
+/build:Icons/Buildings/barbarian/mine_silver.png
 
 #begin Icons/Buildings/barbarian/siege_workshop.png
 /importer:TextureImporter
@@ -2593,7 +2593,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/letian/hunting_lodge.png
 
-#begin Icons/Buildings/letian/market.png
+#begin Icons/Buildings/letian/marketplace.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2603,7 +2603,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/letian/market.png
+/build:Icons/Buildings/letian/marketplace.png
 
 #begin Icons/Buildings/letian/market_slave.png
 /importer:TextureImporter
@@ -2617,7 +2617,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/letian/market_slave.png
 
-#begin Icons/Buildings/letian/mines.png
+#begin Icons/Buildings/letian/mine_iron.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2627,9 +2627,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/letian/mines.png
+/build:Icons/Buildings/letian/mine_iron.png
 
-#begin Icons/Buildings/letian/mines_gold.png
+#begin Icons/Buildings/letian/mine_gold.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2639,9 +2639,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/letian/mines_gold.png
+/build:Icons/Buildings/letian/mine_gold.png
 
-#begin Icons/Buildings/letian/mines_silver.png
+#begin Icons/Buildings/letian/mine_silver.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2651,7 +2651,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/letian/mines_silver.png
+/build:Icons/Buildings/letian/mine_silver.png
 
 #begin Icons/Buildings/letian/paved_roads.png
 /importer:TextureImporter
@@ -2881,7 +2881,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/hunting_lodge.png
 
-#begin Icons/Buildings/nordic/market.png
+#begin Icons/Buildings/nordic/marketplace.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2891,7 +2891,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/nordic/market.png
+/build:Icons/Buildings/nordic/marketplace.png
 
 #begin Icons/Buildings/nordic/market_slave.png
 /importer:TextureImporter
@@ -2905,7 +2905,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/market_slave.png
 
-#begin Icons/Buildings/nordic/mines.png
+#begin Icons/Buildings/nordic/mine_iron.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2915,9 +2915,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/nordic/mines.png
+/build:Icons/Buildings/nordic/mine_iron.png
 
-#begin Icons/Buildings/nordic/mines_gold.png
+#begin Icons/Buildings/nordic/mine_gold.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2927,9 +2927,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/nordic/mines_gold.png
+/build:Icons/Buildings/nordic/mine_gold.png
 
-#begin Icons/Buildings/nordic/mines_silver.png
+#begin Icons/Buildings/nordic/mine_silver.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2939,7 +2939,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/nordic/mines_silver.png
+/build:Icons/Buildings/nordic/mine_silver.png
 
 #begin Icons/Buildings/nordic/paved_roads.png
 /importer:TextureImporter
@@ -3109,7 +3109,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/nordic/windmill.png
 
-#begin Icons/Buildings/rodah/mines_gold.png
+#begin Icons/Buildings/rodah/mine_gold.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -3119,9 +3119,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/rodah/mines_gold.png
+/build:Icons/Buildings/rodah/mine_gold.png
 
-#begin Icons/Buildings/rodah/mines_silver.png
+#begin Icons/Buildings/rodah/mine_silver.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -3131,7 +3131,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/rodah/mines_silver.png
+/build:Icons/Buildings/rodah/mine_silver.png
 
 #begin Icons/Buildings/rodah/statue.png
 /importer:TextureImporter
@@ -3289,7 +3289,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/rural/hunting_lodge.png
 
-#begin Icons/Buildings/rural/market.png
+#begin Icons/Buildings/rural/marketplace.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -3299,7 +3299,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/rural/market.png
+/build:Icons/Buildings/rural/marketplace.png
 
 #begin Icons/Buildings/rural/market_slave.png
 /importer:TextureImporter
@@ -3313,7 +3313,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/rural/market_slave.png
 
-#begin Icons/Buildings/rural/mines.png
+#begin Icons/Buildings/rural/mine_iron.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -3323,9 +3323,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/rural/mines.png
+/build:Icons/Buildings/rural/mine_iron.png
 
-#begin Icons/Buildings/rural/mines_gold.png
+#begin Icons/Buildings/rural/mine_gold.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -3335,9 +3335,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/rural/mines_gold.png
+/build:Icons/Buildings/rural/mine_gold.png
 
-#begin Icons/Buildings/rural/mines_silver.png
+#begin Icons/Buildings/rural/mine_silver.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -3347,7 +3347,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/rural/mines_silver.png
+/build:Icons/Buildings/rural/mine_silver.png
 
 #begin Icons/Buildings/rural/paved_roads.png
 /importer:TextureImporter

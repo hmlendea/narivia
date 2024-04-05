@@ -17,7 +17,7 @@
 
     <BuildingTypeEntity>
         <Id>farms</Id>
-        <Name>Farms</Name>
+        <Name>Animal Farms</Name>
         <Description>Grows animals as a source of food</Description>
         <Price>150</Price>
         <MaintenanceCost>2</MaintenanceCost>
@@ -42,8 +42,8 @@
     </BuildingTypeEntity>
 
     <BuildingTypeEntity>
-        <Id>market</Id>
-        <Name>Market</Name>
+        <Id>marketplace</Id>
+        <Name>Marketplace</Name>
         <Description>The main source of trade in the region</Description>
         <Price>300</Price>
         <MaintenanceCost>5</MaintenanceCost>
@@ -55,8 +55,8 @@
     </BuildingTypeEntity>
 
     <BuildingTypeEntity>
-        <Id>mines</Id>
-        <Name>Mines</Name>
+        <Id>mine_iron</Id>
+        <Name>Iron Mine</Name>
         <Description>Digs and gathers mineral resources</Description>
         <Price>600</Price>
         <MaintenanceCost>10</MaintenanceCost>
@@ -107,8 +107,8 @@
     </BuildingTypeEntity>
 
     <BuildingTypeEntity>
-        <Id>mines_gold</Id>
-        <Name>Gold Mines</Name>
+        <Id>mine_gold</Id>
+        <Name>Gold Mine</Name>
         <Description>Digs and gathers gold</Description>
         <Price>1000</Price>
         <RequiredResource>gold</RequiredResource>
@@ -220,7 +220,7 @@
 
     <BuildingTypeEntity>
         <Id>caravanserai</Id>
-        <Name>Caravan</Name>
+        <Name>Caravansary</Name>
         <Description>Sends caravans over vast distances, selling and buying exotic goods</Description>
         <Price>600</Price>
         <RequiredResource>camels</RequiredResource>
@@ -247,8 +247,8 @@
     </BuildingTypeEntity>
 
     <BuildingTypeEntity>
-        <Id>mines_silver</Id>
-        <Name>Silver Mines</Name>
+        <Id>mine_silver</Id>
+        <Name>Silver Mine</Name>
         <Description>Digs and gathers silver</Description>
         <Price>600</Price>
         <RequiredResource>silver</RequiredResource>
