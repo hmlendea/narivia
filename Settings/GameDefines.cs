@@ -4,6 +4,8 @@
     {
         public const int MapTileSize = 32;
 
+        public const int GuiIconSize = 22;
+
         public const int GuiTileSize = 32;
 
         public const int GuiSpacing = 6;
