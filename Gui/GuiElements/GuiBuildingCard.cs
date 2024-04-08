@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Gui.Controls;
@@ -13,6 +11,8 @@ namespace Narivia.Gui.Controls
 {
     public class GuiBuildingCard : GuiControl, IGuiControl
     {
+        const int IconSourceSize = 1024;
+
         GuiImage icon;
         GuiImage frame;
         GuiTooltip tooltip;
@@ -96,6 +96,7 @@ namespace Narivia.Gui.Controls
             }
 
             icon.Size = Size;
+            icon.SourceRectangle = new Rectangle2D(0, 0, IconSourceSize, IconSourceSize);
             frame.Size = Size;
 
             tooltip.Location = new Point2D(0, Size.Height - tooltip.Size.Height);

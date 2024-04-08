@@ -112,28 +112,12 @@ namespace Narivia.Gui.Controls
                     factionFlag.Location.Y)
             };
 
-            Point2D cardsStart = new Point2D(16, 161);
-            cards = new List<GuiBuildingCard>();
-
-            for (int y = 0; y < 3; y++)
-            {
-                for (int x = 0; x < 3; x++)
-                {
-                    GuiBuildingCard card = new ()
-                    {
-                        Id = $"{Id}_{nameof(card)}_{x}x{y}",
-                        Location = cardsStart + new Point2D(x * 84, y * 84)
-                    };
-
-                    cards.Add(card);
-                }
-            }
+            PopulateBuildingCards();
 
             RegisterChild(paper);
             RegisterChildren(factionFlag, factionName);
             RegisterChildren(provinceIcon, provinceName);
             RegisterChildren(buildButton);
-            RegisterChildren(cards);
 
             RegisterEvents();
             SetChildrenProperties();
@@ -217,6 +201,30 @@ namespace Narivia.Gui.Controls
         void OnBuildButtonClicked(object sender, MouseButtonEventArgs e)
         {
             BuildButtonClicked?.Invoke(this, e);
+            Close();
+        }
+
+        void PopulateBuildingCards()
+        {
+            Point2D cardsStart = new Point2D(16, 161);
+
+            cards = [];
+
+            for (int y = 0; y < 3; y++)
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    GuiBuildingCard card = new ()
+                    {
+                        Id = $"{Id}_{nameof(card)}_{x}x{y}",
+                        Location = cardsStart + new Point2D(x * 84, y * 84)
+                    };
+
+                    cards.Add(card);
+                }
+            }
+
+            RegisterChildren(cards);
         }
     }
 }
