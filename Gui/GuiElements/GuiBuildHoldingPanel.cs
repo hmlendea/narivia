@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.Controls;
@@ -16,10 +15,7 @@ using Narivia.Settings;
 
 namespace Narivia.Gui.Controls
 {
-    /// <summary>
-    /// Unit recruitment panel GUI element.
-    /// </summary>
-    public class GuiBuildingPanel : GuiPanel
+    public class GuiBuildHoldingPanel : GuiPanel
     {
         const int IconSize = 22;
 
@@ -49,7 +45,7 @@ namespace Narivia.Gui.Controls
         int currentHoldingIndex;
         int currentProvinceIndex;
 
-        public GuiBuildingPanel(
+        public GuiBuildHoldingPanel(
             IGameManager gameManager,
             IWorldManager worldManager,
             IHoldingManager holdingManager)
@@ -62,9 +58,14 @@ namespace Narivia.Gui.Controls
             FontName = "ButtonFont";
         }
 
-        /// <summary>
-        /// Loads the content.
-        /// </summary>
+        public override void Close()
+        {
+            base.Close();
+
+            currentHoldingIndex = 0;
+            currentProvinceIndex = 0;
+        }
+
         protected override void DoLoadContent()
         {
             base.DoLoadContent();
@@ -298,14 +299,6 @@ namespace Narivia.Gui.Controls
             {
                 holdingManager.BuildHolding(provinces[currentProvinceIndex].Id, holdings.ElementAt(currentHoldingIndex));
             }
-        }
-
-        void OnCancelButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            Hide();
-            SelectHolding(0);
-
-            currentProvinceIndex = 0;
         }
 
         void OnPreviousHoldingButtonClicked(object sender, MouseButtonEventArgs e)

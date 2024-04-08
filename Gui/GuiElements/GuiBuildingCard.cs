@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Gui.Controls;
@@ -9,11 +6,10 @@ using NuciXNA.Primitives;
 
 using Narivia.Models;
 using NuciXNA.Input;
-using Narivia.Models.Enumerations;
 
 namespace Narivia.Gui.Controls
 {
-    public class GuiHoldingCard : GuiControl, IGuiControl
+    public class GuiBuildingCard : GuiControl, IGuiControl
     {
         const int IconSourceSize = 1024;
 
@@ -21,37 +17,28 @@ namespace Narivia.Gui.Controls
         GuiImage frame;
         GuiTooltip tooltip;
 
-        public HoldingType HoldingType { get; set; }
+        public string BuildingTypeId { get; set; }
 
-        public string HoldingId { get; set; }
-
-        public string HoldingName { get; set; }
+        public string BuildingName { get; set; }
 
         public string CultureId { get; set; }
 
-        public GuiHoldingCard()
+        public GuiBuildingCard()
         {
             Size = new Size2D(74, 74);
         }
 
-        public void SetHoldingProperties(Holding holding)
+        public void SetHoldingProperties(Building building)
         {
-            HoldingType = holding.Type;
-            HoldingId = holding.Id;
-            HoldingName = holding.Name;
-        }
-
-        public override void Hide()
-        {
-            base.Hide();
-            tooltip.Hide();
+            BuildingTypeId = building.TypeId;
+            BuildingName = building.Name;
         }
 
         protected override void DoLoadContent()
         {
             icon = new GuiImage
             {
-                ContentFile = "Icons/Holdings/generic"
+                ContentFile = "Icons/Buildings/generic"
             };
 
             frame = new GuiImage
@@ -63,8 +50,7 @@ namespace Narivia.Gui.Controls
             {
                 FontName = "DefaultFont",
                 BackgroundColour = Colour.Black,
-                ForegroundColour = Colour.Gold,
-                Size = new Size2D(160, 20)
+                ForegroundColour = Colour.Gold
             };
 
             RegisterChildren(icon, frame, tooltip);
@@ -101,41 +87,26 @@ namespace Narivia.Gui.Controls
 
         void SetChildrenProperties()
         {
-            if (HoldingType is null || HoldingType.Equals(HoldingType.Empty))
-            {
-                Hide();
-                return;
-            }
+            icon.ContentFile = $"Icons/Buildings/{CultureId}/{BuildingTypeId}";
 
-            if (!string.IsNullOrWhiteSpace(CultureId) &&
-                (File.Exists($"Content/Icons/Holdings/{CultureId}.xnb") ||
-                File.Exists($"Content/Icons/Holdings/{CultureId}.png")))
+            if (string.IsNullOrWhiteSpace(BuildingTypeId) ||
+                string.IsNullOrWhiteSpace(CultureId))
             {
-                icon.ContentFile = $"Icons/Holdings/{CultureId}";
+                icon.ContentFile = "ScreenManager/missing-texture";
             }
-            else
-            {
-                icon.ContentFile = "Icons/Holdings/generic";
-            }
-
-            icon.SourceRectangle = new Rectangle2D(IconSourceSize * (HoldingType - 1), 0, IconSourceSize, IconSourceSize);
-            Show();
 
             icon.Size = Size;
+            icon.SourceRectangle = new Rectangle2D(0, 0, IconSourceSize, IconSourceSize);
             frame.Size = Size;
 
             tooltip.Location = new Point2D(0, Size.Height - tooltip.Size.Height);
-
-            if (!string.IsNullOrWhiteSpace(HoldingName))
-            {
-                tooltip.Size = new Size2D(160, 20);
-                tooltip.Text = $"{HoldingName} {HoldingType.Name}";
-            }
+            tooltip.Size = new Size2D(100, 20);
+            tooltip.Text = BuildingName;
         }
 
         void OnMouseEntered(object sender, MouseEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(HoldingName))
+            if (!string.IsNullOrWhiteSpace(BuildingName))
             {
                 tooltip.Show();
             }

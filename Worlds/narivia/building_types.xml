@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ArrayOfBuildingTypeEntity xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <BuildingTypeEntity>
+        <Id>tavern</Id>
+        <Name>Tavern</Name>
+        <Description>Restful refuge offering refreshments and tales of adventure.</Description>
+        <Price>75</Price>
+        <MaintenanceCost>1</MaintenanceCost>
+        <Income>5</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>farms</Id>
+        <Name>Animal Farms</Name>
+        <Description>Facilities for breeding and raising livestock.</Description>
+        <Price>150</Price>
+        <MaintenanceCost>2</MaintenanceCost>
+        <Income>10</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>barracks</Id>
+        <Name>Barracks</Name>
+        <Description>Military quarters for training and housing soldiers.</Description>
+        <Price>250</Price>
+        <MaintenanceCost>7</MaintenanceCost>
+        <Income>0</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>5</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>marketplace</Id>
+        <Name>Marketplace</Name>
+        <Description>Center for trading goods and resources among merchants.</Description>
+        <Price>300</Price>
+        <MaintenanceCost>5</MaintenanceCost>
+        <Income>20</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>mine_iron</Id>
+        <Name>Iron Mine</Name>
+        <Description>Site for extracting iron ore from the earth.</Description>
+        <Price>600</Price>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>35</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>paved_roads</Id>
+        <Name>Paved Roads</Name>
+        <Description>Infrastructure facilitating efficient travel and trade.</Description>
+        <Price>225</Price>
+        <MaintenanceCost>5</MaintenanceCost>
+        <Income>15</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>temple</Id>
+        <Name>Temple</Name>
+        <Description>Sacred place for religious worship and ceremonies.</Description>
+        <Price>400</Price>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>0</Income>
+        <AttackBonus>1</AttackBonus>
+        <DefenceBonus>1</DefenceBonus>
+        <RecruitmentBonus>1</RecruitmentBonus>
+        <ReligionInfluence>5</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>walls</Id>
+        <Name>Walls</Name>
+        <Description>Defensive structures acting as the main line of defence against outside threats.</Description>
+        <Price>2000</Price>
+        <MaintenanceCost>20</MaintenanceCost>
+        <Income>0</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>10</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>mine_gold</Id>
+        <Name>Gold Mine</Name>
+        <Description>Glittering source of wealth, driving prosperity and ambition.</Description>
+        <Price>1000</Price>
+        <RequiredResource>gold</RequiredResource>
+        <MaintenanceCost>15</MaintenanceCost>
+        <Income>60</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>whalery</Id>
+        <Name>Whalery</Name>
+        <Description>Outpost for the daring pursuit of whales and their treasures.</Description>
+        <Price>600</Price>
+        <RequiredResource>whales</RequiredResource>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>40</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>foundry</Id>
+        <Name>Foundry</Name>
+        <Description>Center of metalworking, where raw materials are shaped into tools and weapons.</Description>
+        <Price>1000</Price>
+        <RequiredResource>iron</RequiredResource>
+        <MaintenanceCost>25</MaintenanceCost>
+        <Income>0</Income>
+        <AttackBonus>5</AttackBonus>
+        <DefenceBonus>5</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>farms_wheat</Id>
+        <Name>Wheat Farms</Name>
+        <Description>Bountiful fields yielding grains to sustain the populace.</Description>
+        <Price>600</Price>
+        <RequiredResource>wheat</RequiredResource>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>40</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>farms_grape</Id>
+        <Name>Grape Farms</Name>
+        <Description>Flourishing vineyards, producing grapes for wine and sustenance.</Description>
+        <Price>600</Price>
+        <RequiredResource>grapes</RequiredResource>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>40</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>market_slave</Id>
+        <Name>Slave Market</Name>
+        <Description>Trading hub where human labour is bought and sold.</Description>
+        <Price>500</Price>
+        <RequiredResource>slaves</RequiredResource>
+        <MaintenanceCost>5</MaintenanceCost>
+        <Income>20</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>stables</Id>
+        <Name>Stables</Name>
+        <Description>Shelter for horses, crucial for transportation and agriculture.</Description>
+        <Price>500</Price>
+        <RequiredResource>horses</RequiredResource>
+        <MaintenanceCost>20</MaintenanceCost>
+        <Income>0</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>10</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>hunting_lodge</Id>
+        <Name>Hunting Lodge</Name>
+        <Description>Wilderness retreat for hunters, offering respite and provisions.</Description>
+        <Price>500</Price>
+        <RequiredResource>wild_animals</RequiredResource>
+        <MaintenanceCost>5</MaintenanceCost>
+        <Income>20</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>caravanserai</Id>
+        <Name>Caravansary</Name>
+        <Description>Provides shelter and amenities for traveling merchants and caravans.</Description>
+        <Price>600</Price>
+        <RequiredResource>camels</RequiredResource>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>40</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>fishery</Id>
+        <Name>Fishery</Name>
+        <Description>Harnesses the bounty of the sea, a vital food source.</Description>
+        <Price>500</Price>
+        <RequiredResource>fish</RequiredResource>
+        <MaintenanceCost>5</MaintenanceCost>
+        <Income>20</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>mine_silver</Id>
+        <Name>Silver Mine</Name>
+        <Description>Yields precious silver, valuable for currency and industry.</Description>
+        <Price>600</Price>
+        <RequiredResource>silver</RequiredResource>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>40</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>pearl_hunting_post</Id>
+        <Name>Pearl Hunting Post</Name>
+        <Description>Collects valuable pearls from the depths of the ocean.</Description>
+        <Price>600</Price>
+        <RequiredResource>pearls</RequiredResource>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>40</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>timber_camp</Id>
+        <Name>Timber Camp</Name>
+        <Description>Harvests wood for construction and industry.</Description>
+        <Price>500</Price>
+        <RequiredResource>timber</RequiredResource>
+        <MaintenanceCost>5</MaintenanceCost>
+        <Income>20</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>carpentry</Id>
+        <Name>Carpentry</Name>
+        <Description>Crafts fine woodwork and structures for your realm.</Description>
+        <Price>300</Price>
+        <MaintenanceCost>5</MaintenanceCost>
+        <Income>20</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>public_baths</Id>
+        <Name>Public Baths</Name>
+        <Description>Promotes hygiene, health, and relaxation for your citizens.</Description>
+        <Price>150</Price>
+        <MaintenanceCost>2</MaintenanceCost>
+        <Income>10</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>arena</Id>
+        <Name>Arena</Name>
+        <Description>Entertainment hub, hosting gladiatorial battles to entertain the masses.</Description>
+        <Price>600</Price>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>20</Income>
+        <AttackBonus>1</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>1</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>blacksmith</Id>
+        <Name>Blacksmith</Name>
+        <Description>Forges weapons, armor, and tools with skill and precision.</Description>
+        <Price>300</Price>
+        <MaintenanceCost>5</MaintenanceCost>
+        <Income>0</Income>
+        <AttackBonus>2</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>siege_workshop</Id>
+        <Name>Siege Engineer</Name>
+        <Description>Constructs formidable engines of war for sieges and battles.</Description>
+        <Price>600</Price>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>0</Income>
+        <AttackBonus>4</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>tannery</Id>
+        <Name>Tannery</Name>
+        <Description>Processes hides and leather for armours and goods.</Description>
+        <Price>150</Price>
+        <MaintenanceCost>2</MaintenanceCost>
+        <Income>0</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>1</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>watchtower</Id>
+        <Name>Watchtower</Name>
+        <Description>Vigilant sentinel, scanning the horizon for threats.</Description>
+        <Price>1000</Price>
+        <MaintenanceCost>10</MaintenanceCost>
+        <Income>0</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>5</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>windmill</Id>
+        <Name>Windmill</Name>
+        <Description>Harnesses the power of the wind to grind grains and drive machinery.</Description>
+        <Price>150</Price>
+        <MaintenanceCost>2</MaintenanceCost>
+        <Income>10</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+    <BuildingTypeEntity>
+        <Id>statue</Id>
+        <Name>Statue</Name>
+        <Description>Monument honouring heroes, gods, symbols or events in your realm's history.</Description>
+        <Price>75</Price>
+        <MaintenanceCost>1</MaintenanceCost>
+        <Income>5</Income>
+        <AttackBonus>0</AttackBonus>
+        <DefenceBonus>0</DefenceBonus>
+        <RecruitmentBonus>0</RecruitmentBonus>
+        <ReligionInfluence>0</ReligionInfluence>
+    </BuildingTypeEntity>
+
+</ArrayOfBuildingTypeEntity>

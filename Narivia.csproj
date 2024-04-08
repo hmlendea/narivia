@@ -15,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
+    <PackageReference Include="NuciDAL" Version="2.1.0" />
     <PackageReference Include="NuciExtensions" Version="4.0.0" />
     <PackageReference Include="NuciXNA.DataAccess" Version="2.0.0" />
     <PackageReference Include="NuciXNA.Graphics" Version="2.1.0" />
