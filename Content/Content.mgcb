@@ -2665,7 +2665,7 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/letian/paved_roads.png
 
-#begin Icons/Buildings/letian/pearl_hunting_station.png
+#begin Icons/Buildings/letian/pearl_hunting_post.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2675,7 +2675,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Icons/Buildings/letian/pearl_hunting_station.png
+/build:Icons/Buildings/letian/pearl_hunting_post.png
 
 #begin Icons/Buildings/letian/public_baths.png
 /importer:TextureImporter
