@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.Controls;
 using NuciXNA.Input;
@@ -28,9 +27,12 @@ namespace Narivia.Gui.Controls
             CrystalColour = Colour.Red;
         }
 
-        /// <summary>
-        /// Loads the content.
-        /// </summary>
+        public virtual void Close()
+        {
+            Hide();
+            Closed?.Invoke(this, new MouseButtonEventArgs(MouseButton.Left, ButtonState.Pressed, InputManager.Instance.MouseLocation));
+        }
+
         protected override void DoLoadContent()
         {
             background = new GuiImage
@@ -74,27 +76,16 @@ namespace Narivia.Gui.Controls
             SetChildrenProperties();
         }
 
-        /// <summary>
-        /// Unloads the content.
-        /// </summary>
         protected override void DoUnloadContent()
         {
             UnregisterEvents();
         }
 
-        /// <summary>
-        /// Update the content.
-        /// </summary>
-        /// <param name="gameTime">Game time.</param>
         protected override void DoUpdate(GameTime gameTime)
         {
             SetChildrenProperties();
         }
 
-        /// <summary>
-        /// Draw the content on the specified <see cref="SpriteBatch"/>.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch.</param>
         protected override void DoDraw(SpriteBatch spriteBatch)
         {
 
@@ -117,9 +108,6 @@ namespace Narivia.Gui.Controls
         }
 
         void OnCloseButtonClicked(object sender, MouseButtonEventArgs e)
-        {
-            Hide();
-            Closed?.Invoke(this, e);
-        }
+        => Close();
     }
 }

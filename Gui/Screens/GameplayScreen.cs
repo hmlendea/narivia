@@ -275,6 +275,9 @@ namespace Narivia.Gui.Screens
         {
             notificationBar.Clear();
 
+            recruitmentPanel.Close();
+            provincePanel.Close();
+
             GameManager.PassTurn();
 
             Dictionary<string, int> troopsNew = new Dictionary<string, int>();

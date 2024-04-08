@@ -41,6 +41,12 @@ namespace Narivia.Gui.Controls
             HoldingName = holding.Name;
         }
 
+        public override void Hide()
+        {
+            base.Hide();
+            tooltip.Hide();
+        }
+
         protected override void DoLoadContent()
         {
             icon = new GuiImage
