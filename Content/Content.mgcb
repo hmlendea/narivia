@@ -2665,6 +2665,18 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/letian/paved_roads.png
 
+#begin Icons/Buildings/letian/pearl_hunting_station.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/letian/pearl_hunting_station.png
+
 #begin Icons/Buildings/letian/public_baths.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2677,6 +2689,30 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/letian/public_baths.png
 
+#begin Icons/Buildings/letian/siege_workshop.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/letian/siege_workshop.png
+
+#begin Icons/Buildings/letian/stables.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/letian/stables.png
+
 #begin Icons/Buildings/letian/statue.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2688,6 +2724,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/letian/statue.png
+
+#begin Icons/Buildings/letian/tannery.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/letian/tannery.png
 
 #begin Icons/Buildings/letian/tavern.png
 /importer:TextureImporter
@@ -2713,6 +2761,18 @@
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/letian/temple.png
 
+#begin Icons/Buildings/letian/timber_camp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/letian/timber_camp.png
+
 #begin Icons/Buildings/letian/walls.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2736,6 +2796,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Icons/Buildings/letian/watchtower.png
+
+#begin Icons/Buildings/letian/whalery.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Icons/Buildings/letian/whalery.png
 
 #begin Icons/Buildings/letian/windmill.png
 /importer:TextureImporter
