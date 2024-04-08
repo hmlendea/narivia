@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using NuciXNA.Graphics.Drawing;
 using NuciXNA.Gui.Controls;
@@ -57,6 +56,14 @@ namespace Narivia.Gui.Controls
 
             Title = "Building";
             FontName = "ButtonFont";
+        }
+
+        public override void Close()
+        {
+            base.Close();
+
+            currentHoldingIndex = 0;
+            currentProvinceIndex = 0;
         }
 
         protected override void DoLoadContent()

@@ -50,6 +50,14 @@ namespace Narivia.Gui.Controls
             FontName = "ButtonFont";
         }
 
+        public override void Close()
+        {
+            base.Close();
+
+            HoldingId = string.Empty;
+            currentBuildingTypeIndex = 0;
+        }
+
         protected override void DoLoadContent()
         {
             base.DoLoadContent();
@@ -193,6 +201,8 @@ namespace Narivia.Gui.Controls
             {
                 buildingManager.BuildBuilding(HoldingId, buildingType.Id);
             }
+
+            Close();
         }
 
         void OnPreviousBuildingButtonClicked(object sender, MouseButtonEventArgs e)

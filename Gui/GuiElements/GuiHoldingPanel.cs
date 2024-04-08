@@ -51,6 +51,14 @@ namespace Narivia.Gui.Controls
             this.holdingManager = holdingManager;
         }
 
+        public override void Close()
+        {
+            base.Close();
+
+            HoldingId = string.Empty;
+            currentHoldingId = string.Empty;
+        }
+
         protected override void DoLoadContent()
         {
             base.DoLoadContent();

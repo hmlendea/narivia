@@ -457,6 +457,7 @@ namespace Narivia.Gui.Screens
 
         void OnBuildBuildingButtonClicked(object sender, MouseButtonEventArgs e)
         {
+            buildBuildingPanel.HoldingId = holdingPanel.HoldingId;
             buildBuildingPanel.Show();
         }
 
@@ -467,11 +468,11 @@ namespace Narivia.Gui.Screens
 
         void OnHoldingCardClicked(object sender, MouseButtonEventArgs e)
         {
-            provincePanel.Hide();
-
             GuiHoldingCard holdingCard = (GuiHoldingCard)sender;
             holdingPanel.Show();
             holdingPanel.HoldingId = holdingCard.HoldingId;
+
+            provincePanel.Close();
         }
 
         void OnGameMapClicked(object sender, MouseButtonEventArgs e)
