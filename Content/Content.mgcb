@@ -960,7 +960,7 @@
 /processorParam:TextureFormat=Color
 /build:Interface/Notification/background.png
 
-#begin Interface/Notification/icon_background.png
+#begin Interface/Notification/indicator_border.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -970,7 +970,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Interface/Notification/icon_background.png
+/build:Interface/Notification/indicator_border.png
 
 #begin Interface/Notification/icons.png
 /importer:TextureImporter
@@ -983,18 +983,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Interface/Notification/icons.png
-
-#begin Interface/Notification/icons_alt.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=True
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Interface/Notification/icons_alt.png
 
 #begin Interface/ProvincePanel/crystal.png
 /importer:TextureImporter

@@ -90,13 +90,10 @@ namespace Narivia.Gui.Screens
                     ScreenManager.Instance.Size.Width,
                     ScreenManager.Instance.Size.Height + GameDefines.MapTileSize)
             };
-            notificationBar = new GuiNotificationBar(GameManager)
+            notificationBar = new GuiNotificationBar()
             {
                 Id = nameof(notificationBar),
-                Location = new Point2D(
-                    ScreenManager.Instance.Size.Width - 48,
-                    infoBar.Size.Height),
-                Size = new Size2D(48, ScreenManager.Instance.Size.Height - infoBar.Size.Height)
+                Size = new Size2D(64, ScreenManager.Instance.Size.Height - infoBar.Size.Height)
             };
             provincePanel = new GuiProvincePanel(GameManager, WorldManager, HoldingManager)
             {
@@ -113,7 +110,10 @@ namespace Narivia.Gui.Screens
                 Id = nameof(buildingPanel)
             };
 
-            troopsOld = new Dictionary<string, int>();
+            notificationBar.Location = new Point2D(
+                ScreenManager.Instance.Size.Width - notificationBar.Size.Width,
+                infoBar.Size.Height);
+
             troopsOld = MilitaryManager.GetUnits().ToDictionary(x => x.Name, x => MilitaryManager.GetArmy(playerFactionId, x.Id).Size);
 
             LoadRelations();
