@@ -21,12 +21,12 @@ namespace Narivia.Gui.Controls
         /// <value>The icon.</value>
         public NotificationIcon Icon { get; set; }
 
-        GuiImage background;
+        GuiImage border;
         GuiImage icon;
 
         public GuiNotificationIndicator()
         {
-            Size = new Size2D(48, 48);
+            Size = new Size2D(64, 64);
         }
 
         /// <summary>
@@ -34,49 +34,41 @@ namespace Narivia.Gui.Controls
         /// </summary>
         protected override void DoLoadContent()
         {
-            background = new GuiImage
+            border = new GuiImage
             {
-                Id = $"{Id}_{nameof(background)}",
-                ContentFile = "Interface/Notification/icon_background"
+                Id = $"{Id}_{nameof(border)}",
+                ContentFile = "Interface/Notification/indicator_border",
+                SourceRectangle = new Rectangle2D(0, 0, 256, 256),
+                Size = Size
             };
-
             icon = new GuiImage
             {
                 Id = $"{Id}_{nameof(icon)}",
                 ContentFile = "Interface/Notification/icons",
                 SourceRectangle = CalculateIconSourceRectangle(Icon),
-                Location = new Point2D((Size.Width - 20) / 2, (Size.Height - 20) / 2),
-                Size = new Size2D(20, 20)
+                Size = new Size2D(border.Size.Width - 8, border.Size.Height - 8),
+                Location = new Point2D(4, 4)
             };
-            
-            RegisterChildren(background, icon);
+
+            RegisterChildren(icon, border);
         }
 
         /// <summary>
         /// Unloads the content.
         /// </summary>
-        protected override void DoUnloadContent()
-        {
-
-        }
+        protected override void DoUnloadContent() { }
 
         /// <summary>
         /// Update the content.
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        protected override void DoUpdate(GameTime gameTime)
-        {
-
-        }
+        protected override void DoUpdate(GameTime gameTime) { }
 
         /// <summary>
         /// Draw the content on the specified <see cref="SpriteBatch"/>.
         /// </summary>
         /// <param name="spriteBatch">Sprite batch.</param>
-        protected override void DoDraw(SpriteBatch spriteBatch)
-        {
-
-        }
+        protected override void DoDraw(SpriteBatch spriteBatch) { }
 
         void RegisterEvents()
         {
@@ -113,10 +105,10 @@ namespace Narivia.Gui.Controls
 
         Rectangle2D CalculateIconSourceRectangle(NotificationIcon notificationIcon)
         {
-            return new Rectangle2D((int)notificationIcon % 8 * 20,
-                                   (int)notificationIcon / 8 * 20,
-                                   20,
-                                   20);
+            return new Rectangle2D((int)notificationIcon % 8 * 256,
+                                   (int)notificationIcon / 8 * 256,
+                                   256,
+                                   256);
         }
     }
 }
