@@ -2,7 +2,7 @@
 {
     public static class GameDefines
     {
-        public const int MapTileSize = 4;
+        public const int MapTileSize = 16;
 
         public const int SourceMapTileSize = 32;
 
