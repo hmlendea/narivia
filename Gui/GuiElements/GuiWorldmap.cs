@@ -57,8 +57,8 @@ namespace Narivia.Gui.Controls
 
             riverSprite = new TextureSprite
             {
-                ContentFile = $"World/Terrain/{GameDefines.MapTileSize}/water_river",
-                SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
+                ContentFile = $"World/Terrain/water_river",
+                SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
                 SpriteSheetEffect = new RiverTilingEffect(worldManager),
                 IsActive = true
             };
@@ -67,11 +67,15 @@ namespace Narivia.Gui.Controls
             {
                 TextureSprite terrainSprite = new()
                 {
-                    ContentFile = $"World/Terrain/{GameDefines.MapTileSize}/{terrain.Spritesheet}",
+                    ContentFile = $"World/Terrain/{terrain.Spritesheet}",
                     SourceRectangle = new Rectangle2D(
-                        GameDefines.MapTileSize, GameDefines.MapTileSize * 3,
-                        GameDefines.MapTileSize, GameDefines.MapTileSize),
+                        GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize * 3,
+                        GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
                     SpriteSheetEffect = new TerrainSpriteSheetEffect(worldManager),
+                    Scale = new Scale2D(
+                        (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize,
+                        (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize),
+                    TextureLayout = TextureLayout.Stretch,
                     IsActive = true
                 };
 
@@ -80,15 +84,21 @@ namespace Narivia.Gui.Controls
 
             provinceHighlight = new TextureSprite
             {
-                ContentFile = $"Interface/Worldmap/{GameDefines.MapTileSize}/highlight",
-                SourceRectangle = new Rectangle2D(0, 0, GameDefines.MapTileSize, GameDefines.MapTileSize),
+                ContentFile = $"Interface/Worldmap/highlight",
+                SourceRectangle = new Rectangle2D(0, 0, GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
+                Scale = new Scale2D(
+                    (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize,
+                    (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize),
                 Tint = Colour.White
             };
 
             provinceBorder = new TextureSprite
             {
-                ContentFile = $"Interface/Worldmap/{GameDefines.MapTileSize}/province-border",
-                SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
+                ContentFile = $"Interface/Worldmap/province-border",
+                SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
+                Scale = new Scale2D(
+                    (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize,
+                    (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize),
                 Tint = Colour.Black,
                 Opacity = 0.25f,
                 SpriteSheetEffect = new ProvinceBorderEffect(worldManager),
@@ -96,8 +106,11 @@ namespace Narivia.Gui.Controls
             };
             factionBorder = new TextureSprite
             {
-                ContentFile = $"Interface/Worldmap/{GameDefines.MapTileSize}/faction-border",
-                SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.MapTileSize, GameDefines.MapTileSize),
+                ContentFile = $"Interface/Worldmap/faction-border",
+                SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
+                Scale = new Scale2D(
+                    (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize,
+                    (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize),
                 SpriteSheetEffect = new FactionBorderEffect(worldManager),
                 IsActive = true
             };
@@ -273,8 +286,8 @@ namespace Narivia.Gui.Controls
 
             terrainSprite.Location = MapToScreenCoordinates(gameCoords);
             terrainSprite.SourceRectangle = new Rectangle2D(
-                GameDefines.MapTileSize * spritesheetX, GameDefines.MapTileSize * spritesheetY,
-                GameDefines.MapTileSize, GameDefines.MapTileSize);
+                GameDefines.SourceMapTileSize * spritesheetX, GameDefines.SourceMapTileSize * spritesheetY,
+                GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize);
 
             terrainSprite.Draw(spriteBatch);
         }
@@ -351,10 +364,10 @@ namespace Narivia.Gui.Controls
         }
 
         Point2D ScreenToMapCoordinates(Point2D screenCoords)
-        => (camera.Location + screenCoords) / GameDefines.MapTileSize;
+            => (camera.Location + screenCoords) / GameDefines.MapTileSize;
 
         Point2D MapToScreenCoordinates(Point2D mapCoords)
-        => mapCoords * GameDefines.MapTileSize - camera.Location;
+            => mapCoords * GameDefines.MapTileSize - camera.Location;
 
         bool DoesTileNeighbourProvince(Point2D gameCoords, string provinceId)
         {
