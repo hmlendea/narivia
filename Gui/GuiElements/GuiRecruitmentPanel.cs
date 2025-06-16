@@ -77,18 +77,17 @@ namespace Narivia.Gui.Controls
                 ContentFile = "ScreenManager/FillImage",
                 TextureLayout = TextureLayout.Tile,
                 TintColour = Colour.Black,
-                Size = new Size2D(100, 100),
+                Size = new Size2D(100, 136),
                 Location = new Point2D((Size.Width - 100) / 2, 64)
             };
             unitImage = new GuiImage
             {
                 Id = $"{Id}_{nameof(unitImage)}",
                 ContentFile = $"World/Assets/{world.AssetsPack}/units/{units[currentUnitIndex].Id}",
-                SourceRectangle = new Rectangle2D(0, 0, 64, 64),
-                Size = new Size2D(64, 64),
+                Size = new Size2D(100, 100),
                 Location = new Point2D(
-                    unitBackground.Location.X + (unitBackground.Size.Width - 64) / 2,
-                    unitBackground.Location.Y + (unitBackground.Size.Height - 64) / 2)
+                    unitBackground.Location.X + (unitBackground.Size.Width - 100) / 2,
+                    unitBackground.Location.Y + (unitBackground.Size.Height - 100) / 2)
             };
             paper = new GuiImage
             {
@@ -104,8 +103,18 @@ namespace Narivia.Gui.Controls
             {
                 Id = $"{Id}_{nameof(unitText)}",
                 ForegroundColour = Colour.Gold,
-                Size = new Size2D(unitBackground.Size.Width, 18),
+                Size = new Size2D(unitBackground.Size.Width, (unitBackground.Size.Height - unitImage.Size.Height) / 2),
                 Location = unitBackground.Location
+            };
+            troopsText = new GuiText
+            {
+                Id = $"{Id}_{nameof(troopsText)}",
+                HorizontalAlignment = Alignment.Middle,
+                ForegroundColour = Colour.Gold,
+                Size = new Size2D(unitBackground.Size.Width, (unitBackground.Size.Height - unitImage.Size.Height) / 2),
+                Location = new Point2D(
+                    unitBackground.ClientRectangle.Left,
+                    unitBackground.ClientRectangle.Bottom - 18)
             };
 
             healthIcon = new GuiImage
@@ -184,15 +193,6 @@ namespace Narivia.Gui.Controls
                     maintenanceIcon.Size.Width * 2,
                     maintenanceIcon.Size.Height),
                 Location = maintenanceIcon.Location - new Point2D(maintenanceIcon.Size.Width * 2 + GameDefines.GuiSpacing, 0)
-            };
-            troopsText = new GuiText
-            {
-                Id = $"{Id}_{nameof(troopsText)}",
-                ForegroundColour = Colour.Gold,
-                Size = new Size2D(unitBackground.Size.Height, 18),
-                Location = new Point2D(
-                    unitBackground.ClientRectangle.Left,
-                    unitBackground.ClientRectangle.Bottom - 18)
             };
 
             previousUnitButton = new GuiButton
