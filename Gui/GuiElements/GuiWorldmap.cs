@@ -57,7 +57,7 @@ namespace Narivia.Gui.Controls
 
             riverSprite = new TextureSprite
             {
-                ContentFile = $"World/Terrain/{GameDefines.SourceMapTileSize}/water_river",
+                ContentFile = $"World/Terrain/water_river",
                 SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
                 SpriteSheetEffect = new RiverTilingEffect(worldManager),
                 IsActive = true
@@ -67,7 +67,7 @@ namespace Narivia.Gui.Controls
             {
                 TextureSprite terrainSprite = new()
                 {
-                    ContentFile = $"World/Terrain/{GameDefines.SourceMapTileSize}/{terrain.Spritesheet}",
+                    ContentFile = $"World/Terrain/{terrain.Spritesheet}",
                     SourceRectangle = new Rectangle2D(
                         GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize * 3,
                         GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
@@ -84,7 +84,7 @@ namespace Narivia.Gui.Controls
 
             provinceHighlight = new TextureSprite
             {
-                ContentFile = $"Interface/Worldmap/{GameDefines.SourceMapTileSize}/highlight",
+                ContentFile = $"Interface/Worldmap/highlight",
                 SourceRectangle = new Rectangle2D(0, 0, GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
                 Scale = new Scale2D(
                     (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize,
@@ -94,7 +94,7 @@ namespace Narivia.Gui.Controls
 
             provinceBorder = new TextureSprite
             {
-                ContentFile = $"Interface/Worldmap/{GameDefines.SourceMapTileSize}/province-border",
+                ContentFile = $"Interface/Worldmap/province-border",
                 SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
                 Scale = new Scale2D(
                     (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize,
@@ -106,7 +106,7 @@ namespace Narivia.Gui.Controls
             };
             factionBorder = new TextureSprite
             {
-                ContentFile = $"Interface/Worldmap/{GameDefines.SourceMapTileSize}/faction-border",
+                ContentFile = $"Interface/Worldmap/faction-border",
                 SourceRectangle = new Rectangle2D(Point2D.Empty, GameDefines.SourceMapTileSize, GameDefines.SourceMapTileSize),
                 Scale = new Scale2D(
                     (float)GameDefines.MapTileSize / GameDefines.SourceMapTileSize,
