@@ -24,6 +24,7 @@ namespace Narivia.Gui.Controls
 
         GuiImage unitBackground;
         GuiImage unitImage;
+        GuiImage unitImageFrame;
         GuiImage paper;
         GuiText unitText;
         GuiText troopsText;
@@ -88,6 +89,13 @@ namespace Narivia.Gui.Controls
                 Location = new Point2D(
                     unitBackground.Location.X + (unitBackground.Size.Width - 100) / 2,
                     unitBackground.Location.Y + (unitBackground.Size.Height - 100) / 2)
+            };
+            unitImageFrame = new GuiImage
+            {
+                Id = $"{Id}_{nameof(unitImageFrame)}",
+                ContentFile = "Interface/ProvincePanel/holding-frame",
+                Size = unitImage.Size,
+                Location = unitImage.Location
             };
             paper = new GuiImage
             {
@@ -243,7 +251,7 @@ namespace Narivia.Gui.Controls
                     Size.Height - 42 - GameDefines.GuiSpacing)
             };
 
-            RegisterChildren(unitBackground, unitImage, paper);
+            RegisterChildren(unitBackground, unitImage, unitImageFrame, paper);
             RegisterChildren(unitText, troopsText);
             RegisterChildren(healthIcon, powerIcon, priceIcon, maintenanceIcon);
             RegisterChildren(healthText, powerText, priceText, maintenanceText);
