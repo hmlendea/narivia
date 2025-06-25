@@ -12,8 +12,6 @@ namespace Narivia.Gui.SpriteEffects
 {
     public class TerrainSpriteSheetEffect : SpriteSheetEffect
     {
-        readonly IWorldManager worldManager;
-
         readonly World world;
 
         public Point2D TileLocation { get; set; }
@@ -25,15 +23,13 @@ namespace Narivia.Gui.SpriteEffects
         public TerrainSpriteSheetEffect(IWorldManager worldManager)
         {
             FrameAmount = new Size2D(3, 6);
-            TilesWith = new List<string>();
+            TilesWith = [];
 
-            this.worldManager = worldManager;
             world = worldManager.GetWorld();
         }
 
         protected override void DoUpdate(GameTime gameTime)
         {
-            List<string> id = world.Tiles[TileLocation.X, TileLocation.Y].TerrainIds;
             List<string> idN = world.Tiles[TileLocation.X, TileLocation.Y - 1].TerrainIds;
             List<string> idW = world.Tiles[TileLocation.X - 1, TileLocation.Y].TerrainIds;
             List<string> idS = world.Tiles[TileLocation.X, TileLocation.Y + 1].TerrainIds;
