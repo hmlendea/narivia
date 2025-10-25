@@ -4,8 +4,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>Narivia</RootNamespace>
-    <Authors>Horațiu Mlendea</Authors>
-    <Copyright>Copyright 2024 © Horațiu Mlendea</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
