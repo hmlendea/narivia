@@ -1,5 +1,5 @@
 
-using NuciXNA.DataAccess.Repositories;
+using NuciDAL.Repositories;
 
 using Narivia.DataAccess.DataObjects;
 
@@ -8,16 +8,12 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Flag repository implementation.
     /// </summary>
-    public class FlagRepository : XmlRepository<FlagEntity>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="FlagRepository"/> class.
+    /// </remarks>
+    /// <param name="fileName">File name.</param>
+    public class FlagRepository(string fileName) : XmlRepository<FlagEntity>(fileName)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FlagRepository"/> class.
-        /// </summary>
-        /// <param name="fileName">File name.</param>
-        public FlagRepository(string fileName) : base(fileName)
-        {
-
-        }
 
         /// <summary>
         /// Updates the specified flag.
@@ -25,15 +21,9 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="entity">Flag.</param>
         public override void Update(FlagEntity entity)
         {
-            LoadEntitiesIfNeeded();
+            LoadEntities();
 
-            FlagEntity flagEntityToUpdate = Get(entity.Id);
-
-            if (flagEntityToUpdate == null)
-            {
-                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
-            }
-
+            FlagEntity flagEntityToUpdate = Get(entity.Id) ?? throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             flagEntityToUpdate.Layer1 = entity.Layer1;
             flagEntityToUpdate.Layer2 = entity.Layer2;
             flagEntityToUpdate.Emblem = entity.Emblem;
@@ -43,7 +33,7 @@ namespace Narivia.DataAccess.Repositories
             flagEntityToUpdate.Layer2ColourHexadecimal = entity.Layer2ColourHexadecimal;
             flagEntityToUpdate.EmblemColourHexadecimal = entity.EmblemColourHexadecimal;
 
-            XmlFile.SaveEntities(Entities.Values);
+            SaveChanges();
         }
     }
 }

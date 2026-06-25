@@ -1,4 +1,4 @@
-using NuciXNA.DataAccess.Repositories;
+using NuciDAL.Repositories;
 
 using Narivia.DataAccess.DataObjects;
 
@@ -7,16 +7,12 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Province repository implementation.
     /// </summary>
-    public class ProvinceRepository : XmlRepository<ProvinceEntity>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="ProvinceRepository"/> class.
+    /// </remarks>
+    /// <param name="fileName">File name.</param>
+    public class ProvinceRepository(string fileName) : XmlRepository<ProvinceEntity>(fileName)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProvinceRepository"/> class.
-        /// </summary>
-        /// <param name="fileName">File name.</param>
-        public ProvinceRepository(string fileName) : base(fileName)
-        {
-
-        }
 
         /// <summary>
         /// Updates the specified province.
@@ -24,15 +20,9 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="entity">Province.</param>
         public override void Update(ProvinceEntity entity)
         {
-            LoadEntitiesIfNeeded();
+            LoadEntities();
 
-            ProvinceEntity provinceEntityToUpdate = Get(entity.Id);
-
-            if (provinceEntityToUpdate == null)
-            {
-                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
-            }
-
+            ProvinceEntity provinceEntityToUpdate = Get(entity.Id) ?? throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             provinceEntityToUpdate.Name = entity.Name;
             provinceEntityToUpdate.Description = entity.Description;
             provinceEntityToUpdate.ColourHexadecimal = entity.ColourHexadecimal;
@@ -40,7 +30,7 @@ namespace Narivia.DataAccess.Repositories
             provinceEntityToUpdate.FactionId = entity.FactionId;
             provinceEntityToUpdate.SovereignFactionId = entity.SovereignFactionId;
 
-            XmlFile.SaveEntities(Entities.Values);
+            SaveChanges();
         }
     }
 }

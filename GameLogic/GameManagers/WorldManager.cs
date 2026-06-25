@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 
 using NuciExtensions;
-using NuciXNA.DataAccess.Repositories;
+using NuciDAL.Repositories;
 using NuciXNA.Primitives;
 
 using Narivia.GameLogic.Mapping;

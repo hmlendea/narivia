@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 
-using NuciXNA.DataAccess.IO;
+using NuciDAL.IO;
 using NuciXNA.Graphics;
 
 namespace Narivia.Settings

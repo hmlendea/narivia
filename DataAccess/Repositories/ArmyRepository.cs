@@ -1,6 +1,6 @@
 ﻿using System;
 
-using NuciXNA.DataAccess.Repositories;
+using NuciDAL.Repositories;
 
 using Narivia.DataAccess.DataObjects;
 
