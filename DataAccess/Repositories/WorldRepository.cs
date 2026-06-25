@@ -5,8 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
+using NuciDAL.Repositories;
 using NuciXNA.DataAccess.IO;
-using NuciXNA.DataAccess.Repositories;
 using NuciXNA.Primitives;
 
 using Narivia.DataAccess.DataObjects;
@@ -16,24 +16,19 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// World repository implementation.
     /// </summary>
-    public class WorldRepository : IRepository<string, WorldEntity>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="WorldRepository"/> class.
+    /// </remarks>
+    /// <param name="worldsDirectory">File name.</param>
+    public class WorldRepository(string worldsDirectory) : Repository<string, WorldEntity>
     {
-        readonly string worldsDirectory;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WorldRepository"/> class.
-        /// </summary>
-        /// <param name="worldsDirectory">File name.</param>
-        public WorldRepository(string worldsDirectory)
-        {
-            this.worldsDirectory = worldsDirectory;
-        }
+        public override int EntitiesCount => Directory.GetDirectories(worldsDirectory).Length;
 
         /// <summary>
         /// Adds the specified world.
         /// </summary>
         /// <param name="worldEntity">World.</param>
-        public void Add(WorldEntity worldEntity)
+        public override void Add(WorldEntity worldEntity)
         {
             // TODO: Implement this
             throw new NotImplementedException();
@@ -44,14 +39,14 @@ namespace Narivia.DataAccess.Repositories
         /// </summary>
         /// <returns>The world.</returns>
         /// <param name="id">Identifier.</param>
-        public WorldEntity Get(string id)
+        public override WorldEntity Get(string id)
         {
             WorldEntity worldEntity;
             string worldFile = Path.Combine(worldsDirectory, id, "world.xml");
 
             using (TextReader reader = new StreamReader(worldFile))
             {
-                XmlSerializer xml = new XmlSerializer(typeof(WorldEntity));
+                XmlSerializer xml = new(typeof(WorldEntity));
                 worldEntity = (WorldEntity)xml.Deserialize(reader);
             }
 
@@ -64,9 +59,9 @@ namespace Narivia.DataAccess.Repositories
         /// Gets all the worlds.
         /// </summary>
         /// <returns>The worlds</returns>
-        public IEnumerable<WorldEntity> GetAll()
+        public override IEnumerable<WorldEntity> GetAll()
         {
-            ConcurrentBag<WorldEntity> worldEntities = new ConcurrentBag<WorldEntity>();
+            ConcurrentBag<WorldEntity> worldEntities = [];
 
             foreach (string worldId in Directory.GetDirectories(worldsDirectory))
             {
@@ -81,13 +76,13 @@ namespace Narivia.DataAccess.Repositories
         /// Updates the specified world.
         /// </summary>
         /// <param name="worldEntity">World.</param>
-        public void Update(WorldEntity worldEntity)
+        public override void Update(WorldEntity worldEntity)
         {
             string worldFile = Path.Combine(worldsDirectory, worldEntity.Id, "world.xml");
 
             using (TextWriter writer = new StreamWriter(worldFile))
             {
-                XmlSerializer xml = new XmlSerializer(typeof(WorldEntity));
+                XmlSerializer xml = new(typeof(WorldEntity));
                 xml.Serialize(writer, worldEntity);
             }
 
@@ -98,24 +93,18 @@ namespace Narivia.DataAccess.Repositories
         /// Removes the world with the specified identifier.
         /// </summary>
         /// <param name="id">Identifier.</param>
-        public void Remove(string id)
+        public override void Remove(string id)
         {
             Directory.Delete(Path.Combine(worldsDirectory, id));
         }
 
-        /// <summary>
-        /// Removes the specified world.
-        /// </summary>
-        /// <param name="worldEntity">World.</param>
-        public void Remove(WorldEntity worldEntity)
-        {
-            Remove(worldEntity.Id);
-        }
+        public override bool ContainsId(string id)
+            => Directory.Exists(Path.Combine(worldsDirectory, id));
 
         WorldTileEntity[,] LoadWorldTiles(string worldId)
         {
-            Dictionary<Colour, string> provinceColourIds = new Dictionary<Colour, string>();
-            Dictionary<Colour, string> terrainColourIds = new Dictionary<Colour, string>();
+            Dictionary<Colour, string> provinceColourIds = [];
+            Dictionary<Colour, string> terrainColourIds = [];
 
             string provincesPath = Path.Combine(worldsDirectory, worldId, "provinces.xml");
             string terrainsPath = Path.Combine(worldsDirectory, worldId, "terrains.xml");

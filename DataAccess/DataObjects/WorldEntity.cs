@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-using NuciXNA.DataAccess.DataObjects;
+using NuciDAL.DataObjects;
 
 namespace Narivia.DataAccess.DataObjects
 {
