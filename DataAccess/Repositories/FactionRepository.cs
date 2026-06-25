@@ -1,4 +1,4 @@
-using NuciXNA.DataAccess.Repositories;
+using NuciDAL.Repositories;
 
 using Narivia.DataAccess.DataObjects;
 
@@ -7,16 +7,12 @@ namespace Narivia.DataAccess.Repositories
     /// <summary>
     /// Faction repository implementation.
     /// </summary>
-    public class FactionRepository : XmlRepository<FactionEntity>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="FactionRepository"/> class.
+    /// </remarks>
+    /// <param name="fileName">File name.</param>
+    public class FactionRepository(string fileName) : XmlRepository<FactionEntity>(fileName)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FactionRepository"/> class.
-        /// </summary>
-        /// <param name="fileName">File name.</param>
-        public FactionRepository(string fileName) : base(fileName)
-        {
-
-        }
 
         /// <summary>
         /// Updates the specified faction.
@@ -24,22 +20,16 @@ namespace Narivia.DataAccess.Repositories
         /// <param name="entity">Faction.</param>
         public override void Update(FactionEntity entity)
         {
-            LoadEntitiesIfNeeded();
+            LoadEntities();
 
-            FactionEntity factionEntityToUpdate = Get(entity.Id);
-
-            if (factionEntityToUpdate == null)
-            {
-                throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
-            }
-
+            FactionEntity factionEntityToUpdate = Get(entity.Id) ?? throw new EntityNotFoundException(entity.Id, nameof(BorderEntity));
             factionEntityToUpdate.Name = entity.Name;
             factionEntityToUpdate.Description = entity.Description;
             factionEntityToUpdate.ColourHexadecimal = entity.ColourHexadecimal;
             factionEntityToUpdate.FlagId = entity.FlagId;
             factionEntityToUpdate.CultureId = entity.CultureId;
 
-            XmlFile.SaveEntities(Entities.Values);
+            SaveChanges();
         }
     }
 }

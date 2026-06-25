@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 
 using NuciExtensions;
-using NuciXNA.DataAccess.Repositories;
+using NuciDAL.Repositories;
 
 using Narivia.DataAccess.DataObjects;
 using Narivia.DataAccess.Repositories;
