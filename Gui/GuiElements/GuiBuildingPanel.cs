@@ -201,7 +201,6 @@ namespace Narivia.Gui.Controls
             base.DoUpdate(gameTime);
 
             SetChildrenProperties();
-            UpdateProvinceList();
         }
 
         void RegisterEvents()
